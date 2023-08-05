@@ -1,0 +1,88 @@
+#!/bin/bash
+
+###################################################################
+# do_delete_dellsc_volume
+# Purpose: Unmap and delete one dellsc volume 
+#
+#    Args: $1 -> wwn of volume to delete
+#
+#  Output: Log of actions
+# Returns: TRUE for success, FALSE for failure
+###################################################################
+ucamdsm="/usr/local/bin/ucamdsm"
+
+echo "Invoked with: $0 $@"
+echo "My PID is $$"
+
+###################################################################
+# Purpose: usage information
+###################################################################
+function usage()
+{
+cat << EOF
+usage: $0 options
+
+This script unmaps and deletes a dellsc volume.  It requires that the volume is not mounted, and will exit with error if the volume is mounted.
+
+OPTIONS:
+  -h 
+  -v wwn                              World Wide Number of the volume (32 characters long)
+  -c /path/to/secrets.json            Secret file containing URL and credential to access Dell SC
+
+E.g.
+  $0 -v 123455 -c /path/to/secrets.json
+
+NB. 
+1. /path/to/secrets.json must be in the following format:
+{
+    "dsm_host": "example.com",
+    "dsm_user": "user",
+    "dsm_password": "password"
+}
+
+2. ucamdsm must be installed and located under /usr/local/bin/
+EOF
+}
+
+###################################################################
+# Parse the args 
+###################################################################
+
+while getopts "hv:c:" opt
+do
+  case $opt in
+    h)
+      usage
+      exit
+      ;;
+    v)
+      wwn=$OPTARG
+     ;;
+    c)
+      secrets=$OPTARG
+     ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+# check required arguments
+if [ -z "$wwn" ] || [ -z "$secrets" ]
+then
+   usage
+   exit
+fi
+
+# Call ucamdsm package
+result=$($ucamdsm --record_config True --file $secrets delete_volume --vol_wwn $wwn)
+
+if [[ $result == *"[Command succeeded - Returns True]"* ]]
+then
+    echo "Command succeeded."
+    exit 0
+else
+    echo "Command failed. Please check the ucamdsm log file in /var/log/ucamdsm/."
+    exit 1
+fi

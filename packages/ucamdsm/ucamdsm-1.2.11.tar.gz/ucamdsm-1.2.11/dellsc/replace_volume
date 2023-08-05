@@ -1,0 +1,100 @@
+#!/bin/bash 
+###################################################################
+# do_clone_volume
+# Purpose: Clone one dellsc volume (source) and mount it in place
+#          of another dellsc volume (dest).
+#          The replaced dellsc volume is then deleted
+# 
+#    Args: -g -> Gold Image (source) mountpoint
+#          -t -> Target (dest) dest mountpoint
+#
+#  Output: Log of actions
+# Returns: TRUE for success, FALSE for failure
+###################################################################
+ucamdsm="/usr/local/bin/ucamdsm"
+
+echo "Invoked with: $0 $@"
+echo "My PID is $$"
+
+###################################################################
+# Purpose: usage information 
+###################################################################
+function usage()
+{
+cat << EOF
+usage: $0 options
+
+This script refreshes a "target" volume from a gold image.
+
+Restrictions for use:
+  * The target volume must already be a dellsc volume
+  * Both the target and the gold image must be mounted
+  * There must be no processes listed by "fuser -c" for either the gold image or the target
+
+WARNING: The data stored on the target will be removed, and replaced with a copy of the data currently on the gold image
+
+OPTIONS:
+   -h                                  Show this message
+   -g /path/to/goldimage/mountpoint    Define gold image mountpoint
+   -t /path/to/target/mountpoint       Define target mountpoint
+   -c /path/to/secrets.json            Secret file containing URL and credential to access Dell SC
+
+E.g.
+   $0 -g /d16 -t /d17 -c /path/to/secrets.json
+
+NB. 
+1. /path/to/secrets.json must be in the following format:
+{
+    "dsm_host": "example.com",
+    "dsm_user": "user",
+    "dsm_password": "password"
+}
+
+2. ucamdsm must be installed and located under /usr/local/bin/
+EOF
+}
+
+###################################################################
+# Parse the args 
+###################################################################
+while getopts "hg:t:c:" opt
+do
+  case $opt in
+    h)
+      usage
+      exit
+      ;;
+    g)
+      g_mount_point=$OPTARG
+      ;;
+    t)
+      t_mount_point=$OPTARG
+      ;;
+    c)
+      secrets=$OPTARG
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+# check required arguments
+if [ -z "$g_mount_point" ] || [ -z "$t_mount_point" ] || [ -z "$secrets" ]
+then
+   usage
+   exit
+fi
+
+# Call ucamdsm package
+result=$($ucamdsm --record_config True --file $secrets replace_volume --src_mp $g_mount_point --dst_mp $t_mount_point)
+
+if [[ $result == *"[Command succeeded - Returns True]"* ]]
+then
+    echo "Command succeeded."
+    exit 0
+else
+    echo "Command failed. Please check the ucamdsm log file in /var/log/ucamdsm/."
+    exit 1
+fi

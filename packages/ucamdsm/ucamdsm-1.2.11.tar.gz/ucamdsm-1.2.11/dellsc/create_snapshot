@@ -1,0 +1,113 @@
+#!/bin/bash
+
+###################################################################
+# do_snapshot_volume
+# Purpose: create a replay of a dellsc volume
+#          The replaced dellsc volume is then deleted
+# 
+#    Args: -m -> source mountpoint 
+#          -l -> Label for replay 
+#          -r -> retention (days) 
+#
+#  Output: Log of actions
+# Returns: TRUE for success, FALSE for failure
+###################################################################
+ucamdsm="/usr/local/bin/ucamdsm"
+
+echo "Invoked with: $0 $@"
+echo "My PID is $$"
+
+
+###################################################################
+# Purpose: usage information 
+###################################################################
+function usage()
+{
+cat << EOF
+usage: $0 options
+
+This script snapshots a dellsc volume, labelling it with the specified label
+and retaining it for the number of days specified
+
+DEFAULT EXPIRY TIME: 7 DAYS
+
+Restrictions for use:
+  * The volume must be a dellsc volume
+  * The volume must be mounted
+  * There must be no processes listed by "fuser -cv" for the volume
+
+OPTIONS:
+  -h                        Show this message
+  -m /path/to/mountpoint    Mountpoint to snapshot
+  -l label                  Label for the snapshot 
+                              - alphanumeric chars only
+                              - Max 30 characters long
+                              - Min 2 characters long 
+                              - No whitespace
+  -r retention              Time for snapshot to be kept, in days (max 99)
+  -c /path/to/secrets.json  Secret file containing URL and credential to access Dell SC
+
+E.g.
+   $0 -m /d01/database1 -l "thisisalabel" -r 2 -c /path/to/secrets.json
+   $0 -m /d42 -l "baseline" -r 2 -c /path/to/secrets.json
+
+NB. 
+1. /path/to/secrets.json must be in the following format:
+{
+    "dsm_host": "example.com",
+    "dsm_user": "user",
+    "dsm_password": "password"
+}
+
+2. ucamdsm must be installed and located under /usr/local/bin/
+EOF
+}
+
+###################################################################
+# Parse the args 
+###################################################################
+retention=7
+while getopts "hm:l:r:c:" opt
+do
+  case $opt in
+    h)
+      usage
+      exit
+      ;;
+    m)
+      mount_point=$OPTARG
+      ;;
+    l)
+      label=$OPTARG
+      ;;
+    r)
+      retention=$OPTARG
+      ;;
+    c)
+      secrets=$OPTARG
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+# check required arguments
+if [ -z "$mount_point" ] || [ -z "$label" ] || [ -z "$secrets" ]
+then
+   usage
+   exit
+fi
+
+# Call ucamdsm package
+result=$($ucamdsm --record_config True --file $secrets create_snapshot --mp $mount_point --replay_label $label --retention $retention)
+
+if [[ $result == *"[Command succeeded - Returns True]"* ]]
+then
+    echo "Command succeeded."
+    exit 0
+else
+    echo "Command failed. Please check the ucamdsm log file in /var/log/ucamdsm/."
+    exit 1
+fi

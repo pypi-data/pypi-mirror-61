@@ -1,0 +1,105 @@
+#!/bin/bash 
+###################################################################
+# mount_snapshot
+# Purpose: Create a volume from a snapshot
+#          and mount it at a desired mountpoint
+# 
+#    Args: -l -> label of replay
+#          -v -> volume name
+#          -s -> server to map it to
+#          -t -> Target (dest) dest mountpoint
+#
+#  Output: Log of actions
+# Returns: TRUE for success, FALSE for failure
+###################################################################
+ucamdsm="/usr/local/bin/ucamdsm"
+
+echo "Invoked with: $0 $@"
+echo "My PID is $$"
+
+###################################################################
+# Purpose: usage information 
+###################################################################
+function usage()
+{
+cat << EOF
+usage: $0 options
+
+This script creates a snapshot from a volume, then use it to create a clone. The clone will be 
+mapped to the local server at a desired mountpoint.
+
+Restrictions for use:
+  * The server must be connected to the same Dell SC
+  * The volume must exist.
+
+OPTIONS:
+   -h                                  Show this message
+   -l label                            Label of replay to create the clone from. Also the label to be
+                                       appended to the source volume name to form the clone name.
+   -v volume_wwn                       WWN of the volume from which to create the clone
+   -t /path/to/mountpoint              Mountpoint of the clone volume
+   -c /path/to/secrets.json            Secret file containing URL and credential to access Dell SC
+
+E.g.
+   $0 -l CSTRAIN20180118 -v 000000000 -t /d16 -c /path/to/secrets.json
+
+NB. 
+1. /path/to/secrets.json must be in the following format:
+{
+    "dsm_host": "example.com",
+    "dsm_user": "user",
+    "dsm_password": "password"
+}
+
+2. ucamdsm must be installed and located under /usr/local/bin/
+EOF
+}
+
+###################################################################
+# Parse the args 
+###################################################################
+
+while getopts "hl:v:t:c:" opt
+do
+  case $opt in
+    h)
+      usage
+      exit
+      ;;
+    l)
+      replay_label=$OPTARG
+      ;;
+    v)
+      volume_wwn=$OPTARG
+     ;;
+    t)
+      t_mount_point=$OPTARG
+      ;;
+    c)
+      secrets=$OPTARG
+     ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+# check required arguments
+if [ -z "$t_mount_point" ] || [ -z "$replay_label" ] || [ -z "$volume_wwn" ] || [ -z "$secrets" ]
+then
+   usage
+   exit
+fi
+
+# Call ucamdsm package
+result=$($ucamdsm --record_config True --file $secrets clone_volume --vol_wwn $volume_wwn --replay_label $replay_label --target_mp $t_mount_point)
+
+if [[ $result == *"[Command succeeded - Returns True]"* ]]
+then
+    echo "Command succeeded."
+    exit 0
+else
+    echo "Command failed. Please check the ucamdsm log file in /var/log/ucamdsm/."
+    exit 1
+fi
