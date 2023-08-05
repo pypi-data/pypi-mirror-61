@@ -1,0 +1,499 @@
+/*!* Flex forms styles *!*/
+
+/* region default styling
+
+Fields icons alignment:
+    field_group_class: icon-right
+    field_group_class: icon-left
+
+Radio buttons direction:
+    field_group_class: radio-as-row
+
+Radio / Multi Checkbox as button:
+    checkbox-as-button
+    radio-as-button
+
+
+Use :nth-of-type() and :nth-child(n+x):nth-child(-n+x+y) selectors to style form rows in your project.
+
+******************************************************************************************************/
+
+.flex-form {
+    font-family: Rubik, Avenir Next, Helvetica Neue, sans-serif;
+    width: 100%;
+}
+
+.flex-form .flex-fields-column {
+    padding: 10px;
+}
+
+.flex-form .flex-fields-column .flex-fields-row_title {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    color: rgb(100, 85, 116);
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 16px 0;
+}
+
+.flex-form .flex-fields-column .flex-fields-row_title:empty {
+    display:none;
+}
+
+.flex-form .flex-fields-row, .flex-form .flex-fields-row .flex-fields-block {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-end;
+}
+
+.flex-form .flex-fields-row .flex-field-group {
+    width: 100%;
+}
+
+.flex-form .flex-fields-row .flex-field-group .flex-field-wrapper {
+    position: relative;
+}
+
+.flex-form .flex-fields-row .flex-field-group label {
+    display: block;
+    font-size: 16px;
+    padding: 5px 0;
+    word-break: break-word;
+}
+
+.flex-form .flex-fields-row .flex-field-group .help-text {
+    color: rgb(149, 133, 163);
+    font-size: 14px;
+    margin-top: 8px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.flex-form .flex-fields-row .flex-field-group .required {
+    display: inline-block;
+    opacity: 0.6;
+    width: 5px;
+    height: 5px;
+    text-indent: -9999em;
+    vertical-align: super;
+    background: rgb(250, 88, 73);
+    border-radius: 5px;
+}
+
+.flex-form .flex-fields-row .block-with-padding {
+    margin: 0 10px;
+}
+
+.flex-form .flex-fields-row .block-with-padding:first-child {
+    margin-left: 0;
+}
+
+.flex-form .flex-fields-row .block-with-padding:last-child {
+    margin-right: 0;
+}
+
+.flex-form .flex-fields-row input:not([type=checkbox]):not([type=radio]),
+.flex-form .flex-fields-row select,
+.flex-form .flex-fields-row textarea,
+.flex-form .flex-fields-row .static-field {
+    box-sizing: border-box;
+    width: 100%;
+    color: rgb(48, 40, 57);
+    box-shadow: rgba(37, 11, 54, 0.04) 0px 2px 0px inset;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(209, 202, 216);
+    border-image: initial;
+    border-radius: 4px;
+    padding: 0.6em;
+    font-size: 16px;
+    transition: border 0.1s linear 0s;
+    background-color: white;
+}
+
+.flex-form .flex-fields-row .flex-field-group .static-data-array-field .flex-field-help-info-wrapper {
+    padding-bottom: 10px;
+}
+
+.flex-form .flex-fields-row .flex-field-group .static-data-array-field .flex-field-help-info-wrapper label {
+    font-size: 13px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.flex-form .flex-fields-row .flex-field-group .static-data-array-field .flex-field-help-info-wrapper .help-text {
+    font-size: 13px;
+}
+
+/* region disabling */
+
+.flex-form .flex-fields-row input:not([type=checkbox]):not([type=radio]):disabled,
+.flex-form .flex-fields-row select:disabled,
+.flex-form .flex-fields-row textarea:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.flex-form .flex-fields-row input:not([type=checkbox]):not([type=radio])[readonly],
+.flex-form .flex-fields-row select[readonly],
+.flex-form .flex-fields-row textarea[readonly] {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.flex-form .flex-fields-row .flex-field-group[readonly],
+.flex-form .flex-fields-row .flex-field-group[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.flex-form .flex-fields-row .flex-field-group[disabled] {
+    opacity: 0.5 !important;
+}
+
+/* endregion */
+
+.flex-form .flex-fields-row select {
+    background: url('../img/expand_more-24px.svg') no-repeat right white;
+    padding-right: 10px;
+    background-origin: content-box;
+    -webkit-appearance: none;
+}
+
+.flex-form .flex-fields-row input::-webkit-input-placeholder {
+    font-weight: 400;
+    color: rgb(149, 133, 163);
+}
+
+/* region Buttons */
+
+.flex-form .flex-fields-row .flex-field-group .static-flex-button .default-flex-btn {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+    background: #166acc;
+    color: #FFF;
+    padding: 0 15px;
+    border: 1px solid #166acc;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.flex-form .flex-fields-row .flex-field-group .static-flex-button button:hover {
+    background: #1357a6;
+    text-decoration: none;
+}
+
+/* endregion */
+
+.flex-form .flex-fields-row .flex-field-group[disabled] {
+    opacity: 0.5 !important;
+}
+
+/* region Feedback */
+
+.flex-form .flex-fields-row .flex-field-group .flex-field-wrapper .flex-invalid-feedback,
+.flex-form .flex-fields-row .flex-field-group .flex-field-wrapper .flex-valid-feedback {
+    background-color: #ff9387;
+    position: absolute;
+    margin: 5px 0;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-error=false] .flex-field-wrapper .flex-invalid-feedback,
+.flex-form .flex-fields-row .flex-field-group[data-has-success=false] .flex-field-wrapper .flex-valid-feedback {
+    display: none;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true]:hover .flex-field-wrapper .flex-invalid-feedback,
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true]:hover .flex-field-wrapper .flex-valid-feedback {
+    font-size: 14px;
+    font-weight: 300;
+    word-break: break-word;
+    background: white;
+    border: 1px dashed;
+    padding: 5px;
+    z-index: 10;
+    width: unset;
+    height: auto;
+}
+
+.flex-form .flex-fields-row .flex-field-group .flex-field-wrapper .flex-invalid-feedback {
+    color: #ff9387;
+}
+
+.flex-form .flex-fields-row .flex-field-group .flex-field-wrapper .flex-valid-feedback {
+    color: green;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true] input,
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true] select,
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true] textarea {
+    background-color: rgba(255, 97, 45, 0.09);
+    border-color: #ff9387;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.7) 35px, rgba(255,255,255,.7) 70px);
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true] input,
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true] select,
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true] textarea {
+    background-color: #dfe6df;
+    border-color: green;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.7) 35px, rgba(255,255,255,.7) 70px);
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true] .radio-container .radio-checkmark,
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true] .checkbox-container .checkbox-checkmark {
+    border: 1px solid #ff9387;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true] .radio-container .radio-checkmark,
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true] .checkbox-container .checkbox-checkmark {
+    border: 1px solid green;
+}
+
+.flex-form .error {
+    color: red;
+    font-size: 13px;
+    padding: 5px 0;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true].icon-right .flex-field-icon-wrapper {
+    border-left-color: #ff9387;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-error=true].icon-left .flex-field-icon-wrapper {
+    border-right-color: #ff9387;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true].icon-right .flex-field-icon-wrapper {
+    border-left-color: green;
+}
+
+.flex-form .flex-fields-row .flex-field-group[data-has-success=true].icon-left .flex-field-icon-wrapper {
+    border-right-color: green;
+}
+
+/* endregion */
+
+.flex-form .checkbox-container,
+.flex-form .radio-container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* region Radio Button */
+
+.flex-form .radio-container input {
+    position: absolute;
+    opacity: 0;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.flex-form .radio-checkmark {
+    display: block;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    position: relative;
+}
+
+.flex-form .radio-container:hover input ~ .radio-checkmark {
+    background-color: #ccc;
+}
+
+.flex-form .radio-container input:checked ~ .radio-checkmark {
+    background-color: #2196F3;
+}
+
+.flex-form .radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.flex-form .radio-container input:checked ~ .radio-checkmark:after {
+    display: block;
+}
+
+.flex-form .radio-container .radio-checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+/* endregion */
+
+/* region CheckBox */
+
+.flex-form .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+
+.flex-form .checkbox-checkmark {
+    display: block;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    position: relative;
+}
+
+.flex-form .checkbox-container:hover input ~ .checkbox-checkmark {
+    background-color: #ccc;
+}
+
+.flex-form .checkbox-container input:checked ~ .checkbox-checkmark {
+    background-color: #2196F3;
+}
+
+.flex-form .checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.flex-form .checkbox-container input:checked ~ .checkbox-checkmark:after {
+    display: block;
+}
+
+.flex-form .checkbox-container .checkbox-checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* endregion */
+
+/* region Radio / Multi Checkbox buttons in row */
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-row .flex-field-wrapper,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row .flex-field-wrapper {
+    display: flex;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-row .radio-container,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row .checkbox-container {
+    margin: 0 10px;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-row .radio-container:first-child,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row .checkbox-container:first-child {
+    margin-left: 0;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-row .radio-container:last-child,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row .checkbox-container:last-child {
+    margin-right: 0;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-row .flex-field-wrapper .flex-invalid-feedback,
+.flex-form .flex-fields-row .flex-field-group.radio-as-row .flex-field-wrapper .flex-valid-feedback,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row .flex-field-wrapper .flex-invalid-feedback,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-row .flex-field-wrapper .flex-valid-feedback {
+    top: 100%;
+}
+
+/* endregion */
+
+/* region Radio / Checkbox as button */
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-button .radio-container .radio-checkmark,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-button .checkbox-container .checkbox-checkmark {
+    width: 120px;
+    border-radius: 100px;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-button .radio-container .choice-label,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-button .checkbox-container .choice-label{
+    position: absolute;
+    z-index: 10;
+    color: white;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-button .radio-container,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-button .checkbox-container {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-button .radio-container .choice-label,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-button .checkbox-container .choice-label {
+    color: rgb(48, 40, 57);
+}
+
+.flex-form .flex-fields-row .flex-field-group.radio-as-button .radio-container input:checked + .choice-label,
+.flex-form .flex-fields-row .flex-field-group.checkbox-as-button .checkbox-container input:checked + .choice-label {
+    color: white;
+}
+
+/* endregion */
+
+/* region Icons */
+
+.flex-form .flex-fields-row .flex-field-group .flex-field-icon-wrapper,
+.flex-form .flex-fields-row .flex-field-group.icon-right .flex-field-icon-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    top: 0;
+    width: 40px;
+    border: 1px solid rgb(209, 202, 216);
+    border-radius: 5px 0 0 5px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.flex-form .flex-fields-row .flex-field-group.icon-left input {
+    text-indent: 40px
+}
+
+.flex-form .flex-fields-row .flex-field-group.icon-right .flex-field-icon-wrapper {
+    right: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.flex-form .flex-fields-row .flex-field-group .flex-field-icon-wrapper i {
+    color: rgb(149, 133, 163);
+}
+
+/* endregion */
+
+/* endregion
+**********************************************************************************************************/

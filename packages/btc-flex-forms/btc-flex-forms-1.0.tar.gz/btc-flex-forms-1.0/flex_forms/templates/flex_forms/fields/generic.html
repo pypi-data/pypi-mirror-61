@@ -1,0 +1,44 @@
+<div class="flex-field-group block-with-padding {{ field_group_class }} js-input_wrapper"
+     data-has-error="{{ field.errors|yesno:'true,false' }}" data-has-success="false" {{ readonly }} {{ disabled }}>
+    {% block field_label %}
+        <label class="flex-field-main-label" for="{{ field.id_for_label }}">
+            {{ label }}
+            {% if required %}
+                {% block required_field_marker %}
+                    <span class="required">{{ required_text }}</span>
+                {% endblock %}
+            {% endif %}
+        </label>
+        {% block field_help_text %}
+            <span class="help-text js-field_help_text">{{ field.help_text }}</span>
+        {% endblock %}
+    {% endblock %}
+    {% block field_wrapper %}
+        <div class="flex-field-wrapper">
+            {% block field_widget_template %}
+                {{ field }}
+            {% endblock %}
+            {% block field_icon %}
+                {% if icon %}
+                    <div class="flex-field-icon-wrapper">
+                        {% if 'svg' in icon %}
+                            {% include icon %}
+                        {% else %}
+                            {{ icon }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+            {% block field_feedback %}
+                <div class="flex-invalid-feedback js-invalid_feedback">
+                    {% if show_errors and field.errors %}
+                        {% for error in field.errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="flex-valid-feedback js-valid_feedback"></div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+</div>

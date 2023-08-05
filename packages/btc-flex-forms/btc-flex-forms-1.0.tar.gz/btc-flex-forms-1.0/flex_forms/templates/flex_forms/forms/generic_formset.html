@@ -1,0 +1,8 @@
+<form {{ html_params|safe }}>
+    {% block csrf_protect %}
+        {% csrf_token %}
+    {% endblock %}
+    {% block formset %}
+        {% include 'flex_forms/forms/generic_formset_body.html' with formset=formset only %}
+    {% endblock %}
+</form>
