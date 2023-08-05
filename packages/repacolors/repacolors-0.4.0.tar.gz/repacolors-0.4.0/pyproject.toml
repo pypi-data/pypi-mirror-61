@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "repacolors"
+version = "0.4.0"
+description = "Small library for color conversion, manipulation, etc."
+authors = ["Gyuri Horak <dyuri@horak.hu>"]
+repository = "https://github.com/dyuri/repacolors"
+license = "MIT"
+readme = "README.md"
+classifiers=[
+    'Environment :: Console',
+    'Intended Audience :: End Users/Desktop',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Topic :: Terminals :: Terminal Emulators/X Terminals',
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "^7.0"
+
+[tool.poetry.dev-dependencies]
+tox = "^3.14.3"
+pytest = "^5.3.2"
+pytest-cov = "^2.8.1"
+tox-pyenv = "^1.1.0"
+
+[tool.poetry.scripts]
+repacolor = 'repacolors.command.repacolor:color'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
