@@ -1,0 +1,1 @@
+This is simle package to showcase removal of outlier row
