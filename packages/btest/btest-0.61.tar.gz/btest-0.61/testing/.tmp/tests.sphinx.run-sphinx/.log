@@ -1,0 +1,4 @@
+which sphinx-build (expect success)
+test -f btest.cfg || cp /Users/jsiwek/pro/zeek/zeek/aux/btest/testing/btest.tests.cfg btest.cfg; echo >/dev/null tests.sphinx.run-sphinx (expect success)
+cp -r /Users/jsiwek/pro/zeek/zeek/aux/btest/testing/tests/sphinx/../../../examples/sphinx/* . (expect success)
+make clean && make (expect success)

@@ -1,0 +1,61 @@
+tests.measure-time ... not available, skipped
+tests.measure-time-options ... not available, skipped
+tests.sphinx.run-sphinx ... failed
+  % 'make clean && make' failed unexpectedly (exit code 2)
+  % cat .stderr
+  WARNING: html_static_path entry '_static' does not exist
+  
+  Exception occurred:
+    File "/Users/jsiwek/pro/zeek/zeek/aux/btest/sphinx/btest-sphinx.py", line 80, in run
+      App.builder.info("running test %s ..." % darkgreen(self.path))
+  AttributeError: 'StandaloneHTMLBuilder' object has no attribute 'info'
+  The full traceback has been saved in /Users/jsiwek/pro/zeek/zeek/aux/btest/testing/.tmp/sphinx-err-07m7yagu.log, if you want to report the issue to the developers.
+  Please also report this if it was a user error, so that a better error message can be provided next time.
+  A bug report can be filed in the tracker at <https://github.com/sphinx-doc/sphinx/issues>. Thanks!
+  make[1]: *** [html] Error 2
+
+tests.xml ... failed
+  % 'btest-diff output.xml' failed unexpectedly (exit code 1)
+  % cat .diag
+  == File ===============================
+  <?xml version="1.0" ?>
+  <testsuite errors="0" failures="1" XXX tests="3" XXX XXX>
+  <testcase classname="t1" name="t1" XXX/>
+  <testcase classname="t2" name="t2" XXX>
+  <failure type="failure">
+  % 'exit 1' failed unexpectedly (exit code 1)
+  % cat .stderr
+  </failure>
+  </testcase>
+  <testcase classname="t3" name="t3" XXX/>
+  </testsuite>
+  == Diff ===============================
+  --- /Users/jsiwek/pro/zeek/zeek/aux/btest/testing/Baseline/tests.xml/output.xml	2019-11-18 20:33:28.000000000 -0800
+  +++ output.xml	2019-12-06 11:35:56.000000000 -0800
+  @@ -2,7 +2,7 @@
+   <testsuite errors="0" failures="1" XXX tests="3" XXX XXX>
+   <testcase classname="t1" name="t1" XXX/>
+   <testcase classname="t2" name="t2" XXX>
+  -<failure type="fail">
+  +<failure type="failure">
+   % 'exit 1' failed unexpectedly (exit code 1)
+   % cat .stderr
+   </failure>
+  =======================================
+
+  % cat .stderr
+  t1 ... ok
+  t2 ... failed
+    % 'exit 1' failed unexpectedly (exit code 1)
+    % cat .stderr
+  
+  t3 ... ok
+  1 of 3 tests failed
+  [#1] t1 ... ok
+  [#2] t2 ... failed
+    % 'exit 1' failed unexpectedly (exit code 1)
+    % cat .stderr
+  
+  [#1] t3 ... ok
+  1 of 3 tests failed
+

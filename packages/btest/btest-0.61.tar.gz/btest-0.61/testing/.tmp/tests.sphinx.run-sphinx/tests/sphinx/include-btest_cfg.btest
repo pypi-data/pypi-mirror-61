@@ -1,0 +1,13 @@
+# @TEST-EXEC: cat %INPUT >output && btest-diff output
+
+btest.cfg
+
+
+[btest]
+TestDirs    = tests
+TmpDir      = %(testbase)s/.tmp
+BaselineDir = %(testbase)s/Baseline
+Finalizer   = btest-diff-rst
+
+[environment]
+PATH=%(testbase)s/../../:%(testbase)s/../../sphinx:%(default_path)s

@@ -1,0 +1,53 @@
+# Sphinx version: 2.2.1
+# Python version: 3.7.5 (CPython)
+# Docutils version: 0.15.2 release
+# Jinja2 version: 2.10.3
+# Last messages:
+#   Running Sphinx v2.2.1
+#   making output directory...
+#   done
+#   building [mo]: targets for 0 po files that are out of date
+#   building [html]: targets for 1 source files that are out of date
+#   updating environment:
+#   [new config]
+#   1 added, 0 changed, 0 removed
+#   reading sources... [100%] index
+# Loaded extensions:
+#   sphinx.ext.mathjax (2.2.1) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/ext/mathjax.py
+#   sphinxcontrib.applehelp (1.0.1) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinxcontrib/applehelp/__init__.py
+#   sphinxcontrib.devhelp (1.0.1) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinxcontrib/devhelp/__init__.py
+#   sphinxcontrib.htmlhelp (1.0.2) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinxcontrib/htmlhelp/__init__.py
+#   sphinxcontrib.serializinghtml (1.1.3) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinxcontrib/serializinghtml/__init__.py
+#   sphinxcontrib.qthelp (1.0.2) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinxcontrib/qthelp/__init__.py
+#   alabaster (0.7.12) from /Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/alabaster/__init__.py
+#   btest-sphinx (unknown version) from /Users/jsiwek/pro/zeek/zeek/aux/btest/sphinx/btest-sphinx.py
+Traceback (most recent call last):
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/cmd/build.py", line 276, in build_main
+    app.build(args.force_all, filenames)
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/application.py", line 346, in build
+    self.builder.build_update()
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/builders/__init__.py", line 299, in build_update
+    len(to_build))
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/builders/__init__.py", line 311, in build
+    updated_docnames = set(self.read())
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/builders/__init__.py", line 418, in read
+    self._read_serial(docnames)
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/builders/__init__.py", line 439, in _read_serial
+    self.read_doc(docname)
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/builders/__init__.py", line 479, in read_doc
+    doctree = read_doc(self.app, self.env, self.env.doc2path(docname))
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/io.py", line 326, in read_doc
+    pub.publish()
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/docutils/core.py", line 218, in publish
+    self.apply_transforms()
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/docutils/core.py", line 199, in apply_transforms
+    self.document.transformer.apply_transforms()
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/sphinx/transforms/__init__.py", line 90, in apply_transforms
+    super().apply_transforms()
+  File "/Users/jsiwek/.virtualenv/py3/lib/python3.7/site-packages/docutils/transforms/__init__.py", line 172, in apply_transforms
+    transform.apply(**kwargs)
+  File "/Users/jsiwek/pro/zeek/zeek/aux/btest/sphinx/btest-sphinx.py", line 109, in apply
+    test.run()
+  File "/Users/jsiwek/pro/zeek/zeek/aux/btest/sphinx/btest-sphinx.py", line 80, in run
+    App.builder.info("running test %s ..." % darkgreen(self.path))
+AttributeError: 'StandaloneHTMLBuilder' object has no attribute 'info'
