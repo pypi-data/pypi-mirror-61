@@ -1,0 +1,28 @@
+image: python:3.7.3
+
+pipelines:
+  default:
+    - step:
+        script:
+          - python --version
+          - pip install -e .
+          - pip install pytest pytest-cov codecov safety
+          - pytest -v --cov -m 'not development' object_clerk
+          - safety check
+          - rm -rf .eggs
+          - rm -rf .pytest_cache
+          - rm -rf dataset_searcher.egg-info
+  tags:
+    'v*':
+      - step:
+          script:
+            - python --version
+            - pip install -e .
+            - pip install pytest pytest-cov codecov safety
+            - pytest -v --cov -m 'not development' object_clerk
+            - safety check
+      - step:
+          script:
+            - python setup.py sdist
+            - pip install twine
+            - twine upload dist/*
