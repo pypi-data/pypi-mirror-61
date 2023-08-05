@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Edit Snippet{% endblock %}
+{% block head %}
+    {{ super() }}
+    {{mde.css}}
+{% endblock %}
+{% block body%}
+    <h5 class="text-muted mb-2 mt-2">Edit Snippet</h5>
+    <hr/>
+    <form action="{{url_for('main.edit', id=id)}}" method="POST">
+        {{form.csrf_token}}
+        <div class="form-group">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Title</span>
+                    </div>
+                    {{form.title}}
+                </div>
+            </div>
+        {{form.editor}}
+        <h5 class="text-muted mb-2 mt-2">Tags</h5>
+        <div id="tagHolder">
+            <div id="taglist">
+                {% for tag_name in tag_names %}
+                    <div class="tag">
+                        <span class="tagname">{{tag_name}}</span>
+                    <button type="button" class="" onclick="tagRemove(this)">x</button>
+                    </div>
+                {% endfor %}
+            </div>
+            {{form.tags(value=tag_names|join(','))}}
+            {{form.tagbox}}
+        </div>
+        <ul id="availableTags"></ul>
+        {{form.submit}}
+    </form>
+    {{mde.preview}}
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    {{ mde.js }}
+    <script>
+        const availableTags = {{present_tags|safe}};
+    </script>
+    <script src="{{url_for('static',filename='js/tags.js')}}"></script>
+{% endblock %}
