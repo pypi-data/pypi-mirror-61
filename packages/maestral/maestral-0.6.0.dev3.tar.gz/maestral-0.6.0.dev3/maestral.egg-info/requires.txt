@@ -1,0 +1,27 @@
+atomicwrites
+blinker
+bugsnag
+click>=7.0
+dropbox>=9.4.0
+keyring>=19.0.0
+keyrings.alt>=3.0.0
+lockfile
+Pyro5>=5.7
+requests
+u-msgpack-python
+watchdog>=0.9.0
+
+[:sys_platform == "darwin"]
+rubicon-objc>=0.3.1
+
+[gui]
+
+[gui:sys_platform == "darwin"]
+maestral-cocoa==0.1.1-dev1
+
+[gui:sys_platform == "linux"]
+maestral-qt==0.6.1-dev1
+
+[systemd]
+systemd-python
+sdnotify
