@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "pyppeteer2"
+version = "0.2.0"
+description = "Headless chrome/chromium automation library (unofficial port of puppeteer)"
+authors = ["pyppeteer <pyppteteer@protonmail.com>"]
+license = "MIT"
+packages = [
+    { include = "pyppeteer" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+websockets = "^8.1"
+appdirs = "^1.4.3"
+tqdm = "^4.42.1"
+pyee = "^7.0.1"
+
+[tool.poetry.dev-dependencies]
+tox = "^3.14.3"
+syncer = "^1.3.0"
+livereload = "^2.6.1"
+flake8 = "^3.7.9"
+mypy = "^0.761"
+pydocstyle = "^5.0.2"
+readme_renderer = "^24.0"
+doit = "^0.32.0"
+pytest = "^5.3.5"
+pytest-xdist = "^1.31.0"
+pylint = "^2.4.4"
+m2r = "^0.2.1"
+sphinx = "^2.4.0"
+sphinxcontrib-asyncio = "^0.2.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
