@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: rlapi
+Version: 0.3.0a1
+Summary: Async ready API wrapper for Rocket League API
+Home-page: https://github.com/jack1142/rlapi
+Author: Jakub Kuczys (jack1142)
+License: MIT
+Project-URL: Issue Tracker, https://github.com/jack1142/rlapi/issues
+Project-URL: Documentation, https://rlapi.readthedocs.io
+Project-URL: Source Code, https://github.com/jack1142/rlapi
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Requires-Dist: aiohttp (<3.6.0,>=3.5.4)
+Requires-Dist: lxml (<4.5.0,>=4.4.2)
+Requires-Dist: typing-extensions (==3.7.4) ; python_version == "3.7"
+Provides-Extra: docs
+Requires-Dist: sphinx (<2.2.0,>=2.1.2) ; extra == 'docs'
+Requires-Dist: sphinxcontrib-trio (==1.1.0) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (<0.5.0,>=0.4.3) ; extra == 'docs'
+Provides-Extra: style
+Requires-Dist: black (==19.3b0) ; extra == 'style'
+Provides-Extra: tests
+Requires-Dist: mypy (==0.720) ; extra == 'tests'
+
+# rlapi
+> Async ready API wrapper for Rocket League API written in Python.
+
+[![Build Status](https://travis-ci.com/jack1142/rlapi.svg)](https://travis-ci.com/jack1142/rlapi)
+[![Documentation Status](https://readthedocs.org/projects/rlapi/badge/)](https://rlapi.readthedocs.io/en/latest/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+## Installation
+
+**Python 3.7 or higher is required**
+
+To install the library, you can just run the following command:
+
+```sh
+# Linux/OS X
+python3.7 -m pip install -U rlapi
+
+# Windows
+py -3.7 -m pip install -U rlapi
+```
+
+To install the development version, replace `rlapi` with `git+https://github.com/jack1142/rlapi`
+
+## Usage example
+
+You can easily create a client using the class `Client`. Here's simple example showing how you can get player stats with this library:
+```py
+import asyncio
+import rlapi
+
+
+loop = asyncio.get_event_loop()
+
+client = rlapi.Client('token')
+players = loop.run_until_complete(
+    client.get_player('kuxir97', rlapi.Platform.steam)
+)
+```
+
+## Documentation
+
+Read [rlapi's documentation](https://rlapi.readthedocs.io/en/latest/).
+
+## Contributing
+
+Please take a look at our [contributing guidelines](https://github.com/jack1142/rlapi/blob/master/.github/CONTRIBUTING.md) if you're interested in helping!
+
+
+## License
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+
+This project bundles [lxml-stubs](https://github.com/JelleZijlstra/lxml-stubs) which are distributed on Apache License 2.0
+
+Contributing guidelines and issue templates are taken from [discord.py project](https://github.com/Rapptz/discord.py)
+
+---
+
+> Jakub Kuczys &nbsp;&middot;&nbsp;
+> GitHub [@jack1142](https://github.com/jack1142)
+
+
