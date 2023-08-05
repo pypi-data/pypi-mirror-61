@@ -1,0 +1,241 @@
+#!python
+
+import os
+import sys
+
+import colorama
+from colorama import Fore,Back
+from pathlib import Path
+
+import argparse
+import textwrap
+import itertools
+import json
+
+import scripts.config
+import scripts.files
+import scripts.autocalculation
+import scripts.plotting
+import scripts.molecule
+import scripts.dataframe
+
+class FormatText:
+    __slots__ = ['align_list']
+
+    def __init__(self, align_list: list, autoreset=True):
+        """
+        USAGE::
+
+            format_text = FormatText([(20, '<'), (60, '<')])
+            red_dc = format_text.new_dc(fore_color=Fore.RED)
+            print(red_dc(['column 1', 'column 2']))
+            print(red_dc('good morning'))
+        :param align_list:
+        :param autoreset:
+        """
+        self.align_list = align_list
+        colorama.init(autoreset=autoreset)
+
+    def __call__(self, text_list: list):
+        if len(text_list) != len(self.align_list):
+            if isinstance(text_list, str):
+                return text_list
+            raise AttributeError
+        return ' '.join(f'{txt:{flag}{int_align}}' for txt, (int_align, flag) in zip(text_list, self.align_list))
+
+    def new_dc(self, fore_color: Fore = Fore.GREEN, back_color: Back = ""):  # DECORATOR
+        """create a device context"""
+        def wrap(msgs):
+            return back_color + fore_color + self(msgs) + Fore.RESET
+        return wrap
+
+def main() :
+	colorama.init(autoreset=True)
+
+	from argparse import ArgumentParser, RawTextHelpFormatter
+
+	format_text = FormatText([(20, '<'), (60, '<')])
+	yellow_dc = format_text.new_dc(fore_color=Fore.YELLOW)
+	green_dc = format_text.new_dc(fore_color=Fore.GREEN)
+	blue_dc = format_text.new_dc(fore_color=Fore.BLUE)
+	red_dc = format_text.new_dc(fore_color=Fore.RED) #back_color=Back.LIGHTYELLOW_EX)
+	magenta_dc = format_text.new_dc(fore_color=Fore.MAGENTA)
+	cyan_dc = format_text.new_dc(fore_color=Fore.CYAN)
+
+	__version__ = "0.0.4"
+	parser = argparse.ArgumentParser(description = yellow_dc("Process GMD KIT"),
+					epilog = """ Version : {}""".format(__version__),
+					formatter_class=argparse.RawTextHelpFormatter)
+	subparsers= parser.add_subparsers()
+
+	# dataframe option
+	parser_data = subparsers.add_parser("data",
+				help="test")
+	parser_data.add_argument("-s","--save",dest="save",
+				action = "store_true",
+				help="Write the dataframe")
+	parser_data.set_defaults(func=dataframe.analyze_argument)
+	
+	
+	# config option 
+	parser_config = subparsers.add_parser("config",
+				help=f'\n{yellow_dc(f"gmd config (-s or --shell) [DIRECTORY PATH] [NAME]")} Specifies the shell script required for the calculation.\n'
+				f'{yellow_dc(f"gmd config (-c or --check)")} Check the shell script for shell mode') 
+	parser_config.add_argument("-s","--shell",dest="shell",
+				action="append",
+				nargs=2,
+				help=
+				f"example : {yellow_dc('gmd config -s [PATH] [NAME]')}\n"
+				"Designate the shell script required the VASP calculation")	
+	parser_config.add_argument("-c","--check",dest="check",
+				action="store_true",
+				help=
+				f"example : {yellow_dc('gmd config -c')}\n Check the shell script for shell mode")	
+	parser_config.set_defaults(func=config.analyze_config)
+	
+	# file option
+	parser_file = subparsers.add_parser("file",
+				help=f'\n{green_dc(f"gmd file (-g or --graph)")} When plotting an electronic structure, it is a yaml file that is needed to modify the electronic structure.\n'
+				f'{green_dc(f"gmd file (-c or --convert) filename1 filename2")} To change the format of structure files such as CIF and POSCAR files.\n'
+				f'{green_dc(f"gmd file (-s or --strain) filename ratio")} Strain the structure file.\n'
+				f'{green_dc(f"gmd file --sub filename")} Substituted structual file.\n'
+				f'{green_dc(f"gmd file (-i or --incar) [PBE,SOL,VDW,SCAN]")} To add to INCAR condition required for calculation.\n')
+	parser_file.add_argument("-g","--graph", dest="graph", action = "store_true",
+				help = 
+				f"example : {green_dc('gmd file -g')}\n"
+				"Generate the graph.yaml that plot the bands structure.")	
+	parser_file.add_argument("-c","--convert",dest = "convert", action = "store",nargs="+",
+				help=f"example : {green_dc('gmd file -c filename1 filenam2')}\n"
+				"Convert from structure file 1 to structure "
+				"file 2. Format determined from filename. "
+				"Supported formats include POSCAR/CONTCAR, "
+				"the filename, the code will automatically attempt "
+				"to find a primitive cell.")
+	parser_file.add_argument("-s","--strain",dest="strain", action = "store", nargs="+",
+				help=f"example : {green_dc('gmd file -s [STRUCTUAL FILE] [RATIO OF STRAIN]')}\n"
+				"Deformate from structure file"
+				"to make the modified structure file.")
+	parser_file.add_argument("--sub",dest="substitution",action="store",nargs="+",
+				help=f"example : {green_dc('gmd file --sub [STRUCTUAL FILE]')}\n"
+				"Substituted structual file.")
+	parser_file.add_argument("-i","--incar",dest="incar",choices=["PBE","SOL","VDW","SCAN"],
+				help=f"example : {green_dc('gmd file -i [PBE,SOL,VDW,SCAN]')}\n"
+				"Generate the incar.yaml that adjust the incar method")
+	parser_file.add_argument("-e","--energy",dest="energy",action="store_true")
+	parser_file.add_argument("-p","--inpcar",dest='inpcar',nargs=1,action = "store")
+	parser_file.set_defaults(func=files.analyze_files)
+
+	# autocalculation option
+	parser_auto = subparsers.add_parser("auto", 
+			help=f'\n{blue_dc(f"gmd auto [--pbe,--pbesol,--vdw,--scan] [-d,-s] --run SHELL_SCRIPT NAME")}\n'
+			"As argument for vasp automatic calculation\n"
+			"The kind of calculation is [PBE,PBESol,VDW,SCAN]\n"
+			"Read the structur file and input file necessary\n"
+			"for vasp calculation automatically.\n"
+			"If shell script is designated through config,\n"
+			"vasp calculation can be procced with the [--run] command")
+	groups1 = parser_auto.add_mutually_exclusive_group(required=True)
+	groups1.add_argument("--pbe",dest="PBE",action="store_true",help="PBE calculation")
+	groups1.add_argument("--pbesol",dest="PBESOL",action="store_true",help="PBESol calculation")
+	groups1.add_argument("--vdw",dest="VDW",action="store_true",help="VDW calculation")
+	groups1.add_argument("--scan",dest="SCAN",action="store_true",help="Scan calculation")
+
+	groups2 = parser_auto.add_mutually_exclusive_group(required=True)
+	groups2.add_argument("-d","--directory",dest="directory",
+			type = str,
+			default = None,
+			action="store",
+			nargs=2,
+			help=f"example : {blue_dc('gmd auto [--pbe|--pbesol|--vdw|--scan] -d [PATH THAT INCLUDE THE STRUCTURE FILE] [DIRECTORY NAME TO CREATE]')}\n"
+			"Generation directory that include the input files which vasp calculation runs."
+			"If you want to run calculation, adding --run [SHELL SCRIPT NAME] [NAMINNG] at the end.")
+
+	groups2.add_argument("-s","--structure",dest="structure",
+			type = str,
+			default = None,
+			nargs='*',
+			action = "store",
+			help=f"example : {blue_dc('gmd auto [--pbe|--pbesol|--vdw|--scan] -s [r,c,rc,cb,rcb] [PATH THAT INCLUDE THE STRUCTURE FILE]')}\n"
+			"Reading the structure file creates directory desiganted,"
+			"[relaxation,make_chgcar,band], with another command."
+			"If you want to run calculation, adding --run [SHELL SCRIPT NAME] [NAMINNG] at the end."
+			f'{red_dc("But, NAMING can be omitted.")}\n')
+	groups2.add_argument("-o","--orbit",dest="orbit",
+			type = str,
+			default = None,
+			nargs='*',
+			action = "store",
+			help = "TEST")
+				
+	parser_auto.add_argument("--run",dest="run",
+			type = str,
+			action = "append",
+			nargs='+',
+			help ="Using the shell script specified in config command,"
+			"procedd with the vasp calculation. E.g.," 
+			"Adding --run [SHELL SCRIPT NAME] [NAMINNG] at the end."
+			f'{red_dc("But, If you do -s mode, NAMING can be omitted.")}\n')
+	parser_auto.set_defaults(func=autocalculation.analyze_calculation)
+	
+	# Plotting 
+	parser_plot = subparsers.add_parser("plot",
+				help=f'\n{magenta_dc(f"gmd plot -b")} Plotting the band structure\n'
+				f'{magenta_dc(f"gmd plot -d")} Plotting the DOS\n'
+				f'{magenta_dc(f"gmd plot -bd")} Plotting with the Band structure and DOS\n'
+				f'{magenta_dc(f"gmd plot -o")} Plotting the Orbital of DOS.\n'
+				f'{magenta_dc(f"gmd plot -p")} Plotting the Each of Element DOS.\n')
+	parser_plot.add_argument("-b","--band",dest="band",
+			action="store_true",
+			help="Plotting band structure")
+	parser_plot.add_argument("-d","--dos",dest="dos",
+			action="store_true",
+			help="Plotting band structure")
+	parser_plot.add_argument("-bd","--bdos",dest="bdos",
+			action="store_true",
+			help="Plotting band structure")
+	parser_plot.add_argument("-o","--orbital",dest="orbital",
+			action="store_true",
+			help="Plotting band structure")
+	parser_plot.add_argument("-p","--partial",dest="partial",
+			action="store_true",
+			help="Plotting band structure")
+	parser_plot.add_argument("--outfile", dest="outfile", 
+			type=str,
+			help="Save plot to file instead of displaying.")
+
+	parser_plot.set_defaults(func=plotting.analyze_plot)
+
+	# molecule
+	parser_mole = subparsers.add_parser("mole",
+				help=f'\n{cyan_dc(f"gmd mole [--ma , --fa] [--file,--folder]")} The file is created by replacing the Inorganic element with MA or FA molecules.\n')
+	groups = parser_mole.add_mutually_exclusive_group(required=True)
+	groups.add_argument("--ma",dest="ma",
+			action = "store_true",
+			help = "Substitute with MA")
+	groups.add_argument("--fa",dest="fa",
+			action = "store_true",
+			help = "Substitute with FA")
+	parser_mole.add_argument("--file",dest="file",
+			type = str,
+			action = "store",
+			help = "The structural of file format will be read.")
+	parser_mole.add_argument("--folder",dest="folder",
+			action = "store",
+			type = str,
+			help = "folder, the structual of files, will be read.")
+	parser_mole.set_defaults(func=molecule.analyze_mole)
+	try :
+		import argcomplete
+		argcomplete.autocomplete(parser)
+	except ImportError :
+		pass
+	args = parser.parse_args()
+	try :
+		getattr(args,"func")
+	except AttributeError :
+		parser.print_help()
+		sys.exit(0)
+	args.func(args)
+
+if __name__ == "__main__" :
+	main()
