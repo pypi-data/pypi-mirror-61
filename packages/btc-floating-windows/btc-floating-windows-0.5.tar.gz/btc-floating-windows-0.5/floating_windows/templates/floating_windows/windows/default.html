@@ -1,0 +1,42 @@
+<div id="{{ fw_id }}" class="fw-1 hidden-floating js-floating_window_source">
+    {% block header %}
+        <div class="floating-window-row floating-window-header js-window_header">
+            {% block header_content %}
+                <div class="floating-window-header-content">
+                    {% block header_content_left_side %}
+                        <div class="left-side js-window_header_title"></div>
+                    {% endblock %}
+                    {% block header_content_right_side %}
+                        <div class="right-side">
+                            <button type="button" class="close js-floating_window_close"
+                                    data-floating-window="{{ fw_id }}"></button>
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+    {% block body %}
+        <div class="floating-window-row floating-window-body js-window_body">
+            <div class="floating-window-body-content js-window_body_content">
+                {% block body_content %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+    {% block footer %}
+        <div class="floating-window-row floating-window-footer js-window_footer">
+            <div class="floating-window-footer-content js-window_footer_content">
+                {% block footer_content %}
+                    <button type="button"
+                            class="floating-window-footer-button js-floating_window_close"
+                            data-floating-window="{{ fw_id }}">Отмена
+                    </button>
+                    <button type="button" class="floating-window-footer-button">Подтвердить</button>
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</div>
+{% block background %}
+    <div class="floating-background hidden-floating js-floating_background_source"></div>
+{% endblock %}

@@ -1,0 +1,143 @@
+/* Floating Windows Styles */
+
+/* region default styling
+*********************************************************************************************/
+
+.fw-1 {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 8px rgba(88, 88, 88, 0.24);
+    border-radius: 5px;
+    font-family: Rubik, Avenir Next, Helvetica Neue, sans-serif;
+    color: rgb(52, 52, 52);
+    font-size: 16px;
+    font-weight: 700;
+    width: fit-content;
+    position: absolute;
+    background-color: white;
+}
+
+.hidden-floating {
+    display: none !important;
+}
+
+.fw-1 .floating-window-row {
+    width: 100%;
+    display: flex;
+}
+
+.fw-1 .floating-window-row .floating-window-header-content,
+.fw-1 .floating-window-row .floating-window-body-content,
+.fw-1 .floating-window-row .floating-window-footer-content {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+}
+
+.fw-1 .floating-window-row .floating-window-body-content {
+    /*position: relative;*/
+    min-width: 350px;
+    min-height: 75px;
+}
+
+.fw-1 .floating-window-row .floating-window-header-content {
+    justify-content: space-between;
+}
+
+.fw-1 .floating-window-row .floating-window-header-content .left-side,
+.fw-1 .floating-window-row .floating-window-header-content .right-side{
+    display: flex;
+    align-items: center;
+}
+
+.fw-1 .floating-window-row.floating-window-header {
+    border-bottom: 1px solid rgba(88, 88, 88, 0.24);
+}
+
+.fw-1 .floating-window-row.floating-window-footer {
+    border-top: 1px solid rgba(88, 88, 88, 0.24);
+}
+
+/* endregion
+*********************************************************************************************/
+
+/* region Buttons */
+
+.fw-1 .floating-window-footer-content button:nth-of-type(1),
+.fw-1 .floating-window-footer-content button:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    font-weight: 300;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.fw-1 .floating-window-footer-content button:nth-of-type(1) {
+    background-color: white;
+    border: 1px solid #166acc;
+    color: #166acc;
+    margin-right: 15px;
+}
+
+.fw-1 .floating-window-footer-content button:nth-of-type(1):hover {
+    background-color: #166acc;
+    color: white;
+}
+
+.fw-1 .floating-window-footer-content button:nth-of-type(2) {
+    background-color: #166acc;
+    border-color: white;
+    color: white;
+    margin-left: 15px;
+}
+
+.fw-1 .floating-window-footer-content button:nth-of-type(2):hover {
+    background-color: #144e9c;
+}
+
+/* endregion */
+
+/* region Icons */
+
+.fw-1 .close {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    opacity: 0.3;
+    background: none;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+}
+.fw-1 .close:hover {
+    opacity: 1;
+}
+.fw-1 .close:before, .close:after {
+    position: absolute;
+    content: ' ';
+    height: 15px;
+    width: 2px;
+    top: 0;
+    background-color: #333;
+}
+.fw-1 .close:before {
+    transform: rotate(45deg);
+}
+.fw-1 .close:after {
+    transform: rotate(-45deg);
+}
+
+.floating-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(110, 103, 103, 0.4);
+}
+
+/* endregion */
