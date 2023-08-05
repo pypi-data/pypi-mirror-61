@@ -1,0 +1,5 @@
+name = "pywup"
+version = "0.0.36"
+author = "Diego Souza"
+author_email = "contact@wespa.com.br"
+description = "A small set of tools"
