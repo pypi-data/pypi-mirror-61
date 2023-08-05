@@ -1,0 +1,106 @@
+# DataSet
+## Dataset Format:
+### Object:
+    An object is a primitive object, a vector or in the form of a tuple of data components:
+    Object ={o|     o is Primitive or
+	                o=[o_1, ... , o_n] such that o_i is Object(Vector of object) or
+	                o=(Prop_1, ... , Prop_n) forall i in {1...n}, Prop_i(o) is Object}
+### Time Object:
+Time might be a point, in case of an instantaneous event, or an interval during if it is durative. Supported durative time is range.
+
+    time | [start_time:end_time]
+
+
+### Event:
+|Type|Actor| Time |
+|-|-|-|
+### Sensor Events:
+|(Type, Value)|SensorId| Time |
+|-|-|-|
+
+### Activity Events:
+|ActivityId|ActorId| Time |
+|-|-|-|
+
+### DataInformation:
+#### Sensor Info
+| Id | Name | Cumulative | OnChange | Nominal | Range | Location | Object | Sensor |
+|-|-|-|-|-|-|-|-|-|
+
+
+
+#### Activity Info
+|Id|Name|
+|-|-|
+
+
+
+
+### File format: CSV
+#### Sensor Info:
+| Id | Name | Cumulative | OnChange | Nominal | Range | Location | Object | Sensor |
+|-|-|-|-|-|-|-|-|-|
+| int | string | bool | bool | bool | json {min,max}/{items} | string | string | string |
+in case of nominal sensors, the range contain items and for numeric sensors, the range contain min and max
+
+#### Sensor events:
+|Type | Value | SensorId | Time |
+|-|-|-|-|
+
+#### Activity events:
+|ActivityId|ActorId| StartTime | EndTime|
+|-|-|-|-|
+
+![](http://yuml.me/diagram/scruffy/class/[Preprocessing]->[Dispacher],[Dispacher]->[Segmentation],[Segmentation]->[FeatureExtraction],[FeatureExtraction]->[Classifier],[Classifier]->[Combiner],[Combiner]->[Evaluation])
+
+#### Approaches
+\begin{Example}[Different Segmentation approaches]
+\end{Example}
+    \begin{lstlisting}[mathescape=true]
+function Fixed time window(S,X,r,l) {//S=SegmentHistory, X=Events, 
+         //r=Shift, l=windowLength
+    p=begin(S[last])
+    return X.eventsIn([p + r : p + r + l]); 
+}
+function Fixed siding window(S,X,r,l) {
+    prev_w=S[last]; p=begin(S[last])
+    be=first({e \in X| p + r $\leq$ time(e)}
+    return X.eventsIn([be : be + l]); 
+}
+function Significant events(S,X,m) {//m=significant events per segments
+    se=significantEvents(X) $\subseteq$ X
+    begin=time(se[1]);//next significant event 
+    end=time(se[1 + m]);
+    return X.eventsIn([begin:end]); 
+}
+//Probabilistic Approach
+given:(By analyzing training set) 
+    $ws(A_m)$ is average window size of activity $A_m$
+    $w_1 = min \{ws(A_1), ws(A_2), ..., ws(A_M)\}$
+    $w_L = median\{ws(A_1), ws(A_2), ..., ws(A_M)\}$
+    $w_l=(w_L-w_1)\times l/L+w_1$
+    $window\_sizes= \{w_1, w_2, . . . , w_L\}$
+    $P(w_l /A_m)$//probability of windows length $w_l$ for an activity Am
+    $P(A_m /s_i)$//probability of Activity $A_i$ associated with the sensor $s_i$.
+function Probabilistic Approach(S,X) {
+    x=nextEvent(X)
+    $w^{\star} =\underset{w_l}{max}  \{P(w_l /x)\}=\underset{w_l}{max}[P(w_l /A_m)\times P(A_m /x)] $
+    end=time(x);//Next event
+    return X.eventsIn(end-$w^\star$,end]); 
+}
+function Metric base Approach(S,X) {//S=SegmentHistory, X=Events    
+    indx=len(S[last])+1 //first event not in old segment
+    $m_i=metric(\{X[indx],...,X[i]\})$
+    find first i which $H(\{m_{0}....m_i\})$ is true// 
+    return X.eventsIn([time(X[indx]):time(X[i])]); 
+}
+function SWAB Approach(S,X,bs) {//bs=Buffer size    
+    indx=len(S[last])+1 //first event not in old segment
+    $m=BottomUp(\{X[indx],...,X[indx+bs]\})$
+    return m[0]; 
+}
+\end{lstlisting}
+
+
+# Similar Works
+[pyActLearn](https://github.com/TinghuiWang/pyActLearn/) -> [documents](https://pyactlearn.readthedocs.io/en/latest/)
