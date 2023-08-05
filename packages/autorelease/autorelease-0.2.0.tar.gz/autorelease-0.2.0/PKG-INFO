@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: autorelease
+Version: 0.2.0
+Summary: Tools to keep the release process clean.
+Home-page: https://github.com/dwhswenson/autorelease
+Author: David W.H. Swenson
+Author-email: dwhs@hyperblazer.net
+License: MIT
+Description: [![Documentation Status](https://readthedocs.org/projects/autorelease/badge/?version=latest)](http://autorelease.readthedocs.io/en/latest/?badge=latest)
+        [![Linux Build](https://travis-ci.org/dwhswenson/autorelease.svg?branch=master)](https://travis-ci.org/dwhswenson/autorelease)
+        [![Windows Build](https://ci.appveyor.com/api/projects/status/ox0c6u5gobk5ksat/branch/master?svg=true)](https://ci.appveyor.com/project/dwhswenson/autorelease/branch/master)
+        
+        # Autorelease
+        
+        Tools for keeping release behavior clean. Includes:
+        
+        * Travis config imports and scripts to automatically test-deploy on testpypi,
+          then cut a GitHub release, then deploy to PyPI.
+        * Vendor-able `version.py` that gives one true location for version
+          (`setup.cfg`) while also enabling developer installs to give full and correct
+          version information.
+        * Vendor-able `setup.py` that keeps all user-required information in the
+          `setup.cfg`.
+        * Script to draft release notes based on labels on merged PRs.
+        
+        If you're a Python developer who uses Travis and GitHub, Autorelease handles
+        everything related to releasing to PyPI.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Testing
+Description-Content-Type: text/markdown
