@@ -1,0 +1,4 @@
+{{ formset.management_form }}
+{% for form in formset %}
+    {% include 'flex_forms/forms/generic_form_body.html' with form=form only %}
+{% endfor %}
