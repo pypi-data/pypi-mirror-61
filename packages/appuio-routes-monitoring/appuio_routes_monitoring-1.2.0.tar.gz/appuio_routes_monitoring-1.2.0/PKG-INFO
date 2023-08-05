@@ -1,0 +1,163 @@
+Metadata-Version: 1.2
+Name: appuio_routes_monitoring
+Version: 1.2.0
+Summary: A tool to generate yaml code for hieradata from APPUiO routes to configure
+Home-page: https://git.vshn.net/vshn/appuio_routes_monitoring
+Author: Nicolas Bigler
+Author-email: nicolas.bigler@vshn.ch
+License: BSD
+Description: ########################
+        appuio_routes_monitoring
+        ########################
+        
+        .. contents:: Table of Contents
+        
+        
+        ********
+        Overview
+        ********
+        
+        `appuio_routes_monitoring` is a tool to generate yaml code for hieradata from APPUiO
+        routes to configure http icinga2 monitoring checks for those routes.
+        However the script should work on any openshift cluster.
+        
+        appuio_routes_monitoring
+        ========================
+        
+        `appuio_routes_monitoring` expects the `oc` to be in the path variable and you need to be
+        logged in to APPUiO before calling this script.
+        
+        By default the script will generate yaml code for all routes the logged in user has access to.
+        Routes created by ACME integration are ignored.
+        
+        See usage section of this document for details.
+        
+        
+        ************
+        Dependencies
+        ************
+        
+        `appuio_routes_monitoring` supports python >=3.4 and has the following 3rd-party dependencies
+         - `pyyaml <https://pypi.python.org/pypi/pyyaml>`_ (>= 3.10)
+        
+        `appuio_routes_monitoring` further relies on the `oc` binary to extract the routes from the
+        openshift cluster.
+        
+        
+        ************
+        Installation
+        ************
+        
+        `appuio_routes_monitoring` can be easily installed using pip:
+        `pip install appuio_routes_monitoring`
+        
+        *************
+        Configuration
+        *************
+        
+        `appuio_routes_monitoring` does not have any configuration files.
+        But it does rely on the `oc` binary and valid session to APPUiO.
+        Furthermore the script reads annotations from the routes to generate the appropriate
+        yaml code.
+        Currently the following annotations are supported:
+        
+        
+        monitoring/enabled
+        ==================
+        
+        Setting this annotation to false will not create an entry for this route.
+        
+        monitoring/alert_customer
+        =========================
+        
+        Setting this annotation on the route to `true`, will set the `alert_customer` variable to
+        `true` as well. This will configure the http check to alert to the defined e-mail address.
+        
+        monitoring/alert_vshn: 'true'
+        =============================
+        
+        Setting this annotation on the route to `true`, will set the `production_level` of the check
+        to `4`, making the check a 24/7 check. This means VSHN will be alerted anytime the check fails.
+        
+        monitoring/path
+        ===============
+        Setting this annotation on the route to a URI, will set the http_uri to the specified path.
+        If the annoation is missing, and no route path is set, the http_uri will default to `/`.
+        
+        
+        *****
+        Usage
+        *****
+        
+        .. code-block:: text
+        
+            usage: generate_monitoring_check [-h] [-p PROJECTS [PROJECTS ...]] [-k HIERAKEY]
+        
+            generate hieradata from appuio routes
+        
+            optional arguments:
+              -h, --help            show this help message and exit
+              -p PROJECTS [PROJECTS ...], --project PROJECTS [PROJECTS ...]
+              -k HIERAKEY, --key HIERAKEY
+        
+        
+        
+        Examples
+        ========
+        
+        Generate yaml code for project `my-test-project`
+        
+        .. code-block:: text
+        
+            generate_monitoring_check -p my-test-project
+            profile_icinga2::hiera_httpchecks:
+                test-project.example.com:
+                    display_name: test-project.example.com on APPUiO in my-test-project
+                    http_address: test-project.example.com
+                    http_ssl: true
+                    http_uri: /
+                    vars:
+                        alert_customer: false
+                test-project.example.com:a:b:
+                    display_name: test-project.example.com/a/b on APPUiO in my-test-project
+                    http_address: test-project.example.com
+                    http_ssl: true
+                    http_uri: /a/b
+                    vars:
+                        alert_customer: false
+                test-project.example.com:a:b:c:
+                    display_name: test-project.example.com/a/b/c on APPUiO in my-test-project
+                    http_address: test-project.example.com
+                    http_ssl: true
+                    http_uri: /a/b/c/status
+                    vars:
+                        alert_customer: false
+        
+        
+        ***********
+        Development
+        ***********
+        
+        run development version
+        =======================
+        
+        .. code-block:: bash
+        
+            git clone git@git.vshn.net:vshn/appuio_routes_monitoring.git
+            cd appuio_routes_monitoring
+            python -m venv pyvenv
+            . pyvenv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.in
+        
+            python -m appuio_routes_monitoring
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: System :: Systems Administration
+Requires-Python: >=3.5
