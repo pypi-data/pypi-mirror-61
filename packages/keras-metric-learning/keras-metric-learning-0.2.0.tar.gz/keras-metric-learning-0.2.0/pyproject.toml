@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "keras-metric-learning"
+version = "0.2.0"
+description = "Deep metric learning in tf2 keras"
+authors = ["Soumendra Dhanee <soumendra@gmail.com>"]
+maintainers = ["Soumendra Dhanee <soumendra@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/soumendra/keras-metric-learning"
+repository = "https://github.com/soumendra/keras-metric-learning"
+documentation = "https://github.com/soumendra/keras-metric-learning"
+license = "MIT"
+exclude = ["*config*", "*json*", "*yaml*"]
+packages = [{include = "keras-metric-learning"}]
+
+[tool.poetry.dependencies]
+python = "^3.7.5"
+boto = "^2.49.0"
+py3nvml = "^0.2.5"
+attrdict = "^2.0.1"
+loguru = "^0.4.0"
+hyperdash = "^0.15.3"
+boto3 = "^1.10.44"
+tensorflow = "2.1.0"
+split_folders = "^0.3.1"
+tqdm = "^4.41.1"
+cifar2png = "^0.0.4"
+pandas = "^0.25.3"
+click = "^7.0"
+plot_keras_history = "^1.1.19"
+pillow = "^6.2.1"
+scikit-learn = "^0.22.1"
+opencv-python = "^4.1.2"
+scikit-image = "^0.16.2"
+seaborn = "^0.9.0"
+streamlit = "^0.53.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+ipython = "^7.10.2"
+pylint = "^2.4.4"
+
+[tool.poetry.scripts]
+train = "train:run"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
