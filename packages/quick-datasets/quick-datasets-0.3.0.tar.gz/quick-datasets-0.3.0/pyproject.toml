@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "quick-datasets"
+version = "0.3.0"
+description = "Datasets for machine learning and deep learning tasks"
+authors = ["Soumendra Dhanee <soumendra@gmail.com>"]
+maintainers = ["Soumendra Dhanee <soumendra@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/soumendra/quick-datasets"
+repository = "https://github.com/soumendra/quick-datasets"
+documentation = "https://github.com/soumendra/quick-datasets"
+license = "MIT"
+exclude = ["*config*", "*json*", "*yaml*"]
+packages = [{include = "quick-datasets"}]
+
+[tool.poetry.dependencies]
+python = "^3.7.5"
+attrdict = "^2.0.1"
+loguru = "^0.4.0"
+tqdm = "^4.41.1"
+pandas = "^0.25.3"
+click = "^7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+pylint = "^2.4.4"
+
+[tool.poetry.scripts]
+train = "train:run"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
