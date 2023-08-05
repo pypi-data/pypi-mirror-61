@@ -1,0 +1,40 @@
+#pdf:
+#  script:
+#    - make pdf
+#  artifacts:
+#    expire_in: 1 mos
+#    paths:
+#      - output
+
+
+before_script:
+  - python --version
+  - pip install -U pip "setuptools>=30.3.0" wheel
+  - pip install tox -r requirements.txt
+  # Ensure test input-files are up to date
+  - python examples/gen-examplepages.py
+
+python3.5:
+  image: python:3.5
+  script:
+    - tox -e py35
+
+python3.6:
+  image: python:3.6
+  script:
+    - tox -e py36
+
+python3.7:
+  image: python:3.7
+  script:
+    - tox -e py37
+
+linters:
+  image: python:3.5
+  script:
+    # For now only check the readme
+    - tox -e readme
+    #- tox -e linters
+
+# As of 2017-02 not available in yml file.
+#coverage: /^TOTAL\s+.*\s+(\d+\%)/

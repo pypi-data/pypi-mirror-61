@@ -1,0 +1,33 @@
+
+General Options
+--------------------
+
+-h, --help            Show help message and exit
+--help-media-names    List available media and distance names and exit
+--help-box-definitions
+                      Show help about specifying BOX for `--media-size`
+                      and `--flyer-size` and exit
+--version             Show program's version number and exit
+-n, --dry-run     Show what would have been done, but do not generate files.
+
+
+Defining Input
+-----------------
+
+-F INTEGER, --front INTEGER
+                        First page of flyer (default: first page)
+-B INTEGER, --back INTEGER
+                        Back page of flyer (default: no back page)
+-A, --art-box           Use the content area defined by the ArtBox (default:
+                        use the area defined by the TrimBox)
+
+
+Defining Output
+-----------------
+
+-f BOX, --flyer-size BOX
+                        Specify the finished flyer size (defaults to media
+                        size).
+-m BOX, --media-size BOX
+                        Specify the page size of the output media (default:
+                        a4)
