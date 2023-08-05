@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: GodoPy
+Version: 0.0.3
+Summary: Python and Cython bindings to the Godot game engine.
+Home-page: https://github.com/godopy/godopy
+Author: Ivan Hilaire
+Author-email: ivhilaire@gmail.com
+License: MIT
+Project-URL: Funding, https://www.patreon.com/godopy
+Project-URL: Source, https://github.com/godopy/godopy
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Multimedia
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Games/Entertainment
+Requires-Python: >=3.6
+Requires-Dist: Mako
+Requires-Dist: scons
+Requires-Dist: Click
+
+======
+GodoPy
+======
+
+Different Python bindings to the Godot game engine.
+
+
+Work in progress
+================
+
+The bindings are a work in progress. Some planned features are missing and the existing APIs can be unstable!
+
+
+Features
+========
+
+* Compilation of Cython and Python code to GDNative binaries
+
+* Running dynamic, byte-compiled and AOT-compiled Python code from NativeScript extensions
+
+* Automatically generatated bindings to the full Godot API
+
+* Access to the complete official C++ API from the Cython programming language, full interoperability
+  between ``godot-cpp`` and ``GodoPy``; in fact ``godot-cpp`` types are used by Cython bindings as is
+
+* Automatic type conversions between Godot and Python types
+
+* NumPy array access to all numeric Godot types
+
+
+Installation
+============
+
+* ``PYTHON_QUICKSTART.md`` introduces GodoPy for beginners
+
+* Advanced usage and AOT compilation are described in ``CYTHON_QUICKSTART.md``
+
+
