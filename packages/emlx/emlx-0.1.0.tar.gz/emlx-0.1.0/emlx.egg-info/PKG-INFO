@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: emlx
+Version: 0.1.0
+Summary: The leightweight parser for emlx files.
+Home-page: https://github.com/mikez/emlx
+Author: Michael Belfrage
+Author-email: consulting@belfrage.net
+License: MIT
+Project-URL: Code, https://github.com/mikez/emlx
+Project-URL: Issue tracker, https://github.com/mikez/emlx/issues
+Description: Emlx
+        =====
+        
+        Emlx is the lightweight parser for `.emlx` files as used by Mail.app.
+        
+        
+        Install
+        -------
+        
+        Install and update using `pip`:
+        
+        ```
+        pip install emlx
+        ```
+        
+        
+        Example
+        -------
+        
+        ```pycon
+        >>> import emlx
+        >>> message = emlx.read("12345.emlx")
+        >>> message.bytecount
+        1781
+        >>> message.data.keys()
+        ['Message-Id', 'From', 'Mime-Version', 'Content-Type', 'Subject', 'Date', ...]
+        >>> message.data["Message-Id"]
+        '<07F45222-4A09-11EA-BBA5-5CF9389AFA5E@example.com>'
+        >>> message.plist
+        {'date-received': 1581123200, 'flags': {'read': True, ...}, ...}
+        ```
+        
+        
+        History
+        -------
+        
+        The `emlx` file format was introduced by Apple in 2005. It is similar to `eml`-files with an added bytecount (start) and plist (end). For more, see https://en.wikipedia.org/wiki/Email#Filename_extensions
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
