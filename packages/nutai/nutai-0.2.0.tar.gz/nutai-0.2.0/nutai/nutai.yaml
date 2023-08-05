@@ -1,0 +1,174 @@
+---
+openapi: 3.0.2
+info:
+  title: nutai
+  version: 1.0.0
+  description: A simple document API for finding similarities
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Matthew Farrellee
+    url: https://loopback.localhost
+    email: matt@cs.wisc.edu
+  license:
+    name: GNU AGPLv3
+    url: https://www.gnu.org/licenses/agpl.txt
+paths:
+  /documents:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Document'
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkAddResponse'
+          description: Documents added
+      operationId: nutai.api.addDocuments
+      summary: Add a set of documents to the repository
+  /status:
+    get:
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: Status
+      operationId: nutai.api.status
+  /documents/compare:
+    get:
+      parameters:
+      - name: content
+        description: Document contents to compare with repository
+        schema:
+          type: string
+        in: query
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupResponse'
+          description: Document response
+      operationId: nutai.api.similarByContent
+      summary: Get similar documents
+      description: Return a set of documents similar to the provided content
+  /documents/{id}:
+    get:
+      parameters:
+      - name: id
+        description: Id of document to fetch
+        schema:
+          maxLength: 42
+          type: string
+        in: path
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LookupResponse'
+          description: Document response
+        404:
+          description: Document not found
+      operationId: nutai.api.similarById
+      summary: Get a specific document from the repository
+      description: Return a document base on its id
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        200:
+          description: Document added
+        409:
+          description: Document already exists
+      operationId: nutai.api.addDocument
+      summary: Add a document to the repository
+      description: Add a document to the repository. The user of this operation is
+        required to provide the document's body and id. Duplicate ids are not allowed.
+    parameters:
+    - name: id
+      schema:
+        maxLength: 42
+        type: string
+      in: path
+      required: true
+components:
+  schemas:
+    Error:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+    BulkAddResponse:
+      description: ""
+      type: object
+      properties:
+        accepted:
+          description: ""
+          type: array
+          items:
+            type: string
+        rejected:
+          description: ""
+          type: array
+          items:
+            type: string
+    LookupResponse:
+      description: ""
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          description: Id of a document
+          type: string
+        score:
+          description: Similarity score
+          type: integer
+    Document:
+      description: ""
+      required:
+      - id
+      - content
+      type: object
+      properties:
+        id:
+          description: ""
+          maxLength: 42
+          type: string
+        content:
+          description: ""
+          type: string
