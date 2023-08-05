@@ -1,0 +1,23 @@
+专门针对nanopi开发版编译的pytorch安装包
+
+在root权限下pip install pytorch_nanopi
+
+若出现错误，使用源码包安装
+
+源码地址 https://github.com/NocoldBob/pytorch/nano
+
+git clone https://github.com/NocoldBob/pytorch/nano
+
+编译需求cmake>=3.10
+
+python setup.py build
+
+安装后在/usr/……/torch/路径下，cp _C.…… ，_dl.…… ,修改文件名为_C.so _dl.so
+
+并打开torch/__init__.py文件下第107行到111行代码的注释
+
+有问题请发邮件，不定时查看，不定时解决问题
+
+
+
+
