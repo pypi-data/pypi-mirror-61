@@ -1,0 +1,120 @@
+Metadata-Version: 2.1
+Name: aiolos-commissioning-tools
+Version: 0.2.7
+Summary: data reduction tools for general aerodynamic measurements
+Home-page: https://github.com/csooriyakumaran/aiolos-commissioning-tools
+Author: Christopher Sooriyakumaran
+Author-email: c.sooriyakumaran@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: pandas
+
+aiolos-commissioning-tools
+==========================
+
+.. image:: https://img.shields.io/pypi/v/aiolos-commissioning-tools.svg
+    :target: https://pypi.python.org/pypi/aiolos-commissioning-tools
+    :alt: Latest PyPI version
+
+data reduction tools for general aerodynamic measurements
+
+Usage
+-----
+
+code_instrumentation.timer
+
+    add the following to any function or scope in a program and the execution time will be logged (must use logging library and add the "code_instrumentation.timer" logger)
+
+    >>> from code_instrumentation.timer import timer
+    >>> _ = timer.Timer() 
+
+
+commissoning_tools.units
+
+    the unit conversions are to be used when importing data to convert the data to base SI units. e.g.: 
+
+    >>> import commissoning_tools.units as units
+    >>> p = read(data_file_pressures_psi) * units.psi # Yeilds a pressure value in Pascals
+    >>> t = read(data_file_temperatre_C) + units.celsius # Yeilds a temperature value in Kelvin
+
+    base units are:
+        - length      --> meter, m
+        - time        --> second, s
+        - mass        --> kilogram, kg
+        - temperature --> Kelvin
+
+    derived units use only the base. i.e. velocity is m/s, pressure is Pa (N/m^2)
+
+Package Maintenance
+-------------------
+
+1. commit changes to git:
+
+    $ git add .
+
+    $ git commit -m "commit message"
+
+2. Increment version:
+
+    $ bumpversion <major|minor|patch>
+
+3. Push to github:
+
+    $ git push <remote_name> <branch_name>
+
+    $ git push origin master
+
+4. Creating distribution archives:
+
+    $ python3 -m pip install --upgrade setuptools wheel
+
+    $ python3 setup.py sdist bdist_wheel
+
+5. Uploading to PyPI: 
+
+    $ python3 -m twine upload dist/*
+
+Installation
+------------
+
+    python3 -m pip install aiolos-commissioning-tools
+
+Requirements
+^^^^^^^^^^^^
+
+    1. "numpy"
+    2. "matplotlib"
+    3. "scipy"
+    4. "pandas"
+
+Versions
+--------
+
+current version:  current version:  0.2.7
+
+changes:
+
+    current version:  current version:  0.2.7 : updated fluid_dynamics_relationships function library to accept either scalars or numpy arrays
+
+Compatibility
+-------------
+
+Licence
+-------
+
+Authors
+-------
+
+`aiolos-commissioning-tools` was written by `Christopher Sooriyakumaran <c.sooriyakumaran@gmail.com>`_.
+
+
