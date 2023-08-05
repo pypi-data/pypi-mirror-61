@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: miniwdl-s3parcp
+Version: 0.0.4
+Summary: miniwdl download plugin for s3:// using s3parcp
+Home-page: https://github.com/chanzuckerberg/miniwdl-s3parcp
+Author: Mike Lin, Andrey Kislyuk
+License: UNKNOWN
+Project-URL: Documentation, https://github.com/chanzuckerberg/miniwdl-s3parcp
+Project-URL: Source Code, https://github.com/chanzuckerberg/miniwdl-s3parcp
+Project-URL: Issue Tracker, https://github.com/chanzuckerberg/miniwdl-s3parcp/issues
+Description: # miniwdl-s3parcp
+        
+        This Python package is a [MiniWDL](https://github.com/chanzuckerberg/miniwdl) plugin to handle S3 download (localization)
+        and upload (delocalization) tasks for S3 URIs in WDL workflow I/O, using [s3parcp](https://github.com/chanzuckerberg/s3parcp).
+        
+        ## Installation
+        ```
+        pip3 install miniwdl-s3parcp
+        ```
+        To check that the installation was successful, run `miniwdl --version`, which will list available plugins, including this one.
+        
+        ## Usage
+        The plugin will automatically be used to handle `s3://bucket/key` URIs found in workflow inputs.
+        
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
