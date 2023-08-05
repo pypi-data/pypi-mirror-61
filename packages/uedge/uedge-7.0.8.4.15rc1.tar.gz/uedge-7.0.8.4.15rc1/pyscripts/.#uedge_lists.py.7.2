@@ -1,0 +1,58 @@
+"""
+   This provides an interface to some of the, somewhat, obscure methods provided
+   by Forthon. Items such as getting a list of variables from Basis package.
+
+
+"""
+
+import uedge
+packages =  [uedge.com,uedge.aph,uedge.api,uedge.bbb,uedge.flx,uedge.grd,uedge.svr,uedge.wdf]
+
+def list_packages(objects=None):
+     """
+       Return list of package string names.
+     """
+     if objects != None: return packages
+     pnames = []
+     for p in packages:
+       pnames.append(p.name())
+     return pnames
+
+def list_package_variables(package,groups=''):
+     """
+       Return list of variable string names from package.
+       Package may be passed as either the module or a string
+       groups=[] to optionally limit list to particular list
+                 of groups
+     """
+     if type(package) == type(''):
+         for p in packages:
+             if p.name() == package:
+                 return p.varlist()
+     else:
+         return package.varlist()
+
+def list_variable(var):
+     """
+       Print variable information of name passed as a string
+       Do not include the package in the variable name.
+     """
+     for p in packages:
+        if var in p.varlist():
+            print(p.listvar(var))
+
+def list_variable_apropos(s,verbose=False):
+     """
+       Print variables where comment contains string
+       Case insensitive
+       verbose=True will cause all variable info to print
+     """
+     ret = []
+     for p in packages:
+        for var in p.varlist():
+            if s.upper() in p.getvardoc(var).upper():
+               if verbose:
+                  print(p.getvardoc(var))
+               ret.append(var)
+     return ret
+
