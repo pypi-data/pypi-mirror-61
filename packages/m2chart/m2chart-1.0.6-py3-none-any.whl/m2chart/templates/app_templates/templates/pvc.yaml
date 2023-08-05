@@ -1,0 +1,23 @@
+{{- $root := . -}}
+{{- with .Values.global.persistence }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .name }}
+  namespace: {{ $root.Release.Namespace }}
+  labels:
+{{ include "simple.labels" $root | indent 4 }}
+spec:
+  accessModes:
+    - {{ .accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .size }}
+  {{- if .storageClass }}
+  {{- if (eq "-" .storageClass) }}
+  storageClassName: ""
+  {{- else }}
+  storageClassName: "{{ .storageClass }}"
+  {{- end }}
+  {{- end }}
+{{- end}}
