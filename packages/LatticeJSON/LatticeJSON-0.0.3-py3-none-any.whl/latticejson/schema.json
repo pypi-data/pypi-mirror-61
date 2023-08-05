@@ -1,0 +1,278 @@
+{
+  "$id": "https://github.com/andreasfelix/latticejson/blob/master/latticejson/schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JSON lattice file format",
+  "description": "Defines the magnetic lattice format",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "lattice",
+    "elements"
+  ],
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the lattice"
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the lattice"
+    },
+    "energy": {
+      "type": "number",
+      "description": "Energy of the particle beam in GeV",
+      "minimum": 0
+    },
+    "lattice": {
+      "$ref": "#/definitions/Lattice"
+    },
+    "sub_lattices": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/definitions/Lattice"
+        }
+      },
+      "additionalProperties": false
+    },
+    "elements": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Drift"
+            },
+            {
+              "$ref": "#/definitions/Dipole"
+            },
+            {
+              "$ref": "#/definitions/Quadrupole"
+            },
+            {
+              "$ref": "#/definitions/Sextupole"
+            },
+            {
+              "$ref": "#/definitions/Octupole"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Lattice": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Element": {
+      "description": "Abstract base for all elements",
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "length"
+          ],
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Optional description of the element."
+            },
+            "length": {
+              "type": "number",
+              "minimum": 0,
+              "description": "The length of the element."
+            },
+            "dx": {
+              "type": "number",
+              "description": "Horizontal misalignment"
+            },
+            "dy": {
+              "type": "number",
+              "description": "Vertical misalignment"
+            },
+            "ds": {
+              "type": "number",
+              "description": "Longitudinal misalignment"
+            },
+            "tilt": {
+              "type": "number",
+              "description": "Rotation about the longitudinal axis"
+            }
+          }
+        }
+      ]
+    },
+    "Drift": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Element"
+        }
+      ],
+      "items": [
+        {
+          "const": "Drift"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "description": {},
+            "length": {},
+            "dx": {},
+            "dy": {},
+            "ds": {},
+            "tilt": {}
+          }
+        }
+      ]
+    },
+    "Dipole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Element"
+        }
+      ],
+      "items": [
+        {
+          "const": "Dipole"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "description": {},
+            "length": {},
+            "dx": {},
+            "dy": {},
+            "ds": {},
+            "tilt": {},
+            "angle": {
+              "type": "number",
+              "description": "Deflection angle"
+            },
+            "radius": {
+              "type": "number",
+              "description": "Radius of curvature"
+            },
+            "e1": {
+              "type": "number"
+            },
+            "e2": {
+              "type": "number"
+            },
+            "h1": {
+              "type": "number"
+            },
+            "h2": {
+              "type": "number"
+            },
+            "conversion_factor_ps_value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "Quadrupole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Element"
+        }
+      ],
+      "items": [
+        {
+          "const": "Quadrupole"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "description": {},
+            "length": {},
+            "dx": {},
+            "dy": {},
+            "ds": {},
+            "tilt": {},
+            "k1": {
+              "type": "number",
+              "description": "Geometric quadrupole strength"
+            },
+            "conversion_factor_ps_value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "Sextupole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Element"
+        }
+      ],
+      "items": [
+        {
+          "const": "Sextupole"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "description": {},
+            "length": {},
+            "dx": {},
+            "dy": {},
+            "ds": {},
+            "tilt": {},
+            "k2": {
+              "type": "number",
+              "description": "Geometric sextupole strength"
+            },
+            "conversion_factor_ps_value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "Octupole": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Element"
+        }
+      ],
+      "items": [
+        {
+          "const": "Octupole"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "description": {},
+            "length": {},
+            "dx": {},
+            "dy": {},
+            "ds": {},
+            "tilt": {},
+            "k3": {
+              "type": "number",
+              "description": "Geometric octupole strength"
+            },
+            "conversion_factor_ps_value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
