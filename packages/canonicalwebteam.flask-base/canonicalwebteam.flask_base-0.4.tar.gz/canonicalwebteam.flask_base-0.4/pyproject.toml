@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "canonicalwebteam.flask_base"
+version = "0.4"
+description = ""
+authors = ["Canonical webteam <webteam@canonical.com>"]
+packages = [{ include = "canonicalwebteam" }]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+"canonicalwebteam.yaml-responses" = {version = "^1", extras = ["flask"]}
+flask = "^1"
+talisker = {version = "^0.15", extras = ["gunicorn", "flask", "prometheus", "raven"]}
+
+[tool.poetry.dev-dependencies]
+black = { version = "*", allow-prereleases = true }
+flake8 = "*"
+poetry-setup = "*"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
