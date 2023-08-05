@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: cconvert
+Version: 1.1
+Summary: Convert your base currency to resultant currency from terminal!!!
+Home-page: https://github.com/tedevelynmosby/Terminal-currency-converter/
+Author: Aravind Balaji
+Author-email: snaravindbalaji@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.3
+Requires-Dist: requests
+
+# Terminal-currency-converter
+
+This is a rest based service written with python that uses the existing https://api.ratesapi.io service to get the JSON output for all the currencies with respect to a base currency. Usually the base currency can be altered according to the users needs.
+
+A simple get call example can explain the working
+
+```
+https://api.ratesapi.io/api/latest?base=USD
+```
+The above example returns a JSON that contains the corresponding values of the present day currency with respect to the base currency provided in the URL. 
+
+## Getting Started
+The python file *p.my* provides the wrappers for terminal level access.
+
+The input parameters are : 
+```
+python m.py valueOfCurrency BaseCurrency ResultantCurrency
+```
+Example:
+
+```
+python m.py 20 usd inr
+```
+
+```
+python m.py 19 AUD EUR
+```
+## Installation
+
+Brew setup is yet to be integerated.
+
+
