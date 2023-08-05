@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: sbanken-api
+Version: 0.2.1
+Summary: Easily communicate with Sbanken API in python
+Home-page: https://github.com/abstrakct/sbanken-python
+Author: Rolf Klausen
+Author-email: redacted@mail.com
+License: UNKNOWN
+Download-URL: https://github.com/abstrakct/sbanken-python/archive/0.2.tar.gz
+Description: # sbanken-api
+        
+        A Python package for communicating with the Sbanken API. Updated to work with latest version of Sbanken's API.
+        
+        Forked from https://github.com/Lilleengen/sbanken-python
+        
+        A lot of the code in this packages comes from or is based on code from Sbanken's official example code at https://github.com/Sbanken/api-examples/tree/master/PythonSampleApplication
+        
+        ## Usage
+        
+        ```python
+        from sbanken import SbankenAPI
+        
+        client = SbankenAPI("customer_id", "client_id", "secret")
+        
+        print(client.get_accounts())
+        print(client.get_customer_information())
+        print(client.get_account("account_id"))
+        print(client.get_transactions("account_id"))
+        print(client.get_cards())
+        print(client.get_efakturas())
+        print(client.get_payments("account_id"))
+        
+        client.transfer(
+            "fromAccountId",
+            "toAccountId",
+            1.0,              # amount
+            "Message",
+        )
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Office/Business :: Financial
+Description-Content-Type: text/markdown
