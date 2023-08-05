@@ -1,0 +1,82 @@
+# `richcontext.scholapi` changelog
+
+## 1.1.1
+
+2020-02-11
+
+  - added `has_credentials()` test for config settings for each API
+
+  - added `report_perf()` to standardize format for performance reporting
+
+  - added integration of DataCite API
+
+  - fixed the `limit` parameter for Crossref `full_text_search()`
+
+
+## 1.1.0
+
+2020-01-28
+
+  - *THIS RELEASE WILL BREAK MANY THINGS*
+
+  - moved all non-API classes and functions to be private
+
+  - each public method returns `meta, timing, message`
+
+  - reentrant calls: performance timing can be performed with mulitple workers (e.g., Ray)
+
+
+## 1.0.5
+
+2020-01-20
+
+  - added an `limit` parameter to full text search functions to control the number of search results. Default value is the max # returns for each API -- 1000 for Dimensions, OpenAIRE, PubMed
+
+  - updated `requirements.txt` for newer version of `dimcli` for the verbose flag in Dimensions login
+
+  - improved error handling for "publication not found" among several APIs
+
+
+## 1.0.4
+
+2020-01-02
+
+  - resolved errors in PubMed fulltext search
+  - Dimensions full text search now returns all fields
+  - Dimensions login verbose flag turned off
+  - added PubMed (NCBI) journal lookups via ISSN
+  - adding deterministic profiling tools
+  - improved unit tests
+
+
+## 1.0.3
+
+2019-12-15
+
+  - resolved PyPi upload errors
+
+
+## 1.0.2
+
+2019-12-15
+
+  - added publication search and title search for Crossref, PubMed, SSRN
+  - improved defensive handling for: connection errors, null responses to API calls, returned error messages
+  - reduced Dimensions API excessive log statements (due to repeated logins)
+  - resolved errors in handling responses from EuropePMC
+
+
+## 1.0.1
+
+2019-11-30
+
+  - EuropePMC: resolved edge case where returned titles could be null, causing exceptions
+
+
+## 1.0.0
+
+2019-11-23
+
+  - first release on PyPi
+  - supports `title_search()` and `publication_lookup()` using several discovery APIs for Scholarly Infrastructure
+  - aligned with Community session goals from 2019 Rich Context Workshop (notes by Samuel Klein)
