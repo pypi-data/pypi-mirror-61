@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: letterboxd-rss
+Version: 0.2.0
+Summary: Generate an RSS feed from your letterboxd.com watchlist
+Home-page: https://github.com/janw/letterboxd-rss
+License: Apache-2.0
+Author: Jan Willhaus
+Author-email: mail@janwillhaus.de
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary
+Requires-Dist: beautifulsoup4 (>=4.7,<5.0)
+Requires-Dist: feedgen (>=0.9.0,<0.10.0)
+Requires-Dist: requests (>=2.21,<3.0)
+Project-URL: Repository, https://github.com/janw/letterboxd-rss
+Description-Content-Type: text/markdown
+
+# Letterboxd-RSS
+
+Convert your [Letterboxd] Watchlist to an RSS feed.
+
+## Installation
+
+Install and update using [pip]:
+
+```
+pip install letterboxd-rss
+```
+
+## Usage
+
+After installing, you may simply call letterboxd-rss from the command line:
+
+```
+$ letterboxd-rss -h
+
+usage: letterboxd-rss [-h] [-o FEED_FILENAME] [-l FEED_LENGTH]
+                      LETTERBOXD_PROFILE
+
+positional arguments:
+  LETTERBOXD_PROFILE    URL of your letterboxd profile
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o FEED_FILENAME, --output FEED_FILENAME
+                        Destination of the generated RSS feed (defaults to
+                        ./feed.xml)
+  -l FEED_LENGTH, --max-length FEED_LENGTH
+                        Maximum number of watchlist items to keep in the feed
+```
+
+
+[Letterboxd]: https://letterboxd.com
+[pip]: https://pip.pypa.io/en/stable/quickstart/
+
