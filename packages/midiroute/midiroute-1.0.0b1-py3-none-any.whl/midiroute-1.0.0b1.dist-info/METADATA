@@ -1,0 +1,121 @@
+Metadata-Version: 2.1
+Name: midiroute
+Version: 1.0.0b1
+Summary: A command line utility for routing and monitoring MIDI ports.
+Home-page: https://github.com/rwalton00/midiroute
+Author: Rob Walton
+Author-email: rwalton00@gmail.com
+License: UNKNOWN
+Keywords: midi interface router monitor diagnostics
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: mido
+Requires-Dist: python-rtmidi
+Requires-Dist: tabulate
+Provides-Extra: azure-pipelines
+Requires-Dist: pytest ; extra == 'azure-pipelines'
+Requires-Dist: pytest-asyncio ; extra == 'azure-pipelines'
+Requires-Dist: asynctest ; extra == 'azure-pipelines'
+Requires-Dist: coverage[toml] (>=5.0.2) ; extra == 'azure-pipelines'
+Requires-Dist: pytest-azurepipelines ; extra == 'azure-pipelines'
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-asyncio ; extra == 'dev'
+Requires-Dist: asynctest ; extra == 'dev'
+Requires-Dist: coverage[toml] (>=5.0.2) ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-asyncio ; extra == 'tests'
+Requires-Dist: asynctest ; extra == 'tests'
+Requires-Dist: coverage[toml] (>=5.0.2) ; extra == 'tests'
+
+<h2 align="center">MIDI Message Routing Tool</h2>
+
+[![Build Status](https://dev.azure.com/rwalton00/midiroute/_apis/build/status/rwalton00.midiroute?branchName=master)](https://dev.azure.com/rwalton00/midiroute/_build/latest?definitionId=1&branchName=master)
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+<a href="https://pypi.org/project/midiroute/"><img alt="PyPI" src="https://img.shields.io/pypi/v/midiroute"></a>
+
+_midiroute_ is a command line utility for routing MIDI streams between input and output ports on your computer.
+_midiroute_ can route an incoming MIDI stream to multiple output ports. The stream can also be monitored in the terminal.
+
+## Installation and usage
+
+### Installation
+
+_midiroute_ can be installed by running `pip install midiroute`. It requires Python 3.7.0+ to
+run.
+
+### Usage
+
+To list the available input and output ports on your system:
+
+```
+midiroute list-ports
+```
+
+Route messages from an input to an output port with monitoring enabled:
+
+```
+midiroute run -i "Oxygen 61 0" -o "Microsoft GS Wavetable Synth 0" -m
+```
+
+### Command line options
+
+You can list the command line options by running `midiroute --help`:
+
+```
+Usage: midiroute [OPTIONS] COMMAND [ARGS]...
+
+  CLI entry-point.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  list-ports  List available input and output ports.
+  run         Run the MIDI router.
+```
+
+To get help on a specific command run `midiroute <command> --help`:
+
+```
+$ midiroute run --help
+Usage: midiroute run [OPTIONS]
+
+  Run the MIDI router.
+
+Options:
+  -i, --input-port PORT_NAME    Select the input port.
+  -o, --output-ports PORT_NAME  Select one or more output ports in a comma
+                                separated list.
+  -m, --monitor                 Enable monitoring of MIDI activity on the
+                                selected ports.
+  --help                        Show this message and exit.
+```
+
+## License
+
+MIT
+
+## Contributing to _midiroute_
+
+Contributions to this project are more than welcome!
+
+More details can be found in [CONTRIBUTING](CONTRIBUTING.md).
+
+## Authors
+
+[Rob Walton](mailto:rwalton00@gmail.com)
+
+
