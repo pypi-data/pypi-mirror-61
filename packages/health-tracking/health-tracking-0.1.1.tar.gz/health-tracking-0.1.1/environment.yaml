@@ -1,0 +1,24 @@
+name: health-tracking
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+dependencies:
+  - python>=3.7
+  - pip
+  - pandas
+  - matplotlib
+  - seaborn
+  - pip:
+     # add here only pip-packages that are not available in conda/conda-forge! E.g.:
+    - sphinx_rtd_theme
+  # for development only (could also be kept in a separate environment file)
+  - jupyterlab
+  - pytest
+  - pytest-cov
+  - tox
+  - pre_commit
+  - nbdime
+  - nbstripout
+  - sphinx
+  - recommonmark
