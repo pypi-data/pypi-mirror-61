@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "escarpolette"
+version = "0.6.0"
+description = "Manage your musical playlist with your friends without starting a war."
+license = "GPL-3.0"
+authors = ["Alexandre Morignot <erdnaxeli@cervoi.se>"]
+readme = "README.md"
+homepage = "https://github.com/erdnaxeli/escarpolette"
+repository = "https://github.com/erdnaxeli/escarpolette.git"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+sqlalchemy = "^1.2"
+youtube-dl = "*"
+fastapi = "^0.47.1"
+pydantic = "^1.3"
+xdg = "^4.0"
+pyjwt = "^1.7.1"
+asyncclick = "^7.0.9"
+hypercorn = "^0.9.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.1"
+black = {version = "^18.3-alpha.0",allow-prereleases = true}
+mypy = "^0.761"
+radon = "^4.0"
+pytest-mock = "^1.11"
+pre-commit = "^1.20"
+pdbpp = "^0.10.2"
+
+[tool.poetry.scripts]
+escarpolette = "escarpolette:__main__"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
