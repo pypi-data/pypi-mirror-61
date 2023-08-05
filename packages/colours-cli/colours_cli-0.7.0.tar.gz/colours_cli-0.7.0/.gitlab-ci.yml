@@ -1,0 +1,77 @@
+image: python:3.7-buster
+
+stages:
+  - test
+  - version
+  - update
+  - release
+  - publish
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+cache:
+  paths:
+    - .cache/pip
+
+test:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest
+    - pylint colours_cli
+  
+version:
+  stage: version
+  image: registry.gitlab.com/juhani/go-semrel-gitlab:v0.21.1
+  script:
+    - release test-git || true
+    - release next-version -p > version.txt
+  artifacts:
+    paths:
+     - version.txt
+    expire_in: 30 days
+  except:
+    - tags
+  only:
+    - develop
+  
+update:
+  stage: update
+  image: registry.gitlab.com/juhani/go-semrel-gitlab:v0.21.1
+  script:
+    - cat version.txt
+    - cat colours_cli/__init__.py
+  only:
+    - develop
+  except:
+    - tags
+
+release:
+  stage: release
+  image: registry.gitlab.com/juhani/go-semrel-gitlab:v0.21.1
+  script:
+    - release -v
+    - release changelog
+    - echo "__version__ = 'v$(cat version.txt)'" > ./colours_cli/__init__.py
+    - cat colours_cli/__init__.py
+    - release --skip-ssl-verify commit-and-tag CHANGELOG.md colours_cli/__init__.py
+  artifacts:
+    paths:
+      - colours_cli/__init__.py
+  only:
+    - develop
+
+publish:
+  stage: publish    
+  variables:
+    TWINE_USERNAME: $PYPI_USERNAME
+    TWINE_PASSWORD: $PYPI_PASSWORD
+  script:
+    - pip install -r requirements.txt
+    - python setup.py sdist
+    - pip install twine 
+    - twine upload --skip-existing dist/*
+  only:
+    - develop
+  except:
+    - tags
