@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "config_file"
+version = "0.9.0"
+description = "Manage your configuration files."
+authors = ["Eugene Triguba <eugenetriguba@gmail.com>"]
+readme = "README.rst"
+repository = "https://github.com/eugenetriguba/config_file"
+keywords = ["configuration", "config file", "ini", "json", "toml", "yaml"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.6",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.taskipy.tasks]
+test = "poetry run pytest -v --cov=config_file/ tests/"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+toml = "^0.10.0"
+pyyaml = "^5.2"
+nested-lookup = "^0.2.19"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^1.20"
+autoflake = "^1.3"
+isort = "^4.3"
+seed-isort-config = "^1.9"
+black = {version = "^18.3-alpha.0", allow-prereleases = true}
+flake8 = "^3.7"
+bump2version = "^0.5.11"
+pytest = "^3.0"
+pytest-cov = "^2.8"
+sphinx = "^2.3.1"
+sphinx_rtd_theme = "^0.4.3"
+taskipy = "^1.1.3"
+
+[tool.black]
+line-length = 88
+target_version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+known_third_party = ["nested_lookup", "pytest"]
+known_first_party = ["config_file"]
+
+[build-system]
+requires = ["poetry>=1.0.2"]
+build-backend = "poetry.masonry.api"
