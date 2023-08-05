@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+import sys
+import argparse
+from colours_cli import comcol
+
+#initialize argpase obj
+parser = argparse.ArgumentParser(prog='colors',
+                                 usage='%(prog)s [options] path',
+                                 description='List most common colors in given image.')
+
+#parsing optional arguments
+parser.add_argument('-i',
+                    '--interactive',
+                    action='store_true',
+                    help='interactive interface - required argument')
+
+parser.add_argument('-o',
+                    '--output',
+                    action='store_true',
+                    help='output in rgb')
+
+
+if len(sys.argv)==1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
+
+args = parser.parse_args()
+
+#passing optional arguments as booleans
+if args.interactive:
+    comcol.recognizer(args.output)
