@@ -1,0 +1,63 @@
+<nav class="sidebar" ng-controller="SidebarCtrl" ng-hide="connection == null" ng-cloak>
+  <h6>
+    Unread <span ng-show="unreadMemberships != null">({{unreadMemberships.length}})</span>
+    
+    <span class="right">
+      <a ng-hide="isRefreshing" ng-click="refreshUnread()">
+        <i class="icon-repeat"></i>
+      </a>
+      <i ng-show="isRefreshing" class="icon-spinner icon-spin"></i>
+    </span>
+  </h6>
+  
+  <div ng-show="unreadMemberships.length > 0">
+    <ul class="tabs vertical">
+      <li ng-repeat="membership in unreadMemberships | orderBy:['-priority']"
+          ng-class="{ 'active': membership.conference.conf_no == currentConfNo }"
+          class="unread membership">
+        <a class="unread-count"
+           href="/conferences/{{membership.conference.conf_no}}/texts/">
+          <span class="round label">
+            {{ membership.no_of_unread }}
+          </span>
+        </a>
+        <a class="membership-name jskomNoWrap"
+           href="/conferences/{{membership.conference.conf_no}}/texts/latest/">
+          {{membership.conference | confName}}
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+  <h6>
+    All <span ng-show="readMemberships != null">({{readMemberships.length}})</span>
+    
+    <ul class="pagination right" ng-show="numberOfPages > 1">
+      <li ng-class="{'unavailable': currentPage < 1 }">
+        <a ng-click="previousPage()"><i class="icon-caret-left"></i></a>
+      </li>
+      <li>{{currentPage+1}} / {{numberOfPages}}</li>
+      <li ng-class="{'unavailable': currentPage >= numberOfPages - 1}">
+        <a ng-click="nextPage()"><i class="icon-caret-right"></i></a>
+      </li>
+    </ul>
+  </h6>
+  
+  <div ng-show="readMemberships.length > 0">
+    <ul class="tabs vertical">
+      <!-- last_time_read isn't perfect, because we can't
+      invalidate/update it correctly everywhere. -->
+      <li ng-repeat="membership in readMemberships | orderBy:['-last_time_read'] | startFrom:currentPage*pageSize | limitTo:pageSize"
+          ng-class="{ 'active': membership.conference.conf_no == currentConfNo }"
+          class="membership">
+        <a class="jskomNoWrap membership-name"
+           href="/conferences/{{membership.conference.conf_no}}/texts/latest/">
+          {{membership.conference | confName}}
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+  <jskom:loading ng-show="unreadMemberships == null || readMemberships == null">
+  </jskom:loading>
+</nav>

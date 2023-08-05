@@ -1,0 +1,16 @@
+<h3>Go to conference</h3>
+
+<form>
+  <label>Conference</label>
+  <jskom:conf-input class="span8" model="confNo"></jskom:conf-input>
+  
+  <div id="jskomControlBar" class="form-actions">
+    <div class="pull-right">
+      <button type="submit" class="btn btn-primary"
+              ng-disabled="!confNo"
+              ng-click="goToConf()">
+        Go to conference
+      </button>
+    </div>
+  </div>
+</form>

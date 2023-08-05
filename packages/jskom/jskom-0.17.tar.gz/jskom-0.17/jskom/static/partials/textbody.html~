@@ -1,0 +1,8 @@
+<ng-switch on="type" ng-show="text">
+  <div ng-switch-when="text" ng-bind-html="text.body|formatTextBody"></div>
+  <div ng-switch-when="image"><img ng-src="{{ imageUrl }}" /></div>
+  <div ng-switch-default>
+    [unknown content-type: &quot;{{ text.content_type }}&quot;]
+  </div>
+</ng-switch>
+<div ng-hide="text">[no text]</div>

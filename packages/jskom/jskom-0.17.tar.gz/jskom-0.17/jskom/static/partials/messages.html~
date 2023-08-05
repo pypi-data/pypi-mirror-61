@@ -1,0 +1,14 @@
+      <div ng-controller="MessagesCtrl" ng-cloak>
+        <div class="row">
+          <div class="span8">
+            <div ng-repeat="message in messages">
+              <div class="alert alert-block alert-{{message.level}}">
+                <a class="close" data-dismiss="alert" href="#"
+                 ng-click="messages.splice($index, 1)">×</a>
+                <h4 class="alert-heading">{{ message.heading }}</h4>
+                <span>{{ message.text }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

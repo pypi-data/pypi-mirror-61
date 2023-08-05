@@ -1,0 +1,24 @@
+<h2>Help</h2>
+
+<h3>General keyboard shortcuts</h4>
+<div>
+  <table class="twelve" ng-cloak>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="keyBinding in generalKeys">
+        <td>
+          <span ng-repeat="key in keyBinding.keys">
+            <span ng-hide="$index == 0"> or </span>
+            <kbd>{{ key }}</kbd>
+          </span>
+        </td>
+        <td>{{ keyBinding.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

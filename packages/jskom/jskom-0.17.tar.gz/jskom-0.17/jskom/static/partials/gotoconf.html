@@ -1,0 +1,21 @@
+<h2>Go to conference</h2>
+
+<form>
+  <label>Conference</label>
+  <jskom:conf-input conn="connection" model="confNo" jskom-autofocus>
+  </jskom:conf-input>
+  
+  <div id="jskomControlBar">
+    <div class="row">
+      <div class="six mobile-two columns"></div>
+      
+      <div class="six mobile-two columns">
+        <button type="submit" class="button right"
+                ng-click="goToConf()">
+          <i class="icon-arrow-right"></i>
+          Go to
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

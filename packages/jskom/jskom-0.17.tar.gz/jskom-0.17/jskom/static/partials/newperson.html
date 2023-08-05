@@ -1,0 +1,32 @@
+<h2>Create person</h2>
+
+<form ng-controller="NewPersonCtrl" ng-cloak>
+  <label>LysKOM server</label>
+  <select class="" ng-model="connection.serverId" ng-show="servers"
+          ng-disabled="connection.isConnected()"
+          ng-options="sid as s|serverName for (sid, s) in servers"></select>
+  
+  <label>Person name (use your full name, like &quot;Sven Svensson&quot;)</label>
+  <input type="text" class="" required ng-model="person.name" />
+  
+  <label>Password</label>
+  <input type="password" class="" required ng-model="person.passwd" />
+  
+  <label>Confirm password</label>
+  <input type="password" class="" required ng-model="confirmpasswd" />
+  
+  <label>Control question: {{question}}</label>
+  <input type="text" class="" required ng-model="answer" />
+  
+  <div id="jskomControlBar">
+    <div class="row">
+      <div class="twelve columns">
+        <button type="submit" class="button right"
+                ng-disabled="isCreating || !person.name || !person.passwd || !answer"
+                ng-click="createPerson()">
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

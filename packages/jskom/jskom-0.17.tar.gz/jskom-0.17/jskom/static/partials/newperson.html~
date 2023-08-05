@@ -1,0 +1,19 @@
+<h3>New person</h3>
+<form>
+  
+  <label>Person name</label>
+  <jskom:conf-input class="span6" model="person.name" only-pers></jskom:conf-input>
+  
+  <label>Password</label>
+  <input type="password" class="span6" ng-model="person.passwd" />
+  
+  <div id="jskomControlBar" class="form-actions">
+    <div class="pull-right">
+      <button type="submit" class="btn btn-primary"
+              ng-disabled="isCreating"
+              ng-click="createPerson()">
+        Create
+      </button>
+    </div>
+  </div>
+</form>

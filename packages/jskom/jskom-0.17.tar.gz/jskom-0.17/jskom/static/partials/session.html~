@@ -1,0 +1,10 @@
+  <div ng-controller="SessionCtrl">
+    <div class="span8">
+      <ng-include src="'messages.html'|jskomTemplate"></ng-include>
+      <ng-view></ng-view>
+    </div>
+    
+    <div class="span4 hidden-phone">
+      <ng-include src="'help.html'|jskomTemplate"></ng-include>
+    </div>
+  </div>

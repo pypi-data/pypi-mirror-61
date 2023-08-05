@@ -1,0 +1,31 @@
+    <div class="span5">
+      <div ng-hide="lookup.matches">
+        <input type="text" class="span4"
+               ng-model="lookup.name" />
+        <button type="button" class="btn btn-info"
+                tabindex="4" ng-disabled="isLoading || lookup.name.length < 1"
+                ng-click="lookupName(false)">
+          <i class="icon-search icon-white"></i>
+        </button>
+      </div>
+      
+      <div ng-show="lookup.matches.length == 1">
+        <input type="text" class="span4" tabindex="-1"
+               ng-model="session.person.pers_name" readonly />
+        <button type="button" class="btn btn-danger"
+                ng-click="clearMatching()">
+          <i class="icon-remove icon-white"></i>
+        </button>
+      </div>
+      
+      <div ng-show="lookup.matches.length > 1">
+        <select class="span4"
+                ng-model="session.person.pers_no"
+                ng-options="mp.pers_no as mp.pers_name for mp in lookup.matches">
+        </select>
+        <button type="button" class="btn btn-danger"
+                ng-click="clearMatching()">
+          <i class="icon-remove icon-white"></i>
+        </button>
+      </div>
+    </div>

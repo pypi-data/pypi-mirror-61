@@ -1,0 +1,100 @@
+<div class="jskomTextForm" ng-cloak>
+  <dl class="tabs">
+    <dd ng-class="isTabActive('simple')">
+      <a ng-click="selectTab('simple')">Simple</a>
+    </dd>
+    <dd ng-class="isTabActive('advanced')">
+      <a ng-click="selectTab('advanced')">Complete</a>
+    </dd>
+  </dl>
+  
+  <ul class="tabs-content">
+    
+    <li ng-class="isTabActive('simple')">
+      <div class="jskomNoWrap" ng-repeat="commentTo in text.comment_to_list">
+        <span class="secondary label">{{ commentTo.type|capitalize }}</span>
+        to <jskom:a text-no="{{ commentTo.text_no }}"><em>{{ commentTo.text_no }}</em></jskom:a>
+        <span ng-show="commentTo.text_no == commentedText.text_no">
+          by {{ commentedText.author|personName }}
+        </span>
+      </div>
+      
+      <div ng-repeat="recipient in text.recipient_list">
+        <span class="secondary label">{{ recipient.type|capitalize }}</span>
+        <em>{{ recipient.recpt|confName }}</em>
+      </div>
+      
+      <span class="label">Subject</span> <em>{{ text.subject }}</em>
+    </li>
+
+
+    <li ng-class="isTabActive('advanced')">
+      
+      <div ng-repeat="commentTo in text.comment_to_list" class="row">
+        <div class="three mobile-one columns">
+          <select class="" ng-model="commentTo.type"
+                  ng-options="ct.type as ct.name for ct in commentTypes"></select>
+        </div>
+        <div class="three mobile-one columns">
+          <input type="number" class="" ng-model="commentTo.text_no" />
+        </div>
+        <div class="six mobile-two columns">
+          <label class="inline jskomNoWrap" ng-show="commentTo.text_no == commentedText.text_no">
+            by {{ commentedText.author|personName }}
+          </label>
+        </div>
+      </div>
+      
+      <p/>
+      
+      <label>Recipients</label>
+      
+      <div ng-repeat="recipient in text.recipient_list" class="row">
+        <div class="one mobile-one columns">
+          <button class="small alert button" type="button"
+                  ng-click="text.recipient_list.splice($index, 1)">
+            <i class="icon-minus-sign icon-white"></i>
+          </button>
+        </div>
+        <div class="two mobile-one columns">
+          <select ng-model="recipient.type"
+                  ng-options="rt.type as rt.name for rt in recipientTypes"></select>
+        </div>
+        <div class="nine mobile-two columns">
+          <jskom:conf-input conn="connection" model="recipient.recpt.conf_no">
+          </jskom:conf-input>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="six mobile-two columns end">
+          <button class="small success button" type="button"
+                  ng-click="text.recipient_list.push(newRecipient())">
+            <i class="icon-plus-sign icon-white"></i> Recipient
+          </button>
+        </div>
+      </div>
+      
+      <p/>
+      
+      <label>Subject</label>
+      <input class="" type="text" name="subject" ng-model="text.subject" />
+    </li>
+  </ul>
+
+
+  <textarea ng-show="text.content_type == 'text/plain'" name="body" rows="5" ng-model="text.body" jskom-autofocus>
+  </textarea>
+
+  <div>
+    <jskom:loading ng-show="imageIsLoading"></jskom:loading>
+    <img ng-src="{{imageDataUrl}}" ng-show="text.content_type != 'text/plain'"/>
+  </div>
+
+  <p>
+  Or select an image:
+  <input type="file" accept="image/*;capture=camera" tabindex="-1"
+         onchange="angular.element(this).scope().loadImage(this.files)"/ />
+
+  </p>
+</div>

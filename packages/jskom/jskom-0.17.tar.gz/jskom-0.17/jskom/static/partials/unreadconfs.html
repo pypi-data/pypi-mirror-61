@@ -1,0 +1,54 @@
+<h2>Unread conferences</h2>
+
+<jskom:loading ng-show="unreadMemberships == null"></jskom:loading>
+
+<div ng-hide="unreadMemberships == null" ng-cloak>
+  <p ng-hide="unreadMemberships">Nothing unread</p>
+  
+  <table class="twelve" ng-show="unreadMemberships">
+    <thead>
+      <tr>
+        <th>Conference</th>
+        <th class="jskomAlignRight">Number of unread</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="membership in unreadMemberships | orderBy:['-priority']">
+        <td>
+          <a href="/conferences/{{ membership.conference.conf_no }}/texts/">
+            {{ membership.conference.conf_name }}
+          </a>
+        </td>
+        <td class="jskomAlignRight">
+          <span class="no_of_unread">{{ membership.no_of_unread }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="jskomControlBar">
+  <div class="row">
+    <div class="three mobile-one columns">
+      <button class="secondary button"
+              ng-disabled="isRefreshing" ng-click="refreshUnread()">
+        <i ng-hide="isRefreshing" class="icon-repeat"></i>
+        <i ng-show="isRefreshing" class="icon-spinner icon-spin"></i>
+      </button>
+    </div>
+    
+    <div class="three mobile-one columns"></div>
+    <div class="three mobile-one columns"></div>
+    
+    <div class="three mobile-one columns">
+      <button type="submit" class="button right"
+              ng-disabled="!(unreadMemberships && unreadMemberships.length > 0)"
+              ng-click="readFirstConference()">
+        <i class="icon-arrow-right"></i>
+        <span>
+          <span class="hide-for-small">Read first</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div ng-controller="HelpCtrl">
+  <button class="btn btn-mini pull-right"
+          ng-show="isVisible" ng-click="isVisible = false">
+    <i class="icon-chevron-up"></i>
+  </button>
+  <button class="btn btn-mini pull-right"
+          ng-hide="isVisible" ng-click="isVisible = true">
+    <i class="icon-chevron-down"></i>
+  </button>
+  <h5>Keyboard shortcuts</h5>
+  
+  <div ng-show="isVisible">
+    <div>
+      <h6>General</h6>
+      <table class="table">
+        <tr ng-repeat="keyBinding in globalKeys">
+          <td><span class="label label-inverse">{{ keyBinding.key }}</span></td>
+          <td>{{ keyBinding.description }}</td>
+        </tr>
+      </table>
+    </div>
+    
+    <div ng-show="localKeys">
+      <h6>Page specific</h6>
+      <table class="table">
+        <tr ng-repeat="keyBinding in localKeys">
+          <td><span class="label label-inverse">{{ keyBinding.key }}</span></td>
+          <td>{{ keyBinding.description }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

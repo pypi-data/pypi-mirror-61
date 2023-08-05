@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="jskom">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="referrer" content="origin-when-cross-origin" />
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <script type="text/javascript">
+      WebFontConfig = {
+        google: { families: [ 'Open+Sans:400italic,700italic,400,700:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+
+    {% for asset_url in assets_urls['css_jskom'] %}
+    <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {%- endfor %}
+
+    {% for asset_url in assets_urls['js_libs'] %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {%- endfor %}
+
+    {% for asset_url in assets_urls['js_angular'] %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {%- endfor %}
+
+    {% for asset_url in assets_urls['js_jskom'] %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {%- endfor %}
+
+    <title>jskom</title>
+  </head>
+  <body ng-controller="ConnectionsCtrl" ng-cloak>
+    
+    <jskom:top-bar></jskom:top-bar>
+    
+    <ng-switch on="connection.isLoggedIn()" ng-show="connection" ng-cloak>
+      <div class="row" ng-switch-default>
+        <div class="six columns">
+          <ng-include src="'messages.html'|jskomTemplate"></ng-include>
+          <ng-include src="'newsession.html'|jskomTemplate"></ng-include>
+        </div>
+      </div>
+      
+      <div ng-switch-when="true">
+        <div class="row" ng-controller="MembershipsCtrl">
+          <!-- Since so many controllers rely on the membershipList,
+          we use ng-switch to not render the rest when the
+          membershipList is null. -->
+          
+          <ng-switch on="membershipList != null">
+            <div ng-switch-default>
+              <jskom:loading ng-show="true"></jskom:loading>
+            </div>
+            
+            <div ng-switch-when="true">
+              <div id="jskomContent" class="nine columns push-three">
+                <ng-include src="'keybindinghelp.html'|jskomTemplate"></ng-include>
+                <ng-include src="'messages.html'|jskomTemplate"></ng-include>
+                <ng-view></ng-view>
+                
+              </div>
+              
+              <div class="three columns pull-nine hide-for-small">
+                <ng-include src="'sidebar.html'|jskomTemplate"></ng-include>
+              </div>
+            </div>
+          </ng-switch>
+          
+        </div>
+      </div>
+      
+    </ng-switch>
+
+      
+    
+    <div class="row">
+      <div class="twelve columns">
+        <hr />
+        <footer>
+          <p ng-show="connection && connection.isLoggedIn()" ng-cloak>
+            {% raw %}
+            Current session: <em>{{ connection.session.person|personName }}</em>
+            {% endraw %}
+          </p>
+          
+          <p>
+            <a href="https://github.com/osks/jskom">jskom</a>
+            &copy; <a href="mailto:oskar@osd.se">Oskar Skoog</a> 2012-2017
+            <span ng-cloak>
+              {# This is in the jinja2 template, not Angular. #}
+              &#8212; version {{ version }}
+            </span>
+          </p>
+        </footer>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+      angular.module('jskom.settings', ['jskom.templates', 'jskom.httpkom']).
+        constant('jskomName', 'jskom').
+        constant('jskomVersion', '{{ version }}').
+        constant('httpkomServer', '{{ httpkom_server }}').
+        constant('httpkomConnectionHeader', '{{ httpkom_connection_header }}').
+        constant('modernizr', Modernizr).
+        config([
+          'httpkomProvider',
+          function(httpkomProvider){
+            httpkomProvider.setHttpkomServer('{{ httpkom_server }}');
+          }
+        ]).
+        config([
+          'templatePathProvider',
+          function(templatePathProvider) {
+            templatePathProvider.setUrlPrefix('{{ url_for('static', filename='partials/') }}');
+            templatePathProvider.setVersion('{{ static_version }}');
+          }
+        ]);
+    </script>
+  </body>
+</html>

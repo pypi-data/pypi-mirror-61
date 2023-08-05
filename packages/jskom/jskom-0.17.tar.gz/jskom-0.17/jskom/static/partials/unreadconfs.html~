@@ -1,0 +1,34 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container" id="menu-container">
+      <a class="brand" href="{{ home_url }}">jskom</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  
+  <div class="row">
+    <div class="span8">
+
+      <h2 class="headline">Unread conferences</h2>
+      <div class="message"></div>
+      <ul>
+        <li ng-repeat="conf in unreadConfs">
+          <span class="name">
+            <a class="conf" href="{{ conf_url }}">{{ name }}</a>
+          </span>
+          (<span class="no_of_unread">{{ no_of_unread }}</span>)
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+  
+  <hr />
+  <footer>
+    <p>
+      <a href="https://github.com/osks/jskom">jskom</a>
+      &copy; <a href="mailto:oskar@osd.se">Oskar Skoog</a> 2012
+    </p>
+  </footer>
+</div>

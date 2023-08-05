@@ -1,0 +1,47 @@
+<h1 ng-cloak>
+  <span ng-hide="commentedText">New text</span>
+  <span ng-show="commentedText">New comment</span>
+</h1>
+
+<jskom:loading ng-hide="text"></jskom:loading>
+<form ng-show="text" ng-cloak>
+
+
+  <div ng-show="commentedText" ng-init="isCommentedTextVisible = false">
+    <ul class="accordion">
+      <li ng-class="{ true: 'active', false: ''}[isCommentedTextVisible]">
+        <div class="title" ng-click="isCommentedTextVisible = !isCommentedTextVisible">
+          <h5>{{commentedText.text_no}} by {{ commentedText.author|personName }}</h5>
+        </div>
+        <div class="content">
+          <p jskom-bind-body="commentedText.body"></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <ng-include src="'textform.html'|jskomTemplate"></ng-include>
+
+  <div id="jskomControlBar">
+    <div class="row">
+      <div class="three mobile-one columns">
+        <button type="button" class="secondary button" tabindex="-1"
+                ng-show="returnUrl" ng-click="goToReturnUrl()">
+          Cancel
+        </button>
+      </div>
+      
+      <div class="three mobile-one columns"></div>
+      <div class="three mobile-one columns"></div>
+      
+      <div class="three mobile-one columns">
+        <button type="submit" class="button right"
+                ng-disabled="isCreating"
+                ng-click="createText()">
+          <i class="icon-pencil"></i>
+          Post
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

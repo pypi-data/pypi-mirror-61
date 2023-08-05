@@ -1,0 +1,78 @@
+<div ng-cloak>
+  <nav class="top-bar" ng-class="isTopBarExpanded()">
+
+    <ul ng-click="toggleTopBar()">
+      <li class="name"><h1><a href="/">jskom</a></h1></li>
+      <li class="toggle-topbar"><a ng-click="toggleTopBar()"></a></li>
+    </ul>
+    
+    <section>
+
+      <ul class="left" ng-show="connection.isLoggedIn()">
+        <li>
+          <a class="home" href="/">Home</a>
+        </li>
+        
+        <li class="has-dropdown">
+          <a>Texts</a>
+          
+          <ul class="dropdown">
+            <li><a href="/texts/new">New text</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a>Conferences</a>
+          
+          <ul class="dropdown">
+            <li class="title back js-generated">
+              <h5><a>Conferences</a></h5>
+            </li>
+            <li><a href="/conferences/go-to">Go to conference</a></li>
+            <li><a href="/conferences/list">List conferences</a></li>
+            <li><a href="/conferences/set-unread">Set unread</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="right">
+        <li class="has-dropdown">
+          <a>
+            <span ng-show="connection.isLoggedIn()">
+              {{ connection.session.person|personName }}
+            </span>
+            <span ng-hide="connection.isLoggedIn()">
+              (Not logged in)
+            </span>
+            <i class="foundicon-social-torso"></i>
+          </a>
+          
+          <ul class="dropdown">
+            <li ng-show="connection.isLoggedIn()">
+              <a ng-click="logout()">Logout {{conn.session.person|personName}}</a>
+            </li>
+            
+            <li class="divider" ng-show="connection.isLoggedIn()"></li>
+            
+            <li><label>Sessions</label></li>
+            <li ng-repeat="conn in connections">
+              <a ng-click="selectConnection(conn)">
+                <!-- current: <i class="icon-user" ng-show="conn.id == connection.id"></i> -->
+                <span ng-show="conn.isLoggedIn()">
+                  {{conn.session.person|personName}}
+                </span>
+                <span ng-hide="conn.isLoggedIn()">(Not logged in)</span>
+              </a>
+            </li>
+            
+            <li class="divider"></li>
+            
+            <li>
+              <a ng-click="newConnection()">New session...</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+</div>

@@ -1,0 +1,24 @@
+<h2>Set number of unread texts</h2>
+
+<form>
+  <label>Conference</label>
+  <jskom:conf-input conn="connection" model="confNo" jskom-autofocus>
+  </jskom:conf-input>
+  
+  <label>Number of unread texts</label> 
+  <input type="number" name="unread" ng-model="noOfUnread" />
+  
+  <div id="jskomControlBar">
+    <div class="row">
+      <div class="six mobile-two columns"></div>
+      
+      <div class="six mobile-two columns">
+        <button type="submit" class="button right"
+                ng-disabled="isLoading || !confNo"
+                ng-click="setNumberOfUnreadTexts()">
+          Set unread
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
