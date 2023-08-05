@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "picpay"
+version = "1.1.1"
+description = ""
+homepage = "https://github.com/MarcusMann/picpay.py"
+repository = "https://github.com/MarcusMann/picpay.py"
+license = "MIT"
+keywords = ["picpay", "gateway de pagamento", "loja virtual", "ecommerce", "pagseguro"]
+authors = ["Marcus Pereira <oi@spacedevs.com.br>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.22.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.7.9"
+black = "^19.10b0"
+snapshottest = "^0.5.1"
+pytest-cov = "^2.8.1"
+coveralls = "^1.10.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
