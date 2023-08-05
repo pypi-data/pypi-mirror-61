@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %}
+
+<div class="alert alert-info">
+<h4><strong>{{ cnt_success }}</strong> risultati di ricerca modificati correttamente</h4>
+{% if multiple_edit_timestamp %}
+    <a href="javascript:;" id="search-multiple-edit-results" data-timestamp="{{ multiple_edit_timestamp }}">Mostra i risultati modificati</a>
+{% endif %}
+{% if error_list|length %}
+    <h4><strong>{{ error_list|length }}</strong> errori:</h4>
+    <ul>
+    {% for error in error_list %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+</div>
+{% crispy form %}
