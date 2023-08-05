@@ -1,0 +1,96 @@
+Metadata-Version: 1.2
+Name: mkpreview
+Version: 0.4.3
+Summary: mkpreview creates previews from movie files Support for all FFMPEG video types.
+Home-page: https://github.com/cbitterfield/mkpreview.git
+Author: Colin Bitterfield
+Author-email: colin@bitterfield.com
+License: MIT license
+Description: ==================
+        mkpreview
+        ==================
+        
+        
+        .. image:: https://img.shields.io/github/v/release/:cbitterfield/:mkpreview?sort=semver
+                :target: https://pypi.org/project/mkpreview/
+        
+        .. image:: https://img.shields.io/travis/fgriberi/python_boilerplate.svg
+                :target: https://travis-ci.org/cbitterfield/mkpreview
+        
+        .. image:: https://readthedocs.org/projects/mkpreview/badge/?version=latest
+                :target: https://mkpreview.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        .. image:: https://img.shields.io/pypi/pyversions/mkpreview?style=plastic
+                :target: https://pypi.org/project/mkpreview/
+        
+        mkpreview builds a grid of images from a movie file.
+        - Support for all video file types in FFMPEG.
+        - It will create a SQLite3 database with all of the video meta dataparameters and create an MD5 hash of the file
+        - It provides very basic support for creating video part numbers
+        
+        
+        
+        Get Started!
+        ------------
+        Here’s how to set up *mkpreview* for local environment.
+        
+        1- Clone the *mkpreview* locally:
+        
+        .. code-block:: console
+        
+            $ git clone git@github.com:/mkpreview.git
+        
+        2- Install your local copy into a *virtualenv*. Assuming you have *virtualenvwrapper* installed, this is how you set up the package for local development:
+        
+        .. code-block:: console
+        
+            $ sudo make boostrap
+            $ mkvirtualenv mkpreview
+            $ pip install -r requirements/dev.txt
+        
+        3- How to enable/disable virtualenv
+        
+        .. code-block:: console
+        
+            $ workon mkpreview
+            $ ...
+            $ deactivate
+        
+        
+        Credits
+        -------
+        
+        This package was generated using Yeoman_ and Cookiecutter_ projects.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _Yeoman: https://yeoman.io/learning/
+        
+        
+        # Changelog
+        
+        All notable changes to this project will be documented in this file.
+        
+        The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+        and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+        
+        ## [Unrelease]
+        
+        ### Added
+        
+        - added configuration information
+        - fixed production requirements
+        
+        [Unrelease] TBD-link
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Environment :: Console
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Requires-Python: >=3.5
