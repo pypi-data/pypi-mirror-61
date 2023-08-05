@@ -1,0 +1,63 @@
+#!python
+
+#
+# iPyCAT - Application en ligne de commande
+# @DemangeJeremy - Licence MIT
+#
+
+# Importations
+import click
+import requests
+import subprocess
+import os
+import nltk
+import ssl
+from utils.nuage_mots import nuagesMots
+from utils.stop_words import stopWords
+
+# Application principale
+@click.group()
+def main():
+    """
+    Interface Python en ligne de Commande pour les Analyses de Textes.
+    """
+    pass
+
+# Mise à jour des dépendances
+@main.command()
+def update():
+    """Mise à jour des dépendances d'iPyCAT"""
+    click.echo(click.style('+ Installation de dépendances pour NLTK', bold=True))
+    try:
+        _create_unverified_https_context = ssl._create_unverified_context
+    except AttributeError:
+        pass
+    else:
+        ssl._create_default_https_context = _create_unverified_https_context
+    nltk.download('stopwords')
+    nltk.download('punkt')
+    click.echo(click.style('+ Fin de mise à jour', fg='green'))
+
+# Nuage de mots
+@main.command()
+@click.argument('chemin_fichier')
+@click.option('--width', default=400, help='Largeur de l\'image générée.')
+@click.option('--height', default=200, help='Hauteur de l\'image générée.')
+@click.option('--max_words', default=200, help='Nombre de mots maximum dans le nuage.')
+@click.option('--background_color', default='white', help='Couleur d\'arrière-fond du nuage.')
+def nuage_de_mots(chemin_fichier, width, height, max_words, background_color):
+    """Générer un nuage de mots."""
+    nuagesMots(chemin_fichier, width, height, max_words, background_color)
+
+# Stop
+@main.command()
+@click.argument('chemin_fichier')
+@click.option('--langue', default="french", help='Langue du texte.')
+def stop_words(chemin_fichier, langue):
+    """Enlever les mots 'stop words'."""
+    stopWords(chemin_fichier, langue)
+
+
+# Lancement de l'application
+if __name__ == "__main__":
+    main()
