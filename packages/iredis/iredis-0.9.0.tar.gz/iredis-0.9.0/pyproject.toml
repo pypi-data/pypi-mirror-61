@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "iredis"
+version = "0.9.0"
+description = "Terminal client for Redis with auto-completion and syntax highlighting."
+authors = ["laixintao <laixintao1995@163.com>"]
+readme = 'README.md'
+license = "BSD-3-Clause"
+repository = 'https://github.com/laixintao/iredis'
+homepage = "https://github.com/laixintao/iredis"
+keywords=["Redis", "key-value store", "Commandline tools", "Redis Client"]
+classifiers = [
+# see https://pypi.org/pypi?%3Aaction=list_classifiers
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "Environment :: Console :: Curses",
+    "Environment :: MacOS X",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Database",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.6"
+redis = "^3"
+prompt_toolkit = "^3"
+Pygments = "^2"
+mistune = "^0.8.4"
+configobj = "^5.0.6"
+click = "^7.0"
+pendulum = "^2.0.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5"
+requests = "^2"
+lxml = "^4"
+pexpect = "^4.7"
+flake8 = "^3.7"
+ipython = "^7.8"
+ipdb = "^0.12.2"
+
+[tool.poetry.scripts]
+iredis = 'iredis.entry:main'
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
