@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: pyunit-color
+Version: 2020.2.11
+Summary: 控制台打印颜色信息
+Home-page: https://github.com/PyUnit/pyunit-color
+Author: Jtyoui
+Author-email: jtyoui@qq.com
+License: MIT Licence
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: colorama (==0.4.3)
+
+# **pyUnit-color** [![](https://gitee.com/tyoui/logo/raw/master/logo/photolog.png)][1]
+
+## 日志处理模块集合
+[![](https://img.shields.io/badge/Python-3.7-green.svg)](https://pypi.org/project/pyunit-color/)
+
+## 安装
+    pip install pyunit-color
+
+### 控制台打印颜色
+```python
+from pyunit_color import FontColor
+
+def test():
+    print(FontColor.red('打印红色'))
+    print(FontColor.green('打印绿色'))
+    print(FontColor.blue('打印蓝色'))
+    print('不打印颜色')
+
+if __name__ == '__main__':
+    test()
+```
+
+***
+[1]: https://blog.jtyoui.com
+
+
