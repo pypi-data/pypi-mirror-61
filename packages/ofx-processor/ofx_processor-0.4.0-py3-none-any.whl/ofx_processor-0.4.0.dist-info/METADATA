@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: ofx-processor
+Version: 0.4.0
+Summary: Personal ofx processor
+License: GPL-3.0-or-later
+Author: Gabriel Augendre
+Author-email: gabriel@augendre.info
+Requires-Python: >=3.7
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: dateparser (>=0.7.2,<0.8.0)
+Requires-Dist: ofxtools (>=0.8.20,<0.9.0)
+Requires-Dist: requests (>=2.22.0,<3.0.0)
+Description-Content-Type: text/markdown
+
+# ofx-processor
+
+## Usage
+
+```shell script
+process-bpvf /path/to/ofxfile.ofx
+# Or
+process-revolut /path/to/csvfile.csv
+```
+
+It will write a `processed` file in the same folder with the same extension.
+
+It will not overwrite the original file.
+
