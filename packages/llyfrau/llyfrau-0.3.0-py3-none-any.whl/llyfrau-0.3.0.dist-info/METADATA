@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: llyfrau
+Version: 0.3.0
+Summary: Bookmark management
+Home-page: UNKNOWN
+Author: Alex Carney
+Author-email: alcarneyme@gmail.com
+License: MIT
+Project-URL: Source, https://github.com/alcarney/llyfrau
+Project-URL: Tracker, https://github.com/alcarney/llyfrau/issues
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: appdirs
+Requires-Dist: prompt-toolkit
+Requires-Dist: sphobjinv
+Requires-Dist: sqlalchemy
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+
+# Llyfrau
+
+Bookmark management using a SQLite database.
+
+
+## Installing
+
+`llyfrau` supports Python 3.6+ and can be installed using [pipx][pipx]
+
+```
+$ pipx install llyfrau
+```
+
+[pipx]: https://github.com/pipxproject/pipx
+
+
