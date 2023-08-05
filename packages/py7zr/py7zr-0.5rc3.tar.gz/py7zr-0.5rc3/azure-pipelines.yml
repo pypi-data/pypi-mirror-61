@@ -1,0 +1,30 @@
+pool:
+  vmImage: 'macOS-10.14'
+
+strategy:
+  matrix:
+    Python36:
+      python.version: '3.6'
+    Python37:
+      python.version: '3.7'
+    Python38:
+      python.version: '3.8'
+
+steps:
+- task: UsePythonVersion@0
+  displayName: 'Use Python $(python.version)'
+  inputs:
+    versionSpec: '$(python.version)'
+
+- script: pip install wheel tox codecov
+  displayName: 'Install Tox'
+
+- script: tox -e py
+  displayName: 'Run Tox'
+
+- script: |
+    coverage combine
+    coverage xml --ignore-errors
+    coverage report -m --ignore-errors
+    env CODECOV_TOKEN="70f263ed-010f-4f42-8f95-444e5138d3ab" codecov --required -X gcov pycov search -f coverage.xml --flags ${TOXENV//-/ } mac
+  displayName: 'Converage report'
