@@ -1,0 +1,84 @@
+``AdvancedQuery`` is a Zope product extending Zope's search
+engine ``ZCatalog`` with the following key features:
+
+ * flexible and intuitive construction of query objects
+
+ * support for arbitrary "and", "or" and "not" combinations of queries
+
+ * flexible multi-level sort support; incremental sorting
+
+ * ranking support
+
+ * new elementary searches (such as "glob" and "regexp" searches)
+
+ * support for incremental filtering
+
+ * functional and/or efficiency gains via Zope "(subscription) adapter"s
+   for indexes
+
+ * optional integration with
+   `dm.incrementalsearch`__, 
+   a low level incremental search engine
+   aiming to reduce the number of ZODB loads for searching
+
+__ https://pypi.org/project/dm.incrementalsearch
+
+
+For more information, see ``AdvancedQuery.html`` in the ``doc`` subfolder.
+
+
+Installation
+============
+
+The package can be ``pip`` installed.
+
+The use of this package requires that its ``configure.zcml`` is
+"executed" during startup (usually, this happens automatically).
+
+In order to use this package in Plone, the companion package
+``dm.plone.advancedquery`` must be installed and its ``configure.zcml``
+"executed" during startup.
+
+
+Partial history
+===============
+
+4.1
+  Extensions/optimizations for ``ZCTextIndex`` with ``Okapi``-Index.
+
+4.0
+  Python 3/Zope 4 compatibility
+
+  Drop support for Zope2 (due to significant differences
+  between the ``Products.ZCatalog`` versions for
+  Zope2 and Zope 4+, respectively).
+
+  Supports Plone 5.2+ via the companion package ``dm.plone.advancedquery``.
+
+  Integration of indexes and ``dm.incrementalsearch`` now customizable
+  via (subscription) adapters -- independence of ``Products.ManagableIndex``
+  and ``dm.incrementalsearch``.
+
+
+3.0.4
+  Adapt to cosmetic modifications in ``Products.CMFCore==2.3.0``.
+  
+3.0.3
+  use the newer index sorting API (``documentToKeyMap``) if
+  the older API (``keyForDocument``) is missing or obviously broken.
+
+  The fix has been introduced for the ``nogopip`` index used in Plone 4.1.
+  Unfortunately, this index version not only defines a broken
+  ``keyForDocument`` but in addition uses call frame inspection targeted
+  at ``ZCatalog`` sorting which fails when called by ``AdvancedQuery``,
+  see https://dev.plone.org/plone/ticket/11637.
+  Until this problem is resolved, you cannot use a ``nogopip`` index as
+  sort index for ``AdvancedQuery``.
+  
+3.0.2
+  Zope 2.13 compatibility
+
+3.0.1
+  fix test suite for Zope 2.12 by dropping ``ZopeTestCase.framework`` support.
+  This implies that the test suite can now only be executed via the Zope
+  test runner.

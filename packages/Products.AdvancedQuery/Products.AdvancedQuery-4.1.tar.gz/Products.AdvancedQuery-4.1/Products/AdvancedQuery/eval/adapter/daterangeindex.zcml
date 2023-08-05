@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".daterangeindex.LookupTreeDateRangeIndex" provides="..interfaces.ILookupTreeIndex" />
+  <subscriber factory=".daterangeindex.KeyNormalizingDateRangeIndex" provides="..interfaces.IKeyNormalizingIndex" />
+  <subscriber factory=".daterangeindex.TermValueMatchDateRangeIndex" provides="..interfaces.ITermValueMatch" />
+  <subscriber factory=".daterangeindex.IndexedDateRangeIndex" provides="..interfaces.IIndexed" />
+  <subscriber factory=".daterangeindex.IndexedValueDateRangeIndex" provides="..interfaces.IIndexedValue" />
+  <subscriber factory=".daterangeindex.MultiplicityAwareDateRangeIndex" provides="..interfaces.IMultiplicityAware" />
+</configure>

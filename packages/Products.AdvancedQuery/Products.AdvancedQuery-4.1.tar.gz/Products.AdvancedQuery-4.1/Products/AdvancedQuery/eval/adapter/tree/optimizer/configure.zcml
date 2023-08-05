@@ -1,0 +1,5 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".EmptySet" provides=".ITreeNodeOptimizer" />
+  <subscriber factory=".Unfold" provides=".ITreeNodeOptimizer" />
+  <subscriber factory=".TreeOptimizerChain" provides=".ITreeOptimizerChain" />
+</configure>

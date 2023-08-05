@@ -1,0 +1,5 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".keywordindex.IndexedKeywordIndex" provides="..interfaces.IIndexed" />
+  <subscriber factory=".keywordindex.IndexedValueKeywordIndex" provides="..interfaces.IIndexedValue" />
+  <subscriber factory=".keywordindex.MultiplicityAwareKeywordIndex" provides="..interfaces.IMultiplicityAware" />
+</configure>

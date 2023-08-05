@@ -1,0 +1,19 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".IndexBasedQueryConverter" provides=".IQueryConverter" />
+  <subscriber factory=".ZTermQueryConverter" provides=".IQueryConverter" />
+  <subscriber factory=".KeyedIndexConverter" provides=".IQueryConverter" />
+  <subscriber factory=".PureNotIndexConverter" provides=".IQueryConverter" />
+  <subscriber factory=".ExplicitIndexConverter" provides=".IQueryConverter" />
+  <subscriber factory=".LiteralResultSetConverter" provides=".IQueryConverter" />
+  <subscriber factory=".IndexedQueryConverter" provides=".IQueryConverter" />
+  <subscriber factory=".FilterConverter" provides=".IQueryConverter" />
+  <subscriber factory="._CombiningConverter" provides=".IQueryConverter" />
+  <subscriber factory=".pathindex.PathIndexQueryConverter" provides=".IQueryConverter" />
+  <subscriber factory=".topicindex.TopicIndexQueryConverter" provides=".IQueryConverter" />
+  <subscriber factory=".zctextindex.ZCTextIndexQueryConverter" provides=".IQueryConverter" />
+  <subscriber factory=".zctextindex.ZCTextIndexGlobConverter" provides=".IQueryConverter" />
+  <subscriber factory=".zctextindex.BaseIndexIndexedValue" provides=".zctextindex.IIndexedValue" />
+  <subscriber factory=".zctextindex.BaseIndexLookupTreeIndex" provides=".zctextindex.ILookupTreeIndex" />
+  <subscriber factory=".zctextindex.OkapiIndexIndexedValue" provides=".zctextindex.IIndexedValue" />
+  <subscriber factory=".zctextindex.OkapiIndexLookupTreeIndex" provides=".zctextindex.ILookupTreeIndex" />
+</configure>

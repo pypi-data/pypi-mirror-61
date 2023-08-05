@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <include package=".query" />
+  <include package=".tree" />
+  <include files="*index.zcml" />
+  <subscriber factory=".zcatalog.QueryContext" provides="..interfaces.IQueryContext" />
+  <subscriber factory=".zcatalog.Unrestricted" provides="..interfaces.IQueryRestrict" />
+  <include file="cmfcore.zcml" />
+</configure>

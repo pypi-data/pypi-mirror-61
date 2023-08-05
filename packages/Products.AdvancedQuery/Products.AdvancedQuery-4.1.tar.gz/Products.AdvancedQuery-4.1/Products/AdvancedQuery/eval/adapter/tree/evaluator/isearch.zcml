@@ -1,0 +1,11 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  zcml:condition="installed dm.incrementalsearch"
+  >
+  <subscriber factory=".isearch.SetEvaluator" provides=".isearch.ITreeEvaluator_ISearch" />
+  <subscriber factory=".isearch.AndEvaluator" provides=".isearch.ITreeEvaluator_ISearch" />
+  <subscriber factory=".isearch.OrEvaluator" provides=".isearch.ITreeEvaluator_ISearch" />
+  <subscriber factory=".isearch.NotEvaluator" provides=".isearch.ITreeEvaluator_ISearch" />
+  <subscriber factory=".isearch.FilterEvaluator" provides=".isearch.ITreeEvaluator_ISearch" />
+</configure>

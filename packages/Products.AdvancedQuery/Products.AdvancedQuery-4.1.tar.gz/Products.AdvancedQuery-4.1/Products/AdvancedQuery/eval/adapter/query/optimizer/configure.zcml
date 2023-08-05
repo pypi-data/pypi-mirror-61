@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".QueryOptimizerChain" provides=".IQueryOptimizerChain" />
+  <subscriber factory=".ConvertGeneric" provides=".IQueryNodeOptimizer" />
+  <subscriber factory=".HandleFilterTrue" provides=".IQueryNodeOptimizer" />
+  <subscriber factory=".Unfold" provides=".IQueryNodeOptimizer" />
+  <subscriber factory=".filter_.FilterIndex" provides=".IFilterIndex" />
+</configure>
+   

@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".booleanindex.KeyedBooleanIndex" provides="..interfaces.IKeyedIndex" />
+  <subscriber factory=".booleanindex.LookupTreeBooleanIndex" provides="..interfaces.ILookupTreeIndex" />
+  <subscriber factory=".booleanindex.KeyNormalizingBooleanIndex" provides="..interfaces.IKeyNormalizingIndex" />
+  <subscriber factory=".booleanindex.IndexedBooleanIndex" provides="..interfaces.IIndexed" />
+  <subscriber factory=".booleanindex.IndexedValueBooleanIndex" provides="..interfaces.IIndexedValue" />
+  <subscriber factory=".booleanindex.MultiplicityAwareBooleanIndex" provides="..interfaces.IMultiplicityAware" />
+</configure>

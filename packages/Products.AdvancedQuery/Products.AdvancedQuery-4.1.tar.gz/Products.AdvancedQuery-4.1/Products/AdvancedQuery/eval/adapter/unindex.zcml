@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".unindex.KeyedUnIndex" provides="..interfaces.IKeyedIndex" />
+  <subscriber factory=".unindex.LookupUnIndex" provides="..interfaces.ILookupIndex" />
+  <subscriber factory=".unindex.KeyNormalizingUnIndex" provides="..interfaces.IKeyNormalizingIndex" />
+  <subscriber factory=".unindex.IndexedUnIndex" provides="..interfaces.IIndexed" />
+  <subscriber factory=".unindex.IndexedValueUnIndex" provides="..interfaces.IIndexedValue" />
+  <subscriber factory=".unindex.MultiplicityAwareUnIndex" provides="..interfaces.IMultiplicityAware" />
+</configure>

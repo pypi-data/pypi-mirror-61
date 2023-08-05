@@ -1,0 +1,7 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <subscriber factory=".set_.SetEvaluator" provides=".set_.ITreeEvaluator_Set" />
+  <subscriber factory=".set_.AndEvaluator" provides=".set_.ITreeEvaluator_Set" />
+  <subscriber factory=".set_.OrEvaluator" provides=".set_.ITreeEvaluator_Set" />
+  <subscriber factory=".set_.NotEvaluator" provides=".set_.ITreeEvaluator_Set" />
+  <subscriber factory=".set_.FilterEvaluator" provides=".set_.ITreeEvaluator_Set" />
+</configure>
