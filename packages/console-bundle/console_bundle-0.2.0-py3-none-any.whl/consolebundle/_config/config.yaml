@@ -1,0 +1,10 @@
+services:
+  consolebundle.ConsoleLoggerFactory:
+
+  consolebundle.logger:
+    class: logging.Logger
+    factory: ['@consolebundle.ConsoleLoggerFactory', 'create']
+
+  consolebundle.CommandManager:
+    arguments:
+      - !tagged console.command
