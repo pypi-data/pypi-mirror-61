@@ -1,0 +1,41 @@
+syntax = "proto3";
+package ses;
+
+
+message UR10Status{
+  enum State{
+    
+    ROBOT_RUNNING_MODE = 0;
+    ROBOT_FREEDRIVE_MODE = 1;
+    ROBOT_READY_MODE = 2;
+    ROBOT_INITIALIZING_MODE = 3;
+    ROBOT_SECURITY_STOPPED_MODE = 4;
+    ROBOT_EMERGENCY_STOPPED_MODE = 5;
+    ROBOT_FAULT_MODE = 6;
+    ROBOT_NO_POWER_MODE = 7;
+    ROBOT_NOT_CONNECTED_MODE = 8;
+    ROBOT_SHUTDOWN_MODE = 9;
+    NO_CONTROLLER_MODE = 10;
+
+  }
+  State state = 1;
+}
+
+
+
+message requestStartProgram {
+  string programName = 1;
+  
+}
+
+message replyStartProgram {
+  string reply = 1;
+}
+
+message requestStartScenario {
+  string scenarioName = 1;
+}
+
+message replyStartScenario {
+  string reply = 1;
+}
