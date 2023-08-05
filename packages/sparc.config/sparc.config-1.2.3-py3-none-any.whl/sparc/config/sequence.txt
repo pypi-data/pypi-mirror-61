@@ -1,0 +1,38 @@
+===================================================
+Sparc Sequence Interface To A Config Container Key
+===================================================
+A config container may be different Python types (dict, list, tuple, set).
+It may be convienent to have deterministic 
+zope.interface.common.sequence.IReadSequence to a named key.
+
+let's take this config, for example.
+>>> config = [
+...     {'key1': {'key2': 'value2'}},
+...     {'key3': 'value3-a'},
+...     {'key3': 'value3-b'}
+...     ]
+
+>>> from sparc.config.sequence import SparcConfigSequence
+>>> sequence = SparcConfigSequence(config, 'key3')
+>>> len(sequence)
+2
+>>> set(sequence) == set(['value3-a', 'value3-b'])
+True
+>>> 'value3-a' in sequence
+True
+
+Naming a key that doesn't exist returns an empty sequence
+>>> sequence = SparcConfigSequence(config, 'bad')
+>>> len(sequence)
+0
+
+If the config is a map, then entries will be adapted into single entry sequences
+>>> config = {'key1':'value1', 'key2': 'value2'}
+>>> sequence = SparcConfigSequence(config, 'key2')
+>>> len(sequence)
+1
+>>> sequence[0] == 'value2'
+True
+>>> sequence = SparcConfigSequence(config, 'bad')
+>>> len(sequence)
+0

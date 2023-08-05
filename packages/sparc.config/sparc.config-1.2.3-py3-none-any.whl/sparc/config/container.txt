@@ -1,0 +1,39 @@
+===================================================
+Sparc Config Container Accessors
+===================================================
+It is not often feasible to understand the exact data type of a config container
+before runtime, it may be a Python dict, list, set, tuple, or some derivative 
+thereof.  Desired access into these containers usually falls into one of these
+scenarios:
+
+ 1. Looking for a specific config key, ignoring multiple entries for the same
+    key (i.e. keep first entry, ignoring the rest)
+ 2. Looking for all entries for a config key.
+   
+let's take this config, for example.
+>>> config = [
+...     {'key1': {'key2': 'value2'}},
+...     {'key3': 'value3-a'},
+...     {'key3': 'value3-b'}
+...     ]
+
+For case #1, from above, it would be nice to access this config as a mapping.
+>>> from sparc.config.container import SparcConfigContainer
+>>> container = SparcConfigContainer(config)
+>>> mapping = container.mapping()
+>>> mapping['key1'] == {'key2': 'value2'}
+True
+>>> mapping['key3'] == 'value3-a'
+True
+
+For case #2, from above, it would be nice to access 'key3' as a sequence
+>>> sequence = container.sequence('key3')
+>>> len(sequence)
+2
+>>> set(sequence) == set(['value3-a','value3-b'])
+True
+
+Sequences return empty for non-existing keys
+>>> sequence = container.sequence('bad')
+>>> len(sequence)
+0

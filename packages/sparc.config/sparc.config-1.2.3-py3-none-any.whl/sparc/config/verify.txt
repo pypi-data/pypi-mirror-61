@@ -1,0 +1,29 @@
+=====================================
+Verify Sparc Config Container
+=====================================
+Since config containers may easily be plain Python dicts, lists, tuples, or
+sets it is not feasible to assign marker interfaces to them (native Python
+types can not be marked by zope.interface facilities), we provide some
+capability to insure if a Python container is a potential Sparc Config
+Container.
+
+>>> from sparc.config import verify
+>>> from zope.interface.exceptions import BrokenImplementation
+>>> bad_1 = 'this is not a valid config'
+>>> try:
+...     verify.verify_config_container(bad_1)
+...     print('testing error, previous statement should raise BrokenImplementation')
+... except BrokenImplementation:
+...     pass
+
+>>> good_1 = {}
+>>> verify.verify_config_container(good_1)
+>>> good_2 = [{},{}]
+>>> verify.verify_config_container(good_2)
+
+>>> bad_2 = [[],[]]
+>>> try:
+...     verify.verify_config_container(bad_2)
+...     print('testing error, previous statement should raise BrokenImplementation')
+... except BrokenImplementation:
+...     pass

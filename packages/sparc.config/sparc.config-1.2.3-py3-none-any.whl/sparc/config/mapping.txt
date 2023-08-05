@@ -1,0 +1,45 @@
+==============================================
+Sparc Mapping Interface To A Config Container
+==============================================
+A Sparc config container may not be a map (i.e. it might be a list, tuple, or
+set).  In this case, it is convenient to provide a mapping interface to 
+the container.
+
+let's take this config, for example.
+>>> config = [
+...     {'key1': {'key2': 'value2'}},
+...     {'key3': 'value3'},
+...     {'key3': 'this is over-written'}
+...     ]
+
+We can make this easy to deal with by adapting it into a IHierarchyMapping
+provider
+>>> from sparc.config.mapping import SparcConfigMapping
+>>> mapping = SparcConfigMapping(config)
+>>> mapping['key1'] == {'key2': 'value2'}
+True
+>>> mapping['key3'] == 'value3'
+True
+>>> mapping.get_value('key3') == 'value3'
+True
+>>> mapping.get_value('key1','key2') == 'value2'
+True
+>>> try:
+...     mapping.get_value('key1','key3')
+...     print('the previous statement should have raise KeyError')
+... except KeyError:
+...     pass
+>>> mapping.get_value('key1','bad', default='test') == 'test'
+True
+>>> mapping.query_value('key1','key3')
+
+>>> mapping.query_value('key1','key2') == 'value2'
+True
+
+starting with a map also works fine
+>>> config = {'key1': {'key2': 'value2'},'key3': 'value3'}
+>>> mapping = SparcConfigMapping(config)
+>>> mapping['key1'] == {'key2': 'value2'}
+True
+>>> mapping.get_value('key1','key2') == 'value2'
+True

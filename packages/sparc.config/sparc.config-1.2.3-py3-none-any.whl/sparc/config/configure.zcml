@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="sparc.config">
+    
+    <include package=".yaml" />
+    
+    <utility
+        name="sparc.config.container"
+        component=".container.SparcConfigContainerFactory"
+        />
+    
+    <utility
+        name="sparc.config.mapping"
+        component=".mapping.SparcConfigMappingFactory"
+        />
+    
+    <utility
+        name="sparc.config.sequence"
+        component=".sequence.SparcConfigSequenceFactory"
+        />
+
+</configure>
