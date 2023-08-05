@@ -1,0 +1,1 @@
+One of my exposures to python made me understand that Python is one of the powerful languages we have.
