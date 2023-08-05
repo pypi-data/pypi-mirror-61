@@ -1,0 +1,46 @@
+{% set help = obj|docstring|trim -%}
+{% set level = level|default(0)-%}
+{% set namespace = obj.namespace or namespace|default(None) %}
+
+@dataclass
+class {{ obj.name }}{{"({})".format(obj.extensions|join(', ', attribute="name")) if obj.extensions }}:
+{%- if help %}
+{{ help|indent(4, first=True) }}
+{%- endif -%}
+{%- if level == 0 and (obj.local_name != obj.name or obj.namespace or obj.is_mixed) %}
+    class Meta:
+        {%- if obj.local_name != obj.name %}
+        name = "{{ obj.local_name }}"
+        {%- endif -%}
+        {%- if obj.is_mixed %}
+        mixed = True
+        {%- endif -%}
+        {%- if obj.namespace %}
+        namespace = "{{ obj.namespace }}"
+        {%- endif %}
+{% elif obj.attrs|length == 0 and not help %}
+    pass
+{%- endif -%}
+{%- for attr in obj.attrs %}
+    {%- set field_params = dict(
+                  name=attr.local_name,
+                  type=attr.local_type,
+                  namespace=attr.namespace if namespace != attr.namespace else None,
+                  ** attr.restrictions
+            )
+    %}
+    {{ attr.name }}: {{ attr.display_type }} = field(
+        {{ "default_factory" if attr.is_factory else "default" }}={{ attr.default }},
+        metadata=dict(
+            {{ field_params|arguments|indent(12) }}
+        )
+    )
+{%- endfor -%}
+{%- for inner in obj.inner %}
+    {%- set tpl = "enum.jinja2" if inner.is_enumeration else "class.jinja2" -%}
+    {%- filter indent(4) -%}
+        {%- with obj=inner, namespace=obj.namespace or namespace, level=level + 1 -%}
+            {% include tpl %}
+        {%- endwith -%}
+    {%- endfilter -%}
+{%- endfor -%}
