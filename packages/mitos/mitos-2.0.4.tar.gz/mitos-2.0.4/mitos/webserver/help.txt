@@ -1,0 +1,538 @@
+<div style="width:680px;margin:0 auto;text-align:justify;" >
+
+  <div style="margin-top: 50px;">
+    <b> THIS IS STILL THE MITOS(1) DOCUMENTATION.</b> 
+  </div>
+
+
+  <div style="margin-top: 50px;">
+    Welcome to <b>MITOS</b>, a free web server for the annotation of metazoan
+    mitochondrial genomes. Using <b>MITOS</b> has a number of advantages
+    compared to manual curation:
+  </div>
+
+  <div style="width: 465px; margin-left: auto; margin-right: auto; text-align: left; margin-top: 10px;" >
+    <ul>
+      <li> <b>reliable and consistent analysis</b> of metazoan mitochondrial genomes</li>
+      <li> <b>simple usage</b> - selection of cutoff values not necessary</li>
+      <li> <b>advanced usage</b> - for users who are not satisfied with the default values</li>
+      <li> <b>widely used file formats</b> for sequence upload and download of the results</li>
+      <li> <b>state-of-the-art methods</b> - novel structure-based covariance models for ncRNA annotation</li>
+      <li> <b>unmatched sensitivity</b> in tRNA prediction and <b>improved detection</b>
+     	of rRNA 5' and 3' ends</li>
+    </ul>
+  </div>
+
+  <br/>
+  Click <a href="http://{mitosurl}">here</a> to start using <b>MITOS</b> or
+  continue reading the following sections to learn more about <b>MITOS</b> and how to use it:
+
+  <div style="width: 420px; margin-left: auto; margin-right: auto; text-align: justify; margin-top: 10px;">
+
+    <a href="#overview">Overview</a><br/>
+    <a href="#input">Input</a><br/>
+    <a href="#output">Output</a><br/>
+    <a href="#faq">FAQ</a><br/>
+    <a href="#example">Example</a><br/>
+    <a href="#advanced">Advanced Usage</a><br/>
+    <a href="#uses">Studies using <b>MITOS</b></a><br/>
+    <a href="#privacy">Privacy</a><br/>
+
+  </div>
+
+  <br/>
+  <h2 id = "overview">Overview</h2>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+    <b>MITOS</b> is a web server for the automatic annotation of metazoan
+    mitochondrial genomes. <b>MITOS</b> allows a reliable and consistent
+    annotation of proteins and non-coding RNAs. The analysis steps are as
+    follows:<br/>
+    <div style="margin-top: 10px; margin-left: 30px; margin-right: 50px;" >
+      <ul>
+	<li> Candidate <i>protein coding genes</i> are found by detecting congruences in the
+	  results of blastx searches against the amino acid sequences of the annotated
+  	  proteins of metazoan mitochondrial genomes found in the NCBI RefSeq 39. A
+  	  postprocessing step detects start and stop codons, duplicates, and hits belonging to
+  	  the same transcript, e.g. frame shift or splicing.<br/><br/>
+	</li>
+	<li> <i>tRNAs</i> are annotated using MITFI, i.e. novel structure-based covariance models
+      as described in <a href="http://dx.doi.org/10.1093/nar/gkr1131" target="_blank">J&uuml;hling, et al. Nucleic Acids Research, 2012, 40(7):2833-2845</a>.
+      This approach was shown to have an unmatched sensitivity (outperforming ARWEN and tRNAscan-SE, respectively)
+  	  and a precision higher than ARWEN and equivalent to tRNAscan-SE.
+  	  <br/><br/>
+	</li>
+	<li> <i>rRNA</i> annotation is performed using structure-based covariance
+#   	  models that have been developed similarly to the tRNA models.
+  	  Structural considerations improve 5' and 3' end predictions of the rRNAs.<br/><br/>
+	</li>
+	<li>In a final step, conflicts are resolved and the outcome is prepared for
+  	  visualization.
+	</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id = "input">Input</h2>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+    Annotating mitochondrial genomes with <b>MITOS</b> is rather simple and
+    straightforward, unburdening the user from having to select cutoff values
+    and the like. All that must be provided is:
+    <ol>
+	<li>
+	  a <a href="https://en.wikipedia.org/wiki/FASTA_format" target="_blank">FASTA</a> file,
+	  containing the genome to be annotated and<br/><br/>
+	</li>
+	<li>
+	  the appropriate  <a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi" target="_blank">genetic code</a>.
+	</li>
+      </ol>
+    <br/>
+    The user does not have to provide a name or e-mail address. However, if one
+    chooses to do so, a link to the results page will be sent to the given
+    address upon completion of the job.
+    In either case, after submission of the job the user will be directed to a
+    page displaying the status of the job, a link that allows the deletion of the job, and
+    as soon as the job is finished the results will be shown on the same page.
+  </div>
+
+  <h2 id = "output">Output</h2>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+    Results are provided in commonly used file formats:
+    <a href="http://genome.ucsc.edu/FAQ/FAQformat.html#format1" target="_blank">BED</a>,
+    <a href="http://genome.ucsc.edu/FAQ/FAQformat.html#format3" target="_blank">GFF</a>,
+    <a href="https://en.wikipedia.org/wiki/FASTA_format" target="_blank">FASTA</a>, and
+    <a href="http://www.ncbi.nlm.nih.gov/genbank/tbl2asn2#tbl" target="_blank">TBL</a> format and
+     a visual overview of the results is presented.  Additionally, a file
+     containing the gene order, i.e. the gene names in the order of their
+     appearance on the genome, that can be used for genome rearrangement
+     analyses (e.g. with <a href="http://pacosy.informatik.uni-leipzig.de/crex/" target="_blank">CREx</a>) is
+     provided. Furthermore, the raw data, i.e. all files that have been generated by <b>MITOS</b>,
+     is available as zip archive.
+    <br/>
+  </div>
+
+  <div style="margin-top: 0px; margin-left: 20px; margin-right: 50px;" >
+  <h3 id = "scores">Evaluating the Output</h3>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+    <b>MITOS</b> calculates <i>e-values</i> for ncRNA and <i>quality values</i> for protein coding
+    gene predictions. <a href="mito/data/stat-pshs-logx-h.pdf">Here</a>, we provide plots with the
+    quality value distributions for
+      <ul>
+	<li> the initial hits found for the 13 protein coding gene families in RefSeq 39 (<i>norm</i>),
+	</li>
+	<li> the sequences without the respective gene (<i>cut</i>), and
+	</li>
+	<li> the trinucleotide frequency preserving permutations (<i>shuffle</i>).
+	</li>
+      </ul>
+      Within the plots the best 939 (50% the size of RefSeq 39; dashed line) and 1878 (solid line)
+      <i>quality values</i> of the initial hits are indicated.
+      These plots might be used for estimating the relative quality of the results.
+    </div>
+  </div>
+
+
+  <h2 id = "faq">FAQ</h2>
+  <div style="text-align: left; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+    <b>Q:</b> <i>How long does it take for <b>MITOS</b> to annotate my mitochondrial genome?</i><br/>
+    <b>A:</b> MITOS needs about 1.5h for a single mitogenome of average length.
+	If multiple users submit jobs they are put in a queue. The jobs in the queue are
+    processed in the order of their arrival and two jobs can be processed in parallel.
+    So, if your job is queued the time until the job will be started might be roughly as:
+    queue position ~ hours to wait.
+    <br/>
+    <br/>
+    <b>Q:</b> <i>How can I share the results of <b>MITOS</b> with colleagues?</i><br/>
+    <b>A:</b> By sending them the URL shown in the browser when you access your results.
+    <br/>
+    <br/>
+
+    <b>Q:</b> <i>How secure is the data that is uploaded and the results? Who can access it?</i><br/>
+    <b>A:</b> Your data is only accessible by persons knowing the precise URL. This is
+    initially only the person who submitted the job. Thus this person can control who may
+    access the data and results by keeping the URL a secret or distributing it.
+    The uniqueness of the URL is ensured by a unique job identifier (which is generated using the
+    SHA-256 method from the submitted data). It is extremely unlikely (virtually impossible)
+    to find an identifier at random. Thus, a high security level is ensured and
+    at the same time it is still easy for you to distribute the results to colleagues.
+    <br/>
+    <br/>
+
+    <b>Q:</b> <i>How long are the results kept? </i><br/>
+    <b>A:</b> The results are deleted automatically 1 month after the submission, but they can be
+    regenerated by restarting the job which is possible via the result link (for jobs created after
+    April 2013).
+    <br/>
+    <br/>
+
+    <b>Q:</b> <i>Do you provide results in other formats?</i><br/>
+    <b>A:</b> Currently not. However, if you think we should offer an additional
+    format please send us a message: <script type='text/javascript'> var pref = '&#109;a' + 'i&#108;' + '&#116;o'; var attribut = 'hr' + 'ef' + '='; var first = '%6D%69%74%6F%73'; var at = '%40'; var last = '&#x62;&#x69;&#x6F;&#x69;&#x6E;&#x66;&#x2E;&#x75;&#x6E;&#x69;&#x2D;&#x6C;&#x65;&#x69;&#x70;&#x7A;&#x69;&#x67;&#x2E;&#x64;&#x65;'; var first2 = '&#x6D;&#x69;&#x74;&#x6F;&#x73;'; var at2 = '&#x40;'; var last2 = '&#98;&#105;&#111;&#105;&#110;&#102;&#46;&#117;&#110;&#105;&#45;&#108;&#101;&#105;&#112;&#122;&#105;&#103;&#46;&#100;&#101;'; document.write( '<a ' + attribut + '\'' + pref + ':' + first + at + last + '\'>' ); document.write( first2 + at2 + last2 ); document.write( '<\/a>' ); </script> <noscript> <div style='display:none; '>are-</div><div style='display:inline; '>&#x6D;&#x69;&#x74;&#x6F;&#x73;</div><div style='display:none; '>-xya34</div><div style='display:inline; '>[at]</div><div style='display:none; '>ddks-</div><div style='display:inline; '>&#98;&#105;&#111;&#105;&#110;&#102;&#46;&#117;&#110;&#105;&#45;&#108;&#101;&#105;&#112;&#122;&#105;&#103;&#46;&#100;&#101;</div> </noscript>.
+    <br/>
+    <br/>
+
+    <b>Q:</b> <i>I don't have a complete genome...</i><br/>
+    <b>A:</b> Basically, no problem. <b>MITOS</b> can also annotate fragments. But you should be
+    aware of MITOS' strategy which tries to enforce a copy for each of the default metazoan mitogenes.
+    This might evoke low scoring spurious hits.
+    <br/>
+    <br/>
+
+    <b>Q:</b> <i>How do I cite <b>MITOS</b>?</i><br/>
+    <b>A:</b> Please cite:<br/>
+	<i>M. Bernt, A. Donath, F. J&uuml;hling, F. Externbrink, C. Florentz, G. Fritzsch, J. P&uuml;tz, M. Middendorf, P. F. Stadler</i><br>
+	<b>MITOS: Improved de novo Metazoan Mitochondrial Genome Annotation</b><br>
+	Molecular Phylogenetics and Evolution 2013, 69(2):313-319
+	<a href="http://dx.doi.org/10.1016/j.ympev.2012.08.023" target="_blank">link</a>
+    <br/>
+    <br/>
+    <b>Q:</b> <i>What can I do if <b>MITOS</b> produced an error or is behaving unexpectedly? </i><br/>
+    <b>A:</b> It would be nice if you inform us by sending an email to {mail}.
+    <br/>
+    <br/>
+  </div>
+
+  <h2 id = "example">Example</h2>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+
+    This example is based on the complete mitochondrial genome of
+    <i>Arborophila rufipectus</i> (NC_012453). You can download
+    the sequence in FASTA format <a href="NC_012453.fasta">here</a>.
+    Precomputed results from <b>MITOS</b> for this example can be found
+    <a href="result.py?hash=example">here</a>. If you
+    want to compare it with the annotation found in RefSeq,
+    <a href="NC_012453.gff2">here</a> is a GFF compiled
+    from the original GenBank file (<a href="http://www.ncbi.nlm.nih.gov/nuccore/NC_012453.1" target="_blank">NC_012453.1</a>).<br/> <br/>
+
+    <h4 id = "upload">UPLOAD</h4>
+    <div class="helptxt">
+      All you have to provide is the sequence in FASTA (Pearson) format and
+      the selection of the correct genetic code. The job is submitted
+      by clicking the <i>Proceed</i> button.
+      If you enter a valid email address you will receive a notification as
+      soon as the analysis is complete.
+      The notification email will contain a link to the <b>MITOS</b> results
+      of the job and mention the job identifier (or filename if not given).
+      The job identifier will also be given on the job settings page.
+      Optionally you can provide a name wich will be used to adress you.
+      <br/>
+      If all of our resources are currently in use, your job will be put in a queue
+      and you are notified about your position. Here you also have the possibility to
+      delete your job.<br/>
+      <br/>
+      Once your job is being processed you will be notified about this.
+      Cancelling the job is not possible as soon as it is executed.<br/>
+      The page will reload every 30 seconds until the results are available. If
+      you have provided a valid email address you can close this window.
+      Otherwise you have to bookmark it or leave it open until the analysis is
+      complete.<br/>
+    </div>
+
+    <img src="mito/input.png" alt="Input mask" class="helpimg">
+    <img src="mito/analysis.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+    <h4 id = "results">RESULTS</h4>
+
+    <div class="helptxt">
+    Once the annotation is ready, you will be redirected the results page. This page
+    has a menu on the left that offering several downloads and the results in tabular and
+    graphical form on the right.
+    </div>
+
+	<div style="clear: both;"> </div>
+
+
+    <div class="helptxt">
+    The central part is the results table where you find all genes predicted by <b>MITOS</b> and their
+    position in the provided sequence. The coordinates are as defined for the
+    GFF format, i.e. the first base of the sequence is numbered 1 and start and stop of the feature are included.
+    For tRNAs and rRNAs we provide secondary structure plots in svg and postscript format.
+    </div>
+
+    <img src="mito/resulttop.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+    <div class="helptxt">
+      Below the table you will see a visualization of the annotation.
+      Genes located on the plus strand are drawn in the upper part. Genes annotated on the
+      minus strand are shown in the lower region. A small vertical line is
+      drawn every 1,000 nt. A click on the image will present a larger
+      annotated version.<br/>
+      Note that the legend of the plot indicates which feature types have been searched
+      by <b>MITOS</b> (tRNA, rRNA, protein). In our example all three types have been searched - which is the default setting of <b>MITOS</b>.
+
+      On the very bottom of the page <b>MITOS</b> reports peculiarities and problems of the
+      results which may need your attention. Most importantly genes that could
+      not be located are listed. This may happen if there is no signal for the gene or if
+      its predicted position conflicts with other genes (e.g. if a gene is annotated to long).
+      Furthermore cases of genes that have been found as copies or in multiple parts are listed.
+      For both cases we provide detailed data that support the analysis of these cases
+      (described below).
+    </div>
+
+    <img src="mito/resultimg.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+    <div class="helptxt">
+    In the upper left you will find the <b>Downloads</b> section which contains
+    links to different file formats to download the annotation of your sequence.
+    Below, in the <b>Raw Data</b> section a zip archive containing
+    all raw data that has been created during the annotation process,
+    i.e. unfiltered BLAST outputs, results from the HMM search etc.
+    Furthermore, the protein and ncRNA plots provide an easy overview on the raw data,
+    i.e. the quality values of the initial hits from <b>MITOS'</b> protein prediction
+    method and the e-values of the original infernal predictions (details below).
+    <br/>
+    </div>
+
+    <img src="mito/resultfiles.png" alt="analysis" class="helpimg">
+
+	<div style="clear: both;"> </div>
+
+    <div class="helptxt">
+    <b>MITOS</b> annotates two copies of <i>nad6</i> for this sequence:
+    the first copy on the plus strand (736-1,155) and the other on the minus
+    strand (16,141-16,659). You will also notice that the
+    second copy is roughly 100 nt longer than the other one. Now we
+    need to take a look at one of the result files to confirm whether we have a
+    real duplication event.
+    </div>
+
+    <img src="mito/resultbottom.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+    <div class="helptxt">
+    Download, for example, the BED file and open it
+    with an editor of your choice. (Keep in mind that coordinates in
+    BED files start with 0 and the stop is <b>not</b> included.)
+
+    <div style="margin-top: 10px;"></div>
+    <b>MITOS</b> annotates protein coding genes by detecting congruences
+    in the results of BLASTX searches. That is, in short, the <i>e-values</i>
+    of BLASTX searches aiming at the same target are summed up position-wise
+    (see also: <a href="#scores">Evaluating the Output</a>). Regions
+    defined by stretches of positions with a "good" score are considered as
+    connected and part of the respective protein coding region. This
+    enables <b>MITOS</b> to detect frame-shifts and, by applying a
+    greedy method, duplication events. However, in rare cases, this
+    greedy procedure annotates an unlikely copy.<br/> This can easily
+    be identified by evaluating the scores given in the annotations
+    (or the protein plots).
+    Certainly, <i>e-values</i> (and therefore <i>quality values</i>) of two
+    different BLAST searches cannot be compared. Nevertheless, they
+    give us a good indication whether we have a true copy or just a
+    region with a slight similarity.<br/>
+	As we can see, the putative <i>nad6</i> duplicate on
+    the minus strand has a much higher score than the one on the plus
+    strand. Additionally, most other protein coding regions exhibit
+    similar high quality values. From this we can conclude that the
+    region on the minus strand contains a true <i>nad6</i> gene, but the
+    other one is unlikely and needs further examination.
+    </div>
+
+    <img src="mito/nad6a.png" alt="analysis" class="helpimg">
+
+    <img src="mito/nad6b.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+    <div class="helptxt">
+	Further possibilities for a more detailed analysis of the results is given
+	by the protein and ncRNA plots that are linked in the "Raw data" section.
+	The protein plot shows for each gene and each position the quality value
+	if it is above the threshold. Different colors are used to differentiate
+	the genes. Basically, the initial hits used in MITOS correspond to the
+	"mountains" in this plot. Thus this plot visualizes the signal from the
+	BLAST searches. The arrows shown on the top of the plot show the annotation
+	reported by <b>MITOS</b>. Note that the quality values are shown on a log scale.
+	In the protein plot for the example one can clearly see the inferior quality values
+	of the spurious nad6 hit.
+	<br>
+	The ncRNA plot shows the hits reported by infernal where conflicts among
+	tRNAs (respectively rRNAs) are already removed. The plot differentiates between
+	the hits from the global and glocal (if present) search by line type.
+	Furthermore the hits are separated in priorities (1 or 2). Priority "1" refers
+	to features set in the first round when MITOS takes the prediction hit of each
+	feature, and priority "2" refers to all other features set afterwards in the
+	remaining unassigned regions.
+	Note the reverse log scale for the e-value.
+    </div>
+
+	<img src="mito/protplot.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+    <div class="helptxt">
+	In order to retrieve the parameters used for the annotation of your job
+	we provide the <i>job settings</i> page. The link is the last item in the menu
+	on the results page. The setting are shown in tabular form. The heading shows
+	job identifier that was provided.
+    </div>
+
+	<img src="mito/settings.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+
+  </div>
+  <h2 id = "advanced">Advanced Usage</h2>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+    The default values implemented in <b>MITOS</b> are tested
+    thoroughly and work well for different taxonomic lineages. If,
+    however, you are not satisfied with the result of the annotation
+    or if you are only interested in certain gene types, <b>MITOS</b>
+    offers an <i>advanced mode</i>. To change the annotation
+    parameters, press the <i>Advanced</i> button below the input mask.
+
+    <div style="clear: both;"> </div>
+    <h4>GENERAL SEARCH SETTINGS</h4>
+	<b>Multi Fasta</b><br/>
+	Per default the <b>MITOS</b> web server accepts only files containing a single
+	fasta formatted sequence. This may be changed with the Multifasta
+	checkbox. Please use this option carefully, considering the following
+	points:
+	<ul>
+	<li> If a multifasta file is uploaded for each sequence in that file a job
+		will be created. Your web browser will be redirected to the results page
+		of the job corresponding to the last sequence in your file.</li>
+	<li> In order to be able to access the results of the other sequences you
+		have to specify an email address. Note that, MITOS will send a result
+		notification mail for each sequence (which might have spam like character).</li>
+	<li> Please consider that MITOS currently needs about 1-2 hours for a
+		typical mitochondrial genome. Hence a larger amount of jobs will create
+		a considerable computational demand which might delay also jobs of other
+		users. You can check the current workload of the MITOS web server on the
+		<a href="http://{mitosurl}/stats.py">Status and Statistics page</a>.</li>
+	<li> For larger data sets we could provide dedicated computational
+		resources. Also more convenient access to larger sets of results can be
+		organized.</li>
+	<li> In case of questions you might contact us at {mail}.</li>
+	</ul>
+	<br/>
+
+    <b>Feature types</b><br/>
+    Here you can select if you want to annotate all three types of
+    genes or only a subset. If you are only interested in protein
+    coding genes, untick the boxes for tRNAs and rRNAs. This will
+    also decrease the time needed for annotation dramatically.
+    See the <b>MITOS</b> article for a further explanation of the parameters.<br/>
+
+      <h4>PROTEIN SEARCH PARAMETERS</h4>
+      <div class="helptxt">
+      <b>BLAST E-value Exponent</b>
+      Change this value to specify the statistical significance
+      threshold for considering matches in the BLASTX search.
+      The value entered here is the negation of the exponent of the E-value
+      threshold that should be used by BLAST, i.e. a value X gives an E-value of 10^(-X).
+      <br/>
+      <br/>
+      <b>Cutoff</b>
+      Minimum allowed quality value (in percent) of the maximum
+      quality value per reading frame. A higher values correspond to
+      shorter protein prediction and therefore reduced risk for
+      conflicts with other features <br/>
+      <br/>
+      <b>Maximum Overlap</b>
+      Maximum allowed overlap (in percent) of the smaller
+      feature.<br/>
+      <br/>
+      <b>Clipping Factor</b>
+      Clipping is started if overlapping prediction of hits with the same
+      name differ by less than a factor X in their quality value.<br/>
+      <br/>
+      <b>Fragment Overlap</b>
+      Maximum fraction (of the shorter feature) allowed that two hits
+      overlap in the query to be counted as fragments.<br/>
+      <br/>
+      <b>Fragment Quality Factor</b>
+      Maximum factor by which fragments may differ in their quality
+      scores. Higher values allow that parts of a gene can differ more
+      in their quality.<br/>
+      <br/>
+      <b>Start/Stop Range</b>
+      Range (number of amino acids) in which start and stop codon are
+      searched.
+      <h4>FINAL STEP PARAMETERS</h4>
+      <b>Final Maximum Overlap</b>
+      Maximum number of nucleotides by which genes of different
+      types may overlap. Applies to merging of the final
+      predictions.
+    </div>
+
+    <img src="mito/input_adv.png" alt="analysis" class="helpimg">
+
+    <div style="clear: both;"> </div>
+    </div>
+
+  <h2>Raw Data</h2>
+  <div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+	The raw data contains the following:
+	<dl>
+	<dt>blast/</dt><dd>The BLAST results. The directory "prot" contains the output files produced by BLAST in tabular format. The file "blast.dat" is a auxiliary file that is used to generate the protein plot. </dd>
+	<dt>mitfi-global/ and mitfi-local/</dt><dd>The results of MiTFi (tRNAout.nc and rRNAout.nc) and infernal (.cmout file) for the global and glocal search search.</dd>
+	<dt>plots/</dt><dd>All plots: protein plot, ncRNA plot, and all ncRNA secondary structures.</dd>
+	<dt>result</dt><dd>File containing the results. Positions are 0-based and start&amp;stop position are included. Columns are: id, type, name, prediction-method, start, stop, strand, anticodon, copy-number, part-number, structure, anticodon-position.</dd>
+	<dt>sequence.fas</dt><dd>The original sequence.</dd>
+	</dl>
+  </div>
+
+  <h2>Original data used in <b>MITOS</b></h2>
+<div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+To allow for reproducibility we publish the used original data.
+      <ul>
+	<li> The seed alignments and structural models for the ncRNA can be found <a href="mito/ncRNA.zip"> here</a></li>
+	<li> The aminoacid sequences used to find the protein coding sequences are deposited <a href="mito/RefSeq39.zip">here</a>.</li>
+      </ul>
+</div
+
+
+<h2><b>MITOS</b> source code</h2>
+<div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+The sources of MITOS are available on <a href="https://gitlab.com/Bernt/MITOS">gitlab</a>. 
+</div
+
+  <br/>
+  <h2 id = "uses">Studies using <b>MITOS</b></h2>
+<div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+
+<ol reversed="reversed">
+
+<!--
+<li>.
+.
+ <a href="http://dx.doi.org/" target="_blank">link</a>.
+</li>
+-->
+
+</ol>
+
+</div>
+
+<br>
+<h2 id = "otheruses">Other studies citing <b>MITOS</b></h2>
+<div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+
+<ol reversed="reversed">
+
+</ol>
+</div>
+
+<h2 id = "privacy">Privacy</h2>
+<div style="text-align: justify; margin-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+
+Submitted sequence data is not shared with others.
+Sequence data and results are deleted after one month.
+<br><br>
+
+
+The MITOS webserver collects usage data.
+We do not share this data with others and we respect the <a href="http://de.wikipedia.org/wiki/Do_Not_Track">do not track</a> option of your browser.
+Independent of this we give you the possibility to activate / deactivate tracking for this site:<br>
+
+<iframe frameborder="no" width="600px" height="200px" src="http://piwikmitos.bioinf.uni-leipzig.de/index.php?module=CoreAdminHome&action=optOut&language=en"></iframe>
+</div>
+</div>

@@ -1,0 +1,135 @@
+<div style="width:400px;margin:0 auto;text-align: justify;">
+<form name="mtdb" action="upload.py" enctype="multipart/form-data" method="POST">
+			<table border=0 style="width:400px;table-layout:fixed;"> 
+					<tr title="Your name for addressing you in the notification.">
+						<td style="width:100px">Name:</td>
+						<td style="text-align: right;"><input type="text" name="name" style="width:250px;"> </td>
+					</tr>
+					<tr title="Your email address for sending the notification.">
+						<td>Email:</td>
+						<td style="text-align: right;"><input type="text" name="email" style="width:250px;"> </td>
+					</tr>
+					<tr title="An identifier for your job.">
+					    <td style="width:100px">Job identifier:</td>
+						<td style="text-align: right;"><input type="text" name="jobid" style="width:250px;"> </td>
+					</tr>
+					<tr title="The reference data set used for the annotation.">
+						<td>Reference*:</td>
+						<td style="text-align: right;">
+						<select id="refseqver" name="refseqver"  style="width:250px;" >
+						  {references}
+						</select>
+						</td>
+					</tr>
+					<tr title="The genetic code to be used in the annotation.">
+						<td>Genetic Code*:</td>
+						<td style="text-align: right;">
+						<select id="code" name="code"  style="width:250px;" >
+						  <option>Please choose from above</option>
+						</select>
+						</td>
+					</tr>
+					<tr title="Select the fasta file containing the sequence to be annotated.">
+						<td>Fasta File*:</td>
+						<td style="text-align: right;">
+<input id="uploadFile" disabled="disabled"   style="width:134px;" />
+<div id="button-ul" class="fileUpload" style="width:72px;">
+    <span>Upload</span>
+    <input type="file" id="myFile" name="myFile" class="upload" />
+</div>
+<!--<input type="file" id="myFile" name="myFile" style="width:250px;">-->
+    					</td>
+					</tr>
+					<tr><td>* = required</td>
+					    <td style="text-align:right"  title="Click here to submit your job to MITOS." >
+					        <button type="button" id="button-submit" style="width:100px;" onclick ="button01()">submit</button>
+					    </td>
+					</tr>
+					
+					<tr><td colspan="2">A tutorial on how to use <b>MITOS</b>, including an <a href="help.py#example">example</a> and the used sample data, can be found <a href="help.py">here</a>.</td></tr>
+
+					<tr><td colspan="2"  title="Click to see advanced options.">
+						<button type="button" id="button-sa" style="width:100px;" onclick ="showall()">Advanced</button>
+						</td>
+					</tr>
+					<tr  class="advanced_opt"><td colspan="2">
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">General</a></li>
+    <li><a href="#tabs-2">Protein</a></li>
+    <li><a href="#tabs-3">ncRNA</a></li>
+  </ul>
+  <div id="tabs-1">
+			<table border=0 style="width:400px;table-layout:fixed;"> 
+				<tr title="Feature types that should be predicted by MITOS">
+					<td>Feature types: </td>
+					<td>
+                                        PCG<input type="checkbox" checked="checked" id="prot" name="prot" />
+					tRNA<input type="checkbox" checked="checked" id="trna" name="trna" />
+					rRNA<input type="checkbox" checked="checked" id="rrna" name="rrna" />
+					</td>
+				</tr>
+				<tr title="Feature types that should be predicted by MITOS">
+					<td></td>
+					<td>
+                                        OH<input type="checkbox" checked="checked" id="orih" name="orih" />
+					OL<input type="checkbox" checked="checked" id="oril" name="oril" />
+					intron<input type="checkbox" checked="checked" id="oril" name="oril" />
+					</td>
+				</tr>
+				<tr>
+					<td title="Treat sequence as circular">Circular: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked="checked" id="circular" name="circular"  /></td>
+					<td title="Use the protein prediction method of Al Arab et al.">Use Al Arab et al.: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="checkbox" id="alarab" name="alarab"  /></td>
+				</tr>
+				<tr title="Negation of the exponent of the E-value threshold used by BLAST &amp; infernal, i.e. a value X gives an E-value of 10^(-X).">
+					<td style="white-space: nowrap;">E-value Exponent:</td><td><input type="number" name="evalue" value = "2" width=50 min="0" max="1000"> </td>
+				</tr>
+				<tr title="Maximum overlap of proteins with proteins and genes of different types  (nt)">
+					<td style="white-space: nowrap;">Maximum Overlap:</td><td><input type="number" min="0"step="1" name="finovl" value = "50"> </td>
+				</tr>
+				<tr title="Maximum factor by which fragments of the same gene may differ in their quality/E-value">
+					<td style="white-space: nowrap;">Fragment Quality Factor:</td><td><input type="number" min="0" name="fragfac" value = "100"> </td>
+				</tr>
+			</table>
+  </div>
+  <div id="tabs-2">
+			<table border=0 style="width:400px;table-layout:fixed;"> 
+				<tr title="Use standard NCBI genetic code">
+					<td style="white-space: nowrap;">Standard Code:</td><td><input type="checkbox" id="ncbicode" name="ncbicode" /> </td>
+				</tr>
+				<tr title="Minimum allowed quality in % of the maximum quality value">
+					<td style="white-space: nowrap;">Cutoff:</td><td><input type="number" min="0" max="100" step="1"  name="cutoff" value = "50"> </td>
+				</tr>
+				<tr title="Clip overlapping proteins with the same name that differ by less than the specified factor">
+					<td style="white-space: nowrap;">Clipping Factor:</td><td><input type="number" min="0" name="clipfac" value = "10"> </td>
+				</tr>
+				<tr title="Maximum allowed overlap of proteins in the query (in percent of the shorter query range) for two hits to be counted as fragments of the same gene">
+					<td style="white-space: nowrap;">Fragment Overlap:</td><td><input type="number" min="0" max="100" name="fragovl" value = "20"> </td>
+				</tr>
+			</table>
+  </div>
+  <div id="tabs-3">
+			<table border=0 style="width:400px;table-layout:fixed;"> 
+				<tr title="Run infernal in local mode only">
+					<td style="white-space: nowrap;">Local only:</td><td><input type="checkbox" checked="checked" id="localonly" name="localonly" /><td></td>
+				</tr>
+				<tr title="Run ncRNA prediction only in the sensitive mode">
+					<td style="white-space: nowrap;">Sensitive only:</td><td><input type="checkbox" id="sensitive" name="sensitive" /><td></td>
+				</tr>
+				<tr title="Maximum allowed overlap of ncRNAs (nt)">
+					<td style="white-space: nowrap;">ncRNA overlap:</td><td><input  type="number" min="0" step="1" value="50" name="maxncrnaovl"> </td>
+				</tr>
+			</table>
+  </div>
+</div>
+						</td>
+					</tr>
+			</table>
+			</form>
+
+<div style="clear: both;"></div>
+
+
+
+</div>
+
