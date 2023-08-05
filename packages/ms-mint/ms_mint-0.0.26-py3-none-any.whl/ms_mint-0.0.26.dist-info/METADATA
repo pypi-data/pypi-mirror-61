@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: ms-mint
+Version: 0.0.26
+Summary: Metabolomics Integrator (Mint)
+Home-page: https://github.com/soerendip/ms-mint
+Author: Soren Wacker
+Author-email: swacker@ucalgary.ca
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Requires-Dist: pandas (>=1)
+Requires-Dist: plotly
+Requires-Dist: lxml
+Requires-Dist: matplotlib
+Requires-Dist: pandoc
+Requires-Dist: plotly-express
+Requires-Dist: dash
+Requires-Dist: pyqt
+Requires-Dist: scipy
+Requires-Dist: setuptools
+Requires-Dist: sqlite
+Requires-Dist: statsmodels
+Requires-Dist: flask
+Requires-Dist: pyteomics
+Requires-Dist: openpyxl
+Requires-Dist: colorlover
+Requires-Dist: dash-bootstrap-component
+
+# MINT (Metabolomics Integrator)
+
+MINT is an app for summing up intensity values from consistent mass spectrometry (MS) files in `mzML` and `mzXML` format. The tool extracts data within specified windows of retention time and m/z-values using a pre-defined list of peaks that can be changed from project to project. Therefore, the tool allows to reproduciblibly extract data from large numbers of MS files.
+
+The app's frontend is build using [Plotly-Dash](https://plot.ly/dash/) and runs locally in a browser. Thought, the Python functions provided can be imported and used in any python project.
+
+[MINT Documentation](https://soerendip.github.io/ms-mint/)
+
+
