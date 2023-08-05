@@ -1,0 +1,249 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2.1
+
+workflows:
+  version: 2
+  # This will run on every commit, but not on tags.
+  test_build:
+    jobs:
+      - test_style
+      - test_python36
+      - test_python37
+      - test_python38
+      - build:
+          requires:
+            - test_style
+            - test_python36
+            - test_python37
+            - test_python38
+  # This will run only on tagged commits due to the filters.
+  test_build_release:
+    jobs:
+      - test_style:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+      - test_python36:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+      - test_python37:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+      - test_python38:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+      - build:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+          requires:
+            - test_style
+            - test_python36
+            - test_python37
+            - test_python38
+      - hold:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+          type: approval
+          requires:
+            - build
+      - release:
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*(\.0(a|b|rc)[0-9]*)?/
+            branches:
+              ignore: /.*/
+          requires:
+            - hold
+
+jobs:
+  test_style:
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - setup_tox:
+          python_version: "3.6"
+      - setup_helm
+      - test_style
+  test_python36:
+    docker:
+      - image: circleci/python:3.6
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: opsy
+          POSTGRES_DB: opsy
+    working_directory: ~/repo
+    steps:
+      - setup_tox:
+          python_version: "3.6"
+      - test_code
+  test_python37:
+    docker:
+      - image: circleci/python:3.7
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: opsy
+          POSTGRES_DB: opsy
+    working_directory: ~/repo
+    steps:
+      - setup_tox:
+          python_version: "3.7"
+      - test_code
+  test_python38:
+    docker:
+      - image: circleci/python:3.8
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: opsy
+          POSTGRES_DB: opsy
+    working_directory: ~/repo
+    steps:
+      - setup_tox:
+          python_version: "3.8"
+      - test_code
+  build:
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - setup_helm
+      - build
+  release:
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - setup_helm
+      - release
+
+commands:
+  setup_tox:
+    description: Install tox and load its cache
+    parameters:
+      python_version:
+          type: string
+          default: ""
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-<< parameters.python_version >>-{{ checksum "requirements.txt" }}-{{ checksum "test-requirements.txt" }}
+      - run:
+          name: install dependencies
+          command: |
+            virtualenv ~/venv
+            . ~/venv/bin/activate
+            pip install --upgrade pip setuptools wheel
+            pip install --upgrade tox
+            tox --notest
+            echo "source ~/venv/bin/activate" >> $BASH_ENV
+      - save_cache:
+          paths:
+            - ~/venv
+            - ~/repo/.tox
+          key: v1-dependencies-<< parameters.python_version >>-{{ checksum "requirements.txt" }}-{{ checksum "test-requirements.txt" }}
+  setup_helm:
+    description: Install helm
+    steps:
+      - run:
+          name: Install Helm binaries
+          command: |
+            curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash -s -- -v v2.16.1
+      - run:
+          name: Init Helm
+          command: helm init --client-only
+  test_style:
+    description: Run style checks
+    steps:
+      - run:
+          name: Run style checks
+          command: make test-style
+  test_code:
+    description: Run python tests
+    steps:
+      - run:
+          name: Run python tests
+          command: make test-code
+  build:
+    description: Build the python package and docker image
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: install dependencies
+          command: |
+            virtualenv ~/venv
+            . ~/venv/bin/activate
+            pip install --upgrade pip setuptools wheel pbr twine
+            echo "source ~/venv/bin/activate" >> $BASH_ENV
+      - run:
+          name: build
+          command: make build
+      - run:
+          name: Stop if we're not releasing
+          command: |
+            if [ -z "$CIRCLE_TAG" ]; then
+                echo "No tag, stopping build early."
+                circleci-agent step halt
+            fi
+      - persist_to_workspace:
+          root: dist
+          paths: '*'
+  release:
+    description: Release to pypi and dockerhub
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo/dist
+      - setup_remote_docker
+      - run:
+          name: install dependencies
+          command: |
+            virtualenv ~/venv
+            . ~/venv/bin/activate
+            pip install twine
+            echo "source ~/venv/bin/activate" >> $BASH_ENV
+      - run:
+          name: Load docker image from workspace
+          command: cat dist/docker/Opsy-${CIRCLE_TAG}.tar.gz | gzip -d | docker image load
+      - run:
+          name: Push python and docker release
+          command: make release
+      - add_ssh_keys:
+          fingerprints:
+            - "fc:74:39:48:d3:a0:a2:7c:71:45:58:cf:bf:5b:7e:8a"
+      - run:
+          name: Push helm chart release
+          command: |
+            export CHART_VERSION="$(egrep '^version:' helm/opsy/Chart.yaml | sed 's/^version: \(.*\)$/\1/')+${CIRCLE_TAG}"
+            git config --global user.email "builds@circleci.com"
+            git config --global user.name "CircleCI"
+            git checkout gh-pages
+            cp dist/helm/opsy-${CHART_VERSION}.tgz helm/
+            cd helm/
+            helm repo index .
+            git add opsy-${CHART_VERSION}.tgz
+            git add index.yaml
+            git commit -m "[ci skip] Release ${CIRCLE_TAG}."
+            git push origin gh-pages
