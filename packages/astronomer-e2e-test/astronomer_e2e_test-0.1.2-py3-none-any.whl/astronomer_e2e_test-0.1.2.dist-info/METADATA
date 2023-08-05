@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: astronomer-e2e-test
+Version: 0.1.2
+Summary: Astronomer scripts for internal use
+Home-page: UNKNOWN
+Author: Steven Miller
+Author-email: sjmiller609@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Description-Content-Type: text/markdown
+Requires-Dist: graphqlclient (==0.2.4)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: stripe (==2.37.1)
+Requires-Dist: Click (==7.0)
+Requires-Dist: packaging (==20.0)
+Requires-Dist: PyGithub (==1.45)
+Requires-Dist: GitPython (==3.0.5)
+Requires-Dist: PyYAML (==5.3)
+
+# Astronomer end to end testing
+
+[![PyPI](https://badge.fury.io/py/astronomer-e2e-test.svg)](https://badge.fury.io/py/astronomer-e2e-test)
+
+A Python 3 script for testing the Astronomer platform
+
+## What it does:
+
+Given an auth token and a url:
+
+- Create workspace(s)
+- Create deployments(s)
+- astro init
+- astro auth login
+- astro deploy
+- Delete deployments(s)
+- Delete workspace(s)
+
+
