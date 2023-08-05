@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: rsyslog-pseudonymizer
+Version: 1.0.2
+Summary: RsyslogPseudonymizer is a plug-in module for Rsyslog based on Python which replaces personal identifiers in log messages by pseudonyms before they are written to log files. The pseudonym-mapping is only kept in RAM.
+Home-page: https://framagit.org/iflog/rsyslog_pseudonymizer
+Author: iflog
+Author-email: qiensamw@runbox.com
+Maintainer: iflog
+Maintainer-email: qiensamw@runbox.com
+License: Apache-2.0
+Description: # RsyslogPseudonymizer
+        
+        RsyslogPseudonymizer is a plug-in module for Rsyslog based on Python
+        which replaces personal identifiers in log messages by pseudonyms
+        before they are written to log files.
+        The pseudonym-mapping is only kept in RAM.
+        
+        ## Test and build
+        
+        Run the following commands:
+        
+        ```shell
+        virtualenv -p "$(which python3)" ./venv
+        source ./venv/bin/activate
+        pip install -r dev_requirements.txt
+        tox
+        hatch clean
+        hatch build
+        ```
+        
+        ## Installation
+        
+        In the absence of OS packages, some more steps are required.
+        See the provided `install.sh` or run it as root (tested on Debian).
+        
+        You should then configure your applications/services
+        so that the logs are written only to Rsyslog.
+        
+        If you use Systemd, you could configure it to forward received logs to Rsyslog.
+        Then it would in general only be necessary to configure applications to
+        only log to stdout/stderr so that Systemd handles the output.
+        Configuration example:
+        
+        `/etc/systemd/journald.conf.d/forward_to_syslog.conf`
+        
+        ```
+        [Journal]
+        # Keep log data only in memory, but forward journal log to (r)syslog
+        Storage=volatile
+        ForwardToSyslog=yes
+        
+        # Reduce amount of logs stored in RAM somehow
+        MaxFileSec=1h
+        MaxRetentionSec=2days
+        ```
+        
+        Then: `systemctl restart systemd-journald.service`
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: dev

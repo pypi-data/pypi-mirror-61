@@ -1,0 +1,9 @@
+[requires]
+# same as in tox.ini
+python_version = ['3.6', '3.7', 'pypy3']
+
+[build-system]
+requires = ['setuptools', 'wheel']
+
+[tool.hatch.commands]
+prerelease = 'hatch build'
