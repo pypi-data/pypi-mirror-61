@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="https://www.politico.com/interactives/cdn/fonts/battletoads/icons/politico-battletoads-icons.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/civic-admin-overrides.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "civic/css/civic-branding.css" %}" />
+
+<!-- DIN 2014 -->
+<link rel="stylesheet" href="https://use.typekit.net/dsx2uhv.css">
+
+{% comment %}
+<!-- Jubilat include -->
+<link rel="stylesheet" href="https://use.typekit.net/bvr3gvp.css">
+{% endcomment %}
+
+<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+
+<style>
+  #header {
+    background: #2f3b38;
+  }
+
+  div.breadcrumbs {
+    background: #969395;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #DFDFDF;
+    text-align: left;
+  }
+
+  div.breadcrumbs a {
+      color: #fff;
+  }
+
+  div.breadcrumbs a:focus, div.breadcrumbs a:hover {
+      color: #DFDFDF;
+  }
+
+  .module h2, .module caption, .inline-group h2 {
+    background: #969395;
+  }
+</style>
+{% endblock %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+
+{% block branding %}
+<h1 id="site-name" class="politico-civic-logo flag-logo">
+  <a class="branding-link" href="{% url 'admin:index' %}">
+    <span class="bt-icon bt-icon--politico"></span>
+    <span class="civic-wordmark"><span class="civic-inner">civic</span></span>
+  </a>
+</h1>
+{% endblock %}
