@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: ev3devrpyc
+Version: 1.0.1
+Summary: Library to remotely steer the EV3: using the RPyC protocol it forwards ev3dev(2) API calls from the PC to the EV3
+Home-page: https://github.com/ev3dev-python-tools/ev3devrpyc
+Author: Harco Kuppens
+Author-email: h.kuppens@cs.ru.nl
+License: MIT
+Keywords: IDE education programming EV3 mindstorms lego
+Platform: Windows
+Platform: macOS
+Platform: Linux
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: X11 Applications
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: Freeware
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Education
+Classifier: Topic :: Software Development
+Requires-Python: >=3.6
+Requires-Dist: rpyc (==4.1.2)
+
+
+The ev3devrpyc package allows you to remotely steer a real EV3 from your PC.
+
+You only need to import the 'ev3devrpyc' module at the beginning of your python program 
+before the ev3dev or ev3dev2 api is loaded.
+
+Then the 'ev3devrpyc' module loads a special importer which instead of loading the ev3dev 
+modules from the simulator it proxies the ev3dev(2) modules on a remote EV3. So when doing 
+API calls to this proxied module all these calls are forwarded to the EV3. The RPyC library 
+is used to implement this proxy, hence the name ev3devrpyc.
+
+For more info: https://github.com/ev3dev-python-tools/ev3devrpyc
+
+
