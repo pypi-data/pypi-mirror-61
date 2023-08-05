@@ -1,0 +1,12 @@
+{% load i18n navigation %}
+{% if filters.is_active is True %}
+    <a href="{{ path }}{% delparams request 'is_active' %}" class="btn btn-sm btn-outline-secondary active">
+        <span class="fa fa-eye"></span>
+        <span class="ml-1">{% trans 'показать неактивные' %}</span>
+    </a>
+{% else %}
+    <a href="{{ path }}{% addparams request is_active='true' %}" class="btn btn-sm btn-outline-secondary">
+        <span class="fa fa-eye-slash"></span>
+        <span class="ml-1">{% trans 'скрыть неактивные' %}</span>
+    </a>
+{% endif %}

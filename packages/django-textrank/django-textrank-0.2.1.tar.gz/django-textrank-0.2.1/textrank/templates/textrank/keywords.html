@@ -1,0 +1,294 @@
+{% extends './base.html'%}
+{% load i18n bootstrap4 html navigation %}
+
+{% block body_class %}keywords{% endblock %}
+
+{% block content %}{% newlineless %}{% spaceless %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'textrank:index' %}">TextRank</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans 'Слова' %}</li>
+    </ol>
+</nav>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+{% if instance %}
+    <h1 class="h2">{% trans 'Ключевое слово' %} #{{ instance.id }}</h1>
+{% else %}
+    <h1 class="h2">{% trans 'Ключевые слова' %}</h1>
+{% endif %}
+    <div class="btn-toolbar mb-2 mb-md-0">
+    {% if instance %}
+        <div class="btn-group">
+            <a href="{% url 'textrank:keywords' %}" class="btn btn-sm btn-outline-secondary">
+                <span class="ml-1">{% trans 'Список слов' %}</span>
+            </a>
+        </div>
+    {% else %}
+        {% url 'textrank:keywords' as path %}
+        <div class="btn-group mr-2">{% include './_search_form.html' %}</div>
+        <div class="btn-group">
+            <a href="#form" class="btn btn-sm btn-outline-secondary">
+                <span class="fa fa-plus"></span>
+                <span class="ml-1">{% trans 'добавить' %}</span>
+            </a>
+            {% include './_is_active_button.html' with path=path %}
+        </div>
+        <div class="dropdown">
+            <button type="button" id="dropdownMenuOrdering" data-toggle="dropdown" \
+                aria-haspopup="true" aria-expanded="false" \
+                class="btn btn-sm btn-outline-secondary ml-2 dropdown-toggle \
+                {% if orders %}active{% endif %}">
+                <span class="fa fa-sort"></span>
+                <span class="ml-1">{% trans 'сортировка' %}</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuOrdering">
+                <a href="{{ path }}{% delparams request 'o' %}" \
+                    class="dropdown-item {% if not orders %}active{% endif %}"> \
+                    word \
+                </a>
+                <a href="{{ path }}{% addparams request o='-word' %}" \
+                    class="dropdown-item {% if orders_string == '-word' %}active{% endif %}"> \
+                    -word \
+                </a>
+                <a href="{{ path }}{% addparams request o='is_active,word' %}" \
+                    class="dropdown-item {% if orders_string == 'is_active,word' %}active{% endif %}"> \
+                    is_active,word \
+                </a>
+                <a href="{{ path }}{% addparams request o='-is_active,word' %}" \
+                    class="dropdown-item {% if orders_string == '-is_active,word' %}active{% endif %}"> \
+                    -is_active,word \
+                </a>
+                <a href="{{ path }}{% addparams request o='updated' %}" \
+                    class="dropdown-item {% if orders_string == 'updated' %}active{% endif %}"> \
+                    updated \
+                </a>
+                <a href="{{ path }}{% addparams request o='-updated' %}" \
+                    class="dropdown-item {% if orders_string == '-updated' %}active{% endif %}"> \
+                    -updated \
+                </a>
+                <a href="{{ path }}{% addparams request o='created' %}" \
+                    class="dropdown-item {% if orders_string == 'created' %}active{% endif %}"> \
+                    created \
+                </a>
+                <a href="{{ path }}{% addparams request o='-created' %}" \
+                    class="dropdown-item {% if orders_string == '-created' %}active{% endif %}"> \
+                    -created \
+                </a>
+                <a href="{{ path }}{% addparams request o='last_editor__username' %}" \
+                    class="dropdown-item {% if orders_string == 'last_editor__username' %}active{% endif %}"> \
+                    last_editor__username \
+                </a>
+                <a href="{{ path }}{% addparams request o='-last_editor__username' %}" \
+                    class="dropdown-item {% if orders_string == '-last_editor__username' %}active{% endif %}"> \
+                    -last_editor__username \
+                </a>
+                <a href="{{ path }}{% addparams request o='id' %}" \
+                    class="dropdown-item {% if orders_string == 'id' %}active{% endif %}"> \
+                    id \
+                </a>
+                <a href="{{ path }}{% addparams request o='-id' %}" \
+                    class="dropdown-item {% if orders_string == '-id' %}active{% endif %}"> \
+                    -id \
+                </a>
+            </div>
+        </div>
+        <div class="dropdown mr-0">
+            <button type="button" id="dropdownMenuGroup" data-toggle="dropdown" \
+                aria-haspopup="true" aria-expanded="false" \
+                class="btn btn-sm btn-outline-secondary ml-2 dropdown-toggle \
+                {% if filters.groups is not None %}active{% endif %}">
+                <span class="fa fa-filter"></span>
+                <span class="ml-1">{% trans 'группа' %}</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuGroup">
+                <a href="{{ path }}{% delparams request 'groups' %}" class="dropdown-item {% if filters.groups is None %}active{% endif %}">{% trans 'Любая' %}</a>
+            {% for group in groups %}
+                <a href="{{ path }}{% addparams request groups=group.id %}" class="dropdown-item {% if filters.groups == group.id|stringformat:'d' %}active{% endif %}">{{ group.name }}</a>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div>
+
+{% if not instance %}
+<div class="table-responsive">
+    <table class="table table-striped table-sm mb-3">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>{% trans 'Слово' %}</th>
+                <th>{% trans 'Группы и вес' %}</th>
+                <th>{% trans 'Активно' %}</th>
+                <th>{% trans 'Создано' %}</th>
+                <th>{% trans 'Обновлено' %}</th>
+                <th>{% trans 'Редактор' %}</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% url 'textrank:keywords' as keywords_url %}
+        {% for keyword in page.object_list %}
+            <tr>
+                <td>
+                    <a class="text-body" href="{% url 'textrank:keyword' id=keyword.id %}">{{ keyword.word }}</a>
+                </td>
+                <td>
+                    <small class="text-monospace">
+                {% for w in keyword.weights.all %}
+                    <span class="mr-1"><a href="{{ keywords_url }}?groups={{ w.group_id }}" class="text-body">{{ w.group }}</a>={{ w.value }};</span>
+                {% empty %}
+                    <span class="text-danger">---</span>
+                {% endfor %}
+                    </small>
+                </td>
+                <td>
+                {% if keyword.is_active %}
+                    <span class="fa fa-check"></span>
+                {% endif %}
+                </td>
+                <td class="text-nowrap isoformat">{{ keyword.created.isoformat }}</td>
+                <td class="text-nowrap isoformat">{{ keyword.updated.isoformat }}</td>
+                <td>{{ keyword.last_editor|default:'---' }}</td>
+                <td>{{ keyword.id }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">{% trans 'Не найдено ни одной записи.' %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    {% if page.object_list %}
+        <tfoot>
+            <tr>
+                <td colspan="7" class="pr-0">{% include './_table_pagination.html' %}</td>
+            </tr>
+        </tfoot>
+    {% endif %}
+    </table>
+</div>
+<h2 class="h3">{% trans 'Добавить новое слово' %}</h2>
+{% endif %}
+
+{% if instance %}
+<p>
+    <span class="badge badge-pill badge-dark m-1">{% trans 'ID' %}: {{ instance.id }}</span>
+    <span class="badge badge-pill badge-secondary m-1">{% trans 'создано' %}: <span class="isoformat">{{ instance.created.isoformat }}</span></span>
+    <span class="badge badge-pill badge-warning m-1">{% trans 'обновлено' %}: <span class="isoformat">{{ instance.updated.isoformat }}</span> {{ instance.last_editor }}</span>
+    <span class="badge badge-pill badge-info m-1">{% trans 'всего групп' %}: {{ instance.get_all_groups.count }}</span>
+    <span class="badge badge-pill badge-success m-1">{% trans 'активных групп' %}: {{ instance.get_active_groups.count }}</span>
+    <span class="badge badge-pill badge-danger m-1">{% trans 'неактивных групп' %}: {{ instance.get_inactive_groups.count }}</span>
+</p>
+{% endif %}
+
+<form id="form" class="form bg-light p-2 mb-4" role="form" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+    <div class="row">
+        <div class="col-md-10">{{ form.word|form_group }}</div>
+        <div class="col-md-2">{{ form.is_active|form_group }}</div>
+    </div>
+    <button type="submit" class="btn btn-dark">
+        <i class="fa fa-save" aria-hidden="true"></i> \
+        {% trans 'Сохранить' %} \
+    </button>
+</form>
+
+{% if instance %}
+<h2 id="weights" class="h3">{% trans 'Таблица весов' %}</h2>
+<div class="table-responsive mb-5">
+    <table class="table table-bordered table-sm mb-3">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>{% trans 'Группа' %}</th>
+                <th style="width: 1px;">{% trans 'Вес' %}</th>
+                <th style="width: 1px;">{% trans 'Активен' %}</th>
+                <th>{% trans 'Обновлён' %}</th>
+                <th>{% trans 'Редактор' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% url 'textrank:add_weight' as add_weight_url %}
+        {% for group, weight in instance.get_weight_groups.values %}
+            <tr>
+                <td class="align-middle">
+                    <a href="{% url 'textrank:group' id=group.id %}" class="text-body">{{ group }}</a>
+                </td>
+                <td class="align-middle">
+                    <form class="form-inline" method="post" action="{% if weight %}{% url 'textrank:change_weight' id=weight.id %}{% else %}{{ add_weight_url }}{% endif %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}#weights">
+                        <input type="hidden" name="group" value="{{ group.id }}">
+                        <input type="hidden" name="keyword" value="{{ instance.id }}">
+                        <div class="input-group input-group-sm mb-0">
+                            <input type="number" \
+                                min="0" max="32767" required name="value"
+                                class="form-control save-weight" \
+                                data-saveid="{{ group.id }}" \
+                            {% if weight %}
+                                data-initial="{{ weight.value }}" \
+                                value="{{ weight.value }}" \
+                            {% endif %}
+                                aria-describedby="button-{{ group.id }}">
+                            <div class="input-group-append">
+                                <button id="button-{{ group.id }}" \
+                                    class="btn btn-outline-secondary save-weight save-weight-{{ group.id }}" \
+                                    type="submit" disabled>
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            {% if weight %}
+                <td class="text-center align-middle">
+                    <span class="fa fa-{{ weight.is_active|yesno:'check,ban' }}"></span>
+                </td>
+                <td class="isoformat align-middle">{{ weight.updated.isoformat }}</td>
+                <td class="align-middle">{{ weight.last_editor}}</td>
+            {% else %}
+                <td></td>
+                <td></td>
+                <td></td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endspaceless %}{% endnewlineless %}{% endblock %}
+
+{% block javascript_page %}{% newlineless_javascript %}
+<script type="text/javascript">
+function activateButton(e) {
+    var el = $(this),
+        access = (el.data('initial') || '') != el.val();
+    $('button.save-weight-' + el.data('saveid'))
+        .toggleClass('active', access)
+        .prop('disabled', !access)
+}
+
+$(document).ready(function($) {
+    var language = $('html').attr('lang') || 'ru';
+    moment.updateLocale(language, {});
+    // Перерисовываем ISO дату по локальному времени юзера.
+    $('.isoformat').each(function(i, el) {
+        var $el = $(el);
+        $el.text(moment($el.text()).format('L LT'));
+    });
+    $('body')
+        .on('keyup', '.save-weight', activateButton)
+        .on('change', '.save-weight', activateButton)
+    ;
+{% if DEMO_MODE and not user.is_authenticated %}
+    $('form').on('submit', function(e) {
+        e.preventDefault()
+        alert("{% trans 'Это демо-режим, авторизуйтесь, чтобы изменять данные.' %}")
+    })
+{% endif %}
+})
+</script>
+{% endnewlineless_javascript %}{% endblock %}
