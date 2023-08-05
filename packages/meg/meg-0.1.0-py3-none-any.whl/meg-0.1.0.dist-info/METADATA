@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: meg
+Version: 0.1.0
+Summary: MATLAB engine connector
+Home-page: https://github.com/lamyj/meg/
+Author: Julien Lamy
+Author-email: lamy@unistra.fr
+License: MIT
+Keywords: MATLAB,engine,bridge
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+
+# Meg: a MATLAB engine connector in Python
+
+Meg is a Python module to interface with the MATLAB engine, allowing to transfer data between Python and MATLAB, and to call MATLAB code from Python.
+
+```python
+import meg
+import numpy
+
+meg.setup("/opt/MATLAB/R2017b")
+
+with meg.Engine() as engine:
+    data = numpy.empty((4,3))
+
+    # Copy Python data to the engine
+    engine["data"] = data
+
+    # Execute MATLAB instructions
+    engine("count = numel(data)")
+
+    # Get data from MATLAB
+    print(engine["count"])
+```
+
+Caveats:
+- Cell and struct arrays are not yet handled
+- Due to the non-free license of MATLAB, testing is on a best-effort basis
+
+
