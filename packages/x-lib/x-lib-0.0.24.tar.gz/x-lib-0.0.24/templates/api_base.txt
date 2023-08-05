@@ -1,0 +1,6 @@
+from flask import Blueprint, request
+
+from service import {{class_name_snake}}_service
+
+
+api = Blueprint('{{class_name_snake}}_api_blue_print', __name__, url_prefix='/{{class_name_snake}}')

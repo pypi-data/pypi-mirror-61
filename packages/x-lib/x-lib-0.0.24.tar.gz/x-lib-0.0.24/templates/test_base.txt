@@ -1,0 +1,20 @@
+import json
+import unittest
+from flask import g
+from runner import create_app, db
+
+
+class {{class_name}}(unittest.TestCase):
+	def setUp(self):
+		self.app = create_app()
+		self.client = self.app.test_client
+        with self.app.app_context():
+        # create all tables
+            db.create_all()
+            db.session.commit()
+    def tearDown(self):
+        """teardown all initialized variables."""
+        with self.app.app_context():
+            # drop all tables
+            db.session.remove()
+            db.drop_all()

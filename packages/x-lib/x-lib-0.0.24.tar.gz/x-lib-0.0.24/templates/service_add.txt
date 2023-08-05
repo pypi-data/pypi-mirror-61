@@ -1,0 +1,8 @@
+
+
+@Key([{% for field in fields %}{%if field.name != 'id'%}'{{field.name}}'{% if not loop.last %}, {% endif %}{% endif %}{% endfor %}])
+def {{method_name}}(data):
+    {{class_name_snake}} = {{class_name}}()
+    {{class_name_snake}}.set_columns(**data)
+    {{class_name_snake}}.save()
+    return {{class_name_snake}}

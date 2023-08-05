@@ -1,0 +1,19 @@
+
+{% if ',' not in filter_by %}
+@Blank(['{{filter_by}}'])
+@Number(['page', 'size'])
+def {{method_name}}_by_{{filter_by}}(data):
+{% else %}
+@Blank([{% for field in filter_by_list %}'{{field}}'{% if not loop.last %}, {% endif %}{% endfor %}])
+@Number(['page', 'size'])
+def {{method_name}}_by_{{filter_by_list|join('_and_')}}(data):
+{%- endif %}
+	page = int(data['page'])
+	size = int(data['size'])
+	{%- if ',' not in filter_by %}
+	{{class_name_snake}}_q = {{class_name}}.query.filter_by({{filter_by}}=data['{{filter_by}}']).order_by({{class_name}}.{{order_by}}.{{order_type}}).paginate(page, size, error_out=False)
+	{%- else %}
+	{{class_name_snake}}_q = {{class_name}}.query{% for field in filter_by_list %}.filter_by({{field}}=data['{{field}}']){% endfor %}.order_by({{class_name}}.{{order_by}}.{{order_type}}).paginate(page, size, error_out=False)
+	{%- endif %}
+	{{class_name_snake}}_list = list(map(lambda x: x.to_dict(show=[]), {{class_name_snake}}_q.items))
+	return {'items': {{class_name_snake}}_list, 'total': {{class_name_snake}}_q.total, 'total_pages': {{class_name_snake}}_q.pages}

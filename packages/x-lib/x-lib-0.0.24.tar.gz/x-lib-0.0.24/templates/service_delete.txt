@@ -1,0 +1,22 @@
+
+{% if filter_by == '' %}
+@Key(['{{fields[0]}}'])
+def {{method_name}}_by_{{fields[0]}}(data):
+{%- elif ',' not in filter_by %}
+@Key(['{{filter_by}}'])
+def {{method_name}}_by_{{filter_by}}(data):
+{%- else %}
+@Key([{% for field in filter_by_list %}'{{field}}'{% if not loop.last %}, {% endif %}{% endfor %}])
+def {{method_name}}_by_{{filter_by_list|join('_and_')}}(data):
+	{%- endif %}
+	{%- if filter_by == '' %}
+	{{class_name_snake}} = {{class_name}}.query.get(data[{{fields[0]}}])
+	{%- elif ',' not in filter_by %}
+	{{class_name_snake}} = {{class_name}}.query.filter_by({{filter_by}}=data['{{filter_by}}']).first()
+	{%- else %}
+	{{class_name_snake}} = {{class_name}}.query{% for field in filter_by_list %}.filter_by({{field}}=data['{{field}}']){% endfor %}.first()
+	{%- endif %}
+	if {{class_name_snake}} is not None:
+        raise ValidationException('TODO: Handle error when {{class_name}} not found')
+	{{class_name_snake}}.delete()
+	return {'payload': {'success':True}}

@@ -1,0 +1,15 @@
+
+
+{% if ',' not in filter_by %}
+@api.route('/{{method_name}}_by_{{filter_by}}', methods=['GET'])
+def {{method_name}}_by_{{filter_by}}():
+{% else %}
+@api.route('/{{method_name}}_by_{{filter_by_list|join('_and_')}}', methods=['DELETE'])
+def {{method_name}}_by_{{filter_by_list|join('_and_')}}():
+{%- endif %}
+    data = request.get_json(force=True)
+    {%- if ',' not in filter_by %}
+    return {{class_name_snake}}_service.{{method_name}}_by_{{filter_by}}(data)
+    {%- else %}
+    return {{class_name_snake}}_service.{{method_name}}_by_{{filter_by_list|join('_and_')}}(data)
+    {%- endif %}

@@ -1,0 +1,16 @@
+
+
+
+@api.route('/{{method_name}}', methods=['POST'])
+def {{method_name}}():
+    """
+    {
+    {%- for field in fields%}
+    {%- if field.name != 'id' %}
+    "{{field.name}}": "{{field.type}}"{%-if not loop.last -%}, {%- endif -%}
+    {%- endif%}
+    {%- endfor%}
+    }
+    """
+    data = request.get_json(force=True)
+    return {{class_name_snake}}_service.{{method_name}}(data).to_dict(show=[])
