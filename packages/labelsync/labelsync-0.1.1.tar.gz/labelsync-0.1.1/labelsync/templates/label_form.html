@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Label editor</title>
+    </head>
+    <body>
+        <form action="/labels/update" method="post">
+            <div>
+                <label for="name">Name:</label>
+                <input type ="text" id="name" name="name" value="{{label.name}}" size="10" required>
+            </div>
+            <div>
+                <label for="color">Color of the label:</label>
+                <input type="color" id="color" name="color" value="#{{label.color}}" required>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <input type="description" id="description" name="description" value="{{label.description}}" required>
+            </div>
+            <input type="hidden" id="original_name" name="original_name" value="{{label.name}}">
+            <button type="submit">Ok</button>
+        </form>
+    </body>
+</html>

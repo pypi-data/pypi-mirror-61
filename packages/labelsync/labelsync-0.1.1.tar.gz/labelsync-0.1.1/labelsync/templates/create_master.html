@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Create master repo</title>
+    </head>
+    <body>
+        <form action="/create_master" method="post">
+            <div>
+                <label for="name">Name (eg: my-master-repository):</label>
+                <input type ="text" id="name" name="name" size="10" required>
+            </div>
+            <div>
+                <label for="owner">Login of owner (eg: someguy):</label>
+                <input type="text" id="owner" name="owner" size="10" required>
+            </div>
+            <div>
+                <label for="url">Url of the service api (eg: https://api.github.com):</label>
+                <input type="url" id="url" name="url" size="10" required>
+            </div>
+            <div>
+                <label for="token">User token:</label>
+                <input type="text" id="token" name="token" size="10" required>
+            </div>
+            <div>
+                <label for="webhook_url">Webhook url:</label>
+                <input type="url" id="webhook_url" name="webhook_url" size="10" required>
+            </div>
+            <div>
+                <label for="secret">Webhook secret:</label>
+                <input type="text" id="secret" name="secret" size="10" required>
+            </div>
+            <button type="submit">Create master repo</button>
+        </form>
+    </body>
+</html>
