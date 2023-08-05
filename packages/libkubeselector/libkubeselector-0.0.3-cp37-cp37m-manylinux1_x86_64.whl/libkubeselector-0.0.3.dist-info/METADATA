@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: libkubeselector
+Version: 0.0.3
+Summary: libkubeselector
+Home-page: UNKNOWN
+Author: Kuznetsov Andrey A.
+Author-email: andreykyz@gmail.com
+License: Apache Software License
+Keywords: kubernetes lib wrapper selector api python golang
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Other
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+
+# libkubeselector
+K8s selector expand library 
+Kubernites selector lib warapper for python
+
+# Usage
+
+## Installing:
+
+```
+pip install libkubeselector
+```
+
+# Developing
+
+## Depends:
+
+golang 1.13+
+
+## Building:
+
+```
+python3.7 setup.py bdist_wheel
+```
+
+## Publishing:
+
+1. Build the manylinux distribution
+
+alternatively, rename platform tag to `manylinux1_x86_64`
+
+2. Upload
+
+```
+twine upload dist/*
+```
+
+
