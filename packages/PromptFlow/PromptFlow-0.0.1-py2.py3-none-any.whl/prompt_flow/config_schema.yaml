@@ -1,0 +1,94 @@
+$schema: http://json-schema.org/draft-07/schema#
+type: object
+properties:
+  prompts:
+    $ref: '#/definitions/prompts'
+  flows:
+    $ref: '#/definitions/flows'
+additionalProperties: false
+required:
+- prompts
+- flows
+definitions:
+  flow:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+        - prompt
+        - flow
+        - function
+      item:
+        type: string
+      inputs:
+        type: string
+    additionalProperties: false
+    required:
+    - type
+    - item
+  flows:
+    type: object
+    patternProperties:
+      '[A-Za-z_]{3,}':
+        type: array
+        items:
+          $ref: '#/definitions/flow'
+    additionalProperties: false
+  prompt:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+        - text
+        - password
+        - confirm
+        - select
+        - rawselect
+        - checkbox
+        - autocomplete
+      message:
+        type: string
+      choices:
+        anyOf:
+        - type: array
+          items:
+            $ref: '#/definitions/promptChoice'
+        - type: object
+          properties:
+            function:
+              type: string
+          additionalProperties: false
+          required:
+          - function
+      var:
+        type: string
+      varType:
+        type: string
+        enum:
+        - str
+        - list
+    additionalProperties: false
+    required:
+    - type
+    - message
+    - var
+    - varType
+  promptChoice:
+    type: object
+    properties:
+      title:
+        type: string
+      value:
+        type: string
+    additionalProperties: false
+    required:
+    - title
+    - value
+  prompts:
+    type: object
+    patternProperties:
+      '[A-Za-z_]{3,}':
+        $ref: '#/definitions/prompt'
+    additionalProperties: false
