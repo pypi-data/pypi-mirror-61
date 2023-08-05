@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: metrocard-topup
+Version: 0.1
+Summary: Metrocard Topup Script
+Home-page: https://gitlab.com/kenzietandun/metrocard-topup
+Author: Kenzie Tandun
+Author-email: nudnateiznek@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+
+# Metrocard-Topup
+
+Tops up your Metrocard with a single script
+
+### Usage
+
+- Clone the repo
+
+- Install requirements from `requirements.txt`
+
+- Install `geckodriver` from Mozilla
+
+- Create a file inside `src/` called `credentials.py`
+
+```
+> cat src/credentials.py 
+
+#!/usr/bin/env python3
+
+# Metrocard credentials
+# Your metrocard number in string format
+metrocard_number = ""
+# Your metrocard password in string format
+metrocard_password = ""
+
+# Credit card credentials
+# Your credit card number in string format
+credit_card_number = ""
+# Your credit card name in string format
+credit_card_name = ""
+# Your credit card expiry month in int format
+credit_card_expiry_month = 
+# Your credit card expiry year in string format
+credit_card_expiry_year = ""
+# Your credit card cvc in string format
+credit_card_cvc = ""
+
+# Email credentials
+email_username = ""
+email_password = ""
+```
+
+### Disclaimer
+
+You are responsible for keeping your `credentials.py` safe
+
+
