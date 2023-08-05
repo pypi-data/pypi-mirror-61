@@ -1,0 +1,38 @@
+import ..geo.parsers
+import click
+import json
+
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+@click.option('--gse',
+              help='A single GSE accession')
+def gse_to_json(gse):
+    print(_gse_to_json(gse))
+
+@cli.command()
+@click.option('--term',
+              help='something like "2019/01/28:2019/02/28[PDAT]"')
+@click.option("--outfile", type=click.File('w'),
+              help="output file name, default is stdout")
+                
+@cli.command()
+@click.option('--term',
+              help='something like "2019/01/28:2019/02/28[PDAT]"')
+@click.option("--outfile",
+              help="output file name, default is stdout")
+def gse_accessions(term, outfile):
+    with open(outfile, 'w') as ofile:
+        n = 0
+        for gse in get_geo_accessions(add_term = term, batch_size=1000):
+            n+=1
+            if(n % 5000 ==0):
+                print(n)
+            ofile.write(gse + "\n")
+        print(n)
+
+if __name__ == '__main__':
+    cli()
