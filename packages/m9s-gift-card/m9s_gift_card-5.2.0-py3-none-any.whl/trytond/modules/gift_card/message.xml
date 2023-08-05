@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains
+     the full copyright notices and license terms. -->
+<tryton>
+    <data group="1">
+        <record model="ir.message" id="insufficient_amount">
+            <field name="text">Card %s is found to have insufficient amount.</field>
+        </record>
+        <record model="ir.message" id="negative_amount">
+            <field name="text">The amount to be entered cannot be negative.</field>
+        </record>
+        <record model="ir.message" id="deletion_not_allowed">
+            <field name="text">Gift cards can not be deleted in active state.</field>
+        </record>
+        <record model="ir.message" id="gift_card_inactive">
+            <field name="text">The gift card to be redeemed must be in active state.</field>
+        </record>
+        <record model="ir.message" id="gift_card_redeemed">
+            <field name="text">This gift card has already been redeemed.</field>
+        </record>
+        <record model="ir.message" id="multiple_giftcards">
+            <field name="text">You can only redeem a single gift card at a time.</field>
+	</record>
+        <record model="ir.message" id="inappropriate_product_type">
+            <field name="text">The product type of %s must be service for gift cards.</field>
+        </record>
+        <record model="ir.message" id="invalid_amount">
+            <field name="text">Gift Card minimum amount must be smaller than gift card maximum amount.</field>
+        </record>
+        <record model="ir.message" id="negative_amount_not_allowed">
+            <field name="text">Gift card amounts can not be negative.</field>
+	</record>
+        <record model="ir.message" id="amounts_out_of_range">
+            <field name="text">Gift card amount must be within %(gc_min)s %(currency_code)s and %(gc_max)s %(currency_code)s.</field>
+	</record>
+        <record model="ir.message" id="insufficient_amount_to_pay">
+            <field name="text">Gift card %s has no sufficient amount to pay %s %s.</field>
+	</record>
+        <record model="ir.message" id="missing_liability_account">
+            <field name="text">Liability Account is missing from Gift Card Configuration.</field>
+	</record>
+        <record model="ir.message" id="redeem_done_message">
+            <field name="text">The gift card was redeemed with %(amount)s %(code)s captured in this transaction, %(captured)s %(code)s captured overall and %(remaining)s %(cod)s remaining.</field>
+	</record>
+        <record model="ir.message" id="gift_card_paid_message">
+            <field name="text">Paid by Gift Card (%(number)s)</field>
+	</record>
+    </data>
+</tryton>
