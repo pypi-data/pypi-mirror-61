@@ -1,0 +1,60 @@
+[tool.pdm]
+name = "pdm"
+version = {from = "pdm/__init__.py"}
+description = "Python Development Master"
+author = "frostming <mianghong@gmail.com>"
+license = "MIT"
+python_requires = ">=3.7"
+readme = "README.md"
+
+homepage = "https://github.com/pdm-project/pdm"
+repository = "https://github.com/pdm-project/pdm"
+
+keywords = ["packaging", "dependency", "workflow"]
+
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.pdm.dependencies]
+# TODO: update pip and pip_shims version
+appdirs = "*"
+click = "*"
+distlib = "*"
+pip = "<20.0.0,>=19.3.1"
+pip_shims = "~=0.4.0"
+pythonfinder = "*"
+tomlkit = "*"
+halo = "<1.0.0,>=0.0.28"
+
+[tool.pdm.dev-dependencies]
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+
+[tool.pdm.cli]
+pdm = "pdm.cli.commands:cli"
+
+[tool.intreehooks]
+build-backend = "pdm.builders.api"
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+use_parentheses = true
+force_grid_wrap = 0
+atomic = true
+not_skip = "__init__.py"
+skip_glob = ["*/setup.py"]
+filter_files = true
+known_first_party = "pdm"
+known_third_party = "pip_shims"
+
+[tool.black]
+line-length = 88
+[build-system]
+requires = ["intreehooks"]
+build-backend = "intreehooks:loader"
+
