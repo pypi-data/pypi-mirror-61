@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block body%}
+<h2>Tags</h2>
+<div class="snippetcontainer grid">
+{% for form in tag_forms%}
+<form action="{{url_for('tag.edit_tag', tag_id=form.tag_id.data)}}" method="POST">
+    <div class="card snippetbox p-0 grid-item rounded-0 border-0">
+    {% if 'csrf_token' in form %}
+        {{form.csrf_token(id="csrf_token_" + form.tag_id.data|string)}}
+    {% endif %}
+    {{form.tag_id(id="tag_id_" + form.tag_id.data|string)}}
+    {{
+        form.tag_name(
+            class_="w-50 border float-left tag_name px-2",
+            id="tag_name_" + form.tag_id.data|string
+        )
+    }}
+    <span class="float-left tagbuttons">
+        {{
+            form.update(
+                id="update_" + form.tag_id.data|string,
+                class_="p-2 mt-0 mb-1 btn border rounded-0 btn-xs"
+            )
+        }}
+        {{
+            form.delete(
+                id="delete_" + form.tag_id.data|string,
+                class_="ml-5px p-2 mt-0 mb-1 btn border rounded-0 btn-xs text-danger",
+                onclick="return confirm_delete();"
+            )
+        }}
+    </span>
+    </div>
+</form>
+{% endfor %}
+</div>
+{% block scripts %}
+    {{ super() }}
+    <script src="{{url_for('static', filename='js/masonry.pkgd.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap-select.min.js')}}"></script>
+    <script>
+        // CSS Masonry
+        // https://masonry.desandro.com
+        var elem = document.querySelector('.grid');
+        var msnry = new Masonry( elem, {
+            itemSelector: '.grid-item',
+            horizontalOrder: true
+        });
+        function confirm_delete(){
+            return confirm("Do you really want to delete this tag?");
+        }
+    </script>
+{% endblock %}
+{% endblock %}
