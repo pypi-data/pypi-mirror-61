@@ -1,0 +1,63 @@
+# Docker image
+image: python:latest
+
+stages:
+  - build
+  - test
+  - build_release
+  - deploy_on_pypi
+  
+before_script:
+  - python -V  # Print out python version for debugging
+  - pip3 install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip3 install tox # Test framework
+  - pip3 install -r requirements.txt # Dependencies
+
+build:
+  stage: build
+  script:
+    - PKG_VERSION=$(python setup.py --version) # get package version for packages names
+    - echo $PKG_VERSION
+    - python setup.py sdist bdist_wheel # build both wheel package and sources
+    - ls dist/*
+    - pip install dist/assistant_lib-$PKG_VERSION.tar.gz # test installation
+  artifacts:
+    paths:
+      - dist/*
+
+# Currently there is no test written :(
+#test:
+#  stage: test
+#  script:
+#    - tox
+    
+# rebuild to keep artifacts a long long time for the tags
+release:
+  stage: build_release
+  only:
+    - tags
+  script: 
+    - PKG_VERSION=$(python setup.py --version)
+    - echo $PKG_VERSION
+    - python setup.py sdist bdist_wheel     
+    - ls dist/*
+  artifacts:
+    paths:
+      - dist/*
+    expire_in: 10 yrs
+
+# publish tagged releases on pypi
+pypi:
+  stage: deploy_on_pypi
+  only:
+    - tags
+  variables:
+    TWINE_USERNAME: $PYPI_USERNAME
+    TWINE_PASSWORD: $PYPI_PASSWORD
+  script:
+    - ls dist/*
+    - pip3 install twine
+    - twine upload dist/assistant_lib*    
+
