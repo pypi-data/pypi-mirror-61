@@ -1,0 +1,2 @@
+#test dubbo use telnet
+
