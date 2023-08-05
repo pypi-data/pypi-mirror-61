@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: pero-ocr
+Version: 0.1.1
+Summary: Toolkit for advanced OCR of poor quality documents
+Home-page: https://github.com/DCGM/pero-ocr
+Author: Karel Benes
+Author-email: ibenes@fit.vutbr.cz
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: lxml
+Requires-Dist: scipy
+Requires-Dist: numba
+Requires-Dist: torch (>=1.4)
+Requires-Dist: brnolm (>=0.1.1)
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-image
+Requires-Dist: tensorflow-gpu (==1.14)
+Requires-Dist: shapely
+Requires-Dist: pyamg
+
+# pero-ocr
+
+## Running stuff
+
+
+Scripts (as well as tests) assume that it is possible to import ``pero_ocr`` and its components.
+
+For the current shell session, this can be achieved by setting ``PYTHONPATH`` up:
+```
+export PYTHONPATH=/path/to/the/repo:$PYTHONPATH
+```
+
+As a more permanent solution, a very simplistic `setup.py` is prepared:
+```
+python setup.py develop
+```
+Beware that the `setup.py` does NOT check for dependencies in the current version.
+
+Pero can be later removed from your Python distribution by running:
+```
+python setup.py develop --uninstall
+```
+
+## Developing
+Working changes are expected to happen on `develop` branch, so if you plan to contribute, you better check it out right during cloning:
+
+```
+git clone -b develop git@github.com:DCGM/pero-ocr.git pero-ocr
+```
+
+### Testing
+Currently, only unittests are provided with the code. Some of the code. So simply run your preferred test runner, e.g.:
+```
+~/pero-ocr $ green
+```
+
+
