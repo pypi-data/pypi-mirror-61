@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: csv2dictionary
+Version: 0.0.2
+Summary: converts csv to a dictionary
+Home-page: https://github.com/colemalphrus/csv2dictionary
+Author: Cole Malphrus
+Author-email: cole@malphrus.tech
+License: UNKNOWN
+Description: # timeconMT
+        A conversion from csv file to dictionary by Malphrus Tech
+        
+        ## Usage
+        
+        ### import
+        ```python
+        from csv2dictionary.csvpro import CsvBrain
+        ```
+        ### use
+        
+        #### data
+        ```python
+        case1 = CsvBrain('test.csv')
+        case1.data
+        #returns a list of dictionaries
+        #the first line in the csv are the keys in the dictionaries
+        ```
+        
+        #### headers
+        ```python
+        case1 = CsvBrain('test.csv')
+        case1.header_labels
+        #returns a list of Header labels
+        ```
+        
+        #### Search
+        ```python
+        case1 = CsvBrain('test.csv')
+        case1.search('dog')
+        #returns a list of dict's that contain "dog" as a value under any key
+        ```
+        
+        #### castInt
+        ```python
+        case1 = CsvBrain('test.csv')
+        case1.castInt('age')
+        #loops thru the list of dictionaries and changes cast all values under an 'age' key to integers
+        ```
+        #### castInt
+        ```python
+        case1 = CsvBrain('test.csv')
+        case1.castFloat('age')
+        #loops thru the list of dictionaries and changes cast all values under an 'age' key to Floats
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
