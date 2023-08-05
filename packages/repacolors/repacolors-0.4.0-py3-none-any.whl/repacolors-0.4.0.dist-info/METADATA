@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: repacolors
+Version: 0.4.0
+Summary: Small library for color conversion, manipulation, etc.
+Home-page: https://github.com/dyuri/repacolors
+License: MIT
+Author: Gyuri Horak
+Author-email: dyuri@horak.hu
+Requires-Python: >=3.6,<4.0
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Terminals :: Terminal Emulators/X Terminals
+Requires-Dist: click (>=7.0,<8.0)
+Project-URL: Repository, https://github.com/dyuri/repacolors
+Description-Content-Type: text/markdown
+
+# repacolors
+
+Small library for color conversion, manipulation, etc.
+
+[![Build Status](https://travis-ci.com/dyuri/repacolors.svg?branch=master)](https://travis-ci.com/dyuri/repacolors)
+
+## Install
+
+```
+$ pip install repacolors
+```
+
+## `repacolor` command
+
+### `display`
+
+Display color in terminal (TODO conversion, manipulation, ...)
+
+Example:
+```
+$ repacolor display red
+$ repacolor display "#ffaad5"
+```
+
+### `pick`
+
+Executes color picker (`xcolor`) and displays the picked color.
+
+```
+$ repacolor pick
+```
+
