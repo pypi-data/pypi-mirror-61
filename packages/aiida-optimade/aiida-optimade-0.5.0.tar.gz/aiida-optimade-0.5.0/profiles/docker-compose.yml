@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  aiida-optimade:
+    restart: always
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        OPTIMADE_TOOLS_VERSION: 0.5.0
+    environment:
+      AIIDA_PATH: /app
+      AIIDA_PROFILE: test_django
+    volumes:
+     - '/tmp/test_repository_test_django:/app/.aiida/repository-quicksetup'
+     - '.:/profiles'
+    ports:
+      - '3253:80'
