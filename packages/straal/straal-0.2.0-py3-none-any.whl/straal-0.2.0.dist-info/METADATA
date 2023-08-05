@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: straal
+Version: 0.2.0
+Summary: Python client for Straal Payments API
+Home-page: https://github.com/piotr-szpetkowski/straal-python
+Author: Piotr Szpetkowski
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2.22.0)
+Provides-Extra: testing
+Requires-Dist: pytest (==5.3.5) ; extra == 'testing'
+Requires-Dist: responses (==0.10.9) ; extra == 'testing'
+
+# straal-python
+
+# Installation
+
+```console
+$ pip install -U straal
+```
+
+# Example
+
+```pycon
+>>> import straal
+>>> straal.init("your_api_key")
+>>> customer = straal.Customer.create(email="customer@example.net")
+>>> customer.email == "customer@example.net"
+True
+>>> customer.id is not None
+True
+```
+
+
