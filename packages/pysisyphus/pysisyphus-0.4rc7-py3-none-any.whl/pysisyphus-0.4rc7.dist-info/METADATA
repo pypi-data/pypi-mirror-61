@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: pysisyphus
+Version: 0.4rc7
+Summary: Python suite for exploring potential energy surfaces.
+Home-page: https://github.com/eljost/pysisyphus
+Maintainer: Johannes Steinmetzer
+Maintainer-email: johannes.steinmetzer@uni-jena.de
+License: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Platform: unix
+Description-Content-Type: text/markdown
+Requires-Dist: attrs
+Requires-Dist: autograd
+Requires-Dist: distributed
+Requires-Dist: h5py
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: natsort
+Requires-Dist: dask
+Requires-Dist: pandas
+Requires-Dist: pytest
+Requires-Dist: pyyaml
+Requires-Dist: rmsd
+Requires-Dist: sympy
+Requires-Dist: scipy
+Provides-Extra: ase
+Requires-Dist: ase ; extra == 'ase'
+Provides-Extra: pyscf
+Requires-Dist: pyscf (>=1.7.0) ; extra == 'pyscf'
+Provides-Extra: qcengine
+Requires-Dist: qcengine (>=0.13.0) ; extra == 'qcengine'
+
+# pysisphus
+[![Documentation Status](https://readthedocs.org/projects/pysisyphus/badge/?version=master)](https://pysisyphus.readthedocs.io/en/master/?badge=master)
+![build](https://github.com/eljost/pysisyphus/workflows/Python%20application/badge.svg)
+[![codecov](https://codecov.io/gh/eljost/pysisyphus/branch/master/graph/badge.svg)](https://codecov.io/gh/eljost/pysisyphus)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![DOI](https://zenodo.org/badge/96281078.svg)](https://zenodo.org/badge/latestdoi/96281078)
+
+`pysisyphus` is a software-suite for the exploration of potential energy surfaces in ground-
+and **excited states**. It implements several methods to search for stationary points
+(minima and first order saddle points) and the calculation of minimum energy paths by means
+of IRC and Chain of States methods like Nudged Elastic Band and Growing String.
+Furthermore it provides tools to easily analyze & modify geometries (aligning, translating, **interpolating**, ...) and to visualize the calculation results/progress.
+
+The required energies, gradients and hessians are calculated by calling external quantum chemistry codes. `pysisyphus` can also be used as a library to implement custom quantum chemistry workflows.
+
+If any issues arise please open an issue_ and I'll try to fix it if possible and my time permits it. Contrubtions are welcome, so feel free to submit a PR.
+
+**This software is still work in progress. Use at your own risk.**
+
+Please have a look at the [documentation](https://pysisyphus.readthedocs.io/en/dev/).
+
+
