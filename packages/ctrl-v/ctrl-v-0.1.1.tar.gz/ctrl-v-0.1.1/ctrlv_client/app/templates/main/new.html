@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Editor{% endblock %}
+{% block head %}
+    {{ super() }}
+    {{mde.css}}
+{% endblock %}
+{% block body%}
+<h2 class="text-muted mb-2 mt-2">New Snippet</h2>
+<hr/>
+<form action="{{url_for('main.new')}}" method="POST">
+  {{form.csrf_token}}
+  <div class="form-group">
+    <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Title</span>
+        </div>
+        {{form.title}}
+    </div>
+  </div>
+  {{form.editor}}
+  <h5 class="text-muted mb-2 mt-2">Tags</h5>
+  <div id="tagHolder">
+    <div id="taglist"></div>
+    {{form.tags}}
+    {{form.tagbox}}
+  </div>
+  <ul id="availableTags"></ul>
+{{form.submit(class_="btn btn btn-outline-primary btn-sm")}}
+</form>
+{{mde.preview}}
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
+  {{ mde.js }}
+  <script>
+      const availableTags = {{present_tags|safe}};
+  </script>
+  <script src="{{url_for('static',filename='js/tags.js')}}"></script>
+{% endblock %}
