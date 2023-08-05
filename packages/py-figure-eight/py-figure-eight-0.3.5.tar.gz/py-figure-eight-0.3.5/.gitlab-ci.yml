@@ -1,0 +1,44 @@
+stages:
+  - test
+  - deploy
+
+# run_pytests:
+#   image: python:3.6
+#   stage: test
+#   before_script:
+#    - pip install .
+#    - pip install pytest
+#   script:
+#   - python -m pytest tests/
+#   only:
+#   - merge_requests
+
+deploying_to_pypi:
+  image: python:3.6
+  stage: deploy
+  before_script:
+    - pip install twine
+  variables:
+    TWINE_USERNAME: $TWINE_USERNAME
+    TWINE_PASSWORD: $TWINE_PASSWORD
+  script:
+    - python setup.py sdist
+    - twine upload dist/*
+  only:
+    - tags
+
+pages:
+  image: python:3.6
+  stage: deploy
+  before_script:
+    - pip install sphinx sphinx-rtd-theme sphinx-pypi-upload
+  script:
+    - pip install -r requirements.txt
+    - python setup.py build_sphinx
+    - ls doc/build/html/
+    - mv doc/build/html/ public/
+  artifacts:
+    paths:
+    - public
+  only:
+    - master
