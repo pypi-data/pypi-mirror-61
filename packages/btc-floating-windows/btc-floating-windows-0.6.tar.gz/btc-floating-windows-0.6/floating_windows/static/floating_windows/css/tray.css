@@ -1,0 +1,100 @@
+.tray {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 4px 20px 0;
+}
+
+.tray .tray-resources {
+    display: none;
+}
+
+.hidden-tray {
+    display: none !important;
+}
+
+.tray .tray-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+}
+
+.tray .tray-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5px;
+}
+
+.tray .tray-header {
+    padding: 10px;
+    max-height: 50px;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+}
+
+.tray .tray-header .tray-header-buttons {
+    /* pass */
+}
+
+.tray .tray-header .tray-header-title {
+    color: white;
+}
+
+.tray .tray-body {
+    height: 100%;
+}
+
+.tray .tray-footer {
+    max-height: 50px;
+}
+
+.tray .tray-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 3px;
+    border: 1px dashed #ccc;
+    flex-wrap: wrap;
+}
+
+.tray .tray-item .tray-item-row {
+    width: 100%;
+    font-size: 12px;
+}
+
+.tray .tray-btn {
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    border: none;
+}
+
+.tray .tray-btn.tray-collapse-toggle {
+    background-color: #DD5124;
+}
+
+.tray .tray-btn.tray-close {
+    background-color: #FFB848;
+}
+
+.tray .tray-progress-bar {
+    background-color: #ccc;
+}
+
+.tray .tray-progress-bar .bar {
+    width: 10%;
+    height: 10px;
+    background-color: #28B779;
+}
+
+.tray .tray-message-title {
+    font-size: 16px !important;
+    font-weight: 700;
+}
+
+.tray .tray-text-right-align {
+    text-align: right;
+}
