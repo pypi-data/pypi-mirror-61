@@ -1,0 +1,2 @@
+Outliers removal project implemented using python that takes a datafile and removes the rows containing outliers and saves the new data into 
+a new csv datafile. Implemented by- Tanishq Chopra , 101703579 , TIET , Patiala
