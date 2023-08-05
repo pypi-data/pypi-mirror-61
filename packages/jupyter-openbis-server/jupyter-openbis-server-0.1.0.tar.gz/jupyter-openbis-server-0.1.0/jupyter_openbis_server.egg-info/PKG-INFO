@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: jupyter-openbis-server
+Version: 0.1.0
+Summary: Server Extension for Jupyter notebooks to connect to openBIS and download/upload datasets, inluding the notebook itself
+Home-page: https://sissource.ethz.ch/sispub/jupyter-openbis-server
+Author: Swen Vermeul |  ID SIS | ETH Zürich
+Author-email: swen@ethz.ch
+License: Apache Software License Version 2.0
+Description: # Jupyter openBIS Server
+        
+        
+        The server part of the `jupyter-openbis-extension` and `jupyterlab-openbis` notebook extension. Uses the `pyBIS` module internally to communicate with openBIS. Communicates with the notebook extensions via the tornado webserver.
+        
+        ## Install the server extension
+        
+        The server extension will be automatically installed when you install the Jupyter Notebook Extension (the «classic» Jupyter Notebook):
+        
+        ```
+        pip install --upgrade jupyter-openbis-extension
+        ```
+        
+        If you need to install or upgrade the server extension alone, you can do so by:
+        
+        ```
+        pip install --upgrade jupyter-openbis-server
+        ```
+        
+        ## install Jupyter extension manually
+        
+        In most cases, a simple `pip install --upgrade jupyter-openbis-server` will install the server extension. However, in some cases (e.g. when installing via `pip install -e .`) you need to issue the following command to register the extension:
+        
+        ```
+        $ jupyter serverextension enable --py jupyter-openbis-server
+        ```
+        
+        This will create a file `~/.jupyter/jupyter_notebook_config.json` with the following content:
+        
+        ```
+        {
+          "NotebookApp": {
+            "nbserver_extensions": {
+              "jupyter-openbis-server.main": true
+            }
+          }
+        }
+        ```
+        
+        ## Uninstall Jupyter openBIS Server
+        
+        Unfortunately, `pip` doesn't automatically clean up the Jupyter configuration when uninstalling. You have to do it yourself:
+        
+        ```
+        $ jupyter serverextension disable --py jupyter-openbis-server
+        $ pip uninstall jupyter-openbis-server
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: JavaScript
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.3
+Description-Content-Type: text/markdown
