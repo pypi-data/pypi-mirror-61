@@ -1,0 +1,88 @@
+<udebs>
+<config>
+    <hex>True</hex>
+    <name>testing</name>
+    <logging>False</logging>
+    <revert>4</revert>
+    <seed>690</seed>
+</config>
+<definitions>
+    <stats>
+        <ACT />
+    </stats>
+    <strings>
+        <DESC />
+    </strings>
+    <lists>
+        <equipment />
+        <inventory rlist='' />
+    </lists>
+</definitions>
+<maps>
+    <one type="hex" rmap=''>
+        <dim>
+            <x>4</x>
+            <y>4</y>
+        </dim>
+    </one>
+    <two empty='immune'>
+        <row>unit1, unit2</row>
+        <row>immune, immune</row>
+        <row>immune, empty</row>
+    </two>
+    <map type="diag">
+        <dim>
+            <x>5</x>
+            <y>6</y>
+        </dim>
+    </map>
+
+</maps>
+<var>
+    <time>4</time>
+    <increment>3</increment>
+    <cont>False</cont>
+</var>
+<entities>
+    <init>
+        <effect><i>DELAY `(print test) 1</i></effect>
+    </init>
+
+    <tick />
+    <reset />
+
+    <move2>
+        <require>move2 ACT == 5</require>
+    </move2>
+    <immune immutable='' />
+    <unit1 immutable='False'>
+        <group>group1</group>
+        <ACT>5</ACT>
+        <inventory>
+            <i>move1</i>
+            <i>move2</i>
+        </inventory>
+        <DESC>description</DESC>
+    </unit1>
+    <unit2 />
+    <notempty>
+        <require>$target.NAME != immune</require>
+    </notempty>
+
+    <sideways>
+        <require>
+            <i>DISTANCE.x == 0</i>
+        </require>
+    </sideways>
+
+    <move1>
+        <ACT>5</ACT>
+        <equipment>1</equipment>
+        <group>move2</group>
+    </move1>
+    <group1>
+        <ACT>5</ACT>
+        <equipment>1</equipment>
+    </group1>
+</entities>
+</udebs>
