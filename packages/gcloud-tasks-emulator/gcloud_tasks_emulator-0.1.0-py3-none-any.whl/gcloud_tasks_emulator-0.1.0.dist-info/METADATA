@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: gcloud-tasks-emulator
+Version: 0.1.0
+Summary: A stub emulator for the Google Cloud Tasks API
+Home-page: https://gitlab.com/potato-oss/google-cloud/gcloud-tasks-emulator
+Author: Potato London Ltd.
+Author-email: mail@p.ota.to
+License: UNKNOWN
+Keywords: Google Cloud Tasks,Google App Engine,GAE,GCP
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: grpcio
+Requires-Dist: google-cloud-tasks (>=1.3.0)
+
+# Local Emulator for Google Cloud Tasks
+
+Google doesn't (yet) ship an emulator for the Cloud Tasks API like they do for
+Cloud Datastore.
+
+This is a stub emulator so you can run your tests and do local development without
+having to connect to the production Tasks API.
+
+**THIS IS A WORK IN PROGRESS NOT ALL API CALLS ARE COMPLETE**
+
+## Usage
+
+Start the emulator with:
+
+```
+gcloud-tasks-emulator start --port=9090
+```
+
+Then from within your code, use the following (instead of your normal production client connection)
+
+```
+from google.cloud.tasks_v2 import CloudTasksClient
+from google.cloud.tasks_v2.gapic.transports.cloud_tasks_grpc_transport import CloudTasksGrpcTransport
+from google.api_core.client_options import ClientOptions
+
+client = CloudTasksClient(
+    transport=CloudTasksGrpcTransport(channel=grpc.insecure_channel("127.0.0.1:%s" % port)),
+    client_options=ClientOptions(api_endpoint="127.0.0.1:%s" % port)
+)
+```
+
+
