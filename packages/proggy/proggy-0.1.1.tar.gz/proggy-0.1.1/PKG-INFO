@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: proggy
+Version: 0.1.1
+Summary: A progress bar generator.
+License: MIT
+Author: Tarcísio Eduardo Moreira Crocomo
+Author-email: tarcisioe@pm.me
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+Proggy
+======
+
+Progressively progressing through progress bar generation.
+
+Proggy generates text-based progress bars. Mildly inspired by Rust's
+[indicatif](https://github.com/mitsuhiko/indicatif).
+
+Proggy only renders progress bars to a string. Displaying them is, as of now,
+not handled and left to the user.
+
+Example
+-------
+
+```
+>>> from proggy import ProgressBar
+>>> pb = ProgressBar(30, 100, progress=75)
+>>> pb.render()
+'⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       '
+```
+
