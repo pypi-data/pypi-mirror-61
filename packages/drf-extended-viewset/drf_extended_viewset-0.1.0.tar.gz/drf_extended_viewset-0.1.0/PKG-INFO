@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: drf_extended_viewset
+Version: 0.1.0
+Summary: Django Rest Framework extension for implement by action serializers, permissions & /etc
+Home-page: https://github.com/ivlevdenis/drf_extended_viewset
+Author: Denis Ivlev
+Author-email: me@dierz.pro
+License: MIT license
+Description: Django Rest Framework Extended ViewSet
+        ======================================
+        
+        
+        ![https://pypi.python.org/pypi/drf_extended_viewset](https://img.shields.io/pypi/v/drf_extended_viewset.svg) ![https://travis-ci.com/ivlevdenis/drf_extended_viewset](https://img.shields.io/travis/ivlevdenis/drf_extended_viewset.svg) ![https://drf-extended-viewset.readthedocs.io/en/latest/?badge=latest](https://readthedocs.org/projects/drf-extended-viewset/badge/?version=latest) ![https://pyup.io/repos/github/ivlevdenis/drf_extended_viewset/](https://pyup.io/repos/github/ivlevdenis/drf_extended_viewset/shield.svg)
+        
+        
+        Django Rest Framework extension for implement by action serializers, permissions & /etc
+        
+        
+        * Free software: MIT license
+        * Documentation: https://drf-extended-viewset.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        ```python
+        class MyModelViewSet(ExtendedModelViewSet):
+            serializer_class_map = {
+                'list': ListMyModelSerializer,
+                'retrieve': RetrieveMyModelSerializer,
+                'update': UpdateMyModelSerializer,
+                ...
+            }
+            permission_classes_map = {
+                'list': AllowAny,
+                'retrieve': IsAuthenticated,
+                'update': (IsOwner | IsAdminUser),
+                ...
+            }
+        ```
+        
+        <!-- * TODO -->
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter and the `audreyr/cookiecutter-pypackage` project template.
+        
+        [Cookiecutter](https://github.com/audreyr/cookiecutter)
+        [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage)
+        
+Keywords: drf_extended_viewset
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
