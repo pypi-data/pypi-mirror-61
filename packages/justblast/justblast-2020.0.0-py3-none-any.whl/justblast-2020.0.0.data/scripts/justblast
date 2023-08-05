@@ -1,0 +1,37 @@
+#!python
+
+from justblast.justblast_main import *
+from justblast.__version__ import version
+from termcolor import colored
+
+print('\njustblast version:', colored(version, None, attrs=["bold", "blink"]))
+print(colored('Copyright 2019', 'red', attrs=["bold"]), 'Jose Sergio Hleap\n')
+
+parser = argparse.ArgumentParser(
+    prog='justblast', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument('query', help='Fasta file with query sequences')
+parser.add_argument('db', help='path to blast database', default='nt')
+parser.add_argument('-e', '--evalue', default=10, type=float,
+                    help='evalue for blast search')
+parser.add_argument('-p', '--percent_id', default=0, type=float,
+                    help='Minimum percent identity on blast search')
+parser.add_argument('-m', '--max_target_seqs', default=500, type=int,
+                    help='Number of aligned sequences to keep')
+parser.add_argument('-q', '--query_coverage', default=None, type=float,
+                    help='Minimum query coverage to retain')
+parser.add_argument('-c', '--cpus', default=-1, type=int,
+                    help='Number of cpus to use')
+parser.add_argument('-i', '--identify', default=False, action='store_true',
+                    help='Whether to use basta to assign taxopnomy to the '
+                         'hits based on LCA. This is a rough estimate and '
+                         'should be revised carefully')
+parser.add_argument('-o', '--out_filename', default='hit.hits', type=str,
+                    help='name of output (filtered) file')
+parser.add_argument('-f', '--outfmt', default=cols, type=str,
+                    help='Custom format for BLAST')
+
+args = parser.parse_args()
+main(db=args.db, query=args.query, evalue=args.evalue,
+     p_id=args.percent_id, max_targets=args.max_target_seqs,
+     cpus=args.cpus, qcovs=args.query_coverage, identify=args.identify,
+     outfile=args.out_filename, outfmt=args.outfmt)
