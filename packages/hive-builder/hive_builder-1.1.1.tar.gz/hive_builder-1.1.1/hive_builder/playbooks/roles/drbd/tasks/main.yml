@@ -1,0 +1,108 @@
+---
+- name: download drbd rpm files
+  unarchive:
+    src: https://github.com/procube-open/drbd9-rpm/releases/download/9.0.20/drbd9-rpm.tar.gz
+    remote_src: yes
+    dest: /root/
+- name: gather rpm file list
+  shell: ls -1 /root/RPMS/*/*.rpm
+  check_mode: False
+  changed_when: False
+  register: hive_safe_rpms
+- name: install packages
+  yum:
+    state: present
+    name: "{{ hive_safe_rpms.stdout_lines }}"
+  register: drbd_install
+- name: install LVM tools
+  yum:
+    state: present
+    name: lvm2
+- name: change usage count setting
+  lineinfile:
+    regexp: "usage-count .*;"
+    line: "        usage-count no;"
+    path: /etc/drbd.d/global_common.conf
+    state: present
+- name: change usage count setting
+  lineinfile:
+    insertafter: "# minor-count"
+    line: "        minor-count 128;"
+    path: /etc/drbd.d/global_common.conf
+    state: present
+
+- name: check volume group exists
+  command: vgdisplay drbdvg
+  failed_when: False
+  register: vgdisplay_result
+  check_mode: False
+  changed_when: False
+
+- name: check devices
+  parted:
+    device: "{{ item }}"
+    unit: s
+  register: hive_safe_devices
+  loop:
+    - /dev/sdc
+    - /dev/sdb
+    - /dev/vdb
+    - /dev/xvdb
+    - /dev/nvme1n1
+    - /dev/sda
+  when: not (hive_no_mirrored_device | default(False)) and vgdisplay_result.rc != 0
+  failed_when: False
+- set_fact:
+    hive_safe_mirrored_device: "{{ hive_safe_devices.results | selectattr('partitions','defined') |first }}"
+  when: not (hive_no_mirrored_device | default(False)) and vgdisplay_result.rc != 0
+
+- name: create partition for drbd resource pool
+  parted:
+    label: "{{ hive_partition_label | default(omit)}}"
+    device: "{{ hive_safe_mirrored_device.disk.dev }}"
+    number: "{{ hive_safe_mirrored_device.partitions | length + 1 }}"
+    part_end: "{{ (((hive_safe_mirrored_device.disk.size | int) - 34) | string) + 's' }}"
+    part_start: "{{ '1s' if (hive_safe_mirrored_device.partitions | length) == 0 else ((((hive_safe_mirrored_device.partitions | last).end | int) + 1) | string) + 's' }}"
+    flags: [ lvm ]
+    state: present
+  when: not (hive_no_mirrored_device | default(False)) and vgdisplay_result.rc != 0
+- name: create volume group
+  lvg:
+    vg: drbdvg
+    pvs: "{{ hive_safe_mirrored_device.disk.dev }}{% if hive_safe_mirrored_device.disk.dev is match('/dev/nvme*') %}p{% endif %}{{ hive_safe_mirrored_device.partitions | length + 1 }}"
+  when: not (hive_no_mirrored_device | default(False)) and vgdisplay_result.rc != 0
+- name: create a thin pool
+  lvol:
+    vg: drbdvg
+    thinpool: drbdpool
+    size: "97%VG"
+  when: not (hive_no_mirrored_device | default(False))
+
+- name: "insert allow drbd port rule into iptables (no internal network)"
+  blockinfile:
+    dest: /etc/sysconfig/iptables
+    insertafter: -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+    block: |
+      -A INPUT -p tcp -s {{ item }} -m state --state NEW -m multiport --dport 7000:7999 -j ACCEPT
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for drbd {{ item }}"
+  with_items: "{{ansible_play_batch | map('extract', hostvars, 'hive_private_ip') | list}}"
+  tags: iptables
+  when: hive_internal_net_addr is not defined
+- name: "insert allow drbd port rule into iptables for internal network"
+  blockinfile:
+    dest: /etc/sysconfig/iptables
+    insertafter: -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+    block: |
+      -A INPUT -p tcp  -s {{ hive_internal_net_addr }}/{{ hive_internal_net_cidr }} -m state --state NEW -m multiport --dport 7000:7999 -j ACCEPT
+    marker: "# {mark} ANSIBLE MANAGED BLOCK for drbd"
+  tags: iptables
+  when: hive_internal_net_addr is defined
+- name: "install drbd resource service template"
+  copy:
+    src: drbd-resource@.service
+    dest: /usr/lib/systemd/system/
+- name: "install waiting drbd device tool"
+  copy:
+    src: waitdevice
+    dest: /usr/bin/
+    mode: 0755
