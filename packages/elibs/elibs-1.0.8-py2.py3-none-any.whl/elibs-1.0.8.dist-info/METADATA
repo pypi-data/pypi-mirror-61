@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: elibs
+Version: 1.0.8
+Summary: A collection of useful libraries
+Home-page: https://github.com/ellitedev/elibs
+Author: Osni Pezzini Junior
+Author-email: osni.pezzini@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: wxpython
+
+# ELibs
+
+ELibs is a Python library for dealing with tomticket api.
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install elibs.
+
+```bash
+pip install elibs
+```
+
+## Usage
+
+```python
+import elibs
+
+tt = elibs.TomTicket(API_TOKEN)
+
+print(tt.get_clientes())
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
