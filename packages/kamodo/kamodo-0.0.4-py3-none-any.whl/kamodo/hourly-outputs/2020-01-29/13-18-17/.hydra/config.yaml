@@ -1,0 +1,55 @@
+commit:
+  clock: ???
+  identity:
+  - name
+  - email
+  message: ''
+  tminus: null
+compensation: []
+config_override: hourly.yaml
+handle_errors: exit
+init: false
+repo:
+  case_sensitive: false
+  end_date: null
+  errant_clocks: []
+  gitdir: .
+  ignore: null
+  match_logs: false
+  start_date: null
+report:
+  filename: ???
+  pandas:
+    display:
+      max_columns: 10
+      max_colwidth: 45
+      max_rows: null
+      width: 600
+  timesheet: false
+  work: false
+verbosity: 0
+vis:
+  frequency: 1 d
+  plotly:
+    figure:
+      hovermode: x
+      margin:
+        pad: 0
+    plot:
+      animation_opts: null
+      auto_open: true
+      auto_play: true
+      config: null
+      filename: hourly-work.html
+      image: null
+      image_filename: plot_image
+      include_mathjax: cdn
+      include_plotlyjs: cdn
+      link_text: Export to plot.ly
+      output_type: file
+      show_link: false
+      validate: true
+work_log:
+  bullet: '*'
+  filename: WorkLog.md
+  header_depth: 1
