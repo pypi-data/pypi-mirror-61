@@ -1,0 +1,9 @@
+version: "3.4"
+services:
+  lease-eda:
+    image: shunkakinoki/notebook
+    ports:
+      - "${JUPYTER_PORT}:8888"
+    volumes:
+      - .:/app
+    command: jupyter lab --ip 0.0.0.0 --no-browser --allow-root
