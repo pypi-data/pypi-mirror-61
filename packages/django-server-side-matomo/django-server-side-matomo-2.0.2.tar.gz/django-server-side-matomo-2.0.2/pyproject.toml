@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "django-server-side-matomo"
+version = "2.0.2"
+description = "Send analytics data to Matomo using celery"
+license = "BSD"
+authors = ["David Burke <david@burkesoftware.com>"]
+packages = [
+    { include = "server_side_matomo" }
+]
+homepage = "https://gitlab.com/burke-software/django-server-side-matomo"
+readme = "README.md"
+classifiers = [
+    'Framework :: Django'
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+celery = {extras = ["redis"], version = ">=4.1.0"}
+Django = ">=1.11"
+django-ipware = ">=2.1.0"
+piwikapi = ">=0.3"
+
+[tool.poetry.dev-dependencies]
+psycopg2-binary = "^2.8.4"
+ipdb = "^0.12.3"
+celery = {extras = ["redis"], version = "^4.1.0"}
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
