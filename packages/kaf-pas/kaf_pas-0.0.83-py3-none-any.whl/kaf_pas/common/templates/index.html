@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title_text %}Красногорский комбинат автофургонов...{% endblock %}
+
+{% block icon %}static/favicon.ico.png{% endblock %}
+
+{% block js_code %}
+    <script type="text/javascript" src={% static "isc-ts/kaf-1.0.61.js" %}></script>
+{% endblock %}
+
+{% block start_page %}startPage(){% endblock %}
