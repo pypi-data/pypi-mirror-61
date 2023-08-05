@@ -1,0 +1,37 @@
+# OzNetNerd PDF
+
+Convenience Python module for creating templated PDF documents using `Jinja2` and `WeasyPrint`.
+
+## Installation
+
+```
+pip3 install onnpdf
+```
+
+## Usage
+
+Pass a dictionary into `onnpdf`, and it will:
+
+1. Perform a "find and replace" operation
+2. Convert the template into a PDF document
+
+Example dictionary as seen in [code snippets](examples/Demo%20Guide):
+
+```
+kv_pairs = {
+    'title': 'OzNetNerd.com Demo PDF',
+    'author': 'Will Robinson',
+    'job_title': 'DevOps Specialist',
+    'company': 'OzNetNerd.com',
+    'email': 'will@oznetnerd.com',
+    'phone': '+61 00 000 000',
+    'website': 'https://oznetnerd.com'
+}
+```
+
+The above produces this [PDF document.](examples/Demo%20Guide/outputs/demo.pdf)
+
+# Contact
+
+* Blog: oznetnerd.com
+* Email: will@oznetnerd.com
