@@ -1,0 +1,42 @@
+# tempo-api-python-client
+Python bindings for Tempo - https://tempo-io.github.io/tempo-api-docs/
+
+This is a Tempo API client library to simplify the interaction with Tempo timesheets.
+
+Pip release is available: https://pypi.org/project/tempo-api-python-client/
+
+## Changelog
+
+Install current reelase by pip
+
+```
+pip install tempo-api-python-client
+```
+
+
+## Getting Started
+
+You need an API token for communicating with tempo REST APIs. Documentation could be found at https://tempo.io/doc/timesheets/api/rest/latest/
+
+```
+from tempoapiclient import client
+
+tempo = client.Tempo(
+    auth_token="<your_tempo_api_key>",
+    base_url="https://api.tempo.io/core/3")
+
+worklogs = tempo.get_all_worklogs(
+    date_from="2019-11-10",
+    date_to="2019-11-11"
+    )
+
+for i in worklogs:
+    print(i)
+```
+
+There are also functions to retrieve `user` and `team`-specific worklogs.
+
+
+## Contributing
+
+Contribution is welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
