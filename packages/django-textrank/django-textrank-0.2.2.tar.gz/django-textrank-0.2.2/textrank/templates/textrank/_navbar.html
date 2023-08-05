@@ -1,0 +1,49 @@
+{% load i18n navigation %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow pt-0 pb-0">
+    <a class="navbar-brand" href="{% url 'textrank:index' %}">TextRank</a>
+    <button class="navbar-toggler mr-1" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="{% trans 'Переключение навигации' %}">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav px-3 w-100">
+            <li class="nav-item text-nowrap {% active request 'textrank:groups' %}">
+                <a href="{% url 'textrank:groups' %}" class="nav-link">{% trans 'Группы' %}</a>
+            </li>
+            <li class="nav-item text-nowrap {% active request 'textrank:keywords' %}">
+                <a href="{% url 'textrank:keywords' %}" class="nav-link">{% trans 'Слова' %}</a>
+            </li>
+            <li class="nav-item text-nowrap {% active request 'textrank:samples' %}">
+                <a href="{% url 'textrank:samples' %}" class="nav-link">{% trans 'Образцы' %}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAnalyze" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span>{% trans 'Анализ' %}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAnalyze">
+                    <a class="dropdown-item {% active request 'textrank:rank' format='html' %}" href="{% url 'textrank:rank' format='html' %}">
+                        <span class="fa fa-fw fa-eye"></span>
+                        <span class="ml-1">{% trans 'HTML-форма' %}</span>
+                    </a>
+                    <a class="dropdown-item {% active request 'textrank:rank' format='text' %}" href="{% url 'textrank:rank' format='text' %}">
+                        <span class="fa fa-fw fa-file-o"></span>
+                        <span class="ml-1">{% trans 'Ответ в формате текста' %}</span>
+                    </a>
+                    <a class="dropdown-item {% active request 'textrank:rank' format='json' %}" href="{% url 'textrank:rank' format='json' %}">
+                        <span class="fa fa-fw fa-file-code-o"></span>
+                        <span class="ml-1">{% trans 'Ответ в формате JSON' %}</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+            {% if user.is_authenticated %}
+                <a href="{{ LOGOUT_URL }}" class="nav-link">{% trans 'Выйти' %}</a>
+            {% else %}
+                <a href="{{ LOGIN_URL }}?next={{ request.get_full_path }}" class="nav-link">{% trans 'Войти' %}</a>
+            {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
