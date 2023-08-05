@@ -1,0 +1,34 @@
+{% extends "!layout.html" %}
+{% block menu %}
+  {{ super() }}
+  {# Add external project links to sidebar #}
+  <p class="caption"><span class="caption-text">External links</span></p>
+  <ul>
+    <li class="toctree-l1">
+      <a class="reference external" target="_blank" rel="noopener noreferrer"
+         href="https://gitlab.com/tud-mst/ptvpy">Source code</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="toctree-l1">
+      <a class="reference external" target="_blank" rel="noopener noreferrer"
+         href="https://gitlab.com/tud-mst/ptvpy/issues">
+        Issue tracker
+      </a>
+    </li>
+  </ul>
+  <ul>
+    <li class="toctree-l1">
+      <a class="reference external" target="_blank" rel="noopener noreferrer"
+         href="https://pypi.org/project/ptvpy/">PyPI</a>
+    </li>
+  </ul>
+  <ul>
+    <li class="toctree-l1">
+      <a class="reference external" target="_blank" rel="noopener noreferrer"
+         href="https://tu-dresden.de/ing/elektrotechnik/iee/mst">
+        MST @ TU Dresden
+      </a>
+    </li>
+  </ul>
+{% endblock %}

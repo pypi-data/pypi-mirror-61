@@ -1,0 +1,113 @@
+/* -*- coding: utf-8; mode: css -*-
+ *
+ * Project specific customization of the sphinx_rtd_theme
+ *
+ * Partly inspired by
+ * https://github.com/torvalds/linux/blob/master/Documentation/sphinx-static/theme_overrides.css
+ * https://github.com/conda/conda/blob/master/docs/source/_static/css/custom.css
+ */
+
+/* Allow wrapping inside tables */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+/* Ensure automatic column width (the parser is often times to generous) */
+.wy-table-responsive table col {
+    width: auto;
+}
+
+/* Headlines that are consistent with body font */
+h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
+    font-family: "Lato","Proxima Nova","Helvetica Neue","Arial",sans-serif;
+}
+
+/* Use subtler color for code blocks */
+div.highlight {
+    background: #f4f4f4;
+}
+
+/* Drop the red color, change background for inline literals */
+.rst-content tt, .rst-content code {
+    color: inherit;
+    background: #f4f4f4;
+    font-size: 85%;
+}
+.rst-content tt.literal,.rst-content tt.literal,.rst-content code.literal {
+    color: inherit;
+}
+/* Exclude referencing inline literals */
+.rst-content code.xref {
+    border: none;
+    padding: unset;
+    background: unset;
+}
+
+/* Subtler argument and option signature for click commands */
+.rst-content .click-cmd code.descclassname {
+    font-weight: normal;
+}
+
+/* Don't cramp braces in Python signature */
+.rst-content dl dt span.sig-paren {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+/* Subtler formatting for Python parameters and defaults of parameter
+   descriptions.
+ */
+.rst-content dl dt {
+    font-weight: normal;
+}
+
+
+/* fields of methods and functions
+ *
+ * Subtler formatting for field names and add space between delimiter
+ * and potential parameter types. Also add borders.
+ */
+.rst-content table.field-list dl dt {
+    margin-bottom: 6px;
+    border: none;
+    background: unset;
+}
+.rst-content table.field-list.field-name {
+    padding-right: 16px;
+}
+.rst-content dl:not(.docutils) span.classifier-delimiter {
+    padding-right: 5px;
+}
+.rst-content table.docutils.field-list tr,
+.rst-content table.docutils.field-list th,
+.rst-content table.docutils.field-list td {
+    border: 1px solid #e1e4e5;
+}
+
+/* Content column
+ *
+ * RTD theme's default is 800px as max width for the content, use larger
+ * value to take advantage of modern screens.
+ */
+@media screen {
+    .wy-nav-content {
+        max-width: 900px;
+    }
+}
+
+/*
+ * Make sidebar monochrome.
+ * See https://gitlab.gnome.org/GNOME/pygobject/blob/master/docs/extra.css
+ */
+.wy-side-nav-search {
+    background-color: initial;
+}
+.wy-nav-top {
+    background-color: #343131;
+}
+.wy-nav-side {
+    background-color: #343131;
+}
+
+/* Change color of sidebar captions. */
+.wy-menu-vertical p.caption {
+    color: #00aa88;
+}
