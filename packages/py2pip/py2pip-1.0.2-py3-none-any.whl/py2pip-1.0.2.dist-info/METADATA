@@ -1,0 +1,134 @@
+Metadata-Version: 2.1
+Name: py2pip
+Version: 1.0.2
+Summary: Master package for Py2PIP
+Home-page: http://pypi.python.org/pypi/py2pip
+Author: Manish Kumar
+Author-email: kumarmanish890@gmail.com
+License: MIT
+Description-Content-Type: text/markdown
+Keywords: Developer,Python,Version,Compatibility
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Framework :: AsyncIO
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: Session
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3
+Requires-Dist: setuptools
+Requires-Dist: packaging
+Requires-Dist: beautifulsoup4
+Requires-Dist: aiohttp
+
+The py2pip module provides an api to get the latest package of the supported version.
+
+Master repo: https://github.com/krmanish/py2pip
+
+
+
+Motivation
+==========
+Python Package has started dropping [Python 2.7](https://docs.python.org/2/index.html) support.
+And It's quite obvious(at least happens in one of my project) that those packages are used (as part of
+requirements.txt) without version. And when we install those package again, we experience the error like
+
+    zipp requires Python '>=3.6' but the running Python is 2.7.13  # Zip with latest release drops Py2 support
+
+Therefore, to get the right Py2.7 supported version, we used to visit the pypi site and browse all the released version
+and scan through the page to get the support version of it. This is a tedious and time consuming process.
+Hence I got this idea to write a small script to get rid of that manual effort.
+
+
+Purpose
+=======
+This helps to those who are looking for the package of the supported Py version specially the old one.
+since the Python packages has started dropping Py2.7 support with the latest release.
+
+This is the master package for Py2pip using Python3.
+
+It has the following functions:
+    1. Required to pass python version and 3rd party package name
+    2. Log will work only if executed as a standalone script.
+    3. Log path dir: ~/.local/py2pip/
+
+
+Installation
+============
+To install py2pip, type::
+
+    pip install py2pip
+
+
+Development
+===========
+This package is an help to find the package that support python2 or python2.7 but it's not limited to.
+It's capable of to search any versions of python.
+
+All Python dependent packages are part of py2pip dev env. Code is part of pip installable path.
+Package is written in Python3.7 so needs System or virtual env to have these packages installed.
+1.  Python3
+2.  Python3 Devel
+3.  python3-setuptools
+4.  systemd-devel
+5.  beautifulsoup4
+6.  aiohttp
+7.  packaging
+
+Usage
+=====
+
+```
+>> import py2pip
+>> py2pip.process.Py2PIPManager('Django', '2.7').run()
+
+    Django==1.11.28
+```
+
+**Using CLI:**
+
+```
+>> python3 -m py2pip --py-version 2.7 -p mock
+
+    Execution time: 2.062346935272217
+    Supported Version: mock==3.0.5
+
+```
+
+
+Links
+=====
+Package home page::
+
+  http://pypi.python.org/pypi/py2pip
+
+Changes log
+===========
+
+1.0.1(Alpha)
+-----
+
+- Package Initialized with below feature
+    1. Get passed python version supported package
+    2. Log the progress report success/failure into the file
+
+  [Manish]
+
+1.0.2
+----
+- Package modification with below feature
+    1. Accept custom log path to log the message
+    2. Accept user input to enable/disable debug message
+
+  [Manish]
+
