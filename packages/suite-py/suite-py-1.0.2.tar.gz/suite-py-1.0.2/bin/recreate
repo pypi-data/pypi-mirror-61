@@ -1,0 +1,5 @@
+#!/bin/bash
+rm -rf dist/
+pip3 uninstall -y suite_py
+hatch build
+pip3 install dist/*.whl
