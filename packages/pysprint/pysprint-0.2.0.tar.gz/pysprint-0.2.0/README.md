@@ -1,0 +1,57 @@
+
+# PySprint 
+[![Build Status](https://travis-ci.org/Ptrskay3/PySprint.svg?branch=master)](https://travis-ci.org/Ptrskay3/pysprint)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4e876c4899af3c4435b0/maintainability)](https://codeclimate.com/github/Ptrskay3/PySprint/maintainability)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Ptrskay3/PySprint.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Ptrskay3/PySprint/context:python)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+(currently disabled GUI tests)
+[![codecov](https://codecov.io/gh/Ptrskay3/PySprint/branch/master/graph/badge.svg)](https://codecov.io/gh/Ptrskay3/PySprint)
+
+
+
+##### Spectrally Refined Interferometry for Python 
+CURRENT RELEASE: 
+
+[![PyPI version](https://badge.fury.io/py/pysprint.svg)](https://badge.fury.io/py/pysprint)
+
+**PRE-ALPHA**
+
+PySprint is a UI and API for interferogram evaluation.
+Some functions are not available in the GUI yet.
+The GUI works only with 1920x1080 or bigger screen resolution. Lower resolution compatibility is queued on the To-Do List.
+
+
+### Installation
+
+PySprint requires [Python 3](https://www.python.org/downloads/) to run.
+
+```sh
+$ pip install pysprint
+```
+
+Package requirements:
+* To use the GUI, install [PyQt5](https://pypi.org/project/PyQt5/)
+```sh
+$ pip install PyQt5
+```
+or 
+```sh
+$ conda install -c dsdale24 pyqt5
+```
+* numpy, scipy, matplotlib, pandas, lmfit will be automatically collected.
+
+
+## To Run the GUI
+```python
+import pysprint as ps
+
+ps.run()
+```
+
+## Documentation
+
+CURRENTLY THE IPYTHON NOTEBOOKS ARE NOT UP TO DATE.
+In progress.
+
+
