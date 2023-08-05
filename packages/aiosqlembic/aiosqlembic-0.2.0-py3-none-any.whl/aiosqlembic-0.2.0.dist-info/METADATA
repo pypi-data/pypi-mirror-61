@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: aiosqlembic
+Version: 0.2.0
+Summary: Migrations powered by aiosql
+Home-page: https://gitlab.com/euri10/aiosqlembic
+License: Unlicense
+Keywords: asyncpg,postgresql,migration
+Author: euri10
+Author-email: benoit.barthelet@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: Other/Proprietary License
+Classifier: License :: Public Domain
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Typing :: Typed
+Requires-Dist: aiosql (>=3.0.0,<4.0.0)
+Requires-Dist: aiosqlite (>=0.11.0,<0.12.0)
+Requires-Dist: anyio (>=1.2.3,<2.0.0)
+Requires-Dist: asyncclick (>=7.0.9,<8.0.0)
+Requires-Dist: asyncpg (>=0.20.1,<0.21.0)
+Requires-Dist: jinja2 (>=2.11.0,<3.0.0)
+Requires-Dist: migra (>=1.0.1575954682,<2.0.0)
+Requires-Dist: pydantic (>=1.3,<2.0)
+Requires-Dist: trio (>=0.13.0,<0.14.0)
+Project-URL: Documentation, https://aiosqlembic.readthedocs.io/en/latest/
+Project-URL: Repository, https://gitlab.com/euri10/aiosqlembic
+Description-Content-Type: text/x-rst
+
+Readme
+======
+
+.. image:: https://gitlab.com/euri10/aiosqlembic/badges/master/pipeline.svg
+    :target: https://gitlab.com/euri10/aiosqlembic/-/commits/master
+    :alt: pipeline status
+.. image:: https://gitlab.com/euri10/aiosqlembic/badges/master/coverage.svg
+    :target: https://gitlab.com/euri10/aiosqlembic/-/commits/master
+    :alt: coverage report
+.. image:: https://readthedocs.org/projects/aiosqlembic/badge/?version=latest
+    :target: https://aiosqlembic.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+Aiosqlembic aims at running database migrations powered by the awesome `aiosql <https://github.com/nackjicholson/aiosql>`_
+
+It currently uses the also excellent `migra <https://github.com/djrobstep/migral>`_
+
+It is in development and likely to break
+
+Installation
+------------
+
+Run :code:`pip install aiosqlembic`
+
+Documentation
+-------------
+
+It's here `here <https://aiosqlembic.readthedocs.io/en/latest/index.html>`_
+
+Usage
+-----
+
+Run :code:`aiosqlembic --help`
+
