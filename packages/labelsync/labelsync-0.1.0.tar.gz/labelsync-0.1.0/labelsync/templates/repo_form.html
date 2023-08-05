@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Create master repo</title>
+    </head>
+    <body>
+        <form action="/repos" method="post">
+            <div>
+                <label for="name">Name:</label>
+                <input type ="text" id="name" name="name" size="10" required>
+            </div>
+            <div>
+                <label for="owner">Login of owner:</label>
+                <input type="text" id="owner" name="owner" size="10" required>
+            </div>
+            <div>
+                <label for="service">Service:</label>
+                <select name="service">
+                    {% for service in services%}
+                        <option value="{{ service }}">{{service}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div>
+                <label for="url">Url of the service api (eg: https://api.github.com):</label>
+                <input type="url" id="url" name="url" size="10" required>
+            </div>
+            <div>
+                <label for="token">User token:</label>
+                <input type="text" id="token" name="token" size="10" required>
+            </div>
+            <button type="submit">Ok</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Labelsync info page</title>
+    </head>
+    <body>
+        <h2>Labelsync</h2>
+        {% if master.errors|length == 0 %}
+            <form action="{{ sync_url }}" method="post">
+                <button type="submit">Force synchronization</button>
+            </form>
+        {% endif %}
+        <div class="links">
+            <div><a href="/create_master">Set master repository</a></div>
+        </div>
+        <h3>Master information</h3>
+        <div>Name: {{master.name}}</div>
+        <div>Url: {{master.url}}</div>
+        {% if master.errors | length > 0 %}
+            <div>Errors: {{ master.errors }}</div>
+        {% endif %}
+        <h3>Repositories</h3>
+        {% for repo in repos %}
+            <div>name: {{repo.repo}}</div>
+            <div>service: {{repo.service}}</div>
+            <div>url: {{repo.url}}</div>
+            {% if repo.errors | length > 0 %}
+                <div>errors: {{repo.errors}}</div>
+            {% endif %}
+            <div><a href='/update_login/{{repo.service}}_{{repo.owner}}_{{repo.repo}}'>login</a></div>
+            <br/>
+        {% endfor %}
+        <h3>Labels</h3>
+        <a href="/labels/add">add</a>
+        {% for label in labels %}
+        <div>
+            <h4>{{ label.name }}</h4>
+            <div>color:{{ label.color }}</div>
+            <div>description:{{ label.description }}</div>
+            <span>
+                <a href="/labels/delete/{{label.name}}">delete</a>
+                <a href="/labels/edit/{{label.name}}">edit</a>
+            </span>
+        </div>
+        {% endfor %}
+
+    </body>
+</html>

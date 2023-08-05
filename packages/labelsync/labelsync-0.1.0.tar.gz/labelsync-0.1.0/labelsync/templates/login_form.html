@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Login to repository</title>
+    </head>
+    <body>
+        <h2>{{ name }}</h2>
+        <form action="/update_login" method="post">
+            <div>
+                <label for="token">Token:</label>
+                <input type ="text" id="token" name="token" size="10" required>
+            </div>
+            <input type="hidden" type="text" name="name" value="{{name}}">
+            <input type="hidden" type="text" name="owner" value="{{owner}}">
+            <input type="hidden" type="text" name="service" value="{{service}}">
+            <button type="submit">Save token</button>
+        </form>
+    </body>
+</html>
