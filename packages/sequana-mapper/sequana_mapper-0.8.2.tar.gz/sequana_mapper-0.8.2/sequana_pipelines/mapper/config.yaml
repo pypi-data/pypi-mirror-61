@@ -1,0 +1,42 @@
+# ============================================================================
+# Config file for Quality Control
+# ==========================================[ Sections for the users ]========
+#
+# One of input_directory, input_pattern and input_samples must be provided
+# If input_directory provided, use it otherwise if input_pattern provided,
+# use it, otherwise use input_samples.
+# ============================================================================
+
+input_directory: /home/cokelaer/Work/github/sequana_mapper/sequana_pipelines/mapper/data
+input_readtag: _R[12]_
+input_pattern: '*fastq.gz'
+
+general:
+    mapper: bwa
+    reference_file: measles.fa
+
+bwa_mem_mapping:
+    index_algorithm: is
+    options: -T 30 -M
+    threads: 4
+    tmp_directory: ./tmp
+
+minimap2:
+    options: 
+
+
+#############################################################################
+##   MultiQC aggregates results from bioinformatics analyses across many
+##   samples into a single report.
+##
+## :Parameters:
+##
+## - options: any options recognised by multiqc
+## - output-directory: Create report in the specified output directory
+## - config_file: by default, we use sequana RNA-seq multiqc_config file. 
+##       If you want your own multiqc, fill this entry
+multiqc:
+    options: "-f -m sequana_bamtools_stats"
+    output_directory: multiqc
+    config_file: multiqc_config.yaml
+
