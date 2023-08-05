@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "optga"
+version = "0.2.0"
+description = "Framework to find pareto-optimum inputs of your machine learning models"
+authors = ["horoiwa <horoiwa195@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.17"
+pandas = "^0.25.3"
+dataclasses_json = "^0.3.7"
+llvmlite = "0.30.0"
+numba = "0.45.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+sklearn = "^0.0.0"
+
+[tool.poetry.scripts]
+main = "tests.test_optga:main"
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
