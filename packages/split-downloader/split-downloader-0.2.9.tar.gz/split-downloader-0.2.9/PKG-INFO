@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: split-downloader
+Version: 0.2.9
+Summary: Parallel downloader
+Home-page: https://github.com/joeirimpan/pyparallel
+Author: Joe Paul
+Author-email: joeirimpan@gmail.com
+License: MIT license
+Description: ## PyParallel
+        
+        Split downloader using HTTP range headers.
+        
+        Python port of https://github.com/t3rm1n4l/godownload
+        
+        
+        ![https://pypi.python.org/pypi/pyparallel](https://img.shields.io/pypi/v/pyparallel.svg)
+        ![https://travis-ci.org/joeirimpan/pyparallel](https://img.shields.io/travis/joeirimpan/pyparallel.svg)
+        ![https://pyparallel.readthedocs.io/en/latest/?badge=latest](https://readthedocs.org/projects/pyparallel/badge/?version=latest)
+        ![https://pyup.io/repos/github/joeirimpan/pyparallel/](https://pyup.io/repos/github/joeirimpan/pyparallel/shield.svg)
+        
+        
+        ## Installation
+        
+        ```bash
+        pip install split-downloader
+        ```
+        
+        ## Usage
+        
+        ### CLI
+        
+        ```bash
+        download --url "https://speed.hetzner.de/100MB.bin" --conns 10 --filename 100MB.bin
+        ```
+        
+        ### Python API
+        
+        ```python
+        from pyparallel import Downloader
+        
+        d = Downloader(
+                url='https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg',
+                conns=3,
+                filename='chart.jpg'
+        )
+        d.start()
+        ```
+        
+        ## TODO
+        
+        * [ ] Progress bar
+        
+Keywords: pyparallel
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Description-Content-Type: text/markdown
