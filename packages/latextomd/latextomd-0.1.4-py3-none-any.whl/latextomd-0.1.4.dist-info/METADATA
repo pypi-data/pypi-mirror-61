@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: latextomd
+Version: 0.1.4
+Summary: Simple project to convert latex in markdown
+Home-page: https://github.com/DavidCouronne/latextomd
+License: MIT
+Keywords: latex,markdown,convert
+Author: David Couronné
+Author-email: couronne.david@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: TexSoup (>=0.2.0,<0.3.0)
+Project-URL: Repository, https://github.com/DavidCouronne/latextomd
+Description-Content-Type: text/markdown
+
+![CI](https://github.com/DavidCouronne/latextomd/workflows/CI/badge.svg)
+
+# latextomd
+
+A simple python package to convert latex to markdown (katex)
+
+Documentation: https://latextomd.netlify.com/
+
+## Installation
+
+```bash
+pip install latextomd
+```
+
+## Basic usage
+
+```bash
+latextomd -i source.tex -o export.md
+```
+
+# Requirements (Windows 10)
+
++ miktex
++ pandoc
++ perl: [http://strawberryperl.com/](http://strawberryperl.com/)
+
+```{bash}
+choco install berrybrew
+```
+
++ Image Magick: [https://imagemagick.org/](https://imagemagick.org/)
+
+```{bash}
+choco install imagemagick
+```
+
+
