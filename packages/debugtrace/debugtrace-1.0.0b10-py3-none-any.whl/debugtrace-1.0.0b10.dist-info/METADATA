@@ -1,0 +1,303 @@
+Metadata-Version: 2.1
+Name: debugtrace
+Version: 1.0.0b10
+Summary: Output trace logs when debugging Python programs
+Home-page: https://github.com/MasatoKokubo/DebugTrace-python
+Author: Masato Kokubo
+Author-email: masatokokubo@gmail.com
+Maintainer: Masato Kokubo
+Maintainer-email: masatokokubo@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+
+#################
+DebugTrace-python
+#################
+
+**DebugTrace-python** is a library that outputs trace logs
+when debugging your Python programs.
+It supports Python 3.5 or later.
+By embedding "``_ = debugtrace.enter()``" at the start of the method,
+you can output the execution status of the program under development.
+
+1. Features
+===========
+
+* Automatically outputs the method name, source file name and line number
+  of callers of ``debugtrace.enter`` function.
+* Also outputs end logs when the scope ends.
+* Indents logs automatically with nested methods and objects.
+* Automatically line breaks in value output.
+* Uses reflection to output content even for objects of classes
+  that do not implement the ``__str__`` method.
+* You can customize output contents by setting ``debugtrace.ini`` file.
+* You can select sys.stdout, sys.stderr or logging.Logger to output.
+
+2. Install
+==========
+
+``pip install debugtrace``
+
+3. How to use
+=============
+
+Do the following for the debuggee and related functions or methods:
+
+* Insert "``_ = debugtrace.enter()``" at the beginning of functions and methods.
+* Insert "``debugtrace.print('foo', foo)``" to output variables to the log if necessary.
+
+The following is an example of a Python program using DebugTrace-python and a log when it is executed.
+
+::
+
+    # ReadmeExample.py
+    import datetime
+    import debugtrace # for Debugging
+
+    # Contact class
+    class Contact(object):
+        def __init__(self, id: int, firstName: str, lastName: str, birthday: datetime.date) -> None:
+            _ = debugtrace.enter(self) # for Debugging
+            self.id = id
+            self.firstName = firstName
+            self.lastName  = lastName
+            self.birthday  = birthday
+
+    def func2():
+        _ = debugtrace.enter() # for Debugging
+        contact = [
+            Contact(1, 'Akane' , 'Apple', datetime.date(1991, 2, 3)),
+            Contact(2, 'Yukari', 'Apple', datetime.date(1992, 3, 4))
+        ]
+        debugtrace.print('contact', contact) # for Debugging
+
+    def func1():
+        _ = debugtrace.enter() # for Debugging
+        func2()
+
+    func1()
+
+Log output contents:
+::
+
+    2020-02-11 20:53:08.082640 DebugTrace-python 1.0.0b10 -> sys.stderr
+    2020-02-11 20:53:08.082744 
+    2020-02-11 20:53:08.085611 Enter func1 (ReadmeExample.py:23)
+    2020-02-11 20:53:08.085774 |   Enter func2 (ReadmeExample.py:15)
+    2020-02-11 20:53:08.085896 |   |   Enter Contact.__init__ (ReadmeExample.py:8)
+    2020-02-11 20:53:08.085958 |   |   Leave Contact.__init__ (ReadmeExample.py:8) time: 0:00:00.000008
+    2020-02-11 20:53:08.086038 |   |   
+    2020-02-11 20:53:08.086077 |   |   Enter Contact.__init__ (ReadmeExample.py:8)
+    2020-02-11 20:53:08.086123 |   |   Leave Contact.__init__ (ReadmeExample.py:8) time: 0:00:00.000004
+    2020-02-11 20:53:08.086474 |   |   contact = (list)[
+    2020-02-11 20:53:08.086516 |   |     (__main__.Contact){
+    2020-02-11 20:53:08.086533 |   |       birthday: 1991-02-03, firstName: (length:5)'Akane', id: 1, lastName: (length:5)'Apple'
+    2020-02-11 20:53:08.086560 |   |     }, 
+    2020-02-11 20:53:08.086591 |   |     (__main__.Contact){
+    2020-02-11 20:53:08.086605 |   |       birthday: 1992-03-04, firstName: (length:6)'Yukari', id: 2, lastName: (length:5)'Apple'
+    2020-02-11 20:53:08.086613 |   |     }
+    2020-02-11 20:53:08.086638 |   |   ]
+    2020-02-11 20:53:08.086680 |   Leave func2 (ReadmeExample.py:15) time: 0:00:00.000851
+    2020-02-11 20:53:08.086724 Leave func1 (ReadmeExample.py:23) time: 0:00:00.001032
+
+4. Functions
+============
+
+There are mainly the following functions.
+
+.. list-table:: Function list
+    :widths: 10, 45, 45
+    :header-rows: 1
+
+    * - Name
+      - Arguments
+      - Discription
+    * - ``enter``
+      - **invoker** (object): Pass the self or cls of the invoker. (Optional)
+      - | Outputs an entering log.
+        | Also outputs a leaving log at the end of the code block.
+        |
+        | *Examples*:
+        | ``_ = debugtrace.enter(self)``
+        | ``_ = debugtrace.enter(cls)``
+        | ``_ = debugtrace.enter()``
+    * - ``print``
+      - | **name** (str): Variable name, etc.
+        | **value** (object): Output value
+        | **output_private** (bool): Output private member if True (default: False)
+        | **output_method** (bool): Output method if True (default: False)
+      - | Outputs the variable name and value.
+        |
+        | *Examples*:
+        | ``debugtrace.print('Hellow')``
+        | ``debugtrace.print('foo', foo)``
+
+
+5. Options that can be specified in the **debugtrace.ini** file
+===============================================================
+
+DebugTrace-python reads the ``debugtrace.ini`` file
+in the current directory for initialization.
+The section is ``[debugtrace]``.
+
+You can specify the following options in the ``debugtrace.ini`` file.
+
+.. list-table:: ``debugtrace.ini``
+    :widths: 30, 50, 20
+    :header-rows: 1
+
+    * - Option Name
+      - Description
+      - Default Value
+    * - ``logger``
+      - | Logger used by debugtrace
+        | ``StdOut: Output to sys.stdout``
+        | ``StdErr: Output to sys.stderr``
+        | ``Logger: Output using logging package``
+      - ``StdErr``
+    * - ``logging_config_file``
+      - Configuration file name specified in logging package
+      - ``logging.conf``
+    * - ``logging_logger_name``
+      - Logger name when using the logging package
+      - ``debugtrace``
+    * - ``logging_level``
+      - Log level when using the logging package
+      - ``DEBUG``
+    * - ``is_enabled``
+      - | ``False: Log output is disabled``
+        | ``True: Log output is enabled``
+      - ``True``
+    * - ``enter_string``
+      - String to be output when entering functions and methods
+      - ``Enter``
+    * - ``leave_string``
+      - String to output when leaving functions and methods
+      - ``Leave``
+    * - ``limit_string``
+      - String output when limit is exceeded
+      - ``...``
+    * - ``maximum_indents``
+      - Maximum number of indents
+      - ``20``
+    * - ``code_indent_string``
+      - Indentation string for code
+      - ｜␠␠␠
+    * - ``data_indent_string``
+      - Indentation string for data
+      - | ␠␠
+        | (2 spaces)
+    * - ``non_output_string``
+      - String to be output instead of not outputting value
+      - ``...``
+    * - ``cyclic_reference_string``
+      - String to be output when referring to a cycle
+      - ``*** Cyclic Reference ***``
+    * - ``varname_value_separator``
+      - String separating variable name and value
+      - ``␠=␠``
+    * - ``key_value_separator``
+      - | String separating the dictionary key and value
+        | And separating the attribute name and value
+      - ``:␠``
+    * - ``log_datetime_format``
+      - Log date and time format when ``logger`` is ``StdOut`` or ``StdErr``
+      - ``%Y-%m-%d %H:%M:%S.%f``
+    * - ``enter_format``
+      - | Format of the log output when entering function or method
+        | ``{0}: the function or method name``
+        | ``{1}: the file name``
+        | ``{2}: the line number``
+      - ``{0} ({1}:{2})``
+    * - ``leave_format``
+      - | Format of log output when leaving function or method
+        | ``{0}: function or method name``
+        | ``{1}: the file name``
+        | ``{2}: the line number``
+        | ``{3}: the time from entering``
+      - ``{0} ({1}:{2}) time: {3}``
+    * - ``count_format``
+      - Output format of the number of elements such as ``list``, ``tuple`` and ``dict``
+      - ``count:{}``
+    * - ``minimum_output_count``
+      - Minimum value to output the number of elements such as ``list``, ``tuple`` and ``dict``
+      - ``5``
+    * - ``length_format``
+      - Output format of the length of string and ``bytes``
+      - ``length:{}``
+    * - ``minimum_output_length``
+      - Minimum value to output the length of string and ``bytes``
+      - ``5``
+    * - ``maximum_data_output_width``
+      - Maximum output width of data
+      - ``80``
+    * - ``bytes_count_in_line``
+      - Count in line of ``bytes``
+      - ``16``
+    * - ``collection_limit``
+      - Output limit of elements such as list, tuple, dict
+      - ``256``
+    * - ``string_limit``
+      - Output limit of string elements
+      - ``2048``
+    * - ``bytes_limit``
+      - Output　limit of ``bytes`` elements
+      - ``512``
+    * - ``reflection_nest_limit``
+      - Limit of reflection nests
+      - ``4``
+
+6. License
+==========
+
+MIT License (MIT)
+
+7. Release notes
+================
+
+``DebugTrace-python 1.0.0b9 - Feb. 11, 2020``
+------------------------------------------------
+
+* Improvements and Bug fixes
+
+``DebugTrace-python 1.0.0b9 - Feb. 9, 2020``
+------------------------------------------------
+
+* Improvements and Bug fixes
+
+``DebugTrace-python 1.0.0b8 - Feb. 7, 2020``
+------------------------------------------------
+
+* Improvements and Bug fixes
+
+``DebugTrace-python 1.0.0b7 - Feb. 5, 2020``
+------------------------------------------------
+
+* Improvements and Bug fixes
+
+``DebugTrace-python 1.0.0b6 - Feb. 4, 2020``
+------------------------------------------------
+
+* Improvements and Bug fixes
+
+``DebugTrace-python 1.0.0b5 - Feb. 3, 2020``
+------------------------------------------------
+
+* Improvements and Bug fixes
+
+``DebugTrace-python 1.0.0b4 - Jan. 31, 2020``
+------------------------------------------------
+
+* Change ``print_`` function name to ``print``.
+
+``DebugTrace-python 1.0.0b2 - Jan. 13, 2020``
+------------------------------------------------
+
+* First release (beta version)
+
+*(C) 2020 Masato Kokubo*
+
+
