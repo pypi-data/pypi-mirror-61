@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "filmaster"
+version = "0.0.5"
+license = "AFL-3.0"
+readme = "README.md"
+description = "Discord bot that scours TMDB for film info"
+homepage = "https://gitlab.com/ObserverOfTime/filmaster"
+documentation = "https://observeroftime.gitlab.io/filmaster/"
+keywords = ["discord", "ai", "nlp", "tmdb"]
+include = ["templates/*", "nlu_engine/*"]
+authors = [
+    "ObserverOfTime <chronobserver@disroot.org>",
+    "MrCoffee <vaggecon@gmail.com>",
+    "ZoyPan98 <zenia1pan@gmail.com>",
+    "BadCoach <8adCoach@gmail.com>",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: Academic Free License (AFL)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Communications :: Chat",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[[tool.poetry.packages]]
+include = "filmaster"
+
+[tool.poetry.scripts]
+filmaster = "filmaster.__main__:run"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+###### requirements ######
+"discord.py" = "^1.3.1"
+isle = "^0.6.0"
+snips-nlu = "^0.20.2"
+
+[tool.poetry.dev-dependencies]
+pychatl = "^2.0.3"
+sphinx = "^2.4.1"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
