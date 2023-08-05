@@ -1,0 +1,242 @@
+CHANGES
+=======
+
+0.3.1.0rc3
+----------
+
+* Fix broken labels (#251)
+
+0.3.1.0rc2
+----------
+
+* Correct filename since it was renamed. (#250)
+* Add CI for helm testing and packaging (#249)
+* Sre 4856/helm for opsy (#248)
+
+0.3.1.0rc1
+----------
+
+* Uri prefix support (#247)
+
+0.3.1.0rc0
+----------
+
+* Fix circleci again
+* SRE-4855: Dockerize and push to DockerHub (#245)
+
+0.3.0
+-----
+
+* Fix circle again2
+* Fix circle again
+* Fix circle
+* Automate deployment to pypi (#13) (#242)
+* Or dev (#241)
+* Auth routes (#240)
+* Added RBAC Tests (#239)
+* Switch to TOML config, add cheroot WSGI server, and improve logging. (#238)
+* Add DB Migration Support (#237)
+* Fix Inventory Views Tests (#236)
+* Start of tests (#3)
+* workaround-bravado-bug (#4)
+* workaround-flask-apispec-bug (#2)
+* fix-swagger-spec
+* Fix tests. (#233)
+* Switch to circleci (#232)
+* Forgot these. (#230)
+* Big refactor (#229)
+* Upgrading things and proper serialization with marshmallow (#226)
+* Fix subscription silences and add truncate option to event list (#225)
+* Add fav icon (#224)
+* Filtering silenced events is slow (#223)
+* whoops, this is needed (#222)
+* bug fixes (#221)
+* Sensu silence api [WIP] (#220)
+* Mostly bugfixes (#219)
+* fixed auth token workflow so it is clearer (#216)
+* Fix a couple of bugs for user auth that were missed. (#215)
+* User auth (#214)
+* updated example config (#211)
+* fixed some bugs. commented out link generation for now since it is busted (#210)
+* Moving zone and dashboard config to the DB (#208)
+
+0.2.2
+-----
+
+* Fix scrollbars being everywhere on the event details page (#206)
+* Make links great again (#204)
+* fix source icon for Events (#202)
+
+0.2.1
+-----
+
+* Add scheduler misfire gracetime (#199)
+* Fixed filtering for silenced events (#195)
+* Highlight stashed alerts in blue (#194)
+* fixed bug where failed poll doesn't report it failed (#193)
+* change del\_objects type to list (#192)
+* Polish up the client event details page some more (#191)
+* More javascript testing (#190)
+* Fix sorting on clientDetails page (#189)
+* Extend javascript testing and add coverage tests (#188)
+* Cleanup details page in monitoring plugin (#186)
+* Fix front-end to account for recent pluggable backend changes (#183)
+* Added plugin support
+
+0.1.0
+-----
+
+* Allow setting tick rate via URL param for debugging (#175)
+* Return of ajax updating filters on events page (#174)
+* Add more unit tests (#173)
+* Fix sorting on events table (#172)
+* Fix error in events.js (#170)
+* Use qunit fixture for opsy.js notification testing (#169)
+* Start of unit testing Javascript (#168)
+* Refactor opsy.js and events.js to remove loading side-effects (#167)
+* Remove build badge from README as it is not working as expected (#166)
+* Disable filter list updating until we can fix #164 (#165)
+* Add build badge to readme (#163)
+* Setup grunt for Javascript test running (#162)
+* Update gitignore for new project name (#161)
+* Add in javascript style checking (#158)
+* Rename project from Hourglass to Opsy (#157)
+* Initial work towards travis-ci integration (#156)
+* Remove mailmap as it is no longer needed
+* just some fixes to make hourglass work with plugins again (#154)
+* Add event counts to check filter list (#153)
+* Update requirements.txt (#151)
+* Add desktop notifications to notification tray (#150)
+* Fixing some bugs (#149)
+* Fix filters causing table to jump on events page (#147)
+* Create notification tray, fixes #145 (#146)
+* Fix a few more front-end pages (#144)
+* Front-end enhancements (#143)
+* BIG OL' UPDATE (#141)
+* Add in alert boxes for zone poller failures (#140)
+* Make the frontend great again (#138)
+* Fixed bug that caused global cache update to fail on a single timeout. Also added support for basic auth. Started work on pulling http logic out of the zone model. (#135)
+* kill stashes and replace with more generic silences (#133)
+* Remove list calls (#132)
+* Actually make the models be more than two columns (#128)
+* Remove erroneous symlink (#127)
+* Correct uchiwa icon URL (#126)
+* Change refresh interval back to 30s (#125)
+* Various front-end improvements (#124)
+* Update event details page to work with 'OK' results (#123)
+* Initial addition of client event details page (#122)
+* maybe actually create the cache..... (#121)
+* fixing a dumb (#120)
+* At this point I don't know what I'm doing (#119)
+* Added events things to the api thing (#118)
+* Making the thing update the cache at start and also lazy-loading the app (#117)
+* hiding stashed clients/checks broke somewhere, this fixes it (#116)
+* Deconflict merge
+* Convert ForeignKey's to Relationships
+* Fix index ordering for foreign keys (#114)
+* Fix index ordering for foreign keys
+* Implement clients details page (#113)
+* Made the models mighty morphing power models (#112)
+* Update debian packaging dependencies (#111)
+* added clients calls to the api (#110)
+* Initial pass at debian packaging, ref #74 (#109)
+* added logging and fixed listing checks (#106)
+* Dev (#105)
+* Sort the list of dashboards (#104)
+* Don't Capitalize dashboard names, preserve casing from the config file (#103)
+* Properly handle events with an unknown status code (#102)
+* the polls must flow (#101)
+* Correct some minor issues (#100)
+* Clean up cruft (#99)
+* Add initial implementation of Clients page, fixes #73 (#98)
+* Dev (#97)
+* Re-implement Checks page (#96)
+* Update events.js to use zones rather than datacenters
+* bunch of fun stuff with the api (#95)
+* added some error checking to the poller (#93)
+* Make aiohttp great again
+* changed "region" to "source" (#90)
+* More poller work and the start of plugins (#89)
+* fixing the poller so it polls things (#88)
+* Fixes for the async poller, works much better now (#86)
+* Update poller to use new db schema (#85)
+* Initial commit of asyncio poller (#84)
+* Made the cache models more simplified (#83)
+* Fix setup.py (#82)
+* Remove wsgi spooler from readme (#81)
+* Initial commit of WSGI support (#80)
+* fixing an import (#79)
+* abstracting things out, moving things around (#78)
+* More deployment related fixes (#77)
+* Initial addition of setuptools functionality (#76)
+* API Improvements (#75)
+* Front end support for filtering based on occurrence threshold, ref #63 (#71)
+* Reorganize structure (#70)
+* added proper filtering support for stashed clients/checks. Also added filtering for events under their occurrence threshold (#69)
+* Add nice text when all filters are selected (#68)
+* More UI updates (#66)
+* Unify button size for multiselects (#65)
+* Lots of UI improvements (#64)
+* added stash support. side note: I hate how sensu does stashes. (#62)
+* Clean up events table (#61)
+* Fix Uchiwa click-through (#56)
+* Add event counts to window title, fixes #50 (#55)
+* Change empty option to say All instead (#54)
+* Use colored flags to show status and expose status column, fixes #52 (#53)
+* Fix duplicate API queries (#49)
+* Remove debugging console.log (#47)
+* Fix merge
+* Deconflict merge
+* Fix up dashboards and filtering
+* Sort check names in front-end
+* Impliment dashboards in front-end (#45)
+* Impliment dashboards in front-end
+* added dashboard support (#44)
+* Change refresh interval back to 30 seconds (#43)
+* Remove debugging console outputs (#42)
+* Add in status filtering, needs api support (#40)
+* Initial front-end filtering (#39)
+* Working on api (#38)
+* More pep8 and pylint improvements (#37)
+* Testing custom query class (#36)
+* Correct ability to override global sensu poll interval
+* Make foreign and primary keys nicer
+* Fix import
+* More model updates
+* deconflict merge pr
+* More fixes to the Events model
+* Fix Event repr (#30)
+* Fix Event repr
+* Add in Event relationships (#29)
+* adding ipython to dev reqs
+* making the shell chooch
+* Add in poller/api caching of Events and Checks (#27)
+* Dev (#26)
+* Implement local cache of sensu /clients api call
+* moved logic for api from view to model
+* deconflict PR #23
+* updated api view to use new config
+* Initial work for poller greenlet
+* added config sample, updated gitignore, renamed default config file
+* deconflicting requirements.txt
+* updated requirements and cleaned up config parsing
+* Lots of changes, events table is filterable and ajax loaded
+* remove debugging print
+* gitignore the fakeapi
+* events be clickable yo
+* changing config to ini format
+* DataTables all the things!
+* Add last check time to output
+* gitignore config, but provide a sample
+* Add datacenter to the output
+* Actually use the port number in the config
+* Tables be so pretty
+* More template fixxoring
+* make the tables pretty
+* Re-order top bar
+* Add Flask-script to requirements.txt
+* HOLY SHIT IT WORKS
+* Start of the rewrite to make it more python module-like
+* Add a bunch of templates and views
+* Initial commit
+* Initial commit
