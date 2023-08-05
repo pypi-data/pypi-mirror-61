@@ -1,0 +1,194 @@
+Metadata-Version: 1.2
+Name: oasapi
+Version: 0.1.14
+Summary: Python library for Web APIs leveraging OpenAPI/Swagger specification
+Home-page: https://github.com/sdementen/oasapi
+Author: Sebastien de Menten
+Author-email: sdementen@gmail.com
+License: BSD-3-Clause
+Project-URL: Documentation, https://oasapi.readthedocs.io/
+Project-URL: Changelog, https://oasapi.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/sdementen/oasapi/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        Python library for Web APIs leveraging OpenAPI/Swagger specification, enabling you to:
+        
+         - validate an OAS 2.0 document
+         - prune an OAS 2.0 document of its unused elements
+         - filter endpoints of an OAS 2.0 document to generate a subset of the API
+         - [todo] control backward compatibility between two OAS 2.0 documents
+         - [todo] rewrite the basePath and paths of an OAS 2.0 document
+         - [todo] add/remove securityDefinitions on an OAS 2.0 document
+        
+        Free software license: BSD 3-Clause License
+        
+        Quickstart
+        ==========
+        
+        Install oasapi from PyPI with::
+        
+            pip install oasapi
+        
+        You can also install the in-development version with::
+        
+            pip install https://github.com/sdementen/oasapi/archive/master.zip
+        
+        OAS Document validation
+        -----------------------
+        
+        Validate an OAS 2.0 Document (in JSON or YAML format) with::
+        
+            python -m oasapi validate samples/swagger_petstore.json
+        
+        or if you prefer with the oasapi script::
+        
+            oasapi validate samples/swagger_petstore.json
+        
+        or with the ``sdementen/oasapi`` Docker image (available on Docker Hub)::
+        
+            docker run sdementen/oasapi validate http://petstore.swagger.io/v2/swagger.json
+        
+        
+        You can also pipe a swagger to the command (if oasapi cannot retrieve the file by itself)::
+        
+            type samples/swagger_petstore.json | oasapi validate -
+            type samples/swagger_petstore.json | docker run -i sdementen/oasapi validate -
+            curl http://petstore.swagger.io/v2/swagger.json | oasapi validate -
+            curl -s http://petstore.swagger.io/v2/swagger.json | docker run -i sdementen/oasapi validate -
+        
+        OAS Document pruning
+        --------------------
+        
+        Similarly, you can use the pruning command to prune an OAS 2.0 document of its unused elements as::
+        
+            oasapi prune http://petstore.swagger.io/v2/swagger.json -o new_swagger.json
+        
+        
+        Documentation
+        =============
+        
+        https://oasapi.readthedocs.io/
+        
+        Development
+        ===========
+        
+        https://oasapi.readthedocs.io/en/latest/contributing.html#development
+        
+        
+        Changelog
+        =========
+        
+        (dev)
+        
+        * add filtering of swagger
+        * support outputting swagger in yaml format
+        * support silencing the CLI
+        * [dev] refactor CLI
+        
+        0.1.13 (2020-01-25)
+        -------------------
+        
+        * add validation of parameters required/default
+        * add validation of parameters default value wrt type/format
+        
+        
+        0.1.12 (2020-01-17)
+        -------------------
+        
+        * add pruning of unused items (definitions, responses, parameters, securityDefinitions/scopes, tags)
+        * rename validate_swagger function to validate, add prune function
+        
+        0.1.11 (2020-01-16)
+        -------------------
+        
+        * [dev] use jsonpath_ng to walk the swagger
+        * add timing of validation in CLI if verbose
+        
+        0.1.10 (2020-01-10)
+        -------------------
+        
+        * [dev] fix tag name to remove "v" (for readthedocs latest build)
+        * [dev] fix travis ci python version for doc
+        
+        0.1.9 (2020-01-10)
+        ------------------
+        
+        * Improve validation of array parameters
+        * Improve documentation
+        
+        0.1.8 (2020-01-09)
+        ------------------
+        
+        * Push the sdementen/oasapi docker image to Docker Hub on each release
+        * Update doc on Docker image use and pipeing a swagger to oasapi
+        
+        0.1.7 (2020-01-09)
+        ------------------
+        
+        * Support URL and stdin (with -) as SWAGGER for the CLI
+        
+        
+        0.1.6 (2020-01-08)
+        ------------------
+        
+        * [dev] PyPI deployment through Travis CI
+        
+        
+        0.1.5 (2020-01-08)
+        ------------------
+        
+        * Fix script form of the cli (``oasapi`` instead of ``python -m oasapi``)
+        
+        
+        0.1.4 (2020-01-08)
+        ------------------
+        
+        * Explicit support only for python >= 3.6 (no py35 as use of f-string)
+        * [dev] Move local build of docs from dist/docs to docs/dist to avoid cluttering dist
+        
+        
+        0.1.3 (2020-01-08)
+        ------------------
+        
+        * [dev] Add git pre-commit hooks for black and flake
+        * [dev] Do not use isort
+        * [dev] Fix black + flake8 issues
+        
+        
+        0.1.2 (2020-01-08)
+        ------------------
+        
+        * Fix model & reporting of duplicate operationIds
+        * Add documentation on the CLI Usage
+        
+        0.1.1 (2020-01-08)
+        ------------------
+        
+        * Add pyyaml dependencies (to support OAS in yaml format)
+        
+        0.1.0 (2020-01-08)
+        ------------------
+        
+        * First release on PyPI.
+        * Implementation of the validation of an OAS 2.0 (aka swagger) file
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6.*
