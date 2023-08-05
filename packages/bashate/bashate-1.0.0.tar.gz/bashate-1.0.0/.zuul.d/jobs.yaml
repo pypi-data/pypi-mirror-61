@@ -1,0 +1,15 @@
+- project:
+    templates:
+      - openstack-python3-ussuri-jobs
+      - publish-openstack-docs-pti
+      - release-notes-jobs-python3
+    check:
+      jobs:
+        - bashate-devstack:
+            voting: false
+
+- job:
+    name: bashate-devstack
+    run: playbooks/bashate-devstack-master/run.yaml
+    required-projects:
+      - openstack/devstack
