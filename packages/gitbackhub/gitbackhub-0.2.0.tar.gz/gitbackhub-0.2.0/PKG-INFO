@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: gitbackhub
+Version: 0.2.0
+Summary: A script to backup / mirror GitHub repositories.
+Home-page: https://github.com/MarkusH/gitbackhub
+Author: Markus Holtermann
+Author-email: info@markusholtermann.eu
+License: MIT
+Description: # gitbackhub
+        
+        ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/MarkusH/gitbackhub/CI/master?style=for-the-badge)
+        ![PyPI](https://img.shields.io/pypi/v/gitbackhub?style=for-the-badge)
+        
+        A script to backup / mirror GitHub repositories.
+        
+        ## Config
+        
+        Get yourself a [personal access token](https://github.com/settings/tokens) on GitHub that has the `repo` scope.
+        
+        Config file in `~/.config/gitbackhub/config.ini`.
+        
+        ```ini
+        [main]
+        user = GitHubUserName
+        access_token = AccessToken
+        directory = /path/to/target/directory
+        
+        [user:GitHubUserName]
+        [user:AnotherGitHubUserName]
+        
+        [org:GitHubOrgName]
+        [org:AnotherGitHubOrgName]
+        
+        [repo:SomeGitHubUser/some-repo]
+        [repo:YetAnotherGitHubUserName/another-repo]
+        [repo:YetAnotherGitHubOrgName/yet-another-repo]
+        ```
+        
+        Make sure the file is not readable by anybody but yourself since it contains your GitHub token.
+        
+        
+        ## Help
+        
+        ```shell
+        $ gitbackhub --help
+        Usage: gitbackhub [OPTIONS]
+        
+        Options:
+            --access-token TEXT
+            --user TEXT
+            --directory DIRECTORY  The data directory to clone to
+            --config PATH
+            --help                 Show this message and exit.
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Version Control
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Provides-Extra: testing
