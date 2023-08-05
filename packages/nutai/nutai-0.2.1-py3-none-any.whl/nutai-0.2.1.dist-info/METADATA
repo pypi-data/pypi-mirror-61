@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: nutai
+Version: 0.2.1
+Summary: UNKNOWN
+Home-page: https://github.com/mattf/nutai
+Author: Matthew Farrellee
+Author-email: matt@cs.wisc.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: connexion[swagger-ui]
+Requires-Dist: gensim
+Requires-Dist: msgpack
+Requires-Dist: msgpack-numpy
+Requires-Dist: numpy
+Requires-Dist: sklearn
+Requires-Dist: tqdm
+Requires-Dist: redis
+Requires-Dist: minhash
+Requires-Dist: mfoops
+
+# How to use this...
+
+```bash
+pip install -r requirements.txt
+
+python -m nutai
+```
+
+```bash
+curl 127.1:5000/documents/0
+: "Not Found"
+```
+
+```bash
+curl -d '"z e r o"' -H 'Content-Type: application/json' 127.1:5000/documents/0
+: 200
+```
+
+```bash
+curl 127.1:5000/documents/0
+: '[{"id": "0", "score": 0}]'
+```
+
+```bash
+curl -d '"o r e z"' -H 'Content-Type: application/json' 127.1:5000/documents/0
+: "Document already exists"
+```
+
+```bash
+curl -d '"o n e"' -H 'Content-Type: application/json' 127.1:5000/documents/1
+: 200
+```
+
+```bash
+curl 127.1:5000/documents/1
+: '[{"id": "0", "score": 0}, {"id": "1", "score": 0}]'
+```
+
+
