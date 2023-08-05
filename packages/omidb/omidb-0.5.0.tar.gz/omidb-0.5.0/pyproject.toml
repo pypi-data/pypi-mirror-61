@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "omidb"
+version = "0.5.0"
+description = "Python package and CLI for The OPTIMAM Mammography Image Database (OMI-DB)"
+authors = ["Dominic Ward <dominic.ward1@nhs.net>"]
+license = "MIT"
+
+[tool.poetry.scripts]
+omidb = 'omidb:commands.main'
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.0"
+matplotlib = "^3.1.2"
+loguru = "^0.4.1"
+pydicom = "^1.4.1"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.761"
+pylama = "^7.7.1"
+black = "^19.10b0"
+sphinx = "^2.3.1"
+sphinx-rtd-theme = "^0.4.3"
+sphinx-autodoc-typehints = "^1.10.3"
+pytest = "^5.3.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
