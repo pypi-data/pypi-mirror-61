@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: django_telethon_session
+Version: 0.6
+Summary: Telethon Session 
+Home-page: https://github.com/sinarezaei/django_telethon_session
+Author: Sina Rezaei
+Author-email: sinarezaei1991@gmail.com
+License: MIT
+Description: \![alt text][pypi_version] ![alt text][licence_version]
+        
+        # Django Telethon Session
+        
+        A Telethon session storage implementation backed for Django ORM to use telethon in django projects.
+        
+        Tested with:
+        * Python 3.7+
+        * Django 2.2+
+        
+        Use the following command to install using pip:
+        ```
+        pip install django-telethon-session
+        ```
+        
+        ## Usage example
+        Usage is very simple, just follow three simple steps below
+        ### Add Django-Telethon-Session to your installed apps
+        First add django telethon session to your installed apps in your django project settings:
+        
+        ```python
+        INSTALLED_APPS = [
+            ...,
+            'django_telethon_session',
+            ...
+        ]
+        ```
+        
+        ### Migrate the database
+        Then run `migrate` command to create migrations in database.
+        
+        ```shell script
+        python manage.py migrate
+        ```
+        
+        ### Use custom session
+        Use the session in `django_telethon_session.sessions` to initialize telegram client:
+        ```python
+        from django_telethon_session.sessions import DjangoSession
+        client = TelegramClient(DjangoSession())
+        ```
+        
+        Feel free to send pull requests or report issues!
+        
+        [pypi_version]: https://img.shields.io/pypi/v/pykson.svg "PYPI version"
+        [licence_version]: https://img.shields.io/badge/license-MIT%20v2-brightgreen.svg "MIT Licence"
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
