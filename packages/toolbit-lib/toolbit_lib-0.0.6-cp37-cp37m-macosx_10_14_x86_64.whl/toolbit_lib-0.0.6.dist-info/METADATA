@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: toolbit-lib
+Version: 0.0.6
+Summary: Toolbit library
+Home-page: https://github.com/toolbitorg/ToolbitSDK
+Author: Junji Ohama
+Author-email: junji.ohama@toolbit.org
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/toolbitorg/ToolbitSDK/issues
+Project-URL: Source, https://github.com/toolbitorg/ToolbitSDK
+Keywords: toolbit sdk library
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+
+Python bindings
+====
+
+## Descripton
+
+Toolbit library for Python.
+
+
+## Require
+
+Python  
+
+swig  
+  http://www.swig.org/  
+
+
+## Build
+
+
+### Linux
+    make
+tbi.py and _tbi.so will be created and copied to samples folder
+
+
+### Windows
+
+Open command prompt  
+Execute build.bat  
+
+Note:  
+    Please modify the following line according to your VC version  
+    set VS90COMNTOOLS=%VS140COMNTOOLS%  
+
+
+## Test
+
+    cd ../samples
+    python chopper_test.py
+    python dmm_test.py
+
+
+## Reference
+
+
