@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: deepflash2
+Version: 0.0.2
+Summary: A Deep learning pipeline for segmentation of fluorescent labels in microscopy images
+Home-page: https://github.com/matjesg/deepflash2
+Author: Matthias Griebel
+Author-email: email@example.com
+License: Apache Software License 2.0
+Keywords: unet,deep learning,semantic segmentation,microscopy,fluorescent labels
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: tensorflow (>=2.1.0)
+Requires-Dist: tensorflow-addons (>=0.7.0)
+Requires-Dist: scikit-image
+Requires-Dist: matplotlib
+
+# DeepFLaSH2
+> Official repository of DeepFLasH - a deep learning pipeline for segmentation of fluorescent labels in microscopy images.
+
+
+This file will become your README and also the index of your documentation.
+
+## Install
+
+`pip install deepflash2`
+
+## How to use
+
+```python
+learn = Unet_Learner(train_generator, valid_generator)
+```
+
+```python
+learn.lr_find()
+learn.plot_loss()
+```
+
+```python
+learn.fit_one_cycle(100, validation_freq=5, max_lr=5e-4)
+```
+
+## Model Library
+
+This list contains download links to the weights of the selected models as well as an example of their corresponding training images and masks.
+
+You can select and apply these models within our Jupyter Notebook.
+
+## Acronym
+
+A Deep-learning pipeline for Fluorescent Label Segmentation that learns from Human experts
+
+
