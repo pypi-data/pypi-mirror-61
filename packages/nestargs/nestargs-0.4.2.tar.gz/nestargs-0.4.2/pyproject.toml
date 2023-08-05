@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "nestargs"
+version = "0.4.2"
+description = "Nested arguments parser"
+authors = ["Takahiro Yano <speg03@gmail.com>"]
+
+readme = "README.md"
+license = "MIT"
+
+homepage = "https://github.com/speg03/nestargs"
+repository = "https://github.com/speg03/nestargs"
+
+keywords = ["argparse", "arguments", "parser", "cli", "command", "line", "interface"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+importlib-metadata = { version = "^1.5", python = "<3.8" }
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3"
+pytest-cov = "^2.8"
+flake8 = "^3.7"
+isort = "^4.3"
+black = { version = "^19.10b0", python = "^3.6" }
+jedi = "^0.16.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
