@@ -1,0 +1,79 @@
+name: indico
+onprem: true
+parentDomain:
+publicDomain:
+apiDomain: api-<!lookup:publicDomain>
+nvidia:
+  path: /usr/local/nvidia/bin
+clusterVolumes:
+  apiDataVersion: v7
+  rox:
+    azureFile:
+      readOnly: true
+      secretName: azure-storage-key
+      shareName:
+  rwx:
+    azureFile:
+      readOnly: false
+      secretName: azure-storage-key
+      shareName:
+    mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - uid=1000
+    - gid=1000
+frontend:
+  config:
+    features:
+      ocrProcessing: true
+postgres:
+  app:
+    host:
+    password:
+    user:
+  custom:
+    autoCreateDB: 'True'
+    host:
+    password:
+    user:
+
+redis:
+  celery:
+    host: celery-backend
+    port: '6379'
+  user:
+    host: user-redis
+    port: '6379'
+rabbit:
+  default_pass: <generate_secret>
+  erlang_cookie: <generate_secret>
+
+globalVars:
+  disableCeleryTimeLimit: 'True'
+  pubsubEnabled: False
+
+secrets:
+  atmosphere_cookie_secret: <generate_secret>
+  atmosphere_password_salt: <generate_secret>
+  atmosphere_token_secret: <generate_secret>
+  indico_apikey_salt: <generate_secret>
+  indicoapi_api_key: <generate_secret>
+  ocr_license_key: YzEwNjNiZmNiYzkxYjg4MmNkYzFjYzJjMjQzYjVlMDM=
+services:
+  cluster-admin:
+    group: misc
+    template: cluster-admin
+  moonbow:
+    values:
+      env:
+      - name: FINETUNE_ENABLED
+        value: 'True'
+  user-redis:
+    group: misc
+    template: user-redis
+tls:
+  cert:
+  key:
+cluster:
+  storage_acct:
+  storage_acct_key:
