@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<data>
+    <xpath expr="/form/notebook/page[@id='general']/separator[@name='description']" position="replace">
+    </xpath>
+    
+    <xpath expr="/form/notebook/page[@id='general']/field[@name='description']" position="replace">
+        
+        <group id="grptwocols1" colspan="4" col="1">
+            <separator name="description" colspan="4"/>
+            <field name="description"/>
+        </group>
+
+        <group id="grptwocols2" colspan="4" col="2">
+            <separator id="sep1" colspan="2" string="Two Columns"/>
+            <label name="desctitle" xalign="0.0"/>
+            <label name="description" xalign="0.0"/>
+            
+            <field name="desctitle"/>
+            <field name="description"/>
+        </group>
+    </xpath>
+</data>
