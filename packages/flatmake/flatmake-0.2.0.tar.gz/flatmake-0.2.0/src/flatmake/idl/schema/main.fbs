@@ -1,0 +1,13 @@
+include './float_array.fbs';
+include './coordinates_2d.fbs';
+include './rgb_triple_array.fbs';
+
+namespace Dim;
+
+table Dim {
+    floatArray: FloatArray;
+    rgbTripleArray: RGBTripleArray;
+    coordinates2D: Coordinates2D;
+}
+
+root_type Dim;
