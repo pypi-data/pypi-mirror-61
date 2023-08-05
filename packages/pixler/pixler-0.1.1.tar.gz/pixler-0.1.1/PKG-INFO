@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: pixler
+Version: 0.1.1
+Summary: Draw a pixel map with braille characters
+Home-page: https://github.com/ikornaselur/pixler
+License: MIT
+Author: Axel
+Author-email: pixler@absalon.is
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+# Pixler
+
+A library to draw pixles with unicode braille characters
+
+## Example
+
+```
+In [1]: from pixler import Pixler
+
+In [2]: planet_pixel_map = [
+   ...:     [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0],
+   ...:     [0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0],
+   ...:     [0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0],
+   ...:     [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+   ...:     [0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+   ...:     [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+   ...:     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+   ...:     [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+   ...:     [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+   ...:     [1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+   ...:     [0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+   ...:     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+   ...: ]
+   ...:
+   ...: pixler = Pixler.from_pixels(planet_pixel_map)
+
+In [3]: print(pixler.get_frame())
+⠀⢠⠒⣉⠕⢲⢉⠆
+⢀⢗⠉⠀⠀⢀⠇⠀
+⠣⠬⠒⠤⠔⠊⠀⠀
+```
+
