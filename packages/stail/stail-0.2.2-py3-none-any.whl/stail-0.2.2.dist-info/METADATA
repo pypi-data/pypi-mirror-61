@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: stail
+Version: 0.2.2
+Summary: CLI Tool to run and tail a step function synchronously.
+Home-page: https://github.com/imankamyabi/stail
+License: MIT
+Keywords: step-function,aws,cli,tail,state-machine
+Author: Iman Kamyabi
+Author-email: contact@imankamyabi.com
+Requires-Python: >=3.7,<4.0
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: boto3 (>=1.11.14,<2.0.0)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: colorama (>=0.4.3,<0.5.0)
+Requires-Dist: pyfiglet (>=0.8.post1,<0.9)
+Project-URL: Repository, https://github.com/imankamyabi/stail
+Description-Content-Type: text/markdown
+
+# Stail
+CLI Tool to run and tail a step function synchronously and persist event logs for the state machine execution on disk.
+
+![Screenshot](https://raw.githubusercontent.com/imankamyabi/stail/master/images/console-screenshot.png)
+(Sample screenshot of terminal output)
+
+#### Use cases:
+- Running and monitoring step function execution directly from terminal or Jupyter notebook.
+- In case of error, identifying the failed task and cause of error.
+- Debugging by reading events log file and all the metadata about the failed task (for example input and output).
+
+## Installation:
+```shell
+pip install stail
+```
+
+## Usage
+
+### Run
+Starts a step function execution synchronously, tails the event history to the console and create a log file with all the events for the execution.
+
+Log file is stored at stail_logs/[execution name (UUID)].log 
+
+```shell
+stail run --arn [state machine arn] --input [input]
+```
+#### Options:
+  --arn  State machine ARN
+   
+  --input Input JSON to the state machine
+
+##### Example:
+```shell
+stail run --arn arn:aws:states:<region>:<account_number>:stateMachine:<name> --input "{\"param\":\"hello\"}"
+```
+
+### Version
+Displays the version.
+```shell
+stail version
+```
+
+Author: Iman Kamyabi
+ 
+Feedback: contact@imankamyabi.com
