@@ -1,0 +1,50 @@
+config: conf/model/test.yaml
+model:
+  class: kamodo.Kamodo
+  evaluate:
+    F:
+      y:
+      - 9
+      - 10
+      - 11
+    f:
+      x:
+      - 3
+      - 4
+      - 5
+    g:
+      y:
+        max: 5
+        min: -5
+        n: 33
+    h:
+      x: 100
+      y: 100.0
+  fig_layout:
+    height: 600
+    width: 1200
+  params:
+    F: y**3
+    f[km]: x**2
+    g[cm]: y**2
+    h[m]: f+g
+  plot:
+    g:
+      y:
+        max: 5
+        min: -5
+        n: 88
+  plot_conf:
+    animation_opts: null
+    auto_open: true
+    auto_play: true
+    config: null
+    filename: temp-plot.html
+    image: null
+    image_filename: plot_image
+    include_mathjax: cdn
+    include_plotlyjs: true
+    link_text: Export to plot.ly
+    output_type: file
+    show_link: false
+    validate: true
