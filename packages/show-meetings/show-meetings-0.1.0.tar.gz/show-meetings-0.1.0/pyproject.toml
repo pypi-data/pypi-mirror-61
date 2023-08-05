@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "show-meetings"
+version = "0.1.0"
+description = "Show upcoming Outlook meetings, either as text or on the Windows lock screen"
+authors = ["Blair Conrad <blair@blairconrad.com>"]
+license = "MIT"
+readme = "README.rst"
+repository = "https://github.com/blairconrad/notions.git"
+
+
+[tool.poetry.scripts]
+show-meetings = "show_meetings.cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pywin32 = "^227"
+PILLOW = "^7.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
