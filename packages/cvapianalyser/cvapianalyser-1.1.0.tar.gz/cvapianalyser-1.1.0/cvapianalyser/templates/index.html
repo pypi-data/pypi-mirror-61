@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.fa-check {
+  color: green;
+}
+
+.fa-remove {
+  color: red;
+}
+.panel-body {
+  display: flex;
+  height: 180px;
+  justify-content: space-between;
+}
+span[class*=&quot;-os&quot;] {
+  font-size: 14px;
+  font-weight: 300;
+  font-size: 14px;
+  color: black;
+}
+span[class*=&quot;-os&quot;] span {
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 9px;
+}
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-basis: 75%;
+  padding: 39px 50px 41px 26px;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+}
+.category span:last-child {
+  font-weight: 300;
+  font-size: 14px;
+  opacity: 0.6;
+  color: #423937;
+  margin-bottom: 6px;
+}
+.category span:first-child {
+  font-size: 32px;
+  font-weight: 300;
+  color: black;
+}
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: 5;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+.accordion1 {
+  background-color: #eee;
+  color: green;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: 10;
+  text-align: right;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <center><h2>CloudVector API Shark - Coverage analysis plugin<img src="https://www.cloudvector.com/wp-content/themes/cloudvector/images/logo.svg" width="100" height="100" align="right"></h2></center>
+  <br><br>
+    <div class="panel-body" align="center">
+    <div class="categories">
+            <div class="category">
+              <span>{{ api_stats.get("total_apis_in_spec",0) }}</span>
+                <span>APIs in SPEC</span>
+            </div>
+            <div class="category">
+              <span>{{ api_stats.get("total_apis_captured",0) }}</span>
+                <span>Unique APIs captured</span>
+            </div>
+            <div class="category">
+              <span>{{ api_stats.get("total_api_events_captured",0) }}</span>
+                <span>Total APIs captured</span>
+            </div>
+           <div class="category">
+              <font color="blue"><span>{{ api_stats.get("apis_in_spec_not_captured")|length }}</span></font>
+                <span>API in SPEC but not captured</span>
+            </div>
+          </div>
+    </div>
+    <p>API Coverage details:</p>
+    {% for api, details in api_details.items() %}
+    <button class="accordion"><a name="{{ api }}">{{ api }}</a>&nbsp;<font size="2" style="float: right;">
+        <i>mandatory: {{ details.get("mandatory_params_in_spec")|length }}
+            {% if details.get("mandatory_missing") >0 %}
+                <font color="red">({{ details.get("mandatory_missing")}})</font>
+            {% endif %}
+            &nbsp;optional: {{ details.get("optional_params_in_spec")|length }}
+            {% if details.get("optional_missing") >0 %}
+                <font color="red">({{ details.get("optional_missing")}})</font>
+            {% endif %}
+        </i></font></button>
+<div class="panel">
+  <p>
+            <table>
+                <tr>
+                    <td>mandatory</td>
+                    <td>{% for param in details.get("mandatory_params_in_spec") %}
+                    {% if param not in ["_","coverage"] %}
+                        {{ param }}
+                    {% endif %}
+                        {% if details.get("mandatory") %}
+                            {% if details["mandatory"][param] == "recorded" and param not in ["_","coverage"] %}
+                                <i class="fa fa-check"></i>
+                            {% elif details["mandatory"][param] == "not recorded" and param not in ["_","coverage"] %}
+                                <i class="fa fa-remove"></i>
+                            {% endif %}
+                        {% else %}
+                            <i class="fa fa-remove"></i>
+                        {% endif %}
+                        &nbsp;-&nbsp;
+                    {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>optional</td>
+                    <td>{% for param in details.get("optional_params_in_spec") %}
+                    {% if param not in ["_","coverage"] %}
+                        {{ param }}
+                    {% endif %}
+                        {% if details.get("optional") %}
+                            {% if details["optional"][param] == "recorded" and param not in ["_","coverage"] %}
+                                <i class="fa fa-check"></i>
+                            {% elif details["optional"][param] == "not recorded" and param not in ["_","coverage"] %}
+                                <i class="fa fa-remove"></i>
+                            {% endif %}
+                        {% else %}
+                            <i class="fa fa-remove"></i>
+                        {% endif %}
+                        &nbsp;-&nbsp;
+                    {% endfor %}
+                    </td>
+                </tr>
+            </table>
+        </li>
+          <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-success" role="progressbar" aria-valuenow="{{ details['coverage']|int }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ details['coverage']|int }}%">
+                        mandatory params (coverage: {{ details['coverage'] }}%)
+                </div>
+            </div>
+        <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-info" role="progressbar" aria-valuenow="{{ details['optional_coverage']|int }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ details['optional_coverage']|int }}%">
+                        optional params (coverage: {{ details['optional_coverage'] }}%)
+                </div>
+            </div>
+</p>
+</div>
+        {% endfor %}
+
+    <br><hr>
+    <h2>Missing API(s) details:</h2>
+        <button class="accordion">APIs in SPEC but not captured <b>({{ api_stats.get("apis_in_spec_not_captured")|length }})</b></button>
+<div class="panel">
+  <p>    {% for api in api_stats.get("apis_in_spec_not_captured") %}
+            {{ api }}&nbsp;|&nbsp;
+         {% endfor %}</p>
+</div>
+    <hr>
+    <h2>Missing Parameter(s) details:</h2>
+
+    <button class="accordion">Missing 1 mandatory parameter <b>({{ api_stats["total_mandatory_missing"]["one"] }})</b></button>
+<div class="panel">
+  <p>    {% for api, details in api_details.items() %}
+            {% if details.get("mandatory_missing",[]) == 1 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+
+<button class="accordion">Missing 2 mandatory parameters <b>({{ api_stats["total_mandatory_missing"]["two"] }})</b></button>
+<div class="panel">
+  <p>    {% for api, details in api_details.items() %}
+            {% if details.get("mandatory_missing",[]) == 2 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+
+<button class="accordion">Missing 3 mandatory parameters <b>({{ api_stats["total_mandatory_missing"]["three"] }})</b></button>
+<div class="panel">
+    <p>    {% for api, details in api_details.items() %}
+            {% if details.get("mandatory_missing",[]) == 3 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+    <button class="accordion">Missing 4 mandatory parameters <b>({{ api_stats["total_mandatory_missing"]["four"] }})</b></button>
+<div class="panel">
+    <p>    {% for api, details in api_details.items() %}
+            {% if details.get("mandatory_missing",[]) == 4 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+    <button class="accordion">Missing 5 or more mandatory parameters <b>({{ api_stats["total_mandatory_missing"]["five+"] }})</b></button>
+<div class="panel">
+    <p>    {% for api, details in api_details.items() %}
+            {% if details.get("mandatory_missing",[]) >= 5 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+
+    <button class="accordion1">Missing 1 optional parameter <b>({{ api_stats["total_optional_missing"]["one"] }})</b></button>
+<div class="panel">
+      <p>    {% for api, details in api_details.items() %}
+            {% if details.get("optional_missing",[]) == 1 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+
+<button class="accordion1">Missing 2 optional parameters <b>({{ api_stats["total_optional_missing"]["two"] }})</b></button>
+<div class="panel">
+        <p>    {% for api, details in api_details.items() %}
+            {% if details.get("optional_missing",[]) == 2 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+
+<button class="accordion1">Missing 3 optional parameters <b>({{ api_stats["total_optional_missing"]["three"] }})</b></button>
+<div class="panel">
+      <p>    {% for api, details in api_details.items() %}
+            {% if details.get("optional_missing",[]) == 3 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+    <button class="accordion1">Missing 4 optional parameters <b>({{ api_stats["total_optional_missing"]["four"] }})</b></button>
+<div class="panel">
+          <p>    {% for api, details in api_details.items() %}
+            {% if details.get("optional_missing",[]) == 4 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+    <button class="accordion1">Missing 5 or more optional parameters <b>({{ api_stats["total_optional_missing"]["five+"] }})</b></button>
+<div class="panel">
+      <p>    {% for api, details in api_details.items() %}
+            {% if details.get("optional_missing",[]) >= 5 %}
+                <a href="#{{ api }}">{{ api }}</a> &nbsp;|&nbsp;
+            {% endif %}
+         {% endfor %}</p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+var acc1 = document.getElementsByClassName("accordion1");
+var i;
+
+for (i = 0; i < acc1.length; i++) {
+  acc1[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+
+</div>
+<hr>
+    <center><h4> Community Edition: <a href="{{ ce_url }}">{{ ce_url }}</a>  </h4>
+    <h4> Recording: {{ ce_recorder }} </h4></center>
+<hr>
+</body>
+</html>
