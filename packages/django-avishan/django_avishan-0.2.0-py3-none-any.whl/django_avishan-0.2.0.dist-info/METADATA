@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: django-avishan
+Version: 0.2.0
+Summary: Avishan is just an set of tools
+Home-page: https://gitlab.com/afshari9978/avishan
+Author: Morteza Afshari
+Author-email: afshari9978@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: bcrypt (==3.1.7)
+Requires-Dist: Django (==3.0.3)
+Requires-Dist: django-cors-headers (==2.4.0)
+Requires-Dist: Khayyam (==3.0.17)
+Requires-Dist: Pillow (==6.2.1)
+Requires-Dist: PyJWT (==1.7.0)
+Requires-Dist: requests (==2.21.0)
+Requires-Dist: stringcase (==1.2.0)
+
+=======
+Avishan
+=======
+
+Avishan is a set of tools for building fast, comfortable and reliable django apps.
+
+Quick start
+-----------
+
+0. On linux remember to install this packages::
+
+    sudo apt-get install build-essential libffi-dev python3-dev
+
+1. just run this command (::
+
+    python manage.py avishan_config
+
+Features
+--------
+* Request data storage (current_request dict)
+* Auto-find and checks token from session, or request header
+* Handle sort, search, filter and pagination on response
+* Configure django settings.py file
+* Handle CORS
+* Creates config.py file for each app and project
+
