@@ -1,0 +1,134 @@
+#!python
+
+from __future__ import print_function, division
+import os
+import sys
+import argparse
+import curses
+import signal
+import multiprocessing
+from pyModeS.streamer.decode import Decode
+from pyModeS.streamer.screen import Screen
+from pyModeS.streamer.source import NetSource, RtlSdrSource
+
+
+# redirect all stdout to null, avoiding messing up with the screen
+sys.stdout = open(os.devnull, "w")
+
+
+support_rawtypes = ["raw", "beast", "skysense"]
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--source",
+    help='Choose data source, "rtlsdr" or "net"',
+    required=True,
+    default="net",
+)
+parser.add_argument(
+    "--connect",
+    help="Define server, port and data type. Supported data types are: %s"
+    % support_rawtypes,
+    nargs=3,
+    metavar=("SERVER", "PORT", "DATATYPE"),
+    default=None,
+    required=False,
+)
+parser.add_argument(
+    "--latlon",
+    help="Receiver latitude and longitude, needed for the surface position, default none",
+    nargs=2,
+    metavar=("LAT", "LON"),
+    default=None,
+    required=False,
+)
+parser.add_argument(
+    "--show-uncertainty",
+    dest="uncertainty",
+    help="Display uncertainty values, default off",
+    action="store_true",
+    required=False,
+    default=False,
+)
+parser.add_argument(
+    "--dumpto",
+    help="Folder to dump decoded output, default none",
+    required=False,
+    default=None,
+)
+args = parser.parse_args()
+
+SOURCE = args.source
+LATLON = args.latlon
+UNCERTAINTY = args.uncertainty
+DUMPTO = args.dumpto
+
+if SOURCE == "rtlsdr":
+    pass
+elif SOURCE == "net":
+    if args.connect is None:
+        print("Error: --connect argument must not be empty.")
+    else:
+        SERVER, PORT, DATATYPE = args.connect
+        if DATATYPE not in support_rawtypes:
+            print("Data type not supported, available ones are %s" % support_rawtypes)
+
+else:
+    print('Source must be "rtlsdr" or "net".')
+    sys.exit(1)
+
+if DUMPTO is not None:
+    # append to current folder except root is given
+    if DUMPTO[0] != "/":
+        DUMPTO = os.getcwd() + "/" + DUMPTO
+
+    if not os.path.isdir(DUMPTO):
+        print("Error: dump folder (%s) does not exist" % DUMPTO)
+        sys.exit(1)
+
+
+# raw_event = multiprocessing.Event()
+# ac_event = multiprocessing.Event()
+# raw_queue = multiprocessing.Queue()
+# ac_queue = multiprocessing.Queue()
+
+raw_pipe_in, raw_pipe_out = multiprocessing.Pipe()
+ac_pipe_in, ac_pipe_out = multiprocessing.Pipe()
+stop_flag = multiprocessing.Value("b", False)
+
+if SOURCE == "net":
+    source = NetSource(host=SERVER, port=PORT, rawtype=DATATYPE)
+elif SOURCE == "rtlsdr":
+    source = RtlSdrSource()
+
+
+recv_process = multiprocessing.Process(target=source.run, args=(raw_pipe_in, stop_flag))
+
+
+decode = Decode(latlon=LATLON, dumpto=DUMPTO)
+decode_process = multiprocessing.Process(
+    target=decode.run, args=(raw_pipe_out, ac_pipe_in)
+)
+
+screen = Screen(uncertainty=UNCERTAINTY)
+screen_process = multiprocessing.Process(target=screen.run, args=(ac_pipe_out,))
+
+
+def closeall(signal, frame):
+    print("KeyboardInterrupt (ID: {}). Cleaning up...".format(signal))
+    stop_flag.value = True
+    curses.endwin()
+    recv_process.terminate()
+    decode_process.terminate()
+    screen_process.terminate()
+    recv_process.join()
+    decode_process.join()
+    screen_process.join()
+    exit(0)
+
+
+signal.signal(signal.SIGINT, closeall)
+
+recv_process.start()
+decode_process.start()
+screen_process.start()
