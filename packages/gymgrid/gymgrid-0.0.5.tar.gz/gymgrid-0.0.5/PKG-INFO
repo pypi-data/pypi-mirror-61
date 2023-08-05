@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: gymgrid
+Version: 0.0.5
+Summary: UNKNOWN
+Home-page: https://github.com/wsgdrfz/gym-gridworld
+Author: Ruoqi Zhang
+Author-email: ruoqi.zhang.666@gmail.com
+License: UNKNOWN
+Description: # Gymgrid
+        
+        The gridworld environment contains simple environments in RL book and compatible with OpenAI-gym.
+        
+        ## Installation
+        
+        ```
+        pip install gymgird
+        ```
+        
+        ## Usage
+        
+        ```
+        import gym
+        import gymgrid
+        env = env = gym.make('cliff-v0')
+        for i_episode in range(20):
+            observation = env.reset()
+            for t in range(100):
+                env.render()
+                print(observation)
+                action = env.action_space.sample()
+                observation, reward, done, info = env.step(action)
+                if done:
+                    print("Episode finished after {} timesteps".format(t+1))
+                    break
+        env.close()
+        print("env closed")
+        ```
+        
+        ## Environments
+        
+        - Sample1
+        - Sample2
+        - Cliff
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
