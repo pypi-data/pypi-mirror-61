@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kw_runner_python>
+ <namespace cmd="" description="python项目执行代理" id="kw_runner_python_ssh" name="kw_runner_python_ssh">
+  <namespace cmd="" description="py" id="py" name="py">
+   <keyword author="王沃伦" cmd="D:/git/py_help/bin/pyh_cmd  py daemon_run" description="启动了daemon模式之后,后续的命令都是daemon模式运行,daemon模式运行执行速度会快很多(少了文件加载的动作)" handler="AtkKeywordProxy::Ssh::Client|exec_command" id="daemon_run" name="daemon模式" namespace="kw_runner_python_ssh::py::daemon_run" toolable="true">
+    <params>
+     <param default="否" desc="默认可以不设置这个,不设置就是启动daemon模式,设置了是就是关闭daemon模式" id="stop" name="关闭" required="false" type="s"/>
+     <param desc="指定运行的测试设备" id="_device" name="_运行目标" type="s"/>
+     <param default="false" desc="特殊参数,表示关键字是返回值还是返回成功失败" id="_return" name="_返回值类型" type="b" values="true|false"/>
+     <param default="0" desc="特殊参数,通过SSH通道的异常重试" id="_exception_retry" name="_重试次数" type="i"/>
+     <param default="300" desc="特殊参数,通过SSH通道的最大超时时间" id="_max_timeout" name="_最大超时时间" type="i"/>
+     <param desc="后台运行相关命令,默认都是前台运行,只有配置了此参数,才会后台运行" id="_backend" name="_后台运行" type="s" values="y|n"/>
+    </params>
+    <expect>成功|失败|NONE</expect>
+   </keyword>
+   <namespace cmd="" description="generate" id="generate" name="generate">
+    <keyword author="王沃伦" cmd="D:/git/py_help/bin/pyh_cmd  py generate keyword" description="生成对接自动化平台的keyword信息" handler="AtkKeywordProxy::Ssh::Client|exec_command" id="keyword" name="生成keyword信息" namespace="kw_runner_python_ssh::py::generate::keyword" toolable="true">
+     <params>
+      <param default="ssh" desc="通过什么方式运行,ssh就是要ssh到服务器上跑,xml_rpc就是本地用xml_rpc来跑,cmd是翻译成本地cmd" id="run_type" name="运行类型" required="true" type="s" values="ssh|xml_rpc|cmd"/>
+      <param default="xml" desc="生成的信息类型,默认都是xml" id="type" name="信息类型" required="true" type="s" values="xml|json"/>
+      <param default="" desc="生成的关键字名字的前缀,默认为空,也就是注释里面是什么就是什么,添加了前缀后可以避免命名冲突" id="name_prefix" name="名称前缀" required="false" type="s"/>
+      <param default="./" desc="生成的文件存放路径" id="out_path" name="输出路径" required="true" type="s"/>
+      <param desc="指定运行的测试设备" id="_device" name="_运行目标" type="s"/>
+      <param default="false" desc="特殊参数,表示关键字是返回值还是返回成功失败" id="_return" name="_返回值类型" type="b" values="true|false"/>
+      <param default="0" desc="特殊参数,通过SSH通道的异常重试" id="_exception_retry" name="_重试次数" type="i"/>
+      <param default="300" desc="特殊参数,通过SSH通道的最大超时时间" id="_max_timeout" name="_最大超时时间" type="i"/>
+      <param desc="后台运行相关命令,默认都是前台运行,只有配置了此参数,才会后台运行" id="_backend" name="_后台运行" type="s" values="y|n"/>
+     </params>
+     <expect>成功|失败|NONE</expect>
+    </keyword>
+   </namespace>
+   <keyword author="woolen" cmd="D:/git/py_help/bin/pyh_cmd  py back_end_task_svr" description="启动后台的异步任务服务" handler="AtkKeywordProxy::Ssh::Client|exec_command" id="back_end_task_svr" name="启动后台异步任务服务" namespace="kw_runner_python_ssh::py::back_end_task_svr" toolable="true">
+    <params>
+     <param default="true" desc="是否需要加载gevent" id="use_gevent" name="使用gevent" required="true" type="b"/>
+     <param desc="指定运行的测试设备" id="_device" name="_运行目标" type="s"/>
+     <param default="false" desc="特殊参数,表示关键字是返回值还是返回成功失败" id="_return" name="_返回值类型" type="b" values="true|false"/>
+     <param default="0" desc="特殊参数,通过SSH通道的异常重试" id="_exception_retry" name="_重试次数" type="i"/>
+     <param default="300" desc="特殊参数,通过SSH通道的最大超时时间" id="_max_timeout" name="_最大超时时间" type="i"/>
+     <param desc="后台运行相关命令,默认都是前台运行,只有配置了此参数,才会后台运行" id="_backend" name="_后台运行" type="s" values="y|n"/>
+    </params>
+    <expect>成功|失败|NONE</expect>
+   </keyword>
+   <keyword author="王沃伦" cmd="D:/git/py_help/bin/pyh_cmd  py trigger_task" description="触发运行一个任务" handler="AtkKeywordProxy::Ssh::Client|exec_command" id="trigger_task" name="触发运行任务" namespace="kw_runner_python_ssh::py::trigger_task" toolable="true">
+    <params>
+     <param desc="请求的url" id="url" name="任务url" required="true" type="s"/>
+     <param desc="需要请求的参数名字,用@隔开" id="params_key" name="参数key" type="s"/>
+     <param desc="需要请求的参数值,用@隔开" id="params_value" name="参数value" type="s"/>
+     <param desc="指定运行的测试设备" id="_device" name="_运行目标" type="s"/>
+     <param default="false" desc="特殊参数,表示关键字是返回值还是返回成功失败" id="_return" name="_返回值类型" type="b" values="true|false"/>
+     <param default="0" desc="特殊参数,通过SSH通道的异常重试" id="_exception_retry" name="_重试次数" type="i"/>
+     <param default="300" desc="特殊参数,通过SSH通道的最大超时时间" id="_max_timeout" name="_最大超时时间" type="i"/>
+     <param desc="后台运行相关命令,默认都是前台运行,只有配置了此参数,才会后台运行" id="_backend" name="_后台运行" type="s" values="y|n"/>
+    </params>
+    <expect>成功|失败|NONE</expect>
+   </keyword>
+   <keyword author="王沃伦" cmd="D:/git/py_help/bin/pyh_cmd  py api_server" description="启动了API服务后,可以通过api rpc来调度对应的命令或者是API" handler="AtkKeywordProxy::Ssh::Client|exec_command" id="api_server" name="API服务" namespace="kw_runner_python_ssh::py::api_server" toolable="true">
+    <params>
+     <param default="xml_rpc" desc="设置的服务类型" id="server_type" name="服务类型" required="false" type="s"/>
+     <param default="0.0.0.0" desc="设置的服务地址" id="ip" name="服务IP" required="false" type="s"/>
+     <param default="8080" desc="设置的服务端口" id="port" name="服务端口" required="false" type="i"/>
+     <param default="/RPC2" desc="设置的服务url地址" id="url" name="服务url" required="false" type="s"/>
+     <param desc="指定运行的测试设备" id="_device" name="_运行目标" type="s"/>
+     <param default="false" desc="特殊参数,表示关键字是返回值还是返回成功失败" id="_return" name="_返回值类型" type="b" values="true|false"/>
+     <param default="0" desc="特殊参数,通过SSH通道的异常重试" id="_exception_retry" name="_重试次数" type="i"/>
+     <param default="300" desc="特殊参数,通过SSH通道的最大超时时间" id="_max_timeout" name="_最大超时时间" type="i"/>
+     <param desc="后台运行相关命令,默认都是前台运行,只有配置了此参数,才会后台运行" id="_backend" name="_后台运行" type="s" values="y|n"/>
+    </params>
+    <expect>成功|失败|NONE</expect>
+   </keyword>
+  </namespace>
+  <keyword author="王沃伦" cmd="D:/git/py_help/bin/pyh_cmd  help" description="为所有的命令入口打印相关的帮助" handler="AtkKeywordProxy::Ssh::Client|exec_command" id="help" name="输出帮助" namespace="kw_runner_python_ssh::help" toolable="true">
+   <params>
+    <param default="/" desc="需要帮助的命令url,当是/的时候,就是列出所有的命令" id="url" name="命令url" required="true" type="s"/>
+    <param desc="指定运行的测试设备" id="_device" name="_运行目标" type="s"/>
+    <param default="false" desc="特殊参数,表示关键字是返回值还是返回成功失败" id="_return" name="_返回值类型" type="b" values="true|false"/>
+    <param default="0" desc="特殊参数,通过SSH通道的异常重试" id="_exception_retry" name="_重试次数" type="i"/>
+    <param default="300" desc="特殊参数,通过SSH通道的最大超时时间" id="_max_timeout" name="_最大超时时间" type="i"/>
+    <param desc="后台运行相关命令,默认都是前台运行,只有配置了此参数,才会后台运行" id="_backend" name="_后台运行" type="s" values="y|n"/>
+   </params>
+   <expect>成功|失败|NONE</expect>
+  </keyword>
+ </namespace>
+</kw_runner_python>
