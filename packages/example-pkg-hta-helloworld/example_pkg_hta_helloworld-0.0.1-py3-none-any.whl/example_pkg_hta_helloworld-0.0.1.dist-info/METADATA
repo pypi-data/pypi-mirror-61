@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: example-pkg-hta-helloworld
+Version: 0.0.1
+Summary: A hellowold example package
+Home-page: https://github.com/howtoautomateinth/awesome-python
+Author: Howtoautomate.in.th
+Author-email: mart@howtoautomate.in.th
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Example python package
+
+example how to create python package and deploy to pip registory
+
+## Prerequisite
+
+- install wheel
+
+```python
+python3 -m pip install --user --upgrade setuptools wheel
+```
+
+- intstall twine
+
+```python
+python3 -m pip install --user --upgrade twine
+```
+
+## Build & Deploy Steps
+
+- Go to setup.py directories and run the following command
+  - it will generated a lot of files include *dist* directory which include package
+
+```python
+python3 setup.py sdist bdist_wheel
+```
+
+- 
+
