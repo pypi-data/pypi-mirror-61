@@ -1,0 +1,98 @@
+setuptools>=38.3.0
+beautifulsoup4<5,>=4.4.1
+DataProperty<2,>=0.46.2
+jsonschema<4,>=2.5.1
+mbstrdecoder<2,>=0.8.3
+six<2,>=1.10.0
+tabledata<2,>=0.10.2
+typepy<2,>=0.6.4
+
+[:python_version < "3.4"]
+enum34
+
+[:python_version < "3.5"]
+pathvalidate<1
+
+[:python_version <= "3.4"]
+path.py<12
+
+[:python_version > "3.4"]
+path.py<13
+
+[:python_version >= "3.5"]
+pathvalidate<3
+
+[all]
+Markdown<3,>=2.6.6
+pypandoc
+oauth2client
+requests<3,>=2.18.4
+loguru<1,>=0.4.1
+gspread
+SimpleSQLite<2,>=0.47.2
+retryrequests<1,>=0.0.2
+simplejson<4,>=3.8.1
+pyOpenSSL
+
+[all:python_version < "3.5"]
+xlrd>=0.9.4
+
+[all:python_version >= "3.5"]
+excelrd>=2.0.2
+
+[excel]
+
+[excel:python_version < "3.5"]
+xlrd>=0.9.4
+
+[excel:python_version >= "3.5"]
+excelrd>=2.0.2
+
+[gs]
+gspread
+oauth2client
+pyOpenSSL
+SimpleSQLite<2,>=0.47.2
+
+[logging]
+loguru<1,>=0.4.1
+
+[md]
+Markdown<3,>=2.6.6
+
+[mediawiki]
+pypandoc
+
+[sqlite]
+SimpleSQLite<2,>=0.47.2
+
+[test]
+subprocrunner
+Markdown<3,>=2.6.6
+responses
+pytablewriter[excel]>=0.46
+requests<3,>=2.18.4
+SimpleSQLite<2,>=0.47.2
+retryrequests<1,>=0.0.2
+simplejson<4,>=3.8.1
+pypandoc
+
+[test:python_version < "3"]
+pytest<5
+mock<4
+
+[test:python_version < "3.2"]
+futures
+
+[test:python_version < "3.5"]
+xlrd>=0.9.4
+
+[test:python_version >= "3"]
+pytest>=5
+
+[test:python_version >= "3.5"]
+excelrd>=2.0.2
+
+[url]
+requests<3,>=2.18.4
+retryrequests<1,>=0.0.2
