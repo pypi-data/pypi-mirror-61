@@ -1,0 +1,114 @@
+CHANGES
+=======
+
+v0.4.2
+------
+
+* Fixed pypi syntax error
+* pypi does not allow intended audience
+* Fix publish script #72
+* Fix issues with logging to progress bar
+* Reduce metrics lambda
+* Log model score
+* Update with \_\_version\_\_ attribute
+* Use PBR, change requirements
+* Fix publish script to accommodate PBR
+* Simple CI
+* Linear warmup should be default
+* Fix LambdaLR wants multiplicative factor. Fix lr functions
+* Refactor learning rate scheduler
+* Simplify metrics
+* Simplify create trainer validator
+* More relaxed package requirements
+* Fix package requirement mistake
+* Add Apache 2 license
+* Change to stdout
+
+v0.4.1
+------
+
+* Version v0.4.1
+* Publish script
+* Fix learning rate logging #51
+* tmuxify guild setup
+* Bump version v0.4.0
+* Add Matthews Correlation Coefficient Metric
+* Multiple evaluators standard
+* Update cyclical.py
+* Update config names for handlers
+* Update add\_warmup.py
+
+v0.3.0
+------
+
+* Fix indentation in early stopping
+* Log learning rate to tensorboard
+* Update train evaluate recipes
+* Bump version v0.3.0
+* Refactor learning rate handlers
+* Create standard trainer validator
+* Metrics attached by default
+* Remove multiple evaluators. Cleanup. Fix bugs
+* Fix tensorboard logging
+* No grad in torch can be used as a decorator
+* Evaluators dict
+* Verbose early stopping. Fix some imports
+* Model checkpoint
+* Ignite-style handlers
+* Logging according to #40
+* Remove imports
+* Use contrib progress bars #41 #40
+* Update config names for handlers
+* Update model loading for ignite 0.3.0
+* MapDataset changed to behave as expected
+* Stderr works for vscode too #33 #30
+* Replace checkpoint by default
+* Fix logged epoch increased too fast
+* Change tensorboard logdir
+* Remove clip grad norm decorator
+* Add comment about TQDM output
+* Add optional length to sampler
+* Rename to add. Fix progress bars
+* Remove ignite.metrics
+* Bump version v0.2.2
+* Check if grad is none in step
+* Fix create trainer recipe
+* Bump version v0.2.1
+* Iterable sampler and stratified sampler recipe
+* Rename to filepath
+* Bugfix raise instead of return
+* Will not assume known dataset length anymore. Rename to n\_batches. Fix bug
+* Recreate earlier fix of to\_shapes
+* Multi line splitting for git
+
+v0.2.0
+------
+
+* Added docstring to split\_new\_data
+* functools.wraps
+* Fix step so it uses mean gradient instead of sum
+* Batch keys specified by user and specify batch processing function rather than create trainer
+* Fixes bug with moving batch to device
+* Progress bar and terminate on nan in default trainer
+* Moved out getting model device to its own function
+* Fix accumulation of gradients #11
+* Change to 4 space indentation
+* Rename accumulation\_steps. Remove mixup
+* to\_device should return x on else (for example file path string)
+* Move helper function get\_layer\_output\_size
+* batch\_to\_model\_device now accepts all input types
+* Prefer dict.get #9
+* Correction of development instructions
+
+v0.1.1
+------
+
+* Fixed import issue. Added twine for uploading to pypi
+
+v0.1.0
+------
+
+* Added simple tests to discuss
+* Split ignite into handlers and metrics
+* Fix package imports
+* Improved readme and added guild file
