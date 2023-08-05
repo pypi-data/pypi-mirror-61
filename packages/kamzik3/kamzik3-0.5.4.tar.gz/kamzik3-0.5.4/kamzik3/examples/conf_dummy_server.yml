@@ -1,0 +1,79 @@
+session:
+  !Device:kamzik3.devices.deviceSession.DeviceSession
+  device_id: Dummy server
+  config:
+    attributes:
+      !!python/tuple [Log directory, Value]: ./examples/server_log
+      !!python/tuple [Resource directory, Value ]: ./examples/resources
+    logged_attributes:
+      X: Position
+      Y: Position
+      Z: Position
+server: !Device:kamzik3.devices.deviceServer.DeviceServer
+  host: 127.0.0.1
+  server_port: 60002
+  publisher_port: 50002
+measurement_groups:
+  - !Device:kamzik3.devices.general.measurementGroup.MeasurementGroup
+    group_id: "Sample motors"
+    measurement_group: [[X, Position],
+                        [Y, Position],
+                        [Z, Position]]
+devices:
+  Detector: &Detector !Device:kamzik3.devices.dummy.dummyDetector.DummyDetector
+    device_id: Detector
+  Scanner: &Scanner !Device:kamzik3.devices.dummy.dummyScanner.DummyScanner
+    device_id: Scanner
+  Motor1: &Motor1 !Device:kamzik3.devices.dummy.dummyMotor.DummyMotor
+    device_id: Motor1
+  Motor1_axis_0: &Motor1_axis_0 !Device:kamzik3.devices.dummy.dummyMotor.DummyMotorChannel
+    device: *Motor1
+    channel: 0
+    device_id: X
+    config:
+      attributes:
+        !!python/tuple [Position, Tolerance]: [0nm, 0nm]
+  Motor1_axis_1: &Motor1_axis_1 !Device:kamzik3.devices.dummy.dummyMotor.DummyMotorChannel
+    device: *Motor1
+    channel: 1
+    device_id: Y
+    config:
+      attributes:
+        !!python/tuple [Position, Tolerance]: [100nm, 100nm]
+  Motor1_axis_2: &Motor1_axis_2 !Device:kamzik3.devices.dummy.dummyMotor.DummyMotorChannel
+    device: *Motor1
+    channel: 2
+    device_id: Z
+    config:
+      attributes:
+        !!python/tuple [Position, Tolerance]: [100nm, 100nm]
+        !!python/tuple [Position, Factor]: -3
+#  Galil_1: &Galil_1 !Device:kamzik3.devices.deviceGalil.DeviceGalil
+#    host: 192.168.83.47
+#    port: 12345
+#    device_id: Galil_1
+#  Galil_2: &Galil_2 !Device:kamzik3.devices.deviceGalil.DeviceGalil
+#    host: 192.168.83.48
+#    port: 12345
+#    device_id: Galil_2
+  Chameleon: &Chameleon !Device:kamzik3.devices.dummy.dummyFeatureTestDevice.DummyFeatureTestDevice
+    device_id: Chameleon
+  MacroServer: &MacroServer !Device:kamzik3.macro.macroServer.MacroServer
+    device_id: MacroServer
+  SaveAttributeFile: !Device:kamzik3.devices.deviceFileSync.DeviceFileSync
+    filepath: ./examples/saved_attributes.att
+    device_id: SaveAttributeFile
+  FlyScanner: !Device:kamzik3.devices.general.generalFlyScanner.GeneralFlyScanner
+    device_id: FlyScanner
+#session_console: &session_console
+#  !Widget:kamzik3.gui.consoleWidget.ConsoleWidget
+#  config: {}
+seesion_devices_list_tool: &seesion_devices_list_tool
+  !Widget:kamzik3.gui.deviceListWidget.DeviceListWidgetSession
+  columns: 1
+session_window:
+  !Widget:kamzik3.gui.sessionWindow.SessionWindow
+  config:
+    tools:
+      - [Devices, *seesion_devices_list_tool, ":/icons/icons/data-transfer.png"]
+#      - [Standard output, *session_console, ":/icons/icons/terminal.png"]
