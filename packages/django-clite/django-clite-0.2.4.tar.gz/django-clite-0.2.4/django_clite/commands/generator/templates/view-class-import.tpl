@@ -1,0 +1,1 @@
+from .{{ model.lower() }}_{{ class_type.lower() }} import {{ classname }}{{ class_type.capitalize() }}View
