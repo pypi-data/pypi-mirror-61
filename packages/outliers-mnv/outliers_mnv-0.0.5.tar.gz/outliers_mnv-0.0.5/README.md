@@ -1,0 +1,6 @@
+In statistics, an outlier is a data point that differs significantly from other observations. An outlier may be due to variability in the measurement or it may indicate experimental error; the latter are sometimes excluded from the data set. An outlier can cause serious problems in statistical analyses. Therefore, it is important to detect and remove outliers. This package detects the outliers in the input data file using IQR method and then removes the rows having outliers.
+
+How to make it work :
+Command for running the package will look like - 
+python outlier_mnv.py <inputdata> <outputdata>
+e.g. python outlier_mnv.py "mydata.csv" "newdata.csv"
