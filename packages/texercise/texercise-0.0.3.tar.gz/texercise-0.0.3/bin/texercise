@@ -1,0 +1,510 @@
+#!/bin/python
+import os
+import sys
+from pathlib import Path
+import json
+import time
+import zipfile
+import io
+import shutil
+import subprocess
+
+import click
+import requests
+import tabulate
+
+import texercise
+
+STATUS, MESSAGE = 'status', 'message'
+SUCCESS, FAILURE = 'success', 'failure'
+ADMIN, TEACHER, STUDENT = 'admin', 'teacher', 'student'
+USER_TYPES = (ADMIN, TEACHER, STUDENT)
+
+base_url = texercise.base_url
+url_q = texercise.url_quote
+
+context, course_folder, exercise_folder, credentials = texercise.load_config()
+_course_name, _user_type, _email, _token = credentials
+if _user_type == ADMIN:
+    _course_name = None
+
+
+def validate_intent(validation_str):
+    intent = input("{} (y/N)".format(validation_str)).strip().lower() in ('y', 'yes')
+    if not intent:
+        sys.exit()
+
+
+current_version = texercise.parse_version(texercise.__version__)
+latest_version = texercise.parse_version(texercise.get_latest_version_str())
+if current_version < latest_version:
+    print("A newer version of texercise is available.\n"
+          "Please update it before continuing.\n"
+          "$ pip install --upgrade texercise\n")
+    validate_intent("Should texercise attempt automatic update?")
+    subprocess.Popen([sys.executable, '-m', 'pip', 'install', '--upgrade', 'texercise']).wait()
+    sys.exit()
+
+
+# groups
+@click.group(help='Available commands depend on the current directory (course / exercise) and whether '
+                  'you\'re a student, a teacher or an administrator. '
+                  'You can always see available commands by typing "texercise" in the terminal.')
+def cli():
+    pass
+
+
+@click.group('course')
+def course():
+    pass
+
+
+@click.group('admin')
+def admin():
+    pass
+
+
+@click.group('teacher')
+def teacher():
+    pass
+
+
+@click.group('student')
+def student():
+    pass
+
+
+if _user_type == ADMIN:
+    cli.add_command(course)
+    cli.add_command(admin)
+    cli.add_command(teacher)
+if _user_type in (ADMIN, TEACHER):
+    cli.add_command(student)
+user_cli_groups = (admin, teacher, student)
+
+
+# starting a context
+
+def get_folder(folder, course_name):
+    if folder is None:
+        folder = texercise.valid_filesystem_name(course_name)
+    folder = Path(folder)
+    if folder.is_file() or folder.is_dir() and os.listdir(folder):
+        print("File or non-empty folder '{}' already exists. Aborting.".format(folder.name))
+        return False, folder
+    return True, folder
+
+
+def activate_user(folder, course_name, user_type, email):
+    ret = requests.put(base_url + "/activate/{}/{}/{}".format(
+        *url_q((course_name, user_type, email))
+    ))
+    ret.raise_for_status()
+    data = ret.json()
+    if data[STATUS] == SUCCESS:
+        folder.mkdir(exist_ok=True)
+        config_file = folder / ".texercise"
+        with config_file.open('w') as f:
+            f.write('\n'.join([course_name, user_type, email, data['token']]))
+        print("Added credentials '.texercise' in '{}'".format(folder.absolute()))
+        return True
+    else:
+        print(data[MESSAGE])
+        return False
+
+
+@click.command('manage', help='(for administration)')
+@click.argument('email', callback=texercise.validate_email)
+@click.argument('folder', default=None, required=False)
+def manage(email, folder):
+    ret, folder = get_folder(folder, 'texercise-admin')
+    if not ret:
+        return
+    activate_user(folder, 'all', ADMIN, email)
+
+
+@click.command('teach', help='start as a teacher on a course')
+@click.argument('course_name')
+@click.argument('email', callback=texercise.validate_email)
+@click.argument('folder', default=None, required=False)
+def teach(course_name, email, folder):
+    ret, folder = get_folder(folder, course_name + '-teach')
+    if not ret:
+        return
+    activate_user(folder, course_name, TEACHER, email)
+
+
+@click.command('learn', help='start as a student on a course')
+@click.argument('course_name')
+@click.argument('email', callback=texercise.validate_email)
+@click.argument('folder', default=None, required=False)
+def learn(course_name, email, folder):
+    ret, folder = get_folder(folder, course_name)
+    if not ret:
+        return
+    if activate_user(folder, course_name, STUDENT, email):
+        print("Try listing available exercises:")
+        print("  $ cd {}".format(folder.relative_to(Path())))
+        print("  $ texercise exercise ls")
+
+
+if _user_type is None:
+    cli.add_command(manage)
+    cli.add_command(teach)
+    cli.add_command(learn)
+
+# USERS
+
+# user add
+for group, user_type in zip(user_cli_groups, USER_TYPES):
+    @click.command('add')
+    @click.argument('email', callback=texercise.validate_email)
+    @click.argument('course_name', default=_course_name)
+    def add(course_name, email, user_type=user_type):
+        res = requests.post(
+            '{}/courses/{}/{}/{}'.format(base_url, course_name, user_type, email),
+            json={'credentials': credentials}
+        )
+        print(res.json()[MESSAGE])
+
+
+    group.add_command(add)
+
+# user remove
+for group, user_type in zip(user_cli_groups, USER_TYPES):
+    @click.command('remove')
+    @click.argument('email', callback=texercise.validate_email)
+    @click.argument('course_name', default=_course_name)
+    def remove(course_name, email, user_type=user_type):
+        validate_intent("Remove {} '{}' from '{}'?".format(user_type, email, course_name))
+        res = requests.delete(
+            '{}/courses/{}/{}/{}'.format(base_url, course_name, user_type, email),
+            json={'credentials': credentials}
+        )
+        print(res.json()[MESSAGE])
+
+
+    group.add_command(remove)
+
+# user reset token
+for group, user_type in zip(user_cli_groups, USER_TYPES):
+    @click.command('reset-token')
+    @click.argument('course_name', default=_course_name)
+    @click.argument('email', callback=texercise.validate_email)
+    def reset_token(course_name, email, user_type=user_type):
+        res = requests.delete(
+            '{}/courses/{}/{}/{}'.format(base_url, course_name, user_type, email),
+            json={'credentials': credentials}
+        )
+        print(res.json()[MESSAGE])
+
+
+    group.add_command(reset_token)
+
+# user ls
+for group, user_type in zip(user_cli_groups, USER_TYPES):
+    @click.command('ls')
+    @click.argument('course_name', default='all' if user_type == admin else _course_name)
+    @click.option('-c', '--clean', default=False, is_flag=True)
+    def ls(course_name, user_type=user_type, clean=False):
+        course_name = 'all' if user_type == 'admin' else course_name
+        data = requests.get(
+            "{}/courses/{}/{}".format(base_url, course_name, user_type),
+            json={'credentials': credentials}
+        ).json()
+        if data[STATUS] == SUCCESS:
+            if not clean:
+                print("{}s for {}".format(user_type, course_name))
+                print("(email name)")
+            for email, name in data['data']:
+                print(email, name)
+        else:
+            print(data[MESSAGE])
+
+
+    group.add_command(ls)
+
+
+# COURSES
+
+@click.command('ls')
+def course_ls():
+    data = requests.get(
+        base_url + "/courses",
+        json={'credentials': credentials}
+    ).json()
+    if data[STATUS] == SUCCESS:
+        print('\n'.join(data['data']))
+    else:
+        print(data[MESSAGE])
+
+
+@click.command('add')
+@click.argument('course_name')
+def course_add(course_name):
+    course_name = texercise.valid_filesystem_name(course_name)
+    validate_intent("Create course '{}'?".format(course_name))
+    res = requests.post(
+        '{}/courses/{}'.format(base_url, url_q(course_name)),
+        json={'credentials': credentials}
+    )
+    print(res.json()[MESSAGE])
+
+
+@click.command('remove')
+@click.argument('course_name')
+def course_remove(course_name):
+    validate_intent("Remove course '{}'?".format(course_name))
+    res = requests.delete(
+        '{}/courses/{}'.format(base_url, url_q(course_name)),
+        json={'credentials': credentials}
+    )
+    print(res.json()[MESSAGE])
+
+
+course.add_command(course_ls)
+course.add_command(course_add)
+course.add_command(course_remove)
+
+
+# EXERCISES
+
+@click.command('ls', help='list exercises in course')
+@click.argument('course_name', default=None if _user_type == ADMIN else _course_name)
+def exercise_ls(course_name):
+    exercises = requests.get(
+        url='{}/courses/{}/exercises'.format(base_url, course_name),
+        json={"credentials": credentials},
+    ).json()['data']
+    if len(exercises) == 0:
+        print("The course has no exercises yet")
+    else:
+        for e in exercises:
+            print(e)
+
+
+if context == 'course' or _user_type == TEACHER:
+    cli.add_command(exercise_ls)
+
+
+def attempt_and_await_response(folder, tests=None):
+    z = texercise.zipdir(folder)
+    data = {"credentials": credentials, "tests": tests}
+    r = requests.post(
+        url='{}/courses/{}/exercises/{}/attempts'.format(base_url, _course_name, exercise_folder.name),
+        files={'archive': open(z, 'rb'), 'data': json.dumps(data)},
+    )
+    if not r.ok:
+        print(r.text)
+        return False
+    else:
+        response_data = r.json()
+        if response_data['status'] != SUCCESS:
+            print(response_data[MESSAGE])
+            return False
+        job_id = response_data['job_id']
+    while True:
+        r = requests.get(
+            url='{}/attempts/{}'.format(base_url, job_id),
+            json={"credentials": credentials}
+        ).json()
+        if not r['status'] == 'success':
+            print(r['message'])
+            return False
+        job_status, result, queue_index = r['job_status'], r['job_result'], r['queue_index']
+        if job_status == 'queued':
+            print('# {} in queue'.format(queue_index + 1))
+        elif job_status == 'started':
+            print('Building and testing your code..')
+        elif job_status == 'finished':
+            print(result['message'])
+            if result['status'] == 'success':
+                return True
+            else:
+                return False
+        else:
+            print(job_status)
+            return False
+        time.sleep(2)
+
+
+def load_tests():
+    tests_folder = Path(exercise_folder) / 'tests'
+    if not tests_folder.exists():
+        print(tests_folder.absolute(), 'does not exist')
+        return
+    test_files = tests_folder.glob('*.txt')
+    tests = []
+    for fp in test_files:
+        with fp.open() as f:
+            lines = [l.strip() for l in f.readlines()]
+        try:
+            sep_i = lines.index('---')
+        except ValueError:
+            print("A test consists of input output in a plan text file (.txt)"
+                  " separated by a line of 3 dashes '---'")
+            print("Failed to find '---' in test {}".format(fp))
+            return
+        input = '\n'.join(lines[:sep_i])
+        output = '\n'.join(lines[sep_i + 1:])
+        tests.append([input, output])
+    print('Found {} test(s)'.format(len(tests)))
+    return tests
+
+
+@click.command('test', help='run the solution against the tests')
+def test_solution():
+    tests = load_tests()
+    attempt_and_await_response(exercise_folder / 'solution', tests)
+
+
+@click.command('upload', help='upload exercise')
+@click.option('--skip-test', is_flag=True, help='skip testing the solution')
+def upload_exercise(skip_test):
+    validate_intent('The exercise will be available for students.\n'
+                    'Do you want to upload?')
+    tests = load_tests()
+    if not skip_test:
+        print("Testing solution before uploading exercise..")
+        solution_passes = attempt_and_await_response(exercise_folder / 'solution', tests)
+        if not solution_passes:
+            print("Solution didn't pass. Exercise not uploaded.")
+            return
+    template_dir = Path(exercise_folder) / 'template'
+    template_dir.mkdir(exist_ok=True)
+    if not template_dir.glob('*'):
+        validate_intent("Template folder 'exercise-folder/template' is empty.\n"
+                        "Are you sure you want to upload an exercise with no template?")
+    zip_template = texercise.zipdir(
+        template_dir, max_size_kb=1024,
+        size_e_message='Template folder too large'
+    )
+    print("Uploading exercise..")
+    r = requests.post(
+        '{}/courses/{}/exercises/{}'.format(base_url, _course_name, exercise_folder.name),
+        files={
+            'data': json.dumps({'credentials': credentials, 'tests': tests}),
+            'template': open(zip_template, 'rb'),
+        }
+    )
+    if not r.ok:
+        print(r.text)
+    else:
+        print(r.json()['message'])
+
+
+@click.command('add', help='add a new exercise')
+@click.argument('exercise_name')
+def add_exercise(exercise_name):
+    exercise_name = texercise.valid_filesystem_name(exercise_name)
+    exercise_folder = course_folder / exercise_name
+    if exercise_folder.exists():
+        print("Folder '{}' already exists".format(exercise_folder.name))
+        return
+    exercise_folder.mkdir()
+    echo_folder = texercise.get_echo_exercise_folder()
+    for child in echo_folder.iterdir():
+        shutil.copytree(child, exercise_folder / child.name)
+
+
+@click.command('rm', help='remove existing exercise')
+@click.argument('exercise_name')
+def remove_exercise(exercise_name):
+    validate_intent("All data associated with the exercise will be lost.\n"
+                    "Are you sure you want to remove the exercise?")
+    r = requests.delete(
+        '{}/courses/{}/exercises/{}'.format(base_url, _course_name, exercise_name),
+        json={'credentials': credentials}
+    )
+    if not r.ok:
+        print(r.text)
+    else:
+        print(r.json()[MESSAGE])
+
+
+@click.command('leaderboard')
+@click.option('-n', default=5)
+@click.option('--attempt-penalty-minutes', default=0.)
+def leaderboard(n, attempt_penalty_minutes):
+    r = requests.get(
+        '{}/courses/{}/exercises/{}/data'.format(base_url, _course_name, exercise_folder.name),
+        json={'credentials': credentials}
+    )
+    if not r.ok:
+        print(r.text)
+        return
+    data = r.json()
+    if not data[STATUS] == SUCCESS:
+        print(data[MESSAGE])
+        return
+    attempts = data['attempts']
+    users = data['users']
+    start_time = data['start_time']
+
+    qualified = []
+
+    for user in users:
+        _attempts = filter(lambda a: a['user_id'] == user['id'], attempts)
+        _attempts = sorted(_attempts, key=lambda a: a['created_at'])
+        for i, a in enumerate(_attempts):
+            if a['status'] == 'success':
+                t = a['created_at'] - start_time
+                qualified.append((user['name'], t, i, t + i * attempt_penalty_minutes * 60))
+                break
+    leaderboard = sorted(qualified, key=lambda q: q[-1])[:n]
+    f = texercise.duration_format
+    print(tabulate.tabulate({
+        '#': list(range(1, len(leaderboard) + 1)),
+        'Name': [l[0] for l in leaderboard],
+        'Score': [f(l[3]) for l in leaderboard],
+        'Time': [f(l[1]) for l in leaderboard],
+        'Attempts': [l[2] + 1 for l in leaderboard],
+    }, headers='keys', floatfmt=".3f"))
+
+
+@click.command('start', help='start an exercise')
+@click.argument('exercise_name')
+def start(exercise_name):
+    exercise_folder = Path(course_folder) / exercise_name
+    if exercise_folder.exists():
+        print("Exercise folder already exists. Aborting.")
+        return
+
+    r = requests.get(
+        '{}/courses/{}/exercises/{}/template'.format(base_url, _course_name, exercise_name),
+        json={'credentials': credentials}
+    )
+    if not r.ok:
+        print(r.text)
+        return
+    exercise_folder.mkdir()
+    zipfile.ZipFile(io.BytesIO(r.content)).extractall(exercise_folder)
+    print('Created folder {} with exercise template.'.format(exercise_name))
+
+
+@click.command('submit')
+def submit():
+    validate_intent('Your code will be uploaded and registered as an attempt.\n'
+                    'It can be a good idea to test the code yourself first.\n'
+                    'Do you want to submit?')
+    success = attempt_and_await_response(exercise_folder, None)
+    if success:
+        print('Congratulations!')
+
+
+if context == 'course':
+    if _user_type == STUDENT:
+        cli.add_command(start)
+    if _user_type == TEACHER:
+        cli.add_command(add_exercise)
+        cli.add_command(remove_exercise)
+
+if context == 'exercise':
+    if _user_type == STUDENT:
+        cli.add_command(submit)
+    if _user_type == TEACHER:
+        cli.add_command(test_solution)
+        cli.add_command(upload_exercise)
+        cli.add_command(leaderboard)
+
+cli()
