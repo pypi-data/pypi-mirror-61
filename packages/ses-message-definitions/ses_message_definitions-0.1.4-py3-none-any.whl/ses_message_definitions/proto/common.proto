@@ -1,0 +1,27 @@
+syntax = "proto3";
+package ses;
+import "google/protobuf/timestamp.proto";
+
+message deviceInfo{
+    string name = 1;
+    NetworkInfo network = 2;
+
+}
+
+message NetworkInfo{
+    string ip_address = 1;
+
+    enum NetworkState {
+        NONE = 0;
+        DOWN = 1;
+        UP = 2;
+    }
+
+    NetworkState state = 2;
+}
+
+message Heartbeat {
+    deviceInfo device = 1;  
+    google.protobuf.Timestamp last_updated = 2;
+    string status = 3;  
+  }
