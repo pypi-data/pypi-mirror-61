@@ -1,0 +1,137 @@
+Metadata-Version: 2.1
+Name: pyncette
+Version: 0.2.2
+Summary: A reliable distributed cron with pluggable storage backends
+Home-page: https://github.com/tibordp/pyncette
+Author: Tibor Djurica Potpara
+Author-email: tibor.djurica@ojdip.net
+License: MIT
+Project-URL: Documentation, https://pyncette.readthedocs.io/
+Project-URL: Changelog, https://pyncette.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/tibordp/pyncette/issues
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Utilities
+Requires-Python: >=3.7
+Requires-Dist: croniter (>=0.3.31)
+Requires-Dist: python-dateutil
+Requires-Dist: typing-extensions (>=3.7.4.1)
+Provides-Extra: redis
+Requires-Dist: aioredis (>=1.3.1) ; extra == 'redis'
+
+========
+Overview
+========
+
+
+
+A reliable distributed cron with pluggable storage backends
+
+* Free software: MIT license
+
+Installation
+============
+
+::
+
+    pip install pyncette[redis] 
+
+You can also install the in-development version with::
+
+    pip install https://github.com/tibordp/pyncette/archive/master.zip
+
+Documentation
+=============
+
+
+https://pyncette.readthedocs.io
+
+
+Usage example
+=============
+
+Simple in-memory cron (does not persist state)
+
+.. code:: python
+
+    from pyncette import Pyncette, Context
+
+    app = Pyncette()
+
+    @app.task(schedule='* * * * *')
+    async def foo(context: Context):
+        print('This will run every minute')
+
+    if __name__ == '__main__':
+        app.main()
+
+Persistent distributed cron using Redis (coordinates execution with parallel instances and survives restarts)
+
+.. code:: python
+
+    from pyncette import Pyncette, Context
+    from pyncette.redis import redis_repository
+
+    app = Pyncette(repository_factory=redis_repository, redis_url='redis://localhost')
+
+    @app.task(schedule='* * * * * */10')
+    async def foo(context: Context):
+        print('This will run every 10 seconds')
+
+    if __name__ == '__main__':
+        app.main()
+
+
+Development
+===========
+
+To run the all tests run::
+
+    tox
+
+To run just the unit tests (excluding integration tests)::
+
+    tox -e py37  # or py38 
+
+Note, to combine the coverage data from all the tox environments run:
+
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
+
+    - - Windows
+      - ::
+
+            set PYTEST_ADDOPTS=--cov-append
+            tox
+
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox
+
+
+Changelog
+=========
+
+0.1.1 (2020-01.08)
+------------------
+
+* First release that actually works.
+
+
+0.0.0 (2019-12-31)
+------------------
+
+* First release on PyPI.
+
+
