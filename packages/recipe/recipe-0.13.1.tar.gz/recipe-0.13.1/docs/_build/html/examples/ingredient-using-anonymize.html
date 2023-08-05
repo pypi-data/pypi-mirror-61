@@ -1,0 +1,1431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ingredient: Using anonymizers &mdash; Recipe 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Settings" href="../advanced/settings.html" />
+    <link rel="prev" title="Ingredient: Using formatters" href="ingredient-using-formatters.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #4eb2cd" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Recipe
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hidden-cells.html">Hidden Cells</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Key Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/overview.html">Overview of Recipe Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/ingredients.html">Ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/shelves.html">Shelves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/from_config.html">Defining Shelves from configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/using_from_config.html">Using Shelves from configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/intro_to_extensions.html">Using Extensions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Recipe Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ingredient-using-formatters.html">Ingredient: Using formatters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ingredient: Using anonymizers</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/settings.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/ovens.html">Ovens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/hooks.html">Hooks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing to Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/oven_drivers.html">Custom Oven Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/dynamic_extensions.html">Dynamic Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Recipe</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Recipe Examples</a> &raquo;</li>
+        
+      <li>Ingredient: Using anonymizers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/ingredient-using-anonymize.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Ingredient:-Using-anonymizers">
+<h1>Ingredient: Using anonymizers<a class="headerlink" href="#Ingredient:-Using-anonymizers" title="Permalink to this headline">¶</a></h1>
+<p>This example shows a shelf with anonymizers. Anonymizers make a dataset look like it has random data by modifying the ingredient value.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">examples_base</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1"># The state anonymizer reverses the state name.</span>
+<span class="c1"># The population anonymizer adds 1000</span>
+<span class="n">shelf</span> <span class="o">=</span> <span class="n">Shelf</span><span class="p">({</span>
+    <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="n">Dimension</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">anonymizer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="s1">&#39;population&#39;</span><span class="p">:</span> <span class="n">Metric</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">pop2000</span><span class="p">),</span> <span class="n">anonymizer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">+</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># To use the anonymizer, the extension class Anonymize must be used.</span>
+<span class="c1"># and the anonymize flag must be True</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">Recipe</span><span class="p">(</span><span class="n">shelf</span><span class="o">=</span><span class="n">shelf</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">oven</span><span class="o">.</span><span class="n">Session</span><span class="p">(),</span> <span class="n">extension_classes</span><span class="o">=</span><span class="p">[</span><span class="n">Anonymize</span><span class="p">])</span>\
+    <span class="o">.</span><span class="n">dimensions</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metrics</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">anonymize</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Look at the output.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recipe</span><span class="o">.</span><span class="n">to_sql</span><span class="p">())</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SELECT census.state AS state_raw,
+       sum(census.pop2000) AS population_raw
+FROM census
+GROUP BY census.state
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state_raw</th>
+      <th>population_raw</th>
+      <th>state</th>
+      <th>state_id</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>4438559</td>
+      <td>amabalA</td>
+      <td>Alabama</td>
+      <td>4439559</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>608588</td>
+      <td>aksalA</td>
+      <td>Alaska</td>
+      <td>609588</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>5143931</td>
+      <td>anozirA</td>
+      <td>Arizona</td>
+      <td>5144931</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>2672434</td>
+      <td>sasnakrA</td>
+      <td>Arkansas</td>
+      <td>2673434</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>33829442</td>
+      <td>ainrofilaC</td>
+      <td>California</td>
+      <td>33830442</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>4300877</td>
+      <td>odaroloC</td>
+      <td>Colorado</td>
+      <td>4301877</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Connecticut</td>
+      <td>3403620</td>
+      <td>tucitcennoC</td>
+      <td>Connecticut</td>
+      <td>3404620</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Delaware</td>
+      <td>782386</td>
+      <td>erawaleD</td>
+      <td>Delaware</td>
+      <td>783386</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>District of Columbia</td>
+      <td>568103</td>
+      <td>aibmuloC fo tcirtsiD</td>
+      <td>District of Columbia</td>
+      <td>569103</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Florida</td>
+      <td>15976093</td>
+      <td>adirolF</td>
+      <td>Florida</td>
+      <td>15977093</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Georgia</td>
+      <td>8161776</td>
+      <td>aigroeG</td>
+      <td>Georgia</td>
+      <td>8162776</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Hawaii</td>
+      <td>1167027</td>
+      <td>iiawaH</td>
+      <td>Hawaii</td>
+      <td>1168027</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Idaho</td>
+      <td>1294560</td>
+      <td>ohadI</td>
+      <td>Idaho</td>
+      <td>1295560</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Illinois</td>
+      <td>12405300</td>
+      <td>sionillI</td>
+      <td>Illinois</td>
+      <td>12406300</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Indiana</td>
+      <td>6089161</td>
+      <td>anaidnI</td>
+      <td>Indiana</td>
+      <td>6090161</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Iowa</td>
+      <td>2926878</td>
+      <td>awoI</td>
+      <td>Iowa</td>
+      <td>2927878</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kansas</td>
+      <td>2675929</td>
+      <td>sasnaK</td>
+      <td>Kansas</td>
+      <td>2676929</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Kentucky</td>
+      <td>4028389</td>
+      <td>ykcutneK</td>
+      <td>Kentucky</td>
+      <td>4029389</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Louisiana</td>
+      <td>4449489</td>
+      <td>anaisiuoL</td>
+      <td>Louisiana</td>
+      <td>4450489</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Maine</td>
+      <td>1271694</td>
+      <td>eniaM</td>
+      <td>Maine</td>
+      <td>1272694</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Maryland</td>
+      <td>5274039</td>
+      <td>dnalyraM</td>
+      <td>Maryland</td>
+      <td>5275039</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Massachusetts</td>
+      <td>6357515</td>
+      <td>sttesuhcassaM</td>
+      <td>Massachusetts</td>
+      <td>6358515</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Michigan</td>
+      <td>9951873</td>
+      <td>nagihciM</td>
+      <td>Michigan</td>
+      <td>9952873</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Minnesota</td>
+      <td>4931897</td>
+      <td>atosenniM</td>
+      <td>Minnesota</td>
+      <td>4932897</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Mississippi</td>
+      <td>2830133</td>
+      <td>ippississiM</td>
+      <td>Mississippi</td>
+      <td>2831133</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Missouri</td>
+      <td>5588759</td>
+      <td>iruossiM</td>
+      <td>Missouri</td>
+      <td>5589759</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Montana</td>
+      <td>899459</td>
+      <td>anatnoM</td>
+      <td>Montana</td>
+      <td>900459</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nebraska</td>
+      <td>1705040</td>
+      <td>aksarbeN</td>
+      <td>Nebraska</td>
+      <td>1706040</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Nevada</td>
+      <td>2010272</td>
+      <td>adaveN</td>
+      <td>Nevada</td>
+      <td>2011272</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>New Hampshire</td>
+      <td>1239307</td>
+      <td>erihspmaH weN</td>
+      <td>New Hampshire</td>
+      <td>1240307</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>New Jersey</td>
+      <td>8420023</td>
+      <td>yesreJ weN</td>
+      <td>New Jersey</td>
+      <td>8421023</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>New Mexico</td>
+      <td>1809015</td>
+      <td>ocixeM weN</td>
+      <td>New Mexico</td>
+      <td>1810015</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>New York</td>
+      <td>18978668</td>
+      <td>kroY weN</td>
+      <td>New York</td>
+      <td>18979668</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>North Carolina</td>
+      <td>7978581</td>
+      <td>aniloraC htroN</td>
+      <td>North Carolina</td>
+      <td>7979581</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>North Dakota</td>
+      <td>633621</td>
+      <td>atokaD htroN</td>
+      <td>North Dakota</td>
+      <td>634621</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Ohio</td>
+      <td>11355210</td>
+      <td>oihO</td>
+      <td>Ohio</td>
+      <td>11356210</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Oklahoma</td>
+      <td>3430420</td>
+      <td>amohalkO</td>
+      <td>Oklahoma</td>
+      <td>3431420</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Oregon</td>
+      <td>3428319</td>
+      <td>nogerO</td>
+      <td>Oregon</td>
+      <td>3429319</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Pennsylvania</td>
+      <td>12276157</td>
+      <td>ainavlysnneP</td>
+      <td>Pennsylvania</td>
+      <td>12277157</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Rhode Island</td>
+      <td>1047200</td>
+      <td>dnalsI edohR</td>
+      <td>Rhode Island</td>
+      <td>1048200</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>South Carolina</td>
+      <td>3983917</td>
+      <td>aniloraC htuoS</td>
+      <td>South Carolina</td>
+      <td>3984917</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>South Dakota</td>
+      <td>752231</td>
+      <td>atokaD htuoS</td>
+      <td>South Dakota</td>
+      <td>753231</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Tennessee</td>
+      <td>5685230</td>
+      <td>eessenneT</td>
+      <td>Tennessee</td>
+      <td>5686230</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Texas</td>
+      <td>20830810</td>
+      <td>saxeT</td>
+      <td>Texas</td>
+      <td>20831810</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Utah</td>
+      <td>2238675</td>
+      <td>hatU</td>
+      <td>Utah</td>
+      <td>2239675</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Vermont</td>
+      <td>609480</td>
+      <td>tnomreV</td>
+      <td>Vermont</td>
+      <td>610480</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Virginia</td>
+      <td>6955790</td>
+      <td>ainigriV</td>
+      <td>Virginia</td>
+      <td>6956790</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Washington</td>
+      <td>5863102</td>
+      <td>notgnihsaW</td>
+      <td>Washington</td>
+      <td>5864102</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>West Virginia</td>
+      <td>1805847</td>
+      <td>ainigriV tseW</td>
+      <td>West Virginia</td>
+      <td>1806847</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Wisconsin</td>
+      <td>5372159</td>
+      <td>nisnocsiW</td>
+      <td>Wisconsin</td>
+      <td>5373159</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Wyoming</td>
+      <td>490336</td>
+      <td>gnimoyW</td>
+      <td>Wyoming</td>
+      <td>491336</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">examples_base</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1"># The state anonymizer reverses the state name.</span>
+<span class="c1"># The population anonymizer adds 1000</span>
+<span class="n">shelf</span> <span class="o">=</span> <span class="n">Shelf</span><span class="p">({</span>
+    <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="n">Dimension</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">anonymizer</span><span class="o">=</span><span class="s1">&#39;{fake:name}&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;population&#39;</span><span class="p">:</span> <span class="n">Metric</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">pop2000</span><span class="p">),</span> <span class="n">anonymizer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">+</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># To use the anonymizer, the extension class Anonymize must be used.</span>
+<span class="c1"># and the anonymize flag must be True</span>
+<span class="n">recipe</span> <span class="o">=</span> <span class="n">Recipe</span><span class="p">(</span><span class="n">shelf</span><span class="o">=</span><span class="n">shelf</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">oven</span><span class="o">.</span><span class="n">Session</span><span class="p">(),</span> <span class="n">extension_classes</span><span class="o">=</span><span class="p">[</span><span class="n">Anonymize</span><span class="p">])</span>\
+    <span class="o">.</span><span class="n">dimensions</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">metrics</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">anonymize</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Look at the output.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recipe</span><span class="o">.</span><span class="n">to_sql</span><span class="p">())</span>
+<span class="n">recipe</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SELECT census.state AS state_raw,
+       sum(census.pop2000) AS population_raw
+FROM census
+GROUP BY census.state
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state_raw</th>
+      <th>population_raw</th>
+      <th>state</th>
+      <th>state_id</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>4438559</td>
+      <td>Steven Williams</td>
+      <td>Alabama</td>
+      <td>4439559</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>608588</td>
+      <td>Donald Calderon</td>
+      <td>Alaska</td>
+      <td>609588</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>5143931</td>
+      <td>Shannon Bean</td>
+      <td>Arizona</td>
+      <td>5144931</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>2672434</td>
+      <td>Mr. Kyle Hurst</td>
+      <td>Arkansas</td>
+      <td>2673434</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>33829442</td>
+      <td>Stephanie Mitchell</td>
+      <td>California</td>
+      <td>33830442</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>4300877</td>
+      <td>Alex Graham</td>
+      <td>Colorado</td>
+      <td>4301877</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Connecticut</td>
+      <td>3403620</td>
+      <td>John Newton</td>
+      <td>Connecticut</td>
+      <td>3404620</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Delaware</td>
+      <td>782386</td>
+      <td>Samantha Norman</td>
+      <td>Delaware</td>
+      <td>783386</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>District of Columbia</td>
+      <td>568103</td>
+      <td>Justin Taylor</td>
+      <td>District of Columbia</td>
+      <td>569103</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Florida</td>
+      <td>15976093</td>
+      <td>Tanya Kelley</td>
+      <td>Florida</td>
+      <td>15977093</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Georgia</td>
+      <td>8161776</td>
+      <td>Jacob Koch</td>
+      <td>Georgia</td>
+      <td>8162776</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Hawaii</td>
+      <td>1167027</td>
+      <td>Natalie Walsh</td>
+      <td>Hawaii</td>
+      <td>1168027</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Idaho</td>
+      <td>1294560</td>
+      <td>Michael Austin</td>
+      <td>Idaho</td>
+      <td>1295560</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Illinois</td>
+      <td>12405300</td>
+      <td>Mr. Paul Olson</td>
+      <td>Illinois</td>
+      <td>12406300</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Indiana</td>
+      <td>6089161</td>
+      <td>Natalie Mcfarland</td>
+      <td>Indiana</td>
+      <td>6090161</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Iowa</td>
+      <td>2926878</td>
+      <td>Laurie Smith</td>
+      <td>Iowa</td>
+      <td>2927878</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kansas</td>
+      <td>2675929</td>
+      <td>Robert Baker</td>
+      <td>Kansas</td>
+      <td>2676929</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Kentucky</td>
+      <td>4028389</td>
+      <td>Carol Wright</td>
+      <td>Kentucky</td>
+      <td>4029389</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Louisiana</td>
+      <td>4449489</td>
+      <td>Michael Harrison</td>
+      <td>Louisiana</td>
+      <td>4450489</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Maine</td>
+      <td>1271694</td>
+      <td>Cassandra Berry</td>
+      <td>Maine</td>
+      <td>1272694</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Maryland</td>
+      <td>5274039</td>
+      <td>Matthew Warren</td>
+      <td>Maryland</td>
+      <td>5275039</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Massachusetts</td>
+      <td>6357515</td>
+      <td>Michael Bryant</td>
+      <td>Massachusetts</td>
+      <td>6358515</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Michigan</td>
+      <td>9951873</td>
+      <td>Michelle Nelson</td>
+      <td>Michigan</td>
+      <td>9952873</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Minnesota</td>
+      <td>4931897</td>
+      <td>Rebekah Berg</td>
+      <td>Minnesota</td>
+      <td>4932897</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Mississippi</td>
+      <td>2830133</td>
+      <td>Elaine Wood</td>
+      <td>Mississippi</td>
+      <td>2831133</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Missouri</td>
+      <td>5588759</td>
+      <td>Kevin Johnson</td>
+      <td>Missouri</td>
+      <td>5589759</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Montana</td>
+      <td>899459</td>
+      <td>Lindsey Adams</td>
+      <td>Montana</td>
+      <td>900459</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nebraska</td>
+      <td>1705040</td>
+      <td>Linda Wade</td>
+      <td>Nebraska</td>
+      <td>1706040</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Nevada</td>
+      <td>2010272</td>
+      <td>Mark Hayes</td>
+      <td>Nevada</td>
+      <td>2011272</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>New Hampshire</td>
+      <td>1239307</td>
+      <td>Matthew Anderson</td>
+      <td>New Hampshire</td>
+      <td>1240307</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>New Jersey</td>
+      <td>8420023</td>
+      <td>Kathleen Little</td>
+      <td>New Jersey</td>
+      <td>8421023</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>New Mexico</td>
+      <td>1809015</td>
+      <td>Edward Andrews</td>
+      <td>New Mexico</td>
+      <td>1810015</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>New York</td>
+      <td>18978668</td>
+      <td>Mary James</td>
+      <td>New York</td>
+      <td>18979668</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>North Carolina</td>
+      <td>7978581</td>
+      <td>Matthew Myers</td>
+      <td>North Carolina</td>
+      <td>7979581</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>North Dakota</td>
+      <td>633621</td>
+      <td>Luke Huynh</td>
+      <td>North Dakota</td>
+      <td>634621</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Ohio</td>
+      <td>11355210</td>
+      <td>Jessica Guerrero</td>
+      <td>Ohio</td>
+      <td>11356210</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Oklahoma</td>
+      <td>3430420</td>
+      <td>Valerie Zimmerman</td>
+      <td>Oklahoma</td>
+      <td>3431420</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Oregon</td>
+      <td>3428319</td>
+      <td>Jennifer Stephenson</td>
+      <td>Oregon</td>
+      <td>3429319</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Pennsylvania</td>
+      <td>12276157</td>
+      <td>Timothy Johnson</td>
+      <td>Pennsylvania</td>
+      <td>12277157</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Rhode Island</td>
+      <td>1047200</td>
+      <td>Michael Garcia</td>
+      <td>Rhode Island</td>
+      <td>1048200</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>South Carolina</td>
+      <td>3983917</td>
+      <td>Timothy Kramer</td>
+      <td>South Carolina</td>
+      <td>3984917</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>South Dakota</td>
+      <td>752231</td>
+      <td>Christopher Henson</td>
+      <td>South Dakota</td>
+      <td>753231</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Tennessee</td>
+      <td>5685230</td>
+      <td>Michael Rodriguez PhD</td>
+      <td>Tennessee</td>
+      <td>5686230</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Texas</td>
+      <td>20830810</td>
+      <td>Eric Cross</td>
+      <td>Texas</td>
+      <td>20831810</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Utah</td>
+      <td>2238675</td>
+      <td>Rachael Pratt</td>
+      <td>Utah</td>
+      <td>2239675</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Vermont</td>
+      <td>609480</td>
+      <td>Michelle Schultz</td>
+      <td>Vermont</td>
+      <td>610480</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Virginia</td>
+      <td>6955790</td>
+      <td>Laura Summers</td>
+      <td>Virginia</td>
+      <td>6956790</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Washington</td>
+      <td>5863102</td>
+      <td>Shannon Young</td>
+      <td>Washington</td>
+      <td>5864102</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>West Virginia</td>
+      <td>1805847</td>
+      <td>Connie Mitchell</td>
+      <td>West Virginia</td>
+      <td>1806847</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Wisconsin</td>
+      <td>5372159</td>
+      <td>Evan Lee</td>
+      <td>Wisconsin</td>
+      <td>5373159</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Wyoming</td>
+      <td>490336</td>
+      <td>Marcus Williams</td>
+      <td>Wyoming</td>
+      <td>491336</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Using an anonymizer injects the anonymize function as the last formatter. The original value is available as <code class="docutils literal notranslate"><span class="pre">ingredient_raw</span></code>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../advanced/settings.html" class="btn btn-neutral float-right" title="Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ingredient-using-formatters.html" class="btn btn-neutral float-left" title="Ingredient: Using formatters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Chris Gemignani
+      <span class="lastupdated">
+        Last updated on Jul 17, 2019.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

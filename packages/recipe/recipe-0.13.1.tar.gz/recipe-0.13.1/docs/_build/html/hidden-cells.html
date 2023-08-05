@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hidden Cells &mdash; Recipe 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview of Recipe Concepts" href="concepts/overview.html" />
+    <link rel="prev" title="Getting Started" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #4eb2cd" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Recipe
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hidden Cells</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Key Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/overview.html">Overview of Recipe Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ingredients.html">Ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/shelves.html">Shelves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/from_config.html">Defining Shelves from configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/using_from_config.html">Using Shelves from configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/intro_to_extensions.html">Using Extensions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Recipe Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="advanced/settings.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/ovens.html">Ovens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/hooks.html">Hooks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contributing to Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing/development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/oven_drivers.html">Custom Oven Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/dynamic_extensions.html">Dynamic Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Recipe</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Hidden Cells</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/hidden-cells.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Hidden-Cells">
+<h1>Hidden Cells<a class="headerlink" href="#Hidden-Cells" title="Permalink to this headline">¶</a></h1>
+<p>You can remove cells from the HTML/LaTeX output by adding this to the cell metadata:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;nbsphinx&quot;</span><span class="p">:</span> <span class="s2">&quot;hidden&quot;</span>
+</pre></div>
+</div>
+<p>Hidden cells are still executed but removed afterwards.</p>
+<p>For example, the following hidden cell defines the variable <code class="docutils literal notranslate"><span class="pre">answer</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<p>This is the cell after the hidden cell. Although the previous cell is not visible, its result is still available:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">answer</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>42
+</pre></div>
+</div>
+</div>
+<p>Don’t overuse this, because it may make it harder to follow what’s going on in your notebook.</p>
+<p>Also Markdown cells can be hidden. The following cell is hidden. Wowza!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">after</span> <span class="n">the</span> <span class="n">hidden</span> <span class="n">cell</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">docs_examples</span> <span class="k">import</span> <span class="o">*</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+
+<span></span><span class="n">shelf</span> <span class="o">=</span> <span class="n">Shelf</span><span class="p">({</span>
+    <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="n">Dimension</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">state</span><span class="p">),</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">WtdAvgMetric</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">Census</span><span class="o">.</span><span class="n">pop2000</span><span class="p">),</span>
+    <span class="s1">&#39;population&#39;</span><span class="p">:</span> <span class="n">Metric</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Census</span><span class="o">.</span><span class="n">pop2000</span><span class="p">))</span>
+<span class="p">})</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">Recipe</span><span class="p">(</span><span class="n">shelf</span><span class="o">=</span><span class="n">shelf</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">oven</span><span class="o">.</span><span class="n">Session</span><span class="p">())</span>\
+    <span class="o">.</span><span class="n">dimensions</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">metrics</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">r</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>age</th>
+      <th>state_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Florida</td>
+      <td>39.082839</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>West Virginia</td>
+      <td>38.555059</td>
+      <td>West Virginia</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Maine</td>
+      <td>38.101184</td>
+      <td>Maine</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Pennsylvania</td>
+      <td>38.038567</td>
+      <td>Pennsylvania</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Rhode Island</td>
+      <td>37.203438</td>
+      <td>Rhode Island</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Connecticut</td>
+      <td>37.198671</td>
+      <td>Connecticut</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Iowa</td>
+      <td>37.078036</td>
+      <td>Iowa</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Vermont</td>
+      <td>37.059797</td>
+      <td>Vermont</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Montana</td>
+      <td>36.967495</td>
+      <td>Montana</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Massachusetts</td>
+      <td>36.931742</td>
+      <td>Massachusetts</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Hawaii</td>
+      <td>36.906323</td>
+      <td>Hawaii</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>North Dakota</td>
+      <td>36.886213</td>
+      <td>North Dakota</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>New Jersey</td>
+      <td>36.740688</td>
+      <td>New Jersey</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Arkansas</td>
+      <td>36.637451</td>
+      <td>Arkansas</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Oregon</td>
+      <td>36.496812</td>
+      <td>Oregon</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Missouri</td>
+      <td>36.441899</td>
+      <td>Missouri</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>New Hampshire</td>
+      <td>36.431861</td>
+      <td>New Hampshire</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Ohio</td>
+      <td>36.407557</td>
+      <td>Ohio</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>District of Columbia</td>
+      <td>36.402441</td>
+      <td>District of Columbia</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>New York</td>
+      <td>36.345351</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Delaware</td>
+      <td>36.330524</td>
+      <td>Delaware</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Alabama</td>
+      <td>36.277879</td>
+      <td>Alabama</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Wisconsin</td>
+      <td>36.251687</td>
+      <td>Wisconsin</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Tennessee</td>
+      <td>36.246676</td>
+      <td>Tennessee</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Kentucky</td>
+      <td>36.244734</td>
+      <td>Kentucky</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>South Dakota</td>
+      <td>36.222866</td>
+      <td>South Dakota</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Oklahoma</td>
+      <td>36.110444</td>
+      <td>Oklahoma</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nebraska</td>
+      <td>36.002538</td>
+      <td>Nebraska</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>North Carolina</td>
+      <td>35.972045</td>
+      <td>North Carolina</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>South Carolina</td>
+      <td>35.940300</td>
+      <td>South Carolina</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Wyoming</td>
+      <td>35.887779</td>
+      <td>Wyoming</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Virginia</td>
+      <td>35.839892</td>
+      <td>Virginia</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Kansas</td>
+      <td>35.803131</td>
+      <td>Kansas</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Maryland</td>
+      <td>35.782296</td>
+      <td>Maryland</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Michigan</td>
+      <td>35.733876</td>
+      <td>Michigan</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Indiana</td>
+      <td>35.655149</td>
+      <td>Indiana</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Minnesota</td>
+      <td>35.581938</td>
+      <td>Minnesota</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Washington</td>
+      <td>35.507767</td>
+      <td>Washington</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Illinois</td>
+      <td>35.376322</td>
+      <td>Illinois</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Arizona</td>
+      <td>35.370655</td>
+      <td>Arizona</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Nevada</td>
+      <td>35.282457</td>
+      <td>Nevada</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>New Mexico</td>
+      <td>34.973244</td>
+      <td>New Mexico</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Mississippi</td>
+      <td>34.962652</td>
+      <td>Mississippi</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Louisiana</td>
+      <td>34.829653</td>
+      <td>Louisiana</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Colorado</td>
+      <td>34.538607</td>
+      <td>Colorado</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Idaho</td>
+      <td>34.334502</td>
+      <td>Idaho</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>California</td>
+      <td>34.178726</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Georgia</td>
+      <td>34.060715</td>
+      <td>Georgia</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Texas</td>
+      <td>33.489209</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Alaska</td>
+      <td>31.947385</td>
+      <td>Alaska</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Utah</td>
+      <td>30.636222</td>
+      <td>Utah</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="concepts/overview.html" class="btn btn-neutral float-right" title="Overview of Recipe Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Chris Gemignani
+      <span class="lastupdated">
+        Last updated on Jul 17, 2019.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
