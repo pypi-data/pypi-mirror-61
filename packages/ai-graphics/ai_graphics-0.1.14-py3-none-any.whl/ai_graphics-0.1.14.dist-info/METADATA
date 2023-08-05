@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: ai-graphics
+Version: 0.1.14
+Summary: AI Graphics Toolkit
+Home-page: https://github.com/CachCheng/Python_Cookbook
+Author: CachCheng
+Author-email: tkggpdc2007@163.com
+License: Apache-2.0
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: flask
+Requires-Dist: tezign
+Requires-Dist: mxnet
+Requires-Dist: sklearn
+Requires-Dist: scenedetect
+Requires-Dist: moviepy
+Requires-Dist: Pillow
+Requires-Dist: torch (==1.1.0)
+Requires-Dist: torchvision (==0.3.0)
+
+# 1、使用方法
+import cv2  
+import graphics as g
+
+## 场景图识别
+cl = g.Classifier(model_name="../models/classifier.pth", ctx_id=-1)  
+src = cv2.imread('27.png', cv2.IMREAD_UNCHANGED)  
+label = cl.predict(src)
+
+## 场景图裁剪
+src = cv2.imread('27.png', cv2.IMREAD_UNCHANGED)  
+ic = g.ImageCrop(model_name="../models/basnet.pth", ctx_id=-1)  
+image = ic.crop_image(src, (1000, 1000))  
+bbox = ic.crop_margin(src, (1000, 1000))  
+
+## 白底图裁剪
+src = cv2.imread('27.png', cv2.IMREAD_UNCHANGED)  
+bbox = g.Graphics.crop_margin(src, thre=220, margin=[10, 10, 10, 10])
+
+## 商品图镜像特效
+src = cv2.imread('27.png', cv2.IMREAD_UNCHANGED)  
+image = g.Graphics.layer_reflection(src, top=0, down=0.3, transparency=0.15)
+
+## 人物图蒙层特效
+src = cv2.imread('27.png', cv2.IMREAD_UNCHANGED)  
+image = g.Graphics.layer_mask(src)
+
+## 图像透明通道融合
+src = cv2.imread('27.png', cv2.IMREAD_UNCHANGED)  
+image = g.Graphics.alpha_compose(src, image, x=0, y=0)
+
+
+# 2、安装相关工具以及打包：
+python -m pip install --user --upgrade setuptools wheel  
+python -m pip install --user --upgrade twine  
+python setup.py sdist bdist_wheel
+
+# 3、在 https://pypi.org/ 或 https://test.pypi.org/ 注册账号 Cachcheng 并上传包
+python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+
+# 4、查看pypi地址：
+https://pypi.org/project/ai-graphics/
+
+
