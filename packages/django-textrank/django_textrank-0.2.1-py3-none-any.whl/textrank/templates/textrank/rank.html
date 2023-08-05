@@ -1,0 +1,127 @@
+{% extends 'textrank/base.html' %}{% load i18n bootstrap4 %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'textrank:index' %}">TextRank</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'textrank:rank' %}">{% trans 'Анализ' %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ format|upper }}</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <form class="form mb-4" role="form" method="post" action="">
+            {{ form.non_field_errors }}
+            {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+            {% for field in form.visible_fields %}{{ field|form_group }}{% endfor %}
+            <button type="submit" class="btn btn-dark btn-block mt-1">{% trans 'Проверить' %}</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-lg-8">
+        <h6>{% trans 'Результат' %}:</h6>
+    {% if format != 'html' %}
+        <pre id="result" class="bg-light mb-4" style="display:none"></pre>
+    {% elif result %}
+        <div class="table-responsive mb-4">
+            <table class="table table-striped table-sm mb-3">
+                <tbody>
+                    <tr>
+                        <th class="text-nowrap">{% trans 'группа' %}</th>
+                        <td>
+                        {% if result.group %}
+                            <a class="text-body mr-2" href="{% url 'textrank:group' id=result.group.id %}">
+                                <span>{{ result.group.name }}</span>
+                            </a>
+                            <span class="badge badge-success">score={{ result.group.score }}; found={{ result.found|length }}</span>
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% if result.utime is not None %}
+                    <tr>
+                        <th class="text-nowrap">{% trans 'время обновления' %}</th>
+                        <td>{{ result.utime }}</td>
+                    </tr>
+                {% endif %}
+                    <tr>
+                        <th class="text-nowrap">{% trans 'время анализа' %}</th>
+                        <td>{{ result.atime }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-nowrap">{% trans 'вес совпадений' %}</th>
+                        <td>
+                        {% for word, weight in result.found.items %}
+                            <span> {{ word }}={{ weight }}; </span>
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% if result.words is not None %}
+                    <tr>
+                        <th class="text-nowrap">{% trans 'слова в тексте' %}</th>
+                        <td>
+                        {% for word in result.words %}
+                            <span> {{ word }} </span>
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if result.morph is not None %}
+                    <tr>
+                        <th class="text-nowrap">{% trans 'морфологический поиск' %}</th>
+                        <td>
+                        {% for word in result.morph %}
+                            <span> {{ word }} </span>
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if result.other is not None %}
+                    <tr>
+                        <th>{% trans 'совпадения c другими группами' %}</th>
+                        <td>
+                        {% for other in result.other %}
+                            <p class="mb-0">
+                                <a class="text-body mr-2" href="{% url 'textrank:group' id=other.group.id %}">
+                                    <span>{{ other.group.name }}</span>
+                                </a>
+                                <span class="badge badge-light">score={{ other.group.score }}; found={{ other.found|length }}</span>
+                            </p>
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    {% if not result %}
+        <div class="alert alert-info">
+            <h6>{% trans 'Для отображения результата заполните текст в форме и отправьте его на проверку.' %}</h6>
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript_page %}
+{% if format != 'html' %}
+<script>
+$(document).ready(function($) {
+    $('form').on('submit', function(e) {
+        e.preventDefault()
+        $.ajax({
+            url: this.action,
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            type: 'post',
+            dataType: '{{ format }}',
+            complete: function(jqXHR) {
+                $('#result').text(jqXHR.responseText).show();
+                $('.alert-info').remove();
+            }
+        })
+    })
+})
+</script>
+{% endif %}
+{% endblock %}
