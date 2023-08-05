@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="redturtle.exporter.base">
+
+  <!-- Views for base contents -->
+  <browser:page
+      for="*"
+      name="get_item"
+      class=".jsonify.GetItem"
+      permission="zope2.ViewManagementScreens"
+      />
+
+<browser:page
+    for="*"
+    name="rt_get_catalog_results"
+    class=".jsonify.GetCatalogResults"
+    permission="zope2.ViewManagementScreens"
+    />
+
+  <include file="archetypes.zcml"
+           zcml:condition="installed Products.ATContentTypes" />
+</configure>
