@@ -1,0 +1,36 @@
+---
+
+classes:
+  ColorSensorV3:
+    shared_ptr: true
+    ignored_bases:
+    - frc::ErrorBase
+    enums:
+      GainFactor:
+      LEDPulseFrequency:
+      LEDCurrent:
+      ProximityResolution:
+      ProximityMeasurementRate:
+      ColorResolution:
+      ColorMeasurementRate:
+    methods:
+      ColorSensorV3:
+      GetColor:
+      GetRawColor:
+      GetCIEColor:
+      GetIR:
+      GetProximity:
+      SetGain:
+      ConfigureProximitySensorLED:
+      ConfigureProximitySensor:
+      ConfigureColorSensor:
+      HasReset:
+  ColorSensorV3::RawColor:
+    shared_ptr: true
+    attributes:
+      red:
+      green:
+      blue:
+      ir:
+    methods:
+      RawColor:
