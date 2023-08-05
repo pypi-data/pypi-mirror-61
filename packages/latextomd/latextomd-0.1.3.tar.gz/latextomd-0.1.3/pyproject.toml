@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "latextomd"
+version = "0.1.3"
+description = "Simple project to convert latex in markdown"
+authors = ["David Couronné <couronne.david@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/DavidCouronne/latextomd"
+repository = "https://github.com/DavidCouronne/latextomd"
+keywords = ["latex", "markdown", "convert"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+TexSoup = "^0.2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+latextomd = 'latextomd.cli:main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
