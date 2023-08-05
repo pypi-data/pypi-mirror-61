@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: lcmap-oxen
+Version: 0.1
+Summary: Create LCMAP aux tiles
+Home-page: http://eroslab.cr.usgs.gov/lcmap/oxen
+Author: USGS EROS LCMAP
+Author-email: 
+License: Unlicense
+Keywords: usgs lcmap eros
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: Public Domain
+Classifier: Programming Language :: Python :: 3.8
+Provides-Extra: dev
+Requires-Dist: twine ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: sphinx ; extra == 'doc'
+Requires-Dist: sphinx-autobuild ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+
+lcmap-oxen
+==========
+Tooling for creating the auxiliary datasets needed in LCMAP
+
+Installing
+----------
+
+.. code-block:: bash
+
+    pip install lcmap-oxen
+
+A full GDAL installation is required.  GDAL can be compiled and installed by conda.
+
+
+Other requirements:
+-------------------
+
+python >= 3.6
+
+
+Run the script from the command line:
+-------------------------------------
+
+.. code-block:: bash
+
+    $ clip_nlcd -i /path/to/conus-nlcd-raster -o /path/to/output-directory/ --acquired YYYYMMDD --prod NLCD *or* NLCD_TRAINING
+
+
+CLI parameters:
+---------------
+
+* -i, The full path to a CONUS NLCD raster file.
+* -o, The full path to an output directory, will be created if it does not exist.
+* --acquired, A date (YYYYMMDD) that describes the acquisition of the original raster data; used in the filenames for the outputs.
+* --prod, A string description of the input dataset, currently NLCD and NLCD_TRAINING are valid options; used in the filenames for the outputs.
+* --overwrite, Optional, adding this will cause existing files to be overwritten, otherwise they will be skipped.
+
+This script was designed to generate tiled NLCD but could be modified to produce other tiled LCMAP auxiliary products.
+
+
