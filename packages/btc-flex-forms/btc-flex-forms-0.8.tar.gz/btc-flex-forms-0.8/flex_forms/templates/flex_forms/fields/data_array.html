@@ -1,0 +1,30 @@
+<div class="flex-field-group block-with-padding flex-static-field-group {{ field_group_class }} js-static_field_wrapper">
+    {% block field_wrapper %}
+        <div class="flex-field-wrapper flex-static-field-wrapper">
+            {% block field_template %}
+                <div class="static-data-array-field">
+                    <div class="flex-field-help-info-wrapper">
+                        {% block field_label %}
+                            <label>{{ label }}</label>
+                            {% block field_help_text %}
+                                <span class="help-text js-field_help_text">{{ help_text }}</span>
+                            {% endblock %}
+                        {% endblock %}
+                    </div>
+                    {% block field_icon %}
+                        {% if icon %}
+                            <div class="flex-field-icon-wrapper">
+                                {% if 'svg' in icon %}
+                                    {% include icon %}
+                                {% else %}
+                                    {{ icon }}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                    <div class="flex-data-array">{{ data }}</div>
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+</div>

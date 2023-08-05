@@ -1,0 +1,20 @@
+{% load flex_forms %}
+
+<form {{ html_params|safe }}>
+    {% block group %}
+        {% flex_form_grid group %}
+    {% endblock %}
+    {% block csrf_protect %}
+        {% csrf_token %}
+    {% endblock %}
+    {% for item in group %}
+        {% if item.flex_type == 'formset' %}
+            {{ item.management_form }}
+        {% endif %}
+    {% endfor %}
+    {% for form in group.forms %}
+        {% for field in form.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+    {% endfor %}
+</form>
