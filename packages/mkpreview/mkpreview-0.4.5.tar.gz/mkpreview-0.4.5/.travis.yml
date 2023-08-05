@@ -1,0 +1,20 @@
+language: python
+python:
+  - 3.6
+  - 3.5
+  - 3.4
+  - 2.7
+
+install:
+  - pip install -r requirements/prod.txt
+
+script:
+  - make utest
+  - sudo make install
+  - make stest
+  - sudo make uninstall
+
+deploy:
+    provider: pypi
+    user: "pypi-AgEIcHlwaS5vcmcCJDBkMzMzNWQ3LTYwNjMtNGQyNy1hMzIxLTU0MmE1Njc4MjAwNQACOnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJta3ByZXZpZXciXX0sICJ2ZXJzaW9uIjogMX0AAAYgsqCTeuCT6XNcWiRXj1UfIqy8LHyedup4bwq4UFdnNhM"
+    password: "Your PyPI API token, including the pypi- prefix"
