@@ -1,0 +1,3 @@
+# LibSerial26
+
+Aula de Sistemas Operacionais do curso de Sistemas Embarcados do SENAI sobre como subir uma biblioteca Python no pypi.org
