@@ -1,0 +1,57 @@
+Following is the list of critical additions and updates for a given released version:
+
+0.8.9
+-----
+- (Critical Fix) Support for @test decorator withour any args for simple tests.
+- Support for module level shared space.
+
+0.8.8
+-----
+- wait_until_element_absent method support in Gui.
+- Element filtering support for multi-element. (Example 34).
+- Support for loadable page and widget via overridable prepare, reach_until and validate_readiness methods.
+- Support for browser level screenshot.
+- Support for automatic screenshot on failure in test and inclusion in HTML report.
+- Support for -cm -im -cc -ic -cf -if test filtering switches added.
+- Support for -e --enumerate-only switch added to check display picked tests without running.
+- Added @test decorator for Arjuna test function.
+- Added support for defining dependencies by provide id and exclude_if args to @test
+- Data Driven Testing support using drive_with argument to @test
+- Support for a single data record source using record argument.
+- Added support for data store, shared objects and basic data pipeline.
+- Support for 'my' as a single argument containing info and data about test func.
+- Support for module level and test level fixtures using @for_module and @for_test decorators.
+- Support for lookup of a resource in the the reverse order of function, class, module and session.
+- Fixtures take request as arg. Tests take my and request as args.
+- Dictionary as well . supported for setting and retrieval of resources.
+
+0.8.7
+-----
+- Arjuna now uses pytest as its engine instead of unittest. It supports unittest style tests as well.
+- Added pytest and pytest-html as dependencies in setup.py.
+- Reporting: Added support for XML and HTML reporting simultaneously. Both are switched on by default.
+- CLI: Added -rf switch to which one or more of the ReportFormat allowed names can be supplied.
+- Concept of Run ID representing a given run introduced.
+- CLI: Support for specifying Run ID added. Default is 'mrun'.
+- Logging functionality is fixed. Extraneous logs removed.
+- CLI: Support for -dl (console display level) and -ll (log level) CLI switches.
+- Log and screenshots directory is within Run report directory for a run id.
+- RunID is clubbed with timestamp to form the final run id to avoid any overwriting of reports.
+
+0.8.6
+-----
+- Automator is created in the context of an App.
+- Elements are created in the context of a GUI (App/Page/Widget)
+- Nested Element Finding.
+- Partial Element can be used to find elements as well.
+- Drodown and radiogroup components fixed.
+- OR relationship bug fixed for multiple With identifiers.
+- Introduced FrameIsPresent and WindowIsPresent Conditions.
+- Max wait time has been made configurable for some contexts at call level.
+- Window logic works. Improved window waits. All wait is constrained by Gui max wait.
+- Frame logic works. Improved window waits. All wait is constrained by Gui max wait.
+- Conditions raise TimeoutError which is a WaitableError.
+- Exception message contains more string representation of Locator information. 
+- Basic unittest integration to run all tests in the tests directory of a project.
+- Element names in GNS files are validated as Arjuna names (Valid Python names, 3-50 length)
+- Importing from arjuna has been heavily simplified. from arjuna import * provides all public names.
