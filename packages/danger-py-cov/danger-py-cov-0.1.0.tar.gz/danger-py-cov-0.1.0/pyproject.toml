@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "danger-py-cov"
+version = "0.1.0"
+description = "danger-python plugin for displaying code coverage changes"
+authors = [
+    "Jakub Turek <jkbturek@gmail.com>",
+    "EL Passion <hello@elpassion.com>"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pycobertura = "^0.10.5"
+jinja2 = "^2.11.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.7.9"
+pytest-watch = "^4.2.0"
+pytest-cov = "^2.8.1"
+black = "^19.10b0"
+isort = "^4.3.21"
+pylint = "^2.4.4"
+mypy = "^0.761"
+pre-commit = "^2.0.1"
+danger-python = "^0.1.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
