@@ -1,0 +1,2 @@
+Outliers are extreme values that deviate from other observations on data , they may indicate a variability in a measurement, experimental errors or a novelty. In other words, an outlier is an observation that diverges from an overall pattern on a sample.
+Outlier removal method(row removal) has been implemented using z-score method.
