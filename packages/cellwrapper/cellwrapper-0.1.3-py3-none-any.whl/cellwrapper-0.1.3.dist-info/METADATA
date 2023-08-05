@@ -1,0 +1,190 @@
+Metadata-Version: 2.1
+Name: cellwrapper
+Version: 0.1.3
+Summary: A python wrapper for fast and parallel processing of cellranger runs
+Home-page: https://github.com/scfurl/cellwrapper.git
+Author: Scott Furlan
+Author-email: scottfurlan@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.5
+Description-Content-Type: text/markdown
+Requires-Dist: six (>=1)
+
+# cellwrapper
+==========
+
+
+
+
+cellwrapper is a wrapper around the cellranger product from 10X genomics that automates all processing of multiple samples from flowcell to matrix.
+
+Documentation can be accessed using:
+```
+cellwrapper --help
+```
+
+IMPORTANT: Only cellranger 2.X versions are supported for current version. A tag for cellranger1.X
+is made within the repo and may be used as needed:
+```
+git checkout tags/cellranger1.X
+```
+
+## Basic Usage
+```
+cellwrapper sample_sheet.txt --samplelimit 4
+```
+
+See section below for sample\_sheet.txt format. `--samplelimit` controls the number of samples that can be processed simultaneously (to keep IT and your disk quota happy).
+
+All `cellranger demux` and `cellranger run` (or count for cellranger 1.2+) processes will run automatically and logging info will be displayed. Final output will be located in folders named after their sample ID (see below).
+
+## Samplesheet
+A few basic details are provided for each sample in a tab-delimited text file called a sample sheet. For example:
+```
+test_sample1    SI-P03-A3       /net/shendure/vol9/seq/NEXTSEQ/160708_NS500488_0197_AHN3FKBGXX  hg19  4000	cellranger-2.0.2
+test_sample2    SI-P03-B3       /net/shendure/vol9/seq/NEXTSEQ/160708_NS500488_0197_AHN3FKBGXX  hg19  4000	cellranger-2.0.2
+test_sample3    SI-P03-C3       /net/shendure/vol9/seq/NEXTSEQ/160708_NS500488_0197_AHN3FKBGXX  hg19  4000	cellranger-2.0.2
+test_sample4    SI-P03-D3       /net/shendure/vol9/seq/NEXTSEQ/160708_NS500488_0197_AHN3FKBGXX  hg19  4000	cellranger-2.0.2
+test_sample5    SI-P03-E3       /net/shendure/vol9/seq/NEXTSEQ/160708_NS500488_0197_AHN3FKBGXX  hg19  4000	cellranger-2.0.2
+test_sample6    SI-P03-F3       /net/shendure/vol9/seq/NEXTSEQ/160708_NS500488_0197_AHN3FKBGXX  hg19  4000	cellranger-2.0.2
+```
+
+Users must define 5 columns:
+- `sample ID`: name of sample; used as output directory for sample
+- `sample index`: ID or sequence of barcode used to index sample
+- `flowcell`: path of BCL directory for sequencing run.
+	- **May be comma separated list of flowcells and runs will automatically be combined**
+- `reference`: id of reference to use for sample (see default install section)
+- `cell count`: approximate cell count for the sample
+- `pipeline`: versioned name of the pipeline you want to use (see default install section).
+
+Each sample is entirely independent and may have different flow cells, etc. Note that when using the --aggregate option all samples must have the same reference and pipeline version.
+
+### Note on Excel
+If you make sample sheets in Excel and save as tab-delimited text, the pipeline with automatically deal with the windows-style newline characters that curse Excel.
+
+## Requirements
+- You must have read access to Trapnell Lab filesystem (by default will use our common installation) **or** you may specify your own installation directory (the parent directory containing both the refdata and pipeline folders).
+
+- For us, it helps to specify a default queue for SGE. Put `-q trapnell-long.q` (or your queue instead) in a file called ~/.sge\_request.
+
+- You must `module load python/2.7.3` or any `2.7+` or 3.X version of python to run `cellwrapper`.
+
+- `cellranger` has other requirements, but the software ones are dealt with automatically (see [10X documentation](http://software.10xgenomics.com/single-cell/overview/system-requirements)).
+
+## Default Install
+The Trapnell Lab maintains a group-wide install for general use. Additional custom references can be added on request.
+
+(Updated September 29, 2017)
+Currently maintained at `/net/trapnell/vol1/tenx_software`
+
+Supported pipeline/reference combinations in common install:
+```
+cellranger-1.0.0
+	- ercc92
+	- hg19
+	- hg19_and_mm10
+	- mm10
+
+cellranger-1.1.0
+	- ercc92
+	- hg19
+	- hg19_and_mm10
+	- mm10
+	- mm10_rc (Raghav Chawla, 07/28/2016)
+		- mm10 + CARD11-GFP and MYD88-BFP transgenes
+	- mm12_rc (Raghav Chawla, 12/12/2016)
+		- New custom mouse reference based on M12 GTF and GRCm38.p5 FASTA
+		- GTF filtered to include IG and TCR genes
+		- + CARD11-GFP and MYD88-BFP transgenes as above
+	- mm12_rc_vs2 (Raghav Chawla, 12/14/2016)
+		- mm12_rc modified so Ighm and Ighg1 transcripts are recognized as separate genes
+		- Edited transgenes annotations
+
+cellranger-1.2.1
+	- ercc92
+	- GRCh38
+	- hg19
+	- hg19_and_mm10
+	- mm10
+
+cellranger-1.3.0
+        - ercc92
+        - GRCh38
+        - hg19
+        - hg19_and_mm10
+        - mm10
+        - mm12_rc_vs2 (same as above)
+
+cellranger-1.3.1
+        - ercc92
+        - GRCh38
+        - hg19
+        - hg19_and_mm10
+	- hg19_mg_transgenes (from Molly Gasperini, adds Cas9, mCherry, etc.)
+        - mm10
+        - mm12_rc_vs2 (same as above)
+	- zg10 (from Lauren Saunders, Zebrafish)
+	- zg10-plus (from Lauren Saunders, Zebrafish plus transgenes)
+
+cellranger-2.0.2
+        - ercc92
+        - GRCh38
+        - hg19
+        - hg19_and_mm10
+        - hg19_mg_transgenes (from Molly Gasperini, adds Cas9, mCherry, etc.)
+        - mm10
+        - mm12_rc_vs2 (same as above)
+        - zg10 (from Lauren Saunders, Zebrafish)
+        - zg10-plus (from Lauren Saunders, Zebrafish plus transgenes)
+
+cellranger-latest (symbolic link to latest version)
+```
+
+IMPORTANT: Only cellranger 2.X versions are supported for current version. A tag for cellranger1.X is made within the repo and may be used as needed:
+```
+git checkout tags/cellranger1.X
+```
+
+## Custom Installs
+You may also choose to download and install cellranger yourself and point to this installation using the `--installation` argument.
+
+Please consider that we have encountered Trapnell Lab specific discrepancies between what 10X software expects as behavior from SGE and what it actually does in our setup, particularly with respect to transmission of environment variables. Please see our installation job templates for strategies we have used to combat these problems (`/net/trapnell/vol1/tenx_software/cellranger-1.1.0/martian-cs/2.0.0/jobmanagers/sge.template`, for example).
+
+This is not true of all clusters within UW GS and certainly not all SGE clusters more generally; in almost all cases simpler job templates work fine...
+
+## Putting cellwrapper on your PATH
+You can also put cellwrapper somewhere (such as `~/bin/cellwrapper`) and put it on your path: `PATH=~/bin/:$PATH; export PATH`, or point to it with an absolute path. Add exports to your `~/.bashrc` to make this happen automatically every time you log in.
+
+## Logging
+Output from `cellranger` is logged in a file called `cellranger.log` (or a file of your choosing with `--cellranger_log` option). `cellwrapper` will log its own progress in stdout. For example:
+```
+[CELLWRAPPER]: 2016-07-10 03:30:07,547: At job limit (4). Holding test_sample3_SI-P03-C3. [4 queued; 0 completed; 0 failed] [UI ports: 36889, 39518, 41749, 60420]
+```
+
+These messages will continue to refresh as jobs complete.
+
+## Note on Demux
+Demultiplexing will be carried out for any flow cell where the demux output is not already detected in the current working directory.
+
+## Archived Runs
+There are some BCL directories that get archived eventually. This means that some of the BCL directory contents needed for cellwrapper are no longer present (RunInfo.xml, for example). For NextSeq runs, you may add the `--archived` flag and cellwrapper will attempt to make things work without the original files. Original demux output must be in place for this to work.
+
+## Aggregation
+cellranger 1.2+ support a pipeline called [aggr](https://support.10xgenomics.com/single-cell/software/pipelines/latest/using/aggregate) that allows automatic combination and sequencing depth normalization of many samples into a single dataset. It will also re-perform all secondary analysis etc. -- all done efficiently from the molecule_h5 files rather than re-aligning, etc.
+
+This can be done automatically for all samples in the sample sheet by specifying an output directory name with the `--aggregate` command line argument. For example:
+
+```
+cellwrapper [other options] --aggregate aggregated_samples
+```
+
+This is only valid for sample with identical reference genomes that are run using the same version of cellranger 1.2+.
+
+If you want to alter which samples are aggregated, you may want to run cellranger aggr manually, please use the automatically generated aggr sample sheet `[aggregation output directory].aggregation.csv` as a starting point and see aggr documentation for instructions.
+
+
