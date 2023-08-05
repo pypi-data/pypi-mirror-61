@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock%}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.12/dist/css/bootstrap-select.min.css">
+    {{ super() }}
+    {{mde.css}}
+{% endblock %}
+{% block beginformholder%}
+<form id="filter_form" action="{{url_for('main.index')}}" method="POST">
+{% endblock %}
+{%block navbar%}
+    <span class="form-inline">
+        {{filter_form.csrf_token}}
+        <div class="input-group">
+            {{filter_form.search(class_="form-control form-control-sm", placeholder="Search snippet")}}
+            <div class="input-group-append">
+                    {{filter_form.btnsubmit(class_="btn btn-sm border")}}
+            </div>
+        </div>
+    </span>
+{% endblock %}
+{% block body%}
+<span class="form-inline float-right mb-2 mt-0">
+<div class="form-group">
+        <a class="btn btn-light btn-sm mt-0 mb-0 mr-2 border" href="{{url_for('main.new')}}">
+            New Snippet
+        </a>
+        <a class="btn btn-light btn-sm mt-0 mb-0 mr-2 border" href="{{url_for('tag.tags')}}">
+           Manage Tags
+         </a>
+</div>
+<nav class="form-group">
+    <ul class="pagination pagination-sm mb-0">
+        {% if snippets.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('main.index', page=snippets.prev_num) }}">
+                <span aria-hidden="true">&laquo; Prev</span>
+            </a>
+        </li>
+        {% endif %}
+        {% if snippets.has_prev or snippets.has_next %}
+        <li class="page-item">
+            <a class="page-link pl-2" href="#">Page {{ request.args.get('page', 1) }}</a>
+        </li>
+        {% endif %}
+        {% if snippets.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('main.index', page=snippets.next_num) }}">
+                <span aria-hidden="true">Next &raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+        
+    </ul>
+</nav>
+</span>
+<span class="form-inline float-right mb-2 mt-0">
+        
+                <div class="form-group">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend input-group-prepend-sm">
+                            <span class="input-group-text">Per Page</span>
+                        </div>   
+                        {{filter_form.limit(class_="custom-select custom-select-sm-sm mr-1",  onchange="this.form.submit()")}}
+                    </div>
+                </div>
+<div class="form-group">
+    <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Sort</span>
+        </div>
+        {{filter_form.sort(class_="custom-select custom-select-sm mr-1", onchange="this.form.submit()")}}
+    </div>
+</div>
+<div class="form-group">
+    {{filter_form.tags}}
+</div>
+</span>
+<span class="clearfix"></span>
+<div class="make-pretty snippetcontainer grid">
+    {% for snippet in snippet_list%}
+    <div class="card bg-light snippetbox mb-2 pb-0 grid-item">
+        <div class="card-header">
+            <a  class="card-title" href="{{url_for('main.view', id= snippet.id)}}">
+                {{snippet.title}}
+            </a>
+            {% if snippet.tags %}
+                <hr/>
+            {% endif %}
+            <div class="tagholder">
+                {% for tag in snippet.tags %}
+                <div class="tag tag_without_delete_home">
+                    {{tag}}
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+        <div class="card-body">
+            {{snippet.text | safe }}
+            {% if snippet.truncated %}
+            <a  class="text-secondary float-right mb-1" 
+                href="{{url_for('main.view', id= snippet.id)}}">
+                <u>Show more...</u>
+            </a>
+            {% endif %}
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block endformholder%}
+    </form>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    {{ mde.js }}
+    <script src="{{url_for('static', filename='js/masonry.pkgd.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap-select.min.js')}}"></script>
+    <script>
+        // CSS Masonry
+        // https://masonry.desandro.com
+        var elem = document.querySelector('.grid');
+        var msnry = new Masonry( elem, {
+            itemSelector: '.grid-item',
+            horizontalOrder: true
+        });
+        // Tag Selector
+        // https://developer.snapappointments.com/bootstrap-select/
+        $(document).ready(function() {
+            $('.selectpicker1').selectpicker(
+                {
+                    countSelectedText: function (numSelected, numTotal) {
+                        return (numSelected == numTotal) ? "All tags" : "{0} tags";
+                    }
+                }
+            );
+            // Refresh selecterso that countSelectedText is changed
+            // x items selected still shown even if all selected
+            $('.selectpicker1').selectpicker('refresh');
+        });
+        // selectpicker window has been closed
+        // eiiher by clicking on x or somewhere else in the window
+        $('.selectpicker1').on('hide.bs.select', function (e) {
+            $('#filter_form').submit();
+        });
+
+
+    </script>
+{% endblock %}

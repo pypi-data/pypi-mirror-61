@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Editor{% endblock %}
+{% block head %}
+    {{ super() }}
+    {{mde.css}}
+{% endblock %}
+{% block body%}
+    <h1 class="snippet-title p-2">{{title}}</h1>
+        <form class="snippet-form" action="{{url_for('main.delete', id=id)}}" method="POST">
+            {{delete_form.submit(class_="btn btn-link btn-sm btn-1em text-danger")}}
+            <a class="btn btn-link" href="{{url_for('main.edit', id=id)}}">Edit</a>
+            {{delete_form.csrf_token}}
+            {{delete_form.snippet_id}}
+        </form>
+
+        <div class="clearfix"></div>
+        {% for tag_name in tag_names %}
+        <div class="tag tag_without_delete">
+            <span class="tagname">{{tag_name}}</span>
+        </div>
+        {% endfor %}
+        <div class="clearfix"></div>
+        <hr/>
+    <div class="make-pretty bg-light p-4"> 
+        {{content|safe}}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        function confirm_delete(){
+            return confirm("Do you really want to delete this snippet?");
+        }
+        document.getElementById('submit').onclick = confirm_delete;
+    </script>
+    {{ super() }}
+    {{ mde.js }}
+{% endblock %}
