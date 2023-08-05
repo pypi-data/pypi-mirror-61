@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load request_static %}
+{% load cache %}
+
+{% block gui_init_scripts %}
+    <script type="text/javascript">
+        var openapi_path = "{{host_url}}{{ openapi_url }}";
+        var gui_version = "{{gui_version}}";
+        var gui_user_version = "{{gui_user_version}}";
+        var isDebug = {% if debug %}true{% else %}false{% endif %};
+    </script>
+{% endblock %}
+
+{% block body %}
+    <body class="hold-transition sidebar-mini {% block bodyclass %}{% endblock %}">
+    <div id="RealBody" class="{% if user.is_superuser %} is_superuser {% endif %} {% if user.is_staff %} is_staff {% endif %}" style="display: none;">
+        {% block gui_body_template %}
+            <div class="hold-transition skin-black-light sidebar-mini ">
+                <div class="wrapper" >
+                    <!-- Navbar -->
+                    <div id="top_nav_wrapper">
+                        <top_nav :a_links="a_links"></top_nav>
+                    </div>
+                    <!-- /Navbar -->
+
+                    <!-- Main Sidebar Container -->
+                    <div id="sidebar_wrapper">
+                        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                            <!-- Logo -->
+                            <logo :title="info.title"></logo>
+                            <!-- Logo -->
+
+                            <!-- Sidebar -->
+                            <sidebar :menu="x_menu" :docs="x_docs" :a_links="a_links"></sidebar>
+                            <!-- /.Sidebar -->
+                        </aside>
+                    </div>
+                    <!-- /Main Sidebar Container -->
+
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!--<div>-->
+                        <!-- Main content -->
+                        {% block content %}
+                            <router-view></router-view>
+                        {% endblock %}
+                        <!-- /Main content -->
+                    </div>
+                    <!-- /Content Wrapper. Contains page content -->
+
+                    <!-- Control Sidebar -->
+                    <div id="gui_customizer_wrapper">
+                        <aside class="control-sidebar control-sidebar-dark guiCustomizer">
+                            <gui_customizer></gui_customizer>
+                        </aside>
+                    </div>
+
+                    <!-- /Control Sidebar -->
+
+                    <!-- Main Footer -->
+                    <div id="main_footer_wrapper">
+                        <main_footer>
+                            <template v-slot:footer_buttons>
+                                {% block footer_buttons %}{% endblock %}
+                            </template>
+                        </main_footer>
+                    </div>
+                    <!-- /Main Footer -->
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+
+    {% block script %}{% endblock %}
+
+    {% block app_loader %}
+        <script src="/app-loader.js"></script>
+    {% endblock %}
+    </body>
+{% endblock %}
