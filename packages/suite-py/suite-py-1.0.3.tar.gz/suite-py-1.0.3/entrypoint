@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# if [ "$1" == "python" ]; then
+#   exec "$@"
+# elif [ -n "$1" ]; then
+#   sh -c "$@"
+# else
+#   pip install -r requirements.txt --no-warn-script-location
+# fi
+export AWS_SDK_LOAD_CONFIG=true
+export AWS_PROFILE=secrets
+export AWS_CONFIG_FILE=/etc/aws_config
+export GPG_TTY=$(tty)
+
+exec ./__main__.py "$@"
