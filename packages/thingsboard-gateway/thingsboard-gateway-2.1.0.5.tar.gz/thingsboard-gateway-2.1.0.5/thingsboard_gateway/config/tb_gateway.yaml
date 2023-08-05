@@ -1,0 +1,56 @@
+thingsboard:
+  host: 127.0.0.1
+  port: 1883
+  remoteConfiguration: false
+  security:
+    accessToken: oZYMnQ1tQQW9Z6vfM59u
+storage:
+  type: memory
+  read_records_count: 100
+  max_records_count: 100000
+#  type: file
+#  data_folder_path: ./data/
+#  max_file_count: 10
+#  max_read_records_count: 10
+#  max_records_per_file: 10000
+connectors:
+
+#  -
+#    name: MQTT Broker Connector
+#    type: mqtt
+#    configuration: mqtt.json
+#
+#  -
+#    name: Modbus Connector
+#    type: modbus
+#    configuration: modbus.json
+#
+#  -
+#    name: Modbus Connector
+#    type: modbus
+#    configuration: modbus_serial.json
+#
+  -
+    name: OPC-UA Connector
+    type: opcua
+    configuration: opcua_t.json
+#
+#  -
+#    name: BLE Connector
+#    type: ble
+#    configuration: ble.json
+#
+#  -
+#    name: REQUEST
+#    type: request
+#    configuration: request.json
+#
+#  -
+#    name: BACnet
+#    type: bacnet
+#    configuration: bacnet.json
+#  -
+#    name: Custom Serial Connector
+#    type: serial
+#    configuration: custom_serial.json
+#    class: CustomSerialConnector
