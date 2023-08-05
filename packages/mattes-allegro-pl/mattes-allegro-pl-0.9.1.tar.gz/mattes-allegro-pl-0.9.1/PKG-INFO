@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: mattes-allegro-pl
+Version: 0.9.1
+Summary: Python client for Allegro.pl API
+Home-page: https://github.com/mattesilver/allegro-pl/
+License: MIT
+Author: Raphael Krupinski
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: allegro-pl-rest-api (>=2020.1,<2021.0)
+Requires-Dist: oauthlib (>=3.0,<4.0)
+Requires-Dist: requests-oauthlib (>=1.2,<2.0)
+Requires-Dist: tenacity (>=6.0.0,<7.0.0)
+Requires-Dist: zeep (>=3.3,<4.0)
+Project-URL: Repository, https://github.com/mattesilver/allegro-pl/
+Description-Content-Type: text/x-rst
+
+Python client for Allegro.pl API
+================================
+
+.. image:: https://travis-ci.com/mattesilver/allegro-pl.svg?branch=master
+    :target: https://travis-ci.com/mattesilver/allegro-pl
+
+.. image:: https://img.shields.io/pypi/v/mattes-allegro-pl.svg
+    :target: https://pypi.org/project/mattes-allegro-pl/
+
+.. image:: https://codecov.io/gh/mattesilver/allegro-pl/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/mattesilver/allegro-pl
+
+
+Supports both Rest and SOAP APIs
+
+Usage:
+
+.. code-block::
+
+    import allegro_pl
+    cs = ClientCodeStore('CLIENT ID','CLIENT SECRET')
+    ts = TokenStore('ACCESS TOKEN','REFRESH TOKEN)
+
+    auth = ClientCredentialsAuth(cs, ts)
+    allegro = allegro_pl.Allegro(auth)
+
+    rest_service = allegro.rest_service()
+
+    categories = rest_service.get_categories(cat_id)
+
+    # access to soap service
+    soap_service = allegro.soap_service()
+
+    # direct access to rest and soap clients:
+    rest_service = allegro.rest_client()
+    soap_client = allegro.soap_client()
+
