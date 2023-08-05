@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: barterdude
+Version: 0.0.8
+Summary: Message exchange engine to build pipelines using brokers like RabbitMQ
+Home-page: https://github.com/olxbr/BarterDude/
+Author: Olx
+License: Apache 2
+Download-URL: https://github.com/olxbr/BarterDude/archive/master.zip
+Description: [![Build Status](https://travis-ci.com/olxbr/BarterDude.svg?branch=master)](https://travis-ci.com/olxbr/BarterDude)
+        
+        # BarterDude
+        Message exchange engine to build pipelines using brokers like RabbitMQ
+        
+        ## Install
+        
+        Using Python 3.6+
+        
+        ```sh
+        make install
+        ```
+        
+        or
+        
+        ```sh
+        make setup
+        ```
+        
+        for development
+        
+        ## Test
+        
+        ```sh
+        make test
+        ```
+        
+        ## Usage
+        
+        ```python
+            barterdude = BarterDude([connection, ...])
+        
+            healthcheck = Healthcheck(baterdude, ...)
+            metrics = Prometheus(baterdude, ...)
+            monitor = Monitor(healthcheck, metrics)
+        
+            @barterdude.route(["queue"], ...)
+            @barterdude.forward(["exchange"], ...)
+            @barterdude.observe(monitor)
+            def my_callback(msg):
+                pass
+        ```
+        
+        ## Contribute
+        
+        For development and contributing, please follow [Contributing Guide](https://github.com/olxbr/BarterDude/blob/master/CONTRIBUTING.md) and **ALWAYS** respect the [Code of Conduct](https://github.com/olxbr/BarterDude/blob/master/CODE_OF_CONDUCT.md)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Description-Content-Type: text/markdown
+Provides-Extra: all
+Provides-Extra: prometheus
