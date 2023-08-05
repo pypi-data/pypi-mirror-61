@@ -1,0 +1,43 @@
+Playback
+========
+LEFT and RIGHT arrows play the video in that direction at the configured FPS.
+Hold SHIFT + direction to play at 10x speed.
+Press COMMA or PERIOD to step one frame left or right, respectively.
+
+Contrast
+========
+Contrast is controlled by rescaling the pixel intensities between a min and max threshold.
+Hold UP/DOWN to change the lower threshold (increasing it blacks out dim pixels).
+Hold SHIFT + UP/DOWN to change the upper threshold (decreasing it whites out bright pixels).
+
+Events
+======
+LETTER keys mark the start of an event associated with that letter.
+SHIFT + LETTER marks the end of the event.
+Events can overlap, but events of the same type cannot contain each other or start on the same frame.
+
+Status
+======
+SPACE shows in-progress events.
+RETURN shows the current result table in the console.
+BACKSPACE shows the current frame number and contrast thresholds in the interval [0, 1].
+
+Prompts
+=======
+DELETE shows a prompt asking which in-progress event to delete, then a confirmation.
+SHIFT + delete shows a prompt asking which keypress on this frame to delete.
+CTRL + n shows a prompt asking which in-progress event whose note to edit (if there is more than one), then the new value.
+
+Prompts may appear in unexpected places on your screen.
+
+Debug
+=====
+CTRL + d to dump the event log for debugging
+
+Other
+=====
+CTRL + j to Jump to a frame
+CTRL + s to Save
+CTRL + z to undo
+CTRL + r to Redo
+CTRL + h to show this Help message
