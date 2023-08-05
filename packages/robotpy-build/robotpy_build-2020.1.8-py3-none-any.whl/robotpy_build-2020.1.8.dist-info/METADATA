@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: robotpy-build
+Version: 2020.1.8
+Summary: Build tool for RobotPy projects
+Home-page: https://github.com/robotpy/robotpy-build
+Author: Dustin Spicuzza
+Author-email: robotpy@googlegroups.com
+License: BSD-3-Clause
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools (>=43)
+Requires-Dist: setuptools-scm (==3.3.3)
+Requires-Dist: header2whatever (>=0.4.2)
+Requires-Dist: robotpy-cppheaderparser (>=5.0.2)
+Requires-Dist: sphinxify (>=0.6.1)
+Requires-Dist: pydantic
+Requires-Dist: toml
+Requires-Dist: toposort
+Requires-Dist: pyyaml (>=5.1)
+Requires-Dist: delocate ; platform_system == "Darwin"
+Requires-Dist: dataclasses ; python_version < "3.7"
+
+robotpy-build
+=============
+
+This is a build tool designed to meet the needs of RobotPy's various wrapper
+libraries build needs, chiefly around:
+
+* Managing upstream binary dependencies
+* Autogenerating pybind11 wrappers around those dependencies
+* Building wheels from those generated wrappers
+
+Requires Python 3.6+
+
+Workflow
+--------
+
+There are two types of generated artifacts from RobotPy wrapper library
+projects:
+
+* sdist - This should contain enough information to build a wheel
+  * This is NOT intended to be usable offline, because upstream artifacts
+    can get to be fairly large
+* wheel - Platform specific build installable via pip
+  * Should contain headers and libraries necessary for other projects
+    to build from it
+
+Eventual goal is to support cross-compilation somehow so we can build
+various types of artifacts via CI
+
+Usage
+-----
+
+TODO: This tool is still very much under development
+
+See [docs/wrapping.md](docs/wrapping.md) for details on writing your
+own wrapped project.
+
