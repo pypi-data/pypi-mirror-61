@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: fl-networking-tools
+Version: 0.0.6
+Summary: A set of tools for use with the FutureLearn Programming with networks course from Raspberry Pi
+Home-page: UNKNOWN
+Author: The Raspberry PI Foundation
+Author-email: mac@raspberrypi.org
+License: UNKNOWN
+Keywords: Networking,Education,FutureLearn,Binary,ImageViewer
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3
+Requires-Dist: pillow
+
+# FL Networking tools
+
+This module and it's contents are intended for use on the FutureLearn course - Networking with Python: Socket programming for communication(LINKWHENLIVE)
+
+## Text messaging
+
+The functions `send_text()` and `get_text()` can be used to send any text messages using a terminator character. 
+
+It is used in week 1 of the course. 
+
+## Image viewer
+
+The image viewer class can be used to display any image in a UI created with the tkinter library.   
+
+It is used in week 2 of the course, to send an image over UDP. 
+
+## Binary messaging
+
+The functions `send_binary()` and `get_binary()` are used to send binary data, these functions use headers to set a message length. 
+
+They are used in week 3 of the course, to send and receive the data neccessary for the quiz.
+
