@@ -1,0 +1,17 @@
+include *.rst
+include *.txt
+include *.py
+include .coveragerc
+include appveyor.yml
+include .travis.yml
+include tox.ini
+include buildout.cfg
+include *.sh
+recursive-include docs *.bat
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs Makefile
+recursive-include src *.py
+recursive-include src *.zcml
+
+prune docs/_static
