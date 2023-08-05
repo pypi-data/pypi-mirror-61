@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: miscutils
+Version: 1.4.0
+Summary: Miscellaneous utilities for general use
+License: MIT
+Keywords: iterating,head,tail,listing,router,proxy,prompt,shell
+Author: Grzegorz Krason
+Author-email: grzegorz.krason@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: ruamel.yaml (>=0.16.7,<0.17.0)
+Description-Content-Type: text/markdown
+
+# miscutils
+
+These are miscellaneous python utilities for general use. This package includes following submodules:
+
+* **dbg** - Debugging utilities.
+* **func** - Utilities related to functions.
+* **insp** - Utilities for inspecting the code.
+* **io** - Interacting with input/output of python script.
+* **iter** - Interacting with iterators and collections.
+* **os** - Operating system related utilities.
+* **str** - Handling strings.
+* **tools** - Not the code, but utilities for programmers.
+* **user** - User data processing.
+
+## Developing
+
+Start from preparing venv:
+
+```sh
+python3.7 -m poetry install
+```
+
+## Building Docs
+
+Update `.rst` manually. Then:
+
+```sh
+python3.7 -m poetry run make -C docs html
+```
+
+## Testing
+
+```sh
+python3.8 -m poetry run pytest tests
+```
+
+## Releasing
+
+Update version in `pyproject.toml`. Then:
+
+```sh
+python3.7 -m poetry build
+git tag X.Y.Z
+git push
+git push --tags
+python3.7 -m poetry publish
+```
+
+log into readthedocs.io and trigger a Build
+
+## References
+
+[Documentation](http://pymiscutils.readthedocs.io/)
+
+[Source code](https://github.com/gergelyk/pymiscutils/)
+
+[Package](https://pypi.python.org/pypi/miscutils/)
+
