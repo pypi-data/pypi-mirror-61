@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: desdeo-emo
+Version: 0.3.0
+Summary: The python version reference vector guided evolutionary algorithm.
+License: MPL-2.0
+Author: Bhupinder Saini
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: desdeo-problem (>=0.9.0,<0.10.0)
+Requires-Dist: desdeo-tools (>=0.2.0,<0.3.0)
+Requires-Dist: diversipy (>=0.8.0,<0.9.0)
+Requires-Dist: numpy (>=1.16,<2.0)
+Requires-Dist: optproblems (>=1.2,<2.0)
+Requires-Dist: pandas (>=0.25,<0.26)
+Requires-Dist: plotly (>=4.1,<5.0)
+Requires-Dist: pyDOE (>=0.3.8,<0.4.0)
+Requires-Dist: pygmo (>=2.10,<3.0)
+Requires-Dist: scikit-learn (>=0.21.2,<0.22.0)
+Requires-Dist: scipy (>=1.2,<2.0)
+Description-Content-Type: text/markdown
+
+# desdeo-emo
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/industrial-optimization-group/desdeo-emo/master)
+
+The evolutionary algorithms package within the `desdeo` framework.
+
+Currently supported:
+* Multi-objective optimization with visualization and interaction support.
+* Preference is accepted as a reference point.
+* Surrogate modelling (neural networks and genetic trees) evolved via EAs.
+* Surrogate assisted optimization
+
+Currently _NOT_ supported:
+* Constraint handling
+
+The documentation is currently being worked upon
+
+To test the code, open the [binder link](https://mybinder.org/v2/gh/industrial-optimization-group/desdeo-emo/master) and read example.ipynb.
+
+Read the documentation [here](https://pyrvea.readthedocs.io/en/latest/)
+
+### Requirements:
+* Python 3.7 or up
+* [Poetry dependency manager](https://github.com/sdispater/poetry): Only for developers
+
+### Installation process for normal users:
+* Create a new virtual enviroment for the project
+* Run: `pip install desdeo_emo`
+
+### Installation process for developers:
+* Download and extract the code or `git clone`
+* Create a new virtual environment for the project
+* Run `poetry install` inside the virtual environment shell.
+
+## See the details of various algorithms in the following papers (to be updated)
+
+R. Cheng, Y. Jin, M. Olhofer and B. Sendhoff,
+A Reference Vector Guided Evolutionary Algorithm for Many-objective
+Optimization, IEEE Transactions on Evolutionary Computation, 2016
+
+The source code of pyrvea is implemented by Bhupinder Saini
+
+If you have any questions about the code, please contact:
+
+Bhupinder Saini: bhupinder.s.saini@jyu.fi\
+Project researcher at University of Jyväskylä.
