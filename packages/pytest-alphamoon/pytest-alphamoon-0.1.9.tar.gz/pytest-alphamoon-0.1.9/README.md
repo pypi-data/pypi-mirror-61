@@ -1,0 +1,79 @@
+# pytest-alphamoon
+
+[![image](https://img.shields.io/pypi/v/pytest-alphamoon.svg)](https://pypi.org/project/pytest-alphamoon%0A%20:alt:%20PyPI%20version)
+[![image](https://img.shields.io/pypi/pyversions/pytest-alphamoon.svg)](https://pypi.org/project/pytest-alphamoon)
+[![pipeline status](https://gitlab.com/alphamoon/internal_tools/pytest_alphamoon/badges/master/pipeline.svg)](https://gitlab.com/alphamoon/internal_tools/pytest_alphamoon/-/commits/master)
+
+Set of simple static code checks at Alphamoon.
+
+* * * * *
+
+This [pytest](https://github.com/pytest-dev/pytest) plugin was generated
+with [Cookiecutter](https://github.com/audreyr/cookiecutter) along with
+[@hackebrot](https://github.com/hackebrot)'s
+[cookiecutter-pytest-plugin](https://github.com/pytest-dev/cookiecutter-pytest-plugin)
+template. Source code is based on [pytest-isort](https://github.com/moccu/pytest-isort) plugin.
+
+Features
+--------
+
+Package contains several plugins, as shown in Table below:
+
+
+| Plugin         | Description           |
+| -------------- | --------------------- |
+| [import-check](pytest_alphamoon/import_check.py) | Checks no imports from `scripts`/`notebooks`/`user_settings`|
+| [init-check](pytest_alphamoon) | Checks no `__init__.py` file in `scripts`/`notebooks`|
+| [notebook-check](pytest_alphamoon) | Checks notebooks (`.ipnyb` files) are clean, without outputs | 
+
+
+Requirements
+------------
+```requirements.txt
+pytest>=3.5.0
+```
+
+Installation
+------------
+
+You can install "pytest-alphamoon" via
+[pip](https://pypi.org/project/pip/) from
+[PyPI](https://pypi.org/project):
+
+    $ pip install pytest-alphamoon
+
+Usage
+-----
+
+You can add arbitrary plugin from this package by specifying its name in `pytest.ini` adoption section
+(proper names are specified in table) along with any other plugin you are currently using.
+
+```ini
+[pytest]
+addopts = --init-check --import-check --notebook-check
+          --pep8 --flakes --isort --cov-report term --cov=.
+``` 
+
+After setting up configuration file specified checks are loaded and executed automatically within test session, 
+after invoking command:
+
+    $ pytest
+
+Contributing
+------------
+
+Contributions are very welcome. Tests can be run with
+[tox](https://tox.readthedocs.io/en/latest/), please ensure the coverage
+at least stays the same before you submit a pull request.
+
+License
+-------
+
+Distributed under the terms of the
+[MIT](http://opensource.org/licenses/MIT) license, "pytest-alphamoon" is
+free and open source software
+
+Issues
+------
+
+If you encounter any problems, please email us at <dev@alphamoon.ai>, along with a detailed description.
