@@ -1,0 +1,29 @@
+<!--Service Section-->
+<section id="service" class="service">
+    <div class="container">
+        <div class="main_service roomy-40">
+            <div class="row roomy-40">
+                <div class="col-md-8 col-md-offset-2 col-sm-10 m-auto col-sm-offset-1">
+                    <div class="head_title text-center">
+                        <h2>{{ content.title }}</h2>
+                        <div class="separator_auto"></div>
+                        <p>{{ content.abstract }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for product in content.products_all %}
+                    <div class="col-md-4">
+                        <div class="service_item text-center">
+                            <i class="{{ product.icon }} icofont-3x"></i>
+                            <h6 class="m-top-30">{{ product.name }}</h6>
+                            <div class="separator_auto"></div>
+                            <p>{{ product.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--End off Featured section-->

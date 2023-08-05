@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-sm navbar-fixed white navbar-dark bootsnav">
+    <div class="container">
+        <a class="navbar-brand  h2" href="/">{{ core.site_name }}</a>
+        <span class="m-auto">
+        {% for p in  page.get_parents_node %}
+            {% if forloop.counter == 1 %}
+                <a href="{{ p.url }}" style="color: inherit">{{ p }}</a>
+            {% else %}
+                <i class="fa fa-angle-double-right" style="padding: 0 5px;"></i>
+                <a href="{{ p.url }}" style="color: inherit">{{ p }}</a>
+            {% endif %}
+        {% endfor %}
+        </span>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="navbar-nav ml-auto navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                {% for page in nav_pages %}
+                    <li class="nav-item"><a class=" nav-link" href="/{{ page.path }}">{{ page.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        <!-- Start Atribute Navigation -->
+        <div class="attr-nav">
+            <ul>
+                <li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
+            </ul>
+        </div>
+        <!-- End Atribute Navigation -->
+    </div>
+    <!-- Start Side Menu -->
+    <div class="side">
+        <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+        <div class="widget">
+            <h6 class="title">{{ core.site_name }}</h6>
+            <ul class="link">
+                {% for page in nav_pages %}
+                    <li><a href="/{{ page.path }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!-- End Side Menu -->
+</nav>
