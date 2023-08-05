@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: ipyvisus
+Version: 0.2.0
+Summary: Visus viewer widget
+Home-page: https://github.com/yarden_livnat/ipyvisus
+Author: Yarden Livnat
+Author-email: yarden@sci.utah.edu
+License: BSD 3-Clause
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.7.0
+Description-Content-Type: text/markdown
+Requires-Dist: jupyterlab
+Requires-Dist: ipywidgets
+Requires-Dist: ipydatawidgets
+Requires-Dist: traitlets
+
+
+# ipyvisus
+
+
+## Installation
+
+
+```bash
+pip install ipyvisus
+jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyterlab-datawidgets ipyvisus
+```
+
+You may want install sidepanel too
+
+```
+pip install sidepanel
+jupyter labextension install @regulus/sidepanel
+```
+
+## Development
+```bash
+./dev-install.sh
+```
+
+
