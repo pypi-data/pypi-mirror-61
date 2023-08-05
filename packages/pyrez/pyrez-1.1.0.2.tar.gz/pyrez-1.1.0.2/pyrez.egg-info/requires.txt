@@ -1,0 +1,29 @@
+
+[:os_name=="nt"]
+colorama<1
+
+[:python_version >= "2.7"]
+requests<3
+
+[dev]
+sphinx<2
+sphinx_rtd_theme<1
+sphinxcontrib-asyncio
+sphinxcontrib-websupport
+pip~=20.0.2
+pipenv~=2018.11.26
+setuptools~=45.1.0
+twine~=3.1.1
+wheel~=0.34.2
+
+[dev:python_version >= "2.7"]
+requests<3
+
+[docs]
+sphinx<2
+sphinx_rtd_theme<1
+sphinxcontrib-asyncio
+sphinxcontrib-websupport
+
+[docs:python_version >= "2.7"]
+requests<3
