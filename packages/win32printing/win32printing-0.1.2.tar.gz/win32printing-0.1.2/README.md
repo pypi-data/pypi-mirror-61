@@ -1,0 +1,50 @@
+# printing
+
+Printing utils for Windows.
+
+
+## Install
+
+    pip install win32printing
+
+## Installed Utils
+
+- win32printing.get_system_fonts
+- win32printing.PrinterBase
+- win32printing.PrinterContext
+- win32printing.Printer
+
+## Printer APIs
+
+- text(text, align="left", font_config=None)
+
+## Usage Example
+
+    from win32printing import Printer
+
+    font = {
+        "height": 8,
+    }
+    with Printer(linegap=1) as printer:
+        printer.text("title1", font_config=font)
+        printer.text("title2", font_config=font)
+        printer.text("title3", font_config=font)
+        printer.text("title4", font_config=font)
+
+
+## Releases
+
+### v0.1.2 2020-02-12
+
+- Fix printer_name parameter not using problem. Thanks to Mark Butsch.
+
+### v0.1.1 2019-10-22
+
+- Fix py_modules problem in setup.py.
+
+### v0.1.0 2019-10-22
+
+- Allow text printing on Windows system.
+- Support text alignment and font settings.
+- Support linegap setting.
+
