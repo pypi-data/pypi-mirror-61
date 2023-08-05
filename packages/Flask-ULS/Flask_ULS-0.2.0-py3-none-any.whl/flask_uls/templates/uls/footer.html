@@ -1,0 +1,21 @@
+<script src="{{url_for('uls.uls_static', fn='jquery-3.4.1.min.js')}}"></script>
+<script src="{{url_for('uls.uls_static', fn='jquery.uls/src/jquery.uls.data.js')}}"></script>
+<script src="{{url_for('uls.uls_static', fn='jquery.uls/src/jquery.uls.data.utils.js')}}"></script>
+<script src="{{url_for('uls.uls_static', fn='jquery.uls/src/jquery.uls.lcd.js')}}"></script>
+<script src="{{url_for('uls.uls_static', fn='jquery.uls/src/jquery.uls.languagefilter.js')}}"></script>
+<script src="{{url_for('uls.uls_static', fn='jquery.uls/src/jquery.uls.core.js')}}"></script>
+<script>
+    $( function() {
+        var languages = {};
+        {{ config.ULS_ENABLED_LANGUAGES | tojson }}.forEach( function( lang ) {
+            languages[ lang ] = $.uls.data.getAutonym( lang );
+        } );
+        $( '.uls-trigger' ).uls( {
+            onSelect: function( language ) {
+                document.cookie = 'language=' + language;
+                window.location.reload();
+            },
+            languages: languages
+        } );
+    } );
+</script>
