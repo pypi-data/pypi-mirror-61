@@ -1,0 +1,84 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:profilehook="http://namespaces.zope.org/profilehook"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:upgrade-step="http://namespaces.zope.org/ftw.upgrade"
+    i18n_domain="ftwbook.graphicblock">
+
+  <include package="ftw.upgrade" file="meta.zcml" />
+  <include package="ftw.profilehook" />
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <i18n:registerTranslations directory="locales" />
+
+  <include file="lawgiver.zcml" zcml:condition="installed ftw.lawgiver" />
+  <include file="permissions.zcml" />
+  <include package=".browser" />
+  <include package=".latex" />
+
+  <genericsetup:registerProfile
+      zcml:condition="not-have plone-5"
+      name="default"
+      title="ftwbook.graphicblock"
+      directory="profiles/default"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="not-have plone-5"
+      name="uninstall"
+      title="Uninstall ftwbook.graphicblock"
+      directory="profiles/uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      />
+
+    <genericsetup:registerProfile
+      zcml:condition="have plone-5"
+      name="default"
+      title="ftwbook.graphicblock"
+      directory="profiles/default_plone5"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="have plone-5"
+      name="uninstall"
+      title="Uninstall ftwbook.graphicblock"
+      directory="profiles/uninstall_plone5"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      />
+
+    <profilehook:hook
+      profile="ftwbook.graphicblock:uninstall"
+      handler=".hooks.uninstalled"
+      />
+
+  <upgrade-step:directory
+      profile="ftwbook.graphicblock:default"
+      directory="upgrades"
+      />
+
+  <subscriber
+      for=".interfaces.IGraphicBlock
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".subscribers.create_preview"
+      />
+
+  <subscriber
+      for=".interfaces.IGraphicBlock
+           zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+      handler=".subscribers.create_preview"
+      />
+
+  <adapter factory=".converter.GraphicConverter" />
+  <adapter factory=".converter.FallbackGraphicConverter" name="fallback-converter" />
+  <adapter factory=".converter.PDFConverter" name="application-pdf" />
+
+</configure>
