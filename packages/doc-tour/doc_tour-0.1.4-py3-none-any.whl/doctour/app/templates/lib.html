@@ -1,0 +1,32 @@
+{% extends "appbuilder/base.html"%}
+
+{%block content%}
+<h1>Search in Module: <strong>{{lib}}</strong></h1>
+
+<div id="inlib_search_bar"></div>
+<hr>
+<div id="inlib_search_result"></div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{lib}}</h3>
+  </div>
+  <div class="panel-body">
+      Total Entries: <strong>{{total}}</strong><br> Classes:{{classes}}<br>Functions:{{functions}}<br>Modules:{{modules}}<br>Attribute Relations:{{attr_relations}}<br>Inheritance:{{inheritance}}<br>
+  </div>
+</div>
+{%endblock%}
+
+{%block tail_js%}
+{{super()}}
+<script src="/static/js/nunjucks.js"></script>
+<script src="/static/js/elasticlunr.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+
+    $(document).ready(function(){
+        env = new nunjucks.Environment(new nunjucks.WebLoader('../../..',),{ autoescape: false });
+        load_lib_search_bar("{{lib}}")
+    })
+</script>
+{%endblock%}
