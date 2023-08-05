@@ -1,0 +1,224 @@
+CHANGES
+=======
+
+* docs: add TOSCA docs
+* add endpoints and connection relationships to k8s clusters; have implementations check the operation host for them
+* improve shouldRun() usability
+* add a "discover" directive
+* docs: upgrade to latest sphinx
+* also look at capabilities when looking for environment variables
+* organize api docs
+* support importing multiple instances per import; add a default localhost import and set it as the ORCHESTRATOR host
+* use UNFURL\_HOME outside of command-line invocation and it to the test environment
+* rename cantRun() back to canRun()
+* add api for accessing TOSCA datatype info on properties
+* add an EnvVar TOSCA datatype and use it to set environment variables
+* clean up json schema (docs and parsing)
+* add support for const
+* Add schema validation and docs for local yaml configuration file
+* add support for declaring abstract templates that bind to imported instances
+* more renaming and fix for interface.\_source
+* tweaks for publishing docs
+* rearrange doc toc
+* add support for artifacts
+* add environment variables per TOSCA section 4.2
+* implement topology weaving of relationships
+* more renaming
+* rename to match TOSCA terminology
+* implement workflow preconditions
+* implement operation\_host with ansible configurator; add options so cli run command can run ad-hoc ansible tasks
+* add light logo etc
+* add diagram to docs
+* better support for capabilities
+* fixes for pickling manifest
+* updates to documentation configuration
+* get run cli command working again
+* implement step filters
+* replace installers with workflows; implement more of TOSCA's normative workflow logic
+* simplify ConfigurationResult and implement --prune
+* update operating semantics to accomodate workflows
+* add some color to console output and other minor tweaks
+* support importing workflows
+* add support for TOSCA workflows
+* use path resolution on implementation artifacts and enable configurators to be loaded from python artifacts
+* rename nested\_tosca\_tpls for clarity
+* add tosca node state
+* fixes and tests for tosca imports
+* better support for json pointer url fragments
+* add infrastructure for generating documentation for our json schemas, switch sphinx html theme
+* add a the json schema of changelog.yaml and start validating it on load
+* various cleanups and bug fixes
+* clarify loading from repo logic
+* consolidate syntax for merge directives
+* move merge directive processing to its own module
+* make yaml merge directives more robust
+* get updateResources api working again
+* improve template rendering; error handling improvements
+* more init options with better defaults
+* add support for specifying environment variables in implementation YAML and expose them and other task settings to configurators and expressions
+* lazily evaluate expression variables, including when referenced by ansible templates, expose task inputs as an expression variable
+* improve summarization and serialization of jobs
+* implement undeploy workflow and various improvements to error reporting
+* finalize semantics for operational instances and simplify configurator api
+* add infrastructure for generating documentation for json schema
+* generate documentation for cli
+* move configurators to their own child package
+* have installer implementation spec match operation implementation spec
+* express installer/installion relationship as a regular TOSCA requirement; fix inheritance of interface inputs
+* only commit changes if the instance repository is specifiedin the manifest
+* better error handling when creating tasks
+* add tempfile function
+* stabilize configuration operations
+* introduce first class installer and installations node types to provide clearer and more flexible semantics around configuration changes
+* support relative paths and anchor references in merge directives
+* various improvements to cli help
+* add support for mono repos
+* add support for '+%include?' directive that only warns when include file isn't found
+* reformat source using black
+* latest tosca-parser
+* metadata tweaks for PyPi
+* fix interface name
+* rename giterop to unfurl
+* improve k8s tests
+* fix len(ChainMap())
+* include template outputs in job summary
+* add hack for hostedOn dependencies
+* strip extraneous newline
+* add a 'git' cli command that runs the given git command  on each git repository in the project
+* use shared yaml object to share configuration
+* tosca fixes
+* fix bug with vars with ExternalValues and track variable references in jinja2 templates
+* skip verbosity test if verbosity is manually overridden
+* support marking attributes as sensitive; taint ansible templates when accessing sensitive data; add sensitive\_str redacting strings
+* pass baseDir to ansible templates and in local imports
+* update ansible version for security fix
+* add Results.getCopy() and use it; more basedir fixes
+* keep track source file location of included files and use that for file path resolution
+* kubernetes usability improvements
+* implement template job option
+* better diagnostics: implement plan command, fix --dryrun, clean up error handling and reporting
+* python2.7 workaround
+* fix typo in lookup name
+* implement newinstance and clone commands
+* installatin fix
+* initial support for kubernetes
+* create resource hierarchy based hostedOn relationship and order task plan hierarchy; various tweaks with job reporting
+* various fixes for expression functions
+* add a GITEROP\_LOGGING enviroment variable that controls the logging level that is set when the package is first loaded (useful when running unittests)
+* introduce a custom version of tosca using tosca-parser's extension mechanism
+* less verbose schema validation error messages and re-enable some tests
+* enable jinja2 native types; always evaluate vars; add trace option
+* implement a usable ansible configurator
+* more readable serialization of multiline strings
+* fix revertObsolete
+* python 2 compat fix
+* better cli output of errors
+* include path in yaml parsing error messages
+* bundle ansible\_mitogen
+* better support for functions in tosca templates
+* clean representation of topology inputs and outputs
+* let project local config inherit from user home config
+* make sure workdir paths are consistent
+* load old versions of templates if missing
+* expose repository specs early for include handler
+* after a job run commit changes to the instance repo
+* add support for tracking included files and revisions across git repos; allow direct references to git content
+* improve tracking configuration dependencies
+* add command for creating project scaffolding and git repos
+* rename parameters to inputs for consistency; other fixes for saving configurations
+* support evaluation of template inputs and outputs; clean up root topology instance; misc tosca integration improvements
+* change canRun() apis so reasons can be reported when the task can't run; have shellconfigurator validate executable in canRun()
+* README cleanup
+* get plan to parity pre-tosca
+* flesh out project and repo support; WIP git support
+* implement +%include directive; add scaffolding for managing projects and repos
+* implement support for TOSCA
+* add command for applying adhoc changes
+* fixes for pbr
+* checkpoint before major refactoring
+* add files for setup.py
+* use pbr with setup.py
+* fix installation of vendored packages
+* integrate forked tosca-parser
+* add a shell configurator
+* docs infrastructure
+* implement secrets
+* implement local config file and support for local variables
+* change resolve and project signatures to preserve external values
+* implement importing foreign manifests; better schema validation error reporting
+* remove implementation of old model
+* change interface interface
+* add template eval func
+* get ExternalValues working
+* fix foreach and perserve Results when evaluating lists
+* update eval engine to use Results internally and return ResultLists
+* add ChangeAware abc
+* various fixes to evaluation engine
+* lazily evaluate resource attributes; simplify and fix serializing them; refactor runtime a bit
+* fix bug with 0 index in ref expressions
+* test for Mapping and MutableSequence instead of dict and list
+* (WIP) record current thinking on ExternalValues
+* more cleanup of eval
+* add support for top-level resource and config templates
+* fix dependency checking and introduce resource interfaces
+* WIP: architecture for external resources
+* add Expr, simplify eval logic
+* WIP: track external config resources
+* rename \_\_gitup
+* fix test for py2.7
+* add basic templating with ansible plugins
+* implement more sophisticated merge includes; generate merge includes when adding resources based on templates
+* allow addResources() to also update existing resources; serialize dependencies better
+* implement foreach and clean up object resolution semantics
+* implement dependencies
+* implement hasParameterChanged()
+* make configurations referencable query objects plus various cleanups
+* improve query syntax
+* track state and config changes, enable richer configurator results, clean up model
+* require resource names to be globally unique; add error handling when creating resources
+* don't set default local status and omit from serialization if not set
+* new api for adding resources based on templates; start groundwork for declared dependencies
+* add cli options for logging
+* serialize: added and removed resources, readyStatus, excluded configurations
+* add support for requires, provides and tracking changes to atttributes; migrate more unit tests
+* start migrating syntax tests
+* use package version
+* restructure yaml syntax and save change history
+* support relative paths in merge directives
+* migrate refs to new runtime
+* refactor for remote task execution
+* unit tests and better error handling for cli
+* higher fidelity serialization of manifests
+* add utilities for evaluating functions in manifest markup
+* preserve includes and calculate diffs when serializing
+* more unit tests and fixes
+* basic schema validation and cli enchancements
+* basic tests for new manifest pass
+* WIP new Manifest for new runtime
+* remove ConfiguratorSpec
+* add unit tests for runtime
+* add abstract manifest
+* WIP: cleanup operational status
+* WIP: no more XXX0s
+* WIP #2
+* WIP
+* s/job/task
+* snapshot working dir changes again
+* snapshot working dir changes
+* changes to support installation on termux
+* fix '?' in expressions
+* new expression syntax
+* rename Valuefrom to Ref and redo expression syntax
+* beginnings of an ansible configurator
+* get python3 working
+* implement default configuration change detection
+* resolve references and better change records
+* control order in yaml output
+* basic change history working
+* get unittests passing again
+* checkpoint progress
+* unit tests for minimal task execution
+* flesh out new model and semantics
+* new model and syntax
+* get basic syntax working
+* setup.py works and there are few non-trivial unit tests

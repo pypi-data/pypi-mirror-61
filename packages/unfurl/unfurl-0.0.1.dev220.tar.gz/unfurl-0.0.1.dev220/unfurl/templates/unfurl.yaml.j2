@@ -1,0 +1,61 @@
+unfurl:
+  version: %s
+%s
+instances:
+  - file: %s
+    default: true
+
+# this is the default behavior, so not needed:
+# defaults: # used if the instance isn't defined above
+#   local:
+#     # local and secret can have "attributes" instead of declaring an import
+#     attributes:
+#       inheritFrom: home
+#   secret:
+#     attributes:
+#       inheritFrom: home
+
+# localConfig = """
+# instances:
+#   localhost:
+#     type: unfurl.nodes.Default
+#     requirements:
+#       - k8sCluster:
+#           node: unfurl.nodes.K8sCluster
+#           relationship:
+#             type: unfurl.relationships.ConnectsTo.K8sCluster
+#             properties:
+#               context: docker-for-desktop
+# """
+
+node_templates:
+  orchestrator:
+    requirements:
+      # these node types only have "check" implementations
+      # manifests reference templates as abstract
+      k8sCluster:
+        # implementation on this operation_host inherit these environment vars
+        environment:
+          kube_context:
+      gcpCloud:
+        environment:
+          gcp_application:
+      production:
+        node: awsCloud
+        relationship:
+          environment:
+            access_key: "{{ lookup('ini', 'user section=integration file=users.ini') }}"
+            secret_key: "{{ lookup('ini', 'user section=integration file=users.ini') }}"
+            region:     "{{ lookup('ini', 'user section=integration file=users.ini') }}"
+
+  awsAccount:
+    type: unfurl.nodes.AWSAccount
+
+# https://docs.ansible.com/ansible/latest/modules/k8s_module.html#k8s-module
+# K8S_AUTH_CONTEXT
+# K8S_AUTH_KUBECONFIG  ~/.kube/config.json
+
+# openstack and rackspace https://github.com/pycontribs/pyrax/blob/master/docs/getting_started.md#authenticating
+# https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html#environment-variable-configuration
+#    client = boto3.client("sts", aws_access_key_id=access_key, aws_secret_access_key=secret_key)
+#    account_id = client.get_caller_identity()["Account"]
