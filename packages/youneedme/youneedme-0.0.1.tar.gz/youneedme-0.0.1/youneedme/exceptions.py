@@ -1,0 +1,2 @@
+class YouNeedMeError(ValueError):
+    pass
