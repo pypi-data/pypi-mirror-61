@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: django-postgres-tweaks
+Version: 0.1.2
+Summary: Special PostgreSQL lookups and functions for Django apps
+Home-page: https://github.com/Canned-Django/django-postgres-utils
+Author: Andreas Hasenkopf
+Author-email: andreas@hasenkopf.xyz
+License: MIT
+Project-URL: Documentation, https://canned-djangodjango-postgres-utils.readthedocs.io/
+Description: # PostgreSQL lookups and functions for Django apps
+        
+        [![Build Status](https://travis-ci.org/Canned-Django/django-postgres-utils.svg?branch=master)](https://travis-ci.org/Canned-Django/django-postgres-utils)
+        [![Documentation Status](https://readthedocs.org/projects/canned-djangodjango-postgres-utils/badge/?version=latest)](https://canned-djangodjango-postgres-utils.readthedocs.io/en/latest/?badge=latest)
+        
+        How often have you had the impression that Django was not providing all the lookup expressions and
+        functions for your queries? Probably not that often, but now here is a **small** collection that I
+        consider quite useful.
+        
+        ## Installation
+        
+        Just use:
+        
+        ```bash
+        pip install django-postgres-tweaks
+        ```
+        
+        As the title says it already, these tools are designed to be used in Django projects/apps. So make 
+        sure to add `postgres_utils` or `postgres_utils.apps.PostgresUtilsConfig` to the `INSTALLED_APPS` 
+        list in your project's `settings.py`!
+        
+        That's it.
+        
+        ## Usage
+        
+        ### Lookups
+        
+        The lookups provided by this package/app are automatically loaded when the app is installed. You
+        can go ahead and just use them like Django's built-in lookups, e.g.:
+        
+        ```python
+        Pizza.objects.filter(name__noregex="[ ]+")
+        ```
+        
+        Assume you have a model called ``Pizza`` with a ``name`` field.
+        
+        ### Functions
+        
+        Like the DB functions provided by Django, e.g. in ``django.db.models.functions``, you need to need
+        to import them prior to usage. An example query looks like this:
+        
+        ```python
+        Topping.objects\
+            .filter(name__contains="Onion")\
+            .annotate(onion_color=RegexpReplace("name", " *Onion$", ""))\
+            .values("name", "onion_color")\
+            .order_by("name")
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Database
+Description-Content-Type: text/markdown
