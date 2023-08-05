@@ -1,0 +1,278 @@
+{% set admin_kwargs = handler.kwargs.get('admin_kwargs', '') or {} %}
+<!--IDE HTML-->
+{% from nlg.webapp import read_current_config, get_user_dir, is_user_authenticated %}
+{% set dsid = read_current_config(handler).get('dsid') %}
+
+<div class="container-fluid pt-4">
+  <div class="form-inline">
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary round"
+          id="addDataBtn" data-toggle="modal"
+          data-target=".grmform-modal">Add Data <i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRMFORM HTML -->
+  <div id="configmodal" class="modal fade grmform-modal" tabindex="-1" role="dialog" aria-labelledby="grmformModalLabel" aria-hidden="true">
+    {% from nlg.webapp import get_dataset_files, get_narrative_config_files %}
+    {% set NLG_DATASETS = get_dataset_files(handler) %}
+    {% set NLG_NARRATIVES = get_narrative_config_files(handler) %}
+    {% import os.path as op %}
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Select Data & Narrative</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="nlg-init-form" action="{{ nlg_base }}/initform?next=."
+          method="POST" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col">
+                <select name="dataset" id="dataset-select" class="form-control" form="nlg-init-form">
+                  {% for filename in NLG_DATASETS %}
+                  <option value="{{ filename }}">{{ op.basename(filename) }}</option>
+                  {% end %}
+                  <option value="" hidden selected>Select Dataset</option>
+                </select>
+              </div>
+              <div class="col">
+                <select name="narrative" id="narrative-select" class="form-control" form="nlg-init-form">
+                  {% for filename in NLG_NARRATIVES %}
+                  <option value="{{ filename }}">{{ op.basename(filename) }}</option>
+                  {% end %}
+                  <option value="" selected hidden>Select Narrative</option>
+                </select>
+              </div>
+            </div>
+            <div class="divider">Or Upload New</div>
+            <div class="row">
+              <input type="hidden" name="_xsrf" value="{{ handler.xsrf_token }}">
+              <div class="col">
+                <label for="fileupload">Dataset:</label>
+                <input id="fileupload" name="data-file" type="file" class="form-control-file">
+              </div>
+              <div class="col">
+                <label for="narrativeupload">Config:</label>
+                <input id="narrativeupload" name="config-file" type="file"
+                class="form-control-file">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" form="nlg-init-form" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div> <!--GRMFORM HTML END-->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <script id="template-preview" type="text/html">
+          <table id="controltable" class="table table-borderless table-hover table-sm">
+            <tbody id="controlbody">
+            <% for (let i=0; i < n_templates; i++) { %>
+              <tr id="controlrow-<%= i %>" draggable="true">
+                <td>
+                  <button id="rm-btn-<%= i %>" title="Remove" type="button"
+                  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </td>
+                <td>
+                  <button id="settings-btn-<%= i %>" title="Settings" type="button"
+                  class="btn btn-primary btn-sm"><i class="fa fa-wrench"></i></button>
+                </td>
+                <td>
+                  <div id="preview-<%= i %>"></div>
+                </td>
+              </tr>
+            <% } %>
+            </tbody>
+          </table>
+        </script>
+      </div>
+      <div class="col">
+        <div class="container">
+          <div class="row">
+            <div class="col d-flex justify-content-left bd-highlight">
+              <button id="boldpreview" type="button" class="btn btn-primary"
+                data-toggle="button" aria-pressed="false" autocomplete="off">
+                <i class="fa fa-bold"></i></button>
+              <button id="italicpreview" type="button" class="btn btn-primary"
+                data-toggle="button" aria-pressed="false" autocomplete="off">
+                <i class="fa fa-italic"></i></button>
+              <button id="ulinepreview" type="button" class="btn btn-primary"
+                data-toggle="button" aria-pressed="false" autocomplete="off">
+                <i class="fa fa-underline"></i></button>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary" id="paralabel">
+                  <input type="radio" name="renderstyle" id="parastyle"
+                    autocomplete="off"><i class="fa fa-paragraph"></i>
+                </label>
+                <label class="btn btn-primary" id="listlabel">
+                  <input type="radio" name="renderstyle" id="liststyle"
+                    autocomplete="off"><i class="fa fa-list"></i>
+                </label>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col border border-primary pl-2 pr-2 bg-light">
+              <div class="text-justify" id="previewspan"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-sm-3">
+        <div class="alert alert-success alert-dismissable collapse" role="alert">
+          <strong>Saved!</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+
+  <div class="divider"></div>
+  <form id="myform" enctype="multipart/form-data">
+      <div class="form-group">
+          <label for="textbox">Type Something:</label>
+          <textarea class="form-control" id="textbox" name="textbox"
+          class="text-monospace"></textarea>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <button id="inspect" type="button" title="Add to Template"
+              class="btn btn-primary">Add to Narrative
+              <i class="fa fa-plus-square"></i>
+          </button>
+        </div>
+        <div class="col">
+          <button id="save-config-btn" type="button" title="Save Narrative"
+            class="btn btn-primary">Save Narrative <i class="fa fa-save"></i></button>
+        </div>
+        <div class="col">
+          <button id="share-narrative-btn" type="button" title="Embed Narrative"
+            class="btn btn-primary">Embed <i class="fa fa-code"></i></button>
+        </div>
+      </div>
+  </form>
+  <div class="divider"></div>
+  {% if dsid %}
+  {% from os.path import basename %}
+  {% set user_dir = basename(get_user_dir(handler)) %}
+  <div class="formhandler" data-src="{{ nlg_base }}/preview/{{ user_dir }}/{{ dsid }}"></div>
+  {% end %}
+
+  <div class="modal fade" id="template-settings" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header"><h6>Template Settings</h6></div>
+        <div id="tmpllist" class="modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="embed-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header"><h6>Embed Narrative</h6></div>
+        <div id="embed-body" class="modal-body">
+          <textarea readonly id="embedCodeText" class="text-monospace" rows="15" cols="80"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="embedDemo">See Demo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- save modal -->
+  <div class="modal fade" id="saveModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header"><h6>Save Narrative</h6></div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">Name</div>
+            <div class="col"><input type="text" id="narrativeName"></div>
+          </div>
+          <div class="row">
+            <div class="col"><button class="btn btn-primary" id="saveNarrativeBtn">Save</button></div>
+            <div class="col"><button class="btn btn-primary" id="downloadNarrativeBtn">Download</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- traceback modal-->
+  <div id="tb-modal" class="modal fade bd-example-modal-lg" tabindex="-1"
+  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Traceback</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="traceback">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include JS dependencies -->
+<script src="{{ nlg_base }}/ui/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="{{ nlg_base }}/nlg.js"></script>
+<script>
+  $.fn.selectpicker.Constructor.BootstrapVersion = '4'
+  var nlg_base = "{{ nlg_base }}"
+  var df = null;
+  var args = null;
+  var templates = [];
+  var currentTemplateIndex = null;
+  var currentTokenIndex = null;
+  var narrative_name = "";
+  var dataset_name = "";
+  // var styleparams = {bold: true, italic: false, underline: false, style: 'para'}
+
+  $(document).ready(setInitialConfig)
+
+  $('.formhandler').on('load', renderPreview)
+  $('.formhandler').formhandler()
+
+  $(document)
+  .on('click', '#inspect', addToNarrative)
+  .on('focus', "#edit-template", (e) => {$('#save-template').attr('disabled', false)})
+  .on('click', '#save-config-btn', (e) => {
+    $('#saveModal').modal({show: true})
+  })
+  .on('click', '#saveNarrativeBtn', (e) => {
+    saveNarrative($('#narrativeName').val())
+  })
+  .on('click', '#downloadNarrativeBtn', (e) => {window.open(`${nlg_base}/download`)})
+  .on('click', "#tmpl-name-btn", addName)
+  .on('click', '#share-narrative-btn', (e) => {
+    $('#embedCodeText').val(getNarrativeEmbedCode())
+    $('#embed-modal').modal({show: true})
+  })
+  .on('click', '#embedDemo', openDemoPage)
+  .on('click', '#boldpreview', toggleRenderStyle)
+  .on('click', '#italicpreview', toggleRenderStyle)
+  .on('click', '#ulinepreview', toggleRenderStyle)
+  .on('change', '#parastyle', toggleRenderStyle)
+  .on('change', '#liststyle', toggleRenderStyle)
+
+  $("#textbox").attr('cols', 119)
+  $("#edit-template").attr('cols', 69).attr('rows', 10)
+</script>
