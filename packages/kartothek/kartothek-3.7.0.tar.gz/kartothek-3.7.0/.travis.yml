@@ -1,0 +1,111 @@
+language: python
+
+# needed for python>=3.7
+dist: xenial
+
+python:
+  - 3.6
+  - 3.7
+
+env:
+  global:
+    - KTK_TESTS=1
+    - KTK_DOCS=0
+    # personal github API access token of marco-neumann-jdas
+    - GITHUB_CLIENT_ID=7a8e3d7ff74db065db63
+    # GITHUB_CLIENT_SECRET=...
+    - secure: "f26AebbVyF7+Ctr61ebKYgtAAXLRv4uaXOXMqJ3Xps5dehFGJk+ZXyI77RdNM2N7PzmJP1Muh1NzlxoFBc4nwQiKuOx3zRE4ynCLgdxLpPOWeLsDfhcOW991n6U58C/4QsrDN1GFBV6B0MhoIk2a5k8Gp7IDPuYnGhIOevi9VkqHIyfFOIS8sFfeJPNqsKzBiI+cO+505mp+jL5YMPQKi7I6uMNtb5oFy/yrAfCJDK0+H6WqJEXqxTJm7KmvKgiUxj47vfTIE2zRDxF5rUrc0hETxwt7rVWsPWAHLnw6EGVhcHpp64dql3kORSdC6WbU7+Gjhq+d6xbrf35rLJtr6Zpzz8P74JG6Ll29CXRdcSebyrn24zxeCjVu8wxsd8lQ/ViYexTxOUaJBt2+VoOvSCfstzvVqer3TWdi9080MwxdZgrhPtn/5SbePa2aE/hU5OcI1CdvyB/7+ye6cKXunuZJZBZPamtP7JVY9CCekpD4lXRHYWeJbT7pplShqXwMFy+uxEFqROluMfbrBqMpXMcku40LxpLh07rupNZBYi4LsdlVz5cQAdnqs1HpVrDtNF2zoxIsJInkTESvADi4IsJq3USoQcwiscvC8Q5sNU3SfqR5hl0XiSktlLS1OPCu75Ko44RY73uIBPiz9DL9DdNRt1Sg2XbYX7dmMGxdQpE="
+
+  matrix:
+    # required builds
+    - CONDA_CREATE_ARGS="pyarrow==0.13.0"
+    - CONDA_CREATE_ARGS="pyarrow==0.14.1"
+    - CONDA_CREATE_ARGS="pyarrow==0.15.0"
+    - CONDA_CREATE_ARGS="pyarrow==0.16.0"
+
+
+    # optional builds
+    - CONDA_CREATE_ARGS="pyarrow==0.16.0" NUMFOCUS_NIGHTLY=1
+    - ARROW_NIGHTLY=1
+
+before_install:
+  - travis_retry wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - >
+    RETRIES=0;
+    until (timeout 30 bash miniconda.sh -b -p $HOME/miniconda) || [[ $RETRIES -eq 4 ]]; do
+        rm -rf $HOME/miniconda;
+        echo "Try number: " $(( RETRIES++ ))
+    done
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - export PATH=$HOME/miniconda/bin:$PATH
+  - conda config --set always_yes yes --set changeps1 no
+  - travis_retry conda update -q conda
+  - conda config --add channels conda-forge
+  - conda config --set channel_priority strict
+
+install:
+  - travis_retry conda create -n test-env --file=conda-requirements.txt --file=conda-test-requirements.txt python=$TRAVIS_PYTHON_VERSION $CONDA_CREATE_ARGS
+  - conda activate test-env
+  - travis_retry ci/nightlies_install.sh
+  - travis_retry python setup.py install
+
+# If docs break or formatting, linting is off, I'd like to know immediately
+before_script:
+  - conda list
+  - travis_retry pre-commit run -a
+  - if [[ $KTK_DOCS == 1 ]]; then python setup.py docs ; fi
+
+script:
+  - if [[ $KTK_TESTS == 1 ]]; then pytest --cov kartothek --cov-report xml --cov-report html ; fi
+
+after_success:
+  - if [[ $KTK_TESTS == 1 ]]; then travis_retry conda install codecov ; fi
+  - if [[ $KTK_TESTS == 1 ]]; then codecov ; fi
+
+matrix:
+  # When marking the build as finished, do not wait for allowed failures to complete
+  fast_finish: true
+  allow_failures:
+    - env: ARROW_NIGHTLY=1
+    - env: CONDA_CREATE_ARGS="pyarrow==0.16.0" NUMFOCUS_NIGHTLY=1
+  include:
+    - name: "osx + builtin python3"
+      os: osx
+      # Note: TRAVIS_PYTHON_VERSION will be unset, will use latest python version available given the constraints
+      language: sh  # This is necessary to support the `before_install` script
+      env:
+        - CONDA_CREATE_ARGS="pyarrow==0.13.0"
+      before_install:
+        - HOMEBREW_NO_AUTO_UPDATE=1 travis_retry brew install coreutils
+        - travis_retry wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
+        - >
+          RETRIES=0;
+          until (gtimeout 30 bash miniconda.sh -b -p $HOME/miniconda) || [[ $RETRIES -eq 4 ]]; do
+              rm -rf $HOME/miniconda;
+              echo "Try number: " $(( RETRIES++ ))
+          done
+        - source "$HOME/miniconda/etc/profile.d/conda.sh"
+        - export PATH="$HOME/miniconda/bin:$PATH"
+        - conda config --set always_yes yes --set changeps1 no
+        - travis_retry conda update -q conda
+        - conda config --add channels conda-forge
+        - conda config --set channel_priority strict
+    - name: "Docs"
+      env:
+        - KTK_TESTS=0
+        - KTK_DOCS=1
+
+deploy:
+  provider: pypi
+  user: __token__
+  # API token used in env var PYPI_PASSWORD, set in Travis CI
+  on:
+    tags: true
+  distributions: "sdist bdist_wheel"
+  skip_existing: true
+
+notifications:
+  email:
+    recipients:
+      - secure: b8XbdD4NjikoskgCKrAmKYLj86cA7lfMllvjKCYqntYhVZ30x8JQE9Eaqq3LRayILk1gxmHxhiCfEhKiUpiwG5gKU87u7484CyfZfCKJeoaFASJpmpKgkHpEMlXQrhikEzMsHlUNqJPXWjcm/PVz41FYAUzTkJVn5i2S4flWRwtLpRWHTayfMGrA5fEaDGpAqKOIAj3iXfxIS785G4ZYjE+KgjFhsel07P1suEgNihm8Oy+wy28DlCKU5Oo+oxCCI8CHV4GHoMmPB6HD3hokimGx2pGUCFdnPAqIebhQV/P7TllEcBzUbz2rECL0ysp1Uwi6MDvig++o8YFHeslm7EkpVM8DK30aOBdcy8bS5UsUt4kPHeWQiPiGDo2hrx4V8xsqLFhwJMNiqEe4J6abD6XDlpu4cq0wMUPmv9LUrJkvh242E2YVZFU22PUZ7uSSQsJQKxv7gSqIxo9PLraStkUdTA0jRY2QAnRvX/8XREhE+AE1Mray8Jc7L2oC3+QXEHVHa6SWJ3ASD6ZEJG00Q4I94zGwA2ME6qU0UYGSLvEPUfC/Mvmu0YovgYkxOlmOS2pyPF6HYjNB9unptGeldxWAsPDecQymViUmMKfJ1CnZhDOVTtPxnP/z6JJl0q+NKfLWcyEf9uG1/HQ9AT2YjIos4EYQCxd7l6r0O76qLj0= # fjetter
+      - secure: "g+B1bJfGG4kQ+SKGIC6F/ze7r5kAXHeASFBNrnXSfNEF5UmvMBUgG5zr+yfdZj3E5MzMtEpR+cqcZhXy6T/W79TawDP9THzuVkTWyTdY99y97lqMwYAP43+m9wl3oGBrG5fWxXleg5tuy0CcnSTFCTJ25FKLa+VGkobcoMpHUTL+/hgmNl5tVsn0CpL0dN024WT8hrcOTzmnRmde77hZB/WI8V7vdyWXk+v8TB4JGWqb/15os56Tf/sU0Sgklcv0yRT6RqUBFQWBnKRErLXh6MXn3RpGdV0C8mKuxqu4bgxhJ7WLPsEB/L1u7RuhweSnqezmxHiUPNlq8hCKQZ0kS99Ny/yBw4SSaCCH/fKcAWKHKMrfjJTlJb+GmGlNqIPHJc5wqnqPX8Z3ONathGXoEMOV99v+JVyFhIVNR+xn//mmUmUEXu6jdccLYrfSpBBlaxe3QIwH4rOMysumFq97qunyCs3WjvUq0Pqe/ql51pnQHG2sKPMfeLIhJnsiE3Inhxx4edlOi9So0IcEO+Q6YTT1lH7qYzbZuGxhUUsOzER8QdV9vrfr3/L0uxdZVA4wNNweuSEawS/sCYvdR0b14Pb18ZDiEoDPjFVYkN6rydUknPVxV/XMdrlVdei/rQL5nUcQwPkj6rDHB6lQpD+PC1dFioz3GZv5VoNlrhLg2cQ=" # lr4d
