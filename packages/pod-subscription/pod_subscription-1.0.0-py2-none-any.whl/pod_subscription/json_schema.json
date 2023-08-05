@@ -1,0 +1,474 @@
+{
+  "addSubscriptionPlan": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength" : 1,
+          "title": "نام طرح"
+        },
+        "price": {
+          "type": "number",
+          "minimum": 0,
+          "title": "قیمت طرح"
+        },
+        "periodTypeCode": {
+          "type": "string",
+          "enum": [
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_YEARLY",
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_MONTHLY",
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_DAILY"
+          ],
+          "title": "کد نوع بازه زمانی (روزانه، ماهانه، سالیانه)"
+        },
+        "periodTypeCount": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "تعداد مورد نظر از بازه زمانی",
+          "description": "به طور مثال اگر نوع بازه زمانی روزانه انتخاب شود و مقدار این فیلد 30 باشد یعنی این طرح بازه زمانی 30 روزه دارد."
+        },
+        "usageCountLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "محدودیت تعداد دفعات استفاده"
+        },
+        "usageAmountLimit": {
+          "type": "number",
+          "minimum": 0,
+          "title": "محدودیت میزان استفاده"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "SUBSCRIPTION_PLAN_TYPE_BLOCK",
+            "SUBSCRIPTION_PLAN_TYPE_CASH",
+            "SUBSCRIPTION_PLAN_TYPE_POST_PAID"
+          ],
+          "title": "نوع طرح (مسدودی و یا نقدی)"
+        },
+        "guildCode": {
+          "type": "string",
+          "minLength": 1,
+          "title": "کد صنف برای صدور فاکتور جهت تسویه"
+        },
+        "permittedGuildCode": {
+          "type": "array",
+          "items": {
+            "type" : "string"
+          },
+          "title": "لیست کد صنف های مجاز جهت استفاده"
+        },
+        "permittedBusinessId": {
+          "type": "array",
+          "items": {
+            "type" : "integer"
+          },
+          "title": "شناسه کسب و کارهای مجاز جهت استفاده"
+        },
+        "permittedProductId": {
+          "type": "array",
+          "items": {
+            "type" : "integer"
+          },
+          "title": "لیست شناسه محصولات مجاز جهت استفاده"
+        },
+        "currencyCode": {
+          "type": "string",
+          "title": "کد ارز",
+          "description": "به طور مثال : IRR یا USD"
+        },
+        "productId": {
+          "type": "integer",
+          "title": "شناسه محصول"
+        },
+        "maxDebtorAmount": {
+          "type": "number",
+          "title": "حداکثر مبلغ بدهی"
+        },
+        "settlementPeriodTypeCode": {
+          "type": "string",
+          "title": "دوره‌ی تصفیه",
+          "enum": [
+            "SUBSCRIPTION_PLAN_SETTLEMENT_PERIOD_TYPE_YEARLY",
+            "SUBSCRIPTION_PLAN_SETTLEMENT_PERIOD_TYPE_MONTHLY",
+            "SUBSCRIPTION_PLAN_SETTLEMENT_PERIOD_TYPE_DAILY",
+            "SUBSCRIPTION_PLAN_SETTLEMENT_PERIOD_TYPE_WEEKLY"
+          ]
+        },
+        "oneTimeUse": {
+          "type": "boolean",
+          "title": "طرح یکبار مصرف"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["name", "price", "periodTypeCode", "periodTypeCount", "type", "productId", "guildCode"]
+  },
+  "subscriptionPlanList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "شناسه طرح"
+        },
+        "periodTypeCode": {
+          "type": "string",
+          "enum": [
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_YEARLY",
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_MONTHLY",
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_DAILY"
+          ],
+          "title": "کد نوع بازه زمانی (روزانه، ماهانه، سالیانه)"
+        },
+        "periodTypeCountFrom": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "کف تعداد مورد نظر از بازه زمانی"
+        },
+        "periodTypeCountTo": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "سقف تعداد مورد نظر از بازه زمانی"
+        },
+        "fromPrice": {
+          "type": "number",
+          "minimum": 0,
+          "title": "حد پایین قیمت"
+        },
+        "toPrice": {
+          "type": "number",
+          "minimum": 0,
+          "title": "حد بالای قیمت"
+        },
+        "typeCode": {
+          "type": "string",
+          "enum": [
+            "SUBSCRIPTION_PLAN_TYPE_BLOCK",
+            "SUBSCRIPTION_PLAN_TYPE_CASH",
+            "SUBSCRIPTION_PLAN_TYPE_POST_PAID"
+          ],
+          "title": "کد نوع طرح"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "اندیس شروع"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "تعداد رکورد در هر صفحه"
+        },
+        "enable": {
+          "type": "boolean",
+          "title": "فعال/غیرفعال بودن طرح"
+        },
+        "permittedGuildCode": {
+          "type": "array",
+          "items": {
+            "type" : "string"
+          },
+          "title": "لیست کد صنف های مجاز جهت استفاده"
+        },
+        "permittedBusinessId": {
+          "type": "array",
+          "items": {
+            "type" : "integer"
+          },
+          "title": "شناسه کسب و کارهای مجاز جهت استفاده"
+        },
+        "permittedProductId": {
+          "type": "array",
+          "items": {
+            "type" : "integer"
+          },
+          "title": "لیست شناسه محصولات مجاز جهت استفاده"
+        },
+        "currencyCode": {
+          "type": "string",
+          "title": "کد ارز",
+          "description": "به طور مثال : IRR یا USD"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["offset", "size"]
+  },
+  "updateSubscriptionPlan": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "شناسه طرح"
+        },
+        "periodTypeCode": {
+          "type": "string",
+          "enum": [
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_YEARLY",
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_MONTHLY",
+            "SUBSCRIPTION_PLAN_PERIOD_TYPE_DAILY"
+          ],
+          "title": "کد نوع بازه زمانی (روزانه، ماهانه، سالیانه)"
+        },
+        "periodTypeCount": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "تعداد مورد نظر از بازه زمانی",
+          "description": "به طور مثال اگر نوع بازه زمانی روزانه انتخاب شود و مقدار این فیلد 30 باشد یعنی این طرح بازه زمانی 30 روزه دارد."
+        },
+        "usageCountLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "محدودیت تعداد دفعات استفاده"
+        },
+        "usageAmountLimit": {
+          "type": "integer",
+          "title": "محدودیت میزان استفاده"
+        },
+        "name": {
+          "type": "string",
+          "title": "نام طرح"
+        },
+        "price": {
+          "type": "number",
+          "minimum": 0,
+          "title": "قیمت طرح"
+        },
+        "enable": {
+          "type": "boolean",
+          "title": "وضعیت فعال/غیرفعال بودن طرح"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["id"]
+  },
+  "requestSubscription": {
+      "type": "object",
+      "properties": {
+        "subscriptionPlanId": {
+          "type": "integer",
+          "title": "شناسه طرح"
+        },
+        "userId": {
+          "type": "integer",
+          "title": "شناسه کاربر"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["subscriptionPlanId", "userId"]
+  },
+  "confirmSubscription": {
+      "type": "object",
+      "properties": {
+        "subscriptionId": {
+          "type": "integer",
+          "title": "شناسه درخواست",
+          "description": "شناسه ایی که در جواب متد requestSubscription از سرور دریافت شده است"
+        },
+        "code": {
+          "type": "string",
+          "title": "کدی که به شماره موبایل کاربر پیامک شده است"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["subscriptionId", "code"]
+
+  },
+  "subscriptionList": {
+      "type": "object",
+      "properties": {
+        "subscriptionPlanId": {
+          "type": "integer",
+          "title": "شناسه اشتراک"
+        },
+        "subscriptionId": {
+          "type": "integer",
+          "title": "شناسه طرح"
+        },
+        "userId": {
+          "type": "integer",
+          "title": "شناسه کاربر"
+        },
+        "status": {
+          "type": "string",
+          "title": "وضعیت اشتراک"
+        },
+        "fromDate": {
+          "type": "string",
+          "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+          "title": "از تاریخ به صورت شمسی و فرمت yyyy/mm/dd"
+        },
+        "toDate": {
+          "type": "string",
+          "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+          "title": "تا تاریخ به صورت شمسی و فرمت yyyy/mm/dd"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "اندیس شروع"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "تعداد رکورد در هر صفحه"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["subscriptionPlanId", "offset", "size"]
+  },
+  "userSubscriptionList": {
+      "type": "object",
+      "properties": {
+        "subscriptionPlanId": {
+          "type": "integer",
+          "title": "شناسه طرح"
+        },
+        "fromDate": {
+          "type": "string",
+          "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+          "title": "از تاریخ به صورت شمسی و فرمت yyyy/mm/dd"
+        },
+        "toDate": {
+          "type": "string",
+          "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+          "title": "تا تاریخ به صورت شمسی و فرمت yyyy/mm/dd"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "اندیس شروع"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1,
+          "title": "تعداد رکورد در هر صفحه"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["offset", "size"]
+  },
+  "consumeSubscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "شناسه طرح"
+        },
+        "usedAmount": {
+          "type": "number",
+          "title": "میزان استفاده از طرح"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["id"]
+  },
+  "paySubscriptionDebt": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "شناسه اشتراک"
+        },
+        "scVoucherHash": {
+          "type": "array",
+          "title": "کد تخفیف برای فراخوانی سرویس کال",
+          "description": "کد تخفیف برای فراخوانی سرویس کال",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scApiKey": {
+          "type": "string",
+          "title": "توکن برای فراخوانی سرویس کال"
+        }
+      },
+      "required": ["id"]
+  }
+}
