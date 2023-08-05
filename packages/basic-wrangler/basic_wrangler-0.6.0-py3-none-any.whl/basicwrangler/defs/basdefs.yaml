@@ -1,0 +1,347 @@
+# This file contains BASIC dialect definitions for basicwrangler.
+
+# A prototypical BASIC definition.
+# Modify according to the parameters of the desired version of BASIC.
+
+# prototype_def:
+#   paste_line_length: 72 # Set maximum basic line length for paste mode - omit if not needed
+#   file_line_length: 128 # Set maximum basic line length for file mode - omit if not needed
+#   combine: True # Decide whether to combine lines or not
+#   crunch: 0 # Set the crunching level - 1 has no spaces, 0 has spaces - numbers above 1 reserved for future use
+#   print_as_question: False # This decides whether to abbreviate PRINT as ?
+#   statement_joining_character: ':' # This is the character that joins statements together - omit if ':'
+#   numbering: 0 # This is the line number to start numbering with
+#   case: 'upper' # Determines whether to change case on output - omit if not needed
+#   increment: 1 # This is the line numbering increment - omit if not needed
+#   abbreviate: False # This is to indicate the use of an abbreviation dictionary - should normally be False
+#   tokenize: False # This is to indicate the use of a tokenizer after the file is output
+#   data_length: 96 # This is for when a different data statement length is needed - omit if not needed
+
+# Altair 8800 4K BASIC.
+alt4k:
+  paste_line_length: 72
+  combine: True
+  crunch: 1
+  print_as_question: False
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Altair 8800 8K BASIC.
+alt8k:
+  paste_line_length: 72
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Altair 8800 Extended BASIC.
+altext: &altext
+  paste_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Altair 8800 Disk BASIC.
+altdisk:
+  <<: *altext
+
+# CP/M BASIC-80 version 4.
+cpm4:
+  paste_line_length: 252
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# CP/M BASIC-80 version 5.
+cpm5:
+  paste_line_length: 252
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Generic BASIC.
+generic: &generic
+  paste_line_length: 252
+  file_line_length: 252
+  combine: False
+  crunch: 0
+  print_as_question: False
+  numbering: 1
+  abbreviate: False
+  tokenize: False
+
+# Microsoft BASCOM
+bascom:
+  <<: *generic
+
+# Commodore PET BASIC.
+pet:
+  paste_line_length: 79
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: True
+  case: 'lower'
+
+# Applesoft BASIC.
+apple2:
+  paste_line_length: 239
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: True
+
+# TRS-80 Level 1 BASIC.
+trs80l1:
+  paste_line_length: 70
+  combine: True
+  crunch: 1
+  print_as_question: False
+  numbering: 1
+  abbreviate: True
+  tokenize: False
+  case: 'lower'
+
+# TRS-80 Level 2 BASIC.
+trs80l2:
+  paste_line_length: 241
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+  case: 'invert'
+
+# TRS-80 Model 4 BASIC.
+trs80m4:
+  paste_line_length: 241
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Atari 8-bit BASIC.
+atari:
+  paste_line_length: 119
+  file_line_length: 128
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: True
+  tokenize: False
+
+# TI 99/4A BASIC.
+ti99:
+  paste_line_length: 140
+  file_line_length: 252
+  combine: False
+  crunch: 0
+  print_as_question: False
+  numbering: 1
+  abbreviate: False
+  tokenize: True
+  data_length: 96
+
+# TI 99/4A Extended BASIC.
+ti99xb:
+  paste_line_length: 140
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: False
+  statement_joining_character: '::'
+  numbering: 1
+  abbreviate: False
+  tokenize: True
+  data_length: 96
+
+# Commodore VIC-20 BASIC.
+vic20:
+  paste_line_length: 87
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: True
+  case: 'lower'
+
+# Tandy Color BASIC.
+coco:
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: True
+
+# Apple /// Business BASIC.
+apple3:
+  paste_line_length: 252
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Commodore 64 BASIC.
+c64: &cbm
+  paste_line_length: 80
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: True
+  case: 'lower'
+
+# Commodore PLUS/4 BASIC.
+plus4:
+  <<: *cbm
+
+# Commodore 128 BASIC.
+c128:
+  <<: *cbm
+
+# Sinclair ZX-81 BASIC.
+zx81:
+  file_line_length: 65535
+  combine: False
+  crunch: 0
+  print_as_question: False
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Sinclair ZX Spectrum BASIC.
+zxspectrum:
+  file_line_length: 65535
+  combine: True
+  crunch: 0
+  print_as_question: False
+  statement_joining_character: ' : '
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# BBC Micro BASIC.
+bbc:
+  paste_line_length: 239
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: False
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Tangerine Oric BASIC.
+oric:
+  paste_line_length: 78
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: True
+
+# MSX BASIC.
+msx:
+  paste_line_length: 239
+  file_line_length: 252
+  combine: True
+  crunch: 1
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Coleco ADAM SmartBASIC.
+adam:
+  paste_line_length: 100
+  file_line_length: 128
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Amstrad CPC BASIC.
+cpc:
+  paste_line_length: 186
+  file_line_length: 186
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 1
+  abbreviate: False
+  tokenize: False
+
+# Apple IIGS GSoft BASIC.
+gsoft:
+  <<: *generic
+
+# Commodore Amiga ACE BASIC Compiler.
+amiga:
+  <<: *generic
+
+# BBC RISC OS BASIC.
+riscos:
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: False
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Microsoft GW-BASIC.
+gwbasic:
+  file_line_length: 252
+  combine: True
+  crunch: 0
+  print_as_question: True
+  numbering: 0
+  abbreviate: False
+  tokenize: False
+
+# Microsoft Quick BASIC Compiler/Professional Development System.
+qbasic:
+  <<: *generic
+
+# FreeBASIC Compiler.
+freebasic:
+  <<: *generic
