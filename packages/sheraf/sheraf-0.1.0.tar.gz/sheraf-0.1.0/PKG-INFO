@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: sheraf
+Version: 0.1.0
+Summary: Versatile ZODB abstraction layer
+License: MIT
+Keywords: zodb,orm
+Author: Yaal team
+Author-email: contact@yaal.fr
+Requires-Python: >=3.5
+Classifier: Framework :: ZODB
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: all
+Provides-Extra: doc
+Provides-Extra: relstorage_pg
+Provides-Extra: zeo
+Requires-Dist: colored; extra == "all"
+Requires-Dist: orderedset
+Requires-Dist: psycopg2; extra == "all" or extra == "relstorage_pg"
+Requires-Dist: psycopg2cffi; extra == "all" or extra == "relstorage_pg"
+Requires-Dist: recommonmark; extra == "doc"
+Requires-Dist: relstorage; extra == "all" or extra == "relstorage_pg"
+Requires-Dist: sphinx-rtd-theme; extra == "doc"
+Requires-Dist: sphinx; extra == "doc"
+Requires-Dist: tqdm; extra == "all"
+Requires-Dist: zeo; extra == "all" or extra == "zeo"
+Requires-Dist: zodb (>=5)
+Requires-Dist: zodburi
