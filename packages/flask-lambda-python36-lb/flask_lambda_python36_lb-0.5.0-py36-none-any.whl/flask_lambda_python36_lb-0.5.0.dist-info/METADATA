@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: flask-lambda-python36-lb
+Version: 0.5.0
+Summary: Python3.6+ module to make Flask compatible with AWS Gateway and AWS Load Balancer
+Home-page: https://github.com/chrispruitt/flask-lambda
+Author: Chris Pruitt
+Author-email: chris.pruitt15@gmail.com
+License: Apache License, Version 2.0
+Keywords: flask aws amazon lambda load balancer lb elb alb
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Environment :: Console
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Dist: Flask (>=0.10)
+
+flask-lambda-python3.6-lb
+=========================
+
+**Python 3.6+ Only**
+--------------------
+
+
+Installation
+------------
+pip install flask-lambda-python3.6-lb
+
+Usage
+-----
+
+Here is an example of what ``my_python_file.py`` would look like::
+
+    from flask_lambda import FlaskLambda
+
+    app = FlaskLambda(__name__)
+
+
+    @app.route('/foo', methods=['GET', 'POST'])
+    def foo():
+        data = {
+            'form': request.form.copy(),
+            'args': request.args.copy(),
+            'json': request.json
+        }
+        return (
+            json.dumps(data, indent=4, sort_keys=True),
+            200,
+            {'Content-Type': 'application/json'}
+        )
+
+
+    if __name__ == '__main__':
+        app.run(debug=True)
+
+
