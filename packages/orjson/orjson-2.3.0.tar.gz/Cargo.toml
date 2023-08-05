@@ -1,0 +1,70 @@
+[package]
+name = "orjson"
+version = "2.3.0"
+authors = ["ijl <ijl@mailbox.org>"]
+description = "Fast, correct Python JSON library supporting dataclasses and datetimes"
+edition = "2018"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/ijl/orjson"
+homepage = "https://github.com/ijl/orjson"
+readme = "README.md"
+keywords = ["fast", "json", "dataclass", "dataclasses", "datetime", "rfc", "8259", "3339"]
+include = [
+    "Cargo.toml",
+    "CHANGELOG.md",
+    "data/*",
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "pyproject.toml",
+    "README.md",
+    "rust-toolchain",
+    "src/*",
+    "test/*.py",
+    "test/requirements.txt",
+]
+
+[lib]
+name = "orjson"
+crate-type = ["cdylib"]
+
+[package.metadata.maturin]
+requires-python = ">=3.6"
+classifier = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python",
+    "Programming Language :: Rust",
+    "Typing :: Typed",
+]
+
+[dependencies]
+associative-cache = { version = "1" }
+heapless = { version = "0.5", default_features = false }
+encoding_rs = { version = "0.8", default_features = false, features = ["simd-accel"] }
+itoa = { version = "0.4", default_features = false }
+lazy_static = { version = "1.4", default_features = false }
+parking_lot = {version = "0.10", features = ["nightly"]}
+pyo3 = { version = "0.9.0-alpha.1", default_features = false, features = ["extension-module"]}
+rand = { version = "0.7", default_features = false, features = ["getrandom", "std"] }
+serde = { version = "1", default_features = false }
+serde_json = { git = "https://github.com/ijl/json.git", rev = "f24505b31bd9e5f41701dc9f5ac7d76813d139b5", default_features = false, features = ["std", "perfect_float"] }
+smallvec = { version = "1", default_features = false, features = ["union", "specialization", "write"] }
+wyhash = { version = "0.3" }
+
+[profile.release]
+codegen-units = 1
+debug = false
+incremental = false
+lto = true
+opt-level = 3
+panic = "abort"
