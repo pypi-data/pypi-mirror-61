@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: json-secret-diary
+Version: 1.0.4.2
+Summary: Simple secret diary based on JSON and AES encryption
+Home-page: https://github.com/KingKaitoKid/secret_diary
+Author: King Kaito Kid
+Author-email: djstrix@me.com
+License: UNKNOWN
+Description: # Secret Diary
+        My own project to manage my daily diary, works with only **Python 3**
+        
+        # How it works
+        The entire diary is based only on JSON text, everything is done with JSON.
+        Diary has 'public' infos and 'secret' infos, the secret part is encrypted with AES algorithm.
+        
+        The public part is called 'summary', this will be usefull to help you to know what that page of diary talk about or specific infos.
+        
+        No connection to internet required, new diary will be created if username is not recognized (obviously with a prompt to allow or deny).
+        
+        Once you wrote you can't edit text (both public and private) but you can write without limits.
+        
+        Password of your diary is stored in the same JSON file, the name is yout username setted at first start.
+        
+        # How to install
+        
+        This code can be installed with [pip](https://pypi.org/project/json-secret-diary/), if you have pip installed execute the pip command to install new package `pip install json_secret_diary`
+        
+        # Example of usage
+        
+        You have 2 ways to use my package from command-line, simply write `json_secret_diary` and creation start!
+        
+        You can also use with your python project, here an example:
+        
+        ```python
+        import json_secret_diary
+        
+        my_username = 'example'
+        my_password = 'example_pw'
+        
+        # Create Diary object
+        my_diary = json_secret_diary.Diary(my_username, my_password)
+        
+        # Access to diary, if exist
+        # if not exist create new one if authorized
+        my_diary.access()
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
