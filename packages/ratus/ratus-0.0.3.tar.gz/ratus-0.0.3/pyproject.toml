@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "ratus"
+version = "0.0.3"
+description = "Simple expression language."
+authors = ["Nick Spain <nicholas.spain96@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/nick96/ratus"
+homepage = "https://github.com/nick96/ratus"
+license = "MIT"
+keywords = ["dsl", "expression-language"]
+classifiers = ["Development Status :: 2 - Pre-Alpha"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+pytest-cov = "^2.8"
+black = "19.10b0"
+isort = "4.3.21"
+sphinx = "^2.3"
+pre-commit = "^2.0"
+mypy = "^0.761.0"
+setuptools = "^45.1"
+wheel = "^0.34.2"
+twine = "^3.1"
+
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
