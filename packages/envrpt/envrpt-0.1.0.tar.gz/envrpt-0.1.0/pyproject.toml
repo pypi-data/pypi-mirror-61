@@ -1,0 +1,39 @@
+[build-system]
+requires = [
+    'setuptools',
+    'wheel',
+]
+
+[tool.tidypy]
+exclude = [
+    'venv/.*',
+    'test/.*',
+    'build/.*',
+    'dist/.*',
+    '.pytest_cache/.*',
+    'src/envrpt/_vendor/.*',
+    'js/*',
+]
+pydocstyle = {use = false}
+
+[tool.tidypy.pycodestyle]
+disabled = [
+    'W391',
+    'E731',
+]
+
+[tool.tidypy.pylint]
+disabled = [
+    'missing-docstring',
+    'trailing-newlines',
+]
+[tool.tidypy.pylint.options]
+min-public-methods = 0
+
+[tool.tidypy.yamllint]
+disabled = [
+    'empty-lines',
+    'document-start',
+    'line-length',
+]
+
