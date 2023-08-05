@@ -1,0 +1,313 @@
+Metadata-Version: 2.1
+Name: clinterfacer
+Version: 1.2.8
+Summary: This framework aims to simplify the creation of Command-Line Interfaces (CLIs) using python.
+Home-page: https://gitlab.com/adrianohrl/clinterfacer
+Author: Adriano Henrique Rossette Leite
+Author-email: adrianohrl@gmail.com
+Maintainer: Adriano Henrique Rossette Leite
+Maintainer-email: adrianohrl@gmail.com
+License: UNKNOWN
+Description: # The `clinterfacer` framework
+        
+        [![Pipeline Status](https://gitlab.com/adrianohrl/clinterfacer/badges/master/pipeline.svg)](https://gitlab.com/adrianohrl/clinterfacer/-/commits/master)
+        [![PyPI Version](https://badge.fury.io/py/clinterfacer.svg)](https://pypi.org/project/clinterfacer/#history)
+        
+        This framework aims to simplify the creation of Command-Line Interfaces (CLIs) using python.
+        
+        ## Installation
+        
+        To install the `clinterfacer` framework using [pip](https://pip.pypa.io/en/stable/) only, enter the following command:
+        
+        ```bash
+        pip install clinterfacer==1.2.8
+        ```
+        
+        However, if you are using [`pipenv`](https://pipenv.kennethreitz.org), enter the following command in the root of your project.
+        
+        ```bash
+        pipenv install clinterfacer==1.2.8
+        ```
+        
+        ## Usage
+        
+        After installation, it must be exist the follow files and folders in your project:
+        
+        ```bash
+        clinterfaced
+        ├── clinterfaced*
+        │   ├── commands*
+        │   │   ├── build.py
+        │   │   ├── config.py
+        │   │   ├── deploy.py
+        │   │   ├── doc.py
+        │   │   ├── get_param.py
+        │   │   ├── __init__.py*
+        │   │   └── train.py
+        │   ├── __init__.py*
+        │   ├── __main__.py*
+        │   ├── resources**
+        │   │   ├── __init__.py**
+        │   │   └── logging.ini**
+        │   ├── subparsers*
+        │   │   ├── build.py
+        │   │   ├── config.py
+        │   │   ├── deploy.py
+        │   │   ├── doc.py
+        │   │   ├── get_param.py
+        │   │   ├── __init__.py*
+        │   │   └── train.py
+        │   └── utils.py
+        ├── Makefile
+        ├── Pipfile
+        ├── README.md*
+        └── setup.py*
+        ```
+        
+        All the above files and folders ending with `*` are expected by the `clinterfacer` framework. However, all the above files and folders ending with `**` are opitional and are used by the `clinterfacer` framework to load the desired logging configuration. The remaining files and folders were merely used for exemplifying.
+        
+        ### The `setup.py` file
+        
+        There is a template for the `setup.py` file bellow.
+        
+        ```python
+        #!/usr/bin/env python
+        # -*- coding: utf-8 -*-
+        """This file is used to install the clinterfaced package."""
+        
+        # standard library(ies)
+        import pathlib as pl
+        import typing
+        
+        # 3rd party package(s)
+        import setuptools
+        
+        # local source(s)
+        import clinterfaced as package
+        
+        
+        def read(path: typing.Union[str, pl.Path], encoding: str = 'utf-8') -> str:
+            if isinstance(path, str):
+                path = pl.Path(path)
+            return path.read_text(encoding) if path.exists() else ''
+        
+        readme = pathlib.Path('./README.md')
+        metadata = {
+            'name': package.__name__,
+            'version': package.__version__,
+            'author': package.__author__,
+            'author_email': package.__email__,
+            'maintainer': package.__maintainer__,
+            'maintainer_email': package.__email__,
+            'description': package.__description__,
+            'long_description': read(readme),
+            'long_description_content_type': 'text/markdown',
+            'url': package.__url__,
+            'packages': setuptools.find_packages(),
+            'include_package_data': True,
+            'install_requires': [
+                'clinterfacer==1.2.8',
+            ],
+            'entry_points': {
+                'console_scripts': [
+                    f'{package.__name__} = {package.__name__}.__main__:main',
+                ],
+            },
+            'classifiers': [
+                'Programming Language :: Python :: 3',
+                'Operating System :: OS Independent',
+            ],
+        }
+        if __name __ == '__main__':
+            setuptools.setup(**metadata)
+        
+        ```
+        
+        ### The `__init__.py` file
+        
+        ```python
+        #!/usr/bin/env python
+        
+        """__init__.py: This script includes all the project's metadata."""
+        
+        __authors__ = (
+            'Adriano Henrique Rossette Leite',
+        )
+        __email__ = (
+            'adrianohrl@gmail.com',
+        )
+        __maintainer__ = (
+            'Adriano Henrique Rossette Leite',
+        )
+        __copyright__ = ''
+        __credits__ = []
+        __license__ = ''
+        __version__ = '0.0.0' # this information should be altered only by the bumpversion tool
+        __status__ = 'Development' # should typically be one of 'Prototype', 'Development', 
+        __description__ = 'This package uses the clinterfacer framework.'
+        __url__ = 'https://gitlab.com/adrianohrl/clinterfaced'
+        __author__ = ', '.join(__author__)
+        __email__ = ', '.join(__email__)
+        __maintainer__ = ', '.join(__maintainer__)
+        options = [
+            'Development',
+            'Prototype',
+            'Production',
+        ]
+        if __status__ is not in options:
+            raise Exception(f'Invalid __status__: {__status__}. It should typically be one of the following: {options}')
+        
+        ```
+        
+        ### The `__main__.py` file
+        
+        ```python
+        #!/usr/bin/env python
+        
+        
+        """This is the main script of the clinterfaced package."""
+        
+        
+        # standard library(ies)
+        import sys
+        
+        # 3rd party package(s)
+        import clinterfacer
+        
+        
+        def main() -> int:
+            cli = clinterfacer.CLI()
+            return cli.main()
+        
+        if __name__ == '__main__':
+            return sys.exit(main())
+            
+        ```
+        
+        ### The `commands` folder
+        
+        The script below is an example of the implementation of a command named as `get-param`.
+        
+        ```python
+        #!/usr/bin/env python
+        # -*- coding: utf-8 -*-
+        
+        
+        """This is the main script of the clinterfaced's get-param command."""
+        
+        
+        # standard library(ies)
+        import argparse
+        import logging
+        import sys
+        
+        # local source(s)
+        from clinterfaced.subparsers.get_param import parse_args
+        
+        
+        logger = logging.getLogger(__name__)
+        parameters = {
+            'framework': 'CLInterfacer',
+        }
+        
+        
+        def main(args: argparse.Namespace) -> None:
+            logger.info(f'Getting parameter the clinterfaced\'s {args.parameter} paramenter ...')
+            logger.info(f'Value for the {args.parameter} parameter: \'{parameters[args.parameter]}\'')
+        
+        
+        if __name__ == '__main__':
+            args = parse_args()
+            sys.exit(main(args))
+        
+        ```
+        
+        ### The `subparsers` folder
+        
+        The script below is an example of the definition of the arguments of a command named as `get-param`.
+        
+        ```python
+        #!/usr/bin/env python
+        # -*- coding: utf-8 -*-
+        
+        
+        """This script defines the clinterfaced's get-param subparser."""
+        
+        
+        # standard library(ies)
+        import argparse
+        
+        # 3rd party package(s)
+        from clinterfacer import cli
+        
+        
+        def add_parser(subparsers: argparse._SubParsersAction) -> None:
+            parser = subparsers.add_parser(
+                'get-param',
+                help='This is the get-param command of the clinterfaced package',
+                prog='clinterfaced get-param',
+                description='This command is the get-param one.',
+            )
+            add_arguments(parser)
+        
+        
+        def add_arguments(parser: argparse.ArgumentParser) -> None:
+            parser.add_argument(
+                'parameter',
+                help='Specifies the name of the desired paramenter.',
+                metavar='PARAMETER',
+            )
+            
+        
+        def parse_args() -> argparse.Namespace: 
+            parser = argparse.ArgumentParser()
+            add_arguments(parser)
+            args = parser.parse_args()
+            cli.setup()
+            return args
+        
+        ```
+        
+        ### Installing the package
+        
+        ```bash
+        pipenv install clinterfacer 
+        ```
+        
+        ### Entering the commands in terminal
+        
+        ```bash
+        pipenv shell
+        clinterfaced build
+        clinterfaced config -f ./build.txt
+        clinterfaced train -t 0.6
+        clinterfaced deploy
+        clinterfaced doc -b html
+        exit # or Ctrl+D
+        ```
+        
+        # Releasing
+        
+        ```bash
+        git checkout master
+        git pull
+        git merge --no-ff new-feature
+        bumpversion [major|minor|patch]
+        git push origin master --tags
+        ```
+        
+        ```bash
+        python setup.py sdist bdist_wheel
+        tar tzf dist/clinterfacer-1.2.8.tar.gz 
+        twine check dist/*
+        twine upload  --verbose --repository-url https://test.pypi.org/legacy/ dist/*
+        twine upload  --verbose dist/*
+        ```
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Science/Research
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
