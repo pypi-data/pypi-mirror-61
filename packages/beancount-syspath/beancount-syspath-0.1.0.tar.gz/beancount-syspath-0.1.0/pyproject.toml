@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "beancount-syspath"
+version = "0.1.0"
+description = "Manipulate sys.path within the beancount file"
+authors = ["Aetf <aetf@unlimited-code.works>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/Aetf/beancount-syspath"
+repository = "https://github.com/Aetf/beancount-syspath"
+keywords = ["beancount", "plugin", "syspath"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Plugins",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Utilities",
+]
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+beancount = "^2.2.3"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
