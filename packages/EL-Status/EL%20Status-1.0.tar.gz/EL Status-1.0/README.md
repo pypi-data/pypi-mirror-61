@@ -1,0 +1,31 @@
+# EL Status #
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Technologies](#technologies)
+
+## Introduction ##
+
+We wanna achieve a little tidiness when it comes to a way of reporting our status such as:
+* working remotely
+* off
+* sick-leave
+
+It's time to goodbye ~~one-hundred emails per day from zdalnie@elpassion.pl.
+
+Furthermore, we want to find a place for people who:
+* takes a rest on the beach #wakacje
+
+or
+
+* gets unexpected news about the arrival of the courier with the package #kurier.
+
+Turning to technology: Python & iOS. No worries! Android will be later.
+
+Anyone from the UI & UX department is truly welcome.
+
+## Technologies ##
+
+- Python
+- Flask
+~~work in progress
