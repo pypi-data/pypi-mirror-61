@@ -1,0 +1,7 @@
+[migrators]
+docker = pulp_2to3_migration.app.plugin.docker.migrator:DockerMigrator
+iso = pulp_2to3_migration.app.plugin.iso.migrator:IsoMigrator
+
+[pulpcore.plugin]
+pulp_2to3_migration = pulp_2to3_migration:default_app_config
+
