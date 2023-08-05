@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: aim-cli
+Version: 1.2.1
+Summary: Version control for AI
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Requires-Dist: click (>=6.7)
+Requires-Dist: paramiko (==2.6.0)
+Requires-Dist: GitPython (==3.0.4)
+Requires-Dist: requests (>=2.0.0)
+Requires-Dist: psutil (>=5.6.7)
+Requires-Dist: py3nvml (>=0.2.5)
+Requires-Dist: docker (>=4.1.0)
+
+
+# aim
+
+Version control and collaboration for AI.
+
+See the docs [here](https://docs.aimhub.io).
+
+## Development
+
+### Requirements
+
+* Python 3
+
+We suggest to use [virtual
+environment](https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments) for managing local dependencies.
+
+To start development first install all dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Project Structure
+
+
+├── aim  <----------------  main project code
+│   ├── cli <-------------  command line interface
+│   ├── engine <----------  business logic for interracting with Aim Hub
+│   ├── profiler <--------  experimental profiler for ML models
+│   ├── sdk <-------------  Python SDK
+│   └── version_control <-  managing files and tracked data
+├── docs <----------------  development documentation
+├── examples <------------  example usages of aim SDK
+└── tests
+
+
