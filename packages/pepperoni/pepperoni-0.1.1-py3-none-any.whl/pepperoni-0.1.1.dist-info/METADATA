@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: pepperoni
+Version: 0.1.1
+Summary: Module for extended logging in Python.
+Home-page: https://github.com/t3eHawk/pepperoni
+Author: Timur Faradzhov
+Author-email: timurfaradzhov@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: sqlalchemy (>=1.3.1)
+
+# pepperoni
+
+Pepperoni is an alternative for Python built-in logging module.
+It has similar syntax but at the same time allow you to create more elegant,
+large and extendible logs for you applications.
+
+Also Pepperoni is a toolkit making your development easier and faster.
+
+## Features
+Pepperoni loggers provide a set of out-of-the-box solutions:
+- All methods to create, customize and support your logs.
+- Writing to the console, file, database, email.
+- Automatic alarm sending to your email in case of registered error.
+- Easy way to read and configure execution arguments of different types.
+- Gathered statistics including a lot of system parameters, environment
+  variables, parameters from file and so on.
+
+## Getting Started
+### Requirements
+Operation systems: Windows, Linux, Mac OS.
+
+Python version: 3.7.1.
+
+### Installation
+Use pip to install the module:
+```
+pip install pepperoni
+```
+
+### How to Use
+To start just call the logger:
+```python
+import pepperoni
+
+
+logger = pepperoni.logger()
+```
+
+
