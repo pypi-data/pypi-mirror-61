@@ -1,0 +1,33 @@
+[package]
+name = "pyruvate"
+version = "0.1.0"
+authors = ["tschorr <t_schorr@gmx.de>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "pyruvate"
+crate-type = ["cdylib"]
+
+[features]
+default = ["pyo3/extension-module"]
+
+[dependencies]
+bytes = "*"
+errno = "*"
+httparse = "*"
+libc = "*"
+log = "*"
+slog = "*"
+slog-envlogger = "*"
+slog-scope = "*"
+mio = { version = "^0.7.0-alpha", features=["os-poll", "tcp"] }
+pyo3 = "^0.9.0-alpha"
+spmc = "*"
+threadpool = "*"
+
+[dev-dependencies]
+env_logger = "*"
+slog-term = "*"
+tempfile = "*"

@@ -1,0 +1,62 @@
+Pyruvate WSGI server
+====================
+
+.. image:: https://gitlab.com/tschorr/pyruvate/badges/master/pipeline.svg
+   :target: https://gitlab.com/tschorr/pyruvate
+
+.. image:: https://codecov.io/gl/tschorr/pyruvate/branch/master/graph/badge.svg
+   :target: https://codecov.io/gl/tschorr/pyruvate
+
+.. image:: http://img.shields.io/pypi/v/pyruvate.svg
+   :target: https://pypi.org/project/pyruvate
+
+Pyruvate is a `WSGI <https://www.python.org/dev/peps/pep-3333>`_ server written in Rust.
+It's not yet ready for production so use with caution.
+
+Features
+--------
+
+* Asynchronous event loop using `mio <https://github.com/tokio-rs/mio>`_
+* Request parsing using `httparse <https://github.com/seanmonstar/httparse>`_
+* `PyO3 <https://github.com/PyO3/pyo3>`_ based Python interface
+* Worker pool based on `threadpool <https://github.com/rust-threadpool/rust-threadpool>`_
+* `PasteDeploy <https://pastedeploy.readthedocs.io/en/latest/>`_ entry point
+
+Development Installation
+------------------------
+
+* Install `Rust <https://doc.rust-lang.org/book/ch01-01-installation.html>`_
+* Install and activate `Rust nightly <https://doc.rust-lang.org/book/appendix-07-nightly-rust.html#rustup-and-the-role-of-rust-nightly>`_ (needed by `PyO3 <https://github.com/PyO3/pyo3>`_)
+* Install and activate a Python 3 (> 3.5) `virtualenv <https://docs.python.org/3/tutorial/venv.html>`_
+* Install pyruvate, e.g. using pip:
+
+    $ pip install -e git+https://gitlab.com/tschorr/pyruvate#egg=pyruvate
+
+Using Pyruvate in your WSGI application
+---------------------------------------
+
+From Python
++++++++++++
+
+A hello world WSGI application using pyruvate listening on 127.0.0.1:7878 and using 2 worker threads looks like this::
+
+    import pyruvate
+
+    def application(environ, start_response):
+        """Simplest possible application object"""
+        status = '200 OK'
+        response_headers = [('Content-type', 'text/plain')]
+        start_response(status, response_headers, None)
+        return [b"Hello world!\n"]
+
+    pyruvate.serve(application, "127.0.0.1:7878", 2)
+
+Using PasteDeploy
++++++++++++++++++
+
+Again listening on 127.0.0.1:7878 and using 2 worker threads::
+
+    [server:main]
+    use = egg:pyruvate#main
+    socket = 127.0.0.1:7878
+    workers = 2
