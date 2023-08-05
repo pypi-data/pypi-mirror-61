@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: redis_key_tagging
+Version: 0.0.2
+Summary: A Redis client with key tagging and invalidation by tag features.
+Home-page: https://github.com/erudit/redis_key_tagging
+Author: Consortium Érudit
+Author-email: tech@erudit.org
+License: UNKNOWN
+Description: # Redis Key Tagging
+        
+        ## Description
+        
+        This package provides key tagging and invalidation by tag features.
+        It provides the ``RedisKeyTagging`` class which extends the ``Redis`` class from
+        [redis-py](https://github.com/andymccurdy/redis-py), so it can be switched seamlessly.
+        
+        ## Documentation
+        
+        ### Overriden method(s)
+        
+        * ``set()``: The new optional keyword argument ``tags``, which must be a list of string, can be used
+        to associate the key being set to each of those tags.
+        
+        ### New method(s)
+        
+        * ``delete_keys_by_tag()``: Delete all keys associated with the given tag.
+        
+        ## Tests
+        
+        ```
+        $ py.test
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
