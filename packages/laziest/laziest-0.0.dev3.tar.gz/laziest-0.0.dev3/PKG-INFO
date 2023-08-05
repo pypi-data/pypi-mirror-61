@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: laziest
+Version: 0.0.dev3
+Summary: 
+Home-page: https://github.com/xnuinside/laziest
+License: MIT
+Author: xnuinside
+Author-email: xnuinside@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: black (>=18.3-alpha.0,<19.0)
+Requires-Dist: clifier (>=0.0.3,<0.0.4)
+Requires-Dist: codegraph (>=0.0.4,<0.0.5)
+Project-URL: Repository, https://github.com/xnuinside/laziest
+Description-Content-Type: text/x-rst
+
+Laziest
+=======
+Generator of test_*.py files for your Python code
+
+
+Installation:
+*************
+
+    pip install laziest
+
+Usage:
+*************
+
+    lazy /path/to/python/code/files
+
+
+For example:
+
+    lazy /home/yourUser/laziest/tests/code_sample/done/conditions.py
+
+
+It will generate test file in directory:
+
+    /home/yourUser/laziest/tests/test_conditions.py
+
+
+Run tests with 'pytest' to check that they are valid:
+
+    pytest /home/yourUser/laziest/tests/functional/test_primitive_code.py
+
+
+You can run laziest tests with tox and check output.
+
+
+Docs:
+*****
+
+Coming soon.
