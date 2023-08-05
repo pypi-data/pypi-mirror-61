@@ -1,0 +1,41 @@
+---
+extra_includes:
+  - rpy/geometryToString.h
+
+functions:
+  to_json:
+    ignore: true
+  from_json:
+    ignore: true
+classes:
+  Translation2d:
+    shared_ptr: false
+    methods:
+      Translation2d:
+        overloads:
+          "":
+          units::meter_t, units::meter_t:
+      Distance:
+      X:
+      Y:
+      Norm:
+      RotateBy:
+      operator+:
+      operator+=:
+      operator-:
+        overloads:
+          frc::Translation2d& [const]:
+          '[const]':
+      operator-=:
+      operator*:
+      operator*=:
+      operator/:
+      operator==:
+      operator!=:
+      operator/=:
+
+inline_code: |
+  cls_Translation2d
+    .def("__repr__", [](Translation2d *self) {
+      return rpy::toString(*self);
+    });

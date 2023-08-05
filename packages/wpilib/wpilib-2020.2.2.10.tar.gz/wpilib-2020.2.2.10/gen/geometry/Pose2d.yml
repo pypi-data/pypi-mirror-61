@@ -1,0 +1,37 @@
+---
+extra_includes:
+  - rpy/geometryToString.h
+
+functions:
+  to_json:
+    ignore: true
+  from_json:
+    ignore: true
+classes:
+  Pose2d:
+    shared_ptr: false
+    methods:
+      Pose2d:
+        overloads:
+          "":
+          Translation2d, Rotation2d:
+          units::meter_t, units::meter_t, Rotation2d:
+      Translation:
+      Rotation:
+      TransformBy:
+      RelativeTo:
+      Exp:
+      Log:
+      operator+:
+      operator+=:
+      operator-:
+      operator==:
+      operator!=:
+
+inline_code: |
+  cls_Pose2d
+    .def("__repr__", [](Pose2d *self) {
+      return "Pose2d("
+        "translation=" + rpy::toString(self->Translation()) + ", "
+        "rotation=" + rpy::toString(self->Rotation()) + ")";
+    });
