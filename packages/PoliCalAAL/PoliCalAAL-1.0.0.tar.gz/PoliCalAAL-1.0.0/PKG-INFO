@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: PoliCalAAL
+Version: 1.0.0
+Summary: Este es un programa hecho en python para sincronizar tareas existentes en el aula virtual de moodle EPN con una cuenta de Trello.
+Home-page: https://github.com/andr3slelouch/PoliCal/
+Author: Nicolas Arias
+Author-email: jozuenikolas@gmail.com
+License: UNKNOWN
+Description: # ESCUELA POLITÃ‰CNICA NACIONAL
+        # MANUAL DE USUARIO
+        # Aplicaciones en Ambientes Libres
+        # TEMA: PoliCal
+        
+        Los estudiantes de la Escuela PolitÃ©cnica Nacional(EPN) utilizan una versiÃ³n de moodle para la administraciÃ³n de tareas, exÃ¡menes, etc de ciertas materias en cada semestre, en ciertas ocasiones estos son habilitados sin previo aviso a los estudiantes. El fin de PoliCal es poder sincronizar desde el calendario electrÃ³nico que ofrece el aula virtual hacia Trello que es una plataforma muy poderosa para organizar tareas y proyectos.
+        ### Preparar ambiente de python antes de primera ejecuciÃ³n
+        Antes de la primer ejecuciÃ³n de PoliCal y luego de haber clonado este repositorio es necesario preparar python con la instalaciÃ³n de las librerÃ­as necesarias. Para ello serÃ¡ necesario tener:
+        - Python 3.5 o mayor. (Puedes obtener python aquÃ­: https://www.python.org/downloads/)
+        - Pip (Puedes obtener pip aquÃ­: https://pip.pypa.io/en/stable/installing/)
+        - Cuenta en Trello iniciada sesiÃ³n en el navegador predeterminado. (Puedes registrarte aquÃ­: https://trello.com/signup)
+        - Cuenta del Aula Virtual EPN iniciada sesiÃ³n en el navegador predeterminado.
+        
+        #### Es necesario que su terminal o CMD se este ejecutando en el directorio donde se clonÃ³/descargÃ³ el proyecto.
+        
+        ### Para Linux
+        
+        Con estos requisitos mÃ­nimos debe ejecutar este comando en su terminal:
+        ```
+        pip install -r requeriments.txt
+        ```
+        PrecauciÃ³n en caso de existir errores en la instalaciÃ³n de los paquetes requeridos, intente agregando **--user** al final del comando.
+        
+        Luego puede ejecutar polical.py
+        ```
+        python polical.py
+        ```
+        
+        ### Para Windows
+        
+        Con estos requisitos mÃ­nimos debe ejecutar este comando en CMD.
+        Si tiene agregado python a los PATH del sistema:
+        ```
+        python -m pip install -r requeriments.txt
+        ```
+        Caso contrario:
+        ```
+        py -m pip install -r requeriments.txt
+        ```
+        PrecauciÃ³n en caso de existir errores en la instalaciÃ³n de los paquetes requeridos, intente agregando **--user** al final del comando.
+        
+        Luego puede ejecutar polical.py
+        Si tiene aregado python a los PATH del sistema:
+        ```
+        python polical.py
+        ```
+        Caso contrario:
+        ```
+        py polical.py
+        ```
+        
+        ### NOTAS
+        Actualmente se encuentran precargadas todas las materias obtenidas desde el SAEW de las siguientes carreras:
+        - IngenierÃ­a en Sistemas InformÃ¡ticos y de ComputaciÃ³n PENSUM: 2009B
+        - IngenierÃ­a ElÃ©ctrica PENSUM: 2010
+        - IngenierÃ­a en ElectrÃ³nica y Redes de InformaciÃ³n PENSUM: 2010
+        - IngenierÃ­a en ElectrÃ³nica y Telecomunicaciones PENSUM: 2010
+        - IngenierÃ­a en ElectrÃ³nica y Control PENSUM: 2010
+        - IngenierÃ­a en MecÃ¡nica PENSUM: 2009D
+        
+        Si deseas usar el programa y tu carrera no se encuentra registrada envÃ­a un correo luis.andradec14@gmail.com con los horarios de materias sea en PDF o idealmente en EXCEL.
+        
+        Lo puedes obtener desde esta pÃ¡gina iniciando previamente sesiÃ³n en el SAEW https://saew.epn.edu.ec/SAEINF/HorariosMaterias.aspx
+        
+        PoliCal no se encuentra asociado de ninguna forma con Trello.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.2
+Description-Content-Type: text/markdown
