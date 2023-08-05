@@ -1,0 +1,30 @@
+
+stages:
+  - test
+  - build
+
+.build template:
+  stage: build
+  image: python:latest
+  before_script:
+    - pip install -e .
+  script:
+    - python setup.py sdist
+  artifacts:
+    paths:
+      - "dist/*"
+
+build:
+  extends: .build template
+  except:
+    - tags
+
+build and upload:
+  extends: .build template
+  stage: build
+  only:
+    - tags
+  script:
+    - pip install twine
+    - python setup.py sdist
+    - twine upload dist/*
