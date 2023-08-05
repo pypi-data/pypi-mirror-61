@@ -1,0 +1,97 @@
+aiolos-tools
+==========================
+
+.. image:: https://img.shields.io/pypi/v/aiolos-tools.svg
+    :target: https://pypi.python.org/pypi/aiolos-tools
+    :alt: Latest PyPI version
+
+python libraries for use in the reduction and analysis of experimental or computational aerodynamic data
+
+Usage
+-----
+
+code_instrumentation.timer
+
+    add the following to any function or scope in a program and the execution time will be logged (must use logging library and add the "code_instrumentation.timer" logger)
+
+    >>> from code_instrumentation.timer import timer
+    >>> _ = timer.Timer() 
+
+    
+commissoning_tools.units
+
+    the unit conversions are to be used when importing data to convert the data to base SI units. e.g.: 
+        
+    >>> import commissoning_tools.units as units
+    >>> p = read(data_file_pressures_psi) * units.psi # Yeilds a pressure value in Pascals
+    >>> t = read(data_file_temperatre_C) + units.celsius # Yeilds a temperature value in Kelvin
+    
+    base units are:
+        - length      --> meter, m
+        - time        --> second, s
+        - mass        --> kilogram, kg
+        - temperature --> Kelvin
+        
+    derived units use only the base. i.e. velocity is m/s, pressure is Pa (N/m^2)
+        
+Package Maintenance
+-------------------
+
+1. commit changes to git:
+    
+    $ git add .
+    
+    $ git commit -m "commit message"
+
+2. Increment version:
+    
+    $ bumpversion <major|minor|patch>
+
+3. Push to github:
+    
+    $ git push <remote_name> <branch_name>
+    
+    $ git push origin master
+
+4. Creating distribution archives:
+    
+    $ python3 -m pip install --upgrade setuptools wheel
+    
+    $ python3 setup.py sdist bdist_wheel
+
+5. Uploading to PyPI: 
+    
+    $ python3 -m twine upload dist/*
+
+Installation
+------------
+
+    python3 -m pip install aiolos-tools
+
+Requirements
+^^^^^^^^^^^^
+
+    1. "numpy"
+    2. "matplotlib"
+    3. "scipy"
+    4. "pandas"
+
+Versions
+--------
+
+current version : 0.0.2
+
+changes:
+
+    0.0.2 : initial release based on aiolos-commissioning-tools 0.2.8
+
+Compatibility
+-------------
+
+Licence
+-------
+
+Authors
+-------
+
+`aiolos-tools` was written by `Christopher Sooriyakumaran <c.sooriyakumaran@gmail.com>`_.
