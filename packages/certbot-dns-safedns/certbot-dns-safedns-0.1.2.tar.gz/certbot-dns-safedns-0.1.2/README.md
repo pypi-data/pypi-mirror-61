@@ -1,0 +1,1 @@
+SafeDNS Authenticator plugin for Certbot
