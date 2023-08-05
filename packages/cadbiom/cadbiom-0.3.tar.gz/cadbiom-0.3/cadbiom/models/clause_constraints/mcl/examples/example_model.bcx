@@ -1,0 +1,29 @@
+<model xmlns="http://cadbiom.genouest.org/" name="example_model">
+  <CSimpleNode name="A" xloc="0.287050359712" yloc="0.321867321867"/>
+  <CSimpleNode name="B" xloc="0.287019215796" yloc="0.431203931203"/>
+  <CSimpleNode name="C" xloc="0.450595367861" yloc="0.388206388206"/>
+  <CSimpleNode name="D" xloc="0.181161406279" yloc="0.321720474782"/>
+  <CSimpleNode name="E" xloc="0.183090866132" yloc="0.430011246338"/>
+  <CSimpleNode name="F" xloc="0.230970548237" yloc="0.53194103194"/>
+  <CSimpleNode name="G" xloc="0.388125862946" yloc="0.692874692874"/>
+  <CSimpleNode name="H" xloc="0.496783871604" yloc="0.692874692874"/>
+  <CSimpleNode name="I" xloc="0.33309352518" yloc="0.0761670761671"/>
+  <CSimpleNode name="J" xloc="0.333002169693" yloc="0.185503685503"/>
+  <CSimpleNode name="K" xloc="0.455387378409" yloc="0.136363636364"/>
+  <CSimpleNode name="L" xloc="0.373567120329" yloc="0.530712530713"/>
+  <CSimpleNode name="N" xloc="0.182802329565" yloc="0.694103194103"/>
+  <CSimpleNode name="M" xloc="0.288478827327" yloc="0.739557739557"/>
+  <CSimpleNode name="P" xloc="0.287753174084" yloc="0.646191646191"/>
+  <CStartNode name="__start__0" xloc="0.292899187144" yloc="0.0749385749386"/>
+  <transition ori="N" ext="M" event="_h_1" condition="" action="" fact_ids="[]"/>
+  <transition ori="J" ext="K" event="_h5" condition="" action="" fact_ids="[]"/>
+  <transition ori="D" ext="A" event="_h2" condition="" action="" fact_ids="[]"/>
+  <transition ori="N" ext="P" event="_h_1" condition="" action="" fact_ids="[]"/>
+  <transition ori="G" ext="H" event="_h7" condition="" action="" fact_ids="[]"/>
+  <transition ori="E" ext="B" event="_h3" condition="F" action="" fact_ids="[]"/>
+  <transition ori="B" ext="C" event="_h_0" condition="A and (P or L or K) and not(M)" action="" fact_ids="[]"/>
+  <transition ori="A" ext="C" event="_h_0" condition="B and (P or L or K) and not(M)" action="" fact_ids="[]"/>
+  <transition ori="__start__0" ext="I" event="" condition="" action="" fact_ids="[]"/>
+  <transition ori="K" ext="I" event="_h6" condition="" action="" fact_ids="[]"/>
+  <transition ori="I" ext="J" event="_h4" condition="" action="" fact_ids="[]"/>
+</model>

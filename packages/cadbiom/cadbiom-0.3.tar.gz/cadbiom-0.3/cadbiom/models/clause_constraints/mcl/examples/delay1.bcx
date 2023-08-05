@@ -1,0 +1,21 @@
+<model xmlns="http://cadbiom" name="delay1">
+  <CSimpleNode name="A1" xloc="0.116880501697" yloc="0.136666666667"/>
+  <CSimpleNode name="A2" xloc="0.342183994016" yloc="0.133333333333"/>
+  <CSimpleNode name="A3" xloc="0.581698406306" yloc="0.133333333333"/>
+  <CSimpleNode name="A4" xloc="0.820493642483" yloc="0.134444444444"/>
+  <CSimpleNode name="B1" xloc="0.118922961855" yloc="0.256666666667"/>
+  <CSimpleNode name="B2" xloc="0.343305908751" yloc="0.256666666667"/>
+  <CSimpleNode name="B3" xloc="0.58339566193" yloc="0.257777777778"/>
+  <CSimpleNode name="C1" xloc="0.12191473448" yloc="0.404444444444"/>
+  <CSimpleNode name="C2" xloc="0.346297681376" yloc="0.404444444444"/>
+  <CSimpleNode name="C3" xloc="0.586387434555" yloc="0.337777777778"/>
+  <CSimpleNode name="C4" xloc="0.588631264024" yloc="0.505555555556"/>
+  <transition name="" ori="A1" ext="A2" event="" condition="" action="" fact_ids="[]"/>
+  <transition name="" ori="A2" ext="A3" event="" condition="" action="" fact_ids="[]"/>
+  <transition name="" ori="A3" ext="A4" event="" condition="" action="" fact_ids="[]"/>
+  <transition name="B1-&gt;B2" ori="B1" ext="B2" event="h2" condition="" action="" fact_ids="[]"/>
+  <transition name="" ori="B2" ext="B3" event="" condition="" action="" fact_ids="[]"/>
+  <transition name="" ori="C1" ext="C2" event="" condition="" action="" fact_ids="[]"/>
+  <transition name="C2-&gt;C3" ori="C2" ext="C3" event="" condition="B3" action="" fact_ids="[]"/>
+  <transition name="C2-&gt;C4" ori="C2" ext="C4" event="" condition="A4" action="" fact_ids="[]"/>
+</model>

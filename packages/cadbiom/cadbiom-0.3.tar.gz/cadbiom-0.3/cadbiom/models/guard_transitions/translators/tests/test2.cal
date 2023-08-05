@@ -1,0 +1,23 @@
+/name TEST2
+A/p;
+B;
+--> A ;
+A --> B; h[B or C] {premiere transition};
+C --> A_B ; [A and B] {deuxieme transition};
+--> C;
+// ceci est un commentaire
+/macro MM
+F/i;
+A --> G;[];
+S/i --> T;[];
+/macro MM2
+K --> L; [];
+G --> K; [];
+/endmacro
+/endmacro
+A --> C; [];
+V/p --> W; s[A or B] { troisieme transition};
+MM2 --> ; [];
+C --> ;[];
+A--> ; [];
+B --> ; [];

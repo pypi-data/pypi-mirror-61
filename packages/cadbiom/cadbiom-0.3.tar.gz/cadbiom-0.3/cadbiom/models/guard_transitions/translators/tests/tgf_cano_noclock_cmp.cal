@@ -1,0 +1,830 @@
+/name  rename_17_02_12
+// =============== macros nodes================
+
+// =============== isolated nodes ================
+
+SARA_plasmaMb ;
+PDK1_active_plasmaMb ;
+BAMBI_TGFBR1 ;
+PPP2CB ;
+PPP2CA ;
+ITCH ;
+CaMKIIA ;
+CTGF ;
+DAPPER2 ;
+RhoA ;
+SnoN ;
+MEKK1_active_p_p ;
+PPM1A ;
+NUP214 ;
+importinalpha ;
+ERK1_2_active_active ;
+SCP1_3 ;
+NUP153 ;
+importinbeta ;
+CaM ;
+SMAD3_E2F4_5_DP1_p107_SMAD4_nucl ;
+Cbp_p300_PIAS3 ;
+Cbp_p300_MSG1_nucl ;
+Cbp_p300_SNIP1_nucl ;
+TGIF_SIN3_HDACcomplex_CtBP ;
+PIASy_HDACcomplex ;
+SKI_SIN3_HDACcomplex_NCoR1 ;
+Cbp_p300_Src_1_nucl ;
+MYC_MIZ_1 ;
+MSG1_HSC70 ;
+SMAD3_SMAD4_ATF3_active_nucl ;
+Cbp_p300_nucl ;
+PCAF_nucl ;
+AKT1_active_p_p ;
+GCN5 ;
+CREB1_active_nucl ;
+SMAD3_SMAD4_SP1_3_active_nucl ;
+p300 ;
+CDK2_4 ;
+
+
+// =============== transitions ================
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_DAB2_active_intToMb;
+    [DAB2] ;
+
+DAB2 --> TGFB_TGFBR2_TGFBR1_DAB2_active_intToMb;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] ;
+
+DAXX --> TGFB_TGFBR2_TGFBR1_DAXX_active_intToMb;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] ;
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_DAXX_active_intToMb;
+    [DAXX] ;
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_STRAP_active_intToMb;
+    [STRAP] ;
+
+STRAP --> TGFB_TGFBR2_TGFBR1_DAXX_active_intToMb;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] ;
+
+ENDOFIN --> TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb and SMAD4_cy)] ;
+
+SMAD4_cy --> TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb and ENDOFIN)] ;
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb;
+    [(ENDOFIN and SMAD4_cy)] ;
+
+ --> betaglycan__dimer___intToMb;
+     ;
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome;
+    [km23_1__dimer__] 
+    {PMID ['12475967']};
+
+km23_1__dimer__ --> TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['12475967']};
+
+TGFB_TGFBR2_TGFBR1_SMAD7_GADD34_active_intToMb --> TGFB_TGFBR2_TGFBR1_SMAD7_GADD34_PPP1CA_inactive_intToMb;
+    [(SARA_plasmaMb and PPP1CA)] 
+    {PMID ['12134149', '14718519']};
+
+PPP1CA --> TGFB_TGFBR2_TGFBR1_SMAD7_GADD34_PPP1CA_inactive_intToMb;
+    [(SARA_plasmaMb and TGFB_TGFBR2_TGFBR1_SMAD7_GADD34_active_intToMb)] 
+    {PMID ['12134149', '14718519']};
+
+TGFB_TGFBR2_TGFBR1_STRAP_active_intToMb --> TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb;
+    [((PDK1_active_plasmaMb and SMAD7) or (not(TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome) and SMAD7))] 
+    {PMID ['16251192', '17327236']['9335507', '9215638', '11739411', '10757800', '9856985']};
+
+SMAD7 --> TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb;
+    [((PDK1_active_plasmaMb and TGFB_TGFBR2_TGFBR1_STRAP_active_intToMb) or (not(TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome) and TGFB_TGFBR2_TGFBR1_STRAP_active_intToMb))] 
+    {PMID ['16251192', '17327236']['9335507', '9215638', '11739411', '10757800', '9856985']};
+
+TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome --> TGFB_TGFBR2_TGFBR1_PML_SARA_active;
+    [] 
+    {PMID ['9865696']};
+
+TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome --> SMAD2_3_active_active;
+    [] 
+    {PMID ['9865696']};
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_WWP1_SMAD7_intToMb;
+    [WWP1_SMAD7_nucl] 
+    {PMID ['15221015']};
+
+WWP1_SMAD7_nucl --> TGFB_TGFBR2_TGFBR1_WWP1_SMAD7_intToMb;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['15221015']};
+
+SMAD2_active_p_p_cy --> SMAD2_NEDD4_2;
+    [NEDD4_2] 
+    {PMID ['15496141']};
+
+NEDD4_2 --> SMAD2_NEDD4_2;
+    [SMAD2_active_p_p_cy] 
+    {PMID ['15496141']};
+
+TGFB_TGFBR2_TGFBR1_km23_1_SMAD2_activeearlyendosome --> TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome;
+    [] 
+    {PMID ['17420258']};
+
+TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome --> TGFB_TGFBR2_TGFBR1_km23_1_SMAD2_activeearlyendosome;
+    [(SMAD2_active_p_p_cy and SMURF2)] 
+    {PMID ['11389444', '12475967', '11016919']};
+
+TGFB_TGFBR2_TGFBR1_km23_1_SMAD2_activeearlyendosome --> SMAD2_active_p_p_cy;
+    [] 
+    {PMID ['17420258']};
+
+SMAD2_active_p_p_cy --> TGFB_TGFBR2_TGFBR1_km23_1_SMAD2_activeearlyendosome;
+    [(SMURF2 and TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome)] 
+    {PMID ['11389444', '12475967', '11016919']};
+
+XIAP --> TAK1_TABfamily_active;
+    [(TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb and TAK1_TABfamily)] 
+    {PMID ['12589052', '17384642', '8533096', '16157589']};
+
+XIAP --> TAK1_XIAP;
+    [(TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb and TAK1_TABfamily)] 
+    {PMID ['12589052', '17384642', '8533096', '16157589']};
+
+TAK1_TABfamily --> TAK1_TABfamily_active;
+    [(TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb and XIAP)] 
+    {PMID ['12589052', '17384642', '8533096', '16157589']};
+
+TAK1_TABfamily --> TAK1_XIAP;
+    [(TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb and XIAP)] 
+    {PMID ['12589052', '17384642', '8533096', '16157589']};
+
+SMAD2_3 --> SMAD2_3_active_active;
+    [TGFB_TGFBR2_TGFBR1_DAB2_active_intToMb] 
+    {PMID ['11387212']};
+
+Axin_ARKADIA_cy --> Axin_ARKADIA_SMAD7_cy;
+    [SMAD7_nucl] 
+    {PMID ['14657019', '16601693']};
+
+SMAD7_nucl --> Axin_ARKADIA_SMAD7_cy;
+    [Axin_ARKADIA_cy] 
+    {PMID ['14657019', '16601693']};
+
+FKBP12_TGFBR1__dimer___inactive_intToMb --> TGFB_TGFBR2_TGFBR1_active_intToMb;
+    [(not(BAMBI_TGFBR1) and TGFB_TGFBR2_betaglycan_active_intToMb)] 
+    {PMID ['8756725', '8947046', '7988555', '8047140', '7774578', '8391934', '8576253', '9233797', '8242743', '12958365', '1333888', '10519551']};
+
+FKBP12_TGFBR1__dimer___inactive_intToMb --> betaglycan__dimer___intToMb;
+    [(not(BAMBI_TGFBR1) and TGFB_TGFBR2_betaglycan_active_intToMb)] 
+    {PMID ['8756725', '8947046', '7988555', '8047140', '7774578', '8391934', '8576253', '9233797', '8242743', '12958365', '1333888', '10519551']};
+
+FKBP12_TGFBR1__dimer___inactive_intToMb --> FKBP12;
+    [(not(BAMBI_TGFBR1) and TGFB_TGFBR2_betaglycan_active_intToMb)] 
+    {PMID ['8756725', '8947046', '7988555', '8047140', '7774578', '8391934', '8576253', '9233797', '8242743', '12958365', '1333888', '10519551']};
+
+TGFB_TGFBR2_betaglycan_active_intToMb --> TGFB_TGFBR2_TGFBR1_active_intToMb;
+    [((not(BAMBI_TGFBR1) and FKBP12_TGFBR1__dimer___inactive_intToMb) or TRAP_1_TGFBR1__dimer___inactive_intToMb)] 
+    {PMID ['8756725', '8947046', '7988555', '8047140', '7774578', '8391934', '8576253', '9233797', '8242743', '12958365', '1333888', '10519551']['11278302']};
+
+TGFB_TGFBR2_betaglycan_active_intToMb --> betaglycan__dimer___intToMb;
+    [(((not(BAMBI_TGFBR1) and FKBP12_TGFBR1__dimer___inactive_intToMb) or TRAP_1_TGFBR1__dimer___inactive_intToMb) or TGFBR1__dimer___Par6_occludin_inactivetightjunction)] 
+    {PMID ['8756725', '8947046', '7988555', '8047140', '7774578', '8391934', '8576253', '9233797', '8242743', '12958365', '1333888', '10519551']['11278302']['15761148']};
+
+betaglycan__dimer___intToMb --> TGFB_TGFBR2_betaglycan_active_intToMb;
+    [(CTGF and (TGFBfamily__dimer___active_exCellRegion and TGFBR2__dimer___active_intToMb))] 
+    {PMID ['1657407', '9155023', '1310899', '2879635', '9169454', '8391934', '12134160', '1333888', '7693660']};
+
+TGFB_TGFBR2_betaglycan_active_intToMb --> FKBP12;
+    [(not(BAMBI_TGFBR1) and FKBP12_TGFBR1__dimer___inactive_intToMb)] 
+    {PMID ['8756725', '8947046', '7988555', '8047140', '7774578', '8391934', '8576253', '9233797', '8242743', '12958365', '1333888', '10519551']};
+
+SMAD2_active_p_p_cy --> SMAD2_SMURF2_active;
+    [(SMURF2 and TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome)] 
+    {PMID ['11389444', '12475967', '11016919']};
+
+SMURF2 --> SMAD2_SMURF2_active;
+    [(SMAD2_active_p_p_cy and TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome)] 
+    {PMID ['11389444', '12475967', '11016919']};
+
+SMURF2 --> TGFB_TGFBR2_TGFBR1_km23_1_SMAD2_activeearlyendosome;
+    [(SMAD2_active_p_p_cy and TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome)] 
+    {PMID ['11389444', '12475967', '11016919']};
+
+TGFB_TGFBR2_TGFBR1_km23_1_activeearlyendosome --> SMAD2_SMURF2_active;
+    [(SMAD2_active_p_p_cy and SMURF2)] 
+    {PMID ['11389444', '12475967', '11016919']};
+
+p70S6K_active_p --> p70S6K_inactive;
+    [(TGFB_TGFBR2_TGFBR1_PPP2R2A_active_intToMb or PPP2CB or PPP2CA)] 
+    {PMID ['11124802']};
+
+SMAD2_cy --> SMAD2_active_p_p_cy;
+    [(TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome and not(TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb))] 
+    {PMID ['9335507', '9865696', '9346908', '11739411', '10934479', '10757800']};
+
+TGFB_TGFBR2_betaglycan_active_intToMb --> TRAP_1;
+    [TRAP_1_TGFBR1__dimer___inactive_intToMb] 
+    {PMID ['11278302']};
+
+TRAP_1_TGFBR1__dimer___inactive_intToMb --> TGFB_TGFBR2_TGFBR1_active_intToMb;
+    [TGFB_TGFBR2_betaglycan_active_intToMb] 
+    {PMID ['11278302']};
+
+TRAP_1_TGFBR1__dimer___inactive_intToMb --> betaglycan__dimer___intToMb;
+    [TGFB_TGFBR2_betaglycan_active_intToMb] 
+    {PMID ['11278302']};
+
+TRAP_1_TGFBR1__dimer___inactive_intToMb --> TRAP_1;
+    [TGFB_TGFBR2_betaglycan_active_intToMb] 
+    {PMID ['11278302']};
+
+TRAP_1 --> TRAP_1_SMAD4;
+    [SMAD4_cy] 
+    {PMID ['11278302']};
+
+TRAP_1_SMAD4 --> TRAP_1;
+    [SMAD2_active_p_p_cy] 
+    {PMID ['9214508', '9346908', '8893010', '11278302']};
+
+SMAD4_cy --> TRAP_1_SMAD4;
+    [TRAP_1] 
+    {PMID ['11278302']};
+
+TGFB_TGFBR2_TGFBR1_Par6_occludin_activetightjunction --> TGFB_TGFBR2_TGFBR1_Par6_occludin_SMURF1_activetightjunction;
+    [SMURF1] 
+    {PMID ['15761148']};
+
+SMURF1 --> TGFB_TGFBR2_TGFBR1_Par6_occludin_SMURF1_activetightjunction;
+    [TGFB_TGFBR2_TGFBR1_Par6_occludin_activetightjunction] 
+    {PMID ['15761148']};
+
+EIF2A --> EIF2A_p;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['11781097']};
+
+EIF2A_p --> EIF2A_14_3_3E_active;
+    [14_3_3E] 
+    {PMID ['11781097']};
+
+14_3_3E --> EIF2A_14_3_3E_active;
+    [EIF2A_p] 
+    {PMID ['11781097']};
+
+SMAD3_cy --> SMAD3_active_p_p_cy;
+    [(TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome and not(TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb))] 
+    {PMID ['9335507', '9865696', '11739411', '10757800', '17327236']};
+
+Axin_SMAD3 --> SMAD3_active_p_p_cy;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['11438668']};
+
+Axin_SMAD3 --> Axin1;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['11438668']};
+
+SHC_active_p_p --> SHC_GRB2_SOS1_active;
+    [GRB2_SOS1] 
+    {PMID ['17673906']};
+
+GRB2_SOS1 --> SHC_GRB2_SOS1_active;
+    [SHC_active_p_p] 
+    {PMID ['17673906']};
+
+TGFB_TGFBR2_betaglycan_active_intToMb --> TGFB_TGFBR2_TGFBR1_Par6_occludin_activetightjunction;
+    [TGFBR1__dimer___Par6_occludin_inactivetightjunction] 
+    {PMID ['15761148']};
+
+TGFBR1__dimer___Par6_occludin_inactivetightjunction --> TGFB_TGFBR2_TGFBR1_Par6_occludin_activetightjunction;
+    [TGFB_TGFBR2_betaglycan_active_intToMb] 
+    {PMID ['15761148']};
+
+TGFBR1__dimer___Par6_occludin_inactivetightjunction --> betaglycan__dimer___intToMb;
+    [TGFB_TGFBR2_betaglycan_active_intToMb] 
+    {PMID ['15761148']};
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_SMAD7_YAP65_active_intToMb;
+    [(SMAD7 and YAP65)] 
+    {PMID ['12118366']};
+
+SMAD7 --> TGFB_TGFBR2_TGFBR1_SMAD7_YAP65_active_intToMb;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb and YAP65)] 
+    {PMID ['12118366']};
+
+YAP65 --> TGFB_TGFBR2_TGFBR1_SMAD7_YAP65_active_intToMb;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb and SMAD7)] 
+    {PMID ['12118366']};
+
+TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb --> TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_NEDD4_2_intToMb;
+    [NEDD4_2] 
+    {PMID ['15496141']};
+
+NEDD4_2 --> TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_NEDD4_2_intToMb;
+    [TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb] 
+    {PMID ['15496141']};
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome;
+    [(not(FKBP12) and (PML_SARA_SMAD2_3earlyendosome and SMAD7_SMURF1_2_nucl and AP2B2 and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_SMAD7_SMURF1_2_CAV1membraneraft;
+    [(not(FKBP12) and (PML_SARA_SMAD2_3earlyendosome and SMAD7_SMURF1_2_nucl and AP2B2 and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+PML_SARA_SMAD2_3earlyendosome --> TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and SMAD7_SMURF1_2_nucl and AP2B2 and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+PML_SARA_SMAD2_3earlyendosome --> TGFB_TGFBR2_TGFBR1_SMAD7_SMURF1_2_CAV1membraneraft;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and SMAD7_SMURF1_2_nucl and AP2B2 and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+SMAD7_SMURF1_2_nucl --> TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and PML_SARA_SMAD2_3earlyendosome and AP2B2 and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+SMAD7_SMURF1_2_nucl --> TGFB_TGFBR2_TGFBR1_SMAD7_SMURF1_2_CAV1membraneraft;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and PML_SARA_SMAD2_3earlyendosome and AP2B2 and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+AP2B2 --> TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and PML_SARA_SMAD2_3earlyendosome and SMAD7_SMURF1_2_nucl and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+AP2B2 --> TGFB_TGFBR2_TGFBR1_SMAD7_SMURF1_2_CAV1membraneraft;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and PML_SARA_SMAD2_3earlyendosome and SMAD7_SMURF1_2_nucl and Caveolin_1))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+Caveolin_1 --> TGFB_TGFBR2_TGFBR1_PML_SARA_SMAD2_3_AP2B2_activeearlyendosome;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and PML_SARA_SMAD2_3earlyendosome and SMAD7_SMURF1_2_nucl and AP2B2))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+Caveolin_1 --> TGFB_TGFBR2_TGFBR1_SMAD7_SMURF1_2_CAV1membraneraft;
+    [(not(FKBP12) and (TGFB_TGFBR2_TGFBR1_active_intToMb and PML_SARA_SMAD2_3earlyendosome and SMAD7_SMURF1_2_nucl and AP2B2))] 
+    {PMID ['11583628', '12151385', '12429842', '15356634', '9463378', '9346908', '12717440', '9335507', '9679059', '10777621', '9865696', '9215638', '11163210', '12034739', '11278251', '12356868', '10615055']};
+
+betaglycan__dimer___intToMb --> betaglycan_betaArrestin2_inactive_en;
+    [betaArrestin2] 
+    {PMID ['12958365']};
+
+betaArrestin2 --> betaglycan_betaArrestin2_inactive_en;
+    [betaglycan__dimer___intToMb] 
+    {PMID ['12958365']};
+
+SMAD2_active_p_p_cy --> SMAD2_inactive_p_p_p_p_p_cy;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb or CaMKIIA)] 
+    {PMID ['11027280']};
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_SMAD7_GADD34_active_intToMb;
+    [SMAD7_GADD34] 
+    {PMID ['14718519']};
+
+SMAD7_GADD34 --> TGFB_TGFBR2_TGFBR1_SMAD7_GADD34_active_intToMb;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['14718519']};
+
+betacatenin_cy --> betacatenin_nucl;
+    [TGFB_TGFBR2_TGFBR1_STRAP_SMAD7_active_intToMb] 
+    {PMID ['15684397']};
+
+SMAD2_3_active_active --> SMAD2_3_SMAD4_active_nucl;
+    [SMAD4_nucl] 
+    {PMID ['9346908', '8893010']};
+
+SMAD4_nucl --> SMAD2_3_SMAD4_active_nucl;
+    [SMAD2_3_active_active] 
+    {PMID ['9346908', '8893010']};
+
+TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb --> SMAD2_SMAD4_active_nucl;
+    [SMAD2_cy] 
+    {PMID ['17272273']};
+
+TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb --> TGFB_TGFBR2_TGFBR1_ENDOFIN_active_intToMb;
+    [SMAD2_cy] 
+    {PMID ['17272273']};
+
+SMAD2_cy --> SMAD2_SMAD4_active_nucl;
+    [TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb] 
+    {PMID ['17272273']};
+
+SMAD2_cy --> TGFB_TGFBR2_TGFBR1_ENDOFIN_active_intToMb;
+    [TGFB_TGFBR2_TGFBR1_ENDOFIN_SMAD4_active_intToMb] 
+    {PMID ['17272273']};
+
+TGFBfamily__dimer___active_exCellRegion --> TGFB_TGFBR2_betaglycan_active_intToMb;
+    [(CTGF and (TGFBR2__dimer___active_intToMb and betaglycan__dimer___intToMb))] 
+    {PMID ['1657407', '9155023', '1310899', '2879635', '9169454', '8391934', '12134160', '1333888', '7693660']};
+
+TGFBR2__dimer___active_intToMb --> TGFB_TGFBR2_betaglycan_active_intToMb;
+    [(CTGF and (TGFBfamily__dimer___active_exCellRegion and betaglycan__dimer___intToMb))] 
+    {PMID ['1657407', '9155023', '1310899', '2879635', '9169454', '8391934', '12134160', '1333888', '7693660']};
+
+ELF --> ELF_SMAD3_active_plasmaMb;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb and SMAD3_cy)] 
+    {PMID ['12543979']};
+
+SMAD3_cy --> ELF_SMAD3_active_plasmaMb;
+    [(TGFB_TGFBR2_TGFBR1_active_intToMb and ELF)] 
+    {PMID ['12543979']};
+
+TGFB_TGFBR2_TGFBR1_active_intToMb --> TGFB_TGFBR2_TGFBR1_PPP2R2A_active_intToMb;
+    [PPP2R2A] 
+    {PMID ['9774674']};
+
+PPP2R2A --> TGFB_TGFBR2_TGFBR1_PPP2R2A_active_intToMb;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['9774674']};
+
+SHC --> SHC_active_p_p;
+    [TGFB_TGFBR2_TGFBR1_active_intToMb] 
+    {PMID ['17673906']};
+
+SMAD2_active_p_p_cy --> SMAD2_active_p_p_p_cy;
+    [MEKK1_active_p_p] 
+    {PMID ['10085121']};
+
+SMAD3_active_p_p_cy --> SMAD3_inactive_cy;
+    [PPM1A] 
+    {PMID ['16751101']};
+
+SMAD2_SMAD2_SMAD4_active_cy --> SMAD2_SMAD2_SMAD4_active_nucl;
+    [((NUP214 or importinalpha) or (NUP214 or NUP153 or importinalpha))] 
+    {PMID ['12592392', '12191473']['12592392', '12191473']};
+
+SMAD3_active_p_p_cy --> SMAD3_active_p_p_p_p_p_p_cy;
+    [ERK1_2_active_active] 
+    {PMID ['10197981']};
+
+SMAD3_active_p_p_p_p_p_p_cy --> SMAD3_active_p_p_cy;
+    [SCP1_3] 
+    {PMID ['17035229']};
+
+SMAD2_SMAD4_active_cy --> SMAD2_SMAD4_active_nucl;
+    [] 
+    {PMID ['10085121']};
+
+SMAD3_SMAD4_active_cy --> SMAD3_SMAD4_active_nucl;
+    [((NUP214 or NUP153 or importinalpha) or (importinbeta or importinalpha))] 
+    {PMID ['12917407', '12592392']['11294908', '12592392']};
+
+SMAD2_active_p_p_cy --> SMAD2_inactive_cy;
+    [PPM1A] 
+    {PMID ['16751101']};
+
+SMAD2_active_p_p_p_cy --> SMAD2_SMAD4_active_cy;
+    [SMAD4_cy] 
+    {PMID ['10085121']};
+
+SMAD4_cy --> SMAD2_SMAD4_active_cy;
+    [SMAD2_active_p_p_p_cy] 
+    {PMID ['10085121']};
+
+SMAD4_cy --> SMAD4_Ubc9_PIASy;
+    [(Ubc9 and PIASy)] 
+    {PMID ['12740389', '12621041', '14750902']};
+
+Ubc9 --> SMAD4_Ubc9_PIASy;
+    [(SMAD4_cy and PIASy)] 
+    {PMID ['12740389', '12621041', '14750902']};
+
+PIASy --> SMAD4_Ubc9_PIASy;
+    [(SMAD4_cy and Ubc9)] 
+    {PMID ['12740389', '12621041', '14750902']};
+
+SMAD2_active_p_p_p_p_p_p_p_cy --> SMAD2_active_p_p_cy;
+    [SCP1_3] 
+    {PMID ['17035229']};
+
+SMAD2_active_p_p_cy --> SMAD2_active_p_p_p_p_p_p_p_cy;
+    [(ERK1_2_active_active and not(CaM))] 
+    {PMID ['12193595', '9620846']};
+
+SMAD2_active_p_p_cy --> SMAD2_SMAD2_SMAD4_active_cy;
+    [TRAP_1_SMAD4] 
+    {PMID ['9214508', '9346908', '8893010', '11278302']['9214508', '9346908', '8893010', '11278302']};
+
+SMAD2_active_p_p_cy --> TRAP_1;
+    [TRAP_1_SMAD4] 
+    {PMID ['9214508', '9346908', '8893010', '11278302']['9214508', '9346908', '8893010', '11278302']};
+
+TRAP_1_SMAD4 --> SMAD2_SMAD2_SMAD4_active_cy;
+    [SMAD2_active_p_p_cy] 
+    {PMID ['9214508', '9346908', '8893010', '11278302']};
+
+SMAD3_active_p_p_cy --> SMAD3_SMAD4_active_cy;
+    [SMAD4_cy] 
+    {PMID ['12374795']};
+
+SMAD4_cy --> SMAD3_SMAD4_active_cy;
+    [SMAD3_active_p_p_cy] 
+    {PMID ['12374795']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_JUN_FOS_active_nucl;
+    [JUN_FOS_active_nucl] 
+    {PMID ['9732876']};
+
+JUN_FOS_active_nucl --> SMAD3_SMAD4_JUN_FOS_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['9732876']};
+
+SMAD2_3_SMAD4_SP1_active_nucl --> SMAD2_3_SMAD4_SP1_MIZ_1_active_nucl;
+    [MIZ_1] 
+    {PMID ['11283614']};
+
+MIZ_1 --> SMAD2_3_SMAD4_SP1_MIZ_1_active_nucl;
+    [SMAD2_3_SMAD4_SP1_active_nucl] 
+    {PMID ['11283614']};
+
+SMAD2_SMAD2_SMAD4_active_nucl --> SMAD2_SMAD2_SMAD4_FOXH1_active_nucl;
+    [FOXH1] 
+    {PMID ['9702198', '9702197']};
+
+FOXH1 --> SMAD2_SMAD2_SMAD4_FOXH1_active_nucl;
+    [SMAD2_SMAD2_SMAD4_active_nucl] 
+    {PMID ['9702198', '9702197']};
+
+SMAD2_3_SMAD4_FOXO1_3a_4_active_nucl --> SMAD2_3_SMAD4_FOXO1_3a_4_CEBPB_active_nucl;
+    [CEBPB] 
+    {PMID ['16959612']};
+
+CEBPB --> SMAD2_3_SMAD4_FOXO1_3a_4_CEBPB_active_nucl;
+    [SMAD2_3_SMAD4_FOXO1_3a_4_active_nucl] 
+    {PMID ['16959612']};
+
+SMAD2_3_SMAD4_active_nucl --> SMAD2_3_SMAD4_ARC105_active_nucl;
+    [ARC105] 
+    {PMID ['12167862']};
+
+ARC105 --> SMAD2_3_SMAD4_ARC105_active_nucl;
+    [SMAD2_3_SMAD4_active_nucl] 
+    {PMID ['12167862']};
+
+PAI_1_gene/p --> PAI_1;
+    [((SMAD3_SMAD4_TFE3_active_nucl and not(SMAD3_SMAD4_Max_active_nucl)) or (SMAD3_SMAD4_active_nucl and not(SMAD3_SMAD4_GR_active_nucl)))] 
+    {PMID ['12551947', '10557285', '9606191']['10518526']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_SP1_active_nucl;
+    [SP1] 
+    {PMID ['10964912']['10878024']};
+
+SP1 --> SMAD3_SMAD4_SP1_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['10964912']['10878024']};
+
+SMAD7_gene/p --> SMAD7;
+    [(SMAD3_SMAD4_TFE3_active_nucl or (SMAD2_3_SMAD4_SP1_active_nucl or JUN_FOS_active_nucl))] 
+    {PMID ['10973944']['10843994']};
+
+RUNX1_3_PEBPB2 --> SMAD3_SMAD4_RUNX1_3_PEBPB2_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['10652350', '10531362']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_RUNX1_3_PEBPB2_active_nucl;
+    [RUNX1_3_PEBPB2] 
+    {PMID ['10652350', '10531362']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_RUNX2_active_nucl;
+    [RUNX2] 
+    {PMID ['11331591']};
+
+RUNX2 --> SMAD3_SMAD4_RUNX2_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11331591']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_HNF4_active_nucl;
+    [HNF4] 
+    {PMID ['12631740']};
+
+HNF4 --> SMAD3_SMAD4_HNF4_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['12631740']};
+
+GR --> SMAD3_SMAD4_GR_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['10518526']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_GR_active_nucl;
+    [GR] 
+    {PMID ['10518526']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_MEF2C_nucl;
+    [MEF2C_TIF2] 
+    {PMID ['15044954']};
+
+SMAD3_SMAD4_active_nucl --> TIF2;
+    [MEF2C_TIF2] 
+    {PMID ['15044954']};
+
+MEF2C_TIF2 --> SMAD3_SMAD4_MEF2C_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['15044954']};
+
+MEF2C_TIF2 --> TIF2;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['15044954']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_IRF7_active_nucl;
+    [IRF7] 
+    {PMID ['14729983']};
+
+IRF7 --> SMAD3_SMAD4_IRF7_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['14729983']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_VDR_active_nucl;
+    [(Cbp_p300_Src_1_nucl and VDR_active)] 
+    {PMID ['15688032', '10037600']};
+
+VDR_active --> SMAD3_SMAD4_VDR_active_nucl;
+    [(Cbp_p300_Src_1_nucl and SMAD3_SMAD4_active_nucl)] 
+    {PMID ['15688032', '10037600']};
+
+p15INK4b_gene/p --> p15INK4b;
+    [(SMAD2_3_SMAD4_FOXO1_3a_4_CEBPB_active_nucl or (SMAD2_3_SMAD4_SP1_MIZ_1_active_nucl and not((MYC_MIZ_1 or SMAD3_SMAD4_inactive_nucl))))] 
+    {PMID ['16959612']['11013220', '15241418', '11283614']};
+
+IFNB_gene/p --> IFNB;
+    [SMAD3_SMAD4_IRF7_active_nucl] 
+    {PMID ['14729983']};
+
+GSC_gene/p --> GSC;
+    [(SMAD2_SMAD2_SMAD4_FOXH1_active_nucl and not(SMAD3_SMAD4_active_nucl))] 
+    {PMID ['9702197']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_AR_nucl;
+    [AR] 
+    {PMID ['11707452', '12226080']};
+
+AR --> SMAD3_SMAD4_AR_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11707452', '12226080']};
+
+Laminingamma1_gene/p --> Laminingamma1;
+    [SMAD3_SMAD4_TFE3_active_nucl] 
+    {PMID ['11801598']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_ERalpha_active_nucl;
+    [ERalpha] 
+    {PMID ['11555647']};
+
+ERalpha --> SMAD3_SMAD4_ERalpha_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11555647']};
+
+IL10_gene/p --> IL10;
+    [SMAD3_SMAD4_GATA3_active_nucl] 
+    {PMID ['11790301']};
+
+TGIF2_HDACcomplex --> TGIF2_HDACcomplex_SMAD3_SMAD4_inactive;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11427533']};
+
+SMAD3_SMAD4_active_nucl --> TGIF2_HDACcomplex_SMAD3_SMAD4_inactive;
+    [TGIF2_HDACcomplex] 
+    {PMID ['11427533']};
+
+SMAD2_3_SMAD4_active_nucl --> SMAD2_3_SMAD4_FOXO1_3a_4_active_nucl;
+    [(FOXO1_3a_4_active_nucl and FOXG1)] 
+    {PMID ['15084259']};
+
+SMAD2_3_SMAD4_active_nucl --> SMAD2_3_SMAD4_FOXO1_3a_4_FOXG1_active_nucl;
+    [(FOXO1_3a_4_active_nucl and FOXG1)] 
+    {PMID ['15084259']};
+
+FOXO1_3a_4_active_nucl --> SMAD2_3_SMAD4_FOXO1_3a_4_active_nucl;
+    [(SMAD2_3_SMAD4_active_nucl and FOXG1)] 
+    {PMID ['15084259']};
+
+FOXO1_3a_4_active_nucl --> SMAD2_3_SMAD4_FOXO1_3a_4_FOXG1_active_nucl;
+    [(SMAD2_3_SMAD4_active_nucl and FOXG1)] 
+    {PMID ['15084259']};
+
+FOXG1 --> SMAD2_3_SMAD4_FOXO1_3a_4_active_nucl;
+    [(SMAD2_3_SMAD4_active_nucl and FOXO1_3a_4_active_nucl)] 
+    {PMID ['15084259']};
+
+FOXG1 --> SMAD2_3_SMAD4_FOXO1_3a_4_FOXG1_active_nucl;
+    [(SMAD2_3_SMAD4_active_nucl and FOXO1_3a_4_active_nucl)] 
+    {PMID ['15084259']};
+
+JUN_nucl_gene/p --> JUN_nucl;
+    [SMAD3_SMAD4_JUN_FOS_active_nucl] 
+    {PMID ['10022869', '12374795']};
+
+SMAD2_SMAD2_SMAD4_FOXH1_active_nucl --> SMAD2_SMAD2_SMAD4_FOXH1_NKX2_5_active_nucl;
+    [NKX2_5] 
+    {PMID ['15363409']};
+
+NKX2_5 --> SMAD2_SMAD2_SMAD4_FOXH1_NKX2_5_active_nucl;
+    [SMAD2_SMAD2_SMAD4_FOXH1_active_nucl] 
+    {PMID ['15363409']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_MYOD_nucl;
+    [MYOD_TCF3] 
+    {PMID ['11711431']};
+
+SMAD3_SMAD4_active_nucl --> TCF3;
+    [MYOD_TCF3] 
+    {PMID ['11711431']};
+
+MYOD_TCF3 --> SMAD3_SMAD4_MYOD_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11711431']};
+
+MYOD_TCF3 --> TCF3;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11711431']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_Max_active_nucl;
+    [Max] 
+    {PMID ['12551947']};
+
+Max --> SMAD3_SMAD4_Max_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['12551947']};
+
+p21CIP1_gene/p --> p21CIP1;
+    [((SMAD2_3_SMAD4_FOXO1_3a_4_active_nucl and not(SMAD2_3_SMAD4_FOXO1_3a_4_FOXG1_active_nucl)) or SMAD3_SMAD4_SP1_active_nucl)] 
+    {PMID ['15084259']['10878024', '9618481']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_DLX1_inactive_nucl;
+    [DLX1] 
+    {PMID ['14671321']};
+
+DLX1 --> SMAD3_SMAD4_DLX1_inactive_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['14671321']};
+
+SMAD2_SMAD2_SMAD4_active_nucl --> SMAD2_SMAD2_SMAD4_SnoN_SIN3_HDACcomplex_NCoR1_inactive_nucl;
+    [SnoN_SIN3_HDACcomplex_NCoR1] 
+    {PMID ['10531062']};
+
+SnoN_SIN3_HDACcomplex_NCoR1 --> SMAD2_SMAD2_SMAD4_SnoN_SIN3_HDACcomplex_NCoR1_inactive_nucl;
+    [SMAD2_SMAD2_SMAD4_active_nucl] 
+    {PMID ['10531062']};
+
+FOXO1_3a_4_active_nucl --> FOXO1_3a_4_inactive_cy;
+    [AKT1_active_p_p] 
+    {PMID ['15084259']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_GATA3_active_nucl;
+    [GATA3] 
+    {PMID ['11790301']};
+
+GATA3 --> SMAD3_SMAD4_GATA3_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['11790301']};
+
+IL5_gene/p --> IL5;
+    [SMAD3_SMAD4_GATA3_active_nucl] 
+    {PMID ['11790301']};
+
+MEF2C_nucl_gene/p --> MEF2C_nucl;
+    [SMAD2_SMAD2_SMAD4_FOXH1_NKX2_5_active_nucl] 
+    {PMID ['15363409']};
+
+ATF2_active_p_p --> SMAD3_SMAD4_ATF2_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['10085140']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_ATF2_active_nucl;
+    [ATF2_active_p_p] 
+    {PMID ['10085140']};
+
+IgA1_gene/p --> IgA1;
+    [(SMAD3_SMAD4_RUNX1_3_PEBPB2_active_nucl or CREB1_active_nucl)] 
+    {PMID ['10748032', '10652350', '10531362']};
+
+COL1A2_gene/p --> COL1A2;
+    [(SMAD3_SMAD4_SP1_active_nucl and not(SMAD3_SMAD4_ERalpha_active_nucl))] 
+    {PMID ['11114293', '11555647']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_TFE3_active_nucl;
+    [TFE3] 
+    {PMID ['12551947', '10557285']};
+
+TFE3 --> SMAD3_SMAD4_TFE3_active_nucl;
+    [SMAD3_SMAD4_active_nucl] 
+    {PMID ['12551947', '10557285']};
+
+SMAD2_3_SMAD4_active_nucl --> SMAD2_3_SMAD4_SP1_active_nucl;
+    [SP1] 
+    {PMID ['11013220']};
+
+SP1 --> SMAD2_3_SMAD4_SP1_active_nucl;
+    [SMAD2_3_SMAD4_active_nucl] 
+    {PMID ['11013220']};
+
+beta5Integrin_gene/p --> beta5Integrin;
+    [SMAD3_SMAD4_SP1_3_active_nucl] 
+    {PMID ['10964912']};
+
+SMAD2_SMAD2_SMAD4_FOXH1_active_nucl --> SMAD2_SMAD2_SMAD4_FOXH1_SMIF_active_nucl;
+    [(p300 and SMIF)] 
+    {PMID ['11836524']};
+
+SMIF --> SMAD2_SMAD2_SMAD4_FOXH1_SMIF_active_nucl;
+    [(p300 and SMAD2_SMAD2_SMAD4_FOXH1_active_nucl)] 
+    {PMID ['11836524']};
+
+SMAD3_SMAD4_active_nucl --> SMAD3_SMAD4_inactive_nucl;
+    [CDK2_4] 
+    {PMID ['15241418']};
+

@@ -1,0 +1,10 @@
+/name clock1
+
+A --> B ; h1 when C default h2 [];
+C --> D ; h3 when A [];
+
+/constraints
+synchro(h1,h3) 
+exclus(h1,h2)
+included(h3,h2)
+/endconstraints

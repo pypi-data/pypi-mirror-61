@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A1+A2->A3 [BOND]; A1+A2->A3 [not OSS]  -->
+<NCI_PID_XML>
+<Created>2011_05_09 13:24::06</Created>
+  <Model>
+    <MoleculeList>
+
+      <Molecule molecule_type="protein" id="007">
+        <Name name_type="UP" long_name_type="UniProt" value="BOND" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="BOND" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="117">
+        <Name name_type="UP" long_name_type="UniProt" value="OSS" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="OSS" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="1">
+        <Name name_type="UP" long_name_type="UniProt" value="A1" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A1" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="2">
+        <Name name_type="PF" long_name_type="preferred symbol" value="A2" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="3">
+        <Name name_type="UP" long_name_type="UniProt" value="A3" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A3" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="4">
+        <Name name_type="UP" long_name_type="UniProt" value="A4" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A4" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="5">
+        <Name name_type="UP" long_name_type="UniProt" value="A5" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A5" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="6">
+        <Name name_type="PF" long_name_type="preferred symbol" value="A6" />
+        <FamilyMemberList>
+          <Member member_molecule_idref="200673">
+          </Member>
+          <Member member_molecule_idref="200671">
+          </Member>
+        </FamilyMemberList>
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="8">
+        <Name name_type="UP" long_name_type="UniProt" value="A8" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A8" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="9">
+        <Name name_type="UP" long_name_type="UniProt" value="A9" />
+        <Name name_type="AS" long_name_type="alias" value="A9" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A9" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="10">
+        <Name name_type="UP" long_name_type="UniProt" value="A10" />
+        <Name name_type="PF" long_name_type="preferred symbol" value="A10" />
+      </Molecule>
+
+      <Molecule molecule_type="protein" id="11">
+        <Name name_type="PF" long_name_type="preferred symbol" value="A11" />
+        <FamilyMemberList>
+          <Member member_molecule_idref="200943">
+          </Member>
+          <Member member_molecule_idref="201508">
+          </Member>
+        </FamilyMemberList>
+      </Molecule>
+
+    </MoleculeList>
+
+
+    <InteractionList>
+
+
+      <Interaction interaction_type="modification" id="210190">
+        <ReferenceList>
+          <Reference pmid="12242661">12242661</Reference>
+        </ReferenceList>
+
+        <InteractionComponentList>
+          <InteractionComponent role_type="input" molecule_idref="1">
+          </InteractionComponent>
+
+	  <InteractionComponent role_type="input" molecule_idref="2">
+          </InteractionComponent>
+
+          <InteractionComponent role_type="agent" molecule_idref="007">
+            <Label label_type="activity-state" value="active" />
+            <PTMExpression>
+              <PTMTerm protein="Q9H4B4" position="0" aa="X" modification="phosphorylation" />
+            </PTMExpression>
+          </InteractionComponent>
+
+          <InteractionComponent role_type="output" molecule_idref="3">
+            <PTMExpression>
+              <PTMTerm protein="O96017" position="0" aa="X" modification="phosphorylation" />
+            </PTMExpression>
+          </InteractionComponent>
+
+        </InteractionComponentList>
+      </Interaction>
+
+
+      <Interaction interaction_type="modification" id="210189">
+        <ReferenceList>
+          <Reference pmid="11551930">11551930</Reference>
+        </ReferenceList>
+
+        <InteractionComponentList>
+          <InteractionComponent role_type="input" molecule_idref="1">
+          </InteractionComponent>
+
+	  <InteractionComponent role_type="input" molecule_idref="2">
+          </InteractionComponent>
+
+          <InteractionComponent role_type="inhibitor" molecule_idref="117">
+            <Label label_type="activity-state" value="active" />
+            <PTMExpression>
+              <PTMTerm protein="Q9H4B4" position="0" aa="X" modification="phosphorylation" />
+            </PTMExpression>
+          </InteractionComponent>
+
+          <InteractionComponent role_type="output" molecule_idref="3">
+            <PTMExpression>
+              <PTMTerm protein="P04637" position="20" aa="S" modification="phosphorylation" />
+            </PTMExpression>
+          </InteractionComponent>
+
+        </InteractionComponentList>
+      </Interaction>
+
+
+    </InteractionList>
+
+
+  </Model>
+</NCI_PID_XML>
+

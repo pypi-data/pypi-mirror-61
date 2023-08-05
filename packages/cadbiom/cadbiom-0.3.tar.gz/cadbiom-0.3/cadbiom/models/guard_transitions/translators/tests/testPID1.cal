@@ -1,0 +1,16 @@
+/name  rename_24_04_12
+// =============== macros nodes================
+
+// =============== isolated nodes ================
+
+BOND_active_p ;
+OSS_active_p ;
+A3_active_p ;
+
+
+// =============== transitions ================
+
+A1 --> A2_p;
+    _h_0[((BOND_active_p)or(OSS_active_p))or(not(A3_active_p))] 
+    {PMID ['12242661', '11551930', '11551930']};
+
