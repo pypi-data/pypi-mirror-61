@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: afsmon
+Version: 1.2.0
+Summary: Helpers for AFS monitoring in Python
+Home-page: https://github.com/ianw/pyafsmon
+Author: Ian Wienand
+Author-email: ian@wienand.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: pbr (!=2.1.0,>=2.0.0)
+Requires-Dist: PrettyTable (<0.8)
+Requires-Dist: statsd (>=3.2.1)
+
+afsmon
+======
+
+Python library and utilities for monitoring AFS file-systems using
+`OpenAFS <https://www.openafs.org/>`__ tools.
+
+Many of the details are inspired by
+`<https://github.com/openafs-contrib/afs-tools>`__
+
+Command-line
+------------
+
+The ``afsmon`` tool provides
+
+* ``show`` : produce tabular output of key statistics for a cell,
+  such as threads on file-servers, partition usage, volume usage and
+  quotas.
+
+* ``statsd`` : report similar results to a `statsd
+  <https://github.com/etsy/statsd>`__ host.
+
+Configuration is minimal, see the ``sample.cfg``.
+
+Library
+-------
+
+The core of ``afsmon`` should suitable for use in other contexts.
+
+.. code-block:: python
+
+   import afsmon
+   fs = afsmon.FileServerStats('hostname')
+   fs.get_stats()
+
+The ``fs`` object now contains a ``FileServerStats`` with all
+available information for the server, partitions and volumes.
+
+
+
