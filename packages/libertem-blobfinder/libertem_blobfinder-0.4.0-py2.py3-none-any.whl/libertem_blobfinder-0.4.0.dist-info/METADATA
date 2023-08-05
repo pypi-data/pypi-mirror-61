@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: libertem-blobfinder
+Version: 0.4.0
+Summary: LiberTEM correlation and refinement library
+Home-page: https://libertem.github.io/LiberTEM-blobfinder
+Author: the LiberTEM team
+Author-email: libertem-dev@googlegroups.com
+License: GPL v3
+Keywords: electron microscopy
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: numba (>=0.46)
+Provides-Extra: common
+Requires-Dist: libertem (>=0.4.0.dev0) ; extra == 'common'
+Requires-Dist: scikit-image ; extra == 'common'
+Provides-Extra: pyfftw
+Requires-Dist: pyfftw ; extra == 'pyfftw'
+Provides-Extra: udf
+Requires-Dist: libertem (>=0.4.0.dev0) ; extra == 'udf'
+Requires-Dist: scikit-image ; extra == 'udf'
+Requires-Dist: matplotlib ; extra == 'udf'
+
+.. _`strain mapping`:
+
+LiberTEM-blobfinder is a package for correlation-based peak finding and strain
+mapping. It is part of the `LiberTEM project
+<https://libertem.github.io/LiberTEM/>`_.
+
+Usage
+-----
+
+See `Usage documentation <https://libertem.github.io/LiberTEM-blobfinder/usage.html>`_!
+
+
+Installation
+------------
+
+The quick version from PyPI:
+
+.. code-block:: shell
+
+    $ pip install libertem-blobfinder[pyfftw]
+
+See `full installation instructions
+<https://libertem.github.io/LiberTEM-blobfinder/install.html>`_ for more
+details!
+
+.. rubric:: Reference
+
+See `blobfinder API reference
+<https://libertem.github.io/LiberTEM-blobfinder/reference.html>`_ for details!
+
+.. rubric:: Examples
+
+See `example applications
+<https://libertem.github.io/LiberTEM-blobfinder/examples.html>`_!
+
+License
+-------
+
+LiberTEM-blobfinder is licensed under GPLv3.
+
+
