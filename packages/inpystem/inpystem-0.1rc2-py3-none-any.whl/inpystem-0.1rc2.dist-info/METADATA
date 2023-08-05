@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: inpystem
+Version: 0.1rc2
+Summary: A python library for STEM acquisition inpainting.
+Home-page: https://github.com/etienne-monier/inpystem
+Author: Etienne Monier
+Author-email: etienne.monier@enseeiht.fr
+License: MIT
+Project-URL: Source Code, https://github.com/etienne-monier/inpystem
+Project-URL: Documentation, https://inpystem.readthedocs.io/en/latest/index.html
+Keywords: STEM,dm3,electron energy loss spectroscopy,electron microscopy,hyperspectral,hyperspectrum,multidimensional,hyperspy,microscopy,numpy,python,scipy,spectrum image,reconstruction,sinal processing
+Platform: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Natural Language :: English
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: hyperspy
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-image (>=0.16)
+
+# inpystem python library
+
+## Description
+
+inpystem is an open source Python library which provides tools to reconstruct partially sampled 2D images as multi-band images.
+
+inpystem's core is a set of reconstruction techniques such as interpolation, regularized least-square and dictionary learning methods. It provides a user interface which simplify the use of these techniques.
+
+inpystem is mainly at the destination of the microscopy community so that it highly depends on the good library [HyperSpy](https://hyperspy.org/).
+
+This library was originally developed by its creator Etienne Monier to handle EELS data and develop reconstruction algorithms. This was proposed afterwards to the microscopy community as a tool.
+
+## Documentation
+
+This project documentation is hosted by [ReadTheDocs](https://readthedocs.org/). To access to it, please follow [this link](https://inpystem.readthedocs.io/en/latest/). 
+
+## Licence
+
+This library is distributed under the MIT license.
+
+
