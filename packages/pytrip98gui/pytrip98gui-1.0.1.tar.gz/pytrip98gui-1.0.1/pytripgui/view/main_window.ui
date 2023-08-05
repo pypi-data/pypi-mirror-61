@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>942</width>
+    <height>585</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QTreeWidget" name="patient_treeWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <column>
+       <property name="text">
+        <string>(no data loaded)</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_view">
+       <attribute name="title">
+        <string>View</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="tab_Vlayout"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_dvh">
+       <attribute name="title">
+        <string>DVH</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_lvh">
+       <attribute name="title">
+        <string>LVH</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>942</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuNew">
+     <property name="title">
+      <string>New</string>
+     </property>
+     <addaction name="actionCT_Cube"/>
+     <addaction name="actionROI"/>
+    </widget>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import</string>
+     </property>
+     <addaction name="actionDoseCube"/>
+     <addaction name="actionLETCube"/>
+     <addaction name="action_exec"/>
+    </widget>
+    <addaction name="menuNew"/>
+    <addaction name="actionOpen_Dicom"/>
+    <addaction name="actionOpen_Voxelplan"/>
+    <addaction name="menuImport"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport_Dicom"/>
+    <addaction name="actionExport_Voxelplan"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionConsole"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionTRiP98_Config"/>
+    <addaction name="actionPreferences"/>
+    <addaction name="actionBeam_Kernels"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuPlan">
+    <property name="title">
+     <string>Plan</string>
+    </property>
+    <addaction name="actionNew_Plan"/>
+    <addaction name="actionEdit_Plan"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport_Plan"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete_Plan"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuPlan"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen_Voxelplan">
+   <property name="text">
+    <string>Open VOXELPLAN</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionOpen_Dicom">
+   <property name="text">
+    <string>Open DICOM</string>
+   </property>
+  </action>
+  <action name="actionCT_Cube">
+   <property name="text">
+    <string>CT Cube</string>
+   </property>
+  </action>
+  <action name="actionROI">
+   <property name="text">
+    <string>ROI</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionOpen_Project">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionConsole">
+   <property name="text">
+    <string>Console</string>
+   </property>
+  </action>
+  <action name="actionTRiP98_Config">
+   <property name="text">
+    <string>TRiP98 Config</string>
+   </property>
+  </action>
+  <action name="actionDoseCube">
+   <property name="text">
+    <string>DoseCube</string>
+   </property>
+  </action>
+  <action name="actionLETCube">
+   <property name="text">
+    <string>LETCube</string>
+   </property>
+  </action>
+  <action name="action_exec">
+   <property name="text">
+    <string>Plan (.exec)</string>
+   </property>
+  </action>
+  <action name="actionNew_Plan">
+   <property name="text">
+    <string>New Plan</string>
+   </property>
+  </action>
+  <action name="actionEdit_Plan">
+   <property name="text">
+    <string>Edit Plan</string>
+   </property>
+  </action>
+  <action name="actionDelete_Plan">
+   <property name="text">
+    <string>Delete Plan</string>
+   </property>
+  </action>
+  <action name="actionExport_Dicom">
+   <property name="text">
+    <string>Export DICOM</string>
+   </property>
+  </action>
+  <action name="actionExport_Voxelplan">
+   <property name="text">
+    <string>Export VOXELPLAN</string>
+   </property>
+  </action>
+  <action name="actionExport_Plan">
+   <property name="text">
+    <string>Export Plan</string>
+   </property>
+  </action>
+  <action name="actionBeam_Kernels">
+   <property name="text">
+    <string>Beam Kernels</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>open_ctx()</slot>
+ </slots>
+</ui>
