@@ -1,0 +1,381 @@
+#!/usr/bin/python
+
+#    fchart draws beautiful deepsky charts in vector formats
+#    Copyright (C) 2005-2020 fchart authors
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# numarray library: http://www.stsci.edu/resources/software_hardware/numarray
+
+import argparse
+import textwrap
+
+from time import time
+
+# Standard python modules
+import os
+import sys
+import stat
+import numpy as np
+
+import fchart3
+
+from fchart3.astrocalc import hms2rad, dms2rad
+from fchart3.skymap_engine import SkymapEngine, EN, NL
+from fchart3.used_catalogs import UsedCatalogs
+from fchart3.configuration import EngineConfiguration
+from fchart3.cairo import CairoDrawing
+
+#################################################################
+
+
+def print_version():
+    print('fchart3 version 0.5.2 (c) fchart3 authors 2005-2020')
+    print("""
+fchart3 comes with ABSOLUTELY NO WARRANTY. It is distributed under the
+GNU General Public License (GPL) version 2. For details see the LICENSE
+file distributed with the software. This is free software, and you are
+welcome to redistribute it under certain conditions as specified in the
+LICENSE file.
+""")
+
+class RuntimeSettings:
+    def __init__(self):
+        self.extra_positions_list       = []
+        self.fieldcentre                = (-1,-1)
+        self.parse_commandline()
+
+    def parse_commandline(self):
+
+        argumentparser = argparse.ArgumentParser(description='fchart',
+              formatter_class=argparse.RawTextHelpFormatter,
+              epilog=textwrap.dedent('''\
+                    Sourcenames:
+                       Valid sourcenames are for example:
+                       - NGC891, NgC891, n891 or 891 for NGC objects
+                       - IC1396, i1396, iC1396, I1396 for IC objects
+                       - m110, M3 for Messier objects
+                       - \"9:35:00.8,-34:15:33,SomeCaption\" for other positions
+
+                       There is one special sourcename, which is \"allmessier\". When this name
+                       is encountered, fchart dumps maps of all messier objects to the output
+                       directory.
+                    ''')
+              )
+
+        argumentparser.add_argument('-o', '--output-dir', dest='output_dir', nargs='?', action='store', default='./',
+                                    help='specify the output directory (default: .)')
+        argumentparser.add_argument('-f', '--output-file', dest='output_file', nargs='?', action='store',
+                                    help='specify output file name. (default: name of dso object). Image format is defined by extension.' +\
+                                         'Supported format/extensions are pdf, png and svg.')
+
+        argumentparser.add_argument('-limdso', dest='limiting_magnitude_deepsky', nargs='?', action='store', default=12.5, type=float,
+                                    help='deepsky limiting magnitude (default: 12.5)')
+        argumentparser.add_argument('-limstar', dest='limiting_magnitude_stars', nargs='?', action='store', default=13.8, type=float,
+                                    help='stellar limiting magnitude (default: 13.8)')
+
+        argumentparser.add_argument('-usno-nomad', dest='usno_nomad_file', nargs='?', action='store',
+                                    help='Path to USNO NOMAD catalog (file USNO-NOMAD-1e8.dat)')
+
+        argumentparser.add_argument('-width', dest='width', nargs='?', action='store', default=180.0, type=float,
+                                    help='width of the drawing area in mm.')
+        argumentparser.add_argument('-size', dest='fieldsize', nargs='?', action='store', default=7.0, type=float,
+                                    help='diameter of the field of view in degrees (default: 7.0)')
+
+        argumentparser.add_argument('-fmessier', '--force-messier', dest='force_messier', action='store_true',
+                                    help='select all Messier objects, regardless of the limiting magnitude for deepsky objects')
+        argumentparser.add_argument('-fasterism', '--force-asterisms', dest='force_asterisms', action='store_true',
+                                    help='force plotting of  asterisms in map. By default, only \"Messier\" asterisms are plotted.' + \
+                                          'All others are ignored. The default setting helps cleaning up especially Virgo cluster maps.')
+        argumentparser.add_argument('-funknown', '--force-unknown', dest='force_unknown', action='store_true',
+                                    help='by default, objects in external galaxies are only plotted if their magnitude is known and lower than ' +\
+                                         'the limiting magnitude of deepsky objects. If this option is given, also objects in external galaxies ' +\
+                                         'of which the magnitude is not known are plotted. Thisoption will clutter some galaxies like M 101 and ' +\
+                                         'NGC 4559.')
+
+        argumentparser.add_argument('-lang', '--language', dest='language', nargs='?', action='store', default='en',
+                                    help='specify language on the maps, either \'en\' or \'nl\' (default: en)')
+
+        # TODO: inv + night mode should be replaced by themes
+        argumentparser.add_argument('-inv', '--invert-colors', dest='invert_colors', action='store_true',
+                                    help='invert colors in generated maps.')
+        argumentparser.add_argument('-nm', '--night-mode', dest='night_mode', action='store_true',
+                                    help='activate red light mode.')
+
+        argumentparser.add_argument('-x', '--add-cross', dest='cross_marks', nargs='?', action='append',
+                                    help='add a cross in the map at a specified position. The format of the argument of this option is: ' +\
+                                         '\"rah:ram:ras,+/-decd:decm:decs,label,labelposition\" For example: -x\"20:35:25.4,+60:07:17.7,SN,t\" for ' +\
+                                         'the supernova sn2004et in NGC 6946. The label position can be \'t\' for top, \'b\' for bottom, \'l\' for ' +\
+                                         'left, or \'r\' for right. The label and label position may be omitted.')
+
+        argumentparser.add_argument('-capt', '--caption', dest='caption', nargs='?', action='store', default='',
+                                    help='force a specific caption for the maps. All maps will get the same caption.')
+
+        argumentparser.add_argument('--show-dso-legend', dest='show_dso_legend', action='store_true',
+                                    help='show deepsky object legend.')
+
+        # Transformation
+        argumentparser.add_argument('-mx', '--mirror-x', dest='mirror_x', action='store_true',
+                                    help='mirror in x axis.')
+        argumentparser.add_argument('-my', '--mirror-y', dest='mirror_y', action='store_true',
+                                    help='mirror in y axis.')
+
+        # TODO: Should be placed into theme file / allow overriding only with long option format (--xyz)
+        argumentparser.add_argument('-lconst', '--linewidth-constellation', dest='constellation_linewidth', nargs='?', action='store', default=0.5, type=float,
+                                    help='Constellation line width (default: 0.5)')
+        argumentparser.add_argument('-lstar', '--linewidth-star-border', dest='star_border_linewidth', nargs='?', action='store', default=0.06, type=float,
+                                    help='Star border line width (default: 0.06)')
+        argumentparser.add_argument('-locl', '--linewidth-open-cluster', dest='open_cluster_linewidth', nargs='?', action='store', default=0.3, type=float,
+                                    help='Line width of open cluster (default: 0.3)')
+        argumentparser.add_argument('-ldso', '--linewidth-deepsky', dest='dso_linewidth', nargs='?', action='store', default=0.2, type=float,
+                                    help='Line width of open cluster (default: 0.2)')
+        argumentparser.add_argument('-llegend', '--linewidth-legend', dest='legend_linewidth', nargs='?', action='store', default=0.2, type=float,
+                                    help='Line width of open cluster (default: 0.3)')
+
+        argumentparser.add_argument('-v', '--version', action='store_true', help='display version information and exit.')
+        argumentparser.add_argument('sourcelist', nargs='*')
+
+        self.parser = argumentparser.parse_args()
+
+        if len(self.parser.sourcelist) == 0:
+            argumentparser.print_help()
+            sys.exit(1)
+
+        if self.parser.language.upper() == 'NL':
+            self.language = NL
+        elif self.parser.language.upper() == 'EN':
+            self.language = EN
+        else:
+            print('Unsupported language '+ self.parser.language)
+            sys.exit(-1)
+
+        if self.parser.version:
+            print_version()
+            sys.exit(1)
+
+        if self.parser.cross_marks:
+            for mark in self.parser.cross_marks:
+                data = mark.split(',')
+                if len(data) >= 2:
+                    ra_str, dec_str = data[0:2]
+                    label_str = ''
+                    label_pos = 'r'
+                    ra_str = ra_str.lstrip().rstrip()
+                    dec_str = dec_str.lstrip().rstrip()
+                    if len(data) >= 3:
+                        label_str = data[2].lstrip().rstrip()
+
+                    if len(data) >= 4:
+                        label_pos = data[3].rstrip().lstrip()
+
+                    rasplit = ra_str.split(':')
+                    decsplit = dec_str.split(':')
+
+                    rah, ram, ras = 0.0, 0.0, 0.0
+                    rah= float(rasplit[0])
+                    if len(rasplit) >= 2:
+                        ram = float(rasplit[1])
+                    if len(rasplit) >= 3:
+                        ras = float(rasplit[2])
+
+                    decd, decm, decs, sign = 0.0, 0.0, 0.0, 1
+                    decd= abs(float(decsplit[0]))
+                    if decsplit[0][0] == '-':
+                        sign = -1
+                    if len(decsplit) >= 2:
+                        decm = float(decsplit[1])
+                    if len(decsplit) >= 3:
+                        decs = float(decsplit[2])
+                    rax, decx = hms2rad(rah, ram, ras), dms2rad(decd, decm, decs, sign)
+                    self.extra_positions_list.append([rax,decx,label_str,label_pos])
+                else:
+                    print('option -x needs three part argument, separated by comma\'s: -x "ra,dec,label"')
+                    sys.exit(-1)
+
+
+#############################################################
+#                                                           #
+#                      MAIN  PROGRAM                        #
+#                                                           #
+#############################################################
+
+def _create_engine_configuration():
+    config = EngineConfiguration()
+    config.show_dso_legend = settings.parser.show_dso_legend
+    config.invert_colors = settings.parser.invert_colors
+    config.mirror_x = settings.parser.mirror_x
+    config.mirror_y = settings.parser.mirror_y
+    config.constellation_linewidth = settings.parser.constellation_linewidth
+    config.star_border_linewidth = settings.parser.star_border_linewidth
+    config.open_cluster_linewidth = settings.parser.open_cluster_linewidth
+    config.dso_linewidth = settings.parser.dso_linewidth
+    config.legend_linewidth = settings.parser.legend_linewidth
+    config.night_mode = settings.parser.night_mode
+    return config
+
+if __name__ == '__main__':
+
+    tm = time()
+
+    data_dir    = os.path.join(fchart3.get_catalogs_dir())
+
+    # Create default settings and parse commandline
+    settings = RuntimeSettings()
+
+    print_version()
+
+    # Create output space if necessary
+    if not os.path.exists(settings.parser.output_dir):
+        print('Creating directory '+settings.parser.output_dir)
+        os.mkdir(settings.parser.output_dir)
+
+    used_catalogs = UsedCatalogs(data_dir, settings.parser.usno_nomad_file, settings.parser.limiting_magnitude_deepsky,
+                                 settings.parser.force_messier, settings.parser.force_asterisms, settings.parser.force_unknown)
+    print("Chart generated in : " + str(time()-tm) + "ms")
+    # Final report before mapmaking
+    print(str(len(used_catalogs.reduced_deeplist))+'/'+str(len(used_catalogs.deeplist))+' deepsky objects after magnitude/messier selection.')
+
+    print('Making maps with: ')
+    print('   Deep sky lm    : '+ str(settings.parser.limiting_magnitude_deepsky))
+    print('   Stellar lm     : '+ str(settings.parser.limiting_magnitude_stars))
+    print('   Fieldsize      : '+ str(settings.parser.fieldsize)+' degrees')
+    print('   Paperwidth     : '+ str(settings.parser.width)+ ' mm')
+    print('   Output dir     : '+ settings.parser.output_dir)
+    print('   Force Messier  : '+ str(settings.parser.force_messier))
+    print('   Force asterisms: '+ str(settings.parser.force_asterisms))
+    print('   Force pg       : '+ str(settings.parser.force_unknown))
+    print('   Extra points   : '+ str(len(settings.extra_positions_list)))
+    print('   Show dso legend: '+ str(settings.parser.show_dso_legend))
+    if settings.parser.usno_nomad_file:
+        print('   USNO NOMAD catalog: '+ str(settings.parser.usno_nomad_file))
+
+    for object in settings.extra_positions_list:
+        rax,decx,label,labelpos = object
+        print(label,':', rad2hms(rax), rad2dms(decx))
+
+    # For all sources...
+    for source in settings.parser.sourcelist:
+        filename = ''
+        # Parse sourcename
+        if source.upper().rstrip().lstrip() == 'ALLMESSIER':
+            print('alles')
+            for object in used_catalogs.messierlist:
+                print('')
+                print('M '+str(object.messier))
+                ra  = object.ra
+                dec = object.dec
+                artist = None
+                filename = settings.parser.output_dir + os.sep + 'm' + str(object.messier).rjust(3).replace(' ','0')
+                filename += '.pdf'
+                artist = CairoDrawing(filename,
+                                      settings.parser.width,
+                                      settings.parser.width)
+                engine = SkymapEngine(artist, settings.language, lm_stars = settings.parser.limiting_magnitude_stars)
+                engine.set_configuration(_create_engine_configuration())
+                engine.set_field(ra, dec, settings.parser.fieldsize*np.pi/180.0/2.0)
+                engine.set_caption('M '+str(object.messier))
+                engine.set_showing_dso(object)
+                engine.set_active_constellation(object.constellation)
+                engine.make_map(used_catalogs, settings.extra_positions_list)
+        else:
+            showing_dso = None
+            if ':' in source:
+                data = source.split(',')
+                if len(data) >= 3:
+                    ra_str, dec_str = data[0:2]
+                    caption_str = ''
+                    label_pos = 'r'
+                    ra_str = ra_str.lstrip().rstrip()
+                    dec_str = dec_str.lstrip().rstrip()
+                    if len(data) >= 3:
+                        label_str = data[2].lstrip().rstrip()
+
+                    if len(data) >= 4:
+                        label_pos = data[3].rstrip().lstrip()
+
+                    rasplit = ra_str.split(':')
+                    decsplit = dec_str.split(':')
+
+                    rah, ram, ras = 0.0, 0.0, 0.0
+                    rah= float(rasplit[0])
+                    if len(rasplit) >= 2:
+                        ram = float(rasplit[1])
+                    if len(rasplit) >= 3:
+                        ras = float(rasplit[2])
+
+                    decd, decm, decs, sign = 0.0, 0.0, 0.0, 1
+                    decd = abs(float(decsplit[0]))
+                    if decsplit[0][0] == '-':
+                        sign = -1
+                    if len(decsplit) >= 2:
+                        decm = float(decsplit[1])
+                    if len(decsplit) >= 3:
+                        decs = float(decsplit[2])
+                    ra, dec = hms2rad(rah, ram, ras), dms2rad(decd, decm, decs, sign)
+                    cat = ''
+                    name = ','.join(data[2:])
+                    filename = settings.parser.output_dir + os.sep + name.replace(' ','-').replace('/', '-').replace(',', '')
+                else:
+                    print('Position specification needs three part argument, separated by comma\'s: "ra,dec,caption"')
+                    sys.exit(-1)
+
+            else:# : in source
+                showing_dso, cat, name = used_catalogs.lookup_dso(source)
+                if showing_dso:
+                    ra = showing_dso.ra
+                    dec = showing_dso.dec
+                else:
+                    ra = 1
+                    dec = 0
+
+            print('')
+            print(cat, name)
+
+            if ra >= 0.0:
+                artist = None
+                if settings.parser.output_file:
+                    filename = settings.parser.output_file
+                else:
+                    if filename == '':
+                        filename = settings.parser.output_dir + os.sep + source
+                    filename += '.pdf'
+                artist = CairoDrawing(filename,
+                                      settings.parser.width,
+                                      settings.parser.width)
+                engine = SkymapEngine(artist, settings.language,
+                                  lm_stars = settings.parser.limiting_magnitude_stars,
+                                  lm_deepsky = settings.parser.limiting_magnitude_deepsky)
+                engine.set_configuration(_create_engine_configuration())
+                engine.set_field(ra, dec, settings.parser.fieldsize*np.pi/180.0/2.0)
+                caption = cat + ' ' + name
+
+                if settings.parser.caption != False:
+                    caption = settings.parser.caption
+                if caption != '':
+                    engine.set_caption(caption)
+
+                if showing_dso:
+                    if showing_dso.master_object:
+                        showing_dso = showing_dso.master_object
+                    used_catalogs.deepskycatalog.add_dso(showing_dso)
+                    used_catalogs.deepskycatalog.add_showing_dso(showing_dso)
+                    engine.set_active_constellation(showing_dso.constellation)
+
+                print("Started in : " + str(time()-tm) + "ms")
+                engine.make_map(used_catalogs, settings.extra_positions_list)
+            else:
+                print('object not found, try appending an A or a B')
+
+    print("Chart generated in : " + str(time()-tm) + "ms")
