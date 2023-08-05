@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: get-status
+Version: 0.3.1
+Summary: A service that allows you to get the status of any website
+Home-page: https://github.com/v0ltis/Get_Status
+Author: voltis
+Author-email: voltis.discord@gmail.com
+License: UNKNOWN
+Description: # Get_Status
+        
+        ## How to use ?
+        
+        it's very easy:
+        
+        ```python
+        import get_status as get
+        
+        url = "https://www.google.com"
+        
+        brave = "Brave/1.0 (Windows NT x.y; rv:10.0)"
+        
+        status = get.status(url, user_agent=brave)
+        
+        print(status)
+        
+        >>> 200
+        ```
+        
+        ``get_status`` has 2 arguments :
+        
+        #### - url :
+        
+          Basic url (with http(s)://)
+        
+          Ex : ~~google.com~~ / http://www.google.com / https://google.com / ~~http://www.ThisIsA404.error~~
+        
+        #### - user_agent (optional, default: Auto):
+        
+          could be:
+        
+            None : No user-agent
+        
+            auto (default): Send automaticaly a Firefox user-agent)
+        
+            custom : Send directly you'r custom user agent:
+        
+          Ex: ~~None~~ / "None" / "auto" / ~~"firefox"~~ / "Mozilla/5.0 (Windows NT x.y; rv:10.0) Gecko/20100101 Firefox/10.0"
+        
+Keywords: python website status code
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
