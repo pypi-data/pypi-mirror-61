@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: easyqr
+Version: 1.0
+Summary: QR code conversion tool
+Home-page: https://gitee.com/Rt_hum/Easyqr
+Author: Mr.right
+Author-email: 1003582810@qq.com
+License: UNKNOWN
+Description: # easyqr
+        
+        ## 介绍
+        便捷的二维码转换工具 支持文字转二维码,二维码转文字(支持中文,支持**本地上传**以及**在线二维码**)
+        
+        ## 安装
+        ```
+        pip install easyqr
+        ```
+        
+        ## 使用说明
+        ```python
+        from easyqr import easyqr as qr
+        
+        #文字转二维码
+        print(qr.code('这是一个简单的二维码转换模块'))
+        #上传二维码
+        url = qr.upload('01.png')
+        #解析二维码
+        print(qr.online(url))
+        ```
+        
+        使用So easy!
+        
+        ## 注意
+        因为使用了网络接口,大量识别转换因为网络及服务器压力缘故,可能会丢失或者拒绝访问,本模块目前为实验性质设计,如需频繁使用,请与服务商[**草料二维码**](https://cli.im/)洽谈商务合作,请知悉!
+        
+        
+        
+        ## 更新 
+        
+        
+        |  版本  |  内容  |
+        |  ----  | ----  |
+        |  1.0  |  调优完毕,正式版本  |
+        |  0.6  |  一些不值得注意的优化  |
+        |  0.5  |  一些不值得注意的优化  |
+        |  0.4  |  一些不值得注意的优化  |
+        |  0.3  |  一些不值得注意的优化  |
+        |  0.2  |  1.优化了导入包的逻辑机构,现在只需要 import easyqr 就可以了2.缺失的依赖项自动导入,无需手动添加依赖项 |
+        |  0.1  |  初步框架  |
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
