@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+
+"""
+    Eurekanode
+    ~~~~~~~~~~
+
+    a command-processor and RESTful server for use in escapenodes on RaspberryPi systems
+
+    :copyright: 2019 YetiCraft
+    :license: GPL3
+    __version__ = "1.0.0"
+
+"""
+
+
+#####
+# Setup and initialization
+#####
+from datetime import datetime
+import logging
+# Initialize logging 
+logging.basicConfig(filename='eurekanode.log',level=logging.DEBUG)
+
+# add a timestamp that we have begun a run
+logging.info("======== Run started at {}".format(datetime.today()))
+
+from eurekaroom import args, config
+
+#####
+# Initialize the arg parser
+parsing = args.Args(config)
+args = parsing.parsArgs()
+#
+#####
+
+#####
+# Media
+# Add media if requested
+if args.autoaddmedia:
+    config.checkMedia(args)
+
+# Write to config if requested
+if args.writeconfig:
+    config.storeConfig(args)
+#
+#####
+
+#####
+# Serverode
+if args.servermode:
+    from eurekaroom import routes
+    # Initialize the node
+    routes.init_node(args.nodename)
+    # Run the server
+    routes.launchapp(args.port, debug=args.debug)
+#
+#####
+
+#####
+# Install eurekaroom as a service
+if args.installservice:
+    InstallService()
+#
+#####
+
+#####
+# GPIO Library selection
+# 
+# Check if we are running in emulator mode and then load the correct GPIO library and test 
+# access to it
+if args.emulategpio:
+	from RPiSim import GPIO
+else:
+    try:
+        import RPi.GPIO as GPIO
+    except RuntimeError:
+        print("Error importing RPi.GPIO!  This may be because you need superuser privileges or that you are on a non-RaspberryPi system.  You can use sudo for the former, and provide the '-e' flag for the later.")
+#
+#####
+
+###############################################################
+##
+## Execute Demo
+## 
+## TODO: Strip this down and implement logging of web ui actions. Allowing the client to record and playback sessions.
+## TODO: Implement a script that parses log messages and creates a .py file that can be saved and ran again and again.
+## TODO: This shall allow the client to set up sequences of media. 
+
+if args.demo:
+
+    from threading import Thread
+    from eurekaroom import mynode, config
+    
+    mainThread = Thread(target= mynode.initDisplay)
+    mainThread.start()
+    mainThread.join(1)
+    print('Window created on node "{}"'.format(args.nodename))
+
+    mediapath = dict(config.parser.items(section='image'))['meadow.jpg']
+    
+    #imageThread = Thread(target=mynode.playImage, args=(mediapath, 3))
+    #imageThread.start()
+
+    print('Displaying "{}" for "{}" seconds.'.format(mediapath,3))
+
+    mediapath = dict(config.parser.items(section='image'))['black-hole.jpg']
+    Thread(target=mynode.updateWallpaper, args=(mediapath,)).start()
+    
+    print('Set background to: "{}".'.format(mediapath))
+
+    #imageThread.join()
+    media = dict(config.parser.items(section='video'))['planet_success.mp4']
+    videoThread = Thread(target = mynode.PlayandClose, args=(media,))
+    videoThread.start()
+    print('Now Playing, "{}", on node "{}"'.format(media, args.nodename))
+    videoThread.join()
+
+##
+###############################################################
+
+
+#####
+# End of run and cleanup
+logging.info("======== Run ended at {}".format(datetime.today()))
+#
+#####

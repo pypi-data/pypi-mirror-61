@@ -1,0 +1,5 @@
+<ul>
+    {% for k in image %}
+    <li><a href="{{ url_for('Picture', PictureID = k, time = 10) }}">{{k}}</a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,16 @@
+# Things to include in the built package (besides the packages defined in setup.py)
+include README.md
+include LICENSE
+
+#####
+# From the https://flask.palletsprojects.com/en/1.1.x/tutorial/install/ page
+
+# Include html pages
+graft eurekaroom/templates
+graft eurekaroom/installScripts
+
+# Exclude bytecode files
+global-exclude *.pyc, *.old
+
+#
+#####
