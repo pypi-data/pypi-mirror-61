@@ -1,0 +1,122 @@
+Metadata-Version: 2.1
+Name: sigpropy
+Version: 0.1.1
+Summary: A Python package for digital signal processing.
+Home-page: https://github.com/jpvantassel/signal-processing
+Author: Joseph P. Vantassel
+Author-email: jvantassel@utexas.edu
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/jpvantassel/signal-processing/issues
+Project-URL: Source, https://github.com/jpvantassel/signal-processing
+Project-URL: Docs, https://sigpropy.readthedocs.io/en/latest/?badge=latest
+Keywords: signal-processing signal
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Education
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6, <3.9
+Description-Content-Type: text/markdown
+Requires-Dist: scipy (>=1.2.1)
+Requires-Dist: numpy (>=1.16.2)
+Requires-Dist: obspy (>=1.1.1)
+Provides-Extra: dev
+Requires-Dist: unittest ; extra == 'dev'
+Requires-Dist: hypothesis ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: unittest ; extra == 'test'
+Requires-Dist: hypothesis ; extra == 'test'
+
+# SigProPy - A Python package for digital signal processing
+
+> Joseph Vantassel, The University of Texas at Austin
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/jpvantassel/sigpropy/blob/master/LICENSE.txt)
+[![CircleCI](https://circleci.com/gh/jpvantassel/sigpropy.svg?style=svg)](https://circleci.com/gh/jpvantassel/sigpropy)
+[![Documentation Status](https://readthedocs.org/projects/sigpropy/badge/?version=latest)](https://sigpropy.readthedocs.io/en/latest/?badge=latest)
+
+## Table of Contents
+
+- [About _sigpropy_](#About-sigpropy)
+  - [TimeSeries](#TimeSeries)
+  - [FourierTransform](#FourierTransform)
+
+## About _sigpropy_
+
+_sigpropy_ is a Python package for digital signal processing. It includes two
+main class definitions, _TimeSeries_ and _FourierTransform_. These classes
+include methods to perform common signal processing techniques (e.g., trimming
+and resampling) and properties to make using them readable and intuitive.
+
+This package and the classes therein are being used in several other
+Python projects, some of which have been released publically and others are
+still in the development stage, so if you do not see a feature you would like
+it may very well be under development and released in the near future. To be
+notified of future releases, you can either `watch` the repository on
+[Github](https://github.com/jpvantassel/sigpropy) or
+`Subscribe to releases` on the
+[Python Package Index (PyPI)](https://pypi.org/project/sigpropy/).
+
+## TimeSeries
+
+A simple example:
+
+```Python3
+import sigpropy
+import matplotlib.pyplot as plt
+import numpy as np
+
+dt = 0.002
+time = np.arange(0, 1, dt)
+s1 = 1*np.sin(2*np.pi*10*time)
+s2 = 2*np.sin(2*np.pi*20*time)
+s3 = 5*np.sin(2*np.pi*30*time)
+amplitude = s1 + s2 + s3
+
+tseries = sigpropy.TimeSeries(amplitude, dt)
+fseries = sigpropy.FourierTransform.from_timeseries(tseries)
+
+plt.plot(tseries.time, tseries.amplitude)
+plt.xlabel("Time (s)")
+plt.ylabel("Amplitude")
+plt.show()
+```
+
+<img src="https://github.com/jpvantassel/sigpropy/blob/master/figs/example_tseries.png?raw=true" width="425">
+
+## FourierTransform
+
+A simple example:
+
+```Python3
+import sigpropy
+import matplotlib.pyplot as plt
+import numpy as np
+
+dt=0.002
+time = np.arange(0, 1, dt)
+s1 = 1*np.sin(2*np.pi*10*time)
+s2 = 2*np.sin(2*np.pi*20*time)
+s3 = 5*np.sin(2*np.pi*30*time)
+amplitude = s1 + s2 + s3
+
+tseries = sigpropy.TimeSeries(amplitude, dt)
+fseries = sigpropy.FourierTransform.from_timeseries(tseries)
+
+plt.plot(fseries.frequency, fseries.mag)
+plt.xscale("log")
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("|FFT Amplitude|")
+plt.show()
+```
+
+<img src="https://github.com/jpvantassel/sigpropy/blob/master/figs/example_fseries.png?raw=true" width="425">
+
+
