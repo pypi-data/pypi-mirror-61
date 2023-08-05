@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="XMLModule"
+        xmlns:module="XMLModule">
+
+    <element name="module">
+        <complexType>
+            <choice>
+                <element ref="module:field" />
+                <element ref="module:coupling" />
+            </choice>
+        </complexType>
+    </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!-- field specific-->
+<!--_________________________________________________________________________________________________-->
+
+         <element name="field">
+        <complexType>
+            <sequence>
+                <element ref="module:general_field" maxOccurs="1" />
+                <element ref="module:constants" maxOccurs="1" />
+                <element ref="module:macros" minOccurs="0" maxOccurs="1" />
+                <element ref="module:spaces" maxOccurs="1" />
+                <element ref="module:volume" maxOccurs="1" />
+                <element ref="module:surface" maxOccurs="1" />
+                <element ref="module:error_calculator" maxOccurs="1" />
+                <element ref="module:preprocessor" maxOccurs="1" />
+                <element ref="module:postprocessor" maxOccurs="1" />
+            </sequence>
+        </complexType>
+    </element>
+
+        <element name="general_field">
+                <complexType>
+                        <sequence>
+                                <element ref="module:description" />
+                                <element ref="module:analyses" />
+                        </sequence>
+                        <attribute name="deformed_shape" type="integer" />
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="name" use="required" type="string" />
+                </complexType>
+        </element>
+
+
+        <element name="description" type="string" />
+        <element name="analyses">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="1" maxOccurs="unbounded" ref="module:analysis" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="analysis">
+                <complexType>
+                   <sequence>
+                   <element minOccurs="0" maxOccurs="1" ref="module:field_config" />
+                   </sequence>
+                   <attribute name="id" use="required" type="string" />
+                   <attribute name="name" use="required" type="string" />
+                   <attribute name="solutions" use="required" type="integer" />
+                   <attribute name="type" use="required" type="string" />
+                </complexType>
+        </element>
+
+        <element name="field_config">
+            <complexType>
+              <sequence>
+                <element minOccurs="0" maxOccurs="unbounded" name="field_item">
+                  <complexType>
+                    <attribute name="field_key" type="string" use="required"/>
+                    <attribute name="field_value" type="string" use="required"/>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!-- coupling specific-->
+<!--_________________________________________________________________________________________________-->
+
+    <element name="coupling">
+        <complexType>
+            <sequence>
+                <element ref="module:general_coupling" maxOccurs="1" />
+                <element ref="module:constants" maxOccurs="1" />
+                <element ref="module:volume" maxOccurs="1" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="general_coupling">
+                <complexType>
+                        <sequence>
+                                <element ref="module:description" />
+                                <element ref="module:modules" />
+                        </sequence>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="name" use="required" type="string" />
+                </complexType>
+        </element>
+
+        <element name="modules">
+                <complexType>
+                        <sequence>
+                                <element ref="module:source" />
+                                <element ref="module:target" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="source">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                </complexType>
+        </element>
+        <element name="target">
+
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!--constants and macros-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="constants">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:constant" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="constant">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="value" use="required" type="double" />
+                </complexType>
+        </element>
+
+        <element name="macros">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:macro" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="macro">
+                <complexType>
+                        <attribute name="expression" use="required" type="string" />
+                        <attribute name="id" use="required" type="string" />
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!--specification of used spaces-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="spaces">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:space" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="space">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:space_config" />
+                        </sequence>
+                        <attribute name="analysistype" use="required" type="string" />
+                </complexType>
+        </element>
+
+        <element name="space_config">
+                <complexType>
+                        <attribute name="i" use="required" type="int" />
+                        <attribute name="type" use="required" type="string" />
+                        <attribute name="orderadjust" use="required" type="int" />
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!--pre processor and GUI-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="preprocessor">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:gui" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="gui">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:group" />
+                        </sequence>
+                        <attribute name="type" use="required" type="string" />
+                </complexType>
+        </element>
+
+        <element name="group">
+                <complexType>
+                        <sequence>
+                                <choice maxOccurs="unbounded">
+                                        <element ref="module:quantity" />
+                                        <element ref="module:switch_combo" />
+                                </choice>
+                        </sequence>
+                        <attribute name="name" type="string" />
+                </complexType>
+        </element>
+
+        <element name="switch_combo">
+                <complexType>
+                        <sequence>
+                                <element ref="module:switch_option" />
+                        </sequence>
+                        <attribute name="id" use="required" type="string"/>
+                        <attribute name="name" use="required" type="string"/>
+                        <attribute name="implicit_option" use="required" type="string"/>
+                </complexType>
+        </element>
+
+        <element name="switch_option">
+                <complexType>
+                        <attribute name="id" use="required" type="string"/>
+                        <attribute name="name" use="required" type="string"/>
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!--post processor, local values, integrals-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="postprocessor">
+                <complexType>
+                        <sequence>
+                                <element ref="module:localvariables" />
+                                <element ref="module:view" />
+                                <element ref="module:volumeintegrals" />
+                                <element ref="module:surfaceintegrals" />
+                                <element ref="module:force" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="localvariables">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:localvariable" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="localvariable">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:expression" />
+                        </sequence>
+                        <attribute name="format" type="string" />
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="name" use="required" type="string" />
+                        <attribute name="shortname" use="required" type="string" />
+                        <attribute name="shortname_html" type="string" />
+                        <attribute name="shortname_latex" type="string" />
+                        <attribute name="type" use="required" type="string" />
+                        <attribute name="unit" use="required" type="string" />
+                        <attribute name="unit_html" type="string" />
+                        <attribute name="unit_latex" type="string" />
+                </complexType>
+        </element>
+
+        <element name="view">
+                <complexType>
+                        <sequence>
+                                <element ref="module:scalar_view" />
+                                <element ref="module:vector_view" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="scalar_view">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" minOccurs="1" ref="module:default" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="vector_view">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" minOccurs="1" ref="module:default" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="default">
+                <complexType>
+                        <attribute name="analysistype" use="required" type="string" />
+                        <attribute name="id" use="required" type="string" />
+                </complexType>
+        </element>
+
+        <element name="volumeintegrals">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:volumeintegral" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="volumeintegral">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:expression" />
+                        </sequence>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="name" use="required" type="string" />
+                        <attribute name="shortname" use="required" type="string" />
+                        <attribute name="shortname_html" type="string" />
+                        <attribute name="shortname_latex" type="string" />
+                        <attribute name="unit" use="required" type="string" />
+                        <attribute name="unit_html" type="string" />
+                        <attribute name="unit_latex" type="string" />
+                        <attribute name="eggshell" type="int" />
+                </complexType>
+        </element>
+
+        <element name="surfaceintegrals">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:surfaceintegral" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="surfaceintegral">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:expression" />
+                        </sequence>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="name" use="required" type="string" />
+                        <attribute name="shortname" use="required" type="string" />
+                        <attribute name="shortname_html" type="string" />
+                        <attribute name="shortname_latex" type="string" />
+                        <attribute name="unit" use="required" type="string" />
+                        <attribute name="unit_html" type="string" />
+                        <attribute name="unit_latex" type="string" />
+                </complexType>
+        </element>
+
+        <element name="force">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:expression" />
+                        </sequence>
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!--  Weak forms : volume and surface description-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="volume">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:quantity" />
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:function" />
+                                <choice maxOccurs="unbounded">
+                                        <element ref="module:matrix_form" />
+                                        <element ref="module:vector_form" />
+                                </choice>
+                                <element ref="module:weakforms_volume" />
+                        </sequence>
+                </complexType>
+        </element>
+        
+
+        <element name="surface">
+                <complexType>
+                        <sequence>
+                                <element maxOccurs="unbounded" ref="module:quantity" />
+                                <choice maxOccurs="unbounded">
+                                        <element ref="module:matrix_form" />
+                                        <element ref="module:vector_form" />
+                                        <element ref="module:essential_form" />
+                                </choice>
+                                <element minOccurs="1" maxOccurs="1" ref="module:weakforms_surface" />
+                        </sequence>
+                </complexType>
+        </element>
+
+
+        <element name="boundary">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:quantity" />
+                                <element minOccurs="1" maxOccurs="unbounded" ref="module:linearity_option" />
+                        </sequence>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="name" use="required" type="string" />
+                        <attribute name="equation" use="required" type="string" />
+                </complexType>
+        </element>
+
+
+        <element name="weakforms_surface">
+                <complexType>
+                        <choice>
+                                <element ref="module:group" />
+                                <sequence>
+                                        <element minOccurs="1" maxOccurs="unbounded" ref="module:weakform_surface" />
+                                </sequence>
+                        </choice>                        
+                </complexType>
+        </element>
+
+
+        <element name="weakform_surface">
+                <complexType>
+                        <choice>
+                                <element maxOccurs="unbounded" ref="module:boundary" />
+                                <sequence>
+                                        <element maxOccurs="unbounded" ref="module:quantity" />
+                                        <element minOccurs="0" maxOccurs="unbounded" ref="module:function_use" />
+                                        <choice maxOccurs="unbounded">
+                                                <element ref="module:matrix_form" />
+                                                <element ref="module:vector_form" />
+                                        </choice>
+                                </sequence>
+                        </choice>
+                        <attribute name="analysistype" use="required" type="string" />
+                        <attribute name="default" type="string" />
+                </complexType>
+        </element>
+
+        <element name="weakforms_volume">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="1" maxOccurs="unbounded" ref="module:weakform_volume" />
+                        </sequence>
+                </complexType>
+        </element>
+
+        <element name="weakform_volume">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:quantity" />
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:function_use" />
+                                <element minOccurs="1" maxOccurs="unbounded" ref="module:linearity_option" />
+                        </sequence>
+                        <attribute name="analysistype" use="required" type="string" />
+                        <attribute name="couplingtype" type="string" />
+                        <attribute name="sourceanalysis" type="string" />
+                        <attribute name="equation" use="required" type="string" />
+                </complexType>
+        </element>
+
+        <element name="linearity_option">
+                <complexType>
+                        <sequence>
+                                <choice minOccurs="0" maxOccurs="unbounded">
+                                       <element ref="module:matrix_form" />
+                                       <element ref="module:vector_form" />
+                                       <element ref="module:matrix_transient_form" />                                       
+                                       <element ref="module:essential_form" />
+                                </choice>
+                        </sequence>
+                        <attribute name="type" use="required" type="string" />
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!--  Weak forms : forms-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="matrix_form">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="i" type="integer" />
+                        <attribute name="j" type="integer" />
+                        <attribute name="planar" type="string" />
+                        <attribute name="axi"  type="string" />
+                        <attribute name="symmetric" type="integer" />
+                        <attribute name="symmetric_planar" type="integer" />
+                        <attribute name="symmetric_axi" type="integer" />
+                        <attribute name="condition" type="string" />
+                </complexType>
+        </element>
+
+        <element name="vector_form">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="i" type="integer" />
+                        <attribute name="j" type="integer" />
+                        <attribute name="planar"  type="string" />
+                        <attribute name="axi"  type="string" />
+                        <attribute name="variant"  type="string" />
+                        <attribute name="coefficient"  type="string" />
+                        <attribute name="condition" type="string" />                        
+                </complexType>
+        </element>
+
+        <element name="matrix_transient_form">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="i" type="integer" />
+                        <attribute name="j" type="integer" />
+                        <attribute name="planar" type="string" />
+                        <attribute name="axi"  type="string" />
+                        <attribute name="symmetric" type="integer" />
+                        <attribute name="symmetric_planar" type="integer" />
+                        <attribute name="symmetric_axi" type="integer" />
+                        <attribute name="condition" type="string" />
+                </complexType>
+        </element>
+        
+        <element name="essential_form">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="i" type="integer" />
+                        <attribute name="planar"  type="string" />
+                        <attribute name="axi"  type="string" />
+                        <attribute name="condition" type="string" />                        
+                </complexType>
+        </element>
+
+<!--_________________________________________________________________________________________________-->
+
+<!-- Weak forms : quantity and external function used for nonlinearities, as formulas depending on quantities, etc-->
+<!--_________________________________________________________________________________________________-->
+
+        <element name="quantity">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="condition" type="string" />
+                        <attribute name="default" type="decimal" />
+                        <attribute name="nonlinearity_planar" type="string" />
+                        <attribute name="nonlinearity_axi" type="string" />
+                        <attribute name="dependence" type="string" />
+                        <attribute name="name" type="string" />
+                        <attribute name="shortname" type="string" />
+                        <attribute name="shortname_html" type="string" />
+                        <attribute name="shortname_latex" type="string" />
+                        <attribute name="shortname_dependence" type="string" />
+                        <attribute name="shortname_dependence_html" type="string" />
+                        <attribute name="unit" type="string" />
+                        <attribute name="unit_html" type="string" />
+                        <attribute name="unit_latex" type="string" />
+                        <attribute name="is_source" type="int" />
+                        <attribute name="is_bool" type="int" />
+                        <attribute name="only_if" type="string" />
+                        <attribute name="only_if_not" type="string" />
+                </complexType>
+        </element>
+
+        <element name="function">
+                <complexType>
+                        <sequence>
+                                <element minOccurs="0" maxOccurs="unbounded" ref="module:quantity" />
+                                <element maxOccurs="unbounded" ref="module:function_variant" />
+                        </sequence>
+                        <attribute name="id" use="required" type="string" />
+                        <attribute name="shortname" use="required" type="string" />
+                        <attribute name="type" use="required" type="string" />
+<!--                        <attribute name="switch_combo" type="string" />-->
+<!--                        <attribute name="bound_low" type="string" />-->
+<!--                        <attribute name="bound_hi" type="string" />-->
+<!--                        <attribute name="extrapolate_low" type="string" />-->
+<!--                        <attribute name="extrapolate_hi" type="string" />-->
+<!--                        <attribute name="interpolation_count" type="string" />-->
+                        <attribute name="postprocessor_analysis" type="string" />
+                        <attribute name="postprocessor_linearity" type="string" />
+
+                </complexType>
+        </element>
+
+        <element name="function_variant">
+                <complexType>
+                        <attribute name="switch_value" type="string" />
+                        <attribute name="expr" use="required" type="string" />
+                        <attribute name="expr_axi" type="string" />
+                </complexType>
+        </element>
+
+        <element name="function_use">
+                <complexType>
+                        <attribute name="id" use="required" type="string" />
+                </complexType>
+        </element>
+
+
+<!--_________________________________________________________________________________________________-->
+
+<!-- error calculator-->
+<!--_________________________________________________________________________________________________-->
+
+    <element name="error_calculator">
+        <complexType>
+            <sequence>
+                <element maxOccurs="unbounded" ref="module:calculator" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="calculator">
+        <complexType>
+            <sequence>
+                <element maxOccurs="unbounded" ref="module:expression" />
+            </sequence>
+            <attribute name="id" use="required" type="string" />
+            <attribute name="name" use="required" type="string" />
+        </complexType>
+    </element>
+
+    <element name="expression">
+        <complexType>
+            <attribute name="analysistype" use="required" type="string" />
+            <attribute name="axi" type="string" />
+            <attribute name="axi_r" type="string" />
+            <attribute name="axi_z" type="string" />
+            <attribute name="axi_phi" type="string" />
+            <attribute name="planar" type="string" />
+            <attribute name="planar_x" type="string" />
+            <attribute name="planar_y" type="string" />
+            <attribute name="planar_z" type="string" />
+        </complexType>
+    </element>       
+</schema>
