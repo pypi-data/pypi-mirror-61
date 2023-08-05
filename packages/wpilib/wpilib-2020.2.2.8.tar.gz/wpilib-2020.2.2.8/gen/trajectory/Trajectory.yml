@@ -1,0 +1,36 @@
+---
+
+functions:
+  to_json:
+    ignore: true
+  from_json:
+    ignore: true
+classes:
+  Trajectory:
+    shared_ptr: true
+    methods:
+      Trajectory:
+        overloads:
+          "":
+          std::vector<State>&:
+      TotalTime:
+      States:
+      Sample:
+      TransformBy:
+      RelativeTo:
+      InitialPose:
+  Trajectory::State:
+    shared_ptr: true
+    attributes:
+      t:
+      velocity:
+      acceleration:
+      pose:
+    methods:
+      operator==:
+      operator!=:
+      Interpolate:
+
+inline_code: |
+  cls_State
+    .def_readwrite("curvature", &frc::Trajectory::State::curvature);
