@@ -1,0 +1,15 @@
+[run]
+source =
+    suite_py
+    tests
+branch = True
+omit =
+    suite_py/cli.py
+
+[report]
+exclude_lines =
+    no cov
+    no qa
+    noqa
+    pragma: no cover
+    if __name__ == .__main__.:
