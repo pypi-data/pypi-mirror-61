@@ -1,0 +1,12 @@
+{% load i18n %}
+<form class="form-inline">
+    <input class="form-control form-control-sm" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'поиск' %}" aria-label="{% trans 'поиск' %}">
+{% for name, value in request.GET.items %}
+{% if name != 'q' %}
+    <input type="hidden" name="{{ name }}" value="{{ value|iriencode }}">
+{% endif %}
+{% endfor %}
+    <button class="btn btn-sm btn-outline-success ml-1" type="submit">
+        <span class="fa fa-search"></span>
+    </button>
+</form>
