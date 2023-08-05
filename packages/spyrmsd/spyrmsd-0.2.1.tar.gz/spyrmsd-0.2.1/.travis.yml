@@ -1,0 +1,80 @@
+language: python
+
+matrix:
+  include:
+    - os: osx
+      language: generic
+      env: 
+        - PYTHON_VER=3.6
+        - CHEM=obabel
+    - os: osx
+      language: generic
+      env: 
+        - PYTHON_VER=3.6
+        - CHEM=rdkit
+    - os: osx
+      language: generic
+      env: 
+        - PYTHON_VER=3.7
+        - CHEM=obabel
+    - os: osx
+      language: generic
+      env: 
+        - PYTHON_VER=3.7
+        - CHEM=rdkit
+
+
+    - os: linux
+      language: generic
+      env: 
+        - PYTHON_VER=3.6
+        - CHEM=obabel
+    - os: linux
+      language: generic
+      env: 
+        - PYTHON_VER=3.6
+        - CHEM=rdkit
+    - os: linux
+      language: generic
+      env: 
+        - PYTHON_VER=3.7
+        - CHEM=obabel
+    - os: linux
+      language: generic
+      env: 
+        - PYTHON_VER=3.7
+        - CHEM=rdkit
+
+before_install:
+    # Additional info about the build
+  - uname -a
+  - df -h
+  - ulimit -a
+
+    # Install Python environment
+  - source devtools/travis-ci/before_install.sh
+  - python -V
+
+install:
+    # Create test environment for package
+  - python devtools/scripts/create_conda_env.py -n=test -p=${PYTHON_VER} devtools/conda-envs/spyrmsd-test-${CHEM}.yaml
+    # Activate the test environment
+  - conda activate test
+    # Build and install package
+  - python setup.py develop --no-deps
+
+script:
+    # Run test and get coverage report
+  - pytest -v --cov=spyrmsd tests/
+
+    # Run checks
+  - black .
+  - flake8
+  - mypy
+
+after_success:
+    # Upload coverage report to codecov
+  - codecov
+
+notifications:
+    email: false
