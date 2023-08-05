@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data documentation compiled by Great Expectations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title></title>
+
+    
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+    <style>
+  
+
+@font-face {
+  font-family: HKGroteskPro;
+  src: url("../../../../static/fonts/HKGrotesk/HKGrotesk-Regular.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: HKGrotesk-Light;
+  src: url("../../../../static/fonts/HKGrotesk/HKGrotesk-Light.otf");
+  font-weight: 300;
+}
+
+body {
+  position: relative;
+}
+
+.container {
+  padding-top: 50px;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 90px;
+  z-index: 1;
+}
+
+.ge-section {
+  clear: both;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.popover {
+  max-width: 100%;
+}
+
+.cooltip {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cooltip .top {
+  min-width: 200px;
+  top: -6px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  padding: 10px 20px;
+  color: #FFFFFF;
+  background-color: #222222;
+  font-weight: normal;
+  font-size: 13px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 99999999 !important;
+  box-sizing: border-box;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.cooltip:hover .top {
+  display: block;
+  z-index: 99999999 !important;
+}
+
+.cooltip .top i {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -12px;
+  width: 24px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.cooltip .top i::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: #222222;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+.show-scrollbars {
+  overflow: auto;
+}
+
+td .show-scrollbars {
+  max-height: 80vh;
+}
+
+/*.show-scrollbars ul {*/
+/*  padding-bottom: 20px*/
+/*}*/
+
+.show-scrollbars::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.show-scrollbars::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.show-scrollbars::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.show-scrollbars::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, .5);
+}
+
+#ge-cta-footer {
+  opacity: 0.9;
+  border-left-width: 4px
+}
+
+.carousel-caption {
+    position: relative;
+    left: 0;
+    top: 0;
+}</style>
+    <style></style>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.3.5/build/vega.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@3.2.1/build/vega-lite.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0/build/vega-embed.js"></script>
+<script src="https://kit.fontawesome.com/8217dffd95.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+  
+
+
+  
+
+<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon"/>
+  </head>
+
+  <body
+        data-spy="scroll"
+        data-target="#navigation"
+        data-offset="50"
+    >
+    
+  
+
+
+  
+<style type="text/css">
+div.walkthrough-card img {
+   padding: 0 40px;
+ }
+</style>
+
+<div class="modal fade ge-walkthrough-modal" tabindex="-1" role="dialog" aria-labelledby="ge-walkthrough-modal-title"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ge-walkthrough-modal-title">Great Expectations Walkthrough</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card walkthrough-card bg-dark text-white walkthrough-1">
+        <div class="card-header">How to work with Great Expectations</div>
+        <img src="../static/images/iterative-dev-loop.png" class="card-img-top" alt="...">
+
+            <div class="card-body">
+
+                  <p>Welcome! The best way to work with Great Expectations is in this iterative dev loop.</p>
+            </div>
+            <div class="card-footer walkthrough-links">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    &nbsp;
+                  </div>
+                  <div class="col-6 text-center text-secondary">
+                    1 of 7
+                    <div class="progress" style="height: 2px">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 16%" aria-valuenow="16" aria-valuemin="0" aria-valuemax="16"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <a href="#" class="next-link btn btn-primary float-right" onclick="go_to_slide(2)">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+                <div class="card walkthrough-card bg-dark text-white walkthrough-2">
+                <div class="card-header">What are Expectations?</div>
+                <img src="../static/images/values_not_null_html_en.jpg" class="card-img-top" alt="...">
+                <!--<img src="../static/images/values_not_null_html_en.jpg" }}" class="card-img-top" alt="...">-->
+                <div class="card-body">
+
+                  <p>An expectation is a falsifiable, verifiable statement about data.</p>
+                  <p>Expectations provide a language to talk about data characteristics and data quality - humans to humans, humans to machines and machines to machines.</p>
+                  <p>Expectations are both data tests and docs!</p>
+                </div>
+                <div class="card-footer walkthrough-links">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-secondary float-left" onclick="go_to_slide(1)">Back</a>
+                      </div>
+                      <div class="col-6 text-center text-secondary">
+                        2 of 7
+                        <div class="progress" style="height: 2px">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 32%" aria-valuenow="32" aria-valuemin="0" aria-valuemax="32"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-primary float-right" onclick="go_to_slide(3)">Next</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="card walkthrough-card bg-dark text-white walkthrough-3">
+                <div class="card-header">An expectation can be presented in a machine-friendly JSON</div>
+                <img src="../static/images/values_not_null_json.jpg" class="card-img-top" alt="...">
+                <!--<img src="../static/images/values_not_null_json.jpg" }}" class="card-img-top" alt="...">-->
+                <div class="card-body">
+
+                  <p>A machine can test if a dataset conforms to the expectation.</p>
+                </div>
+                <div class="card-footer walkthrough-links">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-secondary float-left" onclick="go_to_slide(2)">Back</a>
+                      </div>
+                      <div class="col-6 text-center text-secondary">
+                        3 of 7
+                        <div class="progress" style="height: 2px">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="50"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-primary float-right" onclick="go_to_slide(4)">Next</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="card walkthrough-card bg-dark text-white walkthrough-4">
+                <div class="card-header">Validation produces a validation result object</div>
+                <img src="../static/images/values_not_null_validation_result_json.jpg" class="card-img-top" alt="...">
+                <!--<img src="../static/images/values_not_null_validation_result_json.jpg" }}" class="card-img-top" alt="...">-->
+                <div class="card-body">
+
+                  <p>Here's an example JSON (not from your data). This object has rich context about the test failure.</p>
+                </div>
+                <div class="card-footer walkthrough-links">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-secondary float-left" onclick="go_to_slide(3)">Back</a>
+                      </div>
+                      <div class="col-6 text-center text-secondary">
+                        4 of 7
+                        <div class="progress" style="height: 2px">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="68"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-primary float-right" onclick="go_to_slide(5)">Next</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="card walkthrough-card bg-dark text-white walkthrough-5">
+                <div class="card-header">Validation results save you time.</div>
+                <img src="../static/images/validation_failed_unexpected_values.gif" class="card-img-top" alt="...">
+                <!--<img src="../static/images/validation_failed_unexpected_values.gif" }}" class="card-img-top" alt="...">-->
+                <div class="card-body">
+
+                  <p>This is an example of what a single failed Expectation looks like in Data Docs. Note the failure includes unexpected values from your data. This helps you debug pipeines faster.</p>
+                </div>
+                <div class="card-footer walkthrough-links">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-secondary float-left" onclick="go_to_slide(4)">Back</a>
+                      </div>
+                      <div class="col-6 text-center text-secondary">
+                        5 of 7
+                        <div class="progress" style="height: 2px">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="84"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-primary float-right" onclick="go_to_slide(6)">Next</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="card walkthrough-card bg-dark text-white walkthrough-6">
+                <div class="card-header">Great Expectations provides a large library of expectations.</div>
+                <img src="../static/images/glossary_scroller.gif" class="card-img-top" alt="...">
+                <div class="card-body">
+
+                  <p><a href="http://docs.greatexpectations.io/en/latest/reference/expectation_glossary.html">Built in expectations</a> allow you to express how you understand your data, and you can add custom
+                  expectations if you need a new one.
+                  </p>
+                </div>
+                <div class="card-footer walkthrough-links">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-secondary float-left" onclick="go_to_slide(5)">Back</a>
+                      </div>
+                      <div class="col-6 text-center text-secondary">
+                        6 of 7
+                        <div class="progress" style="height: 2px">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 84%" aria-valuenow="84" aria-valuemin="0" aria-valuemax="84"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-primary float-right" onclick="go_to_slide(7)">Next</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="card walkthrough-card bg-dark text-white walkthrough-7">
+                <div class="card-header">Now explore and edit the sample suite!</div>
+                <div class="card-body">
+
+                  <p>This sample suite shows you a few examples of expectations.</p>
+                  <p>Note this is not a production suite and was autogenerated using only a small snippet of your data.</p>
+                  <p>When you are ready, press the <strong>How to Edit</strong> button to kick off the iterative dev loop.</p>
+                </div>
+                <div class="card-footer walkthrough-links">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <a href="#" class="next-link btn btn-secondary float-left" onclick="go_to_slide(6)">Back</a>
+                      </div>
+                      <div class="col-6 text-center text-secondary">
+                        7 of 7
+                        <div class="progress" style="height: 2px">
+                          <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-sm">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">Done</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/JavaScript">
+  $(".ge-walkthrough-modal").on('hide.bs.modal', function (e) {
+    try {
+      localStorage.setItem('ge-walkthrough-modal-dismissed', 'true');
+    }
+    catch (e) {
+      console.log(e);
+    }
+    go_to_slide(1);
+  })
+</script>
+
+
+<script type="text/JavaScript">
+  function go_to_slide(slide_number) {
+    hide_cards();
+    $('.walkthrough-' + slide_number).show();
+  }
+  function hide_cards() {
+    $('.walkthrough-card').hide();
+  }
+  hide_cards();
+  go_to_slide(1);
+</script>
+    
+  
+
+
+  
+
+<script type="text/javascript">
+$(function() {
+    $('button.copy-edit-command').click(function() {
+        $('.edit-command').focus();
+        $('.edit-command').select();
+        document.execCommand('copy');
+    });
+});
+</script>
+
+<div class="modal fade ge-expectation-editing-instructions-modal" tabindex="-1" role="dialog" aria-labelledby="ge-expectation-editing-instructions-modal-title"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ge-expectation-editing-instructions-modal-title">How to Edit This Expectation Suite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Expectations are best <strong>edited interactively in Jupyter notebooks</strong>.</p>
+        <p>To automatically generate a notebook that does this run:</p>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control edit-command" readonly value="great_expectations suite edit default">
+            <div class="input-group-append">
+                <button class="btn btn-primary copy-edit-command" type="button"><i class="far fa-clipboard"></i> Copy</button>
+            </div>
+        </div>
+      <p>Once you have made your changes and <strong>run the entire notebook</strong> you can kill the notebook by pressing <strong>Ctr-C</strong> in your terminal.</p>
+      <p>Because these notebooks are generated from an Expectation Suite, these notebooks are <strong>entirely disposable</strong>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+    
+  
+
+
+  
+
+<nav class="navbar bg-light navbar-expand-md sticky-top border-bottom" style="height: 70px">
+  <div class="mr-auto">
+    <nav class="d-flex align-items-center">
+      <div class="float-left navbar-brand m-0 h-100">
+        <a href="../index.html">
+          <img
+            class="NO-CACHE"
+            src="https://great-expectations-web-assets.s3.us-east-2.amazonaws.com/logo-long.png"
+            alt="Great Expectations"
+            style="width: auto; height: 50px"
+          />
+        </a>
+      </div>
+      
+        <ol class="ge-breadcrumbs breadcrumb d-inline-flex bg-light ml-2 mr-0 mt-0 mb-0 pt-0 pb-0">
+            <li class="ge-breadcrumbs-item breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="ge-breadcrumbs-item breadcrumb-item active" aria-current="page">default</li>
+        </ol>
+      
+    </nav>
+  </div>
+</nav>
+
+<script>
+  var d = new Date()
+  var els = document.getElementsByClassName('NO-CACHE');
+  for (var i = 0; i < els.length; i++)
+  {
+      els[i].attributes['src'].value += "?d=" + d.toISOString();
+  }
+</script>
+    
+
+    <div class="container-fluid pt-4 pb-4 pl-5 pr-5">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 d-none d-md-block">
+  <div class="mb-4">
+  
+    <div class="col-12 p-0">
+      <h4>Expectation Suite</h4>
+      <p class="lead">A collection of Expectations defined for batches of data.</p>
+    </div>
+  
+</div>
+  <div class="sticky">
+    <script>
+    function showAllValidations() {
+    $(".hide-succeeded-validation-target-child").parent().fadeIn();
+    $(".hide-succeeded-validation-target").fadeIn();
+    $(".hide-succeeded-validations-column-section-target-child").parent().parent().each((idx, el) => {
+      $(el).fadeIn();
+      const elId = el.id;
+      $(`a[href$=${elId}]`).fadeIn();
+    })
+  }
+
+    function hideSucceededValidations() {
+    $(".hide-succeeded-validation-target-child").parent().fadeOut();
+    $(".hide-succeeded-validation-target").fadeOut();
+    $(".hide-succeeded-validations-column-section-target-child").parent().parent().each((idx, el) => {
+      $(el).fadeOut();
+      const elId = el.id;
+      $(`a[href$=${elId}]`).fadeOut();
+    })
+  }
+</script>
+
+<div class="card bg-light mb-3">
+  <div class="card-header p-2">
+    <strong>Actions</strong>
+  </div>
+  <div class="card-body p-3">
+    
+
+    
+      <div class="mb-2">
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".ge-expectation-editing-instructions-modal">
+            <i class="fas fa-edit"></i> How to Edit This Suite
+          </button>
+        </div>
+      </div>
+    
+
+    <div class="mb-2">
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target=".ge-walkthrough-modal">
+          Show Walkthrough
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+      <script>
+  $(window).on('activate.bs.scrollspy', function () {
+    document.querySelector(".nav-link.active").scrollIntoViewIfNeeded();
+  });
+</script>
+
+<div class="card bg-light" style="max-height: 75vh">
+  <div class="card-header p-2">
+    <strong>Table of Contents</strong>
+  </div>
+  <div class="card-body p-0" style="overflow: auto; height: 100%">
+    <nav id="navigation" class="rounded navbar navbar-light bg-light ge-navigation-sidebar-container p-1">
+      <ul class="nav nav-pills flex-column ge-navigation-sidebar-content col-12 p-0">
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link" href="#section-1"
+               style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                <strong>Overview</strong>
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-2"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                Age
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-3"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                Name
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-4"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                PClass
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-5"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                Sex
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-6"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                SexCode
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-7"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                Survived
+              </a>
+            </li>
+          
+        
+          
+            <li class="nav-item">
+              <a class="nav-link ge-navigation-sidebar-link ml-1" href="#section-8"
+                 style="white-space: normal; word-break: break-all;overflow-wrap: normal;">
+                Unnamed: 0
+              </a>
+            </li>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</div>
+    
+  </div>
+</div>
+        <div class="col-md-10 col-lg-10 col-xs-12 pl-4 pr-3">
+        
+          <div id="section-1" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-1-content-block-1" class="col-12" >
+
+    <div id="section-1-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Overview
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-1-content-block-2" class="col-12 table-responsive mt-1" >
+
+    <div id="section-1-content-block-2-header" >
+        
+          
+            <div>
+              
+                <h6 class="m-0" >
+                    Info
+                </h6>
+            
+            </div>
+          
+        </div>
+
+
+<table id="section-1-content-block-2-body" class="table table-sm" >
+    
+
+    <tr>
+        <td id="section-1-content-block-2-cell-1-1" ><div class="show-scrollbars"><span>Expectation Suite Name</span></div></td><td id="section-1-content-block-2-cell-1-2" ><div class="show-scrollbars"><span>default</span></div></td></tr><tr>
+        <td id="section-1-content-block-2-cell-2-1" ><div class="show-scrollbars"><span>Great Expectations Version</span></div></td><td id="section-1-content-block-2-cell-2-2" ><div class="show-scrollbars"><span>0.7.0-beta</span></div></td></tr></table>
+
+</div>
+        
+
+<div id="section-1-content-block-3" class="col-12" >
+
+    <div id="section-1-content-block-3-header" >
+        
+          
+            <div>
+              
+                <h6 class="m-0" >
+                    Table-Level Expectations
+                </h6>
+            
+            </div>
+          
+        </div>
+
+
+<ul id="section-1-content-block-3-body" >
+    
+            
+        
+        <li >
+                <span >
+                    Must have more than <span class="badge badge-secondary" >0</span> rows.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    Must have a list of columns in a specific order, but that order is not specified.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+
+<div id="section-1-content-block-4" class="col-12 table-responsive mt-1" >
+
+    
+
+<div id="section-1-content-block-4-body" class="table table-sm" >
+  <div id="section-1-content-block-4-header" >
+        
+          
+            <div>
+              
+                <h6 class="m-0" >
+                    Notes
+                </h6>
+            
+            </div>
+          
+        </div>
+
+  
+        <p ><span>This Expectation suite currently contains 43 total Expectations across 7 columns.</span></p>
+      
+    </div>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-2" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-2-content-block-1" class="col-12" >
+
+    <div id="section-2-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Age
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-2-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-2-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >DOUBLE_PRECISION</span> <span class="badge badge-secondary" >DoubleType</span> <span class="badge badge-secondary" >FLOAT</span> <span class="badge badge-secondary" >FloatType</span> <span class="badge badge-secondary" >NUMERIC</span> <span class="badge badge-secondary" >float</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    minimum value may have any numerical value.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    maximum value may have any numerical value.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    mean may have any numerical value.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    median may have any numerical value.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    quantiles must be within the following value ranges.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+
+<table id="section-2-content-block-2-body" class="table table-sm table-unbordered col-4 mt-2" >
+    
+        <tr>
+            
+                <th><span>Quantile</span></th>
+            
+                <th><span>Min Value</span></th>
+            
+                <th><span>Max Value</span></th>
+            
+        </tr>
+    
+
+    <tr>
+        <td id="section-2-content-block-2-cell-1-1" ><div class="show-scrollbars"><span>0.05</span></div></td><td id="section-2-content-block-2-cell-1-2" ><div class="show-scrollbars"><span>Any</span></div></td><td id="section-2-content-block-2-cell-1-3" ><div class="show-scrollbars"><span>Any</span></div></td></tr><tr>
+        <td id="section-2-content-block-2-cell-2-1" ><div class="show-scrollbars"><span>Q1</span></div></td><td id="section-2-content-block-2-cell-2-2" ><div class="show-scrollbars"><span>Any</span></div></td><td id="section-2-content-block-2-cell-2-3" ><div class="show-scrollbars"><span>Any</span></div></td></tr><tr>
+        <td id="section-2-content-block-2-cell-3-1" ><div class="show-scrollbars"><span>Median</span></div></td><td id="section-2-content-block-2-cell-3-2" ><div class="show-scrollbars"><span>Any</span></div></td><td id="section-2-content-block-2-cell-3-3" ><div class="show-scrollbars"><span>Any</span></div></td></tr><tr>
+        <td id="section-2-content-block-2-cell-4-1" ><div class="show-scrollbars"><span>Q3</span></div></td><td id="section-2-content-block-2-cell-4-2" ><div class="show-scrollbars"><span>Any</span></div></td><td id="section-2-content-block-2-cell-4-3" ><div class="show-scrollbars"><span>Any</span></div></td></tr><tr>
+        <td id="section-2-content-block-2-cell-5-1" ><div class="show-scrollbars"><span>0.95</span></div></td><td id="section-2-content-block-2-cell-5-2" ><div class="show-scrollbars"><span>Any</span></div></td><td id="section-2-content-block-2-cell-5-3" ><div class="show-scrollbars"><span>Any</span></div></td></tr></table></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    Kullback-Leibler (KL) divergence with respect to the following distribution must be lower than 0.1.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" ><div class="show-scrollbars">
+  <div id="section-2-content-block-2-graph" ></div>
+</div>
+<script>
+    // Assign the specification to a local variable vlSpec.
+    vlSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json",
+  "autosize": "fit",
+  "config": {
+    "mark": {
+      "tooltip": null
+    },
+    "view": {
+      "height": 300,
+      "width": 400
+    }
+  },
+  "data": {
+    "name": "data-1cb20570b53cc3e67cb4883fd45e64cb"
+  },
+  "datasets": {
+    "data-1cb20570b53cc3e67cb4883fd45e64cb": [
+      {
+        "bin_max": 5,
+        "bin_min": 0,
+        "fraction": 0.2
+      },
+      {
+        "bin_max": 10,
+        "bin_min": 5,
+        "fraction": 0.3
+      },
+      {
+        "bin_max": 30,
+        "bin_min": 10,
+        "fraction": 0.1
+      },
+      {
+        "bin_max": 50,
+        "bin_min": 30,
+        "fraction": 0.4
+      }
+    ]
+  },
+  "encoding": {
+    "tooltip": [
+      {
+        "field": "bin_min",
+        "type": "quantitative"
+      },
+      {
+        "field": "bin_max",
+        "type": "quantitative"
+      },
+      {
+        "field": "fraction",
+        "type": "quantitative"
+      }
+    ],
+    "x": {
+      "field": "bin_min",
+      "type": "ordinal"
+    },
+    "x2": {
+      "field": "bin_max"
+    },
+    "y": {
+      "field": "fraction",
+      "type": "quantitative"
+    }
+  },
+  "height": 400,
+  "mark": "bar",
+  "width": 250
+};
+    // Embed the visualization in the container with id `vis`
+    vegaEmbed('#section-2-content-block-2-graph', vlSpec, {
+        actions: false
+    }).then(result=>console.log(result)).catch(console.warn);
+</script></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-3" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-3-content-block-1" class="col-12" >
+
+    <div id="section-3-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Name
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-3-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-3-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >CHAR</span> <span class="badge badge-secondary" >StringType</span> <span class="badge badge-secondary" >TEXT</span> <span class="badge badge-secondary" >VARCHAR</span> <span class="badge badge-secondary" >str</span> <span class="badge badge-secondary" >string</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-4" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-4-content-block-1" class="col-12" >
+
+    <div id="section-4-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    PClass
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-4-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-4-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >CHAR</span> <span class="badge badge-secondary" >StringType</span> <span class="badge badge-secondary" >TEXT</span> <span class="badge badge-secondary" >VARCHAR</span> <span class="badge badge-secondary" >str</span> <span class="badge badge-secondary" >string</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not match this regular expression: <span class="badge badge-secondary" >^\s+|\s+$</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    distinct values must belong to a set, but that set is not specified.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-5" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-5-content-block-1" class="col-12" >
+
+    <div id="section-5-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Sex
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-5-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-5-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >CHAR</span> <span class="badge badge-secondary" >StringType</span> <span class="badge badge-secondary" >TEXT</span> <span class="badge badge-secondary" >VARCHAR</span> <span class="badge badge-secondary" >str</span> <span class="badge badge-secondary" >string</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not match this regular expression: <span class="badge badge-secondary" >^\s+|\s+$</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    distinct values must belong to a set, but that set is not specified.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-6" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-6-content-block-1" class="col-12" >
+
+    <div id="section-6-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    SexCode
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-6-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-6-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >BIGINT</span> <span class="badge badge-secondary" >INTEGER</span> <span class="badge badge-secondary" >IntegerType</span> <span class="badge badge-secondary" >LongType</span> <span class="badge badge-secondary" >SMALLINT</span> <span class="badge badge-secondary" >int</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    distinct values must belong to a set, but that set is not specified.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-7" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-7-content-block-1" class="col-12" >
+
+    <div id="section-7-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Survived
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-7-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-7-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >BIGINT</span> <span class="badge badge-secondary" >INTEGER</span> <span class="badge badge-secondary" >IntegerType</span> <span class="badge badge-secondary" >LongType</span> <span class="badge badge-secondary" >SMALLINT</span> <span class="badge badge-secondary" >int</span>.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    distinct values must belong to a set, but that set is not specified.
+                </span>
+            </li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+          <div id="section-8" class="ge-section container-fluid mb-1 pb-1">
+    <div class="row" >
+        
+
+<div id="section-8-content-block-1" class="col-12" >
+
+    <div id="section-8-content-block-1-header" class="alert alert-secondary" >
+        <div>
+          
+                <h5 class="m-0" >
+                    Unnamed: 0
+                </h5>
+            
+        </div>
+      
+    </div>
+
+</div>
+        
+
+<div id="section-8-content-block-2" class="col-12" >
+
+    
+
+<ul id="section-8-content-block-2-body" >
+    
+            
+        
+        <li >
+                <span >
+                    value types must belong to this set: <span class="badge badge-secondary" >BIGINT</span> <span class="badge badge-secondary" >INTEGER</span> <span class="badge badge-secondary" >IntegerType</span> <span class="badge badge-secondary" >LongType</span> <span class="badge badge-secondary" >SMALLINT</span> <span class="badge badge-secondary" >int</span>.
+                </span>
+            
+
+
+  
+    
+    
+  
+    
+  
+
+
+
+
+
+  <span class="m-0">
+    <a data-toggle="collapse" href="#section-8-content-block-2-collapse-body-8e949697-7aba-4acb-b7ad-6ead61f574e8" aria-expanded="false" aria-controls="section-8-content-block-2-collapse-body" >
+      
+                <span >
+                    <i class="fas fa-comment text-info" ></i>
+                </span>
+            
+    </a>
+  </span>
+
+
+<div id="section-8-content-block-2-parent" style="list-style-type:none;" >
+  
+
+  <div id=section-8-content-block-2-collapse-body-8e949697-7aba-4acb-b7ad-6ead61f574e8 class="card card-body p-1 collapse m-2" >
+    
+    
+    
+      
+      
+      
+    
+
+
+<div id="section-8-content-block-2-collapse-item-1-body" class="col-12 mt-2 mb-2" >
+  <div id="section-8-content-block-2-collapse-item-1-header" >
+        
+            <h6 id="section-8-content-block-2-collapse-item-1-subheader" >
+                <span>Notes:</span>
+            </h6>
+          
+        </div>
+
+  
+        <div ><h4>These are expectation notes</h4>
+<ul>
+<li>you can use markdown </li>
+<li>or just strings</li>
+</ul>
+</div>
+      
+    </div>
+    
+  </div>
+</div></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any number of unique values.
+                </span>
+            
+
+
+  
+    
+    
+  
+    
+  
+
+
+
+
+
+  <span class="m-0">
+    <a data-toggle="collapse" href="#section-8-content-block-2-collapse-body-8b20d59a-47c6-409b-abe2-347f9627168f" aria-expanded="false" aria-controls="section-8-content-block-2-collapse-body" >
+      
+                <span >
+                    <i class="fas fa-comment text-info" ></i>
+                </span>
+            
+    </a>
+  </span>
+
+
+<div id="section-8-content-block-2-parent" style="list-style-type:none;" >
+  
+
+  <div id=section-8-content-block-2-collapse-body-8b20d59a-47c6-409b-abe2-347f9627168f class="card card-body p-1 collapse m-2" >
+    
+    
+    
+      
+      
+      
+    
+
+
+<div id="section-8-content-block-2-collapse-item-1-body" class="col-12 mt-2 mb-2" >
+  <div id="section-8-content-block-2-collapse-item-1-header" >
+        
+            <h6 id="section-8-content-block-2-collapse-item-1-subheader" >
+                <span>Notes:</span>
+            </h6>
+          
+        </div>
+
+  
+        <p ><span>This is a</span></p>
+      
+    
+        <p ><span>string list,</span></p>
+      
+    
+        <p ><span>assigned to the 'content' key of a notes dict.</span></p>
+      
+    
+        <p ><span>Cool</span></p>
+      
+    
+        <p ><span>huh?</span></p>
+      
+    </div>
+    
+  </div>
+</div></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    may have any fraction of unique values.
+                </span>
+            
+
+
+  
+    
+    
+  
+    
+  
+
+
+
+
+
+  <span class="m-0">
+    <a data-toggle="collapse" href="#section-8-content-block-2-collapse-body-837a2069-0f90-4c2a-8af3-f2ca0eb5c743" aria-expanded="false" aria-controls="section-8-content-block-2-collapse-body" >
+      
+                <span >
+                    <i class="fas fa-comment text-info" ></i>
+                </span>
+            
+    </a>
+  </span>
+
+
+<div id="section-8-content-block-2-parent" style="list-style-type:none;" >
+  
+
+  <div id=section-8-content-block-2-collapse-body-837a2069-0f90-4c2a-8af3-f2ca0eb5c743 class="card card-body p-1 collapse m-2" >
+    
+    
+    
+      
+      
+      
+    
+
+
+<div id="section-8-content-block-2-collapse-item-1-body" class="col-12 mt-2 mb-2" >
+  <div id="section-8-content-block-2-collapse-item-1-header" >
+        
+            <h6 id="section-8-content-block-2-collapse-item-1-subheader" >
+                <span>Notes:</span>
+            </h6>
+          
+        </div>
+
+  
+        <p ><span>This is just a single string, assigned to the 'content' key of a notes dict.</span></p>
+      
+    </div>
+    
+  </div>
+</div></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must not be null, at least <span class="badge badge-secondary" >50</span> % of the time.
+                </span>
+            
+
+
+  
+    
+    
+  
+    
+  
+
+
+
+
+
+  <span class="m-0">
+    <a data-toggle="collapse" href="#section-8-content-block-2-collapse-body-5b84df52-af7b-4e96-af58-f994e6eaf419" aria-expanded="false" aria-controls="section-8-content-block-2-collapse-body" >
+      
+                <span >
+                    <i class="fas fa-comment text-info" ></i>
+                </span>
+            
+    </a>
+  </span>
+
+
+<div id="section-8-content-block-2-parent" style="list-style-type:none;" >
+  
+
+  <div id=section-8-content-block-2-collapse-body-5b84df52-af7b-4e96-af58-f994e6eaf419 class="card card-body p-1 collapse m-2" >
+    
+    
+    
+      
+      
+      
+    
+
+
+<div id="section-8-content-block-2-collapse-item-1-body" class="col-12 mt-2 mb-2" >
+  <div id="section-8-content-block-2-collapse-item-1-header" >
+        
+            <h6 id="section-8-content-block-2-collapse-item-1-subheader" >
+                <span>Notes:</span>
+            </h6>
+          
+        </div>
+
+  
+        <p ><span>This is a list</span></p>
+      
+    
+        <p ><span>of strings</span></p>
+      
+    
+        <p ><span>assigned to the notes</span></p>
+      
+    
+        <p ><span>key.</span></p>
+      
+    </div>
+    
+  </div>
+</div></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+            
+        
+        <li >
+                <span >
+                    values must be unique.
+                </span>
+            
+
+
+  
+    
+    
+  
+    
+  
+
+
+
+
+
+  <span class="m-0">
+    <a data-toggle="collapse" href="#section-8-content-block-2-collapse-body-9b4e12d7-ad41-4a9d-9b13-6733912d1f3c" aria-expanded="false" aria-controls="section-8-content-block-2-collapse-body" >
+      
+                <span >
+                    <i class="fas fa-comment text-info" ></i>
+                </span>
+            
+    </a>
+  </span>
+
+
+<div id="section-8-content-block-2-parent" style="list-style-type:none;" >
+  
+
+  <div id=section-8-content-block-2-collapse-body-9b4e12d7-ad41-4a9d-9b13-6733912d1f3c class="card card-body p-1 collapse m-2" >
+    
+    
+    
+      
+      
+      
+    
+
+
+<div id="section-8-content-block-2-collapse-item-1-body" class="col-12 mt-2 mb-2" >
+  <div id="section-8-content-block-2-collapse-item-1-header" >
+        
+            <h6 id="section-8-content-block-2-collapse-item-1-subheader" >
+                <span>Notes:</span>
+            </h6>
+          
+        </div>
+
+  
+        <p ><span>This is a single string assigned to the 'notes' key.</span></p>
+      
+    </div>
+    
+  </div>
+</div></li>
+    
+            
+        
+        <li style="list-style-type:none;" >
+                <hr class="mt-1 mb-1" >
+                    
+                </hr>
+            </li>
+    
+</ul>
+
+</div>
+        
+    </div>
+</div>
+        
+        </div>
+        <div class="d-block d-sm-none col-12">
+          <div class="mb-4">
+  
+    <div class="col-12 p-0">
+      <h4>Expectation Suite</h4>
+      <p class="lead">A collection of Expectations defined for batches of data.</p>
+    </div>
+  
+</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
