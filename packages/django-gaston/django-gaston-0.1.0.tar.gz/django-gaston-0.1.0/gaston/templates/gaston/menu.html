@@ -1,0 +1,11 @@
+{% load gaston_tags %}
+
+<ul>
+{% for item in menu %}
+    <li class="{% get_all_css_classes item %}">
+        <a href="{{ item.url }}">
+            {{ item.label }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
