@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "boardgameAI"
+version = "0.1.0"
+description = "an API for playing turn by turn games using IA"
+authors = ["Aurelien Castel <dummy@g.com>"]
+
+packages = [
+    {include = "projet"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+matplotlib = "^3.1.3"
+
+[tool.poetry.dev-dependencies]
+numpy = "^1.18.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
