@@ -1,0 +1,43 @@
+
+[tool.poetry]
+name = "blynclight"
+version = "0.5.0"
+description = "Python language bindings for Embrava BlyncLight devices."
+authors = ["Erik O'Shaughnessy <erik.oshaughnessy@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.rst"
+repository = "https://github.com/JnyJny/blynclight.git"
+classifiers = [
+    	    "Development Status :: 4 - Beta",
+	    "Environment :: Console",
+	    "Intended Audience :: Developers",
+	    "License :: OSI Approved :: Apache Software License",
+	    "Programming Language :: Python :: 3.6",
+	    "Programming Language :: Python :: 3.7",
+	    "Topic :: Artistic Software",
+	    "Topic :: Multimedia :: Sound/Audio",
+	    "Topic :: Utilities",
+	    "Topic :: System :: Hardware",
+]
+
+[tool.poetry.scripts]
+
+rainbow = "blynclight.__main__:rainbow_cli"
+throbber = "blynclight.__main__:throbber_cli"
+fli = "blynclight.__main__:fli_cli"
+blync = "blynclight.__main__:blync_cli"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "^7.0"
+requests = "^2.21"
+typer = "^0.0.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.4"
+pre-commit = "^1.15"
+black = "^18.3-alpha.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
