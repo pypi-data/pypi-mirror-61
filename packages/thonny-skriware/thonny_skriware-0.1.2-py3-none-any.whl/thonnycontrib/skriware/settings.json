@@ -1,0 +1,68 @@
+{
+  "firmware_path": "micropython-skribot/firmware.bin",
+  "scripts": [
+    "boot.py",
+    "scratchpad.py",
+    "example_functions.py",
+    "example_avoid_obstacles.py",
+    "example_line_follower.py"
+  ],
+  "commands": [
+    {
+      "name": "Debug (ipdb)",
+      "handler": "debug_handler",
+      "icon": "icons/debug.png",
+      "menubar": true,
+      "toolbar": false
+    },
+    {
+      "name": "Select interpreter and port",
+      "handler": "select_interpreter_handler",
+      "icon": "icons/select.png",
+      "menubar": true,
+      "toolbar": true
+    },
+    {
+      "name": "Upload micropython",
+      "handler": "upload_micropython_handler",
+      "icon": "icons/upload.png",
+      "menubar": true,
+      "toolbar": false 
+    },
+    {
+      "name": "Open boot.py",
+      "handler": "open_boot_py_handler",
+      "icon": "icons/boot.png",
+      "menubar": true,
+      "toolbar": true
+    },
+    {
+      "name": "Open scratchpad",
+      "handler": "open_scratchpad_py_handler",
+      "icon": "icons/scratchpad.png",
+      "menubar": true,
+      "toolbar": true
+    },
+    {
+      "name": "Restart robot",
+      "handler": "restart_robot_handler",
+      "icon": "icons/restart.png",
+      "menubar": false,
+      "toolbar": true 
+    },
+    {
+      "name": "Break",
+      "handler": "break_handler",
+      "icon": "icons/stop.png",
+      "menubar": false,
+      "toolbar": true
+    },
+    {
+      "name": "Help",
+      "handler": "help_handler",
+      "icon": "icons/help.png",
+      "menubar": true,
+      "toolbar": false
+    }
+  ]
+}
