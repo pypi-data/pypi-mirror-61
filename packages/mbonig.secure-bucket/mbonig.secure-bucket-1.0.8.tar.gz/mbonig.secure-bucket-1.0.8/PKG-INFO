@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: mbonig.secure-bucket
+Version: 1.0.8
+Summary: An AWS CDK Construct that enforces encryption on an S3 bucket
+Home-page: https://github.com/mbonig/secure-bucket.git
+Author: Matthew Bonig<matthew.bonig@gmail.com>
+License: MIT
+Project-URL: Source, https://github.com/mbonig/secure-bucket.git
+Description: # A CDK L3 Construct for a Secure Bucket
+        
+        This is an AWS CDK L3 Construct used to demonstrate the development and publishing process with the AWS CDK.
+        
+        Please refer to the blog post [here](https://www.matthewbonig.com/2020/01/11/creating-constructs) for more information.
+        
+        ## Usage
+        
+        Just import and use it.
+        
+        ```python
+        # Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
+        import aws_cdk.core as cdk
+        from secure_bucket import SecureBucket
+        
+        class SandboxCdkStack(cdk.Stack):
+            def __init__(self, scope, id, *, description=None, env=None, stackName=None, tags=None):
+                super().__init__(scope, id, description=description, env=env, stackName=stackName, tags=tags)
+        
+                SecureBucket(self, "myBucket")
+        ```
+        
+        ## Encryption options
+        
+        This is just a wrapper around an S3 Bucket and the [props](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-s3.BucketProps.html) are shared.
+        
+        However, you cannot supply an `UNENCRYPTED` option for the `encryption` property. If you do, or don't set it at all, it will use the `BucketEncryption.KMS_MANAGED` value by default.
+        
+        ## Integration Test
+        
+        If you want to see full usage, you can run
+        
+        ```shell script
+        $ cdk synth
+        ```
+        
+        to produce a basic stack with one SecureBucket resource
+        
+        ## L2 Construct - Inheritance vs Composition
+        
+        This construct is a wrapper around a standard L2 Bucket. However, because it wraps it, you can't just use it in all
+        the same places you could use a standard L2 bucket. You have to pass around the public field `.bucket` from the construct.
+        This was done as it's more representative of the types of constructs I expect people to build (composed of multiple L2s).
+        However, if you were to actually want to use this construct in a production environment you'd
+        probably use the inheritance model instead. Checkout the [feature/inheritance](https://github.com/mbonig/secure-bucket/tree/feature/inheritance) branch for that version.
+        
+        ## License
+        
+        [MIT License](https://opensource.org/licenses/MIT)
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Typing :: Typed
+Classifier: License :: OSI Approved
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
