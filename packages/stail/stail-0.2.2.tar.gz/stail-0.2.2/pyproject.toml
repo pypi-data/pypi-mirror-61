@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "stail"
+version = "0.2.2"
+description = "CLI Tool to run and tail a step function synchronously."
+authors = ["Iman Kamyabi <contact@imankamyabi.com>"]
+
+license = "MIT"
+readme = "README.md"
+homepage = ""
+repository = "https://github.com/imankamyabi/stail"
+keywords = ["step-function", "aws", "cli", "tail", "state-machine"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pyfiglet = "^0.8.post1"
+colorama = "^0.4.3"
+click = "^7.0"
+boto3 = "^1.11.14"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+stail = 'stail:main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
