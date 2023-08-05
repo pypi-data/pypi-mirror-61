@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: dapr-client
+Version: 0.2.0b1
+Summary: Dapr client sdk using gRPC.
+Home-page: https://dapr.io/
+Author: dapr.io
+Author-email: pypidapr@microsoft.com
+License: UNKNOWN
+Description: ## Python client for dapr.
+        
+        ### Example code
+        A client can be created as follows:
+        
+        ```python
+        from dapr import dapr_pb2 as messages
+        from dapr import dapr_pb2_grpc as services
+        import grpc
+        from google.protobuf.any_pb2 import Any
+        
+        channel = grpc.insecure_channel('localhost:50001')
+        client = services.DaprStub(channel)
+        ```
+        
+        You can find a complete example at https://github.com/dapr/python-sdk
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
