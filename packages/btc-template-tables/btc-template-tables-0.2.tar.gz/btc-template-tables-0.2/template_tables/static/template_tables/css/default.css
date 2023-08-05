@@ -1,0 +1,209 @@
+/*!* Template tables styles *!*/
+
+
+/* region Table */
+
+.template-tables {
+    width: 100%;
+    font-family: Rubik, Avenir Next, Helvetica Neue, sans-serif;
+    color: rgba(0,0,0,.54);
+    border-collapse: collapse;
+    white-space: nowrap;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+.template-tables caption {
+    padding: 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.template-tables caption:empty {
+    display: none;
+}
+
+.template-tables thead {
+
+}
+
+.template-tables thead th {
+    font-weight: 700;
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+    vertical-align: bottom;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    height: 48px;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.template-tables thead th a {
+    background: url('../img/sort_icon.svg') center right no-repeat;
+    padding-right: 30px;
+}
+
+.template-tables thead th a.desc {
+    opacity: 0.5;
+}
+
+.template-tables.sticky-header thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: white;
+}
+
+.template-tables tbody {
+
+}
+
+.template-tables tbody td {
+    height: 48px;
+    max-width: 200px;
+    min-height: 54px;
+    line-height: 24px;
+    font-size: 16px;
+    letter-spacing: 0.44px;
+    font-weight: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    vertical-align: middle;
+    border-top: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding: 12px 18px;
+    box-sizing: border-box;
+}
+
+.template-tables tfoot {
+
+}
+
+/* endregion */
+
+/* region Pagination */
+
+.template-tables-pagination {
+    display: flex;
+    flex-direction: row;
+    font-family: Rubik, Avenir Next, Helvetica Neue, sans-serif;
+    color: rgba(0,0,0,.54);
+    font-size: 15px;
+    background-color: #fff;
+    font-weight: 700;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.template-tables-pagination .p-block {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 2px;
+}
+
+.template-tables-pagination .p-block.fit-content {
+    max-width: fit-content;
+}
+
+.template-tables-pagination .p-block.page-range-block {
+    padding-right: 20px;
+    padding-left: 20px;
+    max-width: fit-content;
+}
+
+.template-tables-pagination .p-block.page-number-block {
+    padding-left: 10px;
+    max-width: fit-content;
+}
+
+.template-tables-pagination .p-block.table-main-info-block {
+    padding-left: 15px;
+}
+
+.template-tables-pagination .p-block.page-range-item-block,
+.template-tables-pagination .p-block.page-number-item-block {
+    max-width: fit-content;
+    justify-content: center;
+}
+
+.template-tables-pagination .pagination-range-btn {
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 2px;
+    color: rgba(0,0,0,.54);
+    border-radius: 5px;
+}
+
+.template-tables-pagination .pagination-range-btn:hover,
+.template-tables-pagination .pagination-range-btn.active {
+    background-color: #ccc;
+}
+
+.template-tables-pagination .pagination-page-btn {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.template-tables-pagination .pagination-page-btn:hover {
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+.template-tables-pagination .page-range-description {
+    padding: 0 20px;
+}
+
+/* endregion */
+
+/* region Buttons */
+
+.tt-btn-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* endregion */
+
+/* region Icons */
+
+i.tt-arrow {
+  border: solid rgba(0,0,0,.54);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.tt-arrow.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.tt-arrow.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.tt-arrow.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.tt-arrow.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+/* endregion */
+
+
