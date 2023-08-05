@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "agw"
+version = "0.4.0-beta.1"
+description = "A pyautogui wrapper library for data entry macros."
+authors = ["Mark Gemmill <contact@markgemmill.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pyautogui = "^0.9.41"
+cutie = "^0.2.2"
+pyobjc-core = {version = "^5.1",platform = "darwin"}
+pyobjc-framework-Quartz = {version = "^5.1",platform = "darwin"}
+docopt = "^0.6.2"
+Xlib = "^0.21"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+flake8 = "^3.7"
+black = {version = "^18.3-alpha.0",allow-prereleases = true}
+
+[tool.poetry.scripts]
+agw = "agw.cli:main"
+
+[tool.dover]
+versioned_files = ["pyproject.toml", "src/agw/__init__.py"]
+
+[tool.black]
+verbose = true
+
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
