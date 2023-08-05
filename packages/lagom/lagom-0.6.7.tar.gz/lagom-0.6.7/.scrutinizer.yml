@@ -1,0 +1,16 @@
+build:
+  environment:
+    python:
+      version: 3.7.3
+  nodes:
+    coverage:
+      dependencies:
+        before:
+          - pip install pipenv
+          - pipenv install --dev
+      tests:
+        override:
+          - command: './scripts/coverage.sh'
+            coverage:
+              file: '.coverage'
+              format: 'py-cc'
