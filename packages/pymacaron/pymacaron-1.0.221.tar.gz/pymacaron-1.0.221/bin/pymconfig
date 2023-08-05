@@ -1,0 +1,190 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import logging
+import click
+import subprocess
+import yaml
+from urllib.parse import urlparse
+
+PATH_LIBS = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')
+sys.path.insert(0, PATH_LIBS)
+
+from pymacaron.resources import get_gunicorn_worker_count
+from pymacaron.resources import get_celery_worker_count
+from pymacaron.resources import get_memory_limit
+
+
+def url_to_port_hostname(url):
+    """Take a url and return its port and hostname"""
+    # Urgh. This code is an awful hack, but it works on simple cases
+    o = urlparse(url)
+    port = 80
+    if o.port:
+        port = o.port
+    elif o.scheme:
+        if o.scheme == 'https':
+            port = 443
+    host = o.netloc
+    if ':' in host:
+        host = host.split(':')[0]
+    return port, host
+
+
+@click.command()
+@click.option('--name/--no-name', help="Name of your project", default=False)
+@click.option('--env-jwt-secret/--no-env-jwt-secret', help="Return the name of the environment variable containing the project's JWT secret", default=False)
+@click.option('--env-jwt-audience/--no-env-jwt-audience', help="Return the name of the environment variable containing the project's JWT audience", default=False)
+@click.option('--live-host/--no-live-host', help="Return the hostname of the live server", default=False)
+@click.option('--live-port/--no-live-port', help="Return the TCP port of the live server", default=False)
+@click.option('--staging-host/--no-staging-host', help="Return the hostname of the staging server", default=False)
+@click.option('--staging-port/--no-staging-port', help="Return the TCP port of the staging server", default=False)
+@click.option('--env-secrets/--no-env-secrets', help="Return a list of environment variables to pass to docker/elasticbean", default=False)
+@click.option('--git-root/--no-git-root', help="Print the git repository's root dir", default=False)
+@click.option('--deploy-target/--no-deploy-target', help="Where to deploy containers (aws-beanstalk or gcp-cloud-run)", default=False)
+@click.option('--docker-repo/--no-docker-repo', help="Name of your docker repo on docker.io", default=False)
+@click.option('--docker-bucket/--no-docker-bucket', help="Name of the s3 bucket to upload the docker config to", default=False)
+@click.option('--docker-base/--no-docker-base', help="Name of an alternative docker base image to use", default=False)
+@click.option('--aws-user/--no-aws-user', help="Name of the aws iam user to deploy as", default=False)
+@click.option('--aws-region/--no-aws-region', help="AWS region", default=False)
+@click.option('--aws-keypair/--no-aws-keypair', help="Name of the aws ssh keypair to deploy on ec2 instances", default=False)
+@click.option('--aws-instance-type/--no-aws-instance-type', help="Name of the aws instance type to use", default=False)
+@click.option('--aws-cert-arn/--no-aws-cert-arn', help="ARN of ssl certificate to use for server, if https enabled", default=False)
+@click.option('--include-links/--no-include-links', help="Which symlinks to include in the docker image", default=False)
+@click.option('--aws-hosts-min/--no-aws-hosts-min', help="Minimum size of autoscalling group (default: 1)", default=False)
+@click.option('--aws-hosts-max/--no-aws-hosts-max', help="Maximum size of autoscalling group (default: 4)", default=False)
+@click.option('--with-async/--no-with-async', help="Use asynchronous task support based on celery/rabbitmq", default=False)
+@click.option('--gcp-region/--no-gcp-region', help="Which gcp region to deploy to", default=False)
+@click.option('--gcp-memory/--no-gcp-memory', help="How much memory to assign to each gcp container", default=False)
+@click.option('--gcp-request-concurrency/--no-gcp-request-concurrency', help="How many concurrent requests to accept per container", default=False)
+@click.option('--memory-limit/--no-memory-limit', help="Return the memory in Gigabytes required to run this pymacaron in a container", default=False)
+@click.option('--gunicorn-worker-count/--no-gunicorn-worker-count', help="Return the number of gunicorn workers to run", default=False)
+@click.option('--celery-worker-count/--no-celery-worker-count', help="Return the number of celery workers to run", default=False)
+@click.option('--cpu-count/--no-cpu-count', help="The number of CPUs available on a staging or live node (GKE only)", default=False)
+def main(name, env_jwt_secret, env_jwt_audience, live_host, live_port, staging_host, staging_port, env_secrets, git_root, deploy_target, docker_repo, docker_bucket, docker_base, aws_user, aws_region, aws_keypair, aws_instance_type, aws_cert_arn, include_links, aws_hosts_min, aws_hosts_max, with_async, gcp_region, gcp_memory, gcp_request_concurrency, memory_limit, gunicorn_worker_count, celery_worker_count, cpu_count):
+    """Parse the pym config file (pym-config.yaml) in a shell script friendly
+    way."""
+
+    # What is the repo's root directory?
+    root_dir = subprocess.Popen(["git", "rev-parse", "--show-toplevel"], stdout=subprocess.PIPE).stdout.read()
+    root_dir = root_dir.decode("utf-8").strip()
+
+    if git_root:
+        print(root_dir)
+        sys.exit(0)
+
+    # Load pym-config.yaml
+    path = os.path.join(root_dir, 'pym-config.yaml')
+
+    if not os.path.isfile(path):
+        print("ERROR: cannot find config file %s" % path)
+        sys.exit(1)
+
+    d = None
+    with open(path, 'r') as stream:
+        import pkg_resources
+        v = pkg_resources.get_distribution("PyYAML").version
+        if v > '3.15':
+            d = yaml.load(stream, Loader=yaml.FullLoader)
+        else:
+            d = yaml.load(stream)
+    if name:
+        print(d['name'])
+    elif env_jwt_secret:
+        print(d['env_jwt_secret'])
+    elif env_jwt_audience:
+        print(d['env_jwt_audience'])
+    elif live_host:
+        if 'live_url' in d:
+            print(url_to_port_hostname(d['live_url'])[1])
+        else:
+            print(d['live_host'])
+    elif live_port:
+        if 'live_url' in d:
+            print(url_to_port_hostname(d['live_url'])[0])
+        elif 'aws_cert_arn' in d:
+            print(443)
+        else:
+            print(80)
+    elif staging_host:
+        if 'staging_url' in d:
+            print(url_to_port_hostname(d['staging_url'])[1])
+        else:
+            print(d['staging_host'])
+    elif staging_port:
+        if 'staging_url' in d:
+            print(url_to_port_hostname(d['staging_url'])[0])
+        elif 'aws_cert_arn' in d:
+            print(443)
+        else:
+            print(80)
+    elif env_secrets:
+        if 'env_secrets' in d:
+            for s in d['env_secrets']:
+                print(s)
+    elif include_links:
+        if 'include_links' in d:
+            for s in d['include_links']:
+                print(s)
+    elif with_async:
+        print(d.get('with_async', ''))
+    elif deploy_target:
+        target = d.get('deploy_target', 'aws-beanstalk')
+        ok_targets = ('aws-beanstalk', 'gcp-cloud-run', 'gke')
+        assert target in ok_targets, "deploy_target must be one of: %s" % ' '.join(ok_targets)
+        print(target)
+    elif docker_repo:
+        print(d['docker_repo'])
+    elif docker_bucket:
+        print(d['docker_bucket'])
+    elif docker_base:
+        print(d.get('docker_base', ''))
+    elif aws_user:
+        print(d['aws_user'])
+    elif aws_region:
+        print(d['aws_region'])
+    elif aws_keypair:
+        print(d['aws_keypair'])
+    elif aws_instance_type:
+        print(d['aws_instance_type'])
+    elif aws_cert_arn:
+        if 'aws_cert_arn' in d:
+            print(d['aws_cert_arn'])
+    elif aws_hosts_min:
+        if 'aws_hosts_min' in d:
+            print(d['aws_hosts_min'])
+        else:
+            print('1')
+    elif aws_hosts_max:
+        if 'aws_hosts_max' in d:
+            print(d['aws_hosts_max'])
+        else:
+            print('4')
+    elif gcp_region:
+        print(d.get('gcp_region', 'europe-west1'))
+    elif gcp_memory:
+        print(d.get('gcp_memory', '512Mi'))
+    elif gcp_request_concurrency:
+        print(d.get('gcp_request_concurrency', 10))
+
+    elif gunicorn_worker_count:
+        print(get_gunicorn_worker_count())
+    elif celery_worker_count:
+        if 'worker_count' in d:
+            print(d['worker_count'])
+        else:
+            print(get_celery_worker_count())
+    elif memory_limit:
+        celery_count = d.get('worker_count', None)
+        cpu_count = d.get('cpu_count', 1)
+        print(get_memory_limit(
+            default_celery_worker_count=celery_count,
+            cpu_count=cpu_count,
+        ))
+    elif cpu_count:
+        # Defaults to 1
+        print(d.get('cpu_count', 1))
+
+if __name__ == "__main__":
+    main()
