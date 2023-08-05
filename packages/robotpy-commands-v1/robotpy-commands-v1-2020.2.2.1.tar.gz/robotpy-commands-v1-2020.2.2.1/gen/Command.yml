@@ -1,0 +1,90 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/CommandGroup.h
+
+classes:
+  Command:
+    shared_ptr: true
+    ignored_bases:
+    - SendableHelper<Command>
+    methods:
+      Command:
+        overloads:
+          "":
+          wpi::Twine&:
+          double:
+          Subsystem&:
+            keepalive:
+            - [1, 2]
+          wpi::Twine&, double:
+          wpi::Twine&, Subsystem&:
+            keepalive:
+            - [1, 3]
+          double, Subsystem&:
+            keepalive:
+            - [1, 3]
+          wpi::Twine&, double, Subsystem&:
+            keepalive:
+            - [1, 4]
+      TimeSinceInitialized:
+      Requires:
+        keepalive:
+        - [1, 2]
+      Start:
+      Run:
+      Cancel:
+      IsRunning:
+      IsInitialized:
+      IsCompleted:
+      IsCanceled:
+      IsInterruptible:
+      SetInterruptible:
+      DoesRequire:
+      GetRequirements:
+      GetGroup:
+        return_value_policy: reference_internal
+      SetRunWhenDisabled:
+      WillRunWhenDisabled:
+      GetID:
+      GetName:
+      SetName:
+      GetSubsystem:
+      SetSubsystem:
+      InitSendable:
+      # protected methods: rename for backwards compat
+      SetTimeout:
+        rename: setTimeout
+      IsTimedOut:
+        rename: isTimedOut
+      AssertUnlocked:
+        rename: assertUnlocked
+      SetParent:
+        rename: setParent
+        keepalive:
+        - [1, 2]
+      IsParented:
+        rename: isParented
+      ClearRequirements:
+        rename: clearRequirements
+      Initialize:
+        rename: initialize
+      Execute:
+        rename: execute
+      IsFinished:
+        rename: isFinished
+      End:
+        rename: end
+      Interrupted:
+        rename: interrupted
+      _Initialize:
+        rename: _initialize
+      _Interrupted:
+        rename: _interrupted
+      _Execute:
+        rename: _execute
+      _End:
+        rename: _end
+      _Cancel:
+        rename: _cancel

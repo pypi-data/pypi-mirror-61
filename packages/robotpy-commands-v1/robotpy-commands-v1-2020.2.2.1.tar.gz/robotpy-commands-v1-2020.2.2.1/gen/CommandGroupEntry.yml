@@ -1,0 +1,24 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  CommandGroupEntry:
+    shared_ptr: true
+    attributes:
+      m_timeout:
+      m_command:
+      m_state:
+    enums:
+      Sequence:
+    methods:
+      CommandGroupEntry:
+        overloads:
+          "":
+          frc::Command*, frc::CommandGroupEntry::Sequence, double:
+            keepalive:
+            - [1, 2]
+      IsTimedOut:

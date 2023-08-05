@@ -1,0 +1,17 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/buttons/Trigger.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  NetworkButton:
+    shared_ptr: true
+    methods:
+      NetworkButton:
+        overloads:
+          wpi::Twine&, wpi::Twine&:
+          std::shared_ptr<nt::NetworkTable>, wpi::Twine&:
+      Get:

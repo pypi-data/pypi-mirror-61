@@ -1,0 +1,30 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  ConditionalCommand:
+    shared_ptr: true
+    methods:
+      ConditionalCommand:
+        overloads:
+          Command*, Command*:
+            keepalive:
+            - [1, 2]
+            - [1, 3]
+          wpi::Twine&, Command*, Command*:
+            keepalive:
+            - [1, 3]
+            - [1, 4]
+      Condition:
+      _Initialize:
+        rename: _initialize
+      _Cancel:
+        rename: _cancel
+      IsFinished:
+        rename: isFinished
+      _Interrupted:
+        rename: _interrupted

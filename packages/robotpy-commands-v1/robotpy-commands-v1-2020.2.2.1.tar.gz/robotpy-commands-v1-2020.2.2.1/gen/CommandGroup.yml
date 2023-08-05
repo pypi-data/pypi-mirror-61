@@ -1,0 +1,50 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/CommandGroup.h
+
+classes:
+  CommandGroup:
+    shared_ptr: true
+    methods:
+      CommandGroup:
+        overloads:
+          "":
+          wpi::Twine&:
+      AddSequential:
+        overloads:
+          Command*:
+            keepalive:
+            - [1, 2]
+          Command*, double:
+            keepalive:
+            - [1, 2]
+      AddParallel:
+        overloads:
+          Command*:
+            keepalive:
+            - [1, 2]
+          Command*, double:
+            keepalive:
+            - [1, 2]
+      IsInterruptible:
+      GetSize:
+      Initialize:
+        rename: initialize
+      Execute:
+        rename: execute
+      IsFinished:
+        rename: isFinished
+      End:
+        rename: end
+      Interrupted:
+        rename: interrupted
+      _Initialize:
+        rename: _initialize
+      _Execute:
+        rename: _execute
+      _End:
+        rename: _end
+      _Interrupted:
+        rename: _interrupted

@@ -1,0 +1,32 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  Trigger:
+    shared_ptr: true
+    ignored_bases:
+    - SendableHelper<Trigger>
+    methods:
+      Trigger:
+      Grab:
+      Get:
+      WhenActive:
+        keepalive:
+        - [1, 2]
+      WhileActive:
+        keepalive:
+        - [1, 2]
+      WhenInactive:
+        keepalive:
+        - [1, 2]
+      CancelWhenActive:
+        keepalive:
+        - [1, 2]
+      ToggleWhenActive:
+        keepalive:
+        - [1, 2]
+      InitSendable:

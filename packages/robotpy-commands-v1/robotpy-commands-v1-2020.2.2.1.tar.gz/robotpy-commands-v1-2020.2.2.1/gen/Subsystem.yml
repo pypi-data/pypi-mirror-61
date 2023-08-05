@@ -1,0 +1,43 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  Subsystem:
+    shared_ptr: true
+    ignored_bases:
+    - SendableHelper<Subsystem>
+    methods:
+      Subsystem:
+      SetDefaultCommand:
+        keepalive:
+        - [1, 2]
+      GetDefaultCommand:
+      GetDefaultCommandName:
+      SetCurrentCommand:
+        keepalive:
+        - [1, 2]
+      GetCurrentCommand:
+      GetCurrentCommandName:
+      Periodic:
+      InitDefaultCommand:
+      GetName:
+      SetName:
+      GetSubsystem:
+      SetSubsystem:
+      AddChild:
+        overloads:
+          wpi::Twine&, std::shared_ptr<Sendable>:
+          wpi::Twine&, Sendable*:
+            ignore: true
+          wpi::Twine&, Sendable&:
+            ignore: true
+          std::shared_ptr<Sendable>:
+          Sendable*:
+            ignore: true
+          Sendable&:
+            ignore: true
+      InitSendable:
