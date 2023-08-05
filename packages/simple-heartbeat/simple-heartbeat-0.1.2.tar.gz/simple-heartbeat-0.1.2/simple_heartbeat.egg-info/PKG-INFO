@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: simple-heartbeat
+Version: 0.1.2
+Summary: Simple heartbeat library
+Home-page: https://github.com/joshcoales/simple-heartbeat-lib
+Author: Joshua Coales
+Author-email: dr-spangle@dr-spangle.com
+License: MIT
+Description: # Simple heartbeat library
+        This is designed to work with the 
+        [simple heartbeat app](https://github.com/joshcoales/simple-heartbeat-app) to send heartbeat status 
+        notifications to the server, and ignore errors and such.
+        
+        ## Usage
+        1. Get a copy of the [simple heartbeat library from pypi](https://pypi.org/project/simple-heartbeat/).
+        2. Spin up a copy of the heartbeat server, and then set `heartbeat.heartbeat_app_url` to the URL of
+        your heartbeat server.  
+        3. Optional: Call `heartbeat.initialise_app(app_name, expiry_period)` to initialise your app in the heartbeat server.
+           - This is mostly useful for initialising an expiry period for the app. If it fails to contact the heartbeat server, it will propogate the exception up.
+        4. Periodically call `heartbeat.update_heartbeat(app_name)` to confirm your application is online.
+        
+Keywords: heartbeat,monitoring
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
