@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: Sunback
+Version: 0.0.79
+Summary:  Sets your desktop background to the most recent images of the Sun.
+Home-page: https://github.com/GillySpace27/sunback
+Author: Chris R. Gilly
+Author-email: chris.gilly@colorado.edu
+License: BSD-3-Clause
+Description: Solar Background Updater
+        ==============================
+        [//]: # (Badges)
+        <a href="https://github.com/GillySpace27/sunback/tree/master" target="_blank">![GitHub last commit (branch)](https://img.shields.io/github/last-commit/GillySpace27/sunback/master)</a>
+        <a href="https://travis-ci.com/GillySpace27/sunback" target="_blank">![Travis Build Status](https://travis-ci.com/GillySpace27/sunback.svg?branch=master)</a>
+        <a href="https://ci.appveyor.com/project/GillySpace27/sunback/" target="_blank">![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/ji7e0pm5xxckf6rq/branch/master?svg=true)</a>
+        <a href="https://sunback.readthedocs.io/en/latest/?badge=latest" target="_blank">![Documentation Status](https://readthedocs.org/projects/sunback/badge/?version=latest)</a>
+        
+        <a href="https://pypi.org/project/sunback/" target="_blank"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/sunback"></a>
+        <a href="https://pypi.org/project/sunback/" target="_blank">![PyPI](https://img.shields.io/pypi/v/sunback)</a>
+        <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/sunback">
+        <a href="https://github.com/GillySpace27/sunback/" target="_blank">![GitHub repo size](https://img.shields.io/github/repo-size/GillySpace27/sunback)</a>
+        <a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank">![GitHub](https://img.shields.io/github/license/GillySpace27/sunback)</a>
+        
+        <a href="https://codeclimate.com/github/GillySpace27/sunback/maintainability"><img src="https://api.codeclimate.com/v1/badges/f7ae86dc9703d4a7eec6/maintainability" /></a>
+        <a href="https://codeclimate.com/github/GillySpace27/sunback/test_coverage"><img src="https://api.codeclimate.com/v1/badges/f7ae86dc9703d4a7eec6/test_coverage" /></a>
+        <a href="https://www.codacy.com/manual/GillySpace27/sunback" target="_blank">![Codacy Badge](https://api.codacy.com/project/badge/Grade/a47b3701e7544010a4708d923a71fedb)</a>
+        <a href="https://codecov.io/gh/GillySpace27/sunback/branch/master" target="_blank">![codecov](https://codecov.io/gh/GillySpace27/sunback/branch/master/graph/badge.svg)</a>
+        
+        
+        
+        A program that downloads the most current images of the sun from the SDO satellite, then finds the most likely temperature in each pixel. Then it sets each of the images to the desktop background in series. 
+        
+        
+        Basic Usage:  
+        pip install sunback  
+        python3  
+        import sunback as sb  
+        sb.run(delay=20, mode='a')  
+        
+        New coronagraph feature added! 
+        Possible modes:  
+        'a' - cycle all modes  
+        'h' - cycle half disk modes  
+        'w' - cycle whole disk modes  
+        'y' - only coronagraph mode  
+        'n' - no coronagraph mode  
+        
+        Check contribute.md to see how you can help out!
+        
+        ### Copyright
+        
+        Copyright (c) 2019, [Chris R. Gilly](https://gilly.space) [ORCiD](https://orcid.org/0000-0003-0021-9056)
+        
+        
+        #### Acknowledgements
+         
+        Project based on the 
+        [Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms) version 1.1.
+        
+Platform: Windows
+Platform: Linux
+Platform: Mac OS-X
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Desktop Environment :: Screen Savers
+Classifier: Topic :: Multimedia :: Graphics :: Viewers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Requires-Python: >=3.0,<3.8
+Description-Content-Type: text/markdown
