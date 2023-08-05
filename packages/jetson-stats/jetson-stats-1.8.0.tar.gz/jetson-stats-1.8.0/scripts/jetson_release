@@ -1,0 +1,76 @@
+#!/bin/bash
+# This file is part of the jetson_stats package (https://github.com/rbonghi/jetson_stats or http://rnext.it).
+# Copyright (c) 2019 Raffaello Bonghi.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+# Load environment variables:
+# - JETSON_BOARD
+# - JETSON_L4T (JETSON_L4T_RELEASE, JETSON_L4T_REVISION)
+# - JETSON_DESCRIPTION
+# - JETSON_CUDA
+# - JETSON_OPENCV and JETSON_OPENCV_CUDA
+source /opt/jetson_stats/jetson_variables
+# Load NVP model status
+if hash nvpmodel 2>/dev/null; then
+	NVPModel="$(nvpmodel -q 2>/dev/null)"
+	NVPModel=$(echo $NVPModel | sed 's/.*Mode://')
+	# Extract model and type
+	NVPModel_type=$(echo $NVPModel | cut -d' ' -f 2)
+	NVPModel=$(echo $NVPModel | cut -d' ' -f 1)
+fi
+
+# Print Jetson version
+echo " - $JETSON_DESCRIPTION"
+# Print Jetpack and kernel
+echo "   * Jetpack $JETSON_JETPACK [L4T $JETSON_L4T]"
+# Print CUDA GPU architecture
+echo "   * CUDA GPU architecture $JETSON_CUDA_ARCH_BIN"
+# Print status NVPModel
+if [ ! -z ${NVPModel+x} ] ; then
+	echo "   * NV Power Mode: ${green}$NVPModel${reset} - Type: ${green}$NVPModel_type${reset}"
+fi
+
+# Libraries
+echo " - Libraries:"
+#Print Cuda version
+echo "   * CUDA $JETSON_CUDA"
+# Print cuDNN version
+echo "   * cuDNN $JETSON_CUDNN"
+# Print TensorRT version
+echo "   * TensorRT $JETSON_TENSORRT"
+# Print VisionWorks version
+echo "   * Visionworks $JETSON_VISIONWORKS"
+#Print OpenCv version and cuda compiled
+if [ $JETSON_OPENCV_CUDA = "YES" ] ; then
+    echo "   * OpenCV $JETSON_OPENCV compiled CUDA: ${green}$JETSON_OPENCV_CUDA${reset}"
+else
+	echo "   * OpenCV $JETSON_OPENCV compiled CUDA: ${red}$JETSON_OPENCV_CUDA${reset}"
+fi
+#Print status Jetson Performance service
+JE_PERFOMANCE_STATUS="$(systemctl is-active jetson_performance.service)"
+if [ $JE_PERFOMANCE_STATUS = "active" ] ; then
+	echo " - Jetson Performance: ${green}$JE_PERFOMANCE_STATUS${reset}"
+else
+	echo " - Jetson Performance: ${red}$JE_PERFOMANCE_STATUS${reset}"
+fi
+
+exit 0
+
+
