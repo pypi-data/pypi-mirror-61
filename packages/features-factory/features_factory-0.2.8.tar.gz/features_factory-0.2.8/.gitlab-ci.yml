@@ -1,0 +1,26 @@
+stages:
+ - tests
+ - deploy
+
+
+run_tests:
+ stage: tests
+ image: python:3.8
+ script:
+  - pip install pipenv
+  - pipenv install --skip-lock --deploy --dev
+  - export PYTHONPATH=$(pwd)/src
+  - pipenv run coverage run -m unittest discover tests
+  - pipenv run coverage report
+
+
+push_to_pypi:
+ stage: deploy
+ image: python:3.8
+ script:
+  - python setup.py sdist bdist_wheel
+  - pip install twine
+  - twine upload -u __token__ -p ${PYPI_UPLOAD_TOKEN} dist/*
+ only:
+  refs:
+   - tags
