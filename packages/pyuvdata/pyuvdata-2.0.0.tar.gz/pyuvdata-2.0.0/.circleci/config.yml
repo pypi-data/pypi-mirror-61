@@ -1,0 +1,136 @@
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2 # to get this to work, had to opt-in to using third party orbs in Organization Security settings.
+jobs:
+  linter:
+    parameters:
+      python_version:
+        type: string
+      env_name:
+        type: string
+    docker:
+      - image: continuumio/miniconda:latest
+    environment:
+      PYTHON: << parameters.python_version >>
+      ENV_NAME: << parameters.env_name >>
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-{{ checksum "ci/pyuvdata_linting.yml" }}
+      - run:
+          name: configure conda environment
+          command: ./ci/install_conda.sh
+      - run:
+          name: linting for PEP8 and PEP257 (with numpy style) compliance
+          command: |
+            source activate ${ENV_NAME}
+            flake8
+      - save_cache:
+          key: deps-{{ .Branch }}-{{ checksum "ci/pyuvdata_linting.yml" }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+
+  pyuvdata:
+    parameters:
+      python_version:
+        type: string
+      env_name:
+        type: string
+    docker:
+      - image: continuumio/miniconda:latest
+    environment:
+      PYTHON: << parameters.python_version >>
+      ENV_NAME: << parameters.env_name >>
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-{{ checksum "ci/pyuvdata_tests.yml" }}
+      - run:
+          name: configure conda environment
+          command: ./ci/install_conda.sh
+      - run:
+          name: install
+          command: |
+            source activate ${ENV_NAME}
+            pip install .
+      - run:
+          name: run pyuvdata tests
+          command: |
+            source activate ${ENV_NAME}
+            mkdir test-reports
+            mkdir -p empty
+            cd empty
+            pytest --pyargs pyuvdata --cov=pyuvdata --cov-config="../.coveragerc" --cov-report xml:".././coverage.xml" --junitxml="../test-reports/xunit.xml"
+            cd ..
+      - save_cache:
+          key: deps-{{ .Branch }}-{{ checksum "ci/pyuvdata_tests.yml" }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
+      - codecov/upload:
+          file: ./coverage.xml
+
+  doctest:
+    parameters:
+      python_version:
+        type: string
+      env_name:
+        type: string
+    docker:
+      - image: continuumio/miniconda:latest
+    environment:
+      PYTHON: << parameters.python_version >>
+      ENV_NAME: << parameters.env_name >>
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ .Branch }}-{{ checksum "ci/pyuvdata_tests.yml" }}
+      - run:
+          name: configure conda environment
+          command: ./ci/install_conda.sh
+      - run:
+          name: install
+          command: |
+            source activate ${ENV_NAME}
+            pip install -e .
+      - run:
+          name: run tutorial tests
+          command: |
+            source activate ${ENV_NAME}
+            cd docs
+            python -m pytest tutorial.rst
+            cd ..
+      - save_cache:
+          key: deps-{{ .Branch }}-{{ checksum "ci/pyuvdata_tests.yml" }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - linter:
+          python_version: "3.6"
+          env_name: "pyuvdata_linting"
+      - pyuvdata:
+          name: pyuvdata_3.6
+          python_version: "3.6"
+          env_name: "pyuvdata_tests"
+      - pyuvdata:
+          name: pyuvdata_3.7
+          python_version: "3.7"
+          env_name: "pyuvdata_tests"
+      - pyuvdata:
+          name: pyuvdata_3.8
+          python_version: "3.8"
+          env_name: "pyuvdata_tests"
+      - pyuvdata:
+          name: pyuvdata_min_deps
+          python_version: "3.6"
+          env_name: "pyuvdata_min_deps_tests"
+      - doctest:
+          python_version: "3.6"
+          env_name: "pyuvdata_tests"
