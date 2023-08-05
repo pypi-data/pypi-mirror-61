@@ -1,0 +1,187 @@
+Metadata-Version: 2.1
+Name: scheduler-tools
+Version: 0.1.2
+Summary: Tools for composing interdependent tasks on a scheduler (i.e. SLURM)
+Home-page: https://github.com/AllenCellModeling/scheduler_tools
+Author: Gregory Johnson
+Author-email: gregj@alleninstitute.org
+License: Allen Institute Software License
+Keywords: scheduler_tools
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: Free for non-commercial use
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: ssh2-python
+Requires-Dist: asyncssh
+Requires-Dist: asyncio
+Requires-Dist: aicsdaemon
+Requires-Dist: bokeh
+Requires-Dist: dask
+Requires-Dist: dask-jobqueue
+Requires-Dist: ssh2
+Requires-Dist: typing-extensions
+Provides-Extra: all
+Requires-Dist: ssh2-python ; extra == 'all'
+Requires-Dist: asyncssh ; extra == 'all'
+Requires-Dist: asyncio ; extra == 'all'
+Requires-Dist: aicsdaemon ; extra == 'all'
+Requires-Dist: bokeh ; extra == 'all'
+Requires-Dist: dask ; extra == 'all'
+Requires-Dist: dask-jobqueue ; extra == 'all'
+Requires-Dist: ssh2 ; extra == 'all'
+Requires-Dist: typing-extensions ; extra == 'all'
+Requires-Dist: codecov ; extra == 'all'
+Requires-Dist: flake8 ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: pytest-raises ; extra == 'all'
+Requires-Dist: pytest-runner ; extra == 'all'
+Requires-Dist: bumpversion (>=0.5.3) ; extra == 'all'
+Requires-Dist: coverage (>=5.0a4) ; extra == 'all'
+Requires-Dist: flake8 (>=3.7.7) ; extra == 'all'
+Requires-Dist: ipython (>=7.5.0) ; extra == 'all'
+Requires-Dist: m2r (>=0.2.1) ; extra == 'all'
+Requires-Dist: pytest (>=4.3.0) ; extra == 'all'
+Requires-Dist: pytest-cov (==2.6.1) ; extra == 'all'
+Requires-Dist: pytest-raises (>=0.10) ; extra == 'all'
+Requires-Dist: pytest-runner (>=4.4) ; extra == 'all'
+Requires-Dist: Sphinx (>=2.0.0b1) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme (>=0.1.2) ; extra == 'all'
+Requires-Dist: tox (>=3.5.2) ; extra == 'all'
+Requires-Dist: twine (>=1.13.0) ; extra == 'all'
+Requires-Dist: wheel (>=0.33.1) ; extra == 'all'
+Requires-Dist: altair ; extra == 'all'
+Requires-Dist: jupyterlab ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: bumpversion (>=0.5.3) ; extra == 'dev'
+Requires-Dist: coverage (>=5.0a4) ; extra == 'dev'
+Requires-Dist: flake8 (>=3.7.7) ; extra == 'dev'
+Requires-Dist: ipython (>=7.5.0) ; extra == 'dev'
+Requires-Dist: m2r (>=0.2.1) ; extra == 'dev'
+Requires-Dist: pytest (>=4.3.0) ; extra == 'dev'
+Requires-Dist: pytest-cov (==2.6.1) ; extra == 'dev'
+Requires-Dist: pytest-raises (>=0.10) ; extra == 'dev'
+Requires-Dist: pytest-runner (>=4.4) ; extra == 'dev'
+Requires-Dist: Sphinx (>=2.0.0b1) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme (>=0.1.2) ; extra == 'dev'
+Requires-Dist: tox (>=3.5.2) ; extra == 'dev'
+Requires-Dist: twine (>=1.13.0) ; extra == 'dev'
+Requires-Dist: wheel (>=0.33.1) ; extra == 'dev'
+Provides-Extra: interactive
+Requires-Dist: altair ; extra == 'interactive'
+Requires-Dist: jupyterlab ; extra == 'interactive'
+Requires-Dist: matplotlib ; extra == 'interactive'
+Provides-Extra: setup
+Requires-Dist: pytest-runner ; extra == 'setup'
+Provides-Extra: test
+Requires-Dist: codecov ; extra == 'test'
+Requires-Dist: flake8 ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-raises ; extra == 'test'
+
+# scheduler_tools
+
+[![Build Status](https://github.com/AllenCellModeling/scheduler_tools/workflows/Build%20Master/badge.svg)](https://github.com/AllenCellModeling/scheduler_tools/actions)
+[![Documentation](https://github.com/AllenCellModeling/scheduler_tools/workflows/Documentation/badge.svg)](https://AllenCellModeling.github.io/scheduler_tools)
+[![Code Coverage](https://codecov.io/gh/AllenCellModeling/scheduler_tools/branch/master/graph/badge.svg)](https://codecov.io/gh/AllenCellModeling/scheduler_tools)
+
+Tools for composing interdependent tasks on a scheduler (i.e. SLURM)
+
+---
+
+## Setup requirements for launching prefect / dask-distributed on the cluster from your local desktop
+
+### On your local system
+
+For whatever project you are working on add scheduler_tools to your dependency
+list. 
+
+```bash
+conda activate {your_env_name}
+pip install -e {your_project_name}
+mkdir ~/.aics_dask
+```
+create file `~/.aics_dask/ssh.json` with contents
+```json
+{"gateway":{
+	"url": "slurm-machine.bettertech.com",
+	"user": "flanders",
+	"identityfile": "/Users/flanders/ssh/flandersPrivateKey"
+	},
+    "dashboard_port": 8787,
+    "dask_port": 34009
+}
+```
+
+### On the cluster 
+```bash
+conda activate {your_env_name}
+pip install -e {your_project_name}
+mkdir ~/.aics_dask
+```
+
+
+## programmatically launch remote server and create tunnel
+```python
+from scheduler_tools import Connector
+from pathlib import Path
+
+prefs = {'gateway': {}}
+prefs['gateway']['url'] = 'slurm-machine.bettertech.com'
+prefs['gateway']['user'] = 'flanders'
+prefs['gateway']['identityfile'] = '~/.ssh/id_rsa'
+prefs['dask_port'] = 34009
+prefs['dashboard_port'] = 8787
+prefs['localfolder'] = '~/.aics_dask'
+
+
+dask_prefs = {'cluster_conf': {}, 'worker_conf': {}, 'remote_conf': {}}
+dask_prefs['cluster_conf']['queue'] = 'aics_cpu_general'
+dask_prefs['cluster_conf']['cores'] = 2
+dask_prefs['cluster_conf']['memory'] = '8GB'
+dask_prefs['cluster_conf']['walltime'] = "02:00:00"
+# dask_prefs['cluster_conf']['job_extra'] = ["--gres=gpu:v100:1"]
+
+dask_prefs['worker_conf']['minimum_jobs'] = 2
+dask_prefs['worker_conf']['maximum_jobs'] = 40
+
+dask_prefs['remote_conf']['env'] = 'dask_scheduler'
+dask_prefs['remote_conf']['command'] = 'setup_and_spawn.bash'
+dask_prefs['remote_conf']['path'] = '.aics_dask'
+
+
+conn = Connector(distributed_dict=dask_prefs, pref_path=Path('~/.aics_dask/ssh.json'))
+conn.run_command()
+conn.stop_forward_if_running()
+conn.forward_ports()
+```
+
+## programmatically shutdown remote server and tunnel
+```python
+from scheduler_tools import Connector
+from pathlib import Path
+
+conn = Connector(pref_path=Path('~/.aics_dask/ssh.json'))
+conn.stop_dask()
+```
+
+## Command line interface 
+
+### CLI start Dask Cluster command
+spawn_dask_cluster -s ~/.aics_dask_gpu/ssh.json -q aics_gpu_general -r <remote_env_name>
+
+### CLI stop Dask Cluster command
+shutdown_dask_cluster -s ~/.aics_dask/ssh.json
+
+
+***Free software: Allen Institute Software License***
+
+
+
