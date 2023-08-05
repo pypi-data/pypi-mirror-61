@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: wsgi-aws-unproxy
+Version: 1.2.0
+Summary: Simple wsgi middleware to unproxy AWS
+Home-page: https://github.com/labd/wsgi-aws-unproxy
+Author: Lab Digital
+Author-email: opensource@labdigital.nl
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: netaddr
+Requires-Dist: requests
+Provides-Extra: docs
+Requires-Dist: sphinx (>=1.4.0) ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: requests-mock (==1.3.0) ; extra == 'test'
+Requires-Dist: pytest-cov (>=2.2.0) ; extra == 'test'
+Requires-Dist: pytest (>=2.8.3) ; extra == 'test'
+Requires-Dist: isort (==4.2.5) ; extra == 'test'
+Requires-Dist: flake8 (==3.0.3) ; extra == 'test'
+Requires-Dist: flake8-blind-except (==0.1.1) ; extra == 'test'
+Requires-Dist: flake8-debugger (==1.4.0) ; extra == 'test'
+Requires-Dist: flake8-imports ; extra == 'test'
+
+
+
+
+================
+WSGI AWS Unproxy
+================
+
+Set the correct ``REMOTE_ADDR`` based on the ``X-Forwarded-For`` header,
+while only trusting the CloudFront IP addresses.
+
+This module is applied as WSGI middleware, fixing the IP-address retrieval for the entire application in a secure manner.
+As extra benefit, external packages no longer have to write abstraction layers to retrieve the IP-address header.
+
+
+Django example
+==============
+
+In Django edit the ``wsgi.py`` file to apply the module:
+
+.. code-block:: python
+
+    from django.core.wsgi import get_wsgi_application
+    from wsgi_aws_unproxy import UnProxy
+
+    application = get_wsgi_application()
+    application = UnProxy(application)
+
+Now all packages can just read ``request.META['REMOTE_ADDR']`` to fetch the correct IP.
+This includes contact forms, Sentry error reporting and rate limiting tools.
+
+
+Installation
+============
+
+You can install the latest version using pip:
+
+.. code-block:: bash
+
+    pip install wsgi-aws-unproxy
+
+And apply it as WSGI middleware:
+
+.. code-block:: python
+
+    from wsgi_aws_unproxy import UnProxy
+
+    application = UnProxy(application)
+
+
