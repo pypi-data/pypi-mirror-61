@@ -1,0 +1,27 @@
+language: python
+install: pip install tox
+script: tox
+
+jobs:
+  include:
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
+      install: pip install tox coveralls
+      after_success: coveralls
+    - python: 2.7
+      env: TOXENV=py27
+      install: pip install tox coveralls
+      after_success: coveralls
+    - stage: deploy
+      python: 3.5
+      install: skip
+      script: skip
+      deploy:
+        provider: pypi
+        user: fetzerch
+        password:
+          secure: w2w4NH/tSXjxynwEPNmk33iiWSQFH2GcbBvHkxsgR4hVImMDBH7D/Gl/c4xZnym3VuCXpWMePBehL4fSXaEVyOZtOmHOuyQ8MHGtkTCwhVNIGPenpOYIeMzRWsrlNpUfJIsHsPOrCbqUtUfyGhqnzZcWKMGNFmAIsME9Dy1XCb7Rjbx+/z0OWf6ohDAwXu7TlLgi9pNISY0MV9OwL6YDuAPTl6Ozl3lLiRfGlXvyRetd3JUpyyyLqFsK8N/n+UmQKM2rAIRAifKJmoxmlpINYjFY4SNA9xXM5bKEswm6NGn92X28it675v+PPH0GiYrK7/g+2QquYk+cb7N4Q+NGun1TK72HJJk8FLLdu04WjdJbQsxfQqoRnMvjJvDTMi1Bk36hd28776qcWDLwr21yG6b6209+7yU7juqG6BWLuvgKeCW0/wswAjER/xUEjKXLXPJetyJs9BrC/BvC4a4eJr+r7J1O2uJhcZlrw+/eWR4eCEJHosKUl4NLGUMEZ3ZH/w9vaiPduqj+MhGzMxdqCzD33vEd70yhNEpe1BFR7xV4U9bKjm8P5eNl9z9gb5AsDhWWNfTt1XpGAxRrL7qn/AnHDbvJlS05+AZHOX3QeSC6Bn5PdEAJAfcoHrgk66qJrRhAtVPrIOQ6IvdAGh1NoZc0qwD39yLLlbyUiusq25I=
+        on:
+          tags: true
