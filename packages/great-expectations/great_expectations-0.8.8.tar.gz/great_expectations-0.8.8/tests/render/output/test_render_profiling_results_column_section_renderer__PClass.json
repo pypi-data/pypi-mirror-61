@@ -1,0 +1,255 @@
+{
+  "content_blocks": [
+    {
+      "content_block_type": "header",
+      "styling": {
+        "classes": [
+          "col-12",
+          "p-0"
+        ],
+        "header": {
+          "classes": [
+            "alert",
+            "alert-secondary"
+          ]
+        }
+      },
+      "header": {
+        "content_block_type": "string_template",
+        "string_template": {
+          "template": "PClass",
+          "tooltip": {
+            "content": "expect_column_to_exist",
+            "placement": "top"
+          },
+          "tag": "h5",
+          "styling": {
+            "classes": [
+              "m-0",
+              "p-0"
+            ]
+          }
+        }
+      },
+      "subheader": {
+        "content_block_type": "string_template",
+        "string_template": {
+          "template": "Type: None",
+          "tooltip": {
+            "content": "expect_column_values_to_be_of_type <br>expect_column_values_to_be_in_type_list"
+          },
+          "tag": "h6",
+          "styling": {
+            "classes": [
+              "mt-1",
+              "mb-0"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "content_block_type": "table",
+      "styling": {
+        "classes": [
+          "col-3",
+          "mt-1",
+          "pl-1",
+          "pr-1"
+        ],
+        "body": {
+          "classes": [
+            "table",
+            "table-sm",
+            "table-unbordered"
+          ],
+          "styles": {
+            "width": "100%"
+          }
+        }
+      },
+      "header": {
+        "content_block_type": "string_template",
+        "string_template": {
+          "template": "Properties",
+          "tag": "h6"
+        }
+      },
+      "table": [
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "Distinct (n)",
+              "tooltip": {
+                "content": "expect_column_unique_value_count_to_be_between"
+              }
+            }
+          },
+          4
+        ],
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "Distinct (%)",
+              "tooltip": {
+                "content": "expect_column_proportion_of_unique_values_to_be_between"
+              }
+            }
+          },
+          "0.3%"
+        ],
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "Missing (n)",
+              "tooltip": {
+                "content": "expect_column_values_to_not_be_null"
+              }
+            }
+          },
+          0
+        ],
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "Missing (%)",
+              "tooltip": {
+                "content": "expect_column_values_to_not_be_null"
+              }
+            }
+          },
+          "0.0%"
+        ]
+      ],
+      "header_row": []
+    },
+    {
+      "content_block_type": "value_list",
+      "styling": {
+        "classes": [
+          "col-3",
+          "mt-1",
+          "pl-1",
+          "pr-1"
+        ]
+      },
+      "header": {
+        "content_block_type": "string_template",
+        "string_template": {
+          "template": "Example Values",
+          "tooltip": {
+            "content": "expect_column_values_to_be_in_set"
+          },
+          "tag": "h6"
+        }
+      },
+      "value_list": [
+        {
+          "content_block_type": "string_template",
+          "string_template": {
+            "template": "$value",
+            "params": {
+              "value": "3rd"
+            },
+            "styling": {
+              "default": {
+                "classes": [
+                  "badge",
+                  "badge-info"
+                ],
+                "styles": {
+                  "word-break": "break-all"
+                }
+              }
+            }
+          }
+        },
+        {
+          "content_block_type": "string_template",
+          "string_template": {
+            "template": "$value",
+            "params": {
+              "value": "1st"
+            },
+            "styling": {
+              "default": {
+                "classes": [
+                  "badge",
+                  "badge-info"
+                ],
+                "styles": {
+                  "word-break": "break-all"
+                }
+              }
+            }
+          }
+        },
+        {
+          "content_block_type": "string_template",
+          "string_template": {
+            "template": "$value",
+            "params": {
+              "value": "2nd"
+            },
+            "styling": {
+              "default": {
+                "classes": [
+                  "badge",
+                  "badge-info"
+                ],
+                "styles": {
+                  "word-break": "break-all"
+                }
+              }
+            }
+          }
+        },
+        {
+          "content_block_type": "string_template",
+          "string_template": {
+            "template": "$value",
+            "params": {
+              "value": "*"
+            },
+            "styling": {
+              "default": {
+                "classes": [
+                  "badge",
+                  "badge-info"
+                ],
+                "styles": {
+                  "word-break": "break-all"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "content_block_type": "graph",
+      "styling": {
+        "classes": [
+          "col-4",
+          "mt-1"
+        ]
+      },
+      "graph": "{\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v3.4.0.json\",\n  \"autosize\": \"fit\",\n  \"config\": {\n    \"mark\": {\n      \"tooltip\": null\n    },\n    \"view\": {\n      \"height\": 300,\n      \"width\": 400\n    }\n  },\n  \"data\": {\n    \"name\": \"data-291df9be3b14fbee9cb1f91eb58e4499\"\n  },\n  \"datasets\": {\n    \"data-291df9be3b14fbee9cb1f91eb58e4499\": [\n      {\n        \"count\": 1,\n        \"value\": \"*\"\n      },\n      {\n        \"count\": 322,\n        \"value\": \"1st\"\n      },\n      {\n        \"count\": 279,\n        \"value\": \"2nd\"\n      },\n      {\n        \"count\": 711,\n        \"value\": \"3rd\"\n      }\n    ]\n  },\n  \"encoding\": {\n    \"tooltip\": [\n      {\n        \"field\": \"value\",\n        \"type\": \"nominal\"\n      },\n      {\n        \"field\": \"count\",\n        \"type\": \"quantitative\"\n      }\n    ],\n    \"x\": {\n      \"field\": \"value\",\n      \"type\": \"ordinal\"\n    },\n    \"y\": {\n      \"field\": \"count\",\n      \"type\": \"quantitative\"\n    }\n  },\n  \"height\": 400,\n  \"mark\": \"bar\",\n  \"width\": 250\n}",
+      "header": {
+        "content_block_type": "string_template",
+        "string_template": {
+          "template": "Value Counts",
+          "tooltip": {
+            "content": "expect_column_distinct_values_to_be_in_set"
+          },
+          "tag": "h6"
+        }
+      }
+    }
+  ],
+  "section_name": "PClass"
+}

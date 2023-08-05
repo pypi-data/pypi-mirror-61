@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data documentation compiled by Great Expectations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {# {# Remove this when not debugging: #}
+    {# <meta http-equiv="refresh" content="1"/> #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+    <style>{% include 'data_docs_default_styles.css' %}</style>
+    <style>{% include 'data_docs_custom_styles.css' ignore missing %}</style>
+
+    {% include 'js_script_imports.j2' %}
+    {% include 'favicon.j2' %}
+  </head>
+
+  <body
+        data-spy="scroll"
+        data-target="#navigation"
+        data-offset="50"
+    >
+    {% include 'top_navbar.j2' %}
+
+    <div class="container-fluid pt-4 pb-4 pl-5 pr-5">
+      <div class="row">
+        {% include 'sidebar.j2' %}
+        <div class="col-md-10 col-lg-10 col-xs-12 pl-4 pr-3">
+        {% for section in sections %}
+          {% set section_loop = loop -%}
+          {% include 'section.j2' %}
+        {% endfor %}
+        </div>
+        <div class="d-block d-sm-none col-12">
+          {% include 'ge_info.j2' %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
