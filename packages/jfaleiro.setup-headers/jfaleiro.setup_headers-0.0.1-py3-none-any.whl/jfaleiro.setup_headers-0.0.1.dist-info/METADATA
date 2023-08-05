@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: jfaleiro.setup-headers
+Version: 0.0.1
+Summary: Sets a standard header in all source files
+Home-page: https://gitlab.com/jfaleiro.open/setup_headers
+Author: Jorge M. Faleiro Jr.
+Author-email: j@falei.ro
+License: Affero GPL, see LICENSE for details
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+
+# setup_headers
+
+Sets a standard header in all source files.
+
+Traverses a project directory tree finding all files matching a sequence of extensions (e.g. `py`,`cfg`,`yml`), and replaces any comments on the beginning of the file by a set of lines from a header file, preceded by a comment marker.
+
+The substitution does not apply to "hashbangs" markers (anything started by `#!`)
+
+## Installation
+
+```bash
+pip install jfaleiro.setup_headers
+```
+
+## Configuration
+
+Change your `setup.py` to reflect something like this:
+
+```python
+...
+from setup_headers import LicenseHeaderCommand
+...
+setup(
+    ...
+    cmdclass={
+        'license_headers': LicenseHeaderCommand,
+    },
+    ...
+)
+```
+
+Add your preferences to `setup.cfg`:
+
+```cfg
+[license_headers]
+header-file = HEADER
+extensions = py,cfg,yml
+```
+
+Create a file mathing the name on `header_file` that you want to be inserted on the beginning of all files that match `*.[extensions]` - something like:
+
+```text
+     my_awesome_project - Does something awesome
+
+     Copyright (C) 2019 Joe Doe.
+
+     This program is not free. You should pay lots of money to use it.
+     Contact me for my paypal account.
+
+     You should have received a copy of My Proprietary License
+     along with this program.  If not, see <http://joe.doe/licenses/>.
+
+```
+
+## Use
+
+Just issue the command you have previously configured:
+
+```bash
+python setup.py license_headers
+```
+
+And that should be it.
+
