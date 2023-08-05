@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: filetrace
+Version: 0.0.2
+Summary: Report files opened while executing a command
+Home-page: https://github.com/joaompinto/filetrace
+Author: João Pinto
+Author-email: joao.pinto@vshn.ch
+License: BSD-3
+Description: # filetrace
+        
+        Collect the list of files opened while executing a command
+        
+        ## Usage
+        
+        ```bash
+        pip3 install --user filetrace
+        filetrace -- command
+        ```
+        
+        ## Running from the source
+        ```bash
+        git clone https://github.com/joaompinto/filetrace
+        cd filetrace
+        pip3 install --user -r requirements.txt
+        python3 -m filetrace -- bash -c "true; cat /dev/null"
+        ```
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
