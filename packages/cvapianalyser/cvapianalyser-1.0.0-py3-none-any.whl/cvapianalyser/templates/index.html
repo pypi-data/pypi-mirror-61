@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>CloudVector API Shark - Coverage analysis plugin<img src="https://www.cloudvector.com/wp-content/themes/cloudvector/images/logo.svg" width="100" height="100" align="right"></h2>
+  <br><br>
+    <p>API Coverage details:</p>
+    <ul>
+    {% for api, details in api_details.items() %}
+        <li>{{ api }}
+            <i>[params captured: (<b>mandatory</b>)-
+                {% for param,status in details.get("mandatory",{}).items() %}
+                    {% if status=="recorded" and param not in ["_","coverage"] %}
+                        {{ param }},
+                    {% endif %}
+                {% endfor %}
+                (<font color="green">optional</font>)-
+                {% for param,status in details.get("mandatory",{}).items() %}
+                    {% if status=="recorded" and param not in ["_","coverage"] %}
+                        {{ param }},
+                    {% endif %}
+                {% endfor %}]
+            </i>
+        </li>
+          <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ details['coverage']|int }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ details['coverage']|int }}%">
+                        {{ api }} (coverage: {{ details['coverage'] }}%)
+                </div>
+            </div>
+
+        {% endfor %}
+    </ul>
+</div>
+<hr>
+    <center><h4> Community Edition: <a href="{{ ce_url }}">{{ ce_url }}</a>  </h4>
+    <h4> Recording: {{ ce_recorder }} </h4></center>
+<hr>
+</body>
+</html>
