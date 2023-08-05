@@ -1,0 +1,17 @@
+{% extends "ripplebase.html" %}
+{% load render_bundle from webpack_loader %}
+{% load static %}
+
+{%  block theme %}
+{%  endblock %}
+
+{% block main %}
+<div
+    id="MainApp"
+    data-ga-account-id="{{ GA_ACCOUNT_ID }}"
+    data-static-url="{% static '' %}"
+    data-site-url="{{ SITE_URL }}"
+    data-debug="{{ DEBUG }}"
+></div>
+{% render_bundle 'MainApp' 'js' %}
+{% endblock %}
