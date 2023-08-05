@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+import immunedb.common.config as config
+import immunedb.common.modify as modify
+
+if __name__ == '__main__':
+    main_parser = config.get_base_arg_parser('Modifies an existing database')
+    subparsers = main_parser.add_subparsers(dest='cmd', help='''The
+        modification to make''')
+    subparsers.required = True
+
+    parser = subparsers.add_parser('update-metadata')
+    parser.add_argument('new_metadata')
+
+    parser = subparsers.add_parser('combine-samples')
+    parser.add_argument('combine_field')
+
+    parser = subparsers.add_parser('delete-samples')
+    parser.add_argument('sample_ids', type=int, nargs='+')
+
+    args = main_parser.parse_args()
+    session = config.init_db(args.db_config)
+
+    cmds = {
+        'update-metadata': modify.update_metadata,
+        'combine-samples': modify.combine_samples,
+        'delete-samples': modify.delete_samples
+    }[args.cmd](session, args)
