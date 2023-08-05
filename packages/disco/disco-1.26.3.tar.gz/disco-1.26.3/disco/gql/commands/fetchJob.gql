@@ -1,0 +1,19 @@
+query fetchJob($id: String!) {
+            fetchJob(id: $id) {
+                id
+                request {
+                    meta {
+                        name
+                    }
+                }
+                status
+                tasksSummary {
+                    queued
+                    running
+                    failed
+                    success
+                    timeout
+                    all
+                }
+            }
+        }
