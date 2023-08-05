@@ -1,0 +1,32 @@
+Metadata-Version: 2.0
+Name: ad-interface-functions
+Version: 0.19
+Summary: Interface functions used in the autonomous driving stack at TUM/FTM
+Home-page: https://www.ftm.mw.tum.de/en/main-research/vehicle-dynamics-and-control-systems/roborace-autonomous-motorsport/
+Author: Alexander Heilmeier, Tim Stahl
+Author-email: alexander.heilmeier@tum.de, stahl@ftm.mw.tum.de
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pyzmq (==18.1.1)
+
+# Description
+This repository provides some interface functions we frequently use in our trajectory planning software stack at FTM/TUM.
+Next to the simple UDP interface we also use ZeroMQ (http://zeromq.org/) and its Python bindings PyZMQ.
+
+# List of components
+* `udp_export`: UDP export function.
+* `udp_import`: UDP import function.
+* `zmq_export`: ZMQ export function handling pyobj, json, str.
+* `zmq_import`: ZMQ import function handling pyobj, json, str.
+* `zmq_import_poll`: ZMQ import function handling pyobj with polling option.
+
+Contact persons: [Alexander Heilmeier](mailto:alexander.heilmeier@tum.de), [Tim Stahl](mailto:stahl@ftm.mw.tum.de).
+
+
