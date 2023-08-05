@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+a.refresh {
+  cursor: pointer;
+  border-bottom-style: none;
+  text-decoration: none;
+}
+
+/* Notification bell color */
+.fa-bell {
+  color: orange;
+}
+
+/* Status page */
+.zuul-change {
+    margin-bottom: 10px;
+}
+
+.zuul-change-id {
+    float: right;
+}
+
+.zuul-job-result {
+    float: right;
+    width: 70px;
+    height: 20px;
+    margin: 2px 0 0 0;
+    padding: 4px;
+}
+
+.zuul-change-total-result {
+    height: 10px;
+    width: 100px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.zuul-spinner,
+.zuul-spinner:hover {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    cursor: default;
+    pointer-events: none;
+}
+
+.zuul-spinner-on,
+.zuul-spinner-on:hover {
+    opacity: 1;
+    transition-duration: 0.2s;
+    cursor: progress;
+}
+
+.zuul-change-cell {
+    padding-left: 5px;
+}
+
+.zuul-change-job {
+    padding: 2px 8px;
+}
+
+/* Force_break_very_long_non_hyphenated_repo_names */
+.change_project {
+    word-break: break-all;
+}
+
+.zuul-job-name {
+    font-size: small;
+}
+
+.zuul-non-voting-desc {
+    font-size: smaller;
+}
+
+.zuul-patchset-header {
+    font-size: small;
+    padding: 8px 12px;
+}
+
+.zuul-log-output {
+    color: black;
+}
+
+.zuul-log-output a,
+.zuul-log-output a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.zuul-log-sev-0 {
+    color: black;
+}
+.zuul-log-sev-1 {
+    color: black;
+}
+.zuul-log-sev-2 {
+    color: #0000aa;
+}
+.zuul-log-sev-3 {
+    color: #883300;
+}
+.zuul-log-sev-4 {
+    color: #aa0000;
+}
+.zuul-log-sev-5 {
+    color: #aa0000;
+}
+.zuul-log-sev-6 {
+    color: #aa0000;
+}
+.zuul-log-sev-7 {
+    color: #aa0000;
+}
+
+.form-inline > .form-group {
+    padding-right: 5px;
+}
+
+.zuul-change-row {
+    height: 100%;
+    padding: 0 0 10px 0;
+    margin: 0;
+    width: 16px;
+    min-width: 16px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.zuul-build-status {
+    background: white;
+    font-size: 16px;
+}
+
+.zuul-build-merge-conflict:before {
+    color: black;
+}
+
+.zuul-change-row-line {
+    background-image: url('images/line.png');
+    background-repeat: 'repeat-y';
+}
+
+.progress-bar-animated {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+/* Stream page */
+.xterm-selection-layer {
+  mix-blend-mode: exclusion;
+}
+
+/* Job Tree View group gap */
+div.tree-view-container ul.list-group {
+  margin: 0px 0px;
+}
+
+/* OpenAPI page */
+pre.version {
+    background-color: lightgrey;
+    color: black;
+}
+.swagger-ui .servers {
+    padding-top: 5px
+}
+
+/* Console */
+.zuul-console .list-group-item-header,
+.zuul-console .list-view-pf-actions,
+.zuul-console .list-view-pf-expand,
+.zuul-console .list-view-pf-main-info
+{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.zuul-console .list-view-pf-main-info
+{
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.zuul-console .list-view-pf-expand
+{
+    padding: 0;
+}
+.zuul-console .list-view-pf-left
+{
+    padding-right: 17px;
+}
+.zuul-console .list-group-item-heading
+{
+    line-height: 20px;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.zuul-console .task-skipped
+{
+    color: white;
+    background-color: #00729b;
+    width: 6em;
+    cursor: pointer;
+}
+.zuul-console .task-changed
+{
+    color: white;
+    background-color: #a28301;
+    width: 6em;
+    cursor: pointer;
+}
+.zuul-console .task-ok
+{
+    color: white;
+    background-color: #018200;
+    width: 6em;
+    cursor: pointer;
+}
+.zuul-console .task-failed
+{
+    color: white;
+    background-color: #9b0000;
+    width: 6em;
+    cursor: pointer;
+}
+.zuul-console .additionalinfo-icon
+{
+    cursor: default;
+}
+.zuul-console-modal-header-link
+{
+    margin-left: 2em;
+    font-size: 18px;
+}
+.zuul-console-task-detail
+{
+    width: 80%;
+}
+.zuul-console-task-result
+{
+    padding-left: 4em;
+}
+pre.zuul-log-output
+{
+    overflow: inherit;
+    background-color: inherit;
+    border: none;
+}
+.zuul-log-output .line-number
+{
+  display: inline;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: right;
+  padding-right: 1em;
+  cursor: pointer;
+  color: #555;
+}
+
+.highlight {
+  background: rgb(255, 255, 204);
+}
