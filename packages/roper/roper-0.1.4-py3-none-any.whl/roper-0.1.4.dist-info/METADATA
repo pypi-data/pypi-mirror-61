@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: roper
+Version: 0.1.4
+Summary: A CLI tool for the roper library.
+Home-page: https://github.com/beat-no/roper
+Author: Øystein S. Haaland
+Author-email: oystein@beat.no
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: rope
+Requires-Dist: invoke
+
+=====
+roper
+=====
+
+A CLI refactoring tool using the `rope <https://github.com/python-rope/rope>`_ library.
+
+Install
+=======
+To install for the current user, do::
+
+    $ pip install --user roper
+
+Develop
+=======
+To prepare for development, do::
+
+    $ git clone https://github.com/beat-no/roper.git
+    $ cd roper
+    $ mkvirtualenv roper
+
+Releasing new versions of the package is handled by `sykel`. To install, do::
+
+    $ pip install --user sykel
+
+To preapre a release, do::
+
+    $ sykel version.bump
+    $ sykel package.clean package.build
+    $ sykel package.publish
+
+
+Alternatives
+============
+
+IDEs
+----
+* PyCharm - https://www.jetbrains.com/help/pycharm/refactoring-source-code.html
+
+Editor plugins
+--------------
+* vim - https://github.com/python-rope/ropevim
+* emacs - https://github.com/python-rope/ropemacs
+
+Libraries
+---------
+* bowler - https://pybowler.io/
+* libcst - https://libcst.readthedocs.io/en/latest/
+* undebt - https://github.com/Yelp/undebt
+* redbaron - http://redbaron.pycqa.org/en/latest/
+
+Resources
+=========
+* https://github.com/python-rope/rope
+* https://realpython.com/python-refactoring/
+
+
