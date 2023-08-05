@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Group Lasso 1.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="example_multinomial_group_lasso.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Group Lasso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maths.html">Mathematical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">This is my gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Group Lasso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">This is my gallery</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/auto_examples/example_logistic_group_lasso.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-example-logistic-group-lasso-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<p class="sphx-glr-example-title" id="sphx-glr-auto-examples-example-logistic-group-lasso-py">A sample script that runs group lasso for logistic regression.</p>
+<ul class="sphx-glr-horizontal">
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_001.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_001.png" />
+</li>
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_002.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_002.png" />
+</li>
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_003.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_003.png" />
+</li>
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_004.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_004.png" />
+</li>
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_005.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_005.png" />
+</li>
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_006.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_006.png" />
+</li>
+<li><img alt="../_images/sphx_glr_example_logistic_group_lasso_007.png" class="sphx-glr-multi-img" src="../_images/sphx_glr_example_logistic_group_lasso_007.png" />
+</li>
+</ul>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Generating data
+Generating coefficients
+Generating logits
+Generating targets
+Starting fit
+/home/yngvem/Programming/morro/group-lasso/src/group_lasso/_group_lasso.py:673: UserWarning: You have passed 2 targets to a single class classifier. This will simply train 2 different models meaning that multiple classes can be predicted as true at once.
+  ).format(n=n)
+/home/yngvem/Programming/morro/group-lasso/src/group_lasso/_group_lasso.py:383: UserWarning:
+The behaviour has changed since v1.1.1, before then, a bug in the optimisation
+algorithm made it so the regularisation parameter was scaled by the largest
+eigenvalue of the covariance matrix.
+
+To use the old behaviour, initialise the class with the keyword argument
+`old_regularisation=True`.
+
+To supress this warning, initialise the class with the keyword argument
+`supress_warning=True`
+
+  warnings.warn(_OLD_REG_WARNING)
+Starting FISTA:
+        Initial loss: 1.5469933045630193
+Completed iteration 0:
+        Loss: 1.2104737299414416
+        Weight difference: 0.9443762628127634
+        Weight norm: 0.8324221455638038
+        Grad: 0.24870737019386993
+Completed iteration 1:
+        Loss: 1.1293096614225477
+        Weight difference: 0.45272828530236536
+        Weight norm: 1.0956665292124017
+        Grad: 0.16626800884384027
+Completed iteration 2:
+        Loss: 1.0960272856147482
+        Weight difference: 0.31879555610615284
+        Weight norm: 1.3813446462334156
+        Grad: 0.11984356968643563
+Completed iteration 3:
+        Loss: 1.0818659171365028
+        Weight difference: 0.22620115995914178
+        Weight norm: 1.6012161702273917
+        Grad: 0.09361360654126186
+Completed iteration 4:
+        Loss: 1.0760839913023614
+        Weight difference: 0.14821651374693584
+        Weight norm: 1.748250012557008
+        Grad: 0.07962102914468852
+Completed iteration 5:
+        Loss: 1.0758889722113512
+        Weight difference: 0.010296775767152794
+        Weight norm: 1.7530816354842258
+        Grad: 0.07905265192843676
+Completed iteration 6:
+        Loss: 1.075758635974486
+        Weight difference: 0.006378188245077589
+        Weight norm: 1.7567628508281379
+        Grad: 0.07866522633791057
+Completed iteration 7:
+        Loss: 1.0756324461123972
+        Weight difference: 0.00567308374359215
+        Weight norm: 1.7606264529914977
+        Grad: 0.07828605385712081
+Completed iteration 8:
+        Loss: 1.0755259555244765
+        Weight difference: 0.00431603966821332
+        Weight norm: 1.7640802456995124
+        Grad: 0.0779641637723975
+Completed iteration 9:
+        Loss: 1.075446494235434
+        Weight difference: 0.002953322547411224
+        Weight norm: 1.7667648571034589
+        Grad: 0.07772419672708429
+Completed iteration 10:
+        Loss: 1.0754366056804587
+        Weight difference: 0.00046924595097268257
+        Weight norm: 1.7671306382067469
+        Grad: 0.07769571709538842
+Completed iteration 11:
+        Loss: 1.0754290609883368
+        Weight difference: 0.000325769962621024
+        Weight norm: 1.7674068038844315
+        Grad: 0.07767377716810711
+Completed iteration 12:
+        Loss: 1.0754211196332495
+        Weight difference: 0.00032202670342592997
+        Weight norm: 1.7676950955077648
+        Grad: 0.0776505170734689
+Completed iteration 13:
+        Loss: 1.0754139871652284
+        Weight difference: 0.00027479989497381814
+        Weight norm: 1.7679518041331712
+        Grad: 0.07762948084579076
+Completed iteration 14:
+        Loss: 1.07540840919371
+        Weight difference: 0.00020736998798394818
+        Weight norm: 1.7681508211913002
+        Grad: 0.077612922377394
+Completed iteration 15:
+        Loss: 1.0754076245665203
+        Weight difference: 2.95868665242795e-05
+        Weight norm: 1.7681778365889238
+        Grad: 0.07761054337275429
+Completed iteration 16:
+        Loss: 1.0754070339770558
+        Weight difference: 2.191694410739497e-05
+        Weight norm: 1.7681982973282901
+        Grad: 0.0776087584551642
+Completed iteration 17:
+        Loss: 1.0754064188770847
+        Weight difference: 2.2642972351499354e-05
+        Weight norm: 1.7682197090068033
+        Grad: 0.0776069040682837
+Completed iteration 18:
+        Loss: 1.0754058724024138
+        Weight difference: 2.002972972791038e-05
+        Weight norm: 1.7682388234228816
+        Grad: 0.07760526070688431
+Completed iteration 19:
+        Loss: 1.0754054496556755
+        Weight difference: 1.5487540441188068e-05
+        Weight norm: 1.7682536807937863
+        Grad: 0.07760399260636042
+Completed iteration 20:
+        Loss: 1.0754053927044391
+        Weight difference: 2.1487224429666147e-06
+        Weight norm: 1.7682557189712749
+        Grad: 0.07760382345452645
+Completed iteration 21:
+        Loss: 1.0754053495067593
+        Weight difference: 1.620097912054739e-06
+        Weight norm: 1.7682572610754945
+        Grad: 0.07760369495953716
+Completed iteration 22:
+        Loss: 1.075405304250348
+        Weight difference: 1.6913901458021526e-06
+        Weight norm: 1.7682588736720248
+        Grad: 0.0776035601891484
+Completed iteration 23:
+        Loss: 1.075405263803996
+        Weight difference: 1.50780869101816e-06
+        Weight norm: 1.7682603122761402
+        Grad: 0.07760343960996673
+Completed iteration 24:
+        Loss: 1.0754052323307624
+        Weight difference: 1.1716209440522112e-06
+        Weight norm: 1.7682614298324943
+        Grad: 0.07760334568293635
+Completed iteration 25:
+        Loss: 1.0754052279948918
+        Weight difference: 1.6173091843438317e-07
+        Weight norm: 1.7682615828707173
+        Grad: 0.07760333269402486
+Completed iteration 26:
+        Loss: 1.0754052247162498
+        Weight difference: 1.2239468890247182e-07
+        Weight norm: 1.768261698740912
+        Grad: 0.07760332287897734
+Completed iteration 27:
+        Loss: 1.0754052212892153
+        Weight difference: 1.280547028935984e-07
+        Weight norm: 1.7682618199760636
+        Grad: 0.07760331262512404
+Completed iteration 28:
+        Loss: 1.0754052182332137
+        Weight difference: 1.143365928949507e-07
+        Weight norm: 1.7682619281964715
+        Grad: 0.07760330348631818
+Completed iteration 29:
+        Loss: 1.075405215860119
+        Weight difference: 8.893678074030635e-08
+        Weight norm: 1.7682620123222073
+        Grad: 0.07760329639352523
+Completed iteration 30:
+        Loss: 1.075405215535582
+        Weight difference: 1.2272000138931868e-08
+        Weight norm: 1.7682620238754343
+        Grad: 0.07760329542556182
+X shape: (100000, 470)
+Transformed X shape: (100000, 299)
+True intercept: 2
+Estimated intercept: [0.48654341 0.50288003]
+Accuracy: 0.789405
+/home/yngvem/Programming/morro/group-lasso/examples/example_logistic_group_lasso.py:106: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">group_lasso</span> <span class="k">import</span> <span class="n">LogisticGroupLasso</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">get_groups_from_group_sizes</span><span class="p">,</span>
+    <span class="n">generate_group_lasso_coefficients</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">group_lasso._singular_values</span>
+<span class="kn">import</span> <span class="nn">group_lasso._group_lasso</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">group_lasso</span><span class="o">.</span><span class="n">_singular_values</span><span class="o">.</span><span class="n">_DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">group_lasso</span><span class="o">.</span><span class="n">_group_lasso</span><span class="o">.</span><span class="n">_DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">LogisticGroupLasso</span><span class="o">.</span><span class="n">LOG_LOSSES</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">group_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">get_groups_from_group_sizes</span><span class="p">(</span><span class="n">group_sizes</span><span class="p">)</span>
+    <span class="n">num_coeffs</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">group_sizes</span><span class="p">)</span>
+    <span class="n">num_datapoints</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="n">noise_level</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">coeff_noise_level</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generating data&quot;</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_datapoints</span><span class="p">,</span> <span class="n">num_coeffs</span><span class="p">)</span>
+    <span class="n">intercept</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generating coefficients&quot;</span><span class="p">)</span>
+    <span class="n">w1</span> <span class="o">=</span> <span class="n">generate_group_lasso_coefficients</span><span class="p">(</span><span class="n">group_sizes</span><span class="p">)</span>
+    <span class="n">w2</span> <span class="o">=</span> <span class="n">generate_group_lasso_coefficients</span><span class="p">(</span><span class="n">group_sizes</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">))</span>
+    <span class="n">w</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">coeff_noise_level</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generating logits&quot;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">w</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise_level</span> <span class="o">*</span> <span class="n">y</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">intercept</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generating targets&quot;</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting fit&quot;</span><span class="p">)</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">LogisticGroupLasso</span><span class="p">(</span>
+        <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+        <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">group_reg</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+        <span class="n">l1_reg</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+        <span class="n">subsampling_scheme</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True weights&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gl</span><span class="o">.</span><span class="n">coef_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Estimated weights&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">w</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]),</span>
+            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Normalised true weights&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">gl</span><span class="o">.</span><span class="n">coef_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gl</span><span class="o">.</span><span class="n">coef_</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]),</span>
+            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Normalised estimated weights&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gl</span><span class="o">.</span><span class="n">losses_</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Loss curve&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gl</span><span class="o">.</span><span class="n">losses_</span><span class="p">)),</span> <span class="n">gl</span><span class="o">.</span><span class="n">losses_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Loss curve, ommitting first iteration&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">w</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">w</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="p">[</span><span class="n">gl</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">gl</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">gl</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Learned coefficients&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;True coefficients&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X shape: </span><span class="si">{shape}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transformed X shape: </span><span class="si">{shape}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">gl</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True intercept: </span><span class="si">{intercept}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intercept</span><span class="o">=</span><span class="n">intercept</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated intercept: </span><span class="si">{intercept}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intercept</span><span class="o">=</span><span class="n">gl</span><span class="o">.</span><span class="n">intercept_</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">{accuracy}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">z</span> <span class="o">==</span> <span class="n">gl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.039 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-example-logistic-group-lasso-py">
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/8ff09cf9ed04ecb44dacba9253ef492f/example_logistic_group_lasso.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">example_logistic_group_lasso.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/a5d98190cfe120489377c98460614abf/example_logistic_group_lasso.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">example_logistic_group_lasso.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="example_multinomial_group_lasso.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yngve Mardal Moe
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
