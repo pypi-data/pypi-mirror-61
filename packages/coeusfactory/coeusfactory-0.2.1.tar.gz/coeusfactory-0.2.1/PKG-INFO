@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: coeusfactory
+Version: 0.2.1
+Summary: A Database Connector interface that follows a factory model pattern.
+Home-page: https://github.com/mamerisawesome/coeusfactory
+License: BSD-3-Clause
+Keywords: database,database-factory,db-connector
+Author: Almer Mendoza
+Author-email: atmalmer23@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: pypubsub (>=4.0.3,<5.0.0)
+Requires-Dist: rainbow-bridge-logger (>=0.6.0,<0.7.0)
+Project-URL: Repository, https://github.com/mamerisawesome/coeusfactory
+Description-Content-Type: text/markdown
+
+# Coeus Factory - Database Connector Factory
+
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/coeusfactory)](https://pypi.python.org/pypi/coeusfactory/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+![Coverage](./assets/coverage.svg)
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](mailto:atmalmer23@gmail.com)
+[![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)](https://github.com/Naereen/badges)
+
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
+[![ForTheBadge powered-by-electricity](http://ForTheBadge.com/images/badges/powered-by-electricity.svg)](http://ForTheBadge.com)
+
+A Database Connector interface that follows a factory model pattern.
+
+## Installation
+
+```bash
+# if using poetry
+poetry add coeusfactory
+```
+
+Then add necessary database interfaces as necessary. Below are the libraries that works with Coeus Factory.
+
+| Database | Python Library |
+|----------|----------------|
+| MongoDB  | `pymongo`      |
+| DynamoDB | `boto3`        |
+
