@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: slskit
+Version: 2020.2.0
+Summary: Tools for checking Salt state validity
+Home-page: https://github.com/gediminasz/slskit
+Keywords: salt,saltstack,sls
+Author: Gediminas Zlatkus
+Author-email: gediminas.zlatkus@gmail.com
+Requires-Python: >=3.7.0,<3.8.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Dist: colorlog (>=4.1.0,<5.0.0)
+Requires-Dist: funcy (>=1.14,<2.0)
+Requires-Dist: jsonschema (>=3.2.0,<4.0.0)
+Requires-Dist: pyyaml (>=5.1,<6.0)
+Requires-Dist: salt (>=2019.2,<2020.0)
+Project-URL: Repository, https://github.com/gediminasz/slskit
+Description-Content-Type: text/markdown
+
+# slskit
+
+![release](https://img.shields.io/github/release/gediminasz/slskit.svg)
+![last commit](https://img.shields.io/github/last-commit/gediminasz/slskit.svg)
+![build](https://github.com/gediminasz/slskit/workflows/CI/badge.svg?branch=master)
+![black](https://img.shields.io/badge/code%20style-black-000000.svg)
+
+```
+usage: slskit [-h] [-c CONFIG] {highstate,pillars,refresh,snapshot} ...
+
+slskit - tools for checking Salt state validity
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        path to slskit configuration file (default:
+                        slskit.yaml or slskit.yml)
+
+commands:
+  {highstate,pillars,refresh,snapshot}
+    highstate           render highstate for the specified minions
+    pillars             render pillar items for the specified minions
+    refresh             invoke saltutil.sync_all runner
+    snapshot            create and check highstate snapshots
+```
+
