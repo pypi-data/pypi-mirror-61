@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: django-satella-metrics
+Version: 1.1
+Summary: Library to monitor your Django 2.0+ app using Satella's metrics
+Home-page: https://github.com/piotrmaslanka/django_satella_metrics
+Author: Piotr Maślanka
+Author-email: piotrm@smok.co
+License: UNKNOWN
+Keywords: django,metrics,instrumentation,monitoring,server,satella
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: !=2.7.*,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: django
+Requires-Dist: satella
+
+django-satella-metrics
+======================
+[![Build Status](https://travis-ci.org/piotrmaslanka/django-satella-metrics.svg)](https://travis-ci.org/piotrmaslanka/django-satella-metrics)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/34b392b61482d98ad3f0/test_coverage)](https://codeclimate.com/github/piotrmaslanka/django-satella-metrics/test_coverage)
+[![Code Climate](https://codeclimate.com/github/piotrmaslanka/django-satella-metrics/badges/gpa.svg)](https://codeclimate.com/github/piotrmaslanka/django-satella-metrics)
+[![Issue Count](https://codeclimate.com/github/piotrmaslanka/django-satella-metrics/badges/issue_count.svg)](https://codeclimate.com/github/piotrmaslanka/django-satella-metrics)
+[![PyPI](https://img.shields.io/pypi/pyversions/django-satella-metrics.svg)](https://pypi.python.org/pypi/django-satella-metrics)
+[![PyPI version](https://badge.fury.io/py/django-satella-metrics.svg)](https://badge.fury.io/py/django-satella-metrics)
+[![PyPI](https://img.shields.io/pypi/implementation/django-satella-metrics.svg)](https://pypi.python.org/pypi/django-satella-metrics)
+
+django-satella-metrics is a library to measure [Django's](https://github.com/django/django) 
+requests using [Satella's](https://github.com/piotrmaslanka/satella) metrics
+
+See [LICENSE](LICENSE) for text of the license. This library may contain
+code taken from elsewhere on the internets, so this is copyright (c) respective authors.
+
+Usage
+=====
+
+First, add the following to your `MIDDLEWARE` (or `MIDDLEWARE_CLASSES`):
+`'django_satella_metrics.DjangoSatellaMetricsMiddleware'`
+
+Define the following in your settings:
+
+```python
+from satella.instrumentation.metrics import getMetric
+DJANGO_SATELLA_METRICS = {
+    'summary_metric': getMetric('django.summary', 'summary'),
+    'histogram_metric': getMetric('django.histogram', 'histogram'),
+    'status_codes_metric': getMetric('django.status_codes', 'counter')
+}
+```
+
+Or pass any other metrics that you'd like. This is the default configuration, so if you pass nothing it will be 
+as if you passed the listed code.
+
+## Extra configuration
+
+If you want URL readed from the request in a different way than reading URL, you can define a key called `url_getter`.
+This should contain a callable that accepts a single argument, the request passed, and return a str, the URL to use.
+
+Additionally, if you want the Prometheus exporter to add extra labels to your exported metrics, you can add a key to
+the config of name `extra_labels` which will contain a dict with the labels to add, eg.
+
+```python
+DJANGO_SATELLA_METRICS = {
+    'extra_labels': {
+        'service_name': 'my_service',
+        'instance': 1
+    }
+}
+```
+
+If you specify `monitor_metrics`, which is a bool, to be True, then `/metrics` endpoint will also be considered during
+monitoring.
+
+## Exporting from the same server
+
+If you want to export metrics to Prometheus using Django, here you go. Just add following rule to your `urlpatterns`:
+
+```python
+from django_satella_metrics import export_metrics
+
+urlpatterns = [
+    ... ,
+    path('metrics', export_metrics),
+    ...
+]
+```
+
+## External Prometheus server
+
+If you want to set up an external Prometheus server, use the following snippet:
+
+```python
+from satella.instrumentation.metrics.exporters import PrometheusHTTPExporterThread
+phet = PrometheusHTTPExporterThread('0.0.0.0', 8080, {'service_name': 'my_service'})
+phet.start()
+```
+
