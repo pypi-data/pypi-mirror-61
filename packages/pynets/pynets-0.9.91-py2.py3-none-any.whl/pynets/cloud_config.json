@@ -1,0 +1,35 @@
+{
+"jobName": "<JOBNAME>",
+"jobQueue": "pynets-queue",
+"dependsOn": [],
+"jobDefinition": "pynets",
+"parameters": {},
+"containerOverrides": {
+  "command": [
+    "--bucket",
+    "<BUCKET>",
+    "--remote_path",
+    "<PATH>",
+    "--participant_label",
+    "<SUBJ>",
+    "--modality",
+    "func",
+    "-cm",
+    "'/hnu/masks/triple_net_ICA_overlap_3_sig_bin.nii.gz' '/hnu/masks/triple_net_ICA_overlap_6_sig_bin.nii.gz' '/hnu/masks/triple_net_ICA_overlap_9_sig_bin.nii.gz'"
+  ],
+  "environment": [
+    {
+      "name": "AWS_ACCESS_KEY_ID",
+      "value": "<KEYID>"
+    },
+    {
+      "name": "AWS_SECRET_ACCESS_KEY",
+      "value": "<SECRET>"
+    },
+    {
+      "name": "AWS_DEFAULT_REGION",
+      "value": "us-east-2"
+    }
+  ]
+}
+}
