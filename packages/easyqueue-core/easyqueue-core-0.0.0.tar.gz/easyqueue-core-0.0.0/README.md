@@ -1,0 +1,2 @@
+Easy Queue Core Library
+=============
