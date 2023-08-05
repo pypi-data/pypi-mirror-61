@@ -1,0 +1,90 @@
+Metadata-Version: 2.1
+Name: machinable
+Version: 1.1.2
+Summary: A modular configuration system for machine learning research
+Home-page: https://machinable.org
+Author: Frithjof Gressmann
+Author-email: hello@machinable.org
+License: mit
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >= 3.6
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: pyyaml
+Requires-Dist: dotmap
+Requires-Dist: fs
+Requires-Dist: fs-s3fs
+Requires-Dist: fs.sshfs
+Requires-Dist: python-baseconv
+Requires-Dist: regex
+Requires-Dist: observable
+Requires-Dist: gitignore-parser
+Requires-Dist: orator
+Requires-Dist: click
+Provides-Extra: full
+Requires-Dist: tabulate ; extra == 'full'
+Requires-Dist: ray ; extra == 'full'
+Requires-Dist: pandas ; extra == 'full'
+Requires-Dist: numpy ; extra == 'full'
+Provides-Extra: testing
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/machinable-org/machinable/master/docs/logo/logo.png">
+</div>
+
+# machinable
+
+<a href="https://travis-ci.org/machinable-org/machinable">
+<img src="https://travis-ci.org/machinable-org/machinable.svg?branch=master" alt="Build Status">
+</a>
+<a href="https://opensource.org/licenses/MIT">
+<img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+</a>
+
+<br />
+<br />
+
+**machinable** is a modular configuration system for machine learning research. Using straight-forward conventions and a powerful configuration engine, it can help structuring your projects in a principled way to move quickly while enabling reuse and collaboration.
+
+[Explore key features at a glance →](https://machinable.org/guide/at-glance.html)
+
+*Ready to start?*
+
+    $ pip install machinable
+
+## Features
+
+**Powerful configuration**
+
+- YAML-based project-wide configuration files with expressive syntax
+- Efficient configuration manipulation
+- Modular code organisation to allow for encapsulation and re-use
+- Import system to use 3rd party configuration and code without overhead
+- 'Mixins' for horizontal inheritance structure
+
+**Efficient execution**
+
+- Works with existing code
+- Support for seamless cloud execution
+- Automatic code backups
+- Managed randomness and reproducibility
+- Advanced hyperparameter tuning using [Ray Tune](https://github.com/ray-project/ray)
+
+**Effective result collection and analysis**
+
+- Logging, tabular record writer and storage API
+- File system abstraction (in-memory, AWS S3, and more)
+- Flat-file result database with SQL-like query interface
+- Convenient configuration and result retrieval
+
+### Documentation
+
+Read the [user guide ](https://machinable.org/guide) to get started.
+
+
