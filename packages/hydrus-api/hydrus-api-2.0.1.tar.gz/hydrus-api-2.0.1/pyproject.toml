@@ -1,0 +1,25 @@
+[tool.poetry]
+name = 'hydrus-api'
+packages = [{include='hydrus'}]
+version = '2.0.1'
+description = 'Python module implementing the Hydrus API'
+authors = ['cryzed <cryzed@googlemail.com>']
+
+license='GPLv3'
+readme='README.md'
+homepage='https://gitlab.com/cryzed/hydrus-api'
+repository='https://gitlab.com/cryzed/hydrus-api'
+keywords=['hydrus', 'api']
+include=['LICENSE']
+
+[tool.poetry.dependencies]
+python = '^3.6'
+requests = '^2.22'
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+mypy = "^0.761"
+
+[build-system]
+requires = ['poetry>=0.12']
+build-backend = 'poetry.masonry.api'
