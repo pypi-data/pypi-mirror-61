@@ -1,0 +1,316 @@
+# django-survey-and-report's i18n file
+# This file is distributed under the MIT license.
+# Vlad M. <vladm.ru@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-09 20:07+0000\n"
+"PO-Revision-Date: 2019-03-10 22:53+0230\n"
+"Last-Translator: b'  <vladm.ru@gmail.com>'\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Translated-Using: django-rosetta 0.9.2\n"
+
+#: build/lib/survey/actions.py:13
+#, python-format
+msgid "%(count)d survey was successfully marked as published."
+msgid_plural "%(count)d surveys were successfully marked as published"
+msgstr[0] "опрос %(count)d успешно помечен как опубликованный."
+msgstr[1] "опросы %(count)d помечены как опубликованные."
+
+#: build/lib/survey/actions.py:18
+msgid "Mark selected surveys as published"
+msgstr "Помечено как опублиовано"
+
+#: build/lib/survey/exporter/csv/survey2csv.py:35
+msgid "Anonymous"
+msgstr "Анонимно"
+
+#: build/lib/survey/exporter/tex/question2tex.py:64
+msgid "with"
+msgstr "с"
+
+# there is a mistake in the EN singular and plural cases.
+# Entrevistado reffers to all surveyed.
+#: build/lib/survey/exporter/tex/question2tex.py:66
+#, python-format
+msgid "%(min_cardinality)d respondants or more"
+msgid_plural "%(min_cardinality)d respondant or more"
+msgstr[0] "%(min_cardinality)d отвечает или более"
+msgstr[1] "%(min_cardinality)d отвечают или более"
+
+#: build/lib/survey/exporter/tex/question2tex.py:78
+msgid "excluding"
+msgstr "за исключением"
+
+#: build/lib/survey/exporter/tex/question2tex.py:83
+#: build/lib/survey/exporter/tex/question2tex.py:117
+#: build/lib/survey/exporter/tex/question2tex.py:120
+msgid "and"
+msgstr "и"
+
+#: build/lib/survey/exporter/tex/question2tex.py:114
+#: build/lib/survey/exporter/tex/question2tex.py:115
+msgid "or"
+msgstr "или"
+
+#: build/lib/survey/exporter/tex/question2tex.py:129
+msgid "Repartition of answers"
+msgstr "Перераспределение ответов"
+
+#: build/lib/survey/exporter/tex/question2tex_chart.py:72
+msgid "Left blank"
+msgstr "Оставить пустым"
+
+#: build/lib/survey/exporter/tex/question2tex_chart.py:118
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:30
+msgid "for the question"
+msgstr "для вопроса"
+
+#: build/lib/survey/exporter/tex/question2tex_chart.py:128
+msgid "No answers for this question."
+msgstr "Нет ответов для этого вопроса."
+
+#: build/lib/survey/exporter/tex/question2tex_raw.py:26
+msgid "Participant"
+msgstr "Участник"
+
+#  as in "opposite of right"
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:30
+msgid "left"
+msgstr "не правильно"
+
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:32
+msgid "in relation with the question"
+msgstr "в связи с вопросом"
+
+# as in "opposite of left"
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:34
+msgid "right"
+msgstr "правильно"
+
+#: build/lib/survey/exporter/tex/survey2tex.py:66
+msgid "We could not render a chart because the type"
+msgstr "Мы не смогли отобразить диаграмму, потому что тип"
+
+#: build/lib/survey/exporter/tex/survey2tex.py:69
+msgid "is not a standard type nor the path to an importable valid Question2Tex child class. Choose between 'raw', 'sankey', 'pie', 'cloud', 'square', 'polar' or 'package.path.MyQuestion2TexCustomClass'"
+msgstr "не является стандартным типом или путем к импортируемому допустимому текстовому дочернему классу Question2Tex. Выбрать между 'raw', 'sankey', 'pie', 'cloud', 'square', 'polar' o 'package.path.MyQuestion2TexCustomClass'"
+
+#: build/lib/survey/models/answer.py:23
+msgid "Question"
+msgstr "Вопрос"
+
+#: build/lib/survey/models/answer.py:24
+msgid "Response"
+msgstr "Ответ"
+
+#: build/lib/survey/models/answer.py:25 build/lib/survey/models/response.py:27
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: build/lib/survey/models/answer.py:26 build/lib/survey/models/response.py:28
+msgid "Update date"
+msgstr "Дата обновления"
+
+#: build/lib/survey/models/answer.py:27
+msgid "Content"
+msgstr "Содержание"
+
+#: build/lib/survey/models/category.py:12 build/lib/survey/models/survey.py:10
+msgid "Name"
+msgstr "Название"
+
+#: build/lib/survey/models/category.py:13
+#: build/lib/survey/models/question.py:76
+#: build/lib/survey/models/response.py:29
+msgid "Survey"
+msgstr "Тест"
+
+#: build/lib/survey/models/category.py:14
+msgid "Display order"
+msgstr "Порядок отображения"
+
+#: build/lib/survey/models/category.py:15 build/lib/survey/models/survey.py:11
+msgid "Description"
+msgstr "Описание"
+
+#: build/lib/survey/models/category.py:19
+msgid "category"
+msgstr "категория"
+
+#: build/lib/survey/models/category.py:20
+msgid "categories"
+msgstr "категории"
+
+# "if the question type" repeated in english original
+#: build/lib/survey/models/question.py:23
+msgid ""
+"The choices field is only used if the question type\n"
+"if the question type is 'radio', 'select', or\n"
+"'select multiple' provide a comma-separated list of\n"
+"options for this question ."
+msgstr ""
+"Поле выбора используется только в том случае, если тип вопроса\n"
+"если тип вопроса - 'radio', 'select' или\n"
+"'select multiple' предоставляет разделенный запятыми список\n"
+"вариантов этого вопроса ."
+
+#: build/lib/survey/models/question.py:61
+msgid "text (multiple line)"
+msgstr "текст (многострочный)"
+
+#: build/lib/survey/models/question.py:62
+msgid "short text (one line)"
+msgstr "короткий текст (однострочный)"
+
+#: build/lib/survey/models/question.py:63
+msgid "radio"
+msgstr "radio"
+
+#: build/lib/survey/models/question.py:64
+msgid "select"
+msgstr "выбор"
+
+#: build/lib/survey/models/question.py:65
+msgid "Select Multiple"
+msgstr "Множественный выбор"
+
+#: build/lib/survey/models/question.py:66
+msgid "Select Image"
+msgstr "выбор изображения"
+
+#: build/lib/survey/models/question.py:67
+msgid "integer"
+msgstr "целое"
+
+#: build/lib/survey/models/question.py:70
+msgid "Text"
+msgstr "Текст"
+
+#: build/lib/survey/models/question.py:71
+msgid "Order"
+msgstr "Порядок"
+
+#: build/lib/survey/models/question.py:72
+msgid "Required"
+msgstr "Требуемый"
+
+#: build/lib/survey/models/question.py:74
+msgid "Category"
+msgstr "Категория"
+
+#: build/lib/survey/models/question.py:77
+msgid "Type"
+msgstr "Тип"
+
+#: build/lib/survey/models/question.py:78
+msgid "Choices"
+msgstr "Варианты"
+
+#: build/lib/survey/models/question.py:81
+msgid "question"
+msgstr "вопрос"
+
+#: build/lib/survey/models/question.py:82
+msgid "questions"
+msgstr "вопросы"
+
+#: build/lib/survey/models/response.py:30
+msgid "User"
+msgstr "Пользователь"
+
+#: build/lib/survey/models/response.py:31
+msgid "Interview unique identifier"
+msgstr "Уникальный идентификатор интервью"
+
+#: build/lib/survey/models/response.py:34
+msgid "Set of answers to surveys"
+msgstr "Набор ответов на опросы"
+
+#: build/lib/survey/models/response.py:35
+msgid "Sets of answers to surveys"
+msgstr "Наборы ответов на опросы"
+
+#: build/lib/survey/models/survey.py:12
+msgid "Users can see it and answer it"
+msgstr "Пользователи могут увидеть его и ответить на него"
+
+#: build/lib/survey/models/survey.py:13
+msgid "Only authenticated users can see it and answer it"
+msgstr "Только прошедшие проверку пользователи могут видеть его и отвечать на него"
+
+#: build/lib/survey/models/survey.py:14
+#, fuzzy
+#| msgid "Users can see it and answer it"
+msgid "Users can edit their answers afterwards"
+msgstr "Пользователи могут редактировать свои ответы впоследствии"
+
+#: build/lib/survey/models/survey.py:15
+msgid "Display by question"
+msgstr "Отображение по вопросу"
+
+#: build/lib/survey/models/survey.py:16
+msgid "Template"
+msgstr "Шаблон"
+
+#: build/lib/survey/models/survey.py:19
+msgid "survey"
+msgstr "опрос"
+
+#: build/lib/survey/models/survey.py:20
+msgid "surveys"
+msgstr "опросы"
+
+#: build/lib/survey/templates/survey/completed.html:4
+#: build/lib/survey/templates/survey/completed.html:7
+msgid "Survey completed"
+msgstr "Опрос завершен"
+
+#: build/lib/survey/templates/survey/completed.html:8
+msgid "Sorry! Your already replied to our survey"
+msgstr "Простите! Вы уже ответили на наш опрос"
+
+#: build/lib/survey/templates/survey/completed.html:9
+msgid "Back to survey list"
+msgstr "Вернуться к списку опросов"
+
+#: build/lib/survey/templates/survey/confirm.html:4
+#: build/lib/survey/templates/survey/confirm.html:7
+msgid "Survey submitted"
+msgstr "Опрос представлен"
+
+#: build/lib/survey/templates/survey/confirm.html:10
+msgid "Thanks! Your answers have been saved"
+msgstr "Спасибо! Ваши ответы были сохранены"
+
+#: build/lib/survey/templates/survey/confirm.html:14
+msgid "You can always come back and change them."
+msgstr "Вы всегда можете вернуться и изменить их."
+
+#: build/lib/survey/templates/survey/list.html:6
+msgid "Welcome to the Django Survey app"
+msgstr "Добро пожаловать в Опросник"
+
+#: build/lib/survey/templates/survey/list.html:10
+msgid "Take the Survey"
+msgstr "Принять участие в опросе"
+
+#: build/lib/survey/templates/survey/survey.html:31
+msgid "Answer this part"
+msgstr "Ответьте на эту часть"
+
+#: build/lib/survey/templates/survey/survey.html:44
+msgid "Questions"
+msgstr "Ответы"
+
+#: build/lib/survey/templates/survey/survey.html:53
+msgid "I'm done!"
+msgstr "Я завершил!"

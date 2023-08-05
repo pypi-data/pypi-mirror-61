@@ -1,0 +1,305 @@
+# django-survey-and-report's i18n file
+# This file is distributed under the MIT license.
+# Pierre SASSOULAS <pierre.sassoulas@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-09 20:07+0000\n"
+"PO-Revision-Date: 2018-04-01 11:49+0000\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.7.13\n"
+
+#: build/lib/survey/actions.py:13
+#, python-format
+msgid "%(count)d survey was successfully marked as published."
+msgid_plural "%(count)d surveys were successfully marked as published"
+msgstr[0] "%(count)d questionnaire a été publié avec succès."
+msgstr[1] "%(count)d questionnaires ont été publiés avec succès."
+
+#: build/lib/survey/actions.py:18
+msgid "Mark selected surveys as published"
+msgstr "Marquer le sondage comme publié"
+
+#: build/lib/survey/exporter/csv/survey2csv.py:35
+msgid "Anonymous"
+msgstr "Anonyme"
+
+#: build/lib/survey/exporter/tex/question2tex.py:64
+msgid "with"
+msgstr "avec"
+
+#: build/lib/survey/exporter/tex/question2tex.py:66
+#, python-format
+msgid "%(min_cardinality)d respondants or more"
+msgid_plural "%(min_cardinality)d respondant or more"
+msgstr[0] "%(min_cardinality)d réponse ou plus"
+msgstr[1] "%(min_cardinality)d réponses ou plus"
+
+#: build/lib/survey/exporter/tex/question2tex.py:78
+msgid "excluding"
+msgstr "excluant"
+
+#: build/lib/survey/exporter/tex/question2tex.py:83
+#: build/lib/survey/exporter/tex/question2tex.py:117
+#: build/lib/survey/exporter/tex/question2tex.py:120
+msgid "and"
+msgstr "et"
+
+#: build/lib/survey/exporter/tex/question2tex.py:114
+#: build/lib/survey/exporter/tex/question2tex.py:115
+msgid "or"
+msgstr "ou"
+
+#: build/lib/survey/exporter/tex/question2tex.py:129
+msgid "Repartition of answers"
+msgstr "Répartition des réponses"
+
+#: build/lib/survey/exporter/tex/question2tex_chart.py:72
+msgid "Left blank"
+msgstr "Laissé vide"
+
+#: build/lib/survey/exporter/tex/question2tex_chart.py:118
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:30
+msgid "for the question"
+msgstr "pour la question"
+
+#: build/lib/survey/exporter/tex/question2tex_chart.py:128
+msgid "No answers for this question."
+msgstr "Aucune réponse pour cette question."
+
+#: build/lib/survey/exporter/tex/question2tex_raw.py:26
+msgid "Participant"
+msgstr "Participant"
+
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:30
+msgid "left"
+msgstr "à gauche"
+
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:32
+msgid "in relation with the question"
+msgstr "mise en relation avec la question"
+
+#: build/lib/survey/exporter/tex/question2tex_sankey.py:34
+msgid "right"
+msgstr "à droite"
+
+#: build/lib/survey/exporter/tex/survey2tex.py:66
+msgid "We could not render a chart because the type"
+msgstr "Nous n'avons pas pu générer un graphique car le type"
+
+#: build/lib/survey/exporter/tex/survey2tex.py:69
+msgid "is not a standard type nor the path to an importable valid Question2Tex child class. Choose between 'raw', 'sankey', 'pie', 'cloud', 'square', 'polar' or 'package.path.MyQuestion2TexCustomClass'"
+msgstr "n'est pas un type standard, ni le chemin d'une classe fille de Question2Tex importable. Choisissez entre 'raw', 'sankey', 'pie', 'cloud', 'square', 'polar' ou 'package.chemin.MaClasseQuestion2TexPerso'"
+
+#: build/lib/survey/models/answer.py:23
+msgid "Question"
+msgstr "Question"
+
+#: build/lib/survey/models/answer.py:24
+msgid "Response"
+msgstr "Réponse"
+
+#: build/lib/survey/models/answer.py:25 build/lib/survey/models/response.py:27
+msgid "Creation date"
+msgstr "Date de création"
+
+#: build/lib/survey/models/answer.py:26 build/lib/survey/models/response.py:28
+msgid "Update date"
+msgstr "Date de mise à jour"
+
+#: build/lib/survey/models/answer.py:27
+msgid "Content"
+msgstr "Contenu"
+
+#: build/lib/survey/models/category.py:12 build/lib/survey/models/survey.py:10
+msgid "Name"
+msgstr "Nom"
+
+#: build/lib/survey/models/category.py:13
+#: build/lib/survey/models/question.py:76
+#: build/lib/survey/models/response.py:29
+msgid "Survey"
+msgstr "Sondage"
+
+#: build/lib/survey/models/category.py:14
+msgid "Display order"
+msgstr "Ordre d'affichage"
+
+#: build/lib/survey/models/category.py:15 build/lib/survey/models/survey.py:11
+msgid "Description"
+msgstr "Description"
+
+#: build/lib/survey/models/category.py:19
+msgid "category"
+msgstr "catégorie"
+
+#: build/lib/survey/models/category.py:20
+msgid "categories"
+msgstr "catégories"
+
+#: build/lib/survey/models/question.py:23
+msgid ""
+"The choices field is only used if the question type\n"
+"if the question type is 'radio', 'select', or\n"
+"'select multiple' provide a comma-separated list of\n"
+"options for this question ."
+msgstr "Le champ choix est utilisé seulement si la question est de type 'bouton radio', 'liste déroulante', ou 'liste à choix multiple', il faut fournir la liste des options pour cette question sous la forme d'une liste séparée par des virgules."
+
+#: build/lib/survey/models/question.py:61
+msgid "text (multiple line)"
+msgstr "Texte (plusieurs lignes)"
+
+#: build/lib/survey/models/question.py:62
+msgid "short text (one line)"
+msgstr "Texte court (une ligne)"
+
+#: build/lib/survey/models/question.py:63
+msgid "radio"
+msgstr "Bouton radio"
+
+#: build/lib/survey/models/question.py:64
+msgid "select"
+msgstr "Liste déroulante"
+
+#: build/lib/survey/models/question.py:65
+msgid "Select Multiple"
+msgstr "Liste à choix multiple"
+
+#: build/lib/survey/models/question.py:66
+msgid "Select Image"
+msgstr "Séléctionnez l'image"
+
+#: build/lib/survey/models/question.py:67
+msgid "integer"
+msgstr "Chiffre"
+
+#: build/lib/survey/models/question.py:70
+msgid "Text"
+msgstr "Texte"
+
+#: build/lib/survey/models/question.py:71
+msgid "Order"
+msgstr "Ordre"
+
+#: build/lib/survey/models/question.py:72
+msgid "Required"
+msgstr "Requise"
+
+#: build/lib/survey/models/question.py:74
+msgid "Category"
+msgstr "Catégorie"
+
+#: build/lib/survey/models/question.py:77
+msgid "Type"
+msgstr "Type"
+
+#: build/lib/survey/models/question.py:78
+msgid "Choices"
+msgstr "Choix"
+
+#: build/lib/survey/models/question.py:81
+msgid "question"
+msgstr "question"
+
+#: build/lib/survey/models/question.py:82
+msgid "questions"
+msgstr "questions"
+
+#: build/lib/survey/models/response.py:30
+msgid "User"
+msgstr "Utilisateur"
+
+#: build/lib/survey/models/response.py:31
+msgid "Interview unique identifier"
+msgstr "Identifiant unique de la réponse"
+
+#: build/lib/survey/models/response.py:34
+msgid "Set of answers to surveys"
+msgstr "Ensemble de réponse aux sondages"
+
+#: build/lib/survey/models/response.py:35
+msgid "Sets of answers to surveys"
+msgstr "Ensembles de réponse aux sondages"
+
+#: build/lib/survey/models/survey.py:12
+msgid "Users can see it and answer it"
+msgstr "Les utilisateurs peuvent le voir et y répondre"
+
+#: build/lib/survey/models/survey.py:13
+msgid "Only authenticated users can see it and answer it"
+msgstr "Seuls les utilisateurs authentifiés peuvent le voir et y répondre"
+
+#: build/lib/survey/models/survey.py:14
+msgid "Users can edit their answers afterwards"
+msgstr "Les utilisateurs peuvent modifier leur réponse"
+
+#: build/lib/survey/models/survey.py:15
+msgid "Display by question"
+msgstr "Affichage par question"
+
+#: build/lib/survey/models/survey.py:16
+msgid "Template"
+msgstr "Modèle"
+
+#: build/lib/survey/models/survey.py:19
+msgid "survey"
+msgstr "sondage"
+
+#: build/lib/survey/models/survey.py:20
+msgid "surveys"
+msgstr "sondages"
+
+#: build/lib/survey/templates/survey/completed.html:4
+#: build/lib/survey/templates/survey/completed.html:7
+msgid "Survey completed"
+msgstr "Sondage terminé"
+
+#: build/lib/survey/templates/survey/completed.html:8
+msgid "Sorry! Your already replied to our survey"
+msgstr "Désolé! Vous avez déjà répondu à ce sondage"
+
+#: build/lib/survey/templates/survey/completed.html:9
+msgid "Back to survey list"
+msgstr "Retour à la liste de sondage"
+
+#: build/lib/survey/templates/survey/confirm.html:4
+#: build/lib/survey/templates/survey/confirm.html:7
+msgid "Survey submitted"
+msgstr "Sondage soumis"
+
+#: build/lib/survey/templates/survey/confirm.html:10
+msgid "Thanks! Your answers have been saved"
+msgstr "Merci! Vos réponses ont été sauvegardées."
+
+#: build/lib/survey/templates/survey/confirm.html:14
+msgid "You can always come back and change them."
+msgstr "Vous pouvez revenir les modifier plus tard."
+
+#: build/lib/survey/templates/survey/list.html:6
+msgid "Welcome to the Django Survey app"
+msgstr "Bienvenue dans l'application Django-Survey"
+
+#: build/lib/survey/templates/survey/list.html:10
+msgid "Take the Survey"
+msgstr "Réaliser le sondage"
+
+#: build/lib/survey/templates/survey/survey.html:31
+msgid "Answer this part"
+msgstr "Répondre à cette partie"
+
+#: build/lib/survey/templates/survey/survey.html:44
+msgid "Questions"
+msgstr "Questions"
+
+#: build/lib/survey/templates/survey/survey.html:53
+msgid "I'm done!"
+msgstr "J'ai fini"
