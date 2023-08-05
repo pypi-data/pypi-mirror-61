@@ -1,0 +1,11 @@
+
+        [ckan.plugins]
+        subscribe=ckanext.subscribe.plugin:SubscribePlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+
+        [paste.paster_command]
+        subscribe = ckanext.subscribe.cli:subscribeCommand
+
+    
