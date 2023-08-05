@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: marshmallow-union
+Version: 0.1.14
+Summary: Union fields for marshmallow.
+Home-page: https://github.com/adamboche/python-marshmallow-union
+Author: Adam Boche
+Author-email: adamboche@users.noreply.github.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Dist: marshmallow (>=3.0.0)
+
+========
+Overview
+========
+
+
+
+Union fields for marshmallow.
+
+* Free software: MIT license
+
+
+Warning
+===========
+
+   Figuring out the correct field type from an untagged dump is a matter of guesswork and
+   can be error-prone. A more explicit approach like
+   https://github.com/Bachmann1234/marshmallow-polyfield/ is better. This project remains
+   here to avoid breaking existing software.
+
+
+
+Documentation
+=============
+
+
+https://python-marshmallow-union.readthedocs.io/
+
+0.1.12 (2019-10-24)
+-------------------
+
+
+Backward-incompatible Changes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- On serialization, ``marshmallow_union.ExceptionGroup`` is raised if all candidate fields fail.
+  `#24 <https://github.com/adamboche/python-marshmallow-union/issues/24>`_
+
+
+----
+
+
+0.1.11 (2019-06-19)
+-------------------
+
+
+Changes
+^^^^^^^
+
+- Override the underscore-prefixed methods instead of the plain ones
+  `#22 <https://github.com/adamboche/python-marshmallow-union/issues/22>`_
+
+
+----
+
+
+Changelog
+=========
+
+0.1.10 (2019-06-08)
+-------------------
+
+
+Changes
+^^^^^^^
+
+- Use Towncrier for changelog.
+  `#18 <https://github.com/adamboche/python-marshmallow-union/issues/18>`_
+
+
+----
+
+
+0.1.0 (2019-06-07)
+------------------
+
+* First release on PyPI.
+
+
