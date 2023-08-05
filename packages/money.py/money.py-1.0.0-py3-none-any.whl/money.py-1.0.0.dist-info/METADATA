@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: money.py
+Version: 1.0.0
+Summary: money.py is a library to handle money.
+Home-page: https://github.com/cryptgar/money.py
+Author: Edgar Luque
+Author-email: blog@anonim.cat
+License: MIT
+Keywords: money
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# money.py
+
+> money.py is a library to handle money
+
+*Python 3.6+ only.*
+
+https://en.wikipedia.org/wiki/ISO_4217
+
+## Documentation
+
+Will make it ASAP.
+
+## Installation
+
+- ``pip3 install money.py``
+
+### Testing
+
+- `pip install pytest pytest-cov pytest-xdist`
+
+- `pytest --cov=moneypy`
+
+## Example
+
+```python
+from moneypy import Money, EUR_CURRENCY
+
+a = Money(EUR_CURRENCY)
+b = Money(EUR_CURRENCY)
+
+a.add(2, 30) # 2.30
+b.add(4, 4) # 4.4
+
+a += b
+print(a) # 6.7
+```
+
