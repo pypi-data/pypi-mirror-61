@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: flask-download-btn
+Version: 0.0.18
+Summary: Flask-Download-Btn defines a SQLALchemy Mixin for creating Bootstrap download buttons in a Flask application.
+Home-page: https://github.com/dsbowen/flask-download-btn
+Author: Dillon Bowen
+Author-email: dsbowen@wharton.upenn.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: flask (==1.1.1)
+Requires-Dist: sqlalchemy (==1.3.12)
+Requires-Dist: sqlalchemy-function (==0.0.5)
+Requires-Dist: sqlalchemy-modelid (==0.0.2)
+Requires-Dist: sqlalchemy-mutable (==0.0.7)
+Requires-Dist: sqlalchemy-mutablesoup (==0.0.6)
+
+# Flask-Download-Btn
+
+Flask-Download-Btn defines a [SQLALchemy Mixin](https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/mixins.html) for creating [Bootstrap](https://getbootstrap.com/) download buttons in a [Flask](https://palletsprojects.com/p/flask/) application.
+
+Its key features are:
+1. *Automatic enabling and disabling*: A download button is automatically disabled on click and re-enabling on download completion.
+2. *Web form handling*: Applications can modify a download button on click based on web form responses.
+3. *Progress bar*: Download buttons report progress using a progress bar updated with server-sent events.
+
+## Example: Basic use
+
+Suppose we want to include a download button which downloads `hello_world.txt` accessible at `HELLO_WORLD_URL`. On click, we want to disable the button and re-enable it when the file finishes downloading.
+
+After setup, we can achieve this with the following:
+
+```python
+@app.route('/')
+def index():
+    btn = get_btn('basic')
+    if not btn:
+        btn = DownloadBtn()
+        btn.downloads = [(HELLO_WORLD_URL, 'hello_world.txt')]
+        add_to_session(btn, 'basic')
+    return render_template('index.html', download_btn=btn)
+```
+
+## Documentation
+
+You can find the latest documentation at [https://dsbowen.github.io/flask-download-btn](https://dsbowen.github.io/flask-download-btn).
+
+## License
+
+Publications which use this software should include the following citation for SQLAlchemy-Function and its dependencies, [SQLAlchemy-Function](https://dsbowen.github.io/sqlalchemy-function), [SQLAlchemy-Mutable](https://dsbowen.github.io/sqlalchemy-mutable), and [SQLAlchemy-MutableSoup](https://dsbowen.github.io.sqlalchemy-mutablesoup):
+
+Bowen, D.S. (2019). Flask-Download-Btn\[Computer software\]. [https://dsbowen.github.io/flask-download-btn](https://dsbowen.github.io/flask-download-btn).
+
+Bowen, D.S. (2019). SQLAlchemy-Function \[Computer software\]. [https://dsbowen.github.io/sqlalchemy-function](https://dsbowen.github.io/sqlalchemy-function).
+
+Bowen, D.S. (2019). SQLAlchemy-Mutable \[Computer software\]. [https://dsbowen.github.io/sqlalchemy-mutable](https://dsbowen.github.io/sqlalchemy-mutable).
+
+Bowen, D.S. (2020). SQLAlchemy-MutableSoup [Computer software]. [https://dsbowen.github.io/sqlalchemy-mutablesoup](https://dsbowen.github.io/sqlalchemy-mutablesoup).
+
+This project is licensed under the MIT License [LICENSE](https://github.com/dsbowen/flask-download-btn/blob/master/LICENSE).
+
