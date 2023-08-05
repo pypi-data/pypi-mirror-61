@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: slicefix-jonathandannel
+Version: 0.7.10
+Summary: A simple script for formatting Photoshop HTML generated from image slicing
+Home-page: https://github.com/jonathandannel/slicefixx
+Author: Jonathan Dannel
+Author-email: usixjad@gmail.com
+License: UNKNOWN
+Description: A simple Python script for editing Photoshop slice generated HTML for use with e-blasts.
+        
+        ## Requirements
+        
+        - Python 3. Run `which python3`; If not found, install with Homebrew, apt, or whatever else you use. Once it is installed, make sure the shebang path at the start of the script (ex: `#!/usr/bin/python3`) matches where your Python 3 is installed.
+        
+        ## Use pip 3 to install dependencies:
+        
+        `pip3` will be installed with your Python 3 install.
+        
+        - Run `pip3 install -r requirements.txt`. This will install the bs4 and datetime packages. You can also install them manually, if you like. The script will not work if you skip this step.
+        
+        ## Usage
+        
+        `python3 fix.py -f some-html-file-1942.html -d yourdomainhere.ca`
+        
+        The script takes two arguments, `-f` (file) and `-d` (domain).
+        
+        ### -f
+        
+        The .html file you want to fix. If you're running the script in the same directory as the HTML file, then all you have to do is type in/paste the file name. You can also specify a path (this is better)
+        
+        For example, if your `fix.py` is in your `~/` or `/home/` directory, and your HTML file is located in `~/Downloads/eblasts`, you would navigate to `~/` and run `python3 fix.py --file ~/Downloads/eblasts/some-html-file-1942.html --domain yourdomainhere.ca`. The output file will be generated in the same directory as the HTML file input.
+        
+        You can also move `fix.py` into whatever directory contains the HTML file and run it from there, so you don't have to type out the path to the file.
+        
+        ### -d
+        
+        The domain (without `http://`) where the images in the HTML are hosted. For example, `yourdomainhere.com`.
+        
+        ## Result
+        
+        - All `<img>` elements get the correct style tags added to them.
+        - All `<img>` `src` attributes will be edited to use the right domain/path for the FTP (`http://` and `/eblasts/`).
+        - Center element, SEO text div, and other pre-table and post-table content is added.
+        - The original HTML file will be untouched. A new file will be generated, named the same as the original file but with an underscore and timestamp (seconds) added to it. The new file will be generated in the same directory as the original HTML file.
+        
+        ## Todo
+        
+        - Depending on usage, I could work a bit more on customizing where the file is saved or generated.
+        - Add batch file support, more CLI args.
+        
+        ## Also
+        
+        You'll still need to edit the SEO text and client address text manually.
+        
+        Feel free to contribute more features if you like. It's simple now, but it could end up being pretty useful in the future.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
