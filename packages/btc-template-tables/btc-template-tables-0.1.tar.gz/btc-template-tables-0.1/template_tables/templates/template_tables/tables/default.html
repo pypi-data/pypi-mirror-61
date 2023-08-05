@@ -1,0 +1,16 @@
+{% block form_object %}
+    {% if form %}
+        {% load flex_forms %}
+        {% as_flex form %}
+    {% endif %}
+{% endblock %}
+
+{% block template_table %}
+    <table {{ html_params|safe }}>
+        {% for element in table %}
+            {{ element }}
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block pagination %}{% endblock %}
