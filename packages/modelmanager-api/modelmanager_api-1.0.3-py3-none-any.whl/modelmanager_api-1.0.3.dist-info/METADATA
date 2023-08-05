@@ -1,0 +1,150 @@
+Metadata-Version: 2.1
+Name: modelmanager-api
+Version: 1.0.3
+Summary: Modelmanager api
+Home-page: UNKNOWN
+Author: falcon
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+﻿Welcome to Modelmanager-api!
+===================
+
+This is a api model for interacting with modelmanager. 
+
+----------
+
+
+Documents
+-------------
+
+StackEdit stores your documents in your browser, which means all your documents are automatically saved locally and are accessible **offline!**
+
+> **Note:**
+> - Example files are are in example_script directory.
+> - Example assets are in api_assets directory.
+> - It contains scripts for different actions(Add, Update, Delete).
+
+> - **EXAMPLE SCRIPTS** 
+> > add_model.py
+> >add_project.py
+> >update_model.py
+> >update_project.py
+> >delete_model.py
+> >delete_project.py
+
+> - **EXAMPLE ASSETS** 
+>>Project Assets
+>>Model Assets
+
+----------
+>**Example Codes**
+>> ###Add_Project###
+>>from modelmanager-api.modelmanager-api import Usecase
+>>secret_key = Get from "http://modelmanager.ai/key/"
+>>url = 'http://modelmanager.ai'
+>>data = {
+	&nbsp;&nbsp;&nbsp;        "name": "UsecaseName",
+	&nbsp;&nbsp;&nbsp;	    "author": "AuthorName",
+	&nbsp;&nbsp;&nbsp;	    "description": "UsecaseDescription",
+	&nbsp;&nbsp;&nbsp;	    "source": "UsecasSource",
+	&nbsp;&nbsp;&nbsp;	    "contributor": "UsecaseContributor",
+	&nbsp;&nbsp;&nbsp;	    "image": image.jpg' ,
+	&nbsp;&nbsp;&nbsp;	    "banner": 'banner.jpg' ,
+}
+>> Usecase(secret_key, url).post_usecase(data)
+
+>> ###Update_Project###
+>>from modelmanager-api.modelmanager-api import Usecase
+>>secret_key = Get from "http://modelmanager.ai/key/"
+>>url = 'http://modelmanager.ai'
+>>data = {
+	&nbsp;&nbsp;&nbsp;        "name": "UsecaseName",
+	&nbsp;&nbsp;&nbsp;	    "author": "AuthorName",
+	&nbsp;&nbsp;&nbsp;	    "description": "UsecaseDescription",
+	&nbsp;&nbsp;&nbsp;	    "source": "UsecasSource",
+	&nbsp;&nbsp;&nbsp;	    "contributor": "UsecaseContributor",
+	&nbsp;&nbsp;&nbsp;	    "image": image.jpg' ,
+	&nbsp;&nbsp;&nbsp;	    "banner": 'banner.jpg' ,
+}
+>> Usecase(secret_key, url).patch_usecase(data)
+
+>> ###Delete_Project###
+>>from modelmanager-api.modelmanager-api import Usecase
+>>secret_key = Get from "http://modelmanager.ai/key/"
+>>url = 'http://modelmanager.ai'
+>>project_id =Project_ID
+>>Usecase(secret_key,url).delete_usecase(project_id)
+
+
+----------
+>>###Add_Model###
+>>from modelmanager-api.modelmanager-api import Model
+>>secret_key = Get from "http://modelmanager.ai/key/"
+>>url = 'http://modelmanager.ai'
+>>data = {
+  &nbsp;&nbsp;&nbsp;   "project":Project_ID,
+  &nbsp;&nbsp;&nbsp;  "transformerType": "logistic",
+  &nbsp;&nbsp;&nbsp;   "target_column": "id",
+ &nbsp;&nbsp;&nbsp;    "note": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_area": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_dependencies": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_usage": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_audjustment": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "model_developer": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_approver": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "model_maintenance": "api script Model",
+&nbsp;&nbsp;&nbsp;     "documentation_code": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "implementation_plateform": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "training_dataset": "train.csv",
+  &nbsp;&nbsp;&nbsp;   "pred_dataset": "submissionsample.csv",
+&nbsp;&nbsp;&nbsp;     "actual_dataset": "truth.csv",
+&nbsp;&nbsp;&nbsp;     "test_dataset": "test.csv",
+&nbsp;&nbsp;&nbsp;     "model_file_path":"",
+ &nbsp;&nbsp;&nbsp;    "scoring_file_path":"",
+ &nbsp;&nbsp;&nbsp;    "production":"",
+ &nbsp;&nbsp;&nbsp;    "current_date":"",
+}
+>>Model(secret_key, url).post_model(data)
+
+>>###Update_Model###
+>>from modelmanager-api.modelmanager-api import Model
+>>secret_key = "Get from "http://modelmanager.ai/key/"
+>>url = 'http://modelmanager.ai'
+>>data = {
+  &nbsp;&nbsp;&nbsp;   "project":Project_ID,
+  &nbsp;&nbsp;&nbsp;  "transformerType": "logistic",
+  &nbsp;&nbsp;&nbsp;   "target_column": "id",
+ &nbsp;&nbsp;&nbsp;    "note": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_area": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_dependencies": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_usage": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_audjustment": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "model_developer": "api script Model",
+&nbsp;&nbsp;&nbsp;     "model_approver": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "model_maintenance": "api script Model",
+&nbsp;&nbsp;&nbsp;     "documentation_code": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "implementation_plateform": "api script Model",
+ &nbsp;&nbsp;&nbsp;    "training_dataset": "train.csv",
+  &nbsp;&nbsp;&nbsp;   "pred_dataset": "submissionsample.csv",
+&nbsp;&nbsp;&nbsp;     "actual_dataset": "truth.csv",
+&nbsp;&nbsp;&nbsp;     "test_dataset": "test.csv",
+&nbsp;&nbsp;&nbsp;     "model_file_path":"",
+ &nbsp;&nbsp;&nbsp;    "scoring_file_path":"",
+ &nbsp;&nbsp;&nbsp;    "production":"",
+ &nbsp;&nbsp;&nbsp;    "current_date":"",
+}
+>>Model(secret_key, url).patch_model(data)
+
+>> ###Delete_Project###
+>>from modelmanager-api.modelmanager-api import Model
+>>secret_key = Get from "http://modelmanager.ai/key/"
+>>url = 'http://modelmanager.ai'
+>>model_id =model_ID
+>>Usecase(secret_key,url).delete_usecase(model_id)
+
