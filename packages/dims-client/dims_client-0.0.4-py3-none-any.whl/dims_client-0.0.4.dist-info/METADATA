@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: dims-client
+Version: 0.0.4
+Summary: Raspberry Pi Client Registration
+Home-page: https://uiot.org/
+Author: Jonathas
+Author-email: jhsalves@gmail.com
+License: UNKNOWN
+Keywords: Universal Internet of Things Raspberry Client
+Platform: UNKNOWN
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: uuid
+Requires-Dist: geocoder
+Requires-Dist: argparse
+
+# UIoT Devices - Dims Client Library
+
+The objective of this library is to enable users to create *Clients* and *Services* that follow UIoT's Ontology of sending and managing message flows
+
+All the protocols included as a means of communication in this library follow the same principles:
+* Create a *Device*
+* Create a *Service*
+* Send *Data*
+
+# Basic Usage
+
+* Send *Data*
+```
+from dims_client import DimsClient
+
+config = {'DEFAULT_DIMS_URI': 'http://0.0.0.0:5000'}
+
+dims_client = DimsClient(
+    config=config
+)
+
+returned = dims_client.send_data(<data_to_send>)
+```
+
+
+
