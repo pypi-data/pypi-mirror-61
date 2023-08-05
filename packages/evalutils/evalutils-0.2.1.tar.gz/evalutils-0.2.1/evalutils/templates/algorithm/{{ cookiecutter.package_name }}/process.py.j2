@@ -1,0 +1,73 @@
+import SimpleITK
+import re
+import numpy as np
+from pandas import DataFrame
+
+from evalutils import BaseAlgorithm
+from evalutils.io import SimpleITKLoader, CSVLoader
+from evalutils.validators import (
+    UniquePathIndicesValidator,
+    UniqueImagesValidator,
+    ExpectedColumnNamesValidator,
+)
+
+
+class {{ cookiecutter.package_name|capitalize }}(BaseAlgorithm):
+    def __init__(self):
+        super().__init__(
+            index_key="lung",
+            file_loaders=dict(lung=SimpleITKLoader()),
+            file_filters=dict(lung=re.compile(r"^.*\.mh[ad]$")),
+            validators=dict(
+                lung=(UniqueImagesValidator(), UniquePathIndicesValidator())
+            ),
+        )
+        self._scored_nodules = DataFrame()
+
+    def process_case(self, *, idx, case):
+        lung_path = case["path"]
+
+        # Load the images for this case
+        lung = self._file_loaders["lung"].load_image(lung_path)
+
+        # Check that they're the expected images
+        assert self._file_loaders["lung"].hash_image(lung) == case["hash"]
+
+        scored_nodules = self.predict(lung)
+
+        self._scored_nodules.append(scored_nodules)
+
+        return {
+            "outputs": [dict(data=scored_nodules.to_dict(), type="nodules")],
+            "inputs": [dict(type="metaio_image", filename=lung_path.name)],
+            "error_messages": [],
+        }
+
+    def predict(self, lung_image: SimpleITK.Image) -> DataFrame:
+        lung_data = SimpleITK.GetArrayFromImage(lung_image)
+
+        # Take 10 random points with a fixed seed
+        np.random.seed(42)
+        candidates = [(z, y, x) for z, y, x in zip(*np.where(lung_data > 0))]
+        indices = np.random.choice(len(candidates), 10)
+        candidates = [candidates[idx] for idx in indices]
+
+        return DataFrame(
+            [
+                {
+                    "coordX": x_world,
+                    "coordY": y_world,
+                    "coordZ": z_world,
+                    "class": lung_data[z, y, x],
+                }
+                for z, y, x in candidates
+                for x_world, y_world, z_world in [
+                    lung_image.TransformIndexToPhysicalPoint(
+                        (int(x), int(y), int(z))
+                    )
+                ]
+            ]
+        )
+
+if __name__ == "__main__":
+    {{ cookiecutter.package_name|capitalize }}().process()
