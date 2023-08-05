@@ -1,0 +1,1383 @@
+{
+    "general": {
+        "analyses": {
+            "steadystate": {
+                "equations": {
+                    "1": {
+                        "orderincrease": 0,
+                        "type": "h1"
+                    },
+                    "2": {
+                        "orderincrease": 0,
+                        "type": "h1"
+                    }
+                },
+                "name": "Steady state",
+                "solutions": 2,
+                "type": "steadystate"
+            },
+            "transient": {
+                "equations": {
+                    "1": {
+                        "orderincrease": 0,
+                        "type": "h1"
+                    }
+                },
+                "name": "Transient",
+                "solutions": 1,
+                "type": "transient"
+            }
+        },
+        "constants": {
+            "cM": 18.015,
+            "cR": 8314,
+            "cT": 273.15,
+            "cpair": 1.8284e-10
+        },
+        "id": "dek",
+        "macros": {
+            "psat(T)": "(610.5*(((T-273.15)>=0)*(exp((17.269*(T-273.15))/(237.3+(T-273.15))))+((T-273.15)<0)*(exp((21.875*(T-273.15))/(265.5+(T-273.15))))))"
+        },
+        "name": "Heat and moisture (DEK)",
+        "version": 1
+    },
+    "postprocessor": {
+        "localvariables": [
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "value1",
+                        "cart": "value1",
+                        "planar": "value1"
+                    },
+                    "transient": {
+                        "axi": "value1",
+                        "cart": "value1",
+                        "planar": "value1"
+                    }
+                },
+                "id": "dek_temperature",
+                "name": "Temperature",
+                "shortname": "T",
+                "shortname_html": "<i>T</i>",
+                "type": "scalar",
+                "unit": "K",
+                "unit_html": "K"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "value1-273.15",
+                        "cart": "value1-273.15",
+                        "planar": "value1-273.15"
+                    },
+                    "transient": {
+                        "axi": "value1-273.15",
+                        "cart": "value1-273.15",
+                        "planar": "value1-273.15"
+                    }
+                },
+                "id": "dek_temperature_degrees",
+                "name": "Temperature (deg.)",
+                "shortname": "Td",
+                "shortname_html": "<i>T</i>",
+                "type": "scalar",
+                "unit": "°C",
+                "unit_html": "°C"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi_r": "- dk_lambda_x * dr1",
+                        "axi_z": "- dk_lambda_y * dz1",
+                        "cart_x": "- dk_lambda_x * dx1",
+                        "cart_y": "- dk_lambda_y * dy1",
+                        "cart_z": "- dk_lambda_y * dz1",
+                        "planar_x": "- dk_lambda_x * dx1",
+                        "planar_y": "- dk_lambda_y * dy1"
+                    },
+                    "transient": {
+                        "axi_r": "- dk_lambda_x * dr1",
+                        "axi_z": "- dk_lambda_y * dz1",
+                        "cart_x": "- dk_lambda_x * dx1",
+                        "cart_y": "- dk_lambda_y * dy1",
+                        "cart_z": "- dk_lambda_y * dz1",
+                        "planar_x": "- dk_lambda_x * dx1",
+                        "planar_y": "- dk_lambda_y * dy1"
+                    }
+                },
+                "id": "dek_heat_flux",
+                "name": "Heat flux",
+                "shortname": "F",
+                "shortname_html": "<i>F</i>",
+                "type": "vector",
+                "unit": "W/m2",
+                "unit_html": "W.m<sup>-2</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi_r": "- dr1",
+                        "axi_z": "- dz1",
+                        "cart_x": "- dx1",
+                        "cart_y": "- dy1",
+                        "cart_z": "- dz1",
+                        "planar_x": "- dx1",
+                        "planar_y": "- dy1"
+                    },
+                    "transient": {
+                        "axi_r": "- dr1",
+                        "axi_z": "- dz1",
+                        "cart_x": "- dx1",
+                        "cart_y": "- dy1",
+                        "cart_z": "- dz1",
+                        "planar_x": "- dx1",
+                        "planar_y": "- dy1"
+                    }
+                },
+                "id": "dek_temperature_gradient",
+                "name": "Temperature gradient",
+                "shortname": "G",
+                "shortname_html": "<i>G</i>",
+                "type": "vector",
+                "unit": "K/m",
+                "unit_html": "K.m<sup>-1</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "value2",
+                        "cart": "value2",
+                        "planar": "value2"
+                    }
+                },
+                "id": "dek_pressure",
+                "name": "Moisture pressure",
+                "shortname": "p",
+                "shortname_html": "<i>Pa</i>",
+                "type": "scalar",
+                "unit": "Pa",
+                "unit_html": "Pa"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "psat(value1)",
+                        "planar": "psat(value1)"
+                    }
+                },
+                "id": "dek_sat_pressure",
+                "name": "Moisture saturated pressure",
+                "shortname": "psat",
+                "shortname_html": "<i>psat</i>",
+                "type": "scalar",
+                "unit": "Pa",
+                "unit_html": "Pa"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "((value2/psat(value1)*100)<100)*((value2/psat(value1)*100))+((value2/psat(value1)*100)>=100)*100",
+                        "planar": "((value2/psat(value1)*100)<100)*((value2/psat(value1)*100))+((value2/psat(value1)*100)>=100)*100"
+                    }
+                },
+                "id": "dek_vapor",
+                "name": "Moisture vapor",
+                "shortname": "phi",
+                "shortname_html": "<i>&phi</i>",
+                "type": "scalar",
+                "unit": "-",
+                "unit_html": "-"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_mu_x",
+                        "cart": "dk_mu_y",
+                        "planar": "dk_mu_y"
+                    }
+                },
+                "id": "dek_factor_x",
+                "name": "Diffusion resistance factor - x",
+                "shortname": "mu_x",
+                "shortname_html": "<i>&mu;</i><sub>x</sub>",
+                "type": "scalar",
+                "unit": "-",
+                "unit_html": "-"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_mu_x",
+                        "cart": "dk_mu_y",
+                        "planar": "dk_mu_y"
+                    }
+                },
+                "id": "dek_factor_y",
+                "name": "Diffusion resistance factor - y",
+                "shortname": "mu_y",
+                "shortname_html": "<i>&mu;</i><sub>y</sub>",
+                "type": "scalar",
+                "unit": "-",
+                "unit_html": "-"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_lambda_x",
+                        "cart": "dk_lambda_x",
+                        "planar": "dk_lambda_x"
+                    },
+                    "transient": {
+                        "axi": "dk_lambda_x",
+                        "cart": "dk_lambda_x",
+                        "planar": "dk_lambda_x"
+                    }
+                },
+                "id": "dek_conductivity_x",
+                "name": "Thermal conductivity - x",
+                "shortname": "lambda_x",
+                "shortname_html": "<i>&lambda;</i><sub>x</sub>",
+                "type": "scalar",
+                "unit": "W/m.K",
+                "unit_html": "W.m<sup>-1</sup>.K<sup>-1</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_lambda_y",
+                        "cart": "dk_lambda_y",
+                        "planar": "dk_lambda_y"
+                    },
+                    "transient": {
+                        "axi": "dk_lambda_y",
+                        "cart": "dk_lambda_y",
+                        "planar": "dk_lambda_y"
+                    }
+                },
+                "id": "dek_conductivity_y",
+                "name": "Thermal conductivity - y",
+                "shortname": "lambda_y",
+                "shortname_html": "<i>&lambda;</i><sub>y</sub>",
+                "type": "scalar",
+                "unit": "W/m.K",
+                "unit_html": "W.m<sup>-1</sup>.K<sup>-1</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_p",
+                        "cart": "dk_p",
+                        "planar": "dk_p"
+                    }
+                },
+                "id": "dek_volume_heat",
+                "name": "Volume heat",
+                "shortname": "p",
+                "shortname_html": "<i>p</i>",
+                "type": "scalar",
+                "unit": "W/m3",
+                "unit_html": "W.m<sup>-3</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_rho",
+                        "cart": "dk_rho",
+                        "planar": "dk_rho"
+                    },
+                    "transient": {
+                        "axi": "dk_rho",
+                        "cart": "dk_rho",
+                        "planar": "dk_rho"
+                    }
+                },
+                "id": "dek_density",
+                "name": "Density",
+                "shortname": "rho",
+                "shortname_html": "<i>&rho;</i>",
+                "type": "scalar",
+                "unit": "kg/m3",
+                "unit_html": "kg.m<sup>-3</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "dk_cp",
+                        "cart": "dk_cp",
+                        "planar": "dk_cp"
+                    },
+                    "transient": {
+                        "axi": "dk_cp",
+                        "cart": "dk_cp",
+                        "planar": "dk_cp"
+                    }
+                },
+                "id": "dek_specific_heat",
+                "name": "Specific heat",
+                "shortname": "cp",
+                "shortname_html": "<i>c</i><sub>P</sub>",
+                "type": "scalar",
+                "unit": "J/kg.K",
+                "unit_html": "J.kg<sup>-1</sup>.K<sup>-1</sup>"
+            }
+        ],
+        "surfaceintegrals": [
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "1.0",
+                        "cart": "1.0",
+                        "planar": "1.0"
+                    },
+                    "transient": {
+                        "axi": "1.0",
+                        "cart": "1.0",
+                        "planar": "1.0"
+                    }
+                },
+                "id": "dek_length",
+                "name": "Length",
+                "shortname": "l",
+                "shortname_html": "<i>l</i>",
+                "type": "scalar",
+                "unit": "m",
+                "unit_html": "m"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "2.0 * PI * r",
+                        "cart": "2.0 * PI * r",
+                        "planar": "1.0"
+                    },
+                    "transient": {
+                        "axi": "2.0 * PI * r",
+                        "cart": "2.0 * PI * r",
+                        "planar": "1.0"
+                    }
+                },
+                "id": "dek_surface",
+                "name": "Surface",
+                "shortname": "S",
+                "shortname_html": "<i>S</i>",
+                "type": "scalar",
+                "unit": "m2",
+                "unit_html": "m<sup>2</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)>0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1) "
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)>0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1) "
+                    }
+                },
+                "id": "dek_heat_flux+",
+                "name": "Heat flux",                
+                "shortname": "f+",
+                "shortname_html": "<i>f+</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)<0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)<0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"
+                    }
+                },
+                "id": "dek_heat_flux-",
+                "name": "Heat flux",
+                "shortname": "f-",
+                "shortname_html": "<i>f-</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "(- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "(- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"
+                    }
+                },
+                "id": "dek_heat_flux",
+                "name": "Heat flux",
+                "shortname": "f",
+                "shortname_html": "<i>f</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "(- tany * dx1 + tanx * dy1)"
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "(- tany * dx1 + tanx * dy1)"
+                    }
+                },
+                "id": "dek_heat_grad",
+                "name": "Heat gradient",
+                "shortname": "Tn",
+                "shortname_html": "<i>Tn</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))>0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))>0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"
+                    }
+                },
+                "id": "dek_heat_flux_conv+",
+                "name": "Heat flux - conv",
+                "shortname": "fc+",
+                "shortname_html": "<i>fc+</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))<0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))<0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"
+                    }
+                },
+                "id": "dek_heat_flux_conv-",
+                "name": "Heat flux - conv",
+                "shortname": "fc-",
+                "shortname_html": "<i>fc-</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"
+                    },
+                    "transient": {
+                        "axi": "0",
+                        "cart": "0",
+                        "planar": "dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"
+                    }
+                },
+                "id": "dek_heat_flux_conv",
+                "name": "Heat flux - conv",
+                "dependence": "time",
+                "shortname": "fc",
+                "shortname_html": "<i>fc</i>",
+                "type": "scalar",
+                "unit": "W",
+                "unit_html": "W"
+            }
+        ],
+        "volumeintegrals": [
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "2.0 * PI * r",
+                        "cart": "2.0 * PI * r",
+                        "planar": "1.0"
+                    },
+                    "transient": {
+                        "axi": "2.0 * PI * r",
+                        "cart": "2.0 * PI * r",
+                        "planar": "1.0"
+                    }
+                },
+                "id": "dek_volume",
+                "name": "Volume",
+                "shortname": "V",
+                "shortname_html": "<i>V</i>",
+                "type": "scalar",
+                "unit": "m3",
+                "unit_html": "m<sup>3</sup>"
+            },
+            {
+                "expression": {
+                    "steadystate": {
+                        "axi": "1.0",
+                        "cart": "1.0",
+                        "planar": "1.0"
+                    },
+                    "transient": {
+                        "axi": "1.0",
+                        "cart": "1.0",
+                        "planar": "1.0"
+                    }
+                },
+                "id": "dek_cross_section",
+                "name": "Cross section",
+                "shortname": "S",
+                "shortname_html": "<i>S</i>",
+                "type": "scalar",
+                "unit": "m2",
+                "unit_html": "m<sup>2</sup>"
+            }
+        ]
+    },
+    "preprocessor": {
+        "gui": {
+            "surface_recipes": [
+                {
+                    "name": "Heat transfer",
+                    "quantities": {
+                        "dek_heat_flux": {
+                            "condition": "",
+                            "default_value": 0,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Heat flux",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "f",
+                            "shortname_html": "<i>f</i><sub>0</sub>",
+                            "unit": "W/m2",
+                            "unit_html": "W.m<sup>-2</sup>"
+                        },
+                        "dek_heat_transfer_coefficient": {
+                            "condition": "value >= 0",
+                            "default_value": 0,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Heat transfer coefficient",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "alpha",
+                            "shortname_html": "<i>&alpha;</i>",
+                            "unit": "W/m2.K",
+                            "unit_html": "W.m<sup>-2</sup>.K<sup>-1</sup>"
+                        },
+                        "dek_temperature": {
+                            "condition": "",
+                            "default_value": 293.15,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "External temperature",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "Te",
+                            "shortname_html": "<i>T</i><sub>e</sub>",
+                            "unit": "K",
+                            "unit_html": "K"
+                        }
+                    }
+                },
+                {
+                    "name": "Moisture",
+                    "quantities": {
+                        "dek_vapor": {
+                            "condition": "",
+                            "default_value": 84,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Transfer coefficient of water vapor",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "phi",
+                            "shortname_html": "<i>&phi;</i>",
+                            "unit": "-",
+                            "unit_html": "-"
+                        }
+                    }
+                },
+                {
+                    "name": "Moisture flux",
+                    "quantities": {
+                        "dek_moisture_liquid_transport": {
+                            "condition": "",
+                            "default_value": 25,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Liquid transport coefficient",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "ltc",
+                            "shortname_html": "<i>&delta;</i>",
+                            "unit": "s",
+                            "unit_html": "s"
+                        }
+                    }
+                },
+                {
+                    "name": "Moisture (equivalent difussion thickness)",
+                    "quantities": {
+                        "dek_moisture_equivalent_thickness": {
+                            "condition": "",
+                            "default_value": 0,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Thickness",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "sd",
+                            "shortname_html": "<i>s</i><sub>d</sub>",
+                            "unit": "m",
+                            "unit_html": "m"
+                        }
+                    }
+                }
+            ],
+            "volume_recipes": [
+                {
+                    "name": "Heat transfer",
+                    "quantities": {
+                        "dek_conductivity_x": {
+                            "condition": "value > 0",
+                            "default_value": 385,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Thermal conductivity - x",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "lambda_x",
+                            "shortname_dependence": "T",
+                            "shortname_dependence_html": "<i>T</i>",
+                            "shortname_html": "<i>&lambda;</i><sub>x</sub>",
+                            "unit": "W/m.K",
+                            "unit_html": "W.m<sup>-1</sup>.K<sup>-1</sup>"
+                        },
+                        "dek_conductivity_y": {
+                            "condition": "value > 0",
+                            "default_value": 385,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Thermal conductivity - y",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "lambda_y",
+                            "shortname_dependence": "T",
+                            "shortname_dependence_html": "<i>T</i>",
+                            "shortname_html": "<i>&lambda;</i><sub>y</sub>",
+                            "unit": "W/m.K",
+                            "unit_html": "W.m<sup>-1</sup>.K<sup>-1</sup>"
+                        },
+                        "dek_density": {
+                            "condition": "value >= 0",
+                            "default_value": 0,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Density",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "rho",
+                            "shortname_dependence": "T",
+                            "shortname_dependence_html": "<i>T</i>",
+                            "shortname_html": "<i>&rho;</i>",
+                            "unit": "kg/m3",
+                            "unit_html": "kg.m<sup>-3</sup>"
+                        }, 
+                        "dek_specific_heat": {
+                            "condition": "value >= 0",
+                            "default_value": 0,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Specific heat",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "cp",
+                            "shortname_dependence": "T",
+                            "shortname_dependence_html": "<i>T</i>",
+                            "shortname_html": "<i>c</i><sub>P</sub>",
+                            "unit": "J/kg.K",
+                            "unit_html": "J.kg<sup>-1</sup>.K<sup>-1</sup>"
+                        },
+                        "dek_volume_heat": {
+                            "condition": "value >= 0",
+                            "default_value": 0,
+                            "is_bool": false,
+                            "is_source": true,
+                            "name": "Volume heat",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "p",
+                            "shortname_dependence": "",
+                            "shortname_dependence_html": "",
+                            "shortname_html": "<i>p</i>",
+                            "unit": "W/m3",
+                            "unit_html": "W.m<sup>-3</sup>"
+                        }
+                    }
+                },
+                {
+                    "name": "Moisture",
+                    "quantities": {
+                        "dek_factor_x": {
+                            "condition": "value > 0",
+                            "default_value": 1,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Diffusion resistance factor - x",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "mu_x",
+                            "shortname_dependence": "",
+                            "shortname_dependence_html": "",
+                            "shortname_html": "<i>&mu;</i><sub>r, x</sub>",
+                            "unit": "-",
+                            "unit_html": "-"
+                        },
+                        "dek_factor_y": {
+                            "condition": "value > 0",
+                            "default_value": 1,
+                            "is_bool": false,
+                            "is_source": false,
+                            "name": "Diffusion resistance factor - y",
+                            "only_if": "",
+                            "only_if_not": "",
+                            "shortname": "mu_y",
+                            "shortname_dependence": "",
+                            "shortname_dependence_html": "",
+                            "shortname_html": "<i>&mu;</i><sub>r, y</sub>",
+                            "unit": "-",
+                            "unit_html": "-"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "processor": {
+        "surface_analyses": [
+            {
+                "dek_flux_zero": {
+                    "analysistype": "steadystate",
+                    "equation": "f = - \\lambda \\frac{\\partial T}{\\partial n_0} = 0), - \\frac{p_\\mathrm{air} R T}{M \\mu} \\frac{\\partial p}{\\partial n_0} = -",
+                    "id": "dek_flux_zero",
+                    "name": "Zero heat and moisture fluxes",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                            },
+                            "matrix_forms": {
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                            }
+                        }
+                    },
+                    "variables": {
+                    }
+                },
+                "dek_heat_flux_misture_flux": {
+                    "analysistype": "steadystate",
+                    "equation": "f = - \\lambda \\frac{\\partial T}{\\partial n_0} = f_0 + \\alpha \\left ( T_\\mathrm{ext} - T \\right), p = p_\\mathrm{sat}(T_0) * \\varphi_0",
+                    "id": "dek_heat_flux_moisture_flux",
+                    "name": "Heat flux and moisture flux",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                            },
+                            "matrix_forms": {
+                                "flux_matrix_heat": {
+                                },
+                                "flux_matrix_moisture": {
+                                }
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                                "flux_vector_heat": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                },
+                                "flux_vector_moisture": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                }
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_heat_flux": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_heat_transfer_coefficient": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_moisture_liquid_transport": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_temperature": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_vapor": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                },
+                "dek_heat_flux_moisture": {
+                    "analysistype": "steadystate",
+                    "equation": "f = - \\lambda \\frac{\\partial T}{\\partial n_0} = f_0 + \\alpha \\left ( T_\\mathrm{ext} - T \\right), p = p_\\mathrm{sat}(T_0) * \\varphi_0",
+                    "id": "dek_heat_flux_moisture",
+                    "name": "Heat flux and moisture",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                                "essential_moisture": {
+                                }
+                            },
+                            "matrix_forms": {
+                                "flux_matrix_heat": {
+                                }
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                                "flux_vector_heat": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                }
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_heat_flux": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_heat_transfer_coefficient": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_temperature": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_vapor": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                },
+                "dek_heat_flux_thickness": {
+                    "analysistype": "steadystate",
+                    "equation": "f = - \\lambda \\frac{\\partial T}{\\partial n_0} = f_0 + \\alpha \\left ( T_\\mathrm{ext} - T \\right), p = p_\\mathrm{sat}(T_0) * \\varphi_0",
+                    "id": "dek_heat_flux_thickness",
+                    "name": "Heat flux and equivalent thickness",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                            },
+                            "matrix_forms": {
+                                "equivalent_diffusion_length_matrix": {
+                                },
+                                "flux_matrix_heat": {
+                                }
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                                "equivalent_diffusion_length_vector": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                },
+                                "flux_vector_heat": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                }
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_heat_flux": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_heat_transfer_coefficient": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_moisture_equivalent_thickness": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_moisture_liquid_transport": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_temperature": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_vapor": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                },
+                "dek_temperature_moisture": {
+                    "analysistype": "steadystate",
+                    "equation": "T = T_0, - \\frac{p_\\mathrm{air} R T}{M \\mu} \\frac{\\partial p}{\\partial n_0} = -",
+                    "id": "dek_temperature_moisture",
+                    "name": "Temperature and moisture",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                                "essential_moisture": {
+                                },
+                                "essential_temperature": {
+                                }
+                            },
+                            "matrix_forms": {
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_temperature": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_vapor": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                }
+            },
+            {
+                "dek_flux_zero": {
+                    "analysistype": "transient",
+                    "equation": "f = - \\lambda \\frac{\\partial T}{\\partial n_0} = 0)",
+                    "id": "dek_flux_zero",
+                    "name": "Zero heat",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                            },
+                            "matrix_forms": {
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                            }
+                        }
+                    },
+                    "variables": {
+                    }
+                },
+                "dek_heat_flux": {
+                    "analysistype": "transient",
+                    "equation": "f = - \\lambda \\frac{\\partial T}{\\partial n_0} = f_0 + \\alpha \\left ( T_\\mathrm{ext} - T \\right)",
+                    "id": "dek_heat_flux",
+                    "name": "Heat flux",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                            },
+                            "matrix_forms": {
+                                "flux_matrix_heat": {
+                                }
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                                "flux_vector_heat": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                }
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_heat_flux": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_heat_transfer_coefficient": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_moisture_liquid_transport": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_temperature": {
+                            "dependency": "time",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                },
+                "dek_temperature": {
+                    "analysistype": "transient",
+                    "equation": "T = T_0",
+                    "id": "dek_temperature",
+                    "name": "Temperature",
+                    "solvers": {
+                        "linear": {
+                            "essentional_forms": {
+                                "essential_temperature": {
+                                }
+                            },
+                            "matrix_forms": {
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_temperature": {
+                            "dependency": "time",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                }
+            }
+        ],
+        "surface_recipes": {
+            "essentional_forms": {
+                "essential_moisture": {
+                    "axi": "0",
+                    "cart": "psat(dk_Te) * dk_phi / 100",
+                    "condition": "",
+                    "i": 2,
+                    "planar": "psat(dk_Te) * dk_phi / 100"
+                },
+                "essential_temperature": {
+                    "axi": "dk_Te",
+                    "cart": "dk_Te",
+                    "condition": "",
+                    "i": 1,
+                    "planar": "dk_Te"
+                }
+            },
+            "matrix_forms": {
+                "equivalent_diffusion_length_matrix": {
+                    "axi": "dk_ltc / dk_sd * r * uval * vval",
+                    "cart": "dk_ltc / dk_sd * uval * vval",
+                    "condition": "",
+                    "i": 2,
+                    "j": 2,
+                    "planar": "dk_ltc / dk_sd * uval * vval"
+                },
+                "flux_matrix_heat": {
+                    "axi": "dk_h * r * uval * vval",
+                    "cart": "dk_h * uval * vval",
+                    "condition": "",
+                    "i": 1,
+                    "j": 1,
+                    "planar": "dk_h * uval * vval"
+                },
+                "flux_matrix_moisture": {
+                    "axi": "1",
+                    "cart": "dk_ltc * uval * vval",
+                    "condition": "",
+                    "i": 2,
+                    "j": 2,
+                    "planar": "dk_ltc * uval * vval"
+                }
+            },
+            "variables": {
+                "dek_heat_flux": {
+                    "shortname": "dk_f"
+                },
+                "dek_heat_transfer_coefficient": {
+                    "shortname": "dk_h"
+                },
+                "dek_moisture_equivalent_thickness": {
+                    "shortname": "dk_sd"
+                },
+                "dek_moisture_flux": {
+                    "shortname": "dk_g"
+                },
+                "dek_moisture_liquid_transport": {
+                    "shortname": "dk_ltc"
+                },
+                "dek_temperature": {
+                    "shortname": "dk_Te"
+                },
+                "dek_vapor": {
+                    "shortname": "dk_phi"
+                }
+            },
+            "vector_forms": {
+                "equivalent_diffusion_length_vector": {
+                    "axi": "r * dk_ltc / dk_sd * psat(dk_Te) * dk_phi / 100 * vval",
+                    "cart": "dk_ltc / dk_sd * psat(dk_Te) * dk_phi / 100 * vval",
+                    "condition": "",
+                    "i": 2,
+                    "planar": "dk_ltc / dk_sd * psat(dk_Te) * dk_phi / 100 * vval"
+                },
+                "flux_vector_heat": {
+                    "axi": "r * (dk_f + dk_h * dk_Te) * vval",
+                    "cart": "(dk_f + dk_h * dk_Te) * vval",
+                    "condition": "",
+                    "i": 1,
+                    "planar": "(dk_f + dk_h * dk_Te) * vval"
+                },
+                "flux_vector_moisture": {
+                    "axi": "1",
+                    "cart": "dk_ltc * psat(dk_Te) * dk_phi / 100 * vval",
+                    "condition": "",
+                    "i": 2,
+                    "planar": "dk_ltc * psat(dk_Te) * dk_phi / 100 * vval"
+                }
+            }
+        },
+        "volume_analyses": [
+            {
+                "volume": {
+                    "analysistype": "steadystate",
+                    "equation": "-\\, \\div \\left( \\lambda\\,\\, \\grad T \\right) = Q, ~~ -\\, \\div \\left( \\frac{p_\\mathrm{air} R T}{M \\mu} \\,\\, \\grad p \\right) = 0",
+                    "id": "volume",
+                    "name": "Volume",
+                    "solvers": {
+                        "linear": {
+                            "matrix_forms": {
+                                "laplace_heat": {
+                                },
+                                "laplace_moisture": {
+                                }
+                            },
+                            "matrix_transient_forms": {
+                            },
+                            "vector_forms": {
+                                "rhs": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                }
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_conductivity_x": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_conductivity_y": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_factor_x": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_factor_y": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_volume_heat": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        }
+                    }
+                }
+            },
+            {
+                "volume": {
+                    "analysistype": "transient",
+                    "equation": "-\\, \\div \\left( \\lambda\\,\\, \\grad T \\right) + \\rho c_\\mathrm{p} + \\frac{\\partial T}{\\partial t} = Q",
+                    "id": "volume",
+                    "name": "Volume",
+                    "solvers": {
+                        "linear": {
+                            "matrix_forms": {
+                                "laplace_heat": {
+                                }
+                            },
+                            "matrix_transient_forms": {
+                                "transient": {
+                                }
+                            },
+                            "vector_forms": {
+                                "rhs": {
+                                    "coefficient": 1,
+                                    "variant": ""
+                                }
+                            }
+                        }
+                    },
+                    "variables": {
+                        "dek_conductivity_x": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_conductivity_y": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_volume_heat": {
+                            "dependency": "",
+                            "nonlinearity_axi": "",
+                            "nonlinearity_cart": "",
+                            "nonlinearity_planar": ""
+                        },
+                        "dek_density": {
+                            "dependency": "",
+                            "nonlinearity_axi": "value1",
+                            "nonlinearity_cart": "value1",
+                            "nonlinearity_planar": "value1"
+                        },
+                        "dek_specific_heat": {
+                            "dependency": "",
+                            "nonlinearity_axi": "value1",
+                            "nonlinearity_cart": "value1",
+                            "nonlinearity_planar": "value1"
+                        }
+                    }
+                }
+            }
+        ],
+        "volume_recipes": {
+            "matrix_forms": {
+                "laplace_heat": {
+                    "axi": "dk_lambda_x * r * udr * vdr + dk_lambda_y * r * udz * vdz",
+                    "cart": "dk_lambda_x * udx * vdx + dk_lambda_y * udy * vdy",
+                    "condition": "",
+                    "i": 1,
+                    "j": 1,
+                    "planar": "dk_lambda_x * udx * vdx + dk_lambda_y * udy * vdy"
+                },
+                "laplace_moisture": {
+                    "axi": "cpair*cR*cT/(cM * dk_mu_x) * r * udr * vdr + cpair*cR*cT/(cM * dk_mu_y) * r * udz * vdz",
+                    "cart": "cpair*cR*cT/(cM * dk_mu_x) * udx * vdx + cpair*cR*cT/(cM * dk_mu_y) * udy * vdy",
+                    "condition": "",
+                    "i": 2,
+                    "j": 2,
+                    "planar": "cpair*cR*cT/(cM * dk_mu_x) * udx * vdx + cpair*cR*cT/(cM * dk_mu_y) * udy * vdy"
+                },
+                "transient": {
+                    "axi": "dk_rho * dk_cp * r * uval * vval",
+                    "cart": "dk_rho * dk_cp * uval * vval",
+                    "condition": "",
+                    "i": 1,
+                    "j": 1,
+                    "planar": "dk_rho * dk_cp * uval * vval"
+                }
+            },
+            "variables": {
+                "dek_conductivity_x": "dk_lambda_x",
+                "dek_conductivity_y": "dk_lambda_y",
+                "dek_factor_x": "dk_mu_x",
+                "dek_factor_y": "dk_mu_y",
+                "dek_volume_heat": "dk_p",
+                "dek_density": "dk_rho",
+                "dek_specific_heat": "dk_cp"
+            },
+            "vector_forms": {
+                "rhs": {
+                    "axi": "r * dk_p * vval",
+                    "cart": "dk_p * vval",
+                    "condition": "fabs(dk_p) > 0.0",
+                    "i": 1,
+                    "planar": "dk_p * vval"
+                }
+            }
+        }
+    }
+}

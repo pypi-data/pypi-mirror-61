@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<module:module xmlns:module="XMLModule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="XMLModule ../xsd/module_xml.xsd">
+<module:field>
+
+  <module:general_field id="dek" name="Heat and moisture (DEK)">
+    <module:description></module:description>
+    <module:analyses>
+      <module:analysis id="steadystate" name="Steady state" solutions="2" type="steadystate" />
+      <module:analysis id="transient" name="Transient" solutions="1" type="transient" />
+    </module:analyses>
+    </module:general_field>
+
+  <module:constants>
+    <module:constant id="cM" value="18.015"/>
+    <module:constant id="cT" value="273.15"/>
+    <module:constant id="cR" value="8314"/>
+    <module:constant id="cpair" value="0.18284e-9"/>    
+  </module:constants>
+  
+  <module:macros>
+    <module:macro id="psat(T)" expression="(610.5*(((T-273.15)>=0)*(exp((17.269*(T-273.15))/(237.3+(T-273.15))))+((T-273.15)&lt;0)*(exp((21.875*(T-273.15))/(265.5+(T-273.15))))))"/>   
+  </module:macros>  
+
+  <module:spaces>
+    <module:space analysistype="steadystate">
+      <module:space_config i="1" orderadjust="0" type="h1"/>
+      <module:space_config i="2" orderadjust="0" type="h1"/>
+    </module:space>
+    <module:space analysistype="transient">
+      <module:space_config i="1" orderadjust="0" type="h1"/>
+    </module:space>
+  </module:spaces>
+
+  <module:volume>
+    <module:quantity id="dek_conductivity_x" shortname="dk_lambda_x"/>
+    <module:quantity id="dek_conductivity_y" shortname="dk_lambda_y"/>
+    <module:quantity id="dek_factor_x" shortname="dk_mu_x"/>
+    <module:quantity id="dek_factor_y" shortname="dk_mu_y"/>
+    <module:quantity id="dek_volume_heat" shortname="dk_p"/>
+    <module:quantity id="dek_density" shortname="dk_rho"/>
+    <module:quantity id="dek_specific_heat" shortname="dk_cp"/>
+
+    <module:matrix_form id="laplace_heat"  i="1"  j="1" planar="dk_lambda_x * udx * vdx + dk_lambda_y * udy * vdy" axi="dk_lambda_x * r * udr * vdr + dk_lambda_y * r * udz * vdz" symmetric="1" />
+    <module:vector_form id="rhs" i="1" j="1" planar="dk_p * vval" axi="r * dk_p * vval" condition="fabs(dk_p) > 0.0" />
+    <module:matrix_form id="transient" i="1" j="1" planar="dk_rho * dk_cp * uval * vval" axi="dk_rho * dk_cp * r * uval * vval"  symmetric="1" />
+    <module:matrix_form id="laplace_moisture" i="2" j="2" axi="cpair*cR*cT/(cM * dk_mu_x) * r * udr * vdr + cpair*cR*cT/(cM * dk_mu_y) * r * udz * vdz" planar="cpair*cR*cT/(cM * dk_mu_x) * udx * vdx + cpair*cR*cT/(cM * dk_mu_y) * udy * vdy" symmetric="1" />
+
+    <module:weakforms_volume>
+      <module:weakform_volume analysistype="steadystate" equation="-\, \div \left( \lambda\,\, \grad T \right) = Q, ~~ -\, \div \left( \frac{p_\mathrm{air} R T}{M \mu} \,\, \grad p \right) = 0">
+        <module:quantity id="dek_conductivity_x"/>
+        <module:quantity id="dek_conductivity_y"/>
+        <module:quantity id="dek_factor_x"/>
+        <module:quantity id="dek_factor_y"/>
+        <module:quantity id="dek_volume_heat"/>
+        
+        <module:linearity_option type="linear">
+          <module:matrix_form id="laplace_heat" />
+          <module:matrix_form id="laplace_moisture" />
+          <module:vector_form id="rhs" />          
+        </module:linearity_option>
+
+      </module:weakform_volume>
+    
+      <module:weakform_volume analysistype="transient" equation="-\, \div \left( \lambda\,\, \grad T \right) + \rho c_\mathrm{p} \left(\frac{\partial T}{\partial t}\right) = Q, ~~ -\, \div \left( \frac{p_\mathrm{air} R T}{M \mu} \,\, \grad p \right) = 0">
+        <module:quantity id="dek_conductivity_x"/>
+        <module:quantity id="dek_conductivity_y"/>
+        <module:quantity id="dek_volume_heat"/>
+        <module:quantity id="dek_density"/>
+        <module:quantity id="dek_specific_heat"/>
+        
+        <module:linearity_option type="linear">
+          <module:matrix_form id="laplace_heat" />
+          <module:vector_form id="rhs" />          
+          <module:matrix_transient_form id="transient" /> 
+        </module:linearity_option>    
+        
+        </module:weakform_volume>
+      </module:weakforms_volume>
+        
+  </module:volume>
+
+  <module:surface>
+    <module:quantity id="dek_vapor" shortname="dk_phi"/>    
+    <module:quantity id="dek_temperature" shortname="dk_Te"/>    
+    <module:quantity id="dek_heat_transfer_coefficient" shortname="dk_h"/>
+    <module:quantity id="dek_heat_flux" shortname="dk_f"/>
+    <module:quantity id="dek_moisture_flux" shortname="dk_g"/>
+    <module:quantity id="dek_moisture_equivalent_thickness" shortname="dk_sd"/>
+    <module:quantity id="dek_moisture_liquid_transport" shortname="dk_ltc"/>
+    
+    <module:essential_form id="essential_moisture" i="2" axi="0" planar="psat(dk_Te) * dk_phi / 100"/>
+    <module:essential_form id="essential_temperature" i="1" axi="dk_Te" planar="dk_Te"/>
+    <module:matrix_form id="flux_matrix_heat" i="1" j="1" axi="dk_h * r * uval * vval" planar="dk_h * uval * vval"/>
+    <module:vector_form id="flux_vector_heat" i="1" j="1" axi="r * (dk_f + dk_h * dk_Te) * vval" planar="(dk_f + dk_h * dk_Te) * vval"/>
+    <module:matrix_form id="equivalent_diffusion_length_matrix" i="2" j="2" axi="dk_ltc / dk_sd * r * uval * vval" planar="dk_ltc / dk_sd * uval * vval"/>
+    <module:vector_form id="equivalent_diffusion_length_vector" i="2" j="2" axi="r * dk_ltc / dk_sd * psat(dk_Te) * dk_phi / 100 * vval" planar="dk_ltc / dk_sd * psat(dk_Te) * dk_phi / 100 * vval"/>
+    <module:matrix_form id="flux_matrix_moisture" i="2" j="2" axi="1" planar="dk_ltc * uval * vval"/>
+    <module:vector_form id="flux_vector_moisture" i="2" j="2" axi="1" planar="dk_ltc * psat(dk_Te) * dk_phi / 100 * vval"/>
+
+
+    <module:weakforms_surface>
+      <module:weakform_surface analysistype="steadystate" default="dek_heat_flux_moisture">        
+     
+        <module:boundary equation="f = - \lambda \frac{\partial T}{\partial n_0} = f_0 + \alpha \left ( T_\mathrm{ext} - T \right), p = p_\mathrm{sat}(T_0) * \varphi_0" id="dek_heat_flux_moisture_flux" name="Heat flux and moisture flux">
+          <module:quantity id="dek_heat_flux"/>
+          <module:quantity id="dek_heat_transfer_coefficient"/>
+          <module:quantity id="dek_temperature"/>
+          <module:quantity id="dek_vapor"/>
+          <module:quantity id="dek_moisture_liquid_transport"/>                    
+          
+          <module:linearity_option type="linear">
+            <module:matrix_form id="flux_matrix_moisture"/>
+            <module:vector_form id="flux_vector_moisture"/>
+            <module:matrix_form id="flux_matrix_heat"/>
+            <module:vector_form id="flux_vector_heat"/>
+          </module:linearity_option>                
+        </module:boundary> 
+
+        <module:boundary equation="f = - \lambda \frac{\partial T}{\partial n_0} = f_0 + \alpha \left ( T_\mathrm{ext} - T \right), p = p_\mathrm{sat}(T_0) * \varphi_0" id="dek_heat_flux_moisture" name="Heat flux and moisture">
+          <module:quantity id="dek_heat_flux"/>
+          <module:quantity id="dek_heat_transfer_coefficient"/>
+          <module:quantity id="dek_temperature"/>
+          <module:quantity id="dek_vapor"/>
+
+          <module:linearity_option type="linear">
+            <module:essential_form id="essential_moisture"/>
+            <module:matrix_form id="flux_matrix_heat"/>
+            <module:vector_form id="flux_vector_heat"/>
+          </module:linearity_option>                
+        </module:boundary>
+        
+        <module:boundary equation="f = - \lambda \frac{\partial T}{\partial n_0} = f_0 + \alpha \left ( T_\mathrm{ext} - T \right), p = p_\mathrm{sat}(T_0) * \varphi_0" id="dek_heat_flux_thickness" name="Heat flux and equivalent thickness">
+          <module:quantity id="dek_heat_flux"/>
+          <module:quantity id="dek_heat_transfer_coefficient"/>
+          <module:quantity id="dek_temperature"/>
+          <module:quantity id="dek_vapor"/>
+          <module:quantity id="dek_moisture_equivalent_thickness"/>                    
+          <module:quantity id="dek_moisture_liquid_transport"/>                    
+          
+          <module:linearity_option type="linear">
+            <module:matrix_form id="equivalent_diffusion_length_matrix"/>
+            <module:vector_form id="equivalent_diffusion_length_vector"/>
+            <module:matrix_form id="flux_matrix_heat"/>
+            <module:vector_form id="flux_vector_heat"/>
+          </module:linearity_option>                
+        </module:boundary>        
+        
+        <module:boundary equation="f = - \lambda \frac{\partial T}{\partial n_0} = 0), - \frac{p_\mathrm{air} R T}{M \mu} \frac{\partial p}{\partial n_0} = -" id="dek_flux_zero" name="Zero heat and moisture fluxes">
+          <module:linearity_option type="linear">            
+          </module:linearity_option>                
+        </module:boundary>        
+
+        <module:boundary equation="T = T_0, - \frac{p_\mathrm{air} R T}{M \mu} \frac{\partial p}{\partial n_0} = -" id="dek_temperature_moisture" name="Temperature and moisture">
+          <module:quantity id="dek_temperature"/>
+          <module:quantity id="dek_vapor"/>
+
+          <module:linearity_option type="linear">            
+            <module:essential_form id="essential_temperature"/>
+            <module:essential_form id="essential_moisture"/>
+          </module:linearity_option>                
+        </module:boundary>        
+     
+      </module:weakform_surface>
+      
+      <module:weakform_surface analysistype="transient" default="dek_heat_flux">     
+        <module:boundary equation="f = - \lambda \frac{\partial T}{\partial n_0} = f_0 + \alpha \left ( T_\mathrm{ext} - T \right)" id="dek_heat_flux" name="Heat flux">
+          <module:quantity id="dek_heat_flux"/>
+          <module:quantity id="dek_heat_transfer_coefficient"/>
+          <module:quantity id="dek_temperature" dependence="time" />
+          
+          <module:linearity_option type="linear">
+            <module:matrix_form id="flux_matrix_heat"/>
+            <module:vector_form id="flux_vector_heat"/>
+          </module:linearity_option>                
+        </module:boundary> 
+
+
+        <module:boundary equation="f = - \lambda \frac{\partial T}{\partial n_0} = 0)" id="dek_flux_zero" name="Zero heat">
+          <module:linearity_option type="linear">            
+          </module:linearity_option>                
+        </module:boundary>        
+
+        <module:boundary equation="T = T_0, - \frac{p_\mathrm{air} R T}{M \mu} \frac{\partial p}{\partial n_0} = -" id="dek_temperature" name="Temperature">
+          <module:quantity id="dek_temperature" dependence="time" />
+
+          <module:linearity_option type="linear">            
+            <module:essential_form id="essential_temperature"/>
+          </module:linearity_option>                
+        </module:boundary>        
+     
+      </module:weakform_surface>      
+    </module:weakforms_surface>
+  </module:surface>
+
+  <module:error_calculator>
+        <module:calculator id="l2" name="L2 norm">
+            <module:expression analysistype="steadystate" axi="(uval * vval)"
+                                                          planar="(uval * vval)"/>
+            <module:expression analysistype="transient" axi="(uval * vval)"
+                                                          planar="(uval * vval)"/>
+                                                          
+        </module:calculator>
+        <module:calculator id="h1" name="H1 norm">
+            <module:expression analysistype="steadystate" axi="(uval * vval + udr * vdr + udz * vdz)"
+                                                          planar="(uval * vval + udx * vdx + udy * vdy)"/>
+            <module:expression analysistype="transient" axi="(uval * vval + udr * vdr + udz * vdz)"
+                                                          planar="(uval * vval + udx * vdx + udy * vdy)"/>
+                                                          
+        </module:calculator>
+  </module:error_calculator>
+  
+  <module:preprocessor>
+    <module:gui type="volume">
+      <module:group name="Heat transfer">
+        <module:quantity condition="value > 0" default="385" id="dek_conductivity_x" name="Thermal conductivity - x" shortname="lambda_x" shortname_html="&lt;i>&amp;lambda;&lt;/i>&lt;sub>x&lt;/sub>" shortname_latex="\lambda_x" shortname_dependence="T" shortname_dependence_html="&lt;i>T&lt;/i>" unit="W/m.K" unit_html="W.m&lt;sup>-1&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="W \cdot m^{-1} \cdot K^{-1}"/>
+        <module:quantity condition="value > 0" default="385" id="dek_conductivity_y" name="Thermal conductivity - y" shortname="lambda_y" shortname_html="&lt;i>&amp;lambda;&lt;/i>&lt;sub>y&lt;/sub>" shortname_latex="\lambda_y" shortname_dependence="T" shortname_dependence_html="&lt;i>T&lt;/i>" unit="W/m.K" unit_html="W.m&lt;sup>-1&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="W \cdot m^{-1} \cdot K^{-1}"/>
+        <module:quantity condition="value >= 0" id="dek_volume_heat" name="Volume heat" is_source="1" shortname="p" shortname_html="&lt;i>p&lt;/i>" shortname_latex="p" unit="W/m3" unit_html="W.m&lt;sup>-3&lt;/sup>" unit_latex="W \cdot m^{-3}"/>
+        <module:quantity condition="value >= 0" id="dek_density" name="Density" shortname="rho" shortname_html="&lt;i>&amp;rho;&lt;/i>" shortname_latex="\rho" shortname_dependence="T" shortname_dependence_html="&lt;i>T&lt;/i>" unit="kg/m3" unit_html="kg.m&lt;sup>-3&lt;/sup>" unit_latex="kg \cdot m^{-3}"/>
+        <module:quantity condition="value >= 0" id="dek_specific_heat" name="Specific heat" shortname="cp" shortname_html="&lt;i>c&lt;/i>&lt;sub>P&lt;/sub>" shortname_latex="c_{P}" shortname_dependence="T" shortname_dependence_html="&lt;i>T&lt;/i>" unit="J/kg.K" unit_html="J.kg&lt;sup>-1&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="J \cdot kg^{-1} \cdot K^{-1}"/>
+      </module:group>
+      
+      <module:group name="Moisture">
+        <module:quantity condition="value > 0" default="1" id="dek_factor_x" name="Diffusion resistance factor - x" shortname="mu_x" shortname_html="&lt;i>&amp;mu;&lt;/i>&lt;sub>r, x&lt;/sub>" shortname_latex="\mu_x" unit="-" unit_html="-" unit_latex="-"/>    
+        <module:quantity condition="value > 0" default="1" id="dek_factor_y" name="Diffusion resistance factor - y" shortname="mu_y" shortname_html="&lt;i>&amp;mu;&lt;/i>&lt;sub>r, y&lt;/sub>" shortname_latex="\mu_y" unit="-" unit_html="-" unit_latex="-"/>              
+      </module:group>
+    </module:gui>
+    
+    <module:gui type="surface">
+      <module:group name="Heat transfer">
+        <module:quantity id="dek_heat_flux" name="Heat flux" shortname="f" shortname_html="&lt;i>f&lt;/i>&lt;sub>0&lt;/sub>" shortname_latex="f_0" unit="W/m2" unit_html="W.m&lt;sup>-2&lt;/sup>" unit_latex="W \cdot m^{-2}"/>
+        <module:quantity condition="value >= 0" default="0" id="dek_heat_transfer_coefficient" name="Heat transfer coefficient" shortname="alpha" shortname_html="&lt;i>&amp;alpha;&lt;/i>" shortname_latex="" unit="W/m2.K" unit_html="W.m&lt;sup>-2&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="W \cdot m^{-2} \cdot K^{-1}"/>
+        <module:quantity default="293.15" id="dek_temperature" name="External temperature" shortname="Te" shortname_html="&lt;i>T&lt;/i>&lt;sub>e&lt;/sub>" shortname_latex="T_\mathrm{e}" unit="K" unit_html="K" unit_latex="K"/>
+      </module:group>
+
+      <module:group name="Moisture">
+        <module:quantity condition="" default="84" id="dek_vapor" name="Transfer coefficient of water vapor" shortname="phi" shortname_html="&lt;i>&amp;phi;&lt;/i>" shortname_latex="phi" unit="-" unit_html="-" unit_latex="-"/>
+      </module:group>      
+      <module:group name="Moisture flux">
+        <module:quantity condition="" default="25" id="dek_moisture_liquid_transport" name="Liquid transport coefficient" shortname="ltc" shortname_html="&lt;i>&amp;delta;&lt;/i>" shortname_latex="\delta" unit="s" unit_html="s" unit_latex="s"/>
+      </module:group>            
+      <module:group name="Moisture (equivalent difussion thickness)">
+        <module:quantity condition="" default="0" id="dek_moisture_equivalent_thickness" name="Thickness" shortname="sd" shortname_html="&lt;i>s&lt;/i>&lt;sub>d&lt;/sub>" shortname_latex="sd" unit="m" unit_html="m" unit_latex="m"/>
+      </module:group>            
+    </module:gui>
+  </module:preprocessor>
+
+
+
+  <module:postprocessor>
+    <module:localvariables>
+      <module:localvariable id="dek_temperature" name="Temperature" shortname="T" shortname_html="&lt;i>T&lt;/i>" shortname_latex="T" type="scalar" unit="K" unit_html="K" unit_latex="K">
+        <module:expression analysistype="steadystate" axi="value1" planar="value1"/>
+        <module:expression analysistype="transient" axi="value1" planar="value1"/>
+      </module:localvariable>
+     <module:localvariable id="dek_temperature_degrees" name="Temperature (deg.)" shortname="Td" shortname_html="&lt;i>T&lt;/i>" shortname_latex="Td" type="scalar" unit="°C" unit_html="°C" unit_latex="°C">
+        <module:expression analysistype="steadystate" axi="value1-273.15" planar="value1-273.15"/>
+        <module:expression analysistype="transient" axi="value1-273.15" planar="value1-273.15"/>
+      </module:localvariable>   
+      <module:localvariable format="%5.3e" id="dek_heat_flux" name="Heat flux" shortname="F" shortname_html="&lt;i>F&lt;/i>" shortname_latex="F" type="vector" unit="W/m2" unit_html="W.m&lt;sup>-2&lt;/sup>" unit_latex="W \cdot m^{-2}">
+        <module:expression analysistype="steadystate" axi_r="- dk_lambda_x * dr1" axi_z="- dk_lambda_y * dz1" planar_x="- dk_lambda_x * dx1" planar_y="- dk_lambda_y * dy1"/>
+        <module:expression analysistype="transient" axi_r="- dk_lambda_x * dr1" axi_z="- dk_lambda_y * dz1" planar_x="- dk_lambda_x * dx1" planar_y="- dk_lambda_y * dy1"/>
+      </module:localvariable>
+      <module:localvariable id="dek_temperature_gradient" name="Temperature gradient" shortname="G" shortname_html="&lt;i>G&lt;/i>" shortname_latex="G" type="vector" unit="K/m" unit_html="K.m&lt;sup>-1&lt;/sup>" unit_latex="K \cdot m^{-1}">
+        <module:expression analysistype="steadystate" axi_r="- dr1" axi_z="- dz1" planar_x="- dx1" planar_y="- dy1"/>
+        <module:expression analysistype="transient" axi_r="- dr1" axi_z="- dz1" planar_x="- dx1" planar_y="- dy1"/>
+      </module:localvariable>
+       
+      <module:localvariable id="dek_pressure" name="Moisture pressure" shortname="p" shortname_html="&lt;i>Pa&lt;/i>" shortname_latex="Pa" type="scalar" unit="Pa" unit_html="Pa" unit_latex="Pa">
+        <module:expression analysistype="steadystate" axi="value2" planar="value2"/>
+      </module:localvariable>      
+      <module:localvariable id="dek_sat_pressure" name="Moisture saturated pressure" shortname="psat" shortname_html="&lt;i>psat&lt;/i>" shortname_latex="p_\mathrm{sat}" type="scalar" unit="Pa" unit_html="Pa" unit_latex="Pa">
+        <module:expression analysistype="steadystate" axi="0" planar="psat(value1)"/>
+      </module:localvariable>                 
+      <module:localvariable id="dek_vapor" name="Moisture vapor" shortname="phi" shortname_html="&lt;i>&amp;phi&lt;/i>" shortname_latex="\phi" type="scalar" unit="-" unit_html="-" unit_latex="-">
+        <module:expression analysistype="steadystate" axi="0" planar="((value2/psat(value1)*100)&lt;100)*((value2/psat(value1)*100))+((value2/psat(value1)*100)>=100)*100"/>
+      </module:localvariable>      
+      
+      <module:localvariable id="dek_factor_x" name="Diffusion resistance factor - x" shortname="mu_x" shortname_html="&lt;i>&amp;mu;&lt;/i>&lt;sub>x&lt;/sub>" shortname_latex="\mu_x" type="scalar" unit="-" unit_html="-" unit_latex="-">
+        <module:expression analysistype="steadystate" axi="dk_mu_x" planar="dk_mu_y"/>
+      </module:localvariable>
+      <module:localvariable id="dek_factor_y" name="Diffusion resistance factor - y" shortname="mu_y" shortname_html="&lt;i>&amp;mu;&lt;/i>&lt;sub>y&lt;/sub>" shortname_latex="\mu_y" type="scalar" unit="-" unit_html="-" unit_latex="-">
+        <module:expression analysistype="steadystate" axi="dk_mu_x" planar="dk_mu_y"/>
+      </module:localvariable>      
+      <module:localvariable id="dek_conductivity_x" name="Thermal conductivity - x" shortname="lambda_x" shortname_html="&lt;i>&amp;lambda;&lt;/i>&lt;sub>x&lt;/sub>" shortname_latex="\lambda_x" type="scalar" unit="W/m.K" unit_html="W.m&lt;sup>-1&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="W \cdot m^{-1} \cdot K^{-1}">
+        <module:expression analysistype="steadystate" axi="dk_lambda_x" planar="dk_lambda_x"/>
+        <module:expression analysistype="transient" axi="dk_lambda_x" planar="dk_lambda_x"/>
+      </module:localvariable>
+      <module:localvariable id="dek_conductivity_y" name="Thermal conductivity - y" shortname="lambda_y" shortname_html="&lt;i>&amp;lambda;&lt;/i>&lt;sub>y&lt;/sub>" shortname_latex="\lambda_y" type="scalar" unit="W/m.K" unit_html="W.m&lt;sup>-1&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="W \cdot m^{-1} \cdot K^{-1}">
+        <module:expression analysistype="steadystate" axi="dk_lambda_y" planar="dk_lambda_y"/>
+        <module:expression analysistype="transient" axi="dk_lambda_y" planar="dk_lambda_y"/>
+      </module:localvariable>      
+      <module:localvariable id="dek_volume_heat" name="Volume heat" shortname="p" shortname_html="&lt;i>p&lt;/i>" shortname_latex="p" type="scalar" unit="W/m3" unit_html="W.m&lt;sup>-3&lt;/sup>" unit_latex="W \cdot m^{-3}">
+        <module:expression analysistype="steadystate" axi="dk_p" planar="dk_p"/>
+        <module:expression analysistype="transient" axi="dk_p" planar="dk_p"/>
+      </module:localvariable>      
+      <module:localvariable id="dek_density" name="Density" shortname="rho" shortname_html="&lt;i>&amp;rho;&lt;/i>" shortname_latex="\rho" type="scalar" unit="kg/m3" unit_html="kg.m&lt;sup>-3&lt;/sup>" unit_latex="kg \cdot m^{-3}">
+        <module:expression analysistype="transient" axi="dk_rho" planar="dk_rho"/>
+      </module:localvariable>
+      <module:localvariable id="dek_specific_heat" name="Specific heat" shortname="cp" shortname_html="&lt;i>c&lt;/i>&lt;sub>P&lt;/sub>" shortname_latex="c_\mathrm{P}" type="scalar" unit="J/kg.K" unit_html="J.kg&lt;sup>-1&lt;/sup>.K&lt;sup>-1&lt;/sup>" unit_latex="J \cdot kg^{-1} \cdot K^{-1}">
+        <module:expression analysistype="transient" axi="dk_cp" planar="dk_cp"/>
+      </module:localvariable>
+      
+    </module:localvariables>
+
+    <module:view>
+      <module:scalar_view>
+        <module:default analysistype="steadystate" id="dek_temperature"/>
+        <module:default analysistype="transient" id="dek_temperature"/>        
+      </module:scalar_view>
+      <module:vector_view>
+        <module:default analysistype="steadystate" id="dek_heat_flux"/>
+        <module:default analysistype="transient" id="dek_heat_flux"/>        
+      </module:vector_view>
+    </module:view>
+
+    <module:volumeintegrals>
+      <module:volumeintegral id="dek_volume" name="Volume" shortname="V" shortname_html="&lt;i>V&lt;/i>" shortname_latex="V" unit="m3" unit_html="m&lt;sup>3&lt;/sup>" unit_latex="m^{3}">
+        <module:expression analysistype="steadystate" axi="2.0 * PI * r" planar="1.0"/>
+        <module:expression analysistype="transient" axi="2.0 * PI * r" planar="1.0"/>
+      </module:volumeintegral>
+      <module:volumeintegral id="dek_cross_section" name="Cross section" shortname="S" shortname_html="&lt;i>S&lt;/i>" shortname_latex="S" unit="m2" unit_html="m&lt;sup>2&lt;/sup>" unit_latex="m^{2}">
+        <module:expression analysistype="steadystate" axi="1.0" planar="1.0"/>
+        <module:expression analysistype="transient" axi="1.0" planar="1.0"/>
+      </module:volumeintegral>
+    </module:volumeintegrals>
+
+    <module:surfaceintegrals>
+      <module:surfaceintegral id="dek_length" name="Length" shortname="l" shortname_html="&lt;i>l&lt;/i>" shortname_latex="l" unit="m" unit_html="m" unit_latex="m">
+        <module:expression analysistype="steadystate" axi="1.0" planar="1.0"/>
+        <module:expression analysistype="transient" axi="1.0" planar="1.0"/>        
+      </module:surfaceintegral>
+      <module:surfaceintegral id="dek_surface" name="Surface" shortname="S" shortname_html="&lt;i>S&lt;/i>" shortname_latex="S" unit="m2" unit_html="m&lt;sup>2&lt;/sup>" unit_latex="m^{2}">
+        <module:expression analysistype="steadystate" axi="2.0 * PI * r" planar="1.0"/>
+        <module:expression analysistype="transient" axi="2.0 * PI * r" planar="1.0"/>
+      </module:surfaceintegral>
+      <module:surfaceintegral id="dek_heat_flux+" name="Heat flux" shortname="f+" shortname_html="&lt;i>f+&lt;/i>" shortname_latex="f+" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)>0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1) "/>
+        <module:expression analysistype="transient" axi="0" planar="((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)>0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1) "/>
+      </module:surfaceintegral>
+      <module:surfaceintegral id="dek_heat_flux-" name="Heat flux" shortname="f-" shortname_html="&lt;i>f-&lt;/i>" shortname_latex="f-" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)&lt;0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"/>
+        <module:expression analysistype="transient" axi="0" planar="((- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)&lt;0) * (- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"/>
+      </module:surfaceintegral>
+      <module:surfaceintegral id="dek_heat_flux" name="Heat flux" shortname="f" shortname_html="&lt;i>f&lt;/i>" shortname_latex="f" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="(- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"/>
+        <module:expression analysistype="transient" axi="0" planar="(- dk_lambda_x * tany * dx1 + dk_lambda_y * tanx * dy1)"/>
+      </module:surfaceintegral>
+      <module:surfaceintegral id="dek_heat_grad" name="Heat gradient" shortname="Tn" shortname_html="&lt;i>Tn&lt;/i>" shortname_latex="f" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="(- tany * dx1 + tanx * dy1)"/>
+        <module:expression analysistype="transient" axi="0" planar="(- tany * dx1 + tanx * dy1)"/>
+      </module:surfaceintegral>
+      <module:surfaceintegral id="dek_heat_flux_conv+" name="Heat flux - conv" shortname="fc+" shortname_html="&lt;i>fc+&lt;/i>" shortname_latex="f" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))>0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"/>
+        <module:expression analysistype="transient" axi="0" planar="((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))>0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"/>
+      </module:surfaceintegral>      
+      <module:surfaceintegral id="dek_heat_flux_conv-" name="Heat flux - conv" shortname="fc-" shortname_html="&lt;i>fc-&lt;/i>" shortname_latex="f" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))&lt;0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"/>
+        <module:expression analysistype="transient" axi="0" planar="((dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany))&lt;0) * dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"/>
+      </module:surfaceintegral>      
+      <module:surfaceintegral id="dek_heat_flux_conv" name="Heat flux - conv" shortname="fc" shortname_html="&lt;i>fc&lt;/i>" shortname_latex="f" unit="W" unit_html="W" unit_latex="W">
+        <module:expression analysistype="steadystate" axi="0" planar="dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"/>
+        <module:expression analysistype="transient" axi="0" planar="dk_h*(value1-dk_Te)*sqrt(tanx*tanx+tany*tany)"/>
+      </module:surfaceintegral>      
+    </module:surfaceintegrals>
+    <module:force>      
+    </module:force>
+  </module:postprocessor>
+
+</module:field>
+</module:module>
