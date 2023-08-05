@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: jenkins-rapid
+Version: 0.3.1
+Summary: A simple tool to rapidly create and debug jenkins pipelines
+Home-page: UNKNOWN
+Author: Siddarth Vijapurapu
+License: MIT
+Description: 
+        # Jenkins Rapid 
+        
+        A commandline tool to quickly debug Jenkins piepline files
+        
+        
+        
+        ## Install 
+        
+                $ pip install jenkins-rapid
+        
+        ## Usage: 
+        
+                # Creates a new pipeline and tiggers job
+                    $ jrp run --job <job_name> --url <jenkins_url> --user <username> --token <user_api_tokern>
+                # Deletes job
+                    $ jrp delete --job <job_name> --url <jenkins_url> --user <username> --token <user_api_tokern>
+                # Example jobs with prameters
+                    $ jrp  --job test_deploy_my_app -e text -u https://jenkins.example.com:8080 -p param1=1,param2=develop
+        
+        
+        ## Features
+        
+        - Create or update and trigger pipelines all at once  for terminal
+        - Avoid hot coding on live pipelines
+        - Easily clone existing pipelines and run via command line 
+        - Use your favorite IDE to develop pipelines locally  
+        - View pipeline logs in terminal 
+        
+        
+        ## Additonal info 
+        
+        - Environment variables can be set for the following values for jenkins url and user credentials and will take presedence over commandline arguments 
+        
+                JENKINS_URL
+                JENKINS_USER
+                JENKINS_PASSWORD
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
