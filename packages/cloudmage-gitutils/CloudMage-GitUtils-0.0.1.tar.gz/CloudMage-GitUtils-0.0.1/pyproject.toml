@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "CloudMage-GitUtils"
+version = "0.0.1"
+description = "Quickly and easily create usable Git repository objects from major Git platform providers automatically or by simply providing the repository URL."
+license = "GPL-3.0-or-later"
+authors = ["Rich Nason <rnason@cloudmage.io>"]
+readme = "README.md"
+include = [
+    "CHANGELOG.md"
+]
+homepage = "https://github.com/TheCloudMage/PyPkgs-GitUtils"
+packages = [
+    {include = "gitutils"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.22.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+
+[tool.poetry.scripts]
+GitConfigParser = 'gitutils.gitconfig_parser'
+GitHubAPI = 'gitutils.github_api'
+
+[tool.poetry.urls]
+"Releases" = "https://github.com/TheCloudMage/PyPkgs-GitUtils/releases"
+"Bug Tracking" = "https://github.com/TheCloudMage/PyPkgs-GitUtils/issues"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
