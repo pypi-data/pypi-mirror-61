@@ -1,0 +1,13 @@
+language: python
+notifications:
+  email:
+    recipients:
+      - d.zlatanidis@gmail.com
+    on_success: never
+    # Disabled until the new Slackware version 15 it will release
+    on_failure: never   # always
+python:
+  - "3.7"
+script:
+  - pip install requirements.txt
+  - pytest -v
