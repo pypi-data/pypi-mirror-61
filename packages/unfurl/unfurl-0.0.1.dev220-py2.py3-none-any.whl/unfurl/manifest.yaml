@@ -1,0 +1,229 @@
+apiVersion: unfurl/v1alpha1
+kind: Manifest
+spec:
+  tosca:
+    +include*/dd/d: service-template.yaml
+    topology_template:
+      node_templates:
+        k8sDefaultNamespace:
+          type: unfurl.nodes.K8sNamespace
+          requirements:
+          - host: unfurl.nodes.K8sCluster
+          properties:
+            name: default
+
+        k8sResource:
+          type: unfurl.nodes.K8sResource
+          directives: [select]
+          requirements:
+          - host:   # has to match namespace
+              node: unfurl.nodes.K8sNamespace
+              # node_filter:
+              #   properties:
+              #     name: {equal: {get_attribute: [SOURCE, namespace]}}
+
+        k8sRawResource:
+          type: unfurl.nodes.K8sRawResource
+          directives: [select]
+          requirements:
+          - host:
+              node: unfurl.nodes.K8sCluster
+
+  inputs:
+    release_name: test1
+  installers:
+    run:
+      operations:
+        run:
+          implementation: helm status -o json {{inputs.release_name}}
+          inputs:
+            release_name: test1
+            resultTemplate:
+              q: |
+                {% set json = stdout | from_json %}
+                {% for doc in json.manifest | from_yaml_all %}
+                  {% if doc.kind is defined and doc.kind != 'Secret'%}
+                  - name: {{ doc.kind }}.{{ doc.metadata.namespace | default() }}.{{ doc.metadata.name}}
+                    # parent: HOST
+                    template: {% if doc.metadata.namespace is defined %}k8sResource{% else %}k8sRawResource{%endif%}
+                    attributes:
+                      {% if doc.metadata.namespace is defined %}
+                      namespace: {{doc.metadata.namespace }}
+                      {% endif %}
+                      apiResource:
+                {{ doc | to_yaml | indent(15, true) }}
+                    status:
+                      readyState: ok
+                  {% endif %}
+                {% endfor %}
+  instances:
+    stagingCluster:
+      type: unfurl.nodes.K8sCluster
+      properties:
+        connection:
+          context: docker-for-desktop
+status:
+  inputs: {}
+  outputs: {}
+  instances:
+    stagingCluster:
+      template: stagingCluster
+      readyState:
+        effective: ok
+        local: ok
+      priority: required
+      lastStateChange: 94
+      lastConfigChange: 106
+    ConfigMap.default.test1-mysql-test:
+      template: k8sResource
+      attributes:
+        namespace: default
+
+        apiResource:
+          apiVersion: v1
+          data: {run.sh: ''}
+          kind: ConfigMap
+          metadata:
+            labels: {app: test1-mysql, chart: mysql-1.6.2, heritage: Helm, release: test1}
+            name: test1-mysql-test
+            namespace: default
+
+      readyState:
+        effective: ok
+        local: ok
+      priority: required
+    PersistentVolumeClaim.default.test1-mysql:
+      template: k8sResource
+      attributes:
+        namespace: default
+
+        apiResource:
+          apiVersion: v1
+          kind: PersistentVolumeClaim
+          metadata:
+            labels: {app: test1-mysql, chart: mysql-1.6.2, heritage: Helm, release: test1}
+            name: test1-mysql
+            namespace: default
+          spec:
+            accessModes: [ReadWriteOnce]
+            resources:
+              requests: {storage: 8Gi}
+      readyState:
+        effective: ok
+        local: ok
+      priority: required
+    Service.default.test1-mysql:
+      template: k8sResource
+      attributes:
+        namespace: default
+
+        apiResource:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            annotations:
+            labels: {app: test1-mysql, chart: mysql-1.6.2, heritage: Helm, release: test1}
+            name: test1-mysql
+            namespace: default
+          spec:
+            ports:
+            - {name: mysql, port: 3306, targetPort: mysql}
+            selector: {app: test1-mysql}
+            type: ClusterIP
+
+      readyState:
+        effective: ok
+        local: ok
+      priority: required
+    Deployment.default.test1-mysql:
+      template: k8sResource
+      attributes:
+        namespace: default
+
+        apiResource:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            labels: {app: test1-mysql, chart: mysql-1.6.2, heritage: Helm, release: test1}
+            name: test1-mysql
+            namespace: default
+          spec:
+            selector:
+              matchLabels: {app: test1-mysql, release: test1}
+            strategy: {type: Recreate}
+            template:
+              metadata:
+                labels: {app: test1-mysql, release: test1}
+              spec:
+                containers:
+                - env:
+                  - name: MYSQL_ROOT_PASSWORD
+                    valueFrom:
+                      secretKeyRef: {key: mysql-root-password, name: test1-mysql}
+                  - name: MYSQL_PASSWORD
+                    valueFrom:
+                      secretKeyRef: {key: mysql-password, name: test1-mysql, optional: true}
+                  - {name: MYSQL_USER, value: ''}
+                  - {name: MYSQL_DATABASE, value: ''}
+                  image: mysql:5.7.28
+                  imagePullPolicy: IfNotPresent
+                  livenessProbe:
+                    exec:
+                      command: [sh, -c, 'mysqladmin ping -u root -p${MYSQL_ROOT_PASSWORD}']
+                    failureThreshold: 3
+                    initialDelaySeconds: 30
+                    periodSeconds: 10
+                    successThreshold: 1
+                    timeoutSeconds: 5
+                  name: test1-mysql
+                  ports:
+                  - {containerPort: 3306, name: mysql}
+                  readinessProbe:
+                    exec:
+                      command: [sh, -c, 'mysqladmin ping -u root -p${MYSQL_ROOT_PASSWORD}']
+                    failureThreshold: 3
+                    initialDelaySeconds: 5
+                    periodSeconds: 10
+                    successThreshold: 1
+                    timeoutSeconds: 1
+                  resources:
+                    requests: {cpu: 100m, memory: 256Mi}
+                  volumeMounts:
+                  - {mountPath: /var/lib/mysql, name: data}
+                initContainers:
+                - command: [rm, -fr, /var/lib/mysql/lost+found]
+                  image: busybox:1.29.3
+                  imagePullPolicy: IfNotPresent
+                  name: remove-lost-found
+                  resources:
+                    requests: {cpu: 10m, memory: 10Mi}
+                  volumeMounts:
+                  - {mountPath: /var/lib/mysql, name: data}
+                serviceAccountName: default
+                volumes:
+                - name: data
+                  persistentVolumeClaim: {claimName: test1-mysql}
+
+      readyState:
+        effective: ok
+        local: ok
+      priority: required
+latestChange:
+  jobId: 107
+  startTime: 2019-12-17 17:27:16.527300
+  workflow: run
+  options:
+    cmdline: []
+    instance: stagingCluster
+    verbose: 3
+    replace: false
+    append: false
+  summary: 1 tasks (0 changed, 1 ok, 0 failed, 0 notapplied, 0 skipped)
+  startCommit: 6567bdded5c36f3f7b2dda5bc8b825a8bf1ee636
+  specDigest: 8c6089189249ee3c40f7b07db85c9dbdd596ffb5
+  lastChangeId: 108
+  readyState:
+    effective: ok
+    local: ok
+  priority: required
+changeLog: changes.yaml
