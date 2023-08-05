@@ -1,0 +1,47 @@
+Metadata-Version: 1.1
+Name: pgtail
+Version: 0.1.2
+Summary: pgtail
+Home-page: https://github.com/chillaranand/pgtail
+Author: Chillar Anand
+Author-email: anand21nanda@gmail.com
+License: BSD
+Description: ### pgtail
+        
+        Tail your postgres table inserts like a file.
+        
+        
+        ### Installation
+        
+            $ pip install pgtail
+        
+        
+        ### Usage
+        
+        To tail a table, run
+        
+            $ pgtail postgres://user:pass@localhost:5432/database table
+        
+        By default, it will tail from the last row of the table.
+        
+        To tail last 10 rows, every 5 seconds, run
+        
+            $ pgtail postgres://user:pass@localhost:5432/database table 10 5
+        
+        To see help, run
+        
+            $ pgtail --help
+        
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
