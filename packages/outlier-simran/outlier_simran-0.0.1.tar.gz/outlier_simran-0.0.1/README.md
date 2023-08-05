@@ -1,0 +1,1 @@
+A method to detect outliers in a given data with the help of interquartile range.
