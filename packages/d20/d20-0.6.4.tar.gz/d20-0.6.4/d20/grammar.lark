@@ -1,0 +1,57 @@
+// Dice rolling grammar - Avrae spec
+
+expr: num
+commented_expr: num COMMENT?
+// ^ starting node for commented rolls
+
+// comments are given -1 priority - only match comment if no other possibilities
+COMMENT.-1: /.+/
+
+// math and operators, PMDAS
+?num: comparison
+
+?comparison: (comparison COMP_OPERATOR)? a_num
+COMP_OPERATOR: "==" | ">=" | "<=" | "!=" | "<" | ">"
+
+?a_num: (a_num A_OP)? m_num
+A_OP: "+" | "-"
+
+?m_num: (m_num M_OP)? u_num
+M_OP: "*" | "//" | "/" | "%"
+
+?u_num: numexpr | U_OP u_num
+U_OP: "+" | "-"
+
+// numbers
+?numexpr: (dice | set | literal) ANNOTATION*
+
+ANNOTATION: /\[.*?\]/
+
+literal: INTEGER | DECIMAL
+
+// sets
+?set: setexpr set_op*
+
+set_op: SET_OPERATOR selector
+SET_OPERATOR: "k" | "p"
+
+setexpr: "(" (num ("," num)* comma?)? ")"
+comma: ","
+
+// dice
+?dice: diceexpr dice_op*
+
+dice_op: (DICE_OPERATOR | SET_OPERATOR) selector
+DICE_OPERATOR: "rr" | "ro" | "ra" | "e" | "mi" | "ma"
+
+diceexpr: INTEGER? "d" INTEGER
+
+selector: [SELTYPE] INTEGER
+
+SELTYPE: "l" | "h" | "<" | ">"
+
+// useful constants
+%import common.WS_INLINE
+%import common.INT -> INTEGER
+%import common.DECIMAL
+%ignore WS_INLINE
