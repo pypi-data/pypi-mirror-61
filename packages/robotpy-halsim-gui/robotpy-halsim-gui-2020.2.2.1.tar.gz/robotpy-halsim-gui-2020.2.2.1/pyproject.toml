@@ -1,0 +1,38 @@
+[build-system]
+requires = [
+    "robotpy-build>=2020.1.8,<2021.0.0",
+    "robotpy-wpiutil>=2020.2.2.0,<2021.0.0",
+    "robotpy-hal>=2020.2.2.0,<2021.0.0",
+]
+
+[tool.robotpy-build]
+base_package = "halsim_gui"
+
+
+[tool.robotpy-build.wrappers."halsim_gui".maven_lib_download]
+artifact_id = "halsim_gui"
+group_id = "edu.wpi.first.halsim"
+repo_url = "https://frcmaven.wpi.edu/artifactory/development"
+version = "2020.2.2-29-g5b3facc"
+
+dlopenlibs = ["halsim_gui"]
+
+# TODO: make this a namespace package?
+[tool.robotpy-build.wrappers."halsim_gui"]
+name = "halsim_gui"
+depends = ["wpiHal", "wpiutil"]
+
+[tool.robotpy-build.metadata]
+name = "robotpy-halsim-gui"
+description = "WPILib command framework"
+author = "RobotPy Development Team"
+author_email = "robotpy@googlegroups.com"
+url = "https://github.com/robotpy/robotpy-halsim-gui"
+license = "BSD-3-Clause"
+install_requires = [
+    "robotpy-wpiutil>=2020.2.2.0,<2021.0.0",
+    "robotpy-hal>=2020.2.2.0,<2021.0.0",
+]
+
+[tool.robotpy-build.metadata.entry_points]
+robotpy = ["sim = halsim_gui.main:HalSimGuiMain"]
