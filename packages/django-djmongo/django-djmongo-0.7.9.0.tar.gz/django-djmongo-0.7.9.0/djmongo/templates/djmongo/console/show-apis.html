@@ -1,0 +1,888 @@
+{% extends "djmongo/console/base.html" %}
+{% block Content %}
+
+{% load i18n %}
+
+
+<div class="container">
+      <br><br>
+      <div class="row">
+              <div class="col-lg-12">
+			<ol class="breadcrumb">
+			  <li><a href="{% url 'djmongo_show_dbs' %}">Home</a></li>
+			  <li><a href="{% url 'djmongo_show_dbs' %}">API</a></li>
+			  <li class="active"><a href="#"> {{collection_name}}</a></li>
+			</ol>
+            </div>
+      </div>
+     
+     
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Read API with No Authentication (Public)</h1>
+			    </div>
+            </div>
+	 
+
+	 
+      
+      <div class="row">
+              <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_simple_api' 'public' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+      </div>
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in simple_public_read_apis %}
+			  
+			  <tr class="danger">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td><pre>{% url 'djmongo_api_public_simple_search' database_name collection_name a.slug 'json' %}|ndjson|csv|txt|html</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_api_public_simple_search' database_name collection_name a.slug 'json' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> JSON</button>
+									  </a>
+								
+        			<a href="{% url 'djmongo_api_public_simple_search' database_name collection_name a.slug 'ndjson' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> NDJSON</button>
+									  </a>
+                   
+									  <a href="{% url 'djmongo_api_public_simple_search' database_name collection_name a.slug 'csv' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> CSV</button>
+									  </a>
+           
+									  <a href="{% url 'djmongo_api_public_simple_search' database_name collection_name a.slug 'txt' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Tab-delimited</button>
+									  </a>
+
+
+
+									  <a href="{% url 'djmongo_api_public_simple_search' database_name collection_name a.slug 'html' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> HTML</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_edit_simple_public_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_simple_public_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>
+
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Read API with Basic HTTP Authentication</h1>
+			    </div>
+            </div>
+
+      <div class="row">
+			<div class="col-lg-12">
+				<h3>
+				<a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_simple_api' 'httpauth' database_name collection_name %}">
+		        <i class="fa fa-pencil-square-o icon-white"></i> Create
+				
+				</a>
+				</h3>
+			</div>
+      </div>
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>Groups</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in simple_httpauth_read_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td>{% for g in a.groups.all %}
+					 {{g.name}}<br>
+					  {% endfor %}
+					 {% if not a.groups.all %}
+					 None
+					 {% endif %}
+					
+					 </td>
+					 <td><pre>{% url 'djmongo_api_httpauth_simple_search' database_name collection_name a.slug 'json' %}|ndjson|csv|txt|html</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_api_httpauth_simple_search' database_name collection_name a.slug 'json' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> JSON</button>
+									  </a>
+			
+   								<a href="{% url 'djmongo_api_httpauth_simple_search' database_name collection_name a.slug 'ndjson' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> NDJSON</button>
+									  </a>
+   						  
+									  <a href="{% url 'djmongo_api_httpauth_simple_search' database_name collection_name a.slug 'csv' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> CSV</button>
+									  </a>
+
+   								<a href="{% url 'djmongo_api_httpauth_simple_search' database_name collection_name a.slug 'txt' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Tab-Delimited</button>
+									  </a>
+
+									  <a href="{% url 'djmongo_api_httpauth_simple_search' database_name collection_name a.slug 'html'%}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> HTML</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_edit_simple_httpauth_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_simple_httpauth_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+
+   </div>    
+    
+ </div>	  
+
+
+
+
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Read API with IP-Based Authentication</h1>
+			    </div>
+            </div>
+
+      <div class="row">
+			<div class="col-lg-12">
+				<h3>
+				<a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_simple_api' 'ipauth' database_name collection_name %}">
+		        <i class="fa fa-pencil-square-o icon-white"></i> Create
+				
+				</a>
+				</h3>
+			</div>
+      </div>
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>IP</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in simple_ipauth_read_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td>{{a.from_ip}}</td>
+					 <td><pre>{% url 'djmongo_api_ipauth_simple_search' database_name collection_name a.slug 'json' %}|ndjson|csv|txt|html</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_api_ipauth_simple_search' database_name collection_name a.slug 'json' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> JSON</button>
+									  </a>
+											
+           <a href="{% url 'djmongo_api_ipauth_simple_search' database_name collection_name a.slug 'ndjson' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> NDJSON</button>
+									  </a>
+   
+									  <a href="{% url 'djmongo_api_ipauth_simple_search' database_name collection_name a.slug 'csv' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> CSV</button>
+									  </a>
+									  
+   								<a href="{% url 'djmongo_api_ipauth_simple_search' database_name collection_name a.slug 'txt' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Tab-Delimited</button>
+									  </a>        
+           
+									  <a href="{% url 'djmongo_api_ipauth_simple_search' database_name collection_name a.slug 'html'%}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> HTML</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_edit_simple_ipauth_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_simple_ipauth_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+
+   </div>    
+    
+ </div>
+
+
+
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Read API with OAuth2 Authentication</h1>
+			    </div>
+            </div>
+
+      <div class="row">
+			<div class="col-lg-12">
+				<h3>
+				<a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_simple_api' 'oauth2' database_name collection_name %}">
+		        <i class="fa fa-pencil-square-o icon-white"></i> Create
+				
+				</a>
+				</h3>
+			</div>
+      </div>
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>Scope</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in simple_oauth2_read_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td>{{a.scopes}}</td>
+					 <td><pre>{% url 'djmongo_api_oauth2_simple_search' database_name collection_name a.slug 'json' %}|ndjson|csv|txt|htm</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_api_oauth2_simple_search' database_name collection_name a.slug 'json' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> JSON</button>
+									  </a>
+
+									  <a href="{% url 'djmongo_api_oauth2_simple_search' database_name collection_name a.slug 'ndjson' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> NDJSON</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_api_oauth2_simple_search' database_name collection_name a.slug 'csv' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> CSV</button>
+									  </a>
+	
+ 									 <a href="{% url 'djmongo_api_oauth2_simple_search' database_name collection_name a.slug 'txt' %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Tab-delimited</button>
+									  </a>
+            
+									  <a href="{% url 'djmongo_api_oauth2_simple_search' database_name collection_name a.slug 'html'%}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> HTML</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_edit_simple_oauth2_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_simple_oauth2_read_api' database_name collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+
+   </div>    
+    
+ </div>
+
+
+
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Macro Read API with No Authentication (Public)</h1>
+				
+			    </div>
+            </div>
+
+
+      <div class="row">
+              <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_custom_api' 'public' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+      </div>
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in custom_public_read_apis %}
+			  
+			  <tr class="danger">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td><pre>{{a.url}}</pre></td>
+							<td>
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_run_custom_public_read_api_by_slug' a.slug %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Run</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_edit_custom_public_read_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_custom_public_read_api' a.database_name a.collection_name  a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-remove"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>	  
+
+
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Macro Read API with Basic Authentication</h1>
+			    </div>
+            </div>
+
+
+<div class="row">
+              <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_custom_api' 'httpauth' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+      </div>
+   
+    <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+   
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>Groups</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in custom_httpauth_read_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td>{% for g in a.groups.all %}
+					 {{g.name}}<br>
+					 {% endfor %}
+					 </td>
+					 <td><pre>{% url 'djmongo_run_custom_httpauth_read_api_by_slug' a.slug %}</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_run_custom_httpauth_read_api_by_slug' a.slug %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Run</button>
+									  </a>
+									  
+									  
+									  <a href="{% url 'djmongo_edit_custom_httpauth_read_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit..</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_custom_httpauth_read_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-eraser"></i> Delete...</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>
+   
+   
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Macro Read API with IP-Based Authentication</h1>
+			    </div>
+            </div>
+
+
+<div class="row">
+              <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_custom_api' 'ipauth' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+      </div>
+   
+    <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+   
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>IP</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in custom_ipauth_read_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td>{{a.from_ip }}</td>
+					 <td><pre>{% url 'djmongo_run_custom_ipauth_read_api_by_slug' a.slug %}</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  <a href="{% url 'djmongo_run_custom_ipauth_read_api_by_slug' a.slug %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-search"></i> Run</button>
+									  </a>
+									  
+									  
+									  <a href="{% url 'djmongo_edit_custom_ipauth_read_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit..</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_custom_ipauth_read_api'  a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-eraser"></i> Delete...</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>
+   
+
+
+	       <div class="row">
+	           <div class="col-lg-12">
+		
+				       <h1>Macro Read API with OAuth2 Authentication</h1>
+			    </div>
+            </div>
+
+
+<div class="row">
+              <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_custom_api' 'oauth2' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+      </div>
+   
+    <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+   
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Method</th>
+							<th>Scopes</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in custom_oauth2_read_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>GET</pre></td>
+					 <td>{{a.socpes }}</td>
+					 <td><pre>{% url 'djmongo_run_custom_oauth2_read_api_by_slug' a.slug %}</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+
+																	  
+									  <a href="{% url 'djmongo_edit_custom_oauth2_read_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit...</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_custom_oauth2_read_api'  a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-eraser"></i> Delete...</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>
+   
+
+   	  
+          <div class="row">
+	           <div class="col-lg-12">
+			    <hr></hr>
+						<h1>-Write APIs- </h1>
+			    </div>
+            </div>
+   
+   	       <div class="row">
+	           <div class="col-lg-12">
+			    
+						<h1>Write API with Basic Authentication</h1>
+					
+			    </div>
+            </div>
+	 
+   <div class="row">
+            <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_httpauth_write_api_w_params' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  <h3>
+              </div>
+   
+    </div>
+
+   
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table table-striped table-bordered">
+   
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Methods</th>
+							<th>Groups</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in httpauth_write_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>{{a.http_methods}}</pre></td>
+					 <td>{% for g in a.groups.all %}
+					 {{g.name}}<br>
+					 {% endfor %}
+					  {% if not a.groups.all %}
+					 None
+					 {% endif %}
+					 </td>
+					 <td><pre>{% url 'djmongo_api_write_to_collection_with_httpauth' a.slug %}</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+									  
+									  
+									  <a href="{% url 'djmongo_api_write_to_collection_with_httpauth' a.slug %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-pied-piper-alt"></i> GET Info</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_edit_httpauth_write_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_httpauth_write_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-eraser"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>
+
+	  
+
+   	       <div class="row">
+	           <div class="col-lg-12">
+			    
+						<h1>Write API with IP-Based Authentication</h1>
+					
+			    </div>
+            </div>
+           
+		   <div class="row">
+            <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_ip_write_api_w_params' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+            </div>
+
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+   
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Methods</th>
+							<th>IP</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in ip_write_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>{{a.http_methods}}</pre></td>
+					 <td><pre>{{a.from_ip}}</pre></td>
+					 <td><pre>{% url 'djmongo_api_write_to_collection_with_ip' a.slug %}</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+  
+  									  <a href="{% url 'djmongo_api_write_to_collection_with_ip' a.slug %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa  fa-pied-piper-alt"></i> GET Info</button>
+									  </a>
+  
+									  <a href="{% url 'djmongo_edit_ip_write_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_ip_write_api' a.database_name a.collection_name a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-eraser"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>	 
+
+
+
+
+   	       <div class="row">
+	           <div class="col-lg-12">
+			    
+						<h1>Write API with OAuth2 Authentication </h1>
+					<h3>(An OAuth2 server is needed to execute these APIs)</h3>
+			    </div>
+            </div>
+
+ <div class="row">
+            <div class="col-lg-12">
+                  <h3>
+				  <a class="btn pull-left btn-primary btn-large" href="{% url 'djmongo_create_oauth2_write_api_w_params' database_name collection_name %}">
+            <i class="fa fa-pencil-square-o icon-white"></i> Create</a>
+				  </h3>
+              </div>
+</div>
+
+      <div class="row">
+		 <div class="col-lg-12">    
+			  <table class="table  table-striped table-bordered">
+   
+			  <thead>
+					 <tr>
+							<th>Slug (Name)</th>
+							<th>HTTP Methods</th>
+							<th>Scopes</th>
+							<th>URL</th>
+							<th>Actions</th>
+					 </tr>
+			  </thead>
+ 
+			  <tbody>
+
+
+			  {% for a in oauth2_write_apis %}
+			  
+			  <tr class="warning">
+					 <td>{{a.slug}}</td>
+					 <td><pre>{{a.http_methods}}</pre></td>
+					 <td><pre>{{a.scopes}}</pre></td>
+					 <td><pre>{% url 'djmongo_api_write_to_collection_with_oauth2' a.slug %}</pre></td>
+							<td>
+						  
+								   <div class="btn-group-justified">
+  
+  									  <a href="{% url 'djmongo_api_write_to_collection_with_oauth2' a.slug %}" >
+									  <button type="button" class="btn btn-success btn-xs"> <i class="fa  fa-pied-piper-alt"></i> GET Info</button>
+									  </a>
+  
+									  <a href="{% url 'djmongo_edit_oauth2_write_api' a.slug %}" >
+									  <button type="button" class="btn btn-warning btn-xs"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+									  
+									  <a href="{% url 'djmongo_delete_oauth2_write_api' a.slug %}" >
+									  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-eraser"></i> Delete</button>
+									  </a>
+									  
+								   </div>
+							</td>
+			  </tr>
+			  {% endfor %}
+
+	   </tbody>
+
+    </table>
+
+   </div>    
+    
+ </div>	 
+	  
+</div>
+
+{% endblock %}
