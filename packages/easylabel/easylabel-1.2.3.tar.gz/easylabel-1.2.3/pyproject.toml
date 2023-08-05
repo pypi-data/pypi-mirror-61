@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "easylabel"
+version = "1.2.3"
+description = "Interface for simple NER labeling"
+authors = ["proprefenetre <proprefenetre@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+python-language-server = {extras = ["all"], version = "^0.31.8"}
+future = "^0.18.2"
+mypy = "^0.761"
+pyls-mypy = "^0.1.8"
+pytest-mypy = "^-1.4.2"
+flake8 = "^3.7.9"
+pytest-stub = "^0.1.0"
+black = "^19.10b0"
+attrs = "^19.3.0"
+ipython = "^7.12.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
