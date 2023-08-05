@@ -1,0 +1,21 @@
+syntax = "proto3";
+package ses;
+
+
+message deviceInfo{
+    string name = 1;
+    NetworkInfo network = 2;
+    
+
+}
+
+message NetworkInfo{
+    string ip_address = 1;
+    NetworkState state = 2;
+}
+
+enum NetworkState {
+    NETWORK_STATUS_NONE = 0;
+    DOWN = 1;
+    UP = 2;
+}

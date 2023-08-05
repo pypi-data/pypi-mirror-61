@@ -1,0 +1,10 @@
+syntax = "proto3";
+package ses;
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+message Heartbeat {
+  ses.deviceInfo deviceInfo = 1;  
+  google.protobuf.Timestamp last_updated = 2;
+  string status = 3;  
+}
