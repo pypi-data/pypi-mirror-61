@@ -1,0 +1,612 @@
+{
+  "content_blocks": [
+    {
+      "content_block_type": "header",
+      "styling": {
+        "classes": [
+          "col-12"
+        ],
+        "header": {
+          "classes": [
+            "alert",
+            "alert-secondary"
+          ]
+        }
+      },
+      "header": {
+        "content_block_type": "string_template",
+        "string_template": {
+          "template": "Unnamed: 0",
+          "tag": "h5",
+          "styling": {
+            "classes": [
+              "m-0"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "content_block_type": "bullet_list",
+      "styling": {
+        "classes": [
+          "col-12"
+        ]
+      },
+      "bullet_list": [
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "value types must belong to this set: $v__0 $v__1 $v__2 $v__3 $v__4 $v__5.",
+              "params": {
+                "column": "Unnamed: 0",
+                "type_list": [
+                  "BIGINT",
+                  "INTEGER",
+                  "IntegerType",
+                  "LongType",
+                  "SMALLINT",
+                  "int"
+                ],
+                "mostly": null,
+                "v__0": "BIGINT",
+                "v__1": "INTEGER",
+                "v__2": "IntegerType",
+                "v__3": "LongType",
+                "v__4": "SMALLINT",
+                "v__5": "int"
+              },
+              "styling": {
+                "default": {
+                  "classes": [
+                    "badge",
+                    "badge-secondary"
+                  ]
+                },
+                "params": {
+                  "column": {
+                    "classes": [
+                      "badge",
+                      "badge-primary"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "content_block_type": "collapse",
+            "styling": {
+              "body": {
+                "classes": [
+                  "card",
+                  "card-body",
+                  "p-1"
+                ]
+              },
+              "parent": {
+                "styles": {
+                  "list-style-type": "none"
+                }
+              }
+            },
+            "collapse_toggle_link": {
+              "content_block_type": "string_template",
+              "string_template": {
+                "template": "$icon",
+                "params": {
+                  "icon": ""
+                },
+                "styling": {
+                  "params": {
+                    "icon": {
+                      "classes": [
+                        "fas",
+                        "fa-comment",
+                        "text-info"
+                      ],
+                      "tag": "i"
+                    }
+                  }
+                }
+              }
+            },
+            "collapse": [
+              {
+                "content_block_type": "text",
+                "styling": {
+                  "classes": [
+                    "col-12",
+                    "mt-2",
+                    "mb-2"
+                  ],
+                  "parent": {
+                    "styles": {
+                      "list-style-type": "none"
+                    }
+                  }
+                },
+                "subheader": "Notes:",
+                "text": [
+                  {
+                    "content_block_type": "markdown",
+                    "styling": {
+                      "parent": {}
+                    },
+                    "markdown": "#### These are expectation notes \n - you can use markdown \n - or just strings"
+                  }
+                ]
+              }
+            ],
+            "inline_link": true
+          }
+        ],
+        {
+          "content_block_type": "string_template",
+          "styling": {
+            "parent": {
+              "styles": {
+                "list-style-type": "none"
+              }
+            }
+          },
+          "string_template": {
+            "template": "",
+            "tag": "hr",
+            "styling": {
+              "classes": [
+                "mt-1",
+                "mb-1"
+              ]
+            }
+          }
+        },
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "may have any number of unique values.",
+              "params": {
+                "column": "Unnamed: 0",
+                "min_value": null,
+                "max_value": null,
+                "mostly": null
+              },
+              "styling": {
+                "default": {
+                  "classes": [
+                    "badge",
+                    "badge-secondary"
+                  ]
+                },
+                "params": {
+                  "column": {
+                    "classes": [
+                      "badge",
+                      "badge-primary"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "content_block_type": "collapse",
+            "styling": {
+              "body": {
+                "classes": [
+                  "card",
+                  "card-body",
+                  "p-1"
+                ]
+              },
+              "parent": {
+                "styles": {
+                  "list-style-type": "none"
+                }
+              }
+            },
+            "collapse_toggle_link": {
+              "content_block_type": "string_template",
+              "string_template": {
+                "template": "$icon",
+                "params": {
+                  "icon": ""
+                },
+                "styling": {
+                  "params": {
+                    "icon": {
+                      "classes": [
+                        "fas",
+                        "fa-comment",
+                        "text-info"
+                      ],
+                      "tag": "i"
+                    }
+                  }
+                }
+              }
+            },
+            "collapse": [
+              {
+                "content_block_type": "text",
+                "styling": {
+                  "classes": [
+                    "col-12",
+                    "mt-2",
+                    "mb-2"
+                  ],
+                  "parent": {
+                    "styles": {
+                      "list-style-type": "none"
+                    }
+                  }
+                },
+                "subheader": "Notes:",
+                "text": [
+                  "This is a",
+                  "string list,",
+                  "assigned to the 'content' key of a notes dict.",
+                  "Cool",
+                  "huh?"
+                ]
+              }
+            ],
+            "inline_link": true
+          }
+        ],
+        {
+          "content_block_type": "string_template",
+          "styling": {
+            "parent": {
+              "styles": {
+                "list-style-type": "none"
+              }
+            }
+          },
+          "string_template": {
+            "template": "",
+            "tag": "hr",
+            "styling": {
+              "classes": [
+                "mt-1",
+                "mb-1"
+              ]
+            }
+          }
+        },
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "may have any fraction of unique values.",
+              "params": {
+                "column": "Unnamed: 0",
+                "min_value": null,
+                "max_value": null
+              },
+              "styling": {
+                "default": {
+                  "classes": [
+                    "badge",
+                    "badge-secondary"
+                  ]
+                },
+                "params": {
+                  "column": {
+                    "classes": [
+                      "badge",
+                      "badge-primary"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "content_block_type": "collapse",
+            "styling": {
+              "body": {
+                "classes": [
+                  "card",
+                  "card-body",
+                  "p-1"
+                ]
+              },
+              "parent": {
+                "styles": {
+                  "list-style-type": "none"
+                }
+              }
+            },
+            "collapse_toggle_link": {
+              "content_block_type": "string_template",
+              "string_template": {
+                "template": "$icon",
+                "params": {
+                  "icon": ""
+                },
+                "styling": {
+                  "params": {
+                    "icon": {
+                      "classes": [
+                        "fas",
+                        "fa-comment",
+                        "text-info"
+                      ],
+                      "tag": "i"
+                    }
+                  }
+                }
+              }
+            },
+            "collapse": [
+              {
+                "content_block_type": "text",
+                "styling": {
+                  "classes": [
+                    "col-12",
+                    "mt-2",
+                    "mb-2"
+                  ],
+                  "parent": {
+                    "styles": {
+                      "list-style-type": "none"
+                    }
+                  }
+                },
+                "subheader": "Notes:",
+                "text": [
+                  "This is just a single string, assigned to the 'content' key of a notes dict."
+                ]
+              }
+            ],
+            "inline_link": true
+          }
+        ],
+        {
+          "content_block_type": "string_template",
+          "styling": {
+            "parent": {
+              "styles": {
+                "list-style-type": "none"
+              }
+            }
+          },
+          "string_template": {
+            "template": "",
+            "tag": "hr",
+            "styling": {
+              "classes": [
+                "mt-1",
+                "mb-1"
+              ]
+            }
+          }
+        },
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "values must not be null, at least $mostly_pct % of the time.",
+              "params": {
+                "column": "Unnamed: 0",
+                "mostly": 0.5,
+                "mostly_pct": "50"
+              },
+              "styling": {
+                "default": {
+                  "classes": [
+                    "badge",
+                    "badge-secondary"
+                  ]
+                },
+                "params": {
+                  "column": {
+                    "classes": [
+                      "badge",
+                      "badge-primary"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "content_block_type": "collapse",
+            "styling": {
+              "body": {
+                "classes": [
+                  "card",
+                  "card-body",
+                  "p-1"
+                ]
+              },
+              "parent": {
+                "styles": {
+                  "list-style-type": "none"
+                }
+              }
+            },
+            "collapse_toggle_link": {
+              "content_block_type": "string_template",
+              "string_template": {
+                "template": "$icon",
+                "params": {
+                  "icon": ""
+                },
+                "styling": {
+                  "params": {
+                    "icon": {
+                      "classes": [
+                        "fas",
+                        "fa-comment",
+                        "text-info"
+                      ],
+                      "tag": "i"
+                    }
+                  }
+                }
+              }
+            },
+            "collapse": [
+              {
+                "content_block_type": "text",
+                "styling": {
+                  "classes": [
+                    "col-12",
+                    "mt-2",
+                    "mb-2"
+                  ],
+                  "parent": {
+                    "styles": {
+                      "list-style-type": "none"
+                    }
+                  }
+                },
+                "subheader": "Notes:",
+                "text": [
+                  "This is a list",
+                  "of strings",
+                  "assigned to the notes",
+                  "key."
+                ]
+              }
+            ],
+            "inline_link": true
+          }
+        ],
+        {
+          "content_block_type": "string_template",
+          "styling": {
+            "parent": {
+              "styles": {
+                "list-style-type": "none"
+              }
+            }
+          },
+          "string_template": {
+            "template": "",
+            "tag": "hr",
+            "styling": {
+              "classes": [
+                "mt-1",
+                "mb-1"
+              ]
+            }
+          }
+        },
+        [
+          {
+            "content_block_type": "string_template",
+            "string_template": {
+              "template": "values must be unique.",
+              "params": {
+                "column": "Unnamed: 0",
+                "mostly": null
+              },
+              "styling": {
+                "default": {
+                  "classes": [
+                    "badge",
+                    "badge-secondary"
+                  ]
+                },
+                "params": {
+                  "column": {
+                    "classes": [
+                      "badge",
+                      "badge-primary"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "content_block_type": "collapse",
+            "styling": {
+              "body": {
+                "classes": [
+                  "card",
+                  "card-body",
+                  "p-1"
+                ]
+              },
+              "parent": {
+                "styles": {
+                  "list-style-type": "none"
+                }
+              }
+            },
+            "collapse_toggle_link": {
+              "content_block_type": "string_template",
+              "string_template": {
+                "template": "$icon",
+                "params": {
+                  "icon": ""
+                },
+                "styling": {
+                  "params": {
+                    "icon": {
+                      "classes": [
+                        "fas",
+                        "fa-comment",
+                        "text-info"
+                      ],
+                      "tag": "i"
+                    }
+                  }
+                }
+              }
+            },
+            "collapse": [
+              {
+                "content_block_type": "text",
+                "styling": {
+                  "classes": [
+                    "col-12",
+                    "mt-2",
+                    "mb-2"
+                  ],
+                  "parent": {
+                    "styles": {
+                      "list-style-type": "none"
+                    }
+                  }
+                },
+                "subheader": "Notes:",
+                "text": [
+                  "This is a single string assigned to the 'notes' key."
+                ]
+              }
+            ],
+            "inline_link": true
+          }
+        ],
+        {
+          "content_block_type": "string_template",
+          "styling": {
+            "parent": {
+              "styles": {
+                "list-style-type": "none"
+              }
+            }
+          },
+          "string_template": {
+            "template": "",
+            "tag": "hr",
+            "styling": {
+              "classes": [
+                "mt-1",
+                "mb-1"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "section_name": "Unnamed: 0"
+}
