@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: outlier-101703396
+Version: 1.2.3
+Summary: Outlier Remover tool
+Home-page: UNKNOWN
+Author: Prakhar Shukla
+Author-email: pshukla_be17@thapar.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# outlier_remover
+A outlier removal tool, removes outlier row-wise using z-score or InterQuartile Range method <br/>PyPI Project link <a href = "https://pypi.org/project/outlier-remover-csv/">here</a> 
+<H2>Usage</H2>
+Use below commands to install and use
+<ul>
+  <li><b>pip install outlier-remover-csv</b></li>
+  <li><b>python3</b></li>
+>>>from outlier import outlier<br/>
+>>>t = outlier.outlier(input_filename,output_filename,[method])  
+ </ul>method is optional. It can be "z_score" or "iqr", by default it is "iqr"<br/>
+ e.g 1. t = outlier.outlier("mydata.csv","out.csv","z_score")<br/>
+ e.g 2. t = outlier.outlier("mydata.csv","out.csv")
+
+
