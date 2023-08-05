@@ -1,0 +1,25 @@
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "functional_itertools"
+author = "Bao Wei"
+author-email = "baowei.ur521@gmail.com"
+home-page = "https://github.com/baowei521/functional-itertools"
+requires = ["more-itertools >= 8.2"]
+requires-python = ">=3.6"
+license = "MIT"
+keywords = "functional itertools"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+]
+
+[tool.flit.metadata.requires-extra]
+test = ["pytest", "pytest-randomly"]
+doc = ["sphinx"]
+dev = ["pre-commit", "pytest-cov", "pytest-xdist"]
