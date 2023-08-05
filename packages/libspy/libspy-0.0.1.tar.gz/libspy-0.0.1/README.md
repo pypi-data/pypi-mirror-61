@@ -1,0 +1,1 @@
+##### libspy, standing for library for ss in python, provides a handy api to access ss service and a minimal server to capture all packets globally or those match PAC patterns and automatically proxy them with ss.
