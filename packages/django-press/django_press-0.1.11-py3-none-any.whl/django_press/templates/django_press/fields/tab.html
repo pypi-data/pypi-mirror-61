@@ -1,0 +1,23 @@
+{% load filter %}
+<!--Tab Sections-->
+<div class="tab roomy-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="about_accordion wow fadeIn">
+                    <div class="faq_main_content">
+                        {% for tab in content.tabs_all %}
+                            <h6><i class="fa fa-angle-right"></i>{{ tab.title }}</h6>
+                            <div>
+                                <div class="content">
+                                    {% markdown_to_html core=core md=tab.content %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End off About section -->

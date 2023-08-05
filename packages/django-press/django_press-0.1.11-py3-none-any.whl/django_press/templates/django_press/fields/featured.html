@@ -1,0 +1,17 @@
+<!-- Featured slider -->
+<div class="featured_slider" style="width: 80%;margin-top: 55px;">
+    {% for image in content.images %}
+        <div class="featured_img">
+            <img src="{{ image.file.url }}" style="object-fit: cover" alt=""/>
+            <a href="{{ image.file.url }}" class="popup-img"></a>
+        </div>
+    {% endfor %}
+</div>
+<style>
+    .slick-prev:before,
+    .slick-next:before {
+        font-size: 2rem;
+        color: gray;
+    }
+</style>
+<!-- End off featured slider -->
