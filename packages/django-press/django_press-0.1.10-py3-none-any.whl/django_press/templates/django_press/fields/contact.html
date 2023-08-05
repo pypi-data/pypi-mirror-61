@@ -1,0 +1,35 @@
+<!--Contact Us Section-->
+<section id="contact" class="contact bg-mega fix">
+    <div class="container">
+        <div class="row">
+            <div class="main_contact roomy-40 text-white">
+                <div class="col-md-12 sm-m-top-30">
+                    {% with form=content.form_instance %}
+                        <form action="{% url 'Inquiry' path=content.page.path %}?p={{ content.priority }}"
+                              method="post">
+                            <div class="row">
+                                {{ form.non_field_errors }}
+                                {% for field in form %}
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            {{ field }}
+                                            {% if field.help_text %}
+                                                <span class="helptext">{{ field.help_text }}</span>
+                                            {% endif %}
+                                            {{ field.errors }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="form-group col-auto my-1 m-auto">
+                                    <button class="btn btn-primary" type="submit">送信</button>
+                                </div>
+                                {% csrf_token %}
+                            </div>
+                        </form>
+                    {% endwith %}
+                </div>
+            </div>
+        </div><!--End off row -->
+    </div><!--End off container -->
+</section>
+<!--End off Contact Section-->

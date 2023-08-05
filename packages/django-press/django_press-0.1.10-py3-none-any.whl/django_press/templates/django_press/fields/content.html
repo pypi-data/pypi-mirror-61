@@ -1,0 +1,15 @@
+<!-- Container -->
+{% load filter %}
+
+<div class="container">
+    <div class="row">
+        <div class="main_featured m-top-100">
+            <div class="col-sm-12">
+                <div class="head_title text-center">
+                    {% markdown_to_html core=core md=content.content %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End off container -->
