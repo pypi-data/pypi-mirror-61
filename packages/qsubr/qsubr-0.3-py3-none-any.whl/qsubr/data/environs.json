@@ -1,0 +1,25 @@
+{
+    "PBS": {
+        "popen" : "qsub",
+        "script_lines": {
+            "1" : ["#!/usr/bin/bash\n#PBS -j oe\n#PBS -o <--0-->", "LOG_FILE"],
+            "2" : ["#PBS -N <--0-->", "JOB_NAME"],
+            "3" : ["#PBS -l select=<--0-->:mem=<--1-->GB:ncpus=<--2-->","NODES|RAM|THREADS"],
+            "4" : ["#PBS -q <--0-->", "ENVIRONMENT"],
+            "5" : ["#PBS -A <--0-->\ncd $PBS_O_WORKDIR\n","USER"],
+            "6" : ["<--0-->\n", "COMMAND"]
+        }
+	},
+    "SLURM": {
+        "popen" : ["sbatch"],
+        "script_lines": {
+            "1" : ["#!/bin/bash\n#SBATCH --output=outtmp\n#SBATCH --error=errtmp", ""],
+            "2" : ["#SBATCH --job-name=<--0-->", "JOB_NAME"],
+            "3" : ["#SBATCH --ntasks=<--0-->\n#SBATCH --cpus-per-task=<--0-->","NODES|THREADS"],
+            "4" : ["#SBATCH --partition=<--0-->","PARTITION"],
+            "5" : ["#SBATCH --mem-per-cpu=<--0-->000","RAM"],
+            "6" : ["#SBATCH --clusters=<--0-->","CLUSTER"],
+            "7" : ["<--0-->\n", "COMMAND"]
+        }
+    }
+}
