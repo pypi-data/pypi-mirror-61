@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: aarc-g002-entitlement
+Version: 0.1.2
+Summary: Class to compare and parse entitlements according to the
+Home-page: https://github.com/kit-scc/aarc-g002-entitlement
+Author: Marcus Hardt
+Author-email: hardt@kit.edu
+License: MIT
+Project-URL: Bug Tracker, https://github.com/kit-scc/aarc-g002-entitlement/issues
+Project-URL: Documentation, https://github.com/kit-scc/aarc-g002-entitlement/blob/master/README.md
+Description: # AARC G002 Entitlement Parser
+        
+        # Introduction
+        As part of the AARC Project several recommendations were made. G002
+        https://aarc-project.eu/guidelines/aarc-g002 describes encoding group
+        membersip in entitlements.
+        
+        This package provides a python Class to parse and compare such entitlements.
+        
+        # Example
+        
+        ```
+        from aarc_g002_entitlement import Aarc_g002_entitlement
+        
+        required_group= 'urn:geant:h-df.de:group:aai-admin'
+        actual_group  = 'urn:geant:h-df.de:group:aai-admin:role=member#backupserver.used.for.developmt.de'
+        
+        required_entitlement = Aarc_g002_entitlement(required_group, strict=False)
+        actual_entitlement   = Aarc_g002_entitlement(actual_group)
+        
+        print('\n3: Role assigned but not required')
+        print('    is_contained_in:   => {}'.format(required_entitlement.is_contained_in(actual_entitlement)))
+        print('        (are equal:    => {})'.format(required_entitlement == actual_entitlement))
+        ```
+        
+        # Installation
+        ```
+        pip --user install aarc-g002-entitlement
+        ```
+        
+        # Note
+        
+        This code allows on intentional exception from implementing the standard:
+        AARC-G002 makes the issuing authority mandatory (non-empty-string).
+        However, admins that specify the required entitlement don't care about
+        specifying this. 
+        Therefore, the code allows a laxer handling, in that it does
+        accept entitlements that don't specify an authority, if the "strict=False"
+        argument is passed.
+        
+        # Funding Notice 
+        The AARC project has received funding from the European Union’s Horizon
+        2020 research and innovation programme under grant agreement No 653965 and
+        730941.
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: System :: Systems Administration :: Authentication/Directory
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown; charset=UTF-8
