@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: outlier-remover-101703283
+Version: 0.0.0
+Summary: python package for removing outliers from multi-variate data
+Home-page: https://pypi.python.org/pypi/outlier_remover_101703283
+Author: Katinder Kaur
+Author-email: katinder08@gmail.com
+License: UNKNOWN
+Description: # outlier_remover_101703283
+        
+        _For : **Project-2 (UCS633)**_  
+        _Submitted by : **Katinder Kaur**_  
+        _Roll no : **101703283**_  
+        _Group : **3COE13**_  
+        
+        
+        outlier_remover_101703283 is a Python library for dealing with anomalies or outliers in a dataset. The presence of outliers in a dataset is very common, especially in raw data. Outlier removal is an important preprocessing stage since their presence leads to significant hindrance in the performance and prediction accuracies of the model.
+        There are several methods to detect and remove outliers, this script uses Interquartile Range(IQR) as the method of detection of anomalous data.
+        
+        ## Installation
+        
+        Use the package manager [pip](https://pip.pypa.io/en/stable/) to install outlier_remover_101703283.
+        
+        ```bash
+        pip install outlier_remover_101703283
+        ```
+        
+        ## Usage
+        
+        ### For command prompt:
+        
+        ```
+        usage: outlier_remover [-h] [-o OUTPUTDATAFILE] [-c COLUMNSTOSKIP]
+                               InputDataFile
+        
+        positional arguments:
+          InputDataFile         Enter the name of input CSV file with .csv extention
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -o OUTPUTDATAFILE, --OutputDataFile OUTPUTDATAFILE
+                                Enter the name of output CSV file with .csv extention
+          -c COLUMNSTOSKIP, --ColumnsToSkip COLUMNSTOSKIP
+                                Enter the columns to be left out of analysis
+        ```
+        
+        Enter the input csv filename followed by _.csv_ extentsion
+        ```bash
+        outlier_remover sample_inputfile.csv
+        ```
+        after the records with anomalous values are removed, the resultant data will be implicitly stored in sample_input_sansOutliers.csv (i.e. <InputFileName>_sansOutliers.csv )
+        
+        #### Custom output file name:
+        Destination output file name can be provided explicitly by using -o flag
+        ```bash
+        outlier_remover sample_inputfile.csv -o my_outputfile.csv
+        ```
+        the output data in this case will be stored in a csv file named my_outputfile.csv
+        
+        #### Skipping out columns:
+        In some cases one may want to leave some features out of analysis _(like in case of catagorical data or indices)_ , that can be facilitated by using the -c flag
+        ```bash
+        outlier_remover sample_inputfile.csv -c 0,2,8
+        ```
+        or
+        ```bash
+        outlier_remover sample_inputfile.csv -c "0,2,8"
+        ```
+        __Note__ : Column numbers start from 0. 
+        
+        #### View help
+        To view usage __help__, use
+        ```
+        outlier_remover -h
+        ```
+        
+        ### For Python IDLE:
+        
+        ```python
+        >>> from outlier_remover.outlier_remover import outlier_remover
+        >>> list_of_columns_to_skip=[]
+        >>> outlier_remover('inputfile.csv','outputfile.csv',list_of_columns_to_skip)
+        Removed 2 row(s) successfully.
+        Save successful!
+        Check outputfile.csv for results
+        
+        
+        >>> from outlier_remover.outlier_remover import outlier_removerfn
+        >>> outlier_removerfn('sample2.csv')
+        Removed 1 row(s) successfully.
+        Save successful!
+        Check sans_outliers.csv for results
+        ```
+        
+        ## License
+        [MIT](https://choosealicense.com/licenses/mit/)
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
