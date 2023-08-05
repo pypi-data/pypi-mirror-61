@@ -1,0 +1,3 @@
+**To log in to an Amazon ECR registry**
+
+This command retrieves and prints a password that can be used to authenticate to any Amazon ECR registry that your IAM principal has access to. The password is valid for 12 hours. You can pass the password to the login command of the container client of your preference, such as the Docker CLI. After you have authenticated to an Amazon ECR registry with this command, you can use the Docker CLI to push and pull images from that registry until the token expires.
