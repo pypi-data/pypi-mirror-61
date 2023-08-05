@@ -1,0 +1,99 @@
+{
+  "git_url": "https://github.com/ASVLeipzig/cor-asv-ann",
+  "version": "0.1.2",
+  "tools": {
+    "ocrd-cor-asv-ann-process": {
+      "executable": "ocrd-cor-asv-ann-process",
+      "categories": [
+        "Text recognition and optimization"
+      ],
+      "steps": [
+        "recognition/post-correction"
+      ],
+      "description": "Improve text annotation by character-level encoder-attention-decoder ANN model",
+      "input_file_grp": [
+        "OCR-D-OCR-TESS",
+        "OCR-D-OCR-KRAK",
+        "OCR-D-OCR-OCRO",
+        "OCR-D-OCR-CALA",
+        "OCR-D-OCR-ANY"
+      ],
+      "output_file_grp": [
+        "OCR-D-COR-ASV"
+      ],
+      "parameters": {
+        "model_file": {
+          "type": "string",
+          "format": "uri",
+          "content-type": "application/x-hdf;subtype=bag",
+          "description": "path of h5py weight/config file for model trained with cor-asv-ann-train",
+          "required": true,
+          "cacheable": true
+        },
+        "textequiv_level": {
+          "type": "string",
+          "enum": ["line", "word", "glyph"],
+          "default": "glyph",
+          "description": "PAGE XML hierarchy level to read/write TextEquiv input/output on"
+        },
+        "rejection_threshold": {
+          "type": "number",
+          "format": "float",
+          "default": 0.5,
+          "description": "minimum probability of the candidate corresponding to the input character in each hypothesis during beam search, helps balance precision/recall trade-off; set to 0 to disable rejection (max recall) or 1 to disable correction (max precision)"
+        },
+        "relative_beam_width": {
+          "type": "number",
+          "format": "float",
+          "default": 0.2,
+          "description": "minimum fraction of the best candidate's probability required to enter the beam in each hypothesis; controls the quality/performance trade-off"
+        },
+        "fixed_beam_width": {
+          "type": "number",
+          "format": "integer",
+          "default": 15,
+          "description": "maximum number of candidates allowed to enter the beam in each hypothesis; controls the quality/performance trade-off"
+        },
+        "fast_mode": {
+          "type": "boolean",
+          "default": false,
+          "description": "decode greedy instead of beamed, with batches of parallel lines instead of parallel alternatives; also disables rejection and beam parameters; enable if performance is far more important than quality"
+        }
+      }
+    },
+    "ocrd-cor-asv-ann-evaluate": {
+      "executable": "ocrd-cor-asv-ann-evaluate",
+      "categories": [
+        "Text recognition and optimization"
+      ],
+      "steps": [
+        "recognition/evaluation"
+      ],
+      "description": "Align different textline annotations and compute distance",
+      "input_file_grp": [
+        "OCR-D-GT-SEG-LINE",
+        "OCR-D-OCR-TESS",
+        "OCR-D-OCR-KRAK",
+        "OCR-D-OCR-OCRO",
+        "OCR-D-OCR-CALA",
+        "OCR-D-OCR-ANY",
+        "OCR-D-COR-ASV"
+      ],
+      "parameters": {
+        "metric": {
+          "type": "string",
+          "enum": ["Levenshtein", "NFC", "NFKC", "historic_latin"],
+          "default": "Levenshtein",
+          "description": "Distance metric to calculate and aggregate: historic_latin for GT level 1, NFKC for GT level 2 (except ſ-s), Levenshtein for GT level 3"
+        },
+        "confusion": {
+          "type": "number",
+          "format": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "Count edits and show that number of most frequent confusions (non-identity) in the end."
+        }
+      }
+    }
+  }
+}
