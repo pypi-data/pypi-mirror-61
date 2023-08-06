@@ -1,0 +1,342 @@
+#! /usr/bin/env python3
+
+import json
+import sys
+import os
+import configparser
+from difflib import Differ
+import tempfile
+import yaml
+import copy
+import pprint
+import iterm2
+
+
+def main():
+    """docstring for main"""
+    import argparse
+    parser = argparse.ArgumentParser(
+        description='Generates iterm2 dynamic profiles'
+    )
+
+    parser.add_argument('--aws-config',
+                        default=os.path.expanduser('~/.aws/config'),
+                        help='aws config folder')
+
+    parser.add_argument('--dest',
+                        default=os.path.expanduser(
+                            "~/Library/Application Support/iTerm2/DynamicProfiles/aws-profiles.json"
+                        ),
+                        help='Destination file for the profiles')
+
+    parser.add_argument('-s', '--set-default',
+                        action='store_true',
+                        help='Help message')
+
+    parser.add_argument('--kube-config',
+                        default=os.path.expanduser("~/.kube/config"),
+                        help='kubectl configuration file')
+
+    parser.add_argument('-d', '--diff',
+                        action='store_true',
+                        help='Print a diff to the current profiles')
+    parser.add_argument('-n', '--dry-run',
+                        dest='dry',
+                        action='store_true',
+                        help='Dry run mode')
+    parser.add_argument('-v', '--verbose',
+                        action='count',
+                        default=0,
+                        help='Increase verbosity')
+
+    args = parser.parse_args()
+
+    if args.diff:
+        args.dry = True
+
+    aws_profiles = create_aws_profiles(args.aws_config)
+    k8s_profiles = create_k8s_profiles(args.kube_config, args.dry)
+
+    profiles = {
+        "Profiles":
+            aws_profiles +
+            k8s_profiles +
+            [create_profile("pterm-default", change_title=True, badge=False)]
+    }
+
+    if args.diff:
+        current = [x.rstrip() for x in list(tuple(open(args.dest, 'r')))]
+        new = json.dumps(profiles, indent=4).split('\n')
+        d = Differ()
+        result = list(d.compare(current, new))
+        result = [x for x in result if x[0] != ' ']
+        if result:
+            pp = pprint.PrettyPrinter(width=200)
+            pp.pprint(result)
+    elif args.dry:
+        print(json.dumps(profiles, indent=4))
+    else:
+        with open(args.dest, "w") as out:
+            out.write(json.dumps(profiles, indent=4))
+    if args.set_default:
+        iterm2.run_until_complete(set_default)
+
+
+async def set_default(connection):
+    all_profiles = await iterm2.PartialProfile.async_query(connection)
+    for profile in all_profiles:
+        if profile.name == "pterm-default":
+            await profile.async_make_default()
+            return
+
+
+def create_k8s_profiles(kube_config, dry):
+    """docstring for create_k8s_profiles"""
+    user = os.getenv("USER")
+
+    if not os.path.exists(kube_config):
+        return []
+
+    with open(os.path.expanduser(kube_config)) as file:
+        config = yaml.full_load(file)
+
+    clusters = [x['name'] for x in config['clusters']]
+
+    profiles = []
+    for cluster in clusters:
+        this = carve_k8s_cluster(config, cluster)
+        cfg = os.path.join(
+            os.path.dirname(kube_config),
+            f"config.{cluster.replace('/', '__')}.yml"
+        )
+        if not dry:
+            with open(cfg, "w") as out:
+                yaml.dump(this, out)
+        aws_profile = None
+        try:
+            env = this['users'][0]['user']['exec']['env'][0]
+            if env['name'] != 'AWS_PROFILE':
+                pass
+            aws_profile = env['value']
+        except KeyError:
+            pass
+        except TypeError:
+            pass
+        except IndexError:
+            pass
+
+        new = create_profile(
+            f'k8s-{cluster}',
+            cmd=f"/usr/bin/env KUBECONFIG={cfg} AWS_PROFILE={aws_profile} /usr/bin/login -fp {user}",
+            change_title=False,
+            tags=['k8s'],
+        )
+        new["Background Color"] = {
+            "Red Component": 0,
+            "Color Space": "sRGB",
+            "Blue Component": 0.38311767578125,
+            "Alpha Component": 1,
+            "Green Component": 0
+        }
+        profiles += [new]
+    return profiles
+
+
+def carve_k8s_cluster(config, cluster):
+    """docstring for carve_k8s_cluster"""
+
+    config_cluster = [x for x in config['clusters'] if x['name'] == cluster]
+    config_context = [x for x in config['contexts'] if x['name'] == cluster]
+    config_user = [x for x in config['users'] if x['name'] == cluster]
+
+    new = copy.deepcopy(config)
+    new['clusters'] = config_cluster
+    new['contexts'] = config_context
+    new['users'] = config_user
+    new['current-context'] = cluster
+
+    return new
+
+
+def create_aws_profiles(aws_config):
+    aws_profiles = get_aws_profiles(aws_config)
+
+    profiles = []
+    for prof, account, role, loggin_for in aws_profiles:
+        profiles += [mkprofile(prof, account, role, loggin_for)]
+    return profiles
+
+
+def create_profile(name, cmd=None, change_title=False, tags=None, badge=True):
+    if tags is None:
+        tags = []
+
+    ret = {
+        "Name": name,
+        "Guid": name,
+        "Unlimited Scrollback": True,
+        "Title Components": 32,
+        "Custom Window Title": name,
+        "Allow Title Setting": change_title,
+        "Tags": tags,
+        "Smart Selection Rules": smart_selection_rules(),
+        "Custom Directory": "Recycle",
+        "Flashing Bell": True,
+        "Silence Bell": True,
+        "Triggers": triggers(),
+    }
+
+    if badge:
+        ret["Badge Text"] = name
+
+    if cmd is not None:
+        ret["Command"] = cmd
+        ret["Custom Command"] = "Yes"
+    return ret
+
+
+def triggers():
+    return [
+        {
+            "partial": True,
+            "parameter": "id_rsa",
+            "regex": f"^Enter passphrase for {os.getenv('HOME')}/.ssh/id_rsa",
+            "action": "PasswordTrigger"
+        },
+        {
+            "action": "PasswordTrigger",
+            "parameter": "macos",
+            "regex": "^Password: .input is hidden.",
+            "partial": True
+        }
+    ]
+
+
+def smart_selection_rules():
+    return [
+        {
+            "notes": "terraform aws resource",
+            "precision": "normal",
+            "regex": "resource \"aws_([a-zA-Z_]*)\"",
+            "actions": [
+                {
+                    "title": "open webpage",
+                    "action": 1,
+                    "parameter": r"https://www.terraform.io/docs/providers/aws/r/\1.html"
+                }
+            ]
+        },
+        {
+            "notes": "terraform aws data",
+            "precision": "normal",
+            "regex": "data \"aws_([a-zA-Z_]*)\"",
+            "actions": [
+                {
+                    "title": "open webpage",
+                    "action": 1,
+                    "parameter": r"https://www.terraform.io/docs/providers/aws/d/\1.html"
+                }
+            ]
+        },
+        {
+            "notes": "aws acm-pca",
+            "precision": "normal",
+            "regex": "arn:aws:acm-pca:([\w-]*):(\d*):certificate-authority/([\w-]*)",
+            "actions": [
+                {
+                    "title": "open webpage",
+                    "action": 1,
+                    "parameter": r"https://\1.console.aws.amazon.com/acm-pca/home?region=\1#/certificateAuthorities?arn=arn:aws:acm-pca:\1:\2:certificate-authority~2F\3",
+                }
+            ]
+        },
+        {
+            "notes": "aws iam-policy",
+            "precision": "normal",
+            "regex": "arn:aws:iam::(\d*):policy/([\w-]*)",
+            "actions": [
+                {
+                    "title": "open webpage",
+                    "action": 1,
+                    "parameter": r"https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::\1:policy/\2$serviceLevelSummary",
+                }
+            ]
+        },
+        {
+            "notes": "aws iam-role",
+            "precision": "normal",
+            "regex": "arn:aws:iam::\d*:role/([\w-_]*)",
+            "actions": [
+                {
+                    "title": "open webpage",
+                    "action": 1,
+                    "parameter": r"https://console.aws.amazon.com/iam/home?#/roles/\1"
+                }
+            ]
+        },
+        {
+            "notes": "aws lambda",
+            "precision": "normal",
+            "regex": "arn:aws:lambda:([\w-]*):\d*:function:([\w-_]*)",
+            "actions": [
+                {
+                    "title": "open webpage",
+                    "action": 1,
+                    "parameter": r"https://\1.console.aws.amazon.com/lambda/home?region=\1#/functions/\2?tab=configuration",
+                }
+            ]
+        },
+    ]
+
+def mkprofile(aws_profile, account=None, role=None, loggin_for=None):
+    user = os.getenv("USER")
+    ret = create_profile(
+        aws_profile,
+        cmd=f"/usr/bin/env AWS_PROFILE={aws_profile} /usr/bin/login -fp {user}",
+        change_title=False,
+    )
+
+    if account is not None:
+        ret['Tags'] += [account]
+    if role is not None:
+        ret['Tags'] += [role]
+    if loggin_for is not None:
+        ret['Tags'] += [loggin_for]
+
+    if 'prod' in aws_profile:
+        ret["Background Color"] = {
+            "Red Component": 0.217376708984375,
+            "Color Space": "sRGB",
+            "Blue Component": 0,
+            "Alpha Component": 1,
+            "Green Component": 0
+        }
+    return ret
+
+
+def get_aws_profiles(aws_config):
+    config = configparser.ConfigParser()
+    config.read(aws_config)
+    ret = []
+    loggin_profiles = {}
+    for x in config.sections():
+        account_number = None
+        role = None
+        name = x.split()[1]
+        if 'role_arn' in config[x]:
+            account_number = config[x]['role_arn'].split(':')[4]
+            role = config[x]['role_arn'].split(':')[5]
+        if 'source_profile' in config[x]:
+            loggin_profiles[config[x]['source_profile']] = name
+        ret += [[name, account_number, role]]
+
+    for x in ret:
+        log = None
+        if x[0] in loggin_profiles.keys():
+            log = f'log-{loggin_profiles[x[0]]}'
+        x += [log]
+    return ret
+
+
+if __name__ == '__main__':
+    main()
