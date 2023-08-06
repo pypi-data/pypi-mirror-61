@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: ccaaws
+Version: 0.3.3
+Summary: AWS boto3 objects for python
+Author: ccdale
+Author-email: chris.charles.allison+ccaaws@gmail.com
+Requires-Python: >=3.6,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: boto3 (>=1.11.5,<2.0.0)
+Requires-Dist: ccalogging (>=0.3.3,<0.4.0)
+Requires-Dist: ccautils (>=0.3.8,<0.4.0)
+Description-Content-Type: text/markdown
+
+# ccaaws
+
+Python objects wrapped around [boto3](https://github.com/boto/boto3)
+
+## botosession.py
+
+Base class inherited by all the others.  Manages connections to AWS via
+access keys or profiles.
+
+## cfnclient.py
+
+CloudFormation client
+
+## cwclient.py
+
+CloudWatch client
+
+## iamclient.py
+
+Access to IAM functions - mainly for user access key management.
+
+Can raise an `AccessKeyError` exception on failure.
+
+```
+from ccaaws.iamclient import IamClient
+
+iam = IamClient("iam.user")
+newkey = iam.rotateKeys()
+```
+
+## paramstore.py
+
+SSM ParameterStore client
+
+[modeline]: # ( vim: set ft=markdown tw=74 fenc=utf-8 spell spl=en_gb mousemodel=popup: )
+
