@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: pynando
+Version: 0.0.1
+Summary: wrapper for Nando (Nanbyo data ontology)
+Home-page: https://github.com/roy29fuku/pynando
+Author: Ryota Yamada
+Author-email: roy29fuku@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: gitdb2 (==3.0.2)
+Requires-Dist: GitPython (==3.0.8)
+Requires-Dist: smmap2 (==2.0.5)
+
+# pynando
+
+wrapper for Nando (Nanbyo data ontology)
+
+```
+from pynando.data import find
+from pynando.nando import Nando
+
+# get nanbyo (指定難病)
+fp_nanbyo = find('nanbyo')
+nanbyo = Nando(fp_nanbyo)
+
+# get shoman (小児特定慢性疾病)
+fp_shoman = find('shoman')
+shoman = Nando(fp_shoman)
+```
+
+You can access each nando_node by id
+```
+shoman_1 = shoman['1']
+print(shoman_1)
+```
+
+```
+id: 1
+name_ja: 球脊髄性筋萎縮症
+synonyms_ja:
+name_en: Spinal and bulbar muscular atrophy
+synonyms_en:
+children:
+```
+
