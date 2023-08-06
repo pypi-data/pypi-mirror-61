@@ -1,0 +1,14 @@
+
+:orphan:
+
+.. _sphx_glr_auto_examples_sg_execution_times:
+
+Computation times
+=================
+**00:03.105** total execution time for **auto_examples** files:
+
++-----------------------------------------------------------------------------------------------------+-----------+---------+
+| :ref:`sphx_glr_auto_examples_plot_sampling_strategy_usage.py` (``plot_sampling_strategy_usage.py``) | 00:01.747 | 14.1 MB |
++-----------------------------------------------------------------------------------------------------+-----------+---------+
+| :ref:`sphx_glr_auto_examples_plot_outlier_rejections.py` (``plot_outlier_rejections.py``)           | 00:01.358 | 21.3 MB |
++-----------------------------------------------------------------------------------------------------+-----------+---------+
