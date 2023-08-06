@@ -1,0 +1,8 @@
+[arpa2.shell.cmdshell.subclasses]
+arpa2shell = arpa2.shell.cmdshell.meta:Cmd
+
+[console_scripts]
+arpa2api = arpa2.shell.amqp.client:main [json]
+arpa2api.d = arpa2.shell.amqp.server:main [json]
+arpa2shell = arpa2.shell.cmdshell.meta:main
+
