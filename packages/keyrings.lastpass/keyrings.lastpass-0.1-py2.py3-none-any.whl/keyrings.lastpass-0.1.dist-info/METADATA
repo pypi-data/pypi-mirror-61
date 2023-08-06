@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: keyrings.lastpass
+Version: 0.1
+Summary: Alternate keyring implementation for lastpass
+Home-page: https://github.com/northfuse/keyrings.lastpass
+Author: Tyler Southwick
+Author-email: tyler@northfuse.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Provides-Extra: testing
+Requires-Dist: pytest (!=3.7.3,>=3.5) ; extra == 'testing'
+Requires-Dist: pytest-checkdocs (>=1.2.3) ; extra == 'testing'
+Requires-Dist: pytest-flake8 ; extra == 'testing'
+Requires-Dist: pytest-black-multipy ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+Requires-Dist: backports.unittest-mock ; extra == 'testing'
+Requires-Dist: keyring (>=20) ; extra == 'testing'
+
+# keyrings.lastpass
+
+# validate
+`python -m keyring get category key`
+
+
