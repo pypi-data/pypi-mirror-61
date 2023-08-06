@@ -1,0 +1,131 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4
+# Alan Viars
+
+import argparse
+import functools
+import hashlib
+import json
+import os
+import pymongo
+import time
+import string
+import sys
+from collections import OrderedDict
+from pymongo import MongoClient
+import ndjson
+import csv
+import pysftp
+from jdt.csv2mongo import csv2mongo
+from jdt.ndjson2mongo import ndjson2mongo
+
+def get_files_sftp(myHostname, myUsername, private_key, known_hosts_path,
+                   database_name, delete_collection_before_import, host, port):
+    
+    cnopts = pysftp.CnOpts()
+    cnopts.hostkeys.load(known_hosts_path) 
+    print("Connect to", myHostname, myUsername, private_key,)
+    with pysftp.Connection(myHostname, username=myUsername, private_key=private_key, cnopts=cnopts) as sftp:
+        print("SFTP Connection successfully established ... ")
+        response_dict ={}
+        # Switch to a remote directory
+        sftp.cwd('Wellcare/latest')
+    
+        # Obtain structure of the remote directory '/var/www/vhosts'
+        directory_structure = sftp.listdir_attr()
+        localpaths = []
+        # Print data
+        for attr in directory_structure:
+            print(attr.filename, attr)
+            # Define the file that you want to download from the remote directory
+            remoteFilePath = attr.filename
+            localFilePath = attr.filename
+            sftp.get(remoteFilePath, localFilePath)
+            localpaths.append(attr.filename)
+        
+        for path in localpaths:
+            colection_name, extension = path.split(".")
+            if path.endswith("ndjson"):
+                colection_name = "%s-fhir" % (colection_name)
+                print(ndjson2mongo(path, database_name,
+                 colection_name,
+                 delete_collection_before_import,
+                 host,
+                 port))
+
+            if path.endswith("csv"):
+                colection_name = "%s-csv" % (colection_name)
+                print(csv2mongo(path, database_name,
+                 colection_name,
+                 delete_collection_before_import,
+                 host,
+                 port))
+
+    return None
+
+if __name__ == "__main__":
+
+    # Parse args
+    parser = argparse.ArgumentParser(
+        description='Load All CSVs and NDJSON files into on MongoDB database.')
+    
+    parser.add_argument(
+        dest='sftp_host',
+        action='store',
+        help="Enter the SFTP host name.")
+
+    parser.add_argument(
+        dest='sftp_username',
+        action='store',
+        help="Enter the SFTP host name.")
+
+    parser.add_argument(
+        dest='sftp_private_key_path',
+        action='store',
+        help="Enter the SFTP private key path.")
+
+    parser.add_argument(
+        dest='known_hosts_path',
+        action='store',
+        help="The full path to your known hosts file. Hint: Its often /home/[user]/.ssh/known_hosts.")
+
+
+    parser.add_argument(
+        dest='db_name',
+        action='store',
+        help="Enter the Database name you want to import the JSON to.")
+   
+    parser.add_argument('-d', '--delete', dest='delete', action='store_true',
+                        help='Delete previous collection upon import')
+    
+    parser.add_argument(
+        '--host',
+        dest='host',
+        action='store',
+        default='127.0.0.1',
+        help='Specify MongoDB host. Default is 127.0.0.1 ')
+
+    parser.add_argument(
+        '-p',
+        '--port',
+        dest='port',
+        action='store',
+        default=27017,
+        help='Specify MongoDB port. Default is 27017')
+    args = parser.parse_args()
+    sftp_host  = args.sftp_host
+    sftp_username  = args.sftp_username
+    sftp_private_key_path  = args.sftp_private_key_path
+
+    database = args.db_name
+    delete_collection_before_import = args.delete
+    host = args.host
+    port = args.port
+
+    get_files_sftp(
+        args.sftp_host, args.sftp_username, args.sftp_private_key_path,
+        args.known_hosts_path, args.db_name, args.delete,
+        args.host, args.port)
+
+
