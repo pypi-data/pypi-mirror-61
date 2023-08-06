@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Please select an image file</p>
+<ul>
+    {% for k in image %}
+        <li><a href="{{ url_for('SetBackground', PictureID = k) }}">{{k}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

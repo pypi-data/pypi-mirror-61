@@ -1,0 +1,5 @@
+<ul>
+    {% for k in video %}
+    <li><a href="{{ url_for('Video', VideoID = k) }}">{{k}}</a></li>
+    {% endfor %}
+</ul>
