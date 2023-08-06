@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: amazon-page-parser
+Version: 0.1.4
+Summary: A library for parsing amazon pages.
+Home-page: https://bitbucket.org/sfds-dev/amazon-page-parser
+Author: Neal Wong
+Author-email: neal.wkacc@gmail.com
+License: MIT
+Keywords: amazon scrape scraper
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: parsel
+
+amazon-page-parser
+=====================
+
+Currently supported detail fields are:
+* title - Title
+* author - Array of authors
+* feature_bullets - Array of feature bullets
+* book_description - description under offer information
+* product_description - description under editorial review
+* images - Array of images
+* star - Average star of custom reviews
+* reviews - Custom Reviews count
+* rank - Sales Rank in top browse node
+* categories - Browse nodes trees, multiple tree pathes are concated by ';'
+* details - Details are key, value pairs.
+
+Offer listing fields are:
+* price - Product price
+* shipping_price - Shipping price
+* condition - Condition
+* subcondition - Subcondition
+* condition_comments - Condition comments
+* available - Whether product is currently available, or needs pre-ordered
+* prime - Whether shipping supports prime options
+* expected_shipping - Whether shipping support expected options
+* seller_name - Seller name
+* seller_rating - Seller rating
+* seller_feedbacks - Seller feedback count
+* seller_stars - Seller stars count
+* offer_listing_id - Offer listing ID
+
+Tracking fields are:
+* carrier - Carrier name
+* tracking_id - Tracking number
+* is_shipped - Whether order is shipped
+
+
+Installation
+-------------
+
+The simplest way is to install it via `pip`:
+
+    pip install amazon-page-parser
+
+
+Run Test
+-------------
+
+`pip install -r requirements-dev.txt`
+
+`tox`
+
+
