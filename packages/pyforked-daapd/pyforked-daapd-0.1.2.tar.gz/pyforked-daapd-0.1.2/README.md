@@ -1,0 +1,38 @@
+pyforked-daapd Python Library
+===============================
+
+version number: 0.0.1
+author: Justin Wong
+
+Overview
+--------
+
+A simple library to interface with a pyforked-daapd server.
+
+Installation / Usage
+--------------------
+
+To install use pip:
+
+    $ pip install pyforked-daapd
+
+
+Or clone the repo:
+
+    $ git clone https://github.com/uvjustin/pyforked-daapd.git
+    $ python setup.py install
+    
+Contributing
+------------
+
+TBD
+
+Example
+-------
+
+TBD
+
+Changelog
+---------
+### 0.0.1
+* Initial version
