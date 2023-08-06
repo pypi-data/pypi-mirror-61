@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: sdg-io
+Version: 2.3
+Summary: protocols stack over pyserial (slip + crc16)
+Home-page: UNKNOWN
+Author: chernecov_ev
+Author-email: chernecov.ev@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pyserial
+Requires-Dist: crcmod
+Requires-Dist: sdg-utils (>=0.1)
+
+
+СКБ-шный стек протоколов обмена через "последовательный порт"
+* Передача: `-> CRC16 -> SLIP -> UART`.
+* Прием:    `<- CRC16 <- SLIP <- UART`.
+
+`CRC16` -> канальный уровень, контроль целостности пакетов (на библиотеке crcmod).
+`SLIP` -> канальный уровень, для деление потока на пакеты (https://tools.ietf.org/html/rfc1055).
+`UART` -> физический уровень (на библиотеке pyserial).
+
+Для контроля целостности пакета используется контрольная сумма `CRC-16`, рассчитываемая
+по алгоритму `CRC-16 CCITT REVERSED` (полином – `0x1021`, начальное значение – `0хFFFF`).
+`CRC` рассчитывается по данным до их преобразования в пакет, передается после данных младшим байтом вперед.
+Байты `CRC` входят в состав пакета, т.е. подлежат перекодировке по `SLIP`.
+
+Информационные сообщения между устройствами пересылаются в виде пакетов кодированных `SLIP`-ом:
+признаком конца пакета является байт со значением `0хC0`.
+байт данных со значением `0хC0` заменяется последовательностью байт `0хDB 0хDC`;
+байт данных со значением `0хDB` заменяется последовательностью байт `0хDB 0хDD`.
+Для повышения помехоустоичивости обмена применяется `0хС0` перед пакетом.
+
+Структура пакета - `0хС0, data bytes..., crc16L, crc16H, 0хС0`.
+
+Пример использования:
+-------------
+```python
+from sdg_io import SdgIO, rand_bytes
+p = SdgIO('COM1', '115200_O_2')
+p.write(rand_bytes(mtu=256)) # — send msg —
+print(p.read(timeout=.3)) # — recive msg —
+```
+
+
