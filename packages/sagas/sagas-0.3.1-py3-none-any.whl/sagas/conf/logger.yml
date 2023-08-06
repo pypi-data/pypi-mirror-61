@@ -1,0 +1,72 @@
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+
+loggers:
+  sampleLogger:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  inspector:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  servant:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.startup:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.nlu.patterns:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  sagas.nlu.corenlp_parser:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.nlu.nlu_servant:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.nlu.inspector_path:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  sagas.nlu.inspector_extractor:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.tools.misc:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.nlu.ruleset_procs:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  sagas.nlu.multilang_servant:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+  sagas.nlu.predicts:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  sagas.nlu.inspector_wordnet:
+    level: INFO
+    handlers: [console]
+    propagate: no
+
+root:
+  level: INFO
+  handlers: [console]
