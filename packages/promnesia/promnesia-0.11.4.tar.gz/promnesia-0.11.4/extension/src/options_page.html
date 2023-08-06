@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Options</title>
+        <link rel="stylesheet" type="text/css" href="options_page.css">
+    </head>
+
+<body>
+
+    <fieldset>
+        <legend>Backend</legend>
+
+        <table>
+            <tr>
+                <td><label for="host_id">Host</label> </td>
+                <td><input type="URL" id="host_id">  </td>
+            </tr>
+            <!-- Warn about auth token being plaintext -->
+                <td><label for="token_id">Auth token (if necessary)</label> </td>
+                <td><input type="password" id="token_id"> </td>
+            <tr>
+            </tr>
+        </table>
+
+        <button id="backend_status_id">Check backend status</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Notifications</legend>
+
+        <div>
+            <label for="verbose_errors_id">Verbose errors (may result in spurious notifications)</label>
+            <input type="checkbox" id="verbose_errors_id"/>
+        <div>
+
+        <div>
+            <label for="contexts_popup_id">Show 'Has contexts' popup (green)</label>
+            <input type="checkbox" id="contexts_popup_id"/>
+        <div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Behaviour</legend>
+
+        <!-- <table> -->
+        <!-- <tr> -->
+        <!-- <td><input type="checkbox"  id="dots_id"/></td> -->
+        <!-- <td><label for="dots_id">Show dots</label></td> -->
+        <!-- </tr> -->
+        <!-- </table> -->
+
+        <div>
+            <label for="highlight_id">Highlight contexts (experimental, may result in slowdown on huge pages)</label>
+            <input type="checkbox" id="highlight_id"/>
+        <div>
+
+        <div>
+            <label for="blacklist_id">Blacklisted domains</label>
+            <div id="blacklist_id"></div>
+        </div>
+
+        <div>
+            <label for="source_map_id">Source map</label>
+            <div id="source_map_id"></div>
+        </div>
+    </fieldset>
+
+    <!-- TODO hmm. iframe css can't be applied from outside; so we have to use two separate CSS settings.. -->
+    <!-- could be a bit confusing for user -->
+    <fieldset>
+        <legend>Sidebar position (CSS)</legend>
+        <div id="position_css_id"></div>
+    </fieldset>
+
+
+    <!-- TODO give some quick help on using CSS, some examples too? -->
+    <fieldset>
+        <legend>Sidebar style (CSS)</legend>
+        <div id="extra_css_id"></div>
+    </fieldset>
+
+    <div>
+    <button id="save_id">Save</button>
+    </div>
+    <script src="options_page.js"/></script>
+</body>
+</html>

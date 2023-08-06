@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+import argparse
+import os
+from subprocess import check_call
+from pathlib import Path
+
+# right, specifying id in manifest doesn't seem to work
+# AMO responds with: Server response: Duplicate add-on ID found. (status: 400)
+IDS = {
+    'firefox'       : '{07c6b8e1-94f7-4bbf-8e91-26c0a8992ab5}',
+    'firefox-mobile': '{7598eb04-9381-4436-be8e-2bbe002ef776}',
+    'chrome'        : 'kdmegllpofldcpaclldkopnnjjljoiio',
+}
+
+
+TARGETS = ['chrome', 'firefox', 'firefox-mobile']
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--release', action='store_true')
+    p.add_argument('--sign'   , action='store_true')
+    p.add_argument('--lint'   , action='store_true')
+    p.add_argument('--publish', action='store_true')
+
+    tg = p.add_mutually_exclusive_group(required=True)
+    tg.add_argument('--target', type=str, choices=TARGETS)
+    for b in TARGETS:
+        tg.add_argument('--' + b, action='store_const', const=b, dest='target')
+    args = p.parse_args()
+    target = args.target
+
+    assert target is not None
+
+    dist_dir = Path(__file__).absolute().parent / 'dist'
+    build_dir = dist_dir / target
+    def webext(*args, **kwargs):
+        src_dir = build_dir.resolve() # TODO ugh. webext can't into symlinks???
+        check_call([
+            # TODO use npm run web-ext??
+            'npm', 'run', 'web-ext',
+            '--',
+            '--source-dir', str(src_dir),
+            *args,
+        ], **kwargs)
+
+    env = {
+        'TARGET': target,
+        'RELEASE': 'YES' if args.release else 'NO',
+        **os.environ,
+    }
+    check_call([
+        'npm', 'run', 'build',
+    ], env=env, cwd=str(Path(__file__).absolute().parent))
+
+    if args.lint:
+        # TODO --self-hosted
+        # TODO warnings as errors??
+        webext('lint')
+
+    if args.release:
+        assert args.lint # TODO not sure..
+
+    def webext_args():
+        from firefox_dev_secrets import API_KEY, API_SECRET
+        return [
+            '--artifacts-dir', str(dist_dir),
+            '--api-key'      , API_KEY,
+            '--api-secret'   , API_SECRET,
+            '--id'           , IDS[target],
+        ]
+    if args.sign:
+        # https://github.com/fregante/web-ext-submit#web-ext-submit- hmmm maybe I don't even need sign??
+        # Mozilla’s web-ext sign successfully submits an extension for review, but then it throws an error. This wrapper executes the same command, but then it prevents the unrelated "it could not be signed" error.
+        assert args.release
+        if target not in ['firefox', 'firefox-mobile']:
+            raise RuntimeError("{target} is not supported for signing yet".format(target=target))
+
+        webext(
+            *webext_args(),
+            'sign',
+        )
+    if args.publish:
+        assert args.release
+
+        src_dir = build_dir.resolve() # TODO ugh. webext can't into symlinks???
+
+        if target in ['firefox', 'firefox-mobile']:
+            # TODO --channel listed??
+            check_call([
+                'npm', 'run', 'release:amo',
+                '--',
+                '--source-dir', str(src_dir),
+                *webext_args(),
+            ])
+        elif target == 'chrome':
+            from chrome_dev_secrets import CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN
+            check_call([
+                'npm', 'run', 'release:cws',
+                '--',
+                'upload',
+                # '--auto-publish',
+                '--source'        , str(src_dir),
+                '--client-id'     , CLIENT_ID,
+                '--client-secret' , CLIENT_SECRET,
+                '--refresh--token', REFRESH_TOKEN,
+                '--extension-id'  , IDS[target],
+                # TODO trusted testers?
+            ])
+        else:
+            raise RuntimeError("{target} is not supported for publishing yet".format(target=target))
+
+if __name__ == '__main__':
+    main()

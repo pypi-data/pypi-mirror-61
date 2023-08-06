@@ -1,0 +1,118 @@
+version: 2
+
+jobs:
+  server_build_and_check:
+    docker:
+      - image: circleci/python:latest
+
+    steps:
+      - checkout
+      - run: git submodule update --init # TODO eh, this is only needed for integration tests...
+
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ checksum "promnesia/requirements.txt" }}-{{ checksum "promnesia/requirements-dev.txt" }}
+      #     # fallback to using the latest cache if no exact match is found
+      #     - v1-dependencies-
+
+      - run: python3 -m pip install --user tox
+      # ugh, hug is involved as subprocess and doesn't see virtualenv I gues??
+      - run: sudo apt install python3-dev # TODO ugh, regex (dateparser's dep needs it???)
+      - run: python3 -m tox
+
+      # - save_cache:
+      #     paths:
+      #       - ./venv
+      #     key: v1-dependencies-{{ checksum "promnesia/requirements.txt" }}-{{ checksum "promnesia/requirements-dev.txt" }}
+        
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
+          
+  client_build_and_check:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/project/extension # https://stackoverflow.com/a/50570581/706389
+    steps:
+      - checkout:
+          path: ~/project
+
+      # TODO not sure if should update shallalist?
+      - run: npm install
+      - run:
+          name: build
+          command: ./build --firefox --release --lint
+      - run:
+          name: js flow
+          command: npm run flow # TODO use flow discovery or something??
+          when: always 
+      - run:
+          name: js eslint
+          command: npm run eslint
+          when: always 
+      - run:
+          name: tests
+          command: npm run test
+          when: always
+      # TODO pack?
+
+  end2end_tests:
+    docker:
+      # TODO not sure which is easier to pick...
+      - image: circleci/python:latest-browsers
+    steps:
+      - checkout
+      - run: sudo apt install nodejs npm
+      - run:
+          name: 'build extension'
+          command: |
+            cd extension
+            npm install
+            ./build --firefox
+            ./build --chrome
+
+      - run: python3 -m pip install --user tox
+      - run: sudo apt install atool # used to pack the extension
+      - run: python3 -m tox -e end2end
+
+  install_and_run_test:
+    # right, docker doesn't seem to be systemd friendly
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+
+      #- run:
+      #    name: 'install python3.6'
+      #    command: |
+      #      sudo add-apt-repository --yes ppa:jonathonf/python-3.6
+      #      sudo apt update
+      #      sudo apt install python3.6
+      #      sudo apt install python3.6-dev python3-pip
+
+      - run:
+          name: 'setup python'
+          command: |
+            pyenv global 3.7.0
+            pip3 install --user --upgrade pip
+
+      # - run: curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3 # right, this container is quite old and doesn't have python3-pip package..
+
+      # - run: sudo apt install python3.5-dev # pyjq depenency; not sure if should be specified in dependencies...
+      # WARNING: The script hug is installed in '/home/circleci/.local/bin' which is not on PATH.
+      # Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+      - run: python3 -m pip install --user pytest # TODO FIXME canonify imports it...
+      - run: python3 -m pip install --user . # TODO meh
+      - run: tests/install_and_run
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - client_build_and_check
+      - server_build_and_check
+      - end2end_tests
+      - install_and_run_test

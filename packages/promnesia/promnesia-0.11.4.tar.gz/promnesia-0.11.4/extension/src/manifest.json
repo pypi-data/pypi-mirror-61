@@ -1,0 +1,40 @@
+{
+    "name": "<webpack managed>",
+    "version": "<webpack managed>",
+    "description": "Indicates whether and when the page was visited (and more!)",
+    "web_accessible_resources": [
+        "sidebar.js",
+        "sidebar.css",
+        "shallalist/*"
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["background_injector.js"]
+    }],
+    "options_ui": {
+        "page": "options_page.html"
+    },
+
+    "permissions": [
+        "file:///*",
+        "https://*/*",
+        "http://*/*",
+
+        "storage",
+
+        "tabs",
+        "activeTab",
+
+        "webNavigation",
+
+        "notifications"
+    ],
+    "icons": {
+        "48": "images/ic_not_visited_48.png"
+    },
+    "manifest_version": 2
+}
