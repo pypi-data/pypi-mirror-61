@@ -1,0 +1,34 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>The issue you have has been updated</title>
+</head>
+<body>
+<p>
+    Hello!
+</p>
+{% if changed.status %}
+<p>
+    Status has been changed from <strong>{{ changed.status }}</strong> to <strong>{{ issue.status }}</strong>.
+</p>
+{% endif %}
+{% if changed.description %}
+<p>
+    Description has been changed from <strong>{{ changed.description }}</strong> to <strong>{{ issue.description }}</strong>.
+</p>
+{% endif %}
+{% if changed.summary %}
+<p>
+    Summary has been changed from <strong>{{ changed.summary }}</strong> to <strong>{{ issue.summary }}</strong>.
+</p>
+{% endif %}
+{% if changed.priority %}
+<p>
+    Priority has been changed from <strong>{{ changed.priority }}</strong> to <strong>{{ issue.priority }}</strong>.
+</p>
+{% endif %}
+<p>
+    Please visit <a href="{{ issue_url }}">{{ site_name }}</a> to find out more details.
+</p>
+</body>
+</html>
