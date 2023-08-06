@@ -1,0 +1,70 @@
+# Fringe Pattern to 3D python
+This is a python package for applying phase demodulation and 3D reconstruction as post processing of Fringe Pattern (FP) images recorded using the Fringe Projection - Laser Induced Fluorescence (FP-LIF) technique.
+The package has been developed at the division of Combustion Physics at Lund University and a more detailed explanation of the technique is found in the article cited below.
+For any questions and code errors please contact `adrian.roth@forbrf.lth.se`.
+
+## Installation through pip
+```
+pip install fp23dpy
+```
+
+## Usage
+Either 
+```
+python3 -m pf23dpy <FP-image>
+```
+or 
+```
+fp23d <FP-image>
+```
+can be used that will by default write a 3D reconstruction GL Transmission Format file `.glb` that can be imported into most 3D modelling software, for example [](https://sandbox.babylonjs.com/).
+Other 3D file formats are supported with `--ext <extension>` flag such as `.stl` or `obj`.
+Use `python -m pf23dpy -h` for more information of the behaviour of the program.
+
+Examples of a pending drop 3D structure is found in the example folder of the source code.
+To print example FP image in the `examples` directory run,
+```
+python example_drop.py
+```
+which will produce an FP image segmentation file and a calibration file as explained below.
+Then try,
+```
+python -m pf23dpy example_drop.png
+```
+open the produced `reconstructed_example_drop.glb` in a 3D modelling program.
+
+### Calibration
+A calibration file can be used for each FP-LIF image, the program will try to calibrate from the given image but it is not as robust as doing it yourself.
+The calibration filename is either `calibration_<FP-image-filename>.txt` or `calibration.txt` where this calibration will be default for the whole directory.
+The file should include a JSON format object with the following attributes:
+```
+{
+	"T":     float,		 # describing the fringe pattern period length of a plane 3D object
+	"gamma": float,		 # float describing the angle in degrees of the fringe pattern in the image
+	"theta": float,	 	 # the angle in degrees from the camera to the illumination direction (optional)
+	"scale": float,  	 # scale of the image, number of pixels per meter (optional, will scale output to pixels otherwise)
+	"phi":   float,	 	 # the rotation in degrees of the camera in spherical coordinates to the angle of the fringe pattern with a certain radius (optional)
+	"Tlim":  list of floats  # suggestion of T limits to search within, will not always be respected (optional)
+}
+```
+The script `fp23d calibrate <calibration-image>` can be used for easier calculation of `T` and `theta` from a calibration image.
+
+### Segmentation
+If only parts of the image has the required Fringe Pattern lines, which is the case example drop, a segmentation of the image should be produced as found for the example drop.
+The segmented file should have filename `segmented_<FP-image-filename>`.
+If a single segmentation file should be used for all FP images in the same directory the segmentation file can be called `segmentation.png`.
+The file should have zero values for background pixels and non-zero for foreground pixels.
+
+
+## Citation
+ A. Roth and E. Berrocal. 3D surface reconstruction of liquid structures in sprays using structured illumination and phase demodulation. In *International Laser and Spray Systems Conference (ILASS)*, 2019.
+
+### Bibtex
+```
+@inproceedings{Roth:2019,
+author = {A. Roth and E. Berrocal},
+title = {3{D} surface reconstruction of liquid structures in sprays using structured illumination and phase demodulation},
+booktitle = {International Laser and Spray Systems Conference (ILASS)},
+year = {2019},
+}
+```
