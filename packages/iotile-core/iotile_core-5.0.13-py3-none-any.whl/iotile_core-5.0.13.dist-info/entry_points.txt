@@ -1,0 +1,37 @@
+[console_scripts]
+iotile = iotile.core.scripts.iotile_script:main
+iotile-updateinfo = iotile.core.scripts.iotile_updateinfo_script:main
+virtual_device = iotile.core.scripts.virtualdev_script:main
+
+[iotile.app]
+device_info = iotile.core.hw.app.info_app
+device_updater = iotile.core.hw.app.updater_app
+
+[iotile.auth_provider]
+ChainedAuthProvider = iotile.core.hw.auth.auth_chain:ChainedAuthProvider
+CliAuthProvider = iotile.core.hw.auth.cli_auth_provider:CliAuthProvider
+EnvAuthProvider = iotile.core.hw.auth.env_auth_provider:EnvAuthProvider
+NullAuthProvider = iotile.core.hw.auth.null_auth_provider:NullAuthProvider
+
+[iotile.config_variables]
+iotile-core = iotile.core.config_variables:get_variables
+
+[iotile.default_auth_providers]
+CliAuthProvider = iotile.core.hw.auth.default_providers:DefaultCliAuth
+EnvAuthProvider = iotile.core.hw.auth.default_providers:DefaultEnvAuth
+NullAuthProvider = iotile.core.hw.auth.default_providers:DefaultNullAuth
+
+[iotile.device_adapter]
+virtual = iotile.core.hw.transport:VirtualDeviceAdapter
+
+[iotile.recipe_action]
+FlashBoardStep = iotile.core.hw.debug.flash_board_step:FlashBoardStep
+
+[iotile.report_format]
+broadcast = iotile.core.hw.reports:BroadcastReport
+individual = iotile.core.hw.reports:IndividualReadingReport
+signed_list = iotile.core.hw.reports:SignedListReport
+
+[iotile.virtual_device]
+tile_based = iotile.core.hw.virtual.tile_based_device:TileBasedVirtualDevice
+
