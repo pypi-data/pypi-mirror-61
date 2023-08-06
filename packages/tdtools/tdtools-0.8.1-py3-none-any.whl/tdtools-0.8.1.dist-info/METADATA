@@ -1,0 +1,117 @@
+Metadata-Version: 2.1
+Name: tdtools
+Version: 0.8.1
+Summary: A Collection of assorted Teradata Tools
+Home-page: https://bitbucket.org/padhia/tdtools
+Author: Paresh Adhia
+License: GPL
+Keywords: teradata
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Database
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: tdtypes (>=0.5.1)
+Requires-Dist: yappt
+Requires-Dist: cached-property
+
+# tdtools
+
+[![PyPi](https://img.shields.io/pypi/v/tdtools.svg)](https://pypi.python.org/pypi/tdtools) [![License](https://img.shields.io/badge/License-GPL%20-blue.svg)](http://www.gnu.org/licenses/gpl) ![Python3.7+](https://img.shields.io/pypi/pyversions/tdtypes.svg)
+
+[tdtools](https://bitbucket.org/padhia/tdtools) is a collection of POSIX style command-line tools that provide an alternate way to access system information (metadata) from Teradata. Of course, most of the information can also be obtained by querying Teradata's Dictionary tables and views (`DBC.%`).
+
+*NOTES:*
+
+- I originally developed these tools for my personal use. I am making them open-source in the hope that someone else might find them useful. These tools do not come with any expressed or implied warranty.
+- These tools are not endorsed by [Teradata Inc](http://www.teradata.com/).
+- Most of the functionality provided byt the tools rely on information contained in Teradata Data Dictionary tables and view. Therefore, `SELECT` access to `DBC` objects is required.
+
+## Requirements
+
+The latest version of *Python3* series is always recommended. However, at least one prior-to-latest version of Python3 will be supported.
+
+**tdtools** depends on [tdtypes](https://pypi.python.org/pypi/tdtypes/) (for Teradata metadata information) and [yappt](https://pypi.python.org/pypi/yappt/) (for formatting output). These packages and their dependencies will be downloaded and installed automatically if you use the standard python installer, `pip`, to install **tdtools**.
+
+## Installation
+
+Use Python's `pip` utility to install `tdtools`.
+
+    $ pip install -U tdtools
+
+Or
+
+    C:\>python -m pip install -U tdtools
+
+## Available Tools
+
+Following is a brief description of each tool. Use `--help` command-line option to show detailed description of all supported options.
+
+Command       |Purpose
+--------------|---------------------------------------------------
+`dbtree`      |Print Teradata database hierarchy.
+`tbtree`      |Print Teradata Tree hierarchy (reverse View hierarchy)
+`updviewrefs` |Maintain View hierarchy as static data in a table (needed for `tbtree`)
+`tptload`     |Generate (and optionally run) TPT load script.
+`tptexp`      |Generate (and optionally run) TPT export script.
+`helpstats`   |Print current statistics information for Teradata objects (Table or Join-Index).
+`tdrights`    |Print Teradata permissions *on* objects or *to* users/roles
+
+All **show\*** utilities generate Teradata object DDLs.
+
+Command      |Object Type
+-------------|----------------------------------------------
+`showdb`     |Database or user
+`showgrant`  |Grants to user/role
+`showprof`   |Profile
+`showrole`   |Role
+`showstats`  |Statistics definition
+`showtvm`    |Wrapper around Teradata `SHOW <object>` commands
+`showzone`   |Zone
+
+All **ls\*** utilities print Teradata object information. Currently supported commands are:
+
+Command |Objects
+--------|-------------------
+`lstb`  |Tables
+`lsvw`  |Views (optionally lists dependent objects hierarchy)
+`lsmc`  |Macros
+`lspr`  |Stored Procedures
+`lsfn`  |Functions
+`lsji`  |Join Indexes
+`lsdb`  |Databases
+`lsus`  |Users
+`lspf`  |Profiles
+`lsrl`  |Roles
+`lsrm`  |Role Members
+
+## Customization
+
+You can optionally supply `tdconn_site.py` module to allow custom run-time option(s) to be added to all of the above tools. This modifies how the tools obtain a Teradata connection. This feature builds on customization offered by **tdtypes** module (see **tdtypes** documentation for details).
+
+A custom `tdconn_site.py` module must supply at least two functions.
+
+1. `dbconn_args(parser)` which should accept [ArgumentParser](https://docs.python.org/3/library/argparse.html#argumentparser-objects) object and add any custom command-line options to the `parser` object.
+2. `dbconnect(args)`which overrides the default function with the same name that is provided by **tdtypes** package, but must accept an argument which will be the result of `ArgumentParser.parse_args()`.
+
+## Known Issues
+
+- There was a defect in certain earlier releases of Teradata Database that caused views based on NOPI tables to be not detected correctly. A patch is available from Teradata that fixes this defect.
+
+## Support
+
+Report bugs using [issue tracker](https://bitbucket.org/padhia/tdtools/issues?status=new&status=open). I'll try to provide a fix as soon as I can. If you already have a fix, send me a pull request.
+
+## Contributions
+
+Feel free to fork this repository and enhance it in a way you see fit. If you feel your changes will benefit more people, send me a pull request.
+
+
