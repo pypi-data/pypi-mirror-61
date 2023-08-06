@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Security &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating my own Storage" href="create_my_own_storage.html" />
+    <link rel="prev" title="Scaling Thumbor" href="scaling_thumbor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="administration.html">Administration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_error_handling.html">Custom Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hosting.html">Hosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running.html">Running thumbor server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaling_thumbor.html">Scaling Thumbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Image Metadata</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#url-tampering">URL Tampering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stopping-tampering">Stopping Tampering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hmac-method">HMAC method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-old-way">The old way</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-images-over-https">Loading Images over HTTPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-information">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create_my_own_storage.html">Creating my own Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="administration.html">Administration</a> &raquo;</li>
+        
+      <li>Security</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/security.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
+<p>thumbor’s team is very concerned about security and vulnerabilities of
+the service. Even though the team strives to cover most scenarios, if
+you find any flaws or vulnerabilities, please contact the team or
+<a class="reference external" href="https://github.com/thumbor/thumbor/issues">create an issue</a>.</p>
+<div class="section" id="url-tampering">
+<h2>URL Tampering<a class="headerlink" href="#url-tampering" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following URL for an image:
+<code class="docutils literal notranslate"><span class="pre">http://some.server.com/unsafe/300x300/smart/path/to/image.jpg</span></code>.</p>
+<p>Now let’s say that some malicious user wants to overload your service.
+He can easily ask for other sizes in loops or worse, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">some</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">unsafe</span><span class="o">/</span><span class="mi">300</span><span class="n">x301</span><span class="o">/</span><span class="n">smart</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">some</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">unsafe</span><span class="o">/</span><span class="mi">300</span><span class="n">x302</span><span class="o">/</span><span class="n">smart</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">some</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">unsafe</span><span class="o">/</span><span class="mi">300</span><span class="n">x303</span><span class="o">/</span><span class="n">smart</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">...</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">some</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">unsafe</span><span class="o">/</span><span class="mi">300</span><span class="n">x9999</span><span class="o">/</span><span class="n">smart</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">...</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">some</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">unsafe</span><span class="o">/</span><span class="mi">9999</span><span class="n">x9999</span><span class="o">/</span><span class="n">smart</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>And that’s not even counting varying the available options.</p>
+<p>Other than that, the user can ask for images that do not exist, thus
+forcing us to perform useless http GET operations or filesystem
+operations.</p>
+<p>We classified both scenarios above as <strong>URL Tampering</strong>.</p>
+<div class="section" id="stopping-tampering">
+<h3>Stopping Tampering<a class="headerlink" href="#stopping-tampering" title="Permalink to this headline">¶</a></h3>
+<p>In order to prevent users from tampering with the URL, thumbor provides
+a configuration called <code class="docutils literal notranslate"><span class="pre">SECURITY_KEY</span></code>. This is the key used to
+generate a <a class="reference external" href="http://en.wikipedia.org/wiki/Hash-based_message_authentication_code">hash-based message authentication
+code</a>.</p>
+<p>The process is very straightforward. The web server that has the page
+using thumbor’s image generates an authentication code for the options
+and image url, using the <strong>SECURITY_KEY</strong>.</p>
+<p>When end-users access the page and thus load the image, thumbor
+generates an authentication code for the same options and image url,
+using the same <strong>SECURITY_KEY</strong>. If both authentication codes match,
+thumbor processes it.</p>
+<p>The secure endpoint looks like this:
+<code class="docutils literal notranslate"><span class="pre">/&lt;authentication</span> <span class="pre">code</span> <span class="pre">with</span> <span class="pre">28</span> <span class="pre">characters&gt;/300x200/smart/path/to/image.jpg</span></code>.</p>
+</div>
+<div class="section" id="hmac-method">
+<h3>HMAC method<a class="headerlink" href="#hmac-method" title="Permalink to this headline">¶</a></h3>
+<p>We intend to supply toolkits in many languages that automate the signing
+process, but we might need help from the community in this direction.</p>
+<p><strong>thumbor uses standard HMAC with SHA1 signing.</strong></p>
+<p>Let’s use as an example the url
+<code class="docutils literal notranslate"><span class="pre">http://some.server.com/unsafe/300x200/smart/path/to/image.jpg</span></code>.</p>
+<p>In order to convert that to a “safe” url, we must sign the part
+<code class="docutils literal notranslate"><span class="pre">300x200/smart/path/to/image.jpg</span></code>:</p>
+<ol class="arabic simple">
+<li>Generate a <code class="docutils literal notranslate"><span class="pre">signature</span></code> of that part using HMAC-SHA1 with the
+<strong>SECURITY_KEY</strong>.</li>
+<li>Encode the <code class="docutils literal notranslate"><span class="pre">signature</span></code> as base64. thumbor uses
+<code class="docutils literal notranslate"><span class="pre">urlsafe_b64encode</span></code> method of the native python’s base64 module.
+This method replaces some characters in the base64 string so it
+becomes more url friendly.</li>
+<li>Append the <code class="docutils literal notranslate"><span class="pre">encoded_signature</span></code> to the beginning of the URL, like:
+<code class="docutils literal notranslate"><span class="pre">/1234567890123456789012345678/300x200/smart/path/to/image.jpg</span></code>.</li>
+</ol>
+<p>That last part gives you the new url:
+<a class="reference external" href="http://thumbor-server/1234567890123456789012345678/300x200/smart/path/to/image.jpg">http://thumbor-server/1234567890123456789012345678/300x200/smart/path/to/image.jpg</a>.
+Notice that the url includes the options part <code class="docutils literal notranslate"><span class="pre">300x200/smart</span></code>. That’s
+required for thumbor to generate an authentication code to match the one
+that signs the image (<code class="docutils literal notranslate"><span class="pre">1234567890123456789012345678</span></code>).</p>
+<p><strong>The code included in this documentation is illustrational and should
+not be used for any purposes.</strong></p>
+<p>The description of the base64 method is:
+<a class="reference external" href="http://docs.python.org/library/base64.html">reference</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">Encode</span> <span class="n">string</span> <span class="n">s</span> <span class="n">using</span> <span class="n">a</span> <span class="n">URL</span><span class="o">-</span><span class="n">safe</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">which</span> <span class="n">substitutes</span>
+<span class="o">-</span> <span class="n">instead</span> <span class="n">of</span> <span class="o">+</span> <span class="ow">and</span> <span class="n">_</span> <span class="n">instead</span> <span class="n">of</span> <span class="o">/</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">Base64</span> <span class="n">alphabet</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">result</span> <span class="n">can</span> <span class="n">still</span> <span class="n">contain</span> <span class="o">=.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-old-way">
+<h3>The old way<a class="headerlink" href="#the-old-way" title="Permalink to this headline">¶</a></h3>
+<p>thumbor used to generate URL’s differently using AES
+encryption/decryption. If you need more info on the old way of
+generating URLs, read the <a class="reference external" href="https://github.com/thumbor/thumbor/wiki/3.0.0-release-changes">3.0.0 release changes</a>.</p>
+</div>
+</div>
+<div class="section" id="loading-images-over-https">
+<h2>Loading Images over HTTPS<a class="headerlink" href="#loading-images-over-https" title="Permalink to this headline">¶</a></h2>
+<p>The default http_loader loads images by default over http. To change the
+default to https, use the https_loader instead. To enforce https, use the
+strict_https_loader. Check the <a class="reference internal" href="image_loader.html"><span class="doc">Image loader</span></a> page for more details.</p>
+</div>
+<div class="section" id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+<p>There are implementations of url generators in various languages, take a
+look at the [<a class="reference external" href="#libraries">Libraries</a>] page to find information
+about them.</p>
+</div>
+<div class="section" id="more-information">
+<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="release_notes.html"><span class="doc">Release Notes</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="create_my_own_storage.html" class="btn btn-neutral float-right" title="Creating my own Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scaling_thumbor.html" class="btn btn-neutral float-left" title="Scaling Thumbor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

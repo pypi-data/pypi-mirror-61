@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Watermark &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Crop and Resize Algorithms" href="crop_and_resize_algorithms.html" />
+    <link rel="prev" title="Upscale" href="upscale.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autojpg.html">AutoJPG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background_color.html">Background Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="blur.html">Blur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="brightness.html">Brightness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contrast.html">Contrast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="convolution.html">Convolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equalize.html">Equalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extract_focal_points.html">Extract focal points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filling.html">Filling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="focal.html">Focal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="format.html">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grayscale.html">Grayscale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="max_bytes.html">Max bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="no_upscale.html">No upscale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="noise.html">Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proportion.html">Proportion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quality.html">Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="red_eye.html">Red eye</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rgb.html">RGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotate.html">Rotate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="round_corners.html">Round corners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sharpen.html">Sharpen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stretch.html">Stretch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strip_exif.html">Strip EXIF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strip_icc.html">Strip ICC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upscale.html">Upscale</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Watermark</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments">Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resizing">Resizing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+        
+      <li>Watermark</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/watermark.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="watermark">
+<h1>Watermark<a class="headerlink" href="#watermark" title="Permalink to this headline">¶</a></h1>
+<p>Usage: watermark(imageUrl, x, y, alpha [, w_ratio [, h_ratio]])</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This filter adds a watermark to the image. It can be positioned inside the image
+with the alpha channel specified and optionally resized based on the image size by
+specifying the ratio (see <a class="reference internal" href="#resizing">Resizing</a>).</p>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>imageUrl - Watermark image URL. It is very important to understand
+that the same image loader that Thumbor uses will be used here. If
+this URL contains parentheses they MUST be url encoded, since these
+are the characters Thumbor uses as delimiters for filter parameters.</li>
+<li>x - Horizontal position that the watermark will be in. Positive
+numbers indicate position from the left and negative numbers indicate
+position from the right.
+If the value is ‘center’ (without the single quotes), the watermark will be centered horizontally.
+If the value is ‘repeat’ (without the single quotes), the watermark will be repeated horizontally.
+If the value is a positive or negative number followed by a ‘p’ (ex. 20p) it will calculate the value
+from the image width as percentage</li>
+<li>y - Vertical position that the watermark will be in. Positive numbers
+indicate position from the top and negative numbers indicate position
+from the bottom.
+If the value is ‘center’ (without the single quotes), the watermark will be centered vertically.
+If the value is ‘repeat’ (without the single quotes), the watermark will be repeated vertically
+If the value is a positive or negative number followed by a ‘p’ (ex. 20p) it will calculate the value
+from the image height as percentage</li>
+<li>alpha - Watermark image transparency. Should be a number between 0
+(fully opaque) and 100 (fully transparent).</li>
+<li>w_ratio - percentage of the width of the image the watermark should fit-in, defaults to ‘none’
+(without the single quotes) which means it won’t be limited in the width on resizing but also won’t
+be resized based on this value</li>
+<li>h_ratio - percentage of the height of the image the watermark should fit-in, defaults to ‘none’
+(without the single quotes) which means it won’t be limited in the height on resizing but also won’t
+be resized based on this value</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Picture before the watermark filter" src="_images/tom_before_brightness.jpg" /></p>
+<p><a class="reference external" href="http://thumbor-server/filters:watermark(http://my.site.com/img.png,-10,-10,50)/some/image.jpg">http://thumbor-server/filters:watermark(http://my.site.com/img.png,-10,-10,50)/some/image.jpg</a></p>
+<p><img alt="Picture after the watermark filter" src="_images/tom_after_watermark.jpg" /></p>
+<p><a class="reference external" href="http://thumbor-server/filters:watermark(http://my.site.com/img.png,10p,-20p,50)/some/image.jpg">http://thumbor-server/filters:watermark(http://my.site.com/img.png,10p,-20p,50)/some/image.jpg</a></p>
+<p><img alt="Picture explaining watermark relative placement feature" src="_images/tom_watermark_relative.jpg" /></p>
+</div>
+<div class="section" id="resizing">
+<h2>Resizing<a class="headerlink" href="#resizing" title="Permalink to this headline">¶</a></h2>
+<p>Resizing is being done by defining borders the watermark needs to fit in or being upscaled to.
+The ratio of the watermark will not be changed and will be expanded or shrinked to the size which
+fits best into the borders.</p>
+<p>Some examples are shown below with an original image having width=300 and height=200 and an imaginary
+watermark having width=30 and height=40. Borders are shown in red and the watermark drafted in green.</p>
+<ul>
+<li><p class="first"><strong>original image (300x200)</strong></p>
+<p><img alt="Picture before the watermark filter" src="_images/tom_before_brightness.jpg" /></p>
+</li>
+<li><p class="first"><strong>watermark(imageUrl, 30, 10, 50, 20)</strong></p>
+<p>20% of the <em>width</em>: 300px*0.2 = 60px so the original watermark <em>width</em> is 30px which means it
+can be resized by 2.</p>
+<p>Because the <em>height</em> isn’t limited it can grow to 2x40px which is 80px.</p>
+<p><img alt="Picture explaining watermark resizing feature" src="_images/tom_watermark_resized_width.jpg" /></p>
+</li>
+<li><p class="first"><strong>watermark(imageUrl, 30, 10, 50, none, 15)</strong></p>
+<p>15% of the <em>height</em>: 200px*0.15 = 30px so the original watermark <em>height</em> is 40px which means
+it has to shrink by 25%.</p>
+<p>Because the <em>width</em> isn’t limited it can shrink to 0.75*30px which is 22.5px (rounded to 23px).</p>
+<p><img alt="Picture explaining watermark resizing feature" src="_images/tom_watermark_resized_none_height.jpg" /></p>
+</li>
+<li><p class="first"><strong>watermark(imageUrl, 30, 10, 50, 30, 30)</strong></p>
+<p>30% of the <em>width</em>: 300px*0.3 = 90px</p>
+<p>and</p>
+<p>30% of the <em>height</em>: 200px*0.3 = 60px</p>
+<p>so the original watermark <em>width</em> is 30px but cannot use 90px because then (to keep
+the ratio) the <em>height</em> would need to become (40/30)*90px=120px but only 60px is allowed.</p>
+<p>Therefor the <em>height</em> is limiting the resizing here and <em>height</em> would become 60px and <em>width</em>
+would be (30/40)*60px=45px which fits into the 90px border.</p>
+<p><img alt="Picture explaining watermark resizing feature" src="_images/tom_watermark_resized_width_height.jpg" /></p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="crop_and_resize_algorithms.html" class="btn btn-neutral float-right" title="Crop and Resize Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="upscale.html" class="btn btn-neutral float-left" title="Upscale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

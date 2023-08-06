@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>jpegtran &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gifv" href="gifv.html" />
+    <link rel="prev" title="Optimizers" href="optimizers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="optimizers.html">Optimizers</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">jpegtran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gifv.html">gifv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+          <li><a href="optimizers.html">Optimizers</a> &raquo;</li>
+        
+      <li>jpegtran</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/jpegtran.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="jpegtran">
+<h1>jpegtran<a class="headerlink" href="#jpegtran" title="Permalink to this headline">¶</a></h1>
+<p>Jpegtran is a lossless jpeg optimizer which can make your jpegs smaller by optimizing DCT coefficients. Information on jpegtran can be a bit difficult to find but the linux man page is pretty good: <a class="reference external" href="https://linux.die.net/man/1/jpegtran">https://linux.die.net/man/1/jpegtran</a></p>
+<p>Jpegtran can be used in conjunction with Thumbor. If the optimizer has been activated, Thumbor will first process your jpeg normally then it will hand the jpeg off to jpegtran for further optimizations before Thumbor returns the final image.</p>
+<p>To use jpegtran with Thumbor you must first install jpegtran, various linux distros often provide a package by the same name or it can be installed from source. You should make sure that jpegtran is in PATH, do a <cite>which jpegtran</cite> and you should see an absolute path where the jpegtran resides. It is also possible to use mozjpeg’s version of jpegtran as a drop-in replacement of libjpeg-turbo’s version.</p>
+<p>You also need to enable the Thumbor jpegtran optimizer in your thumbor.conf, like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIMIZERS</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;thumbor.optimizers.jpegtran&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also manually specify the jpegtran path, like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">JPEGTRAN_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">jpegtran</span>
+</pre></div>
+</div>
+<p>Once activated, no extra url parameters are needed - jpegtran will run on all jpegs automatically. If you have opted to use progressive jpegs via the <code class="docutils literal notranslate"><span class="pre">PROGRESSIVE_JPEG</span></code> option, jpegtran will also honor and product progressive jpegs.</p>
+<p>It is possible to supply progressive scans file via <code class="docutils literal notranslate"><span class="pre">JPEGTRAN_SCANS_FILE</span></code> config option.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gifv.html" class="btn btn-neutral float-right" title="gifv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="optimizers.html" class="btn btn-neutral float-left" title="Optimizers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

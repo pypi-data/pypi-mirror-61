@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Detection Algorithms &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to upload Images" href="how_to_upload_images.html" />
+    <link rel="prev" title="Crop and Resize Algorithms" href="crop_and_resize_algorithms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Detection Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#facial-detection">Facial Detection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-focal-points-for-cropping">Using Focal Points for Cropping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-detection">Feature Detection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+      <li>Detection Algorithms</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/detection_algorithms.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="detection-algorithms">
+<h1>Detection Algorithms<a class="headerlink" href="#detection-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>If the smart mode of thumbor has been specified in the uri (by the
+/smart portion of it), thumbor will use it’s smart detectors to find
+focal points.</p>
+<p>thumbor comes pre-packaged with two focal-point detection algorithms:
+facial and feature. First it tries to identify faces and if it can’t
+find any, it tries to identify features (more on that below).</p>
+<div class="section" id="facial-detection">
+<h2>Facial Detection<a class="headerlink" href="#facial-detection" title="Permalink to this headline">¶</a></h2>
+<p>For instructions on how to get facial detection coordinates see
+<a class="reference internal" href="usage.html#usage-metadata-endpoint"><span class="std std-ref">Metadata Endpoint</span></a> .</p>
+<p>thumbor uses OpenCV (<a class="reference external" href="http://opencv.org">http://opencv.org</a>) to detect faces. OpenCV
+returns the rectangle coordinates for the faces it identifies. Thumbor
+supports changing the file that OpenCV uses for identifying faces. We
+can see the algorithm in action below:</p>
+<p>Original image</p>
+<img alt="Original image" src="_images/face_detection_original.jpg" />
+<p>Red rectangles are the areas identified as faces</p>
+<img alt="Red rectangles are the areas identified as faces" src="_images/face_detection_alt.jpg" />
+<p>After retrieving these squares from OpenCV, thumbor calculates the
+<em>center of mass</em> of the image using <em>weighted average</em>.</p>
+<p>Consider that OpenCV returned 3 squares at <em>(10, 10, 100, 100)</em>, <em>(150,
+100, 100, 100)</em>, <em>(300, 300, 80, 50)</em>, being <em>(x, y, width, height)</em>, as
+such:</p>
+<img alt="Faces at 10x10, 150x100, 300x300" src="_images/faces_found_example.png" />
+<p>In order to find the <em>center of mass</em> for all the faces, we must first
+find the center and weight of each rectangle. We define weight in this
+scenario as the area of the rectangle.</p>
+<p>So, for the faces in our example (<strong>*x*</strong>,<strong>*y*</strong> being the
+coordinates of the rectangle’s center and <strong>*z*</strong> the rectangle weight):</p>
+<p><strong>Face 1</strong> - (x = (10 + 100) / 2 = 55), (y = (10 + 100) / 2 = 55), (z =
+100 * 100 = 10000)</p>
+<p><strong>Face 2</strong> - (x = (150 + 100) / 2 = 125), (y = (100 + 100) / 2 = 100),
+(z = 100 * 100 = 10000)</p>
+<p><strong>Face 3</strong> - (x = (300 + 80) / 2 = 190), (y = (300 + 50) / 2 = 175), (z
+= 80 * 50 = 4000)</p>
+<p>In order to find the <em>center of mass</em> we’ll do a <em>weighted average</em> of
+the X and Y coordinates of the faces using:</p>
+<p><strong>Horizontal Axis - X</strong> (((55 * 10000) + (125 * 10000) + (190 *
+4000)) / 24000 = 106)</p>
+<p><strong>Vertical Axis - Y</strong> (((55 * 10000) + (100 * 10000) + (175 * 4000))
+/ 24000 = 93).</p>
+<p>So for the faces found by OpenCV in that image we have the <em>center of
+mass</em> of the picture being <em>106x93</em>.</p>
+<div class="section" id="using-focal-points-for-cropping">
+<h3>Using Focal Points for Cropping<a class="headerlink" href="#using-focal-points-for-cropping" title="Permalink to this headline">¶</a></h3>
+<p>After finding the center of mass we can use it as the focal point for
+cropping. Given an image of <em>800x600</em> and a focal point at <em>106x93</em>, we
+need to determine the percentage that needs to be cropped from the top,
+bottom, left and right sides of the image.</p>
+<p>To determine the percentage we use simple math to figure how far from
+the top and the left side the <em>center of mass</em> is:</p>
+<p><strong>From the left</strong> - (106 / 800 * 100 = 13.25%)</p>
+<p><strong>From the top</strong> - (93 / 600 * 100 = 15.50%)</p>
+<p>Using the same example from the <a class="reference internal" href="crop_and_resize_algorithms.html"><span class="doc">Crop and Resize Algorithms</span></a> page, we
+need to crop <em>300px</em> out of the height of the image. In possession of
+the percentages of crop above, we can calculate how much we need to crop
+out of the top and bottom with:</p>
+<p><strong>Top</strong> - (300 * 0.155 ~= 46)</p>
+<p><strong>Bottom</strong> - just subtract top (<em>46px</em>) from the amount of crop
+(<em>300px</em>) - (300 - 46 = 254)</p>
+<p>So, now we now we have to remove <em>46px</em> out of the top of the picture
+and <em>254px</em> out of the bottom of the picture. In an <em>800x600</em> picture,
+that means cropping from <em>(0, 46)</em> to <em>(800, 346)</em>, resulting in an
+<em>800x300px</em> image.</p>
+<p>Assuming we would crop 300px horizontally, the cropping would be:</p>
+<p><strong>Left</strong> - (300 * 0.135 ~= 40)</p>
+<p><strong>Right</strong> - just subtract left (<em>40px</em>) from the amount of crop
+(<em>300px</em>) - (300 - 40 = 260)</p>
+<p>In an image of <em>800x600</em>, that means cropping from <em>(40, 0)</em> to <em>(540,
+600)</em>, resulting in a <em>500x600px</em> image. This would not be the case for
+this image, though.</p>
+</div>
+</div>
+<div class="section" id="feature-detection">
+<h2>Feature Detection<a class="headerlink" href="#feature-detection" title="Permalink to this headline">¶</a></h2>
+<p>If no faces are found in the picture, we still try to find important
+features in the image, provided by the Good Features to Track Algorithm
+in OpenCV (<a class="reference external" href="http://bit.ly/evAU95">http://bit.ly/evAU95</a>).</p>
+<p>According to OpenCV documentation, this algorithm finds <em>“important”</em>
+corners in the image. It then returns a list of <em>(x, y)</em> values.</p>
+<p>We can see the detection taking place in the following images:</p>
+<img alt="Original image" src="_images/feature_detection_original.jpg" />
+<p>The points identified by the good features algorithm:</p>
+<img alt="The points identified by the good features algorithm" src="_images/feature_detection.jpg" />
+<p>The cropping based in these features is analogous to the face one,
+except that all points have a weight of <strong>*1.0*</strong> and are already their
+centers.</p>
+<p>Let’s consider that we found <strong>3</strong> feature points: <em>10x15</em>, <em>30x40</em>,
+<em>25x60</em>. To find the center of mass we would do ((10 + 30 + 25) / 3 ~=
+22) to find the horizontal component and ((15 + 40 + 60) / 3 ~= 39) for
+the vertical one. This means that our center of mass in this scenario is
+<strong>*22x39*</strong>.</p>
+<p>Given an image of <em>800x600</em> and a center of mass of <em>22x39</em>, let’s find
+the left and top percentages:</p>
+<p><strong>From the left</strong> - (22 / 800 * 100 = 2.75%)</p>
+<p><strong>From the top</strong> - (93 / 600 * 100 = 6.50%)</p>
+<p>Assuming we are cropping <em>300px</em> of the height, we’ll crop top and
+bottom according to:</p>
+<p><strong>Top</strong> - (300 * 0.0275 ~= 9)</p>
+<p><strong>Bottom</strong> - just subtract top (<em>9px</em>) from the amount of crop (<em>300px</em>)
+- (300 - 9 = 291)</p>
+<p>In an image of <em>800x600</em>, that means cropping from <em>(0, 9)</em> to <em>(800,
+309)</em>, resulting in a <em>800x300px</em> image.</p>
+<p>If we were cropping <em>300px</em> of the width instead, we would crop left and
+right according to:</p>
+<p><strong>Left</strong> - (300 * 0.065 ~= 20)</p>
+<p><strong>Right</strong> - just subtract left (<em>20px</em>) from the amount of crop
+(<em>300px</em>) - (300 - 20 = 280)</p>
+<p>In an image of <em>800x600</em>, that means cropping from <em>(20, 0)</em> to <em>(520,
+600)</em>, resulting in a <em>500x600px</em> image.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="how_to_upload_images.html" class="btn btn-neutral float-right" title="How to upload Images" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="crop_and_resize_algorithms.html" class="btn btn-neutral float-left" title="Crop and Resize Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexiv2.metadata &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../customizing.html">Customizing Thumbor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upload.html">Upload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../more.html">Contributors &amp; Users</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyexiv2.metadata</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyexiv2.metadata</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># ******************************************************************************</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2006-2011 Olivier Tilloy &lt;olivier@tilloy.net&gt;</span>
+<span class="c1"># Copyright (C) 2015-2019 Vincent Vande Vyvre &lt;vincent.vandevyvre@oqapy.eu&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of the py3exiv2 distribution.</span>
+<span class="c1">#</span>
+<span class="c1"># py3exiv2 is free software; you can redistribute it and/or</span>
+<span class="c1"># modify it under the terms of the GNU General Public License</span>
+<span class="c1"># version 3 as published by the Free Software Foundation.</span>
+<span class="c1">#</span>
+<span class="c1"># py3exiv2 is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with py3exiv2; if not, write to the Free Software</span>
+<span class="c1"># Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301 USA.</span>
+<span class="c1">#</span>
+<span class="c1"># Maintainer: Vincent Vande Vyvre &lt;vincent.vandevyvre@oqapy.eu&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># ******************************************************************************</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provide the ImageMetadata class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+
+<span class="kn">from</span> <span class="nn">errno</span> <span class="kn">import</span> <span class="n">ENOENT</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">MutableMapping</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">MutableMapping</span>
+
+<span class="kn">import</span> <span class="nn">libexiv2python</span>
+
+<span class="kn">from</span> <span class="nn">pyexiv2.exif</span> <span class="kn">import</span> <span class="n">ExifTag</span><span class="p">,</span> <span class="n">ExifThumbnail</span>
+<span class="kn">from</span> <span class="nn">pyexiv2.iptc</span> <span class="kn">import</span> <span class="n">IptcTag</span>
+<span class="kn">from</span> <span class="nn">pyexiv2.xmp</span> <span class="kn">import</span> <span class="n">XmpTag</span>
+<span class="kn">from</span> <span class="nn">pyexiv2.preview</span> <span class="kn">import</span> <span class="n">Preview</span>
+
+
+<div class="viewcode-block" id="ImageMetadata"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata">[docs]</a><span class="k">class</span> <span class="nc">ImageMetadata</span><span class="p">(</span><span class="n">MutableMapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A container for all the metadata embedded in an image.</span>
+
+<span class="sd">    It provides convenient methods for the manipulation of EXIF, IPTC and XMP</span>
+<span class="sd">    metadata embedded in image files such as JPEG and TIFF files, using Python</span>
+<span class="sd">    types.</span>
+<span class="sd">    It also provides access to the previews embedded in an image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Instanciate the ImageMeatadata class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        filename: str(path to an image file)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__image</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;exif&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;iptc&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;xmp&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;exif&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;iptc&#39;</span><span class="p">:</span> <span class="p">{},</span> <span class="s1">&#39;xmp&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exif_thumbnail</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_instantiate_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Instanciate the exiv2 image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        filename -- str(path to an image file)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># This method is meant to be overridden in unit tests to easily replace</span>
+        <span class="c1"># the internal image reference by a mock.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">ENOENT</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">ENOENT</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># Remember the reference timestamps before doing any access to the file</span>
+        <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_atime</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_atime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mtime</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_mtime</span>
+        <span class="k">return</span> <span class="n">libexiv2python</span><span class="o">.</span><span class="n">_Image</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ImageMetadata.from_buffer"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.from_buffer">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_buffer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buffer_</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Instantiate an image container from an image memoryview.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        buffer_ -- a memoryview containing image data as bytes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">__image</span> <span class="o">=</span> <span class="n">libexiv2python</span><span class="o">.</span><span class="n">_Image</span><span class="p">(</span><span class="n">buffer_</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">buffer_</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;Image metadata has not been read yet&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__image</span>
+
+<div class="viewcode-block" id="ImageMetadata.read"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read the metadata embedded in the associated image.</span>
+
+<span class="sd">        It is necessary to call this method once before attempting to access</span>
+<span class="sd">        the metadata (an exception will be raised if trying to access metadata</span>
+<span class="sd">        before calling this method).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_instantiate_image</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__image</span><span class="o">.</span><span class="n">_readMetadata</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ImageMetadata.write"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preserve_timestamps</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write the metadata back to the image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        preserve_timestamps -- whether to preserve the file&#39;s original</span>
+<span class="sd">                               timestamps (access time and modification time)</span>
+<span class="sd">                               Type: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_writeMetadata</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">preserve_timestamps</span><span class="p">:</span>
+            <span class="c1"># Revert to the original timestamps</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_atime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mtime</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Reset the reference timestamps</span>
+            <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_atime</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_atime</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mtime</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_mtime</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A tuple containing the width and height of the image, expressed in</span>
+<span class="sd">        pixels.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getPixelWidth</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getPixelHeight</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mime_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The mime type of the image, as a string.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getMimeType</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">exif_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the list of the keys of the available EXIF tags.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_exifKeys</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">iptc_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the list of the keys of the available IPTC tags.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_iptcKeys</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">xmp_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the list of the keys of the available XMP tags.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_xmpKeys</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_get_exif_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the EXIF tag for the given key.</span>
+
+<span class="sd">        Throw a KeyError if the tag doesn&#39;t exist.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the exif key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">_tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getExifTag</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">ExifTag</span><span class="o">.</span><span class="n">_from_existing_tag</span><span class="p">(</span><span class="n">_tag</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+            <span class="k">return</span> <span class="n">tag</span>
+
+    <span class="k">def</span> <span class="nf">_get_iptc_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the IPTC tag for the given key.</span>
+
+<span class="sd">        Throw a KeyError if the tag doesn&#39;t exist.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the iptc key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">_tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getIptcTag</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">IptcTag</span><span class="o">.</span><span class="n">_from_existing_tag</span><span class="p">(</span><span class="n">_tag</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+            <span class="k">return</span> <span class="n">tag</span>
+
+    <span class="k">def</span> <span class="nf">_get_xmp_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the XMP tag for the given key.</span>
+
+<span class="sd">        Throw a KeyError if the tag doesn&#39;t exist.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the xmp key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">_tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getXmpTag</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">XmpTag</span><span class="o">.</span><span class="n">_from_existing_tag</span><span class="p">(</span><span class="n">_tag</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+            <span class="k">return</span> <span class="n">tag</span>
+
+<div class="viewcode-block" id="ImageMetadata.__getitem__"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a metadata tag for a given key.</span>
+
+<span class="sd">        Raise KeyError if the tag doesn&#39;t exist</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- metadata key in the dotted form</span>
+<span class="sd">               ``familyName.groupName.tagName`` where ``familyName`` may</span>
+<span class="sd">               be one of ``exif``, ``iptc`` or ``xmp``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">family</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">family</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;exif&#39;</span><span class="p">,</span> <span class="s1">&#39;iptc&#39;</span><span class="p">,</span> <span class="s1">&#39;xmp&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_get_</span><span class="si">%s</span><span class="s1">_tag&#39;</span> <span class="o">%</span> <span class="n">family</span><span class="p">)(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_set_exif_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">tag_or_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set an EXIF tag. If the tag already exists, its value is overwritten.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the EXIF key</span>
+<span class="sd">        tag_or_value -- an ExifTag instance or the value of the data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tag_or_value</span><span class="p">,</span> <span class="n">ExifTag</span><span class="p">):</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">tag_or_value</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># As a handy shortcut, accept direct value assignment.</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">ExifTag</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tag_or_value</span><span class="p">)</span>
+
+        <span class="n">tag</span><span class="o">.</span><span class="n">_set_owner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">][</span><span class="n">tag</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+        <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exif_keys</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_iptc_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">tag_or_values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set an IPTC tag. If the tag already exists, its value is overwritten.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the IPTC key</span>
+<span class="sd">        tag_or_value -- an IptcTag instance or the value of the data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tag_or_values</span><span class="p">,</span> <span class="n">IptcTag</span><span class="p">):</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">tag_or_values</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># As a handy shortcut, accept direct value assignment.</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">IptcTag</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tag_or_values</span><span class="p">)</span>
+
+        <span class="n">tag</span><span class="o">.</span><span class="n">_set_owner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">][</span><span class="n">tag</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+        <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iptc_keys</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_xmp_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">tag_or_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set an XMP tag. If the tag already exists, its value is overwritten.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the XMP key</span>
+<span class="sd">        tag_or_value -- an XmpTag instance or the value of the data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tag_or_value</span><span class="p">,</span> <span class="n">XmpTag</span><span class="p">):</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">tag_or_value</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># As a handy shortcut, accept direct value assignment.</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">XmpTag</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tag_or_value</span><span class="p">)</span>
+
+        <span class="n">tag</span><span class="o">.</span><span class="n">_set_owner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">][</span><span class="n">tag</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+        <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmp_keys</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ImageMetadata.__setitem__"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.__setitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">tag_or_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a metadata tag for a given key.</span>
+
+<span class="sd">        If the tag was previously set, it is overwritten.</span>
+<span class="sd">        As a handy shortcut, a value may be passed instead of a fully formed</span>
+<span class="sd">        tag. The corresponding tag object will be instantiated.</span>
+
+<span class="sd">        Raise KeyError if the key is invalid</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- metadata key in the dotted form</span>
+<span class="sd">               ``familyName.groupName.tagName`` where ``familyName`` may</span>
+<span class="sd">               be one of ``exif``, ``iptc`` or ``xmp``.</span>
+<span class="sd">        tag_or_value -- an instance of the corresponding family of metadata</span>
+<span class="sd">                        tag or a value</span>
+<span class="sd">                        Type: pyexiv2.exif.ExifTag instance or</span>
+<span class="sd">                              pyexiv2.iptc.IptcTag instance or</span>
+<span class="sd">                              pyexiv2.xmp.XmpTag instance or </span>
+<span class="sd">                              any valid value type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">family</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">family</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;exif&#39;</span><span class="p">,</span> <span class="s1">&#39;iptc&#39;</span><span class="p">,</span> <span class="s1">&#39;xmp&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_set_</span><span class="si">%s</span><span class="s1">_tag&#39;</span> <span class="o">%</span> <span class="n">family</span><span class="p">)(</span><span class="n">key</span><span class="p">,</span> <span class="n">tag_or_value</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_delete_exif_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete an EXIF tag.</span>
+
+<span class="sd">        Throw a KeyError if the tag doesn&#39;t exist.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the EXIF key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">exif_keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Cannot delete an inexistent tag&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_deleteExifTag</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># The tag was not cached.</span>
+            <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_delete_iptc_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete an IPTC tag.</span>
+
+<span class="sd">        Throw a KeyError if the tag doesn&#39;t exist.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the IPTC key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iptc_keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Cannot delete an inexistent tag&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_deleteIptcTag</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># The tag was not cached.</span>
+            <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_delete_xmp_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete an XMP tag.</span>
+
+<span class="sd">        Throw a KeyError if the tag doesn&#39;t exist.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the XMP key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmp_keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Cannot delete an inexistent tag&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_deleteXmpTag</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># The tag was not cached.</span>
+            <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ImageMetadata.__delitem__"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.__delitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete a metadata tag for a given key.</span>
+
+<span class="sd">        Raise KeyError if the tag with the given key doesn&#39;t exist</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        key -- the metadata key in the dotted form</span>
+<span class="sd">               ``familyName.groupName.tagName`` where ``familyName`` may</span>
+<span class="sd">               be one of ``exif``, ``iptc`` or ``xmp``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">family</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">family</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;exif&#39;</span><span class="p">,</span> <span class="s1">&#39;iptc&#39;</span><span class="p">,</span> <span class="s1">&#39;xmp&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_delete_</span><span class="si">%s</span><span class="s1">_tag&#39;</span> <span class="o">%</span> <span class="n">family</span><span class="p">)(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exif_keys</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iptc_keys</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmp_keys</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_get_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getComment</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_set_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">comment</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_setComment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_del_comment</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_del_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_clearComment</span><span class="p">()</span>
+
+    <span class="n">comment</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">fget</span><span class="o">=</span><span class="n">_get_comment</span><span class="p">,</span> <span class="n">fset</span><span class="o">=</span><span class="n">_set_comment</span><span class="p">,</span> <span class="n">fdel</span><span class="o">=</span><span class="n">_del_comment</span><span class="p">,</span>
+                       <span class="n">doc</span><span class="o">=</span><span class="s1">&#39;The image comment.&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">previews</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of the previews available in the image, sorted by increasing</span>
+<span class="sd">        size.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Preview</span><span class="p">(</span><span class="n">preview</span><span class="p">)</span> <span class="k">for</span> <span class="n">preview</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_previews</span><span class="p">()]</span>
+
+<div class="viewcode-block" id="ImageMetadata.copy"><a class="viewcode-back" href="../../metadata.html#pyexiv2.metadata.ImageMetadata.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">exif</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">iptc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xmp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Copy the metadata to another image.</span>
+
+<span class="sd">        The metadata in the destination is overridden. In particular, if the</span>
+<span class="sd">        destination contains e.g. EXIF data and the source doesn&#39;t, it will be</span>
+<span class="sd">        erased in the destination, unless explicitly omitted.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        other -- the destination metadata to copy to (it must have been</span>
+<span class="sd">                 read beforehand)</span>
+<span class="sd">                 Type: pyexiv2.metadata.ImageMetadata instance</span>
+<span class="sd">        exif -- whether to copy the EXIF metadata, default True</span>
+<span class="sd">        iptc -- whether to copy the IPTC metadata, default True</span>
+<span class="sd">        xmp -- whether to copy the XMP metadata, default True</span>
+<span class="sd">        comment -- whether to copy the image comment, default True </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_copyMetadata</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_image</span><span class="p">,</span> <span class="n">exif</span><span class="p">,</span> <span class="n">iptc</span><span class="p">,</span> <span class="n">xmp</span><span class="p">)</span>
+        <span class="c1"># Empty the cache where needed</span>
+        <span class="k">if</span> <span class="n">exif</span><span class="p">:</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;exif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">iptc</span><span class="p">:</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;iptc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">xmp</span><span class="p">:</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">_keys</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">_tags</span><span class="p">[</span><span class="s1">&#39;xmp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">comment</span><span class="p">:</span>
+            <span class="n">other</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">comment</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The image buffer as a string.</span>
+<span class="sd">        If metadata has been modified, the data won&#39;t be up-to-date until</span>
+<span class="sd">        :meth:`.write` has been called.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getDataBuffer</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">exif_thumbnail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A thumbnail image optionally embedded in the EXIF data.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exif_thumbnail</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_exif_thumbnail</span> <span class="o">=</span> <span class="n">ExifThumbnail</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exif_thumbnail</span>
+
+    <span class="k">def</span> <span class="nf">_get_iptc_charset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">_getIptcCharset</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_set_iptc_charset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">charset</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">charset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_del_iptc_charset</span><span class="p">()</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">charset</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">except</span> <span class="ne">LookupError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">charsets</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;utf-8&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="si">%G</span><span class="s1">&#39;</span><span class="p">}</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Iptc.Envelope.CharacterSet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">charsets</span><span class="p">[</span><span class="n">name</span><span class="p">],)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unhandled charset: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_del_iptc_charset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Iptc.Envelope.CharacterSet&#39;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="n">iptc_charset</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">fget</span><span class="o">=</span><span class="n">_get_iptc_charset</span><span class="p">,</span> 
+                            <span class="n">fset</span><span class="o">=</span><span class="n">_set_iptc_charset</span><span class="p">,</span>
+                            <span class="n">fdel</span><span class="o">=</span><span class="n">_del_iptc_charset</span><span class="p">,</span>
+                            <span class="n">doc</span><span class="o">=</span><span class="s1">&#39;An optional character set the IPTC data&#39;</span>\
+                                <span class="s1">&#39; is encoded in.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Some convenient functions -------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">get_iso</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the ISO value as integer.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Exif.Photo.ISOSpeedRatings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">get_shutter_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">float_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the exposure time as rational or float.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        float_ -- if False, default, the value is returned as rational </span>
+<span class="sd">                  otherwise as float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Exif.Photo.ExposureTime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> 
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">float_</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">speed</span><span class="o">.</span><span class="n">denominator</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">speed</span><span class="o">.</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">speed</span><span class="o">.</span><span class="n">denominator</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">numerator</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">speed</span>
+
+    <span class="k">def</span> <span class="nf">get_focal_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the focal length as float.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">focal</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Exif.Photo.FocalLength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">if</span> <span class="n">focal</span><span class="o">.</span><span class="n">denominator</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">focal</span><span class="o">.</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">focal</span><span class="o">.</span><span class="n">denominator</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">focal</span><span class="o">.</span><span class="n">numerator</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">get_aperture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the fNumber as float.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fnumber</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Exif.Photo.FNumber&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">if</span> <span class="n">fnumber</span><span class="o">.</span><span class="n">denominator</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">fnumber</span><span class="o">.</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">fnumber</span><span class="o">.</span><span class="n">denominator</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">fnumber</span><span class="o">.</span><span class="n">numerator</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">get_orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the orientation of the image as integer.</span>
+
+<span class="sd">        If the tag is not set, the value 1 is returned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Exif.Image.Orientation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">get_exposure_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">float_</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the exposure parameters of the image.</span>
+
+<span class="sd">        The values are returned as a dict which contains:</span>
+<span class="sd">            &quot;iso&quot;: the ISO value</span>
+<span class="sd">            &quot;speed&quot;: the exposure time</span>
+<span class="sd">            &quot;focal&quot;: the focal length</span>
+<span class="sd">            &quot;aperture&quot;: the fNumber</span>
+<span class="sd">            &quot;orientation&quot;: the orientation of the image</span>
+
+<span class="sd">        When a tag is not set, the value will be None</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        float_ -- if False, default, the value of the exposure time is returned </span>
+<span class="sd">                  as rational otherwise as float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;iso&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_iso</span><span class="p">(),</span>
+                <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_shutter_speed</span><span class="p">(</span><span class="n">float_</span><span class="p">),</span>
+                <span class="s2">&quot;focal&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_focal_length</span><span class="p">(),</span>
+                <span class="s2">&quot;aperture&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aperture</span><span class="p">(),</span>
+                <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_orientation</span><span class="p">()}</span>
+
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">get_rights_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the author and copyright info.</span>
+
+<span class="sd">        The values are returned as a dict which contains:</span>
+<span class="sd">            &quot;creator&quot;: the value of Xmp.dc.creator</span>
+<span class="sd">            &quot;artist&quot;: the value of Exif.Image.Artist</span>
+<span class="sd">            &quot;rights&quot;: the value of Xmp.dc.rights</span>
+<span class="sd">            &quot;copyright&quot;: the value of Exif.Image.Copyright</span>
+<span class="sd">            &quot;marked&quot;: the value of Xmp.xmpRights.Marked</span>
+<span class="sd">            &quot;usage&quot;: the value of Xmp.xmpRights.UsageTerms</span>
+
+<span class="sd">        When a tag is not set, the value will be None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;creator&#39;</span><span class="p">,</span> <span class="s1">&#39;Xmp.dc.creator&#39;</span><span class="p">),</span> 
+                <span class="p">(</span><span class="s1">&#39;artist&#39;</span><span class="p">,</span> <span class="s1">&#39;Exif.Image.Artist&#39;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s1">&#39;rights&#39;</span><span class="p">,</span> <span class="s1">&#39;Xmp.dc.rights&#39;</span><span class="p">),</span> 
+                <span class="p">(</span><span class="s1">&#39;copyright&#39;</span><span class="p">,</span> <span class="s1">&#39;Exif.Image.Copyright&#39;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s1">&#39;marked&#39;</span><span class="p">,</span> <span class="s1">&#39;Xmp.xmpRights.Marked&#39;</span><span class="p">),</span> 
+                <span class="p">(</span><span class="s1">&#39;usage&#39;</span><span class="p">,</span> <span class="s1">&#39;Xmp.xmpRights.UsageTerms&#39;</span><span class="p">)]</span>
+        <span class="n">rights</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rights</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">rights</span><span class="p">[</span><span class="n">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">rights</span></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

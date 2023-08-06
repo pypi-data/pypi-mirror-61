@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Plugins &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libraries" href="libraries.html" />
+    <link rel="prev" title="Extending" href="extending.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="extending.html">Extending</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#storages">Storages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-aws-by-thumbor-community">thumbor_aws (by Thumbor Community)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-hbase-by-damien-hardy">thumbor_hbase (by Damien Hardy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-mongodb-by-damien-hardy">thumbor_mongodb (by Damien Hardy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-riak-by-damien-hardy">thumbor_riak (by Damien Hardy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-rackspace-by-david-mann">thumbor_rackspace (by David Mann)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-ceph-by-laurent-barbe">thumbor_ceph (by Laurent Barbe)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-spaces-by-siddhartha-mukherjee">thumbor_spaces (by Siddhartha Mukherjee)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#metrics">Metrics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-prometheus-by-simon-effenberg">thumbor_prometheus (by Simon Effenberg)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#thumborshortener-by-thumbor-community">thumborshortener (by Thumbor Community)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#engines">Engines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-video-engine-by-the-atlantic">thumbor-video-engine (by The Atlantic)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="extending.html">Extending</a> &raquo;</li>
+        
+      <li>Plugins</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/plugins.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="plugins">
+<h1>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h1>
+<p>With its pluggable architecture, thumbor provides extension points for a
+myriad of plug-in: storages, loaders, detectors, filters.</p>
+<p>If your plug-in is not listed here, please create an issue with the
+details and we’ll add it here.</p>
+<div class="section" id="storages">
+<h2>Storages<a class="headerlink" href="#storages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="thumbor-aws-by-thumbor-community">
+<h3><a class="reference external" href="https://github.com/thumbor-community/aws">thumbor_aws</a> (by <a class="reference external" href="https://github.com/thumbor-community">Thumbor Community</a>)<a class="headerlink" href="#thumbor-aws-by-thumbor-community" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/thumbor/thumbor/wiki">Thumbor</a> is a smart
+imaging service. It enables on-demand crop, resizing and flipping of
+images.</p>
+<p><a class="reference external" href="https://aws.amazon.com/">AWS</a> is a cloud service, providing - among other things - storage capabilities.</p>
+<p>This module provides support for AWS S3 interconnection, as a loader, a storage and/or a result storage.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/thumbor-community/aws">https://github.com/thumbor-community/aws</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tc_aws</span></code></li>
+</ul>
+<p>To get exhaustive details about configuration options &amp; setting it up, go to the <a class="reference external" href="https://github.com/thumbor-community">documentation of the plugin</a>.</p>
+</div>
+<div class="section" id="thumbor-hbase-by-damien-hardy">
+<h3><a class="reference external" href="https://github.com/dhardy92/thumbor_hbase">thumbor_hbase</a> (by <a class="reference external" href="https://github.com/dhardy92">Damien Hardy</a>)<a class="headerlink" href="#thumbor-hbase-by-damien-hardy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/thumbor/thumbor/wiki">Thumbor</a> is a smart
+imaging service. It enables on-demand crop, resizing and flipping of
+images.</p>
+<p><a class="reference external" href="https://hbase.apache.org/">Hbase</a> is a column oriented database from
+the hadoop ecosystem.</p>
+<p>This module provide support for Hadoop Hbase as large auto replicant
+key/value backend storage for images in Thumbor.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/dhardy92/thumbor_hbase">https://github.com/dhardy92/thumbor_hbase</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor_hbase</span></code></li>
+</ul>
+<p>Using it is simple, just change your configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HBASE_STORAGE_SERVER_HOST</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+<span class="n">HBASE_STORAGE_SERVER_PORT</span> <span class="o">=</span> <span class="mi">9000</span>
+<span class="n">HBASE_STORAGE_TABLE</span> <span class="o">=</span> <span class="s2">&quot;storage-table&quot;</span>
+<span class="n">HBASE_STORAGE_FAMILY</span> <span class="o">=</span> <span class="s2">&quot;storage-family&quot;</span>
+</pre></div>
+</div>
+<p>If you want to use thumbor_hbase for loading original images, change
+your thumbor.conf to read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LOADER</span> <span class="o">=</span> <span class="s2">&quot;thumbor_hbase.loader&quot;</span>
+</pre></div>
+</div>
+<p>If you want to use thumbor_hbase for storage of original images, change
+your thumbor.conf to read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STORAGE</span> <span class="o">=</span> <span class="s2">&quot;thumbor_hbase.storage&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thumbor-mongodb-by-damien-hardy">
+<h3><a class="reference external" href="https://github.com/dhardy92/thumbor_mongodb">thumbor_mongodb</a> (by <a class="reference external" href="https://github.com/dhardy92">Damien Hardy</a>)<a class="headerlink" href="#thumbor-mongodb-by-damien-hardy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/thumbor/thumbor/wiki">Thumbor</a> is a smart
+imaging service. It enables on-demand crop, resizing and flipping of
+images.</p>
+<p><a class="reference external" href="http://www.mongodb.org/">MongoDB</a> is a document oriented NoSQL
+database.</p>
+<p>This plugin for Thumbor is a loader that can reach images from a mongodb
+collection based on its Object(_id).</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/dhardy92/thumbor_mongodb">https://github.com/dhardy92/thumbor_mongodb</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor_mongodb</span></code></li>
+</ul>
+<p>Using it is simple, just change your configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LOADER</span> <span class="o">=</span> <span class="s1">&#39;thumbor_mongodb.loader&#39;</span>
+<span class="n">MONGO_LOADER_CNX_STRING</span> <span class="o">=</span> <span class="s1">&#39;mongodb://mongodbserver01,mongodbserver02:27017&#39;</span>
+<span class="n">MONGO_LOADER_SERVER_DB</span> <span class="o">=</span> <span class="s1">&#39;thumbor&#39;</span>
+<span class="n">MONGO_LOADER_SERVER_COLLECTION</span> <span class="o">=</span> <span class="s1">&#39;images&#39;</span>
+<span class="n">MONGO_LOADER_DOC_FIELD</span> <span class="o">=</span> <span class="s1">&#39;content&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thumbor-riak-by-damien-hardy">
+<h3><a class="reference external" href="https://github.com/dhardy92/thumbor_riak">thumbor_riak</a> (by <a class="reference external" href="https://github.com/dhardy92">Damien Hardy</a>)<a class="headerlink" href="#thumbor-riak-by-damien-hardy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://basho.com/riak/">Riak</a> is a distributed document oriented
+database implementing the consistent hashing algorithm from the Dynanmo
+publication by Amazon.</p>
+<p>This module provide support for Riak as a large auto replicant key/value
+backend storage for images in Thumbor.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/dhardy92/thumbor_riak">https://github.com/dhardy92/thumbor_riak</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor_riak</span></code> (require thumbor)</li>
+</ul>
+<p>Using it is simple, just change your configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use riak for storage.</span>
+<span class="n">STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_riak.storage&#39;</span>
+
+<span class="c1"># Put the url for your riak install here</span>
+<span class="n">RIAK_STORAGE_BASEURL</span> <span class="o">=</span> <span class="s2">&quot;http://my-riak-install-base-url&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thumbor-rackspace-by-david-mann">
+<h3><a class="reference external" href="https://github.com/CodingNinja/thumbor_rackspace">thumbor_rackspace</a> (by <a class="reference external" href="https://github.com/CodingNinja">David Mann</a>)<a class="headerlink" href="#thumbor-rackspace-by-david-mann" title="Permalink to this headline">¶</a></h3>
+<p>This plugin allows users to store objects in the Rackspace cloud for
+result storage.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/CodingNinja/thumbor_rackspace">https://github.com/CodingNinja/thumbor_rackspace</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor_rackspace</span></code></li>
+</ul>
+<p>Using it is simple, just change your configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use rackspace for result storage.</span>
+<span class="c1"># For more info on result storage: https://github.com/thumbor/thumbor/wiki/Result-storage</span>
+<span class="n">RESULT_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_rackspace.result_storages.cloudfile_storage&#39;</span>
+
+<span class="c1"># Pyrax Rackspace configuration file location</span>
+<span class="n">RACKSPACE_PYRAX_CFG</span> <span class="o">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">thumbor</span><span class="o">/.</span><span class="n">pyrax</span><span class="o">.</span><span class="n">cfg</span>
+
+<span class="c1"># Result Storage options</span>
+<span class="n">RACKSPACE_RESULT_STORAGE_EXPIRES</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># Set TTL on cloudfile objects</span>
+<span class="n">RACKSPACE_RESULT_STORAGES_CONTAINER</span> <span class="o">=</span> <span class="s2">&quot;cloudfile-container-name&quot;</span>
+<span class="n">RACKSPACE_RESULT_STORAGES_CONTAINER_ROOT</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thumbor-ceph-by-laurent-barbe">
+<h3><a class="reference external" href="https://github.com/ksperis/thumbor_ceph">thumbor_ceph</a> (by <a class="reference external" href="https://github.com/ksperis">Laurent Barbe</a>)<a class="headerlink" href="#thumbor-ceph-by-laurent-barbe" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://ceph.com/">Ceph</a> a distributed object store designed to
+provide excellent performance, reliability and scalability.</p>
+<p>This module provide support for Ceph RADOS as backend storage for
+images.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/ksperis/thumbor_ceph">https://github.com/ksperis/thumbor_ceph</a></li>
+<li><em>Installing:</em>
+<code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-ceph</span> <span class="pre">&amp;&amp;</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor_ceph</span></code></li>
+</ul>
+<p>Configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">################################# File Storage #################################</span>
+<span class="n">STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_ceph.storages.ceph_storage&#39;</span>
+<span class="n">CEPH_STORAGE_POOL</span> <span class="o">=</span> <span class="s1">&#39;thumbor&#39;</span>
+
+<span class="c1">#################################### Upload ####################################</span>
+<span class="n">UPLOAD_PHOTO_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_ceph.storages.ceph_storage&#39;</span>
+
+<span class="c1">################################ Result Storage ################################</span>
+<span class="n">RESULT_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_ceph.result_storages.ceph_storage&#39;</span>
+<span class="n">CEPH_RESULT_STORAGE_POOL</span> <span class="o">=</span> <span class="s1">&#39;thumbor&#39;</span>
+</pre></div>
+</div>
+<p>For monitors and keys, the values ​​used are those defined in the
+configuration file ceph.conf.</p>
+</div>
+<div class="section" id="thumbor-spaces-by-siddhartha-mukherjee">
+<h3><a class="reference external" href="https://github.com/siddhartham/thumbor_spaces">thumbor_spaces</a> (by <a class="reference external" href="https://github.com/siddhartham">Siddhartha Mukherjee</a>)<a class="headerlink" href="#thumbor-spaces-by-siddhartha-mukherjee" title="Permalink to this headline">¶</a></h3>
+<p>This plugin allows users to store objects in the DigitalOcean Spaces for
+result storage.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/siddhartham/thumbor_spaces">https://github.com/siddhartham/thumbor_spaces</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor_spaces</span></code></li>
+</ul>
+<p>Using it is simple, just change your configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use DigitalOcean Spaces for result storage.</span>
+<span class="c1"># For more info on result storage: https://github.com/thumbor/thumbor/wiki/Result-storage</span>
+<span class="n">RESULT_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_spaces.result_storages.spaces_storage&#39;</span>
+
+<span class="n">SPACES_REGION</span><span class="o">=</span><span class="s1">&#39;xxx&#39;</span>
+
+<span class="n">SPACES_ENDPOINT</span><span class="o">=</span><span class="s1">&#39;xxx&#39;</span>
+
+<span class="n">SPACES_KEY</span><span class="o">=</span><span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span>
+
+<span class="n">SPACES_SECRET</span><span class="o">=</span><span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span>
+
+<span class="n">SPACES_BUCKET</span><span class="o">=</span><span class="s1">&#39;your-bucket-name&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="metrics">
+<h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="thumbor-prometheus-by-simon-effenberg">
+<h3><a class="reference external" href="https://github.com/thumbor-community/prometheus">thumbor_prometheus</a> (by <a class="reference external" href="https://github.com/savar">Simon Effenberg</a>)<a class="headerlink" href="#thumbor-prometheus-by-simon-effenberg" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://prometheus.io/">Prometheus</a> a monitoring and alerting toolkit.</p>
+<p>This module provide support for Prometheus as metrics collector.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/thumbor-community/prometheus">https://github.com/thumbor-community/prometheus</a></li>
+<li><em>Installing:</em>
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tc_prometheus</span></code></li>
+</ul>
+<p>Configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">################################# Extensibility #################################</span>
+<span class="n">METRICS</span> <span class="o">=</span> <span class="s1">&#39;tc_prometheus.metrics.prometheus_metrics&#39;</span>
+
+<span class="c1"># optional with defaults</span>
+<span class="n">PROMETHEUS_SCRAPE_PORT</span> <span class="o">=</span> <span class="mi">8000</span> <span class="c1"># Port the prometheus client should listen on</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extensions">
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="thumborshortener-by-thumbor-community">
+<h3><a class="reference external" href="https://github.com/thumbor-community/shortener">thumborshortener</a> (by <a class="reference external" href="https://github.com/thumbor-community">Thumbor Community</a>)<a class="headerlink" href="#thumborshortener-by-thumbor-community" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/thumbor/thumbor/wiki">Thumbor</a> is a smart
+imaging service. It enables on-demand crop, resizing and flipping of
+images.</p>
+<p>This module provides URL shortening capabilities for Thumbor. It will create an API that can shorten a thumbor URL, and then routing capabilities to reroute the shortened URL to the correct image.</p>
+<p>The shortened URL / real URL mapping is stored within redis.</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/thumbor-community/shortener">https://github.com/thumbor-community/shortener</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tc_shortener</span></code></li>
+</ul>
+<p>To get exhaustive details about configuration options &amp; setting it up, go to the <a class="reference external" href="http://thumbor-shortener.readthedocs.io/en/latest/">documentation of the plugin</a>.</p>
+</div>
+</div>
+<div class="section" id="engines">
+<h2>Engines<a class="headerlink" href="#engines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="thumbor-video-engine-by-the-atlantic">
+<h3><a class="reference external" href="https://github.com/theatlantic/thumbor-video-engine">thumbor-video-engine</a> (by <a class="reference external" href="https://github.com/theatlantic">The Atlantic</a>)<a class="headerlink" href="#thumbor-video-engine-by-the-atlantic" title="Permalink to this headline">¶</a></h3>
+<p>This engine extends thumbor so that it can read, crop, and transcode
+audio-less video files using FFmpeg. It supports input and output of animated
+GIF, animated WebP, WebM (VP9) video, and MP4 (H.264 and H.265).</p>
+<ul class="simple">
+<li><em>URL:</em> <a class="reference external" href="https://github.com/theatlantic/thumbor-video-engine">https://github.com/theatlantic/thumbor-video-engine</a></li>
+<li><em>Installing:</em> <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor-video-engine</span></code></li>
+</ul>
+<p>Configuration in thumbor.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENGINE</span> <span class="o">=</span> <span class="s1">&#39;thumbor_video_engine.engines.video&#39;</span>
+<span class="n">FILTERS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Enables transcoding between video formats (in addition to the image</span>
+    <span class="c1"># formats already supported by thumbor.filters.format)</span>
+    <span class="s1">&#39;thumbor_video_engine.filters.format&#39;</span><span class="p">,</span>
+    <span class="c1"># Allows outputting a still frame from a video as an image</span>
+    <span class="s1">&#39;thumbor_video_engine.filters.still&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># optional, if you are already using a custom image engine</span>
+<span class="n">IMAGING_ENGINE</span> <span class="o">=</span> <span class="s1">&#39;opencv_engine&#39;</span>
+</pre></div>
+</div>
+<p>For a full list of configuration options and filters, read
+<a class="reference external" href="https://thumbor-video-engine.readthedocs.io/">the project’s documentation</a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="libraries.html" class="btn btn-neutral float-right" title="Libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="extending.html" class="btn btn-neutral float-left" title="Extending" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

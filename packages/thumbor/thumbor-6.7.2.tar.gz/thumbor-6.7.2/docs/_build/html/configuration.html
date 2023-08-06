@@ -1,0 +1,1245 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Custom Error Handling" href="custom_error_handling.html" />
+    <link rel="prev" title="Administration" href="administration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="administration.html">Administration</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#override-config-through-environment-variable">Override config through environment variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extensibility-section">Extensibility Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loader">LOADER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#storage">STORAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mixed-storage-file-storage">MIXED_STORAGE_FILE_STORAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mixed-storage-crypto-storage">MIXED_STORAGE_CRYPTO_STORAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mixed-storage-detector-storage">MIXED_STORAGE_DETECTOR_STORAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#engine">ENGINE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#result-storage">RESULT_STORAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#url-signer">URL_SIGNER</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#filters-section">Filters Section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata-section">Metadata Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meta-callback-name">META_CALLBACK_NAME</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#face-and-feature-detection-section">Face and Feature Detection Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#detectors">DETECTORS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#face-detector-cascade-file">FACE_DETECTOR_CASCADE_FILE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#imaging-section">Imaging Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-sources">ALLOWED_SOURCES</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#max-width-and-max-height">MAX_WIDTH and MAX_HEIGHT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#min-width-and-min-height">MIN_WIDTH and MIN_HEIGHT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quality">QUALITY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#max-age">MAX_AGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#max-age-temp-image">MAX_AGE_TEMP_IMAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#respect-orientation">RESPECT_ORIENTATION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allow-animated-gifs">ALLOW_ANIMATED_GIFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-gifsicle-engine">USE_GIFSICLE_ENGINE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auto-webp">AUTO_WEBP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auto-png-to-jpg">AUTO_PNG_TO_JPG</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#queueing-redis">Queueing - Redis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#redis-queue-server-host">REDIS_QUEUE_SERVER_HOST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-queue-server-port">REDIS_QUEUE_SERVER_PORT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-queue-server-db">REDIS_QUEUE_SERVER_DB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-queue-server-password">REDIS_QUEUE_SERVER_PASSWORD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#queueing-amazon-sqs">Queueing - Amazon SQS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sqs-queue-key-id">SQS_QUEUE_KEY_ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sqs-queue-key-secret">SQS_QUEUE_KEY_SECRET</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sqs-queue-region">SQS_QUEUE_REGION</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#security-section">Security Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#security-key">SECURITY_KEY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allow-unsafe-url">ALLOW_UNSAFE_URL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allow-old-urls">ALLOW_OLD_URLS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#loader-options-section">Loader Options Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-loader-root-path">FILE_LOADER_ROOT_PATH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-loader-default-user-agent">HTTP_LOADER_DEFAULT_USER_AGENT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-loader-forward-user-agent">HTTP_LOADER_FORWARD_USER_AGENT</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-options-section">Storage Options Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#storage-expiration-seconds">STORAGE_EXPIRATION_SECONDS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stores-crypto-key-for-each-image">STORES_CRYPTO_KEY_FOR_EACH_IMAGE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#file-storage-section">File Storage Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-storage-root-path">FILE_STORAGE_ROOT_PATH</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-storage-section">MongoDB Storage Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mongo-storage-server-host">MONGO_STORAGE_SERVER_HOST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mongo-storage-server-port">MONGO_STORAGE_SERVER_PORT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mongo-storage-server-db">MONGO_STORAGE_SERVER_DB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mongo-storage-server-collection">MONGO_STORAGE_SERVER_COLLECTION</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#redis-storage-section">Redis Storage Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#redis-storage-server-host">REDIS_STORAGE_SERVER_HOST</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-storage-server-port">REDIS_STORAGE_SERVER_PORT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-storage-server-db">REDIS_STORAGE_SERVER_DB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-storage-server-password">REDIS_STORAGE_SERVER_PASSWORD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#memcached-storage-section">Memcached Storage Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#memcache-storage-servers">MEMCACHE_STORAGE_SERVERS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#result-storage-section">Result Storage Section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#result-storage-expiration-seconds">RESULT_STORAGE_EXPIRATION_SECONDS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#result-storage-file-storage-root-path">RESULT_STORAGE_FILE_STORAGE_ROOT_PATH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#result-storage-stores-unsafe">RESULT_STORAGE_STORES_UNSAFE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#healthcheck">Healthcheck</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#healthcheck-route">HEALTHCHECK_ROUTE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-log-format">THUMBOR_LOG_FORMAT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thumbor-log-date-format">THUMBOR_LOG_DATE_FORMAT</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#use-custom-error-handling">USE_CUSTOM_ERROR_HANDLING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-handler-module">ERROR_HANDLER_MODULE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#error-handling-sentry">Error Handling - Sentry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sentry-dsn-url">SENTRY_DSN_URL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sentry-environment">SENTRY_ENVIRONMENT</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#upload">Upload</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upload-max-size">UPLOAD_MAX_SIZE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-enabled">UPLOAD_ENABLED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-photo-storage">UPLOAD_PHOTO_STORAGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-delete-allowed">UPLOAD_DELETE_ALLOWED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-put-allowed">UPLOAD_PUT_ALLOWED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-default-filename">UPLOAD_DEFAULT_FILENAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gc-interval">GC_INTERVAL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-of-configuration-file">Example of Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="custom_error_handling.html">Custom Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hosting.html">Hosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running.html">Running thumbor server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaling_thumbor.html">Scaling Thumbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Image Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_my_own_storage.html">Creating my own Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="administration.html">Administration</a> &raquo;</li>
+        
+      <li>Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>thumbor’s configuration file is just a regular python script that
+thumbor loads.</p>
+<p>In order to get a commented configuration file, just run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thumbor</span><span class="o">-</span><span class="n">config</span> <span class="o">&gt;</span> <span class="o">./</span><span class="n">thumbor</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<div class="section" id="override-config-through-environment-variable">
+<h2>Override config through environment variable<a class="headerlink" href="#override-config-through-environment-variable" title="Permalink to this headline">¶</a></h2>
+<p>It is possible overide <strong>string configs</strong> through environment variables.
+This is possible because thumbor uses <a class="reference external" href="https://github.com/globocom/derpconf">derpconf</a>
+to abstract loading configuration and derpconf allows this.</p>
+</div>
+<div class="section" id="extensibility-section">
+<h2>Extensibility Section<a class="headerlink" href="#extensibility-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="loader">
+<h3>LOADER<a class="headerlink" href="#loader" title="Permalink to this headline">¶</a></h3>
+<p>The loader is responsible for retrieving the source image that thumbor
+will work with. This configuration defines the module that thumbor will
+use for it. <strong>This must be a full namespace module (a.k.a. python has to
+be able to **import</strong> it).**</p>
+<p>i.e.: thumbor.loaders.http_loader</p>
+</div>
+<div class="section" id="storage">
+<h3>STORAGE<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h3>
+<p>The storage is responsible for storing the source image bytes and
+related metadata (face-detection, encryption and such) so that we don’t
+keep loading it every time. <strong>This must be a full namespace module
+(a.k.a. python has to be able to **import</strong> it).**</p>
+<p>i.e.: thumbor.storages.file_storage</p>
+</div>
+<div class="section" id="mixed-storage-file-storage">
+<h3>MIXED_STORAGE_FILE_STORAGE<a class="headerlink" href="#mixed-storage-file-storage" title="Permalink to this headline">¶</a></h3>
+<p>If you are using thumbor’s mixed storage
+(thumbor.storages.mixed_storage), this is where you specify the storage
+that will be used to store images. <strong>This must be a full namespace
+module (a.k.a. python has to be able to **import</strong> it).**</p>
+<p>i.e.: thumbor.storages.file_storage</p>
+</div>
+<div class="section" id="mixed-storage-crypto-storage">
+<h3>MIXED_STORAGE_CRYPTO_STORAGE<a class="headerlink" href="#mixed-storage-crypto-storage" title="Permalink to this headline">¶</a></h3>
+<p>If you are using thumbor’s mixed storage
+(thumbor.storages.mixed_storage), this is where you specify the storage
+that will be used to store cryptography information. <strong>This must be a
+full namespace module (a.k.a. python has to be able to **import</strong> it).**</p>
+<p>i.e.: thumbor.storages.redis_storage</p>
+</div>
+<div class="section" id="mixed-storage-detector-storage">
+<h3>MIXED_STORAGE_DETECTOR_STORAGE<a class="headerlink" href="#mixed-storage-detector-storage" title="Permalink to this headline">¶</a></h3>
+<p>If you are using thumbor’s mixed storage
+(thumbor.storages.mixed_storage), this is where you specify the storage
+that will be used to store facial and feature detection results. <strong>This
+must be a full namespace module (a.k.a. python has to be able to
+**import</strong> it).**</p>
+<p>i.e.: thumbor.storages.mongo_storage</p>
+</div>
+<div class="section" id="engine">
+<h3>ENGINE<a class="headerlink" href="#engine" title="Permalink to this headline">¶</a></h3>
+<p>The engine is responsible for transforming the image. <strong>This must be a
+full namespace module (a.k.a. python has to be able to **import</strong> it).**</p>
+<p>Thumbor ships with three imaging engines:</p>
+<ul>
+<li><p class="first">thumbor.engines.pil</p>
+</li>
+<li><p class="first">thumbor.engines.opencv</p>
+</li>
+<li><p class="first">thumbor.engines.graphicsmagick</p>
+</li>
+<li><div class="first"><del></div><p>thumbor.engines.imagemagick</p>
+</del><p>(This engine isn’t supported anymore, check
+<a class="reference external" href="https://github.com/thumbor/thumbor/issues/52">#52</a>)</p>
+</li>
+</ul>
+</div>
+<div class="section" id="result-storage">
+<h3>RESULT_STORAGE<a class="headerlink" href="#result-storage" title="Permalink to this headline">¶</a></h3>
+<p>The result storage is responsible for storing the resulting image with
+the specified parameters (think of it as a cache), so that we don’t keep
+processing it every time a request comes in. <strong>This must be a full
+namespace module (a.k.a. python has to be able to **import</strong> it).**</p>
+<p>i.e.: thumbor.result_storages.file_storage</p>
+</div>
+<div class="section" id="url-signer">
+<h3>URL_SIGNER<a class="headerlink" href="#url-signer" title="Permalink to this headline">¶</a></h3>
+<p>The url signer is responsible for validation and signing of requests to prevent url tampering,
+which could lead to denial of service (example: filling the result_storage by specifying a different size).
+<strong>This must be a full namespace module (a.k.a. python has to be able to **import</strong> it).**</p>
+<p>i.e.: libthumbor.url_signers.base64_hmac_sha1</p>
+</div>
+</div>
+<div class="section" id="filters-section">
+<h2>Filters Section<a class="headerlink" href="#filters-section" title="Permalink to this headline">¶</a></h2>
+<p>In order to specify the filters that thumbor will use, you need a
+configuration key called FILTERS. This is a regular python list with the
+full names (names that python can import) of the filter modules you want
+to use.</p>
+<p>An example:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FILTERS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;thumbor.filters.brightness&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.filters.contrast&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.filters.rgb&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.filters.round_corner&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.filters.quality&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.filters.noise&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.filters.watermark&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="metadata-section">
+<h2>Metadata Section<a class="headerlink" href="#metadata-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="meta-callback-name">
+<h3>META_CALLBACK_NAME<a class="headerlink" href="#meta-callback-name" title="Permalink to this headline">¶</a></h3>
+<p>If you want thumbor to use JSONP for image metadata instead of using
+JSON, just set this variable to the callback name you want.</p>
+<p>i.e.: “thumbor_callback”</p>
+</div>
+</div>
+<div class="section" id="face-and-feature-detection-section">
+<h2>Face and Feature Detection Section<a class="headerlink" href="#face-and-feature-detection-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="detectors">
+<h3>DETECTORS<a class="headerlink" href="#detectors" title="Permalink to this headline">¶</a></h3>
+<p>This options specifies the detectors that should run the image to check
+for focal points.</p>
+<p>i.e.: [“thumbor.detectors.face_detector”,
+“thumbor.detectors.feature_detector”]</p>
+</div>
+<div class="section" id="face-detector-cascade-file">
+<h3>FACE_DETECTOR_CASCADE_FILE<a class="headerlink" href="#face-detector-cascade-file" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the cascade (XML) file path to train openCV to
+find faces.</p>
+<p>i.e.: haarcascade_frontalface_alt.xml</p>
+</div>
+</div>
+<div class="section" id="imaging-section">
+<h2>Imaging Section<a class="headerlink" href="#imaging-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="allowed-sources">
+<h3>ALLOWED_SOURCES<a class="headerlink" href="#allowed-sources" title="Permalink to this headline">¶</a></h3>
+<p>This configuration defines the source of the images that thumbor will
+load. This is only used in the HttpLoader (check the LOADER
+configuration above).</p>
+<p>i.e.: ALLOWED_SOURCES=[‘<a class="reference external" href="http://s.glbimg.com">http://s.glbimg.com</a>’]</p>
+<p>Another example with wildcards:</p>
+<p>ALLOWED_SOURCES = [‘.+.globo.com’, ‘.+.glbimg.com’]</p>
+<p>This is to get any images that are in <a href="#id1"><span class="problematic" id="id2">*</span></a>.globo.com or <a href="#id3"><span class="problematic" id="id4">*</span></a>.glbimg.com and it
+will fail with any other domains.</p>
+</div>
+<div class="section" id="max-width-and-max-height">
+<h3>MAX_WIDTH and MAX_HEIGHT<a class="headerlink" href="#max-width-and-max-height" title="Permalink to this headline">¶</a></h3>
+<p>These define the box that the resulting image for thumbor must fit-in.
+This means that no image that thumbor generates will have a width larger
+than MAX_WIDTH or height larger than MAX_HEIGHT. It defaults to 0, which
+means there is not limit. If the original image is larger than
+MAX_WIDTH x MAX_HEIGHT, it is proportionally resized to MAX_WIDTH x MAX_HEIGHT.</p>
+<p>i.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_WIDTH</span> <span class="o">=</span> <span class="mi">1200</span>
+<span class="n">MAX_HEIGHT</span> <span class="o">=</span> <span class="mi">800</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="min-width-and-min-height">
+<h3>MIN_WIDTH and MIN_HEIGHT<a class="headerlink" href="#min-width-and-min-height" title="Permalink to this headline">¶</a></h3>
+<p>These define the box that the resulting image for thumbor must fit-in.
+This means that no image that thumbor generates will have a width
+smaller than MIN_WIDTH or height smaller than MIN_HEIGHT. It defaults to 1.
+If the original image is smaller than  MIN_WIDTH x MIN_HEIGHT, it is
+proportionally resized to MIN_WIDTH x MIN_HEIGHT.</p>
+<p>i.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MIN_WIDTH</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MIN_HEIGHT</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="quality">
+<h3>QUALITY<a class="headerlink" href="#quality" title="Permalink to this headline">¶</a></h3>
+<p>This option defines the quality that JPEG images will be generated with.
+It defaults to 80.</p>
+<p>i.e.: QUALITY = 90</p>
+</div>
+<div class="section" id="max-age">
+<h3>MAX_AGE<a class="headerlink" href="#max-age" title="Permalink to this headline">¶</a></h3>
+<p>This option defines the number of seconds that images should remain in
+the browser’s cache. It relates directly with the Expires and
+Cache-Control headers.</p>
+<p>i.e.: MAX_AGE = 24 * 60 * 60 # A day of caching</p>
+</div>
+<div class="section" id="max-age-temp-image">
+<h3>MAX_AGE_TEMP_IMAGE<a class="headerlink" href="#max-age-temp-image" title="Permalink to this headline">¶</a></h3>
+<p>When an image has some error in its detection or it has deferred
+queueing, it’s convenient to set a much lower expiration time for the
+image cache. This way the browser will request the proper image faster.</p>
+<p>This option defines the number of seconds that images in this scenario
+should remain in the browser’s cache. It relates directly with the
+Expires and Cache-Control headers.</p>
+<p>i.e.: MAX_AGE_TEMP_IMAGE = 60 # A minute of caching</p>
+</div>
+<div class="section" id="respect-orientation">
+<h3>RESPECT_ORIENTATION<a class="headerlink" href="#respect-orientation" title="Permalink to this headline">¶</a></h3>
+<p>If this option is set to True, thumbor will reorient the image according
+to it’s EXIF Orientation tag (if one can be found). This options
+defaults to False.</p>
+<p>The operations performed in the image are as follow (considering the
+value of the Orientation EXIF tag):</p>
+<ol class="arabic simple">
+<li>Nothing</li>
+<li>Flips the image horizontally</li>
+<li>Rotates the image 180 degrees</li>
+<li>Flips the image vertically</li>
+<li>Flips the image vertically and rotates 270 degrees</li>
+<li>Rotates the image 270 degrees</li>
+<li>Flips the image horizontally and rotates 270 degrees</li>
+<li>Rotates the image 90 degrees</li>
+</ol>
+<p>i.e.: RESPECT_ORIENTATION = False</p>
+</div>
+<div class="section" id="allow-animated-gifs">
+<h3>ALLOW_ANIMATED_GIFS<a class="headerlink" href="#allow-animated-gifs" title="Permalink to this headline">¶</a></h3>
+<p>This option indicates whether animated gifs should be supported.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">ALLOW_ANIMATED_GIFS</span> <span class="pre">=</span> <span class="pre">True</span></code></p>
+</div>
+<div class="section" id="use-gifsicle-engine">
+<h3>USE_GIFSICLE_ENGINE<a class="headerlink" href="#use-gifsicle-engine" title="Permalink to this headline">¶</a></h3>
+<p>This option indicates whether
+<a class="reference external" href="http://www.lcdf.org/gifsicle/man.html">gifsicle</a> should be used for
+all gif images, instead of the actual imaging engine. This defaults to
+False.</p>
+<p><strong>When using gifsicle thumbor will generate proper animated gifs, as
+well as static gifs with the smallest possible size.</strong></p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">USE_GIFSICLE_ENGINE</span> <span class="pre">=</span> <span class="pre">True</span></code></p>
+<p>WARNING: When using gifsicle engine, filters will be skipped. Thumbor
+will not do smart cropping as well.</p>
+</div>
+<div class="section" id="auto-webp">
+<h3>AUTO_WEBP<a class="headerlink" href="#auto-webp" title="Permalink to this headline">¶</a></h3>
+<p>This option indicates whether thumbor should send WebP images
+automatically if the request comes with an “Accept” header that
+specifies that the browser supports “image/webp”.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">AUTO_WEBP</span> <span class="pre">=</span> <span class="pre">True</span></code></p>
+</div>
+<div class="section" id="auto-png-to-jpg">
+<h3>AUTO_PNG_TO_JPG<a class="headerlink" href="#auto-png-to-jpg" title="Permalink to this headline">¶</a></h3>
+<p>This option indicates whether thumbor should transform PNG images
+automatically to JPEG. If the image is a PNG without transparency and
+the numpy dependency is installed, thumbor will transform from png to jpeg.
+In the most of cases the image size will decrease.</p>
+<p>WARNING: Depending on case, this is not a good deal. This transformation
+maybe causes distortions or the size of image can increase.
+Images with texts, for example, the result image maybe will be distorced.
+Dark images, for example, the size of result image maybe will be bigger.
+You have to evaluate the majority of your use cases to take a decision about the usage of this conf.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">AUTO_PNG_TO_JPG</span> <span class="pre">=</span> <span class="pre">True</span></code></p>
+</div>
+</div>
+<div class="section" id="queueing-redis">
+<h2>Queueing - Redis<a class="headerlink" href="#queueing-redis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="redis-queue-server-host">
+<h3>REDIS_QUEUE_SERVER_HOST<a class="headerlink" href="#redis-queue-server-host" title="Permalink to this headline">¶</a></h3>
+<p>Server host for the queued redis detector.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">REDIS_QUEUE_SERVER_HOST</span> <span class="pre">=</span> <span class="pre">'localhost'</span></code></p>
+</div>
+<div class="section" id="redis-queue-server-port">
+<h3>REDIS_QUEUE_SERVER_PORT<a class="headerlink" href="#redis-queue-server-port" title="Permalink to this headline">¶</a></h3>
+<p>Server port for the queued redis detector.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">REDIS_QUEUE_SERVER_PORT</span> <span class="pre">=</span> <span class="pre">6379</span></code></p>
+</div>
+<div class="section" id="redis-queue-server-db">
+<h3>REDIS_QUEUE_SERVER_DB<a class="headerlink" href="#redis-queue-server-db" title="Permalink to this headline">¶</a></h3>
+<p>Server database index for the queued redis detector</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">REDIS_QUEUE_SERVER_DB</span> <span class="pre">=</span> <span class="pre">0</span></code></p>
+</div>
+<div class="section" id="redis-queue-server-password">
+<h3>REDIS_QUEUE_SERVER_PASSWORD<a class="headerlink" href="#redis-queue-server-password" title="Permalink to this headline">¶</a></h3>
+<p>Server password for the queued redis detector</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">REDIS_QUEUE_SERVER_PASSWORD</span> <span class="pre">=</span> <span class="pre">None</span></code></p>
+</div>
+</div>
+<div class="section" id="queueing-amazon-sqs">
+<h2>Queueing - Amazon SQS<a class="headerlink" href="#queueing-amazon-sqs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sqs-queue-key-id">
+<h3>SQS_QUEUE_KEY_ID<a class="headerlink" href="#sqs-queue-key-id" title="Permalink to this headline">¶</a></h3>
+<p>Amazon AWS key id.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">SQS_QUEUE_KEY_ID</span> <span class="pre">=</span> <span class="pre">None</span></code></p>
+</div>
+<div class="section" id="sqs-queue-key-secret">
+<h3>SQS_QUEUE_KEY_SECRET<a class="headerlink" href="#sqs-queue-key-secret" title="Permalink to this headline">¶</a></h3>
+<p>Amazon AWS key secret.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">SQS_QUEUE_KEY_SECRET</span> <span class="pre">=</span> <span class="pre">None</span></code></p>
+</div>
+<div class="section" id="sqs-queue-region">
+<h3>SQS_QUEUE_REGION<a class="headerlink" href="#sqs-queue-region" title="Permalink to this headline">¶</a></h3>
+<p>Amazon AWS SQS region.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">SQS_QUEUE_REGION</span> <span class="pre">=</span> <span class="pre">'us-east-1'</span></code></p>
+</div>
+</div>
+<div class="section" id="security-section">
+<h2>Security Section<a class="headerlink" href="#security-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="security-key">
+<h3>SECURITY_KEY<a class="headerlink" href="#security-key" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the security key that thumbor uses to sign secure
+URLs.</p>
+<p>i.e.: 1234567890123456</p>
+</div>
+<div class="section" id="allow-unsafe-url">
+<h3>ALLOW_UNSAFE_URL<a class="headerlink" href="#allow-unsafe-url" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies that the /unsafe url should be available in this
+thumbor instance. It is boolean (True or False).</p>
+</div>
+<div class="section" id="allow-old-urls">
+<h3>ALLOW_OLD_URLS<a class="headerlink" href="#allow-old-urls" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies that the format prior to <a class="reference external" href="https://github.com/thumbor/thumbor/wiki/3.0.0-release-changes">3.0.0 release changes</a>
+should be allowed. It defaults to True.</p>
+<p><strong>THIS OPTION IS DEPRECATED AND WILL DEFAULT TO FALSE IN THE NEXT
+MAJOR.</strong></p>
+</div>
+</div>
+<div class="section" id="loader-options-section">
+<h2>Loader Options Section<a class="headerlink" href="#loader-options-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="file-loader-root-path">
+<h3>FILE_LOADER_ROOT_PATH<a class="headerlink" href="#file-loader-root-path" title="Permalink to this headline">¶</a></h3>
+<p>In case you are using thumbor’s built-in file loader, this is the option
+that allows you to specify where to find the images.</p>
+</div>
+<div class="section" id="http-loader-default-user-agent">
+<h3>HTTP_LOADER_DEFAULT_USER_AGENT<a class="headerlink" href="#http-loader-default-user-agent" title="Permalink to this headline">¶</a></h3>
+<p>This option allows users to specify the default user-agent that thumbor
+will send when requesting images with the HTTP Loader. Defaults to
+‘Thumbor/’ (like Thumbor/3.10.0).</p>
+</div>
+<div class="section" id="http-loader-forward-user-agent">
+<h3>HTTP_LOADER_FORWARD_USER_AGENT<a class="headerlink" href="#http-loader-forward-user-agent" title="Permalink to this headline">¶</a></h3>
+<p>This option tells thumbor to forward the request user agent when
+requesting images using the HTTP Loader. Defaults to False.</p>
+</div>
+</div>
+<div class="section" id="storage-options-section">
+<h2>Storage Options Section<a class="headerlink" href="#storage-options-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="storage-expiration-seconds">
+<h3>STORAGE_EXPIRATION_SECONDS<a class="headerlink" href="#storage-expiration-seconds" title="Permalink to this headline">¶</a></h3>
+<p>This options specifies the default expiration time in seconds for the
+storage.</p>
+<p>i.e.: 60 (1 minute)</p>
+</div>
+<div class="section" id="stores-crypto-key-for-each-image">
+<h3>STORES_CRYPTO_KEY_FOR_EACH_IMAGE<a class="headerlink" href="#stores-crypto-key-for-each-image" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies whether thumbor should store the key for each
+image (thus allowing the image to be found even if the security key
+changes). This is a boolean flag (True or False).</p>
+</div>
+</div>
+<div class="section" id="file-storage-section">
+<h2>File Storage Section<a class="headerlink" href="#file-storage-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="file-storage-root-path">
+<h3>FILE_STORAGE_ROOT_PATH<a class="headerlink" href="#file-storage-root-path" title="Permalink to this headline">¶</a></h3>
+<p>In case you are using thumbor’s built-in file storage, this is the
+option that allows you to specify where to save the images.</p>
+</div>
+</div>
+<div class="section" id="mongodb-storage-section">
+<h2>MongoDB Storage Section<a class="headerlink" href="#mongodb-storage-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mongo-storage-server-host">
+<h3>MONGO_STORAGE_SERVER_HOST<a class="headerlink" href="#mongo-storage-server-host" title="Permalink to this headline">¶</a></h3>
+<p>This is the option that specifies the host for mongodb.</p>
+<p>i.e.: 127.0.0.1</p>
+</div>
+<div class="section" id="mongo-storage-server-port">
+<h3>MONGO_STORAGE_SERVER_PORT<a class="headerlink" href="#mongo-storage-server-port" title="Permalink to this headline">¶</a></h3>
+<p>This is the option that specifies the port where mongodb is running in.</p>
+<p>i.e.: 27017</p>
+</div>
+<div class="section" id="mongo-storage-server-db">
+<h3>MONGO_STORAGE_SERVER_DB<a class="headerlink" href="#mongo-storage-server-db" title="Permalink to this headline">¶</a></h3>
+<p>This is the option that specifies the database for mongodb.</p>
+<p>i.e.: thumbor</p>
+</div>
+<div class="section" id="mongo-storage-server-collection">
+<h3>MONGO_STORAGE_SERVER_COLLECTION<a class="headerlink" href="#mongo-storage-server-collection" title="Permalink to this headline">¶</a></h3>
+<p>This is the option that specifies the collection for thumbor’s
+documents.</p>
+<p>i.e.: images</p>
+</div>
+</div>
+<div class="section" id="redis-storage-section">
+<h2>Redis Storage Section<a class="headerlink" href="#redis-storage-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="redis-storage-server-host">
+<h3>REDIS_STORAGE_SERVER_HOST<a class="headerlink" href="#redis-storage-server-host" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the host server for Redis.</p>
+<p>i.e.: localhost</p>
+</div>
+<div class="section" id="redis-storage-server-port">
+<h3>REDIS_STORAGE_SERVER_PORT<a class="headerlink" href="#redis-storage-server-port" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the port that redis is listening in.</p>
+<p>i.e.: 6379</p>
+</div>
+<div class="section" id="redis-storage-server-db">
+<h3>REDIS_STORAGE_SERVER_DB<a class="headerlink" href="#redis-storage-server-db" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the database that thumbor should use.</p>
+<p>i.e.: 0</p>
+</div>
+<div class="section" id="redis-storage-server-password">
+<h3>REDIS_STORAGE_SERVER_PASSWORD<a class="headerlink" href="#redis-storage-server-password" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the password that thumbor should use to
+authenticate with redis.</p>
+<p>i.e.: my-redis-password</p>
+</div>
+</div>
+<div class="section" id="memcached-storage-section">
+<h2>Memcached Storage Section<a class="headerlink" href="#memcached-storage-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="memcache-storage-servers">
+<h3>MEMCACHE_STORAGE_SERVERS<a class="headerlink" href="#memcache-storage-servers" title="Permalink to this headline">¶</a></h3>
+<p>List of Memcache storage server hosts.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">MEMCACHE_STORAGE_SERVERS</span> <span class="pre">=</span> <span class="pre">['localhost:11211']</span></code></p>
+</div>
+</div>
+<div class="section" id="result-storage-section">
+<h2>Result Storage Section<a class="headerlink" href="#result-storage-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="result-storage-expiration-seconds">
+<h3>RESULT_STORAGE_EXPIRATION_SECONDS<a class="headerlink" href="#result-storage-expiration-seconds" title="Permalink to this headline">¶</a></h3>
+<p>Expiration in seconds of generated images in the result storage.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">RESULT_STORAGE_EXPIRATION_SECONDS</span> <span class="pre">=</span> <span class="pre">0</span></code></p>
+</div>
+<div class="section" id="result-storage-file-storage-root-path">
+<h3>RESULT_STORAGE_FILE_STORAGE_ROOT_PATH<a class="headerlink" href="#result-storage-file-storage-root-path" title="Permalink to this headline">¶</a></h3>
+<p>Path where the Result storage will store generated images.</p>
+<p>i.e.:
+<code class="docutils literal notranslate"><span class="pre">RESULT_STORAGE_FILE_STORAGE_ROOT_PATH</span> <span class="pre">=</span> <span class="pre">'/tmp/thumbor/result_storage'</span></code></p>
+</div>
+<div class="section" id="result-storage-stores-unsafe">
+<h3>RESULT_STORAGE_STORES_UNSAFE<a class="headerlink" href="#result-storage-stores-unsafe" title="Permalink to this headline">¶</a></h3>
+<p>Indicates whether unsafe requests should also be stored in the Result
+Storage.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">RESULT_STORAGE_STORES_UNSAFE</span> <span class="pre">=</span> <span class="pre">False</span></code></p>
+</div>
+</div>
+<div class="section" id="healthcheck">
+<h2>Healthcheck<a class="headerlink" href="#healthcheck" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="healthcheck-route">
+<h3>HEALTHCHECK_ROUTE<a class="headerlink" href="#healthcheck-route" title="Permalink to this headline">¶</a></h3>
+<p>The URL path to a healthcheck.  This will return a 200 and the text ‘WORKING’.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">HEALTHCHECK_ROUTE</span> <span class="pre">=</span> <span class="pre">'/status'</span></code></p>
+<p>Will put the healthcheck response on <code class="docutils literal notranslate"><span class="pre">http://host/status</span></code></p>
+<p>The default route is ‘/healthcheck’</p>
+</div>
+</div>
+<div class="section" id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="thumbor-log-format">
+<h3>THUMBOR_LOG_FORMAT<a class="headerlink" href="#thumbor-log-format" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the format to be used by logging messages sent
+from thumbor.</p>
+<p>i.e.: ‘%(asctime)s %(name)s:%(levelname)s %(message)s’</p>
+</div>
+<div class="section" id="thumbor-log-date-format">
+<h3>THUMBOR_LOG_DATE_FORMAT<a class="headerlink" href="#thumbor-log-date-format" title="Permalink to this headline">¶</a></h3>
+<p>This option specifies the date format to be used by logging messages
+sent from thumbor.</p>
+<p>i.e.: ‘%Y-%m-%d %H:%M:%S’</p>
+</div>
+</div>
+<div class="section" id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="use-custom-error-handling">
+<h3>USE_CUSTOM_ERROR_HANDLING<a class="headerlink" href="#use-custom-error-handling" title="Permalink to this headline">¶</a></h3>
+<p>This configuration indicates whether thumbor should use a custom error
+handler.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">USE_CUSTOM_ERROR_HANDLING</span> <span class="pre">=</span> <span class="pre">False</span></code></p>
+</div>
+<div class="section" id="error-handler-module">
+<h3>ERROR_HANDLER_MODULE<a class="headerlink" href="#error-handler-module" title="Permalink to this headline">¶</a></h3>
+<p>Error reporting module. Needs to contain a class called ErrorHandler
+with a handle_error(context, handler, exception) method.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">ERROR_HANDLER_MODULE</span> <span class="pre">=</span> <span class="pre">'thumbor.error_handlers.sentry'</span></code></p>
+</div>
+</div>
+<div class="section" id="error-handling-sentry">
+<h2>Error Handling - Sentry<a class="headerlink" href="#error-handling-sentry" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sentry-dsn-url">
+<h3>SENTRY_DSN_URL<a class="headerlink" href="#sentry-dsn-url" title="Permalink to this headline">¶</a></h3>
+<p>Sentry thumbor project dsn. i.e.:
+<a class="reference external" href="http://5a63d58ae7b94f1dab3dee740b301d6a:73eea45d3e8649239a973087e8f21f98&#64;localhost:9000/2">http://5a63d58ae7b94f1dab3dee740b301d6a:73eea45d3e8649239a973087e8f21f98&#64;localhost:9000/2</a></p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN_URL</span> <span class="pre">=</span> <span class="pre">''</span></code></p>
+</div>
+<div class="section" id="sentry-environment">
+<h3>SENTRY_ENVIRONMENT<a class="headerlink" href="#sentry-environment" title="Permalink to this headline">¶</a></h3>
+<p>Sentry thumbor environment.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">SENTRY_ENVIRONMENT</span> <span class="pre">=</span> <span class="pre">'staging'</span></code></p>
+</div>
+</div>
+<div class="section" id="upload">
+<h2>Upload<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="upload-max-size">
+<h3>UPLOAD_MAX_SIZE<a class="headerlink" href="#upload-max-size" title="Permalink to this headline">¶</a></h3>
+<p>Max size in Kb for images uploaded to thumbor.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">UPLOAD_MAX_SIZE</span> <span class="pre">=</span> <span class="pre">0</span></code></p>
+</div>
+<div class="section" id="upload-enabled">
+<h3>UPLOAD_ENABLED<a class="headerlink" href="#upload-enabled" title="Permalink to this headline">¶</a></h3>
+<p>Indicates whether thumbor should enable File uploads.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">UPLOAD_ENABLED</span> <span class="pre">=</span> <span class="pre">False</span></code></p>
+</div>
+<div class="section" id="upload-photo-storage">
+<h3>UPLOAD_PHOTO_STORAGE<a class="headerlink" href="#upload-photo-storage" title="Permalink to this headline">¶</a></h3>
+<p>The type of storage to store uploaded images with.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">UPLOAD_PHOTO_STORAGE</span> <span class="pre">=</span> <span class="pre">'thumbor.storages.file_storage'</span></code></p>
+</div>
+<div class="section" id="upload-delete-allowed">
+<h3>UPLOAD_DELETE_ALLOWED<a class="headerlink" href="#upload-delete-allowed" title="Permalink to this headline">¶</a></h3>
+<p>Indicates whether image deletion should be allowed.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">UPLOAD_DELETE_ALLOWED</span> <span class="pre">=</span> <span class="pre">False</span></code></p>
+</div>
+<div class="section" id="upload-put-allowed">
+<h3>UPLOAD_PUT_ALLOWED<a class="headerlink" href="#upload-put-allowed" title="Permalink to this headline">¶</a></h3>
+<p>Indicates whether image overwrite should be allowed.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">UPLOAD_PUT_ALLOWED</span> <span class="pre">=</span> <span class="pre">False</span></code></p>
+</div>
+<div class="section" id="upload-default-filename">
+<h3>UPLOAD_DEFAULT_FILENAME<a class="headerlink" href="#upload-default-filename" title="Permalink to this headline">¶</a></h3>
+<p>Default filename for image uploaded.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">UPLOAD_DEFAULT_FILENAME</span> <span class="pre">=</span> <span class="pre">'image'</span></code></p>
+</div>
+<div class="section" id="gc-interval">
+<h3>GC_INTERVAL<a class="headerlink" href="#gc-interval" title="Permalink to this headline">¶</a></h3>
+<p>Set manual garbage collection interval in seconds. Defaults to None (no manual garbage collection). Try this if your Thumbor is running out of memory. May cause an increase in CPU load.</p>
+<p>i.e.: <code class="docutils literal notranslate"><span class="pre">GC_INTERVAL=60</span></code></p>
+</div>
+</div>
+<div class="section" id="example-of-configuration-file">
+<h2>Example of Configuration File<a class="headerlink" href="#example-of-configuration-file" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">################################### Logging ####################################</span>
+
+<span class="c1">## Log Format to be used by thumbor when writing log messages.</span>
+<span class="c1">## Defaults to: %(asctime)s %(name)s:%(levelname)s %(message)s</span>
+<span class="c1">#THUMBOR_LOG_FORMAT = &#39;%(asctime)s %(name)s:%(levelname)s %(message)s&#39;</span>
+
+<span class="c1">## Date Format to be used by thumbor when writing log messages.</span>
+<span class="c1">## Defaults to: %Y-%m-%d %H:%M:%S</span>
+<span class="c1">#THUMBOR_LOG_DATE_FORMAT = &#39;%Y-%m-%d %H:%M:%S&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################### Imaging ####################################</span>
+
+<span class="c1">## Max width in pixels for images read or generated by thumbor</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#MAX_WIDTH = 0</span>
+
+<span class="c1">## Max height in pixels for images read or generated by thumbor</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#MAX_HEIGHT = 0</span>
+
+<span class="c1">## Min width in pixels for images read or generated by thumbor</span>
+<span class="c1">## Defaults to: 1</span>
+<span class="c1">#MIN_WIDTH = 1</span>
+
+<span class="c1">## Min width in pixels for images read or generated by thumbor</span>
+<span class="c1">## Defaults to: 1</span>
+<span class="c1">#MIN_HEIGHT = 1</span>
+
+<span class="c1">## Allowed domains for the http loader to download. These are regular</span>
+<span class="c1">## expressions.</span>
+<span class="c1">## Defaults to: []</span>
+<span class="c1">#ALLOWED_SOURCES = #    [</span>
+<span class="c1">#    ]</span>
+
+
+<span class="c1">## Quality index used for generated JPEG images</span>
+<span class="c1">## Defaults to: 80</span>
+<span class="c1">#QUALITY = 80</span>
+
+<span class="c1">## Max AGE sent as a header for the image served by thumbor in seconds</span>
+<span class="c1">## Set to False to disable setting of Expires and Cache-Control headers</span>
+<span class="c1">## Defaults to: 86400</span>
+<span class="c1">#MAX_AGE = 86400</span>
+
+<span class="c1">## Indicates the Max AGE header in seconds for temporary images (images that</span>
+<span class="c1">## haven&#39;t been detected yet)</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#MAX_AGE_TEMP_IMAGE = 0</span>
+
+<span class="c1">## Indicates whether thumbor should rotate images that have an Orientation EXIF</span>
+<span class="c1">## header</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#RESPECT_ORIENTATION = False</span>
+
+<span class="c1">## Indicates whether thumbor should enable the EXPERIMENTAL support for animated</span>
+<span class="c1">## gifs.</span>
+<span class="c1">## Defaults to: True</span>
+<span class="c1">#ALLOW_ANIMATED_GIFS = True</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################ Extensibility #################################</span>
+
+<span class="c1">## The loader thumbor should use to load the original image. This must be the</span>
+<span class="c1">## full name of a python module (python must be able to import it)</span>
+<span class="c1">## Defaults to: thumbor.loaders.http_loader</span>
+<span class="c1">#LOADER = &#39;thumbor.loaders.http_loader&#39;</span>
+
+<span class="c1">## The file storage thumbor should use to store original images. This must be the</span>
+<span class="c1">## full name of a python module (python must be able to import it)</span>
+<span class="c1">## Defaults to: thumbor.storages.file_storage</span>
+<span class="c1">#STORAGE = &#39;thumbor.storages.file_storage&#39;</span>
+
+<span class="c1">## The result storage thumbor should use to store generated images. This must be</span>
+<span class="c1">## the full name of a python module (python must be able to import it)</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#RESULT_STORAGE = None</span>
+
+<span class="c1">## The imaging engine thumbor should use to perform image operations. This must</span>
+<span class="c1">## be the full name of a python module (python must be able to import it)</span>
+<span class="c1">## Defaults to: thumbor.engines.pil</span>
+<span class="c1">#ENGINE = &#39;thumbor.engines.pil&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################### Security ###################################</span>
+
+<span class="c1">## The security key thumbor uses to sign image URLs</span>
+<span class="c1">## Defaults to: MY_SECURE_KEY</span>
+<span class="c1">#SECURITY_KEY = &#39;MY_SECURE_KEY&#39;</span>
+
+<span class="c1">## Indicates if the /unsafe URL should be available</span>
+<span class="c1">## Defaults to: True</span>
+<span class="c1">#ALLOW_UNSAFE_URL = True</span>
+
+<span class="c1">## Indicates if encrypted (old style) URLs should be allowed</span>
+<span class="c1">## Defaults to: True</span>
+<span class="c1">#ALLOW_OLD_URLS = True</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################# File Loader ##################################</span>
+
+<span class="c1">## The root path where the File Loader will try to find images</span>
+<span class="c1">## Defaults to: /tmp</span>
+<span class="c1">#FILE_LOADER_ROOT_PATH = &#39;/tmp&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################# File Storage #################################</span>
+
+<span class="c1">## Expiration in seconds for the images in the File Storage. Defaults to one</span>
+<span class="c1">## month</span>
+<span class="c1">## Defaults to: 2592000</span>
+<span class="c1">#STORAGE_EXPIRATION_SECONDS = 2592000</span>
+
+<span class="c1">## Indicates whether thumbor should store the signing key for each image in the</span>
+<span class="c1">## file storage. This allows the key to be changed and old images to still be</span>
+<span class="c1">## properly found</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#STORES_CRYPTO_KEY_FOR_EACH_IMAGE = False</span>
+
+<span class="c1">## The root path where the File Storage will try to find images</span>
+<span class="c1">## Defaults to: /var/folders/th/z6vmj34j1gngpvwl5fg5t9440000gp/T/thumbor/storage</span>
+<span class="c1">#FILE_STORAGE_ROOT_PATH = &#39;/var/folders/th/z6vmj34j1gngpvwl5fg5t9440000gp/T/thumbor/storage&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">#################################### Upload ####################################</span>
+
+<span class="c1">## Max size in Kb for images uploaded to thumbor</span>
+<span class="c1">## Aliases: MAX_SIZE</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#UPLOAD_MAX_SIZE = 0</span>
+
+<span class="c1">## Indicates whether thumbor should enable File uploads</span>
+<span class="c1">## Aliases: ENABLE_ORIGINAL_PHOTO_UPLOAD</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#UPLOAD_ENABLED = False</span>
+
+<span class="c1">## The type of storage to store uploaded images with</span>
+<span class="c1">## Aliases: ORIGINAL_PHOTO_STORAGE</span>
+<span class="c1">## Defaults to: thumbor.storages.file_storage</span>
+<span class="c1">#UPLOAD_PHOTO_STORAGE = &#39;thumbor.storages.file_storage&#39;</span>
+
+<span class="c1">## Indicates whether image deletion should be allowed</span>
+<span class="c1">## Aliases: ALLOW_ORIGINAL_PHOTO_DELETION</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#UPLOAD_DELETE_ALLOWED = False</span>
+
+<span class="c1">## Indicates whether image overwrite should be allowed</span>
+<span class="c1">## Aliases: ALLOW_ORIGINAL_PHOTO_PUTTING</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#UPLOAD_PUT_ALLOWED = False</span>
+
+<span class="c1">## Default filename for image uploaded</span>
+<span class="c1">## Defaults to: image</span>
+<span class="c1">#UPLOAD_DEFAULT_FILENAME = &#39;image&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">############################### MongoDB Storage ################################</span>
+
+<span class="c1">## MongoDB storage server host</span>
+<span class="c1">## Defaults to: localhost</span>
+<span class="c1">#MONGO_STORAGE_SERVER_HOST = &#39;localhost&#39;</span>
+
+<span class="c1">## MongoDB storage server port</span>
+<span class="c1">## Defaults to: 27017</span>
+<span class="c1">#MONGO_STORAGE_SERVER_PORT = 27017</span>
+
+<span class="c1">## MongoDB storage server database name</span>
+<span class="c1">## Defaults to: thumbor</span>
+<span class="c1">#MONGO_STORAGE_SERVER_DB = &#39;thumbor&#39;</span>
+
+<span class="c1">## MongoDB storage image collection</span>
+<span class="c1">## Defaults to: images</span>
+<span class="c1">#MONGO_STORAGE_SERVER_COLLECTION = &#39;images&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################ Redis Storage #################################</span>
+
+<span class="c1">## Redis storage server host</span>
+<span class="c1">## Defaults to: localhost</span>
+<span class="c1">#REDIS_STORAGE_SERVER_HOST = &#39;localhost&#39;</span>
+
+<span class="c1">## Redis storage server port</span>
+<span class="c1">## Defaults to: 6379</span>
+<span class="c1">#REDIS_STORAGE_SERVER_PORT = 6379</span>
+
+<span class="c1">## Redis storage database index</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#REDIS_STORAGE_SERVER_DB = 0</span>
+
+<span class="c1">## Redis storage server password</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#REDIS_STORAGE_SERVER_PASSWORD = None</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">############################### Memcache Storage ###############################</span>
+
+<span class="c1">## List of Memcache storage server hosts</span>
+<span class="c1">## Defaults to: [&#39;localhost:11211&#39;]</span>
+<span class="c1">#MEMCACHE_STORAGE_SERVERS = #    [</span>
+<span class="c1">#        &#39;localhost:11211&#39;,</span>
+<span class="c1">#    ]</span>
+
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################ Mixed Storage #################################</span>
+
+<span class="c1">## Mixed Storage file storage. This must be the full name of a python module</span>
+<span class="c1">## (python must be able to import it)</span>
+<span class="c1">## Defaults to: thumbor.storages.no_storage</span>
+<span class="c1">#MIXED_STORAGE_FILE_STORAGE = &#39;thumbor.storages.no_storage&#39;</span>
+
+<span class="c1">## Mixed Storage signing key storage. This must be the full name of a python</span>
+<span class="c1">## module (python must be able to import it)</span>
+<span class="c1">## Defaults to: thumbor.storages.no_storage</span>
+<span class="c1">#MIXED_STORAGE_CRYPTO_STORAGE = &#39;thumbor.storages.no_storage&#39;</span>
+
+<span class="c1">## Mixed Storage detector information storage. This must be the full name of a</span>
+<span class="c1">## python module (python must be able to import it)</span>
+<span class="c1">## Defaults to: thumbor.storages.no_storage</span>
+<span class="c1">#MIXED_STORAGE_DETECTOR_STORAGE = &#39;thumbor.storages.no_storage&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">##################################### Meta #####################################</span>
+
+<span class="c1">## The callback function name that should be used by the META route for JSONP</span>
+<span class="c1">## access</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#META_CALLBACK_NAME = None</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################## Detection ###################################</span>
+
+<span class="c1">## List of detectors that thumbor should use to find faces and/or features. All</span>
+<span class="c1">## of them must be full names of python modules (python must be able to import</span>
+<span class="c1">## it)</span>
+<span class="c1">## Defaults to: []</span>
+<span class="c1">#DETECTORS = #    [</span>
+<span class="c1">#    ]</span>
+
+
+<span class="c1">## The cascade file that opencv will use to detect faces</span>
+<span class="c1">## Defaults to: haarcascade_frontalface_alt.xml</span>
+<span class="c1">#FACE_DETECTOR_CASCADE_FILE = &#39;haarcascade_frontalface_alt.xml&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################### Filters ####################################</span>
+
+<span class="c1">## List of filters that thumbor will allow to be used in generated images. All of</span>
+<span class="c1">## them must be full names of python modules (python must be able to import</span>
+<span class="c1">## it)</span>
+<span class="c1">## Defaults to: []</span>
+<span class="c1">#FILTERS = #    [</span>
+<span class="c1">#    ]</span>
+
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">################################ Result Storage ################################</span>
+
+<span class="c1">## Expiration in seconds of generated images in the result storage</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#RESULT_STORAGE_EXPIRATION_SECONDS = 0</span>
+
+<span class="c1">## Path where the Result storage will store generated images</span>
+<span class="c1">## Defaults to: /var/folders/th/z6vmj34j1gngpvwl5fg5t9440000gp/T/thumbor/result_storage</span>
+<span class="c1">#RESULT_STORAGE_FILE_STORAGE_ROOT_PATH = &#39;/var/folders/th/z6vmj34j1gngpvwl5fg5t9440000gp/T/thumbor/result_storage&#39;</span>
+
+<span class="c1">## Indicates whether unsafe requests should also be stored in the Result Storage</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#RESULT_STORAGE_STORES_UNSAFE = False</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">############################ Queued Redis Detector #############################</span>
+
+<span class="c1">## Server host for the queued redis detector</span>
+<span class="c1">## Defaults to: localhost</span>
+<span class="c1">#REDIS_QUEUE_SERVER_HOST = &#39;localhost&#39;</span>
+
+<span class="c1">## Server port for the queued redis detector</span>
+<span class="c1">## Defaults to: 6379</span>
+<span class="c1">#REDIS_QUEUE_SERVER_PORT = 6379</span>
+
+<span class="c1">## Server database index for the queued redis detector</span>
+<span class="c1">## Defaults to: 0</span>
+<span class="c1">#REDIS_QUEUE_SERVER_DB = 0</span>
+
+<span class="c1">## Server password for the queued redis detector</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#REDIS_QUEUE_SERVER_PASSWORD = None</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">############################# Queued SQS Detector ##############################</span>
+
+<span class="c1">## AWS key id</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#SQS_QUEUE_KEY_ID = None</span>
+
+<span class="c1">## AWS key secret</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#SQS_QUEUE_KEY_SECRET = None</span>
+
+<span class="c1">## AWS SQS region</span>
+<span class="c1">## Defaults to: us-east-1</span>
+<span class="c1">#SQS_QUEUE_REGION = &#39;us-east-1&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">#################################### Errors ####################################</span>
+
+<span class="c1">## This configuration indicates whether thumbor should use a custom error</span>
+<span class="c1">## handler.</span>
+<span class="c1">## Defaults to: False</span>
+<span class="c1">#USE_CUSTOM_ERROR_HANDLING = False</span>
+
+<span class="c1">## Error reporting module. Needs to contain a class called ErrorHandler with a</span>
+<span class="c1">## handle_error(context, handler, exception) method.</span>
+<span class="c1">## Defaults to: thumbor.error_handlers.sentry</span>
+<span class="c1">#ERROR_HANDLER_MODULE = &#39;thumbor.error_handlers.sentry&#39;</span>
+
+<span class="c1">################################################################################</span>
+
+
+<span class="c1">############################### Errors - Sentry ################################</span>
+
+<span class="c1">## Sentry thumbor project dsn. i.e.: http://5a63d58ae7b94f1dab3dee740b301d6a:73ee</span>
+<span class="c1">## a45d3e8649239a973087e8f21f98@localhost:9000/2</span>
+<span class="c1">## Defaults to:</span>
+<span class="c1">#SENTRY_DSN_URL = &#39;&#39;</span>
+<span class="c1">## Sentry thumbor environment</span>
+<span class="c1">## Defaults to: None</span>
+<span class="c1">#SENTRY_ENVIRONMENT = &#39;&#39;</span>
+
+<span class="c1">################################################################################</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="custom_error_handling.html" class="btn btn-neutral float-right" title="Custom Error Handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="administration.html" class="btn btn-neutral float-left" title="Administration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

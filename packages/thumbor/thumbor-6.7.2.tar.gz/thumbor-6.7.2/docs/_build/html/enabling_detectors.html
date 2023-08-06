@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enabling detectors &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Available detectors" href="available_detectors.html" />
+    <link rel="prev" title="Detectors" href="detectors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="detectors.html">Detectors</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Enabling detectors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-it">Using it</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lazy-detection">Lazy Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#available-detectors">Available Detectors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="available_detectors.html">Available detectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom_detection.html">Custom detection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+          <li><a href="detectors.html">Detectors</a> &raquo;</li>
+        
+      <li>Enabling detectors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/enabling_detectors.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enabling-detectors">
+<h1>Enabling detectors<a class="headerlink" href="#enabling-detectors" title="Permalink to this headline">¶</a></h1>
+<p>Out of the box, thumbor does not enable any feature or facial detection.
+Enabling it is pretty easy, though.</p>
+<p>This documentation assumes you have OpenCV installed. It is a
+requirement if you want to use thumbor’s <a class="reference internal" href="available_detectors.html"><span class="doc">Available detectors</span></a>.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>In order to tell thumbor what detectors it should run in the original
+image, you must add them to your <code class="docutils literal notranslate"><span class="pre">thumbor.conf</span></code> file in the following
+key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DETECTORS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;thumbor.detectors.face_detector&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;thumbor.detectors.feature_detector&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The above configuration tells thumbor that it should run both the facial
+detection and the feature detection. These are mutually exclusive,
+meaning that if a face is detected, the feature detector won’t be run.</p>
+</div>
+<div class="section" id="using-it">
+<h2>Using it<a class="headerlink" href="#using-it" title="Permalink to this headline">¶</a></h2>
+<p>After restarting thumbor, it should be as easy as adding a <code class="docutils literal notranslate"><span class="pre">/smart</span></code>
+option to your URLs, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">thumbor</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;/</span><span class="n">unsafe</span><span class="o">/</span><span class="mi">300</span><span class="n">x200</span><span class="o">/</span><span class="n">smart</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">picture</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lazy-detection">
+<h2>Lazy Detection<a class="headerlink" href="#lazy-detection" title="Permalink to this headline">¶</a></h2>
+<p>Facial detection can be pretty expensive for thumbor, so it is not
+advisable to do it synchronously. Please refer to the <a class="reference internal" href="lazy_detection.html"><span class="doc">Lazy Detection</span></a>
+page for instructions on using it.</p>
+</div>
+<div class="section" id="available-detectors">
+<h2>Available Detectors<a class="headerlink" href="#available-detectors" title="Permalink to this headline">¶</a></h2>
+<p>A list of available detectors can be found at <a class="reference internal" href="available_detectors.html"><span class="doc">Available detectors</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="available_detectors.html" class="btn btn-neutral float-right" title="Available detectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="detectors.html" class="btn btn-neutral float-left" title="Detectors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

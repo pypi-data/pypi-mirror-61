@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Lazy Detection &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Posting, Putting and Deleting" href="posting_putting_deleting.html" />
+    <link rel="prev" title="Image storage" href="image_storage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Lazy Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rationale">Rationale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queued-detection">Queued Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-thumbor-deals-with-queued-detection">How thumbor deals with queued detection?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+      <li>Lazy Detection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/lazy_detection.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lazy-detection">
+<h1>Lazy Detection<a class="headerlink" href="#lazy-detection" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rationale">
+<h2>Rationale<a class="headerlink" href="#rationale" title="Permalink to this headline">¶</a></h2>
+<p>Thumbor performs pipeline detection of focal points for a given image.
+What this means is that it tries to determine one detection at a time,
+only skipping to the next if the current one fails.</p>
+<p>We could configure it to run frontal face detection, then if it fails,
+try profile face detection and if it fails, best features detection.</p>
+<p>As you can imagine, this is a cumbersome process and can take up
+precious cpu time from your server(s), eventually leading it to
+starvation of CPU. This is why we’ve implemented what we call Queued
+Detection.</p>
+</div>
+<div class="section" id="queued-detection">
+<h2>Queued Detection<a class="headerlink" href="#queued-detection" title="Permalink to this headline">¶</a></h2>
+<p>Configuring thumbor for lazy detecting is as simple as specifying a
+detector that supports queued detection.</p>
+<p>Thumbor ships with three such detectors, called:</p>
+<ul class="simple">
+<li>thumbor.detectors.queued_detector.queued_complete_detector</li>
+<li>thumbor.detectors.queued_detector.queued_face_detector</li>
+<li>thumbor.detectors.queued_detector.queued_feature_detector</li>
+</ul>
+<p>These are responsible, respectively, for pipeline detection of face and
+feature, only face or only feature.</p>
+<p>You can check what additional configuration you need to add to your
+configuration file (thumbor.conf) in order to have the bundled detectors
+working.</p>
+</div>
+<div class="section" id="how-thumbor-deals-with-queued-detection">
+<h2>How thumbor deals with queued detection?<a class="headerlink" href="#how-thumbor-deals-with-queued-detection" title="Permalink to this headline">¶</a></h2>
+<p>When an image request arrives with a flag of “smart” detection, a call
+is made to the queued detector and it tells thumbor to skip smart
+detection and to serve the image with non-smart cropping (much faster).</p>
+<p>The call to the queued detector places a message in a Redis Queue that
+will later be processed in order to detect focal points in the image.</p>
+<p>The next time a request arrive for the same image and with a flag of
+“smart” detection, if information on detection is already available (if
+the message in the queue has already been processed), thumbor uses that
+info to do smart cropping and serves the result.</p>
+<p>If the image still hasn’t been processed, the same process from before
+applies, except thumbor won’t place another message in the queue. This
+is intended as a way not to flood the queue with requests for the same
+image.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="posting_putting_deleting.html" class="btn btn-neutral float-right" title="Posting, Putting and Deleting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="image_storage.html" class="btn btn-neutral float-left" title="Image storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

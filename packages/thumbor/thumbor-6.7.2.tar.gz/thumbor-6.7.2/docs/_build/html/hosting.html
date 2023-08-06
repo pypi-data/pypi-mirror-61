@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hosting &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logging" href="logging.html" />
+    <link rel="prev" title="Custom Error Handling" href="custom_error_handling.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="administration.html">Administration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_error_handling.html">Custom Error Handling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hosting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#development-environment">Development Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-environment">Production Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thumbor-in-the-cloud">Thumbor in the Cloud</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#update">UPDATE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-your-thumbor-install-in-heroku">Creating your thumbor install in heroku</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#another-thumbor-heroku-configuration">Another Thumbor/Heroku configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#thumbor-on-openshift">Thumbor on OpenShift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thumbor-behind-cloudfront">Thumbor behind CloudFront</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running.html">Running thumbor server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaling_thumbor.html">Scaling Thumbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Image Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_my_own_storage.html">Creating my own Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="administration.html">Administration</a> &raquo;</li>
+        
+      <li>Hosting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/hosting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hosting">
+<h1>Hosting<a class="headerlink" href="#hosting" title="Permalink to this headline">¶</a></h1>
+<p>Let’s see how would you run thumbor in different environments.</p>
+<div class="section" id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
+<p>For running it locally you just need to get a proper <a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a>
+file. You can put it at /etc/thumbor.conf, ~/thumbor.conf (home folder)
+or specify it when starting thumbor.</p>
+<p>To verify if you have thumbor, just type:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thumbor</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>It should return the version you’ve installed. Starting thumbor is as
+easy as:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thumbor</span>
+</pre></div>
+</div>
+<p>For more options check the <a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a> page.</p>
+</div>
+<div class="section" id="production-environment">
+<h2>Production Environment<a class="headerlink" href="#production-environment" title="Permalink to this headline">¶</a></h2>
+<p>Other than having the proper <a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a> file for your
+environment, we have some recommendations on how to run thumbor in
+production.</p>
+<p>Our first recommendation is to run more than one instance of it. You can
+specify different ports using thumbor easily. This will make sure that
+your service stays responsive even if one of the processes die.</p>
+<p>We also recommend having some form of load balance that distributes the
+load between the aforementioned processes. We are using NGINX to do it,
+but there are more sophisticated load balance softwares around. thumbor
+supports health checking under the <code class="docutils literal notranslate"><span class="pre">/healthcheck</span></code> URI if you need to
+use it.</p>
+<p>Other than that, you run it using the thumbor console app specifying the
+arguments, like this:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thumbor</span> <span class="o">--</span><span class="n">port</span><span class="o">=</span><span class="mi">8888</span> <span class="o">--</span><span class="n">conf</span><span class="o">=</span><span class="s2">&quot;~/mythumbor.conf&quot;</span>
+</pre></div>
+</div>
+<p>We recommend using an application such as Supervisor
+(<a class="reference external" href="http://supervisord.org/index.html">http://supervisord.org/index.html</a>) to monitor your services. An
+example of a <code class="docutils literal notranslate"><span class="pre">supervisord.conf</span></code> file would be:</p>
+<p>This configuration file makes sure that supervisor starts 4 processes of
+thumbor on the 8000, 8001, 8002 and 8003 ports, each with a different
+configuration file (thumbor8000.conf, thumbor8001.conf,
+thumbor8002.conf, thumbor8003.conf all under /etc folder). The other
+settings are optional, but if you need help with supervisor’s settings
+it has extensive documentation online
+(<a class="reference external" href="http://supervisord.org/introduction.html">http://supervisord.org/introduction.html</a>).</p>
+</div>
+<div class="section" id="thumbor-in-the-cloud">
+<h2>Thumbor in the Cloud<a class="headerlink" href="#thumbor-in-the-cloud" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="update">
+<h3>UPDATE<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<p>Now there’s a project to help with hosting in HEROKU called
+<a class="reference external" href="https://github.com/ActivKonnect/thumbor-heroku">thumbor-heroku</a>.</p>
+</div>
+<div class="section" id="creating-your-thumbor-install-in-heroku">
+<h3>Creating your thumbor install in heroku<a class="headerlink" href="#creating-your-thumbor-install-in-heroku" title="Permalink to this headline">¶</a></h3>
+<p>You can deploy and test Thumbor in the cloud. It’s quite easy with
+<a class="reference external" href="http://www.heroku.com">Heroku</a> :</p>
+<ul class="simple">
+<li>Create an account like described at
+<a class="reference external" href="http://devcenter.heroku.com/articles/quickstart">http://devcenter.heroku.com/articles/quickstart</a></li>
+<li>Install the heroku Toolbelt as described in the same page</li>
+<li>Log to Heroku in your shell</li>
+<li>Create a small git project for the configuration of your Thumbor
+instance.</li>
+</ul>
+<p>The whole script to deploy and start an instance :</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">heroku</span>
+<span class="n">cd</span> <span class="n">heroku</span><span class="o">/</span>
+<span class="n">echo</span> <span class="s2">&quot;thumbor&gt;=2.7.0&quot;</span> <span class="o">&gt;&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="c1"># let heroku deploy and compile prerequisite package via PIP</span>
+<span class="n">echo</span> <span class="s2">&quot;web: thumbor -p $PORT&quot;</span> <span class="o">&gt;&gt;</span> <span class="n">Procfile</span> <span class="c1"># listening port is automatically affected at deployment (we use here the default config)</span>
+<span class="n">git</span> <span class="n">init</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;init&quot;</span>
+<span class="n">heroku</span> <span class="n">create</span> <span class="o">--</span><span class="n">stack</span> <span class="n">cedar</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>Basically, adding thumbor in requirements.txt will install everything
+you need on Heroku, and you just need to run thumbor -p $PORT to run
+thumbor on Heroku. In order to run process on Heroku, you need to write
+down the command in Procfile. Procfile looks like following (make sure
+there are no “” inside both files):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat Procfile
+web: thumbor -p $PORT
+</pre></div>
+</div>
+<p>Your heroku folder (or whatever you named, I named it thumbor) should
+look like following (only contains two files):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~/thumbor(master)$ ls
+Procfile        requirements.txt
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Start the instance (Remember: 1 heroku web instance is free of
+charges, so don’t try with more yet):</p>
+<p>heroku scale web=1</p>
+</li>
+<li><p class="first">Verify your new instance is up (in the case of our sample project is
+stormy-stone-5336.herokuapp.com):</p>
+<p>heroku ps</p>
+</li>
+<li><p class="first">Now if you point your browser to the server name, you’ll get a 404
+HTTP Error. Just try with an URL that thumbor understands. To open
+your web browser pointing to the new server:</p>
+<p>heroku open</p>
+</li>
+<li><p class="first">Then try something like:</p>
+</li>
+</ul>
+<p><a class="reference external" href="http://stormy-stone-5336.herokuapp.com/unsafe/300x200/http://s.glbimg.com/jo/g1/f/original/2012/03/16/supersonic-skydiver_fran.jpg">http://stormy-stone-5336.herokuapp.com/unsafe/300x200/http://s.glbimg.com/jo/g1/f/original/2012/03/16/supersonic-skydiver_fran.jpg</a></p>
+<p>(notice there is no listening port specified)</p>
+<p>If you need to scale thumbor server, read more about it in Heroku’s
+documentation.</p>
+<p>The sample implementation for the above links can be found at
+<a class="reference external" href="https://github.com/heynemann/thumbor-heroku">https://github.com/heynemann/thumbor-heroku</a> and is open-source and MIT
+Licensed.</p>
+</div>
+<div class="section" id="another-thumbor-heroku-configuration">
+<h3>Another Thumbor/Heroku configuration<a class="headerlink" href="#another-thumbor-heroku-configuration" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://hyperthese.net/post/thumbor-and-heroku/">This blog post</a> and
+the attached repositories
+(<a class="reference external" href="https://github.com/ActivKonnect/jetpack">Jetpack</a> and
+<a class="reference external" href="https://github.com/ActivKonnect/thumbor-heroku">thumbor-heroku</a>)
+explain a more advanced Heroku deployment, that support the <code class="docutils literal notranslate"><span class="pre">smart</span></code>
+URL feature.</p>
+</div>
+</div>
+<div class="section" id="thumbor-on-openshift">
+<h2>Thumbor on OpenShift<a class="headerlink" href="#thumbor-on-openshift" title="Permalink to this headline">¶</a></h2>
+<p>There’s a project showing how to deploy a working version on
+<a class="reference external" href="https://www.openshift.com/">OpenShift</a>
+<a class="reference external" href="https://github.com/rafaelcaricio/thumbor-openshift-example">https://github.com/rafaelcaricio/thumbor-openshift-example</a></p>
+</div>
+<div class="section" id="thumbor-behind-cloudfront">
+<h2>Thumbor behind CloudFront<a class="headerlink" href="#thumbor-behind-cloudfront" title="Permalink to this headline">¶</a></h2>
+<p>The awesome people at <a class="reference external" href="http://yipit.com">yipit</a> are using thumbor
+behind the CloudFront
+<a class="reference external" href="http://en.wikipedia.org/wiki/Content_delivery_network">CDN</a> at
+Amazon.</p>
+<p>The detailed information on how to do it can be seen at <a class="reference external" href="http://tech.yipit.com/2013/01/03/how-yipit-scales-thumbnailing-with-thumbor-and-cloudfront/">this blog
+post</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logging.html" class="btn btn-neutral float-right" title="Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="custom_error_handling.html" class="btn btn-neutral float-left" title="Custom Error Handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

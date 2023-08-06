@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Libraries &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="More" href="more.html" />
+    <link rel="prev" title="Plugins" href="plugins.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="extending.html">Extending</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#available-libraries">Available Libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node-js">Node.js</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ruby">Ruby</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#java">Java</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#php">PHP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swift">Swift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#objective-c">Objective-C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#net">.NET</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementing-a-library">Implementing a library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#library-tests-generating-hmac-of-the-urls">Library Tests - Generating HMAC of the URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#library-tests-scenarios">Library Tests - Scenarios</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#encryption-testing">Encryption Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#more-information">More Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="extending.html">Extending</a> &raquo;</li>
+        
+      <li>Libraries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/libraries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libraries">
+<h1>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h1>
+<p>Even though the process of generating safe image URLs is explained in
+the <a class="reference internal" href="security.html"><span class="doc">Security</span></a> page, we’ll try to provide libraries in each
+programming language to ease this process.</p>
+<div class="section" id="available-libraries">
+<h2>Available Libraries<a class="headerlink" href="#available-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/heynemann/libthumbor">libthumbor</a> - Python’s
+extensions to thumbor. These are used to generate safe urls among
+others.</li>
+<li><a class="reference external" href="https://github.com/ricobl/django-thumbor">django-thumbor</a> - A
+django app with templatetags for resizing images with thumbor (by
+<a class="reference external" href="https://github.com/ricobl">ricobl</a>).</li>
+<li><a class="reference external" href="https://github.com/Starou/django-thumborstorage">django-thumborstorage</a>
+- A Django custom storage for Thumbor backend (by <a class="reference external" href="https://github.com/Starou">Stanislas
+Guerra</a>).</li>
+</ul>
+</div>
+<div class="section" id="node-js">
+<h3>Node.js<a class="headerlink" href="#node-js" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/rafaelcaricio/ThumborJS">ThumborJS</a> -
+Javascript’s extension to thumbor. These are used to generate safe
+urls, encrypted urls among others (by <a class="reference external" href="https://github.com/rafaelcaricio">Rafael
+Carício</a>).</li>
+<li><a class="reference external" href="https://github.com/dcaramelo/ThumborUrlBuilder">ThumborUrlBuilder</a>
+- Thumbor client for Node JS (by <a class="reference external" href="https://github.com/dcaramelo">David
+Caramelo</a>).</li>
+<li><a class="reference external" href="https://github.com/policymic/thumbor">thumbor</a> - Thumbor client
+for Node JS (by <a class="reference external" href="https://github.com/PolicyMic">PolicyMic</a>).</li>
+</ul>
+</div>
+<div class="section" id="ruby">
+<h3>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://rubygems.org/gems/ruby-thumbor">ruby-thumbor</a> - Ruby’s
+gem to interact with thumbor server.</li>
+<li><a class="reference external" href="https://github.com/rafaelcaricio/thumbor_rails">thumbor_rails</a> -
+Ruby’s gem to make easier to generate urls in Rails projects.</li>
+</ul>
+</div>
+<div class="section" id="java">
+<h3>Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><a class="reference external" href="http://square.github.com/pollexor">Pollexor</a> - Java client for
+the Thumbor image service which allows you to build URIs in an
+expressive fashion using a fluent API.</p>
+</li>
+<li><div class="first"><del></div><p><a class="reference external" href="https://github.com/heynemann/thumbor-enterprise-edition">thumbor-enterprise-edition</a>
+- Java library to enable generating encrypted URLs. This library is
+deprecated in favor of
+<a class="reference external" href="http://square.github.com/pollexor">Pollexor</a>.</p>
+</del></li>
+</ul>
+</div>
+<div class="section" id="php">
+<h3>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/99designs/phumbor">Phumbor</a> - A minimal PHP
+client for generating Thumbor URLs.</li>
+<li><a class="reference external" href="https://github.com/ceejayoz/laravel-phumbor">Phumbor for Laravel</a>
+- A Laravel package providing a facade for Phumbor.</li>
+<li><a class="reference external" href="https://github.com/jbouzekri/PhumborBundle">Phumbor for Symfony2</a>
+- A Symfony2 Bundle providing a facade for Phumbor.</li>
+</ul>
+</div>
+<div class="section" id="swift">
+<h3>Swift<a class="headerlink" href="#swift" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/guilhermearaujo/Bumbo">Bumbo</a> - A swifty client
+for Thumbor</li>
+</ul>
+</div>
+<div class="section" id="objective-c">
+<h3>Objective-C<a class="headerlink" href="#objective-c" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/DanielHeckrath/OCThumbor">OCThumbor</a> -
+Objective-C for the Thumbor image service which allows you to build
+URIs in an expressive fashion using a fluent API.</li>
+</ul>
+</div>
+<div class="section" id="net">
+<h3>.NET<a class="headerlink" href="#net" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/mi9/DotNetThumbor">DotNetThumbor</a> - DotNet client for the Thumbor image service.
+Provides an expressive fluent API.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="implementing-a-library">
+<h2>Implementing a library<a class="headerlink" href="#implementing-a-library" title="Permalink to this headline">¶</a></h2>
+<p>If you want to provide a library to enable easy usage of thumbor in your
+favorite programming language, please send an e-mail to
+<strong>thumbor&#64;googlegroups.com</strong> and we’ll add it here.</p>
+<p>Below are all the scenarios we think are worth testing automatically so
+you can guarantee compatibility with thumbor. Please note that this is
+not meant to be a replacement for TDD or for any other testing
+methodology you might want to use. These are just helper scenarios that
+we thought would help any library developers.</p>
+</div>
+<div class="section" id="library-tests-generating-hmac-of-the-urls">
+<h2>Library Tests - Generating HMAC of the URLs<a class="headerlink" href="#library-tests-generating-hmac-of-the-urls" title="Permalink to this headline">¶</a></h2>
+<p>We sincerely advise you to have thumbor installed in your machine, so
+you can implement a method in your tests that has thumbor generate a
+signature for your URL so you can compare with your own signature. This
+way you can make sure your url formatting and signing are working
+properly.</p>
+<p>Here’s how it was implemented in Ruby:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign_in_thumbor</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="c1">#bash command to call thumbor&#39;s decrypt method</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;python -c &#39;from thumbor.crypto import Signer; signer = Signer(</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">key</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">); print signer.signature(</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">&lt;&lt;</span> <span class="nb">str</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">)&#39;&quot;</span>
+
+    <span class="c1">#execute it in the shell using ruby&#39;s popen mechanism</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">Array</span><span class="o">.</span><span class="n">new</span>
+    <span class="n">IO</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">command</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">result</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">gets</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="n">result</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>You should be able to implement this easily in any modern programming
+language. It makes for very reliable tests.</p>
+</div>
+<div class="section" id="library-tests-scenarios">
+<h2>Library Tests - Scenarios<a class="headerlink" href="#library-tests-scenarios" title="Permalink to this headline">¶</a></h2>
+<p>Remember that these are in pseudo-code (BDD-like) language, and not in
+any programming language specifically.</p>
+<div class="section" id="encryption-testing">
+<h3>Encryption Testing<a class="headerlink" href="#encryption-testing" title="Permalink to this headline">¶</a></h3>
+<p>These scenarios assume that you separate the logic of composing the url
+to be signed into a different “module”, that is to be tested with the
+URL Testing Scenarios after these scenarios.</p>
+<div class="section" id="scenario-1-signing-of-a-known-url-results">
+<h4>Scenario 1 - Signing of a known url results<a class="headerlink" href="#scenario-1-signing-of-a-known-url-results" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Given</span>
+    <span class="n">A</span> <span class="n">security</span> <span class="n">key</span> <span class="n">of</span> <span class="s1">&#39;my-security-key&#39;</span>
+    <span class="n">And</span> <span class="n">an</span> <span class="n">image</span> <span class="n">URL</span> <span class="n">of</span> <span class="s2">&quot;my.server.com/some/path/to/image.jpg&quot;</span>
+    <span class="n">And</span> <span class="n">a</span> <span class="n">width</span> <span class="n">of</span> <span class="mi">300</span>
+    <span class="n">And</span> <span class="n">a</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">200</span>
+<span class="n">When</span>
+    <span class="n">I</span> <span class="n">ask</span> <span class="n">my</span> <span class="n">library</span> <span class="k">for</span> <span class="n">a</span> <span class="n">signed</span> <span class="n">url</span>
+<span class="n">Then</span>
+    <span class="n">I</span> <span class="n">get</span> <span class="s1">&#39;/8ammJH8D-7tXy6kU3lTvoXlhu4o=/300x200/my.server.com/some/path/to/image.jpg&#39;</span> <span class="k">as</span> <span class="n">url</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-2-thumbor-matching-of-signature-with-my-library-signature">
+<h4>Scenario 2 - Thumbor matching of signature with my library signature<a class="headerlink" href="#scenario-2-thumbor-matching-of-signature-with-my-library-signature" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Given</span>
+    <span class="n">A</span> <span class="n">security</span> <span class="n">key</span> <span class="n">of</span> <span class="s1">&#39;my-security-key&#39;</span>
+    <span class="n">And</span> <span class="n">an</span> <span class="n">image</span> <span class="n">URL</span> <span class="n">of</span> <span class="s2">&quot;my.server.com/some/path/to/image.jpg&quot;</span>
+    <span class="n">And</span> <span class="n">a</span> <span class="n">width</span> <span class="n">of</span> <span class="mi">300</span>
+    <span class="n">And</span> <span class="n">a</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">200</span>
+<span class="n">When</span>
+    <span class="n">I</span> <span class="n">ask</span> <span class="n">my</span> <span class="n">library</span> <span class="k">for</span> <span class="n">an</span> <span class="n">encrypted</span> <span class="n">URL</span>
+<span class="n">Then</span>
+    <span class="n">I</span> <span class="n">get</span> <span class="n">the</span> <span class="n">proper</span> <span class="n">url</span> <span class="p">(</span><span class="o">/</span><span class="mi">8</span><span class="n">ammJH8D</span><span class="o">-</span><span class="mi">7</span><span class="n">tXy6kU3lTvoXlhu4o</span><span class="o">=/</span><span class="mi">300</span><span class="n">x200</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-3-thumbor-matching-of-signature-with-my-library-signature-with-meta">
+<h4>Scenario 3 - Thumbor matching of signature with my library signature with meta<a class="headerlink" href="#scenario-3-thumbor-matching-of-signature-with-my-library-signature-with-meta" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Given</span>
+    <span class="n">A</span> <span class="n">security</span> <span class="n">key</span> <span class="n">of</span> <span class="s1">&#39;my-security-key&#39;</span>
+    <span class="n">And</span> <span class="n">an</span> <span class="n">image</span> <span class="n">URL</span> <span class="n">of</span> <span class="s2">&quot;my.server.com/some/path/to/image.jpg&quot;</span>
+    <span class="n">And</span> <span class="n">the</span> <span class="n">meta</span> <span class="n">flag</span>
+<span class="n">When</span>
+    <span class="n">I</span> <span class="n">ask</span> <span class="n">my</span> <span class="n">library</span> <span class="k">for</span> <span class="n">an</span> <span class="n">encrypted</span> <span class="n">URL</span>
+<span class="n">Then</span>
+    <span class="n">I</span> <span class="n">get</span> <span class="n">the</span> <span class="n">proper</span> <span class="n">url</span> <span class="p">(</span><span class="o">/</span><span class="n">Ps3ORJDqxlSQ8y00T29GdNAh2CY</span><span class="o">=/</span><span class="n">meta</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-4-thumbor-matching-of-signature-with-my-library-signature-with-smart">
+<h4>Scenario 4 - Thumbor matching of signature with my library signature with smart<a class="headerlink" href="#scenario-4-thumbor-matching-of-signature-with-my-library-signature-with-smart" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Given</span>
+    <span class="n">A</span> <span class="n">security</span> <span class="n">key</span> <span class="n">of</span> <span class="s1">&#39;my-security-key&#39;</span>
+    <span class="n">And</span> <span class="n">an</span> <span class="n">image</span> <span class="n">URL</span> <span class="n">of</span> <span class="s2">&quot;my.server.com/some/path/to/image.jpg&quot;</span>
+    <span class="n">And</span> <span class="n">the</span> <span class="n">smart</span> <span class="n">flag</span>
+<span class="n">When</span>
+    <span class="n">I</span> <span class="n">ask</span> <span class="n">my</span> <span class="n">library</span> <span class="k">for</span> <span class="n">an</span> <span class="n">encrypted</span> <span class="n">URL</span>
+<span class="n">Then</span>
+    <span class="n">I</span> <span class="n">get</span> <span class="n">the</span> <span class="n">proper</span> <span class="n">url</span> <span class="p">(</span><span class="o">/-</span><span class="mi">2</span><span class="n">NHpejRK2CyPAm61FigfQgJBxw</span><span class="o">=/</span><span class="n">smart</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-5-thumbor-matching-of-signature-with-my-library-signature-with-fit-in">
+<h4>Scenario 5 - Thumbor matching of signature with my library signature with fit-in<a class="headerlink" href="#scenario-5-thumbor-matching-of-signature-with-my-library-signature-with-fit-in" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Given</span>
+    <span class="n">A</span> <span class="n">security</span> <span class="n">key</span> <span class="n">of</span> <span class="s1">&#39;my-security-key&#39;</span>
+    <span class="n">And</span> <span class="n">an</span> <span class="n">image</span> <span class="n">URL</span> <span class="n">of</span> <span class="s2">&quot;my.server.com/some/path/to/image.jpg&quot;</span>
+    <span class="n">And</span> <span class="n">the</span> <span class="n">fit</span><span class="o">-</span><span class="ow">in</span> <span class="n">flag</span>
+<span class="n">When</span>
+    <span class="n">I</span> <span class="n">ask</span> <span class="n">my</span> <span class="n">library</span> <span class="k">for</span> <span class="n">an</span> <span class="n">encrypted</span> <span class="n">URL</span>
+<span class="n">Then</span>
+    <span class="n">I</span> <span class="n">get</span> <span class="n">the</span> <span class="n">proper</span> <span class="n">url</span> <span class="p">(</span><span class="o">/</span><span class="n">uvLnA6TJlF</span><span class="o">-</span><span class="n">Cc</span><span class="o">-</span><span class="n">L8z9pEtfasO3s</span><span class="o">=/</span><span class="n">fit</span><span class="o">-</span><span class="ow">in</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-6-thumbor-matching-of-signature-with-my-library-signature-with-filters">
+<h4>Scenario 6 - Thumbor matching of signature with my library signature with filters<a class="headerlink" href="#scenario-6-thumbor-matching-of-signature-with-my-library-signature-with-filters" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Given</span>
+    <span class="n">A</span> <span class="n">security</span> <span class="n">key</span> <span class="n">of</span> <span class="s1">&#39;my-security-key&#39;</span>
+    <span class="n">And</span> <span class="n">an</span> <span class="n">image</span> <span class="n">URL</span> <span class="n">of</span> <span class="s2">&quot;my.server.com/some/path/to/image.jpg&quot;</span>
+    <span class="n">And</span> <span class="n">a</span> <span class="s1">&#39;quality(20)&#39;</span> <span class="nb">filter</span>
+    <span class="n">And</span> <span class="n">a</span> <span class="s1">&#39;brightness(10)&#39;</span> <span class="nb">filter</span>
+<span class="n">When</span>
+    <span class="n">I</span> <span class="n">ask</span> <span class="n">my</span> <span class="n">library</span> <span class="k">for</span> <span class="n">an</span> <span class="n">encrypted</span> <span class="n">URL</span>
+<span class="n">Then</span>
+    <span class="n">I</span> <span class="n">get</span> <span class="n">the</span> <span class="n">proper</span> <span class="n">url</span> <span class="p">(</span><span class="o">/</span><span class="n">ZZtPCw</span><span class="o">-</span><span class="n">BLYN1g42Kh8xTcRs0Qls</span><span class="o">=/</span><span class="n">filters</span><span class="p">:</span><span class="n">brightness</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span><span class="n">contrast</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span><span class="o">.</span><span class="n">jpg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You should test the same kind of tests for horizontal and vertical flip,
+horizontal and vertical alignment and manual cropping.</p>
+</div>
+</div>
+</div>
+<div class="section" id="more-information">
+<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="security.html"><span class="doc">Security</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="more.html" class="btn btn-neutral float-right" title="More" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plugins.html" class="btn btn-neutral float-left" title="Plugins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

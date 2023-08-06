@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gifv &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Administration" href="administration.html" />
+    <link rel="prev" title="jpegtran" href="jpegtran.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="optimizers.html">Optimizers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="jpegtran.html">jpegtran</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gifv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+          <li><a href="optimizers.html">Optimizers</a> &raquo;</li>
+        
+      <li>gifv</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gifv.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gifv">
+<h1>gifv<a class="headerlink" href="#gifv" title="Permalink to this headline">¶</a></h1>
+<p>The gifv optimizer is able to convert gifs to mp4 or webm videos, often resulting in dramatically smaller sized files.</p>
+<p><strong>Gifv is categorized as experimental and should be used with caution.</strong> It uses ffmpeg to convert gifs to videos and so it’s sensitive to changes with ffmpeg. It’s recommended to lock your ffmpeg version with a fixed version (chef, docker, etc) and if updating make sure to check that the update doesn’t break gifv. <strong>FFmpeg version 3.2.4 is the current recommended version.</strong> Later version, such as 3.3 will break the proper conversion of gif delays to frame durations in videos … meaning videos will not be the same length as equivelant gifs.</p>
+<p>To enable gifv, ensure ffmpeg is in PATH and enable the optimizer in your config:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIMIZERS</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;thumbor.optimizers.gifv&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Once activated, you must add the <code class="docutils literal notranslate"><span class="pre">gifv()</span></code> option to your filters list. An example request might look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8888/unsafe/filters:gifv()/http://localhost/livingroom.gif
+</pre></div>
+</div>
+<p>The above example will default to using the mp4 video container with h264 video. You can also be explicit:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8888/unsafe/filters:gifv(mp4)/http://localhost/livingroom.gif
+</pre></div>
+</div>
+<p>or use explicitly specify webm</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8888/unsafe/filters:gifv(webm)/http://localhost/livingroom.gif
+</pre></div>
+</div>
+<p>Because videos (in mp4 or webm format) cannot contain alpha transparency a background color will be automatically added. The default color is white. You can also specify a background color:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8888/unsafe/filters:gifv():background_color(ff00ff)/http://localhost/livingroom.gif
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8888/unsafe/filters:gifv():background_color(f0f)/http://localhost/livingroom.gif
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8888/unsafe/filters:gifv():background_color(magenta)/http://localhost/livingroom.gif
+</pre></div>
+</div>
+<p>The color must be specified in 6 character hex, 3 character hex or color name. But 6 or 3 character hex are the preferred formats. Including a <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol in your color will break the url if not url encoded and thumbor will error on the request. The recommendation is to not use them at all which also makes urls shorter. But if you must a leading <cite>%23</cite> will probably work.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="administration.html" class="btn btn-neutral float-right" title="Administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="jpegtran.html" class="btn btn-neutral float-left" title="jpegtran" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

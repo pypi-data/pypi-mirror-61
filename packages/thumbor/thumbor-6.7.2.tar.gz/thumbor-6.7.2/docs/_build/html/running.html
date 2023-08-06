@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running thumbor server &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scaling Thumbor" href="scaling_thumbor.html" />
+    <link rel="prev" title="Logging" href="logging.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="administration.html">Administration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_error_handling.html">Custom Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hosting.html">Hosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Running thumbor server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-or-ip">-i or –ip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#p-or-port">-p or –port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c-or-conf">-c or –conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#k-or-keyfile">-k or –keyfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l-or-log-level">-l or –log-level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-or-app">-a or –app</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#signing-thumbor-urls">Signing thumbor urls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scaling_thumbor.html">Scaling Thumbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Image Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_my_own_storage.html">Creating my own Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="administration.html">Administration</a> &raquo;</li>
+        
+      <li>Running thumbor server</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/running.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-thumbor-server">
+<h1>Running thumbor server<a class="headerlink" href="#running-thumbor-server" title="Permalink to this headline">¶</a></h1>
+<p>Running thumbor server is as easy as typing “thumbor” (considering you
+went through the proper <a class="reference internal" href="installing.html"><span class="doc">Installing</span></a> procedures).</p>
+<p>The Server application takes some parameters that will help you tailor
+the thumbor Server to your needs. If you want to find out what the
+thumbor Server arguments are, just type:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thumbor</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<div class="section" id="i-or-ip">
+<h2>-i or –ip<a class="headerlink" href="#i-or-ip" title="Permalink to this headline">¶</a></h2>
+<p>The address that Tornado will listen for incoming request. It defaults
+to <em>0.0.0.0</em> (listening on localhost and current IP).</p>
+</div>
+<div class="section" id="p-or-port">
+<h2>-p or –port<a class="headerlink" href="#p-or-port" title="Permalink to this headline">¶</a></h2>
+<p>The port that Tornado will listen for incoming request. It defaults to
+<em>8888</em>.</p>
+</div>
+<div class="section" id="c-or-conf">
+<h2>-c or –conf<a class="headerlink" href="#c-or-conf" title="Permalink to this headline">¶</a></h2>
+<p>The full path for the configuration file for this server.</p>
+</div>
+<div class="section" id="k-or-keyfile">
+<h2>-k or –keyfile<a class="headerlink" href="#k-or-keyfile" title="Permalink to this headline">¶</a></h2>
+<p>The full path for the file containing the security key to be used for
+this server.</p>
+</div>
+<div class="section" id="l-or-log-level">
+<h2>-l or –log-level<a class="headerlink" href="#l-or-log-level" title="Permalink to this headline">¶</a></h2>
+<p>The log level to be used. Possible values are: <em>debug</em>, <em>info</em>,
+<em>warning</em>, <em>error</em>, <em>critical</em> or <em>notset</em>. More on that at
+<a class="reference external" href="http://docs.python.org/library/logging.html">http://docs.python.org/library/logging.html</a>. It defaults to
+<em>warning</em>.</p>
+</div>
+<div class="section" id="a-or-app">
+<h2>-a or –app<a class="headerlink" href="#a-or-app" title="Permalink to this headline">¶</a></h2>
+<p>Allows the user to specify the application class to be used. This is a
+very advanced usage of thumbor. This argument is specified like:
+“namespace1.namespace2.class_name” as in
+“myproj.thumbor_support.MyProjThumborApp”.</p>
+<div class="section" id="signing-thumbor-urls">
+<h3>Signing thumbor urls<a class="headerlink" href="#signing-thumbor-urls" title="Permalink to this headline">¶</a></h3>
+<p>To help users create signed URLs (mostly for debugging purposes, since
+we recommend using the <a class="reference internal" href="libraries.html"><span class="doc">Libraries</span></a>), thumbor comes with an application
+called thumbor-url.</p>
+<p>In order to use it, type <code class="docutils literal notranslate"><span class="pre">thumbor-url</span> <span class="pre">-h</span></code> and it will present all
+options available.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scaling_thumbor.html" class="btn btn-neutral float-right" title="Scaling Thumbor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="logging.html" class="btn btn-neutral float-left" title="Logging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

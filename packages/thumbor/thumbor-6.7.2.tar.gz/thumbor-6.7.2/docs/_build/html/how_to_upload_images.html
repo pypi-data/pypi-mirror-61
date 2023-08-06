@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to upload Images &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Image loader" href="image_loader.html" />
+    <link rel="prev" title="Detection Algorithms" href="detection_algorithms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to upload Images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-usage">API Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#posting">Posting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#putting">Putting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting">Deleting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upload-an-image-via-the-rest-api">Upload an image via the REST API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upload-an-image-via-a-form">Upload an image via a form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modifying-an-image">Modifying an image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting-an-image">Deleting an image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+      <li>How to upload Images</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/how_to_upload_images.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-upload-images">
+<h1>How to upload Images<a class="headerlink" href="#how-to-upload-images" title="Permalink to this headline">¶</a></h1>
+<p>Thumbor provides a <code class="docutils literal notranslate"><span class="pre">/image</span></code> REST end-point to upload your images and
+manage it.</p>
+<p>This way you can send thumbor your original images by doing a simple
+post to its urls.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The table below show all configuration parameters to manage image upload
+:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="29%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration parameter</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>UPLOAD_ENABLED</td>
+<td>False</td>
+<td>Indicates whether thumbor should enable File uploads</td>
+</tr>
+<tr class="row-odd"><td>UPLOAD_PUT_ALLOWED</td>
+<td>False</td>
+<td>Indicates whether image overwrite should be allowed</td>
+</tr>
+<tr class="row-even"><td>UPLOAD_DELETE_ALLOWED</td>
+<td>False</td>
+<td>Indicates whether image deletion should be allowed</td>
+</tr>
+<tr class="row-odd"><td>UPLOAD_PHOTO_STORAGE</td>
+<td>thumbor.storages.file_storage</td>
+<td>The type of storage to store uploaded images with</td>
+</tr>
+<tr class="row-even"><td>UPLOAD_DEFAULT_FILENAME</td>
+<td>image</td>
+<td>Default filename for image uploaded</td>
+</tr>
+<tr class="row-odd"><td>UPLOAD_MAX_SIZE</td>
+<td>0</td>
+<td>Max size in Kb for images uploaded to thumbor</td>
+</tr>
+<tr class="row-even"><td>MIN_WIDTH</td>
+<td>1</td>
+<td>Min width in pixels for images uploaded</td>
+</tr>
+<tr class="row-odd"><td>MIN_HEIGHT</td>
+<td>1</td>
+<td>Min height in pixels for images uploaded</td>
+</tr>
+</tbody>
+</table>
+<p>Thumbor comes with the <code class="docutils literal notranslate"><span class="pre">/image</span></code> REST end-point to upload disabled by
+default. In order to enable it, just set the <code class="docutils literal notranslate"><span class="pre">UPLOAD_ENABLED</span></code>
+configuration in your thumbor.conf file to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Thumbor will then use the storage specified in the
+<code class="docutils literal notranslate"><span class="pre">UPLOAD_PHOTO_STORAGE</span></code> configuration to save your images. You can use
+an existing storage (filesystem, redis, mongo, hbase…) or
+<a class="reference internal" href="create_my_own_storage.html"><span class="doc">create your own storage</span></a> if needed .</p>
+<p>You can manage image putting and deletions simply set the configuration
+parameters <code class="docutils literal notranslate"><span class="pre">UPLOAD_PUT_ALLOWED</span></code> and <code class="docutils literal notranslate"><span class="pre">UPLOAD_DELETE_ALLOWED</span></code> to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>. This parameters are set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default for security
+reasons.</p>
+<p>Finally the upload constraints (max size, image width and height) will
+be controlled by <code class="docutils literal notranslate"><span class="pre">UPLOAD_MAX_SIZE</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN_WIDTH</span></code> and <code class="docutils literal notranslate"><span class="pre">MIN_HEIGHT</span></code>
+parameters.</p>
+</div>
+<div class="section" id="api-usage">
+<h2>API Usage<a class="headerlink" href="#api-usage" title="Permalink to this headline">¶</a></h2>
+<p>The Thumbor <code class="docutils literal notranslate"><span class="pre">/image</span></code> REST end-point supports the commons <a class="reference external" href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP
+methods</a> :</p>
+<blockquote>
+<div><ul class="simple">
+<li>POST : to upload a new image</li>
+<li>GET : to display an image uploaded</li>
+<li>PUT : to replace an image uploaded by another preserving the URI</li>
+<li>DELETE : to remove an image uploaded from storage</li>
+</ul>
+</div></blockquote>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">PUT</span></code> and <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> methods are disabled as explained
+above. This is done to tighten thumbor’s security.</p>
+<div class="section" id="posting">
+<h3>Posting<a class="headerlink" href="#posting" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p>Posting is the only method allowed by default when you activate the
+upload module. It allows new images to be sent to Thumbor.</p>
+<dl class="docutils">
+<dt>In order to upload a new image, you have two choices:</dt>
+<dd><ul class="first last simple">
+<li>send an HTTP <strong>POST</strong> to the <code class="docutils literal notranslate"><span class="pre">/image</span></code> end-point with the image as payload (REST style)</li>
+<li>send an HTTP <strong>POST</strong> to the <code class="docutils literal notranslate"><span class="pre">/image</span></code> end-point with a multi-part form with a file field called media (Form style).</li>
+</ul>
+</dd>
+</dl>
+<p>In the REST style mode you may add an optional <code class="docutils literal notranslate"><span class="pre">Slug</span></code> header to define
+the image filename, which is useful for SEO reasons. Not specifying a
+<code class="docutils literal notranslate"><span class="pre">Slug</span></code> causes the server to use the default filename for the image
+(<code class="docutils literal notranslate"><span class="pre">UPLOAD_DEFAULT_FILENAME</span></code> parameter) .</p>
+<p>The HTTP response will return a <code class="docutils literal notranslate"><span class="pre">Location</span></code> header pointing on the
+uploaded image. The URI presented in <code class="docutils literal notranslate"><span class="pre">Location</span></code> header may be used to
+update or delete the image uploaded (see below).</p>
+<p>For examples, see the <a class="reference internal" href="#upload-an-image-via-the-rest-api">Upload an image via the REST API</a> or <a class="reference internal" href="#upload-an-image-via-a-form">Upload an image via a form</a> sections.</p>
+<div class="section" id="http-status-code">
+<h4>&nbsp;HTTP status code<a class="headerlink" href="#http-status-code" title="Permalink to this headline">¶</a></h4>
+<p>The status code returned will be :</p>
+<ul class="simple">
+<li>201 Created (success)</li>
+<li>415 Unsupported Media Type (image type is not allowed)</li>
+<li>412 Precondition Failed (image is too small or the file is not an
+image)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="putting">
+<h3>Putting<a class="headerlink" href="#putting" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p>Putting is a little more dangerous if you don’t have strict control of
+who can access the <code class="docutils literal notranslate"><span class="pre">/image</span></code> end-point. This is because whatever is
+sent using this method gets saved to storage, overwriting the previous
+entry.</p>
+<p>In order to replace an existing image, all you have to do is send an
+HTTP <strong>PUT</strong> request to the <code class="docutils literal notranslate"><span class="pre">/image</span></code> end-point with the new image
+content as payload. The new image will replace the original image
+preserving the URI.</p>
+<p>As for the <code class="docutils literal notranslate"><span class="pre">POST</span></code> method you may add an optional <code class="docutils literal notranslate"><span class="pre">Slug</span></code> header to
+define the image filename.</p>
+<p>The HTTP response will return a <code class="docutils literal notranslate"><span class="pre">Location</span></code> header pointing on the
+modified image. The URI presents in <code class="docutils literal notranslate"><span class="pre">Location</span></code> header may be used to
+update again the image or delete it.</p>
+<p>For an example see the <a class="reference internal" href="#modifying-an-image">Modifying an image</a> section.</p>
+<div class="section" id="id1">
+<h4>HTTP status code<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>The status code returned will be :</p>
+<ul class="simple">
+<li>204 No Content (success)</li>
+<li>405 Method Not Allowed (if thumbor’s configuration disallows putting
+images)</li>
+<li>415 Unsupported Media Type (image type is not allowed)</li>
+<li>412 Precondition Failed (image is too small or file is not an image)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="deleting">
+<h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<p>Deleting can be very dangerous, thus is disabled by default.</p>
+<p>If you do enable it, in order to delete an image, all you have to do is
+send an HTTP <strong>DELETE</strong> request to the <code class="docutils literal notranslate"><span class="pre">/image</span></code> end-point.</p>
+<p>For an example, see the <a class="reference internal" href="#deleting-an-image">Deleting an image</a> section.</p>
+<div class="section" id="id2">
+<h4>HTTP status code<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>204 No Content (success)</li>
+<li>404 Not Found (image doesn’t exists)</li>
+<li>405 Method Not Allowed (if thumbor’s configuration disallows deleting
+images)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Assuming the thumbor server is located at : <code class="docutils literal notranslate"><span class="pre">http://thumbor-server</span></code></p>
+<div class="section" id="upload-an-image-via-the-rest-api">
+<h3>Upload an image via the REST API<a class="headerlink" href="#upload-an-image-via-the-rest-api" title="Permalink to this headline">¶</a></h3>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">/image</span></code> REST end-point to upload your image via the
+REST API :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: image/jpeg&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Slug: photo.jpg&quot;</span>
+        <span class="o">-</span><span class="n">XPOST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">thumbor</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="n">image</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">binary</span> <span class="s2">&quot;@tests/fixtures/images/20x20.jpg&quot;</span>
+</pre></div>
+</div>
+<p>the HTTP <strong>POST</strong> request was send to the server :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">image</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">jpeg</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">822</span>
+<span class="n">Slug</span> <span class="p">:</span> <span class="n">photo</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>and the Thumbor server should return :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="n">Created</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Location</span><span class="p">:</span> <span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">photo</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">TornadoServer</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>The image is created at
+<code class="docutils literal notranslate"><span class="pre">http://thumbor-server/image/05b2eda857314e559630c6f3334d818d/photo.jpg</span></code>.
+It can be retrieved, modified or deleted via this URI.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">Slug</span></code> HTTP header specifies the filename to use for the
+image uploaded.</p>
+</div>
+<div class="section" id="upload-an-image-via-a-form">
+<h3>Upload an image via a form<a class="headerlink" href="#upload-an-image-via-a-form" title="Permalink to this headline">¶</a></h3>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">/image</span></code> REST end-point to upload your images via a
+form, the user is free to choose the filename of the image via the
+<code class="docutils literal notranslate"><span class="pre">filename</span></code> field :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">XPOST</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">thumbor</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="n">image</span>
+        <span class="o">-</span><span class="n">F</span> <span class="s2">&quot;media=@tests/fixtures/images/20x20.jpg;type=image/jpeg;filename=croco.jpg&quot;</span>
+</pre></div>
+</div>
+<p>the HTTP <strong>POST</strong> request was send to the server :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">image</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">multipart</span><span class="o">/</span><span class="n">form</span><span class="o">-</span><span class="n">data</span><span class="p">;</span> <span class="n">boundary</span><span class="o">=----------------------------</span><span class="mi">11</span><span class="n">df125d8b12</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">822</span>
+</pre></div>
+</div>
+<p>and the Thumbor server should return :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="n">Created</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Location</span><span class="p">:</span> <span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">croco</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>The image is created at
+<code class="docutils literal notranslate"><span class="pre">http://thumbor-server/image/05b2eda857314e559630c6f3334d818d/croco.jpg</span></code>.
+It can be retrieve, modify or delete via this URI using the REST API.</p>
+</div>
+<div class="section" id="modifying-an-image">
+<h3>Modifying an image<a class="headerlink" href="#modifying-an-image" title="Permalink to this headline">¶</a></h3>
+<p>To replace the previously uploaded image by another we use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: image/jpeg&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Slug: modified_image.jpg&quot;</span>
+        <span class="o">-</span><span class="n">XPUT</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">thumbor</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">photo</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">binary</span> <span class="s2">&quot;@tests/fixtures/images/20x20.jpg&quot;</span>
+</pre></div>
+</div>
+<p>the HTTP <strong>PUT</strong> request was send to the server :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">photo</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">image</span><span class="o">/</span><span class="n">jpeg</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">822</span>
+<span class="n">Slug</span> <span class="p">:</span> <span class="n">modified_image</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>and the Thumbor server should return :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">204</span> <span class="n">No</span> <span class="n">Content</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Location</span><span class="p">:</span> <span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">modified_image</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">TornadoServer</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting-an-image">
+<h3>Deleting an image<a class="headerlink" href="#deleting-an-image" title="Permalink to this headline">¶</a></h3>
+<p>Finally to delete the uploaded image we use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">XDELETE</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">thumbor</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">modified_image</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>the HTTP <strong>DELETE</strong> request was send to the server :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="mi">05</span><span class="n">b2eda857314e559630c6f3334d818d</span><span class="o">/</span><span class="n">modified_image</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>and the Thumbor server should return :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">204</span> <span class="n">No</span> <span class="n">Content</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Server</span><span class="p">:</span> <span class="n">TornadoServer</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="image_loader.html" class="btn btn-neutral float-right" title="Image loader" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="detection_algorithms.html" class="btn btn-neutral float-left" title="Detection Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

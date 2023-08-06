@@ -1,0 +1,1313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Licensing" href="licensing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="more.html">More</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="the_team.html">The team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whos_using_it.html">Whos using it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hacking_on_thumbor.html">Hacking on Thumbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="licensing.html">Licensing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stable-release">Stable Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thumbor-releases">thumbor Releases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-4-1-0-02-apr-2014-diff">4.1.0 - http://pypi.python.org/pypi/thumbor/4.1.0 - 02-Apr-2014 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-4-0-4-28-mar-2014-diff">4.0.4 - http://pypi.python.org/pypi/thumbor/4.0.4 - 28-Mar-2014 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-4-0-3-28-mar-2014-diff">4.0.3 - http://pypi.python.org/pypi/thumbor/4.0.3 - 28-Mar-2014 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-4-0-2-18-mar-2014-diff">4.0.2 - http://pypi.python.org/pypi/thumbor/4.0.2 - 18-Mar-2014 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-4-0-1-18-mar-2014-diff">4.0.1 - http://pypi.python.org/pypi/thumbor/4.0.1 - 18-Mar-2014 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-4-0-0-12-mar-2014-diff">4.0.0 - http://pypi.python.org/pypi/thumbor/4.0.0 - 12-Mar-2014 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-14-7-30-oct-2013-diff">3.14.7 - http://pypi.python.org/pypi/thumbor/3.14.7 - 30-Oct-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-14-6-07-oct-2013-diff">3.14.6 - http://pypi.python.org/pypi/thumbor/3.14.6 - 07-Oct-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-14-5-25-sep-2013-diff">3.14.5 - http://pypi.python.org/pypi/thumbor/3.14.5 - 25-Sep-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-14-4-24-sep-2013-diff">3.14.4 - http://pypi.python.org/pypi/thumbor/3.14.4 - 24-Sep-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-14-1-02-sep-2013-diff">3.14.1 - http://pypi.python.org/pypi/thumbor/3.14.1 - 02-Sep-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-13-3-31-aug-2013-diff">3.13.3 - http://pypi.python.org/pypi/thumbor/3.13.3 - 31-Aug-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-13-2-31-aug-2013-diff">3.13.2 - http://pypi.python.org/pypi/thumbor/3.13.2 - 31-Aug-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-13-1-31-aug-2013-diff">3.13.1 - http://pypi.python.org/pypi/thumbor/3.13.1 - 31-Aug-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-13-0-28-aug-2013-diff">3.13.0 - http://pypi.python.org/pypi/thumbor/3.13.0 - 28-Aug-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-12-2-12-aug-2013-diff">3.12.2 - http://pypi.python.org/pypi/thumbor/3.12.2 - 12-Aug-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-12-1-18-jul-2013-diff">3.12.1 - http://pypi.python.org/pypi/thumbor/3.12.1 - 18-Jul-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-12-0-05-jul-2013-diff">3.12.0 - http://pypi.python.org/pypi/thumbor/3.12.0 - 05-Jul-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-11-1-05-jul-2013-diff">3.11.1 - http://pypi.python.org/pypi/thumbor/3.11.1 - 05-Jul-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-11-0-02-jul-2013-diff">3.11.0 - http://pypi.python.org/pypi/thumbor/3.11.0 - 02-Jul-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-10-0-14-may-2013-diff">3.10.0 - http://pypi.python.org/pypi/thumbor/3.10.0 - 14-May-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-9-4-17-apr-2013-diff">3.9.4 - http://pypi.python.org/pypi/thumbor/3.9.4 - 17-Apr-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-9-2-09-apr-2013-diff">3.9.2 - http://pypi.python.org/pypi/thumbor/3.9.2 - 09-Apr-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-9-1-09-apr-2013-diff">3.9.1 - http://pypi.python.org/pypi/thumbor/3.9.1 - 09-Apr-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-9-0-28-mar-2013-diff">3.9.0 - http://pypi.python.org/pypi/thumbor/3.9.0 - 28-Mar-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-8-1-27-mar-2013-diff">3.8.1 - http://pypi.python.org/pypi/thumbor/3.8.1 - 27-Mar-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-7-1-06-feb-2013-diff">3.7.1 - http://pypi.python.org/pypi/thumbor/3.7.1 - 06-Feb-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-7-0-24-jan-2013-diff">3.7.0 - http://pypi.python.org/pypi/thumbor/3.7.0 - 24-Jan-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-11-23-jan-2013-diff">3.6.11 - http://pypi.python.org/pypi/thumbor/3.6.11 - 23-Jan-2013 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-10-14-dec-2012-diff">3.6.10 - http://pypi.python.org/pypi/thumbor/3.6.10 - 14-Dec-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-9-12-dec-2012-diff">3.6.9 - http://pypi.python.org/pypi/thumbor/3.6.9 - 12-Dec-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-8-12-dec-2012-diff">3.6.8 - http://pypi.python.org/pypi/thumbor/3.6.8 - 12-Dec-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-7-24-oct-2012-diff">3.6.7 - http://pypi.python.org/pypi/thumbor/3.6.7 - 24-Oct-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-6-24-oct-2012-diff">3.6.6 - http://pypi.python.org/pypi/thumbor/3.6.6 - 24-Oct-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-4-24-oct-2012-diff">3.6.4 - http://pypi.python.org/pypi/thumbor/3.6.4 - 24-Oct-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-3-26-sep-2012-diff">3.6.3 - http://pypi.python.org/pypi/thumbor/3.6.3 - 26-Sep-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-2-19-sep-2012-diff">3.6.2 - http://pypi.python.org/pypi/thumbor/3.6.2 - 19-Sep-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-1-19-sep-2012-diff">3.6.1 - http://pypi.python.org/pypi/thumbor/3.6.1 - 19-Sep-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-6-0-18-sep-2012-diff">3.6.0 - http://pypi.python.org/pypi/thumbor/3.6.0 - 18-Sep-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-5-2-14-aug-2012-diff">3.5.2 - http://pypi.python.org/pypi/thumbor/3.5.2 - 14-Aug-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-5-1-03-aug-2012-diff">3.5.1 - http://pypi.python.org/pypi/thumbor/3.5.1 - 03-Aug-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-5-0-03-aug-2012-diff">3.5.0 - http://pypi.python.org/pypi/thumbor/3.5.0 - 03-Aug-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-4-1-02-aug-2012-diff">3.4.1 - http://pypi.python.org/pypi/thumbor/3.4.1 - 02-Aug-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-4-0-01-aug-2012-diff">3.4.0 - http://pypi.python.org/pypi/thumbor/3.4.0 - 01-Aug-2012 - diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-3-0-18-jul-2012">3.3.0 - http://pypi.python.org/pypi/thumbor/3.3.0 - 18-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-2-0-18-jul-2012">3.2.0 - http://pypi.python.org/pypi/thumbor/3.2.0 - 18-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-1-1-17-jul-2012">3.1.1 - http://pypi.python.org/pypi/thumbor/3.1.1 - 17-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-1-0-17-jul-2012">3.1.0 - http://pypi.python.org/pypi/thumbor/3.1.0 - 17-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-0-2-9-jul-2012">3.0.2 - http://pypi.python.org/pypi/thumbor/3.0.2 - 9-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-0-1-2-jul-2012">3.0.1 - http://pypi.python.org/pypi/thumbor/3.0.1 - 2-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-3-0-0-2-jul-2012">3.0.0 - http://pypi.python.org/pypi/thumbor/3.0.0 - 2-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-8-2-9-jul-2012">2.8.2 - http://pypi.python.org/pypi/thumbor/2.8.2 - 9-Jul-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-8-1-29-jun-2012">2.8.1 - http://pypi.python.org/pypi/thumbor/2.8.1 - 29-Jun-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-7-8-21-jun-2012">2.7.8 - http://pypi.python.org/pypi/thumbor/2.7.8 - 21-Jun-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-7-7-01-jun-2012">2.7.7 - http://pypi.python.org/pypi/thumbor/2.7.7 - 01-Jun-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-7-4-30-mar-2012">2.7.4 - http://pypi.python.org/pypi/thumbor/2.7.4 - 30-Mar-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-7-3-23-mar-2012">2.7.3 - http://pypi.python.org/pypi/thumbor/2.7.3 - 23-Mar-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-7-1-19-mar-2012">2.7.1 - http://pypi.python.org/pypi/thumbor/2.7.1 - 19-Mar-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-7-0-14-mar-2012">2.7.0 - http://pypi.python.org/pypi/thumbor/2.7.0 - 14-Mar-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-6-12-05-mar-2012">2.6.12 - http://pypi.python.org/pypi/thumbor/2.6.12 - 05-Mar-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-6-5-01-mar-2012">2.6.5 - http://pypi.python.org/pypi/thumbor/2.6.5 - 01-Mar-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-6-4-23-feb-2012">2.6.4 - http://pypi.python.org/pypi/thumbor/2.6.4 - 23-Feb-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-6-3-21-feb-2012">2.6.3 - http://pypi.python.org/pypi/thumbor/2.6.3 - 21-Feb-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-6-2-20-feb-2012">2.6.2 - http://pypi.python.org/pypi/thumbor/2.6.2 - 20-Feb-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-5-1-02-feb-2012">2.5.1 - http://pypi.python.org/pypi/thumbor/2.5.1 - 02-Feb-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-5-0-30-jan-2012">2.5.0 - http://pypi.python.org/pypi/thumbor/2.5.0 - 30-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-9-30-jan-2012">2.4.9 - http://pypi.python.org/pypi/thumbor/2.4.9 - 30-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-7-27-jan-2012">2.4.7 - http://pypi.python.org/pypi/thumbor/2.4.7 - 27-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-6-24-jan-2012">2.4.6 - http://pypi.python.org/pypi/thumbor/2.4.6 - 24-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-4-18-jan-2012">2.4.4 - http://pypi.python.org/pypi/thumbor/2.4.4 - 18-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-3-18-jan-2012">2.4.3 - http://pypi.python.org/pypi/thumbor/2.4.3 - 18-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-2-17-jan-2012">2.4.2 - http://pypi.python.org/pypi/thumbor/2.4.2 - 17-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-1-17-jan-2012">2.4.1 - http://pypi.python.org/pypi/thumbor/2.4.1 - 17-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-4-0-17-jan-2012">2.4.0 - http://pypi.python.org/pypi/thumbor/2.4.0 - 17-Jan-2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-3-0">2.3.0 - http://pypi.python.org/pypi/thumbor/2.3.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-2-0">2.2.0 - http://pypi.python.org/pypi/thumbor/2.2.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-1-0">2.1.0 - http://pypi.python.org/pypi/thumbor/2.1.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-0-5">2.0.5 - http://pypi.python.org/pypi/thumbor/2.0.5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-0-3">2.0.3 - http://pypi.python.org/pypi/thumbor/2.0.3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-0-2">2.0.2 - http://pypi.python.org/pypi/thumbor/2.0.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-2-0-1">2.0.1 - http://pypi.python.org/pypi/thumbor/2.0.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-1-2-1">1.2.1 - http://pypi.python.org/pypi/thumbor/1.2.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-1-1-0">1.1.0 - http://pypi.python.org/pypi/thumbor/1.1.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-1-0-0">1.0.0 - http://pypi.python.org/pypi/thumbor/1.0.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-9-6">0.9.6 - http://pypi.python.org/pypi/thumbor/0.9.6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-9-4">0.9.4 - http://pypi.python.org/pypi/thumbor/0.9.4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-9-3">0.9.3 - http://pypi.python.org/pypi/thumbor/0.9.3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-9-1">0.9.1 - http://pypi.python.org/pypi/thumbor/0.9.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-9-0">0.9.0 - http://pypi.python.org/pypi/thumbor/0.9.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-8-2">0.8.2 - http://pypi.python.org/pypi/thumbor/0.8.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-8-0">0.8.0 - http://pypi.python.org/pypi/thumbor/0.8.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-14">0.7.14 - http://pypi.python.org/pypi/thumbor/0.7.14</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-11">0.7.11 - http://pypi.python.org/pypi/thumbor/0.7.11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-10">0.7.10 - http://pypi.python.org/pypi/thumbor/0.7.10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-9">0.7.9 - http://pypi.python.org/pypi/thumbor/0.7.9</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-8">0.7.8 - http://pypi.python.org/pypi/thumbor/0.7.8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-7">0.7.7 - http://pypi.python.org/pypi/thumbor/0.7.7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-6">0.7.6 - http://pypi.python.org/pypi/thumbor/0.7.6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-5">0.7.5 - http://pypi.python.org/pypi/thumbor/0.7.5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-4">0.7.4 - http://pypi.python.org/pypi/thumbor/0.7.4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-2">0.7.2 - http://pypi.python.org/pypi/thumbor/0.7.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-7-0">0.7.0 - http://pypi.python.org/pypi/thumbor/0.7.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-6-5">0.6.5 - http://pypi.python.org/pypi/thumbor/0.6.5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-6-4">0.6.4 - http://pypi.python.org/pypi/thumbor/0.6.4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-6-3">0.6.3 - http://pypi.python.org/pypi/thumbor/0.6.3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-6-2">0.6.2 - http://pypi.python.org/pypi/thumbor/0.6.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-6-1">0.6.1 - http://pypi.python.org/pypi/thumbor/0.6.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-5-1">0.5.1 - http://pypi.python.org/pypi/thumbor/0.5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-5-0">0.5.0 - http://pypi.python.org/pypi/thumbor/0.5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-4-1">0.4.1 - http://pypi.python.org/pypi/thumbor/0.4.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-4-0">0.4.0 - http://pypi.python.org/pypi/thumbor/0.4.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-pypi-python-org-pypi-thumbor-0-3-0">0.3.0 - http://pypi.python.org/pypi/thumbor/0.3.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="more.html">More</a> &raquo;</li>
+        
+      <li>Release Notes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/release_notes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes">
+<h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<p>** THIS PAGE IS HERE ONLY FOR HISTORIC PURPOSES, since we are now using <a class="reference external" href="https://github.com/thumbor/thumbor/releases">github releases page</a>. **</p>
+<div class="section" id="stable-release">
+<h2>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h2>
+<p>4.1.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.1.0">http://pypi.python.org/pypi/thumbor/4.1.0</a> - 02-Apr-2014</p>
+</div>
+<div class="section" id="thumbor-releases">
+<h2>thumbor Releases<a class="headerlink" href="#thumbor-releases" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-4-1-0-02-apr-2014-diff">
+<h3>4.1.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.1.0">http://pypi.python.org/pypi/thumbor/4.1.0</a> - 02-Apr-2014 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/4.0.4...4.1.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-4-1-0-02-apr-2014-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>New filter: <a class="reference external" href="https://github.com/thumbor/thumbor/wiki/Extract-Focal-Points">Extract Focal
+Points</a></li>
+<li>Infrastructure for filters on different phases during the image
+processing lifecycle. Right now PHASE_POST_TRANSFORM and
+PHASE_PRE_LOAD are supported. All existing filters default to
+PHASE_POST_TRANSFORM</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-4-0-4-28-mar-2014-diff">
+<h3>4.0.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.0.4">http://pypi.python.org/pypi/thumbor/4.0.4</a> - 28-Mar-2014 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/4.0.3...4.0.4">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-4-0-4-28-mar-2014-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed issue with blur filter when used with more than 150 of radius
+(by &#64;heynemann);</li>
+<li>Fixed issue with format filter when used in conjunction with
+auto_webp (by &#64;cezarsa).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-4-0-3-28-mar-2014-diff">
+<h3>4.0.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.0.3">http://pypi.python.org/pypi/thumbor/4.0.3</a> - 28-Mar-2014 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/4.0.2...4.0.3">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-4-0-3-28-mar-2014-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix in all engines to return both image data and image mode together,
+instead of one or the other. If you implement your own engine, you
+need to create a new method called <code class="docutils literal notranslate"><span class="pre">image_data_as_rgb</span></code> that returns
+the image mode and the image bytes;</li>
+<li>Thumbor Application class now has a <code class="docutils literal notranslate"><span class="pre">get_handlers</span></code> method that can
+be overwritten to specify new handlers.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-4-0-2-18-mar-2014-diff">
+<h3>4.0.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.0.2">http://pypi.python.org/pypi/thumbor/4.0.2</a> - 18-Mar-2014 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/4.0.1...4.0.2">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-4-0-2-18-mar-2014-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed issue with WebP request path by <a class="reference external" href="https://github.com/frankdu">Frank
+Du</a>;</li>
+<li>Fixed issue with Upstart Script Log Level by <a class="reference external" href="https://github.com/mattrobenolt">Matt
+Robenolt</a>;</li>
+<li>Fixed issue with folder not existing before storing security details
+by <a class="reference external" href="https://github.com/cicerocomp">Cícero Verneck Corrêa</a>;</li>
+<li>Fixed <a class="reference external" href="https://github.com/thumbor/thumbor/issues/272">#272</a> -
+Thumbor works properly with newer tornado.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-4-0-1-18-mar-2014-diff">
+<h3>4.0.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.0.1">http://pypi.python.org/pypi/thumbor/4.0.1</a> - 18-Mar-2014 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/4.0.0...4.0.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-4-0-1-18-mar-2014-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed issue #289 - Now URLs with ‘~’ should work properly.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-4-0-0-12-mar-2014-diff">
+<h3>4.0.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/4.0.0">http://pypi.python.org/pypi/thumbor/4.0.0</a> - 12-Mar-2014 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.14.7...4.0.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-4-0-0-12-mar-2014-diff" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="warning">
+<h4>WARNING<a class="headerlink" href="#warning" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div>This version contains breaking changes. Both GraphicsMagick and
+OpenCV engines were removed from the built-in imaging engines and
+can be found in the <a class="reference external" href="http://github.com/thumbor">thumbor
+organization</a> now. For more
+information on using each of them check the respective project
+documentation.</div></blockquote>
+</div>
+<div class="section" id="breaking-chances">
+<h4>BREAKING Chances<a class="headerlink" href="#breaking-chances" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Removed thumbor.engines.opencv in favor of the new
+<a class="reference external" href="https://github.com/thumbor/opencv-engine">opencv-engine</a> project.
+That’s where we’ll maintain the OpenCV engine.</li>
+<li>Removed thumbor.engines.graphicsmagick in favor of the new
+<a class="reference external" href="https://github.com/thumbor/graphicsmagick-engine">graphicsmagick-engine</a>
+project. That’s where we’ll maintain the GraphicsMagick engine.</li>
+</ul>
+</div>
+<div class="section" id="fixed-issues">
+<h4>Fixed Issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Partitioning the FileStorage Result Storage into more folders by
+<a class="reference external" href="https://github.com/runa">Martin Sarsale</a>;</li>
+<li>Json File Error Handler by <a class="reference external" href="https://github.com/dhardy92">Damien
+Hardy</a>;</li>
+<li>Support binding socket to file descriptor instead of port by <a class="reference external" href="https://github.com/198d">John
+MacKenzie</a>;</li>
+<li>HEAD queries to thumbor’s healthcheck returning 200 status code by
+<a class="reference external" href="https://github.com/dhardy92">Damien Hardy</a>;</li>
+<li>Fixed bug when parsing urls with filters of an original with filters
+by <a class="reference external" href="https://github.com/cezarsa">Cezar Sá</a>;</li>
+<li>Support different default quality for WebP images by <a class="reference external" href="https://github.com/heynemann">Bernardo
+Heynemann</a>;</li>
+<li>Keep transparency when saving transparent gif by <a class="reference external" href="https://github.com/igorsobreira">Igor
+Sobreira</a>;</li>
+<li>Don’t save PNG files as CMYK by <a class="reference external" href="https://github.com/igorsobreira">Igor
+Sobreira</a>;</li>
+<li>Upstart now uses ip var defined on ubuntu default file by <a class="reference external" href="https://github.com/morpheu">Paulo
+Sousa</a>;</li>
+<li>Fixed images cropped with width 1px and height 0px by <a class="reference external" href="https://github.com/heynemann">Bernardo
+Heynemann</a>;</li>
+<li>Fixed #236 - IndexError: list index out of range by <a class="reference external" href="https://github.com/heynemann">Bernardo
+Heynemann</a>;</li>
+<li>Fixed #235 - ValueError: Not a valid numbers of quantization tables.
+Should be between 2 and 4 by <a class="reference external" href="https://github.com/heynemann">Bernardo
+Heynemann</a>;</li>
+<li>Fixed #228 - Confusing error when using OpenCV by <a class="reference external" href="https://github.com/heynemann">Bernardo
+Heynemann</a>;</li>
+<li>New options to the fill filter by
+<a class="reference external" href="https://github.com/prolificphotis">prolificphotis</a>;</li>
+<li>Added FILL_MERGES Configuration to specify whether the fill filter
+should merge the background by
+<a class="reference external" href="https://github.com/prolificphotis">prolificphotis</a>;</li>
+<li>Resolved quality config None in graphicsmagick engine by <a class="reference external" href="https://github.com/marciotoshio">Marcio
+Toshio Ide</a>;</li>
+<li>Preserving EXIF info when storing original images by <a class="reference external" href="https://github.com/cezarsa">Cezar
+Sá</a>;</li>
+<li>Resetting EXIF orientation after reorienting image by <a class="reference external" href="https://github.com/cezarsa">Cezar
+Sá</a>;</li>
+<li>Compatibility work for the fill filter across engines by <a class="reference external" href="https://github.com/cezarsa">Cezar
+Sá</a>;</li>
+<li>Pillow test_requirement match setup.py by <a class="reference external" href="https://github.com/robolson">Rob
+Olson</a>;</li>
+<li>Fixed issues with graphicsmagick and gif images by <a class="reference external" href="https://github.com/heynemann">Bernardo
+Heynemann</a>;</li>
+<li>Convert to grayscale working in OpenCV Engine by <a class="reference external" href="https://github.com/scorphus">Pablo
+Aguiar</a>.</li>
+</ul>
+</div>
+<div class="section" id="new-features">
+<h4>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>New convolution filter by <a class="reference external" href="https://github.com/cezarsa">Cezar Sá</a>;</li>
+<li>New Gaussian Blur filter by <a class="reference external" href="https://github.com/cezarsa">Cezar
+Sá</a>;</li>
+</ul>
+</div>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-14-7-30-oct-2013-diff">
+<h3>3.14.7 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.14.7">http://pypi.python.org/pypi/thumbor/3.14.7</a> - 30-Oct-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.14.6...3.14.7">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-14-7-30-oct-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Bumping tornado version to allow last update.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-14-6-07-oct-2013-diff">
+<h3>3.14.6 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.14.6">http://pypi.python.org/pypi/thumbor/3.14.6</a> - 07-Oct-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.14.5...3.14.6">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-14-6-07-oct-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Result storage disallows requesting files outside the root path.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-14-5-25-sep-2013-diff">
+<h3>3.14.5 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.14.5">http://pypi.python.org/pypi/thumbor/3.14.5</a> - 25-Sep-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.14.4...3.14.5">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-14-5-25-sep-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Not doing vary header or converting to WebP when image is an animated
+gif or already a WebP.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-14-4-24-sep-2013-diff">
+<h3>3.14.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.14.4">http://pypi.python.org/pypi/thumbor/3.14.4</a> - 24-Sep-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.14.1...3.14.4">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-14-4-24-sep-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Thumbor now includes a “Vary”: “Accept” header to help cache servers
+to better understand that the image URL can vary by accept header.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-14-1-02-sep-2013-diff">
+<h3>3.14.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.14.1">http://pypi.python.org/pypi/thumbor/3.14.1</a> - 02-Sep-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.13.3...3.14.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-14-1-02-sep-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>A new filter has been introduced: max_bytes. This filter allows
+users to specify the maximum number of bytes for the image. Thumbor
+will vary the quality of the image for JPEG and WebP images (png and
+gif images do not get affected by this filter).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-13-3-31-aug-2013-diff">
+<h3>3.13.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.13.3">http://pypi.python.org/pypi/thumbor/3.13.3</a> - 31-Aug-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.13.2...3.13.3">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-13-3-31-aug-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed <a class="reference external" href="https://github.com/thumbor/thumbor/issues/193">#193</a>. File
+storage now uses atomic storage of files, thus avoiding corruption of
+stored images.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-13-2-31-aug-2013-diff">
+<h3>3.13.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.13.2">http://pypi.python.org/pypi/thumbor/3.13.2</a> - 31-Aug-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.13.1...3.13.2">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-13-2-31-aug-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Merged <a class="reference external" href="https://github.com/thumbor/thumbor/pull/202">#202</a>. Proxy
+support added to default HTTP Loader.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-13-1-31-aug-2013-diff">
+<h3>3.13.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.13.1">http://pypi.python.org/pypi/thumbor/3.13.1</a> - 31-Aug-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.13.0...3.13.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-13-1-31-aug-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Merged <a class="reference external" href="https://github.com/thumbor/thumbor/pull/197">#197</a>.
+Healthcheck now replied to HEAD requests.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-13-0-28-aug-2013-diff">
+<h3>3.13.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.13.0">http://pypi.python.org/pypi/thumbor/3.13.0</a> - 28-Aug-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.12.2...3.13.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-13-0-28-aug-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/204">#204</a>.
+Thumbor now allows users to specify that WebP should be automatically
+used whenever the request has the proper Accept header (image/webp).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-12-2-12-aug-2013-diff">
+<h3>3.12.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.12.2">http://pypi.python.org/pypi/thumbor/3.12.2</a> - 12-Aug-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.12.1...3.12.2">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-12-2-12-aug-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Added some extra logging to the finish request stage of the image
+handling.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-12-1-18-jul-2013-diff">
+<h3>3.12.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.12.1">http://pypi.python.org/pypi/thumbor/3.12.1</a> - 18-Jul-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.12.0...3.12.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-12-1-18-jul-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed leak of Redis connections when using queued detectors.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-12-0-05-jul-2013-diff">
+<h3>3.12.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.12.0">http://pypi.python.org/pypi/thumbor/3.12.0</a> - 05-Jul-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.11.1...3.12.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-12-0-05-jul-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed an issue with animated gifs (sigh);</li>
+<li>Add detection support for WEBP format. Merge pull request
+<a class="reference external" href="https://github.com/thumbor/thumbor/pull/194">#194</a> from
+dhardy92:feature_Add_WEBP_Detection;</li>
+<li>Support for the new release of Pillow (2.1.0) and works with Pillow
+master branch for now.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-11-1-05-jul-2013-diff">
+<h3>3.11.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.11.1">http://pypi.python.org/pypi/thumbor/3.11.1</a> - 05-Jul-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.11.0...3.11.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-11-1-05-jul-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Finished webp support;</li>
+<li>Fixed a bug with webp support that would pass ‘None’ as format if no
+format specified;</li>
+<li>Added a configuration <code class="docutils literal notranslate"><span class="pre">PRESERVE_EXIF_INFO</span></code> that when set to True
+will keep the exif metadata in images intact (including webp
+resulting images).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-11-0-02-jul-2013-diff">
+<h3>3.11.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.11.0">http://pypi.python.org/pypi/thumbor/3.11.0</a> - 02-Jul-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.10.0...3.11.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-11-0-02-jul-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Added ‘format’ filter. Now users can specify the output format using
+filters:format(webp) or filters:format(jpeg) and as follows. More
+information in the Filters page.</li>
+<li>Partial webp support. Now webp images can be read as the source image
+and be used as the output image. Partial here means that the version
+we are using of pillow does not yet support ICC Profiles in WebP
+images. Only Chrome Canary does support ICC profiles right now, so
+this is not a real issue.</li>
+<li>Improved openCV engine image resampling.</li>
+<li>Proper integration with Pillow version 2.0.0.</li>
+<li>Fixed HMAC signing if the key has unicode characters.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-10-0-14-may-2013-diff">
+<h3>3.10.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.10.0">http://pypi.python.org/pypi/thumbor/3.10.0</a> - 14-May-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.9.4...3.10.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-10-0-14-may-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/184">#184</a>.
+Thumbor now reports expected errors as warning, instead of errors.
+This should allow users to use a logger level of ERROR to reduce the
+amount of I/O thumbor does for logging.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/183">#183</a>.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/182">#182</a>.
+There’s two new configuration keys:
+<code class="docutils literal notranslate"><span class="pre">HTTP_LOADER_DEFAULT_USER_AGENT</span></code> and
+<code class="docutils literal notranslate"><span class="pre">HTTP_LOADER_FORWARD_USER_AGENT</span></code>. These are meant to allow
+scenarios where the remote image server won’t allow thumbor’s user
+agent.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/180">#180</a>.
+Thumbor now features a grayscale filter. More information can be
+found in the Filters page.</li>
+<li>Code reformatting to conform to PEP-8.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-9-4-17-apr-2013-diff">
+<h3>3.9.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.9.4">http://pypi.python.org/pypi/thumbor/3.9.4</a> - 17-Apr-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.9.2...3.9.4">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-9-4-17-apr-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Upgraded Pillow dependency to 2.0.0;</li>
+<li>Normalized the Max Age header for images with smart detection errors
+around all detectors. Also included the <code class="docutils literal notranslate"><span class="pre">IGNORE_SMART_ERRORS</span></code>
+setting that enables users to keep responding the image without smart
+cropping when smart detection throws exceptions. This setting is
+<code class="docutils literal notranslate"><span class="pre">False</span></code> by default and needs to be enabled explicitly (reverse
+compatibility);</li>
+<li>Fixed an issue with sentry error handler;</li>
+<li><strong>POSSIBLE BREAKING CHANGE</strong>: We changed the way the http handler
+requests images. It now passes safer connection timeout, request
+timeout and follow redirects values to <code class="docutils literal notranslate"><span class="pre">libcurl</span></code>. You can change
+those values in your configuration file using the
+<code class="docutils literal notranslate"><span class="pre">HTTP_LOADER_CONNECT_TIMEOUT</span></code>, <code class="docutils literal notranslate"><span class="pre">HTTP_LOADER_REQUEST_TIMEOUT</span></code>,
+<code class="docutils literal notranslate"><span class="pre">HTTP_LOADER_FOLLOW_REDIRECTS</span></code> and <code class="docutils literal notranslate"><span class="pre">HTTP_LOADER_MAX_REDIRECTS</span></code>
+settings (more on those in the Configuration page). This change might
+break you if you have connect times greater than 5 seconds. This
+setting was previously configured to 20 seconds.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-9-2-09-apr-2013-diff">
+<h3>3.9.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.9.2">http://pypi.python.org/pypi/thumbor/3.9.2</a> - 09-Apr-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.9.1...3.9.2">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-9-2-09-apr-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Logging format can now be configured using <code class="docutils literal notranslate"><span class="pre">THUMBOR_LOG_FORMAT</span></code> and
+<code class="docutils literal notranslate"><span class="pre">THUMBOR_LOG_DATE_FORMAT</span></code> configuration variables. These are just
+passed through to python’s <code class="docutils literal notranslate"><span class="pre">format</span></code> and <code class="docutils literal notranslate"><span class="pre">datefmt</span></code> arguments of
+the <code class="docutils literal notranslate"><span class="pre">logging.basicConfig</span></code> method.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-9-1-09-apr-2013-diff">
+<h3>3.9.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.9.1">http://pypi.python.org/pypi/thumbor/3.9.1</a> - 09-Apr-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.9.0...3.9.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-9-1-09-apr-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Makes error handling a little safer.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-9-0-28-mar-2013-diff">
+<h3>3.9.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.9.0">http://pypi.python.org/pypi/thumbor/3.9.0</a> - 28-Mar-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.8.1...3.9.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-9-0-28-mar-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/165">#165</a>.
+Setting the <code class="docutils literal notranslate"><span class="pre">ALLOW_ANIMATED_GIFS</span></code> configuration to <code class="docutils literal notranslate"><span class="pre">False</span></code> will
+remove the experimental support for animated gifs.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-8-1-27-mar-2013-diff">
+<h3>3.8.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.8.1">http://pypi.python.org/pypi/thumbor/3.8.1</a> - 27-Mar-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.7.1...3.8.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-8-1-27-mar-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/175">#175</a>.
+Thumbor now support custom error handling. This can be very useful
+for users that have a centralized error application (like
+<a class="reference external" href="https://github.com/getsentry/sentry">sentry</a>).</li>
+<li><a class="reference external" href="https://github.com/getsentry/sentry">Sentry’s</a> custom error
+handler comes built-in with thumbor.</li>
+<li>Optimized fill filter, which is now implemented in C (by
+fabiomcosta).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-7-1-06-feb-2013-diff">
+<h3>3.7.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.7.1">http://pypi.python.org/pypi/thumbor/3.7.1</a> - 06-Feb-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.7.0...3.7.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-7-1-06-feb-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix bug with quoting valid characters in URL (by cdemonchy);</li>
+<li>Fix in debian packaging for Debian Squeeze (by dhardy92);</li>
+<li>Fix in the mongo storage (by phpconnect);</li>
+<li>Auto option for the fill filter (by fabiomcosta).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-7-0-24-jan-2013-diff">
+<h3>3.7.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.7.0">http://pypi.python.org/pypi/thumbor/3.7.0</a> - 24-Jan-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.11...3.7.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-7-0-24-jan-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Multi-Instance deb support. Merge pull request
+<a class="reference external" href="https://github.com/thumbor/thumbor/pull/146">#146</a> from
+nhuray/master.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-11-23-jan-2013-diff">
+<h3>3.6.11 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.11">http://pypi.python.org/pypi/thumbor/3.6.11</a> - 23-Jan-2013 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.10...3.6.11">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-11-23-jan-2013-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Implementing methods that were missing in the json engine;</li>
+<li>Merge pull request
+<a class="reference external" href="https://github.com/thumbor/thumbor/pull/143">#143</a> from
+nhuray/master;</li>
+<li>Disable REST Upload by default;</li>
+<li>Merge pull request
+<a class="reference external" href="https://github.com/thumbor/thumbor/pull/142">#142</a> from
+morpheu/master;</li>
+<li>Other detector options in thumbor.conf.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-10-14-dec-2012-diff">
+<h3>3.6.10 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.10">http://pypi.python.org/pypi/thumbor/3.6.10</a> - 14-Dec-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.9...3.6.10">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-10-14-dec-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/138">#138</a>.
+Filters are not required for using thumbor.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-9-12-dec-2012-diff">
+<h3>3.6.9 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.9">http://pypi.python.org/pypi/thumbor/3.6.9</a> - 12-Dec-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.8...3.6.9">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-9-12-dec-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Improved error handling on http loader.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-8-12-dec-2012-diff">
+<h3>3.6.8 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.8">http://pypi.python.org/pypi/thumbor/3.6.8</a> - 12-Dec-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.7...3.6.8">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-8-12-dec-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/139">#139</a>.
+Libmagic is not required anymore.</li>
+<li>Improved image type detection.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-7-24-oct-2012-diff">
+<h3>3.6.7 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.7">http://pypi.python.org/pypi/thumbor/3.6.7</a> - 24-Oct-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.6...3.6.7">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-7-24-oct-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Pull request <a class="reference external" href="https://github.com/thumbor/thumbor/pull/133">#133</a>
+from gcirne.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/132">#132</a>.
+Thumbor has a rest API for uploading images from this version
+onwards. Documentation to follow.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-6-24-oct-2012-diff">
+<h3>3.6.6 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.6">http://pypi.python.org/pypi/thumbor/3.6.6</a> - 24-Oct-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.4...3.6.6">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-6-24-oct-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed some issues with thumbor-url.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-4-24-oct-2012-diff">
+<h3>3.6.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.4">http://pypi.python.org/pypi/thumbor/3.6.4</a> - 24-Oct-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.3...3.6.4">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-4-24-oct-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix glasses detector - Pull request
+<a class="reference external" href="https://github.com/thumbor/thumbor/pull/124">#124</a>.</li>
+<li>Pull request <a class="reference external" href="https://github.com/thumbor/thumbor/pull/128">#128</a>
+from wichert.</li>
+<li>Update encrypted string to allow trim parameter;</li>
+<li>Allow specifying trim option in URL composure and thumbor-url.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-3-26-sep-2012-diff">
+<h3>3.6.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.3">http://pypi.python.org/pypi/thumbor/3.6.3</a> - 26-Sep-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.2...3.6.3">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-3-26-sep-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/127">#127</a>.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-2-19-sep-2012-diff">
+<h3>3.6.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.2">http://pypi.python.org/pypi/thumbor/3.6.2</a> - 19-Sep-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.1...3.6.2">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-2-19-sep-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/126">#126</a>.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-1-19-sep-2012-diff">
+<h3>3.6.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.1">http://pypi.python.org/pypi/thumbor/3.6.1</a> - 19-Sep-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.6.0...3.6.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-1-19-sep-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/125">#125</a>
+properly. Both libthumbor and ruby-thumbor verified now (Big Kudos to
+&#64;robolson).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-6-0-18-sep-2012-diff">
+<h3>3.6.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.6.0">http://pypi.python.org/pypi/thumbor/3.6.0</a> - 18-Sep-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.5.2...3.6.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-6-0-18-sep-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed compilation under clang (Mac OS X Lion);</li>
+<li>Included trim option to remove surrounding space in images <a class="reference external" href="https://github.com/thumbor/thumbor/wiki/Usage">more
+info</a>;</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/125">#125</a>.</li>
+<li>Pull request <a class="reference external" href="https://github.com/thumbor/thumbor/pull/124">#124</a>.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-5-2-14-aug-2012-diff">
+<h3>3.5.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.5.2">http://pypi.python.org/pypi/thumbor/3.5.2</a> - 14-Aug-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.5.1...3.5.2">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-5-2-14-aug-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed support to custom apps;</li>
+<li>Fixed issue with graphicsmagick manual crop method;</li>
+<li>Added a custom-header to thumbor that specifies its name and version;</li>
+<li>Changed filestorage to store uploaded files using a MD5 based hash
+algorithm similar to what git does.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-5-1-03-aug-2012-diff">
+<h3>3.5.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.5.1">http://pypi.python.org/pypi/thumbor/3.5.1</a> - 03-Aug-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.5.0...3.5.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-5-1-03-aug-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Added a new exception in the upload handler called
+<code class="docutils literal notranslate"><span class="pre">BadRequestError</span></code> as a way for storages to report to thumbor that
+some information that they required in the request was not provided.
+This way thumbor can return a <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">BAD</span> <span class="pre">REQUEST</span></code> response to the
+upload request.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-5-0-03-aug-2012-diff">
+<h3>3.5.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.5.0">http://pypi.python.org/pypi/thumbor/3.5.0</a> - 03-Aug-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.4.1...3.5.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-5-0-03-aug-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/113">#113</a> and
+<a class="reference external" href="https://github.com/thumbor/thumbor/issues/113">#114</a>, that were
+related.</li>
+<li>Allow storage classes to retrieve request information in the
+<code class="docutils literal notranslate"><span class="pre">resolve_original_path</span></code> method.</li>
+</ul>
+<p><strong>WARNING</strong> - This release introduces a BREAKING CHANGE if you have your
+own storage implemented. The method <code class="docutils literal notranslate"><span class="pre">resolve_original_photo_path</span></code> now
+has a new signature. It used to be
+<code class="docutils literal notranslate"><span class="pre">resolve_original_photo_path(filename)</span></code> and now is
+<code class="docutils literal notranslate"><span class="pre">resolve_original_photo_path(request,</span> <span class="pre">filename)</span></code>.</p>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-4-1-02-aug-2012-diff">
+<h3>3.4.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.4.1">http://pypi.python.org/pypi/thumbor/3.4.1</a> - 02-Aug-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.4.0...3.4.1">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-4-1-02-aug-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/pull/115">#115</a>.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-4-0-01-aug-2012-diff">
+<h3>3.4.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.4.0">http://pypi.python.org/pypi/thumbor/3.4.0</a> - 01-Aug-2012 - <a class="reference external" href="https://github.com/thumbor/thumbor/compare/3.3.0...3.4.0">diff</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-4-0-01-aug-2012-diff" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/pull/107">#107</a>.
+9-Patch filter to support android 9-patch format-like images.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/103">#103</a>.
+Fixes handling special characters in the URLs.</li>
+<li>A couple configuration keys renamed. For some time the old names will
+be kept compatible.</li>
+<li>Introduction of <a class="reference external" href="https://github.com/globocom/derpconf">https://github.com/globocom/derpconf</a>, an abstraction
+for configuration files.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-3-0-18-jul-2012">
+<h3>3.3.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.3.0">http://pypi.python.org/pypi/thumbor/3.3.0</a> - 18-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-3-0-18-jul-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/82">#82</a>.
+There’s a new command called ‘thumbor-config’ that will output
+thumbor’s default configuration file.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/94">#94</a>.
+There’s a new configuration called ‘RESPECT_ORIENTATION’ that
+instructs thumbor to rotate images according to an EXIF orientation
+(if one can be found in the image headers).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-2-0-18-jul-2012">
+<h3>3.2.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.2.0">http://pypi.python.org/pypi/thumbor/3.2.0</a> - 18-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-2-0-18-jul-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/103">#103</a>.
+Tornado unquotes URL’s passed to thumbor and that screws up some
+URLs.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-1-1-17-jul-2012">
+<h3>3.1.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.1.1">http://pypi.python.org/pypi/thumbor/3.1.1</a> - 17-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-1-1-17-jul-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/102">#102</a>.
+There was an additional issue with images with alpha channels (LA).</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-1-0-17-jul-2012">
+<h3>3.1.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.1.0">http://pypi.python.org/pypi/thumbor/3.1.0</a> - 17-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-1-0-17-jul-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed issue with gifsicle when optimizing GIF images.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/102">#102</a>. This
+was an issue with OpenCV and palette images.</li>
+<li>Fixes with URL regexes.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-0-2-9-jul-2012">
+<h3>3.0.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.0.2">http://pypi.python.org/pypi/thumbor/3.0.2</a> - 9-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-0-2-9-jul-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixing size and manual crop for animated gifs.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-0-1-2-jul-2012">
+<h3>3.0.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.0.1">http://pypi.python.org/pypi/thumbor/3.0.1</a> - 2-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-0-1-2-jul-2012" title="Permalink to this headline">¶</a></h3>
+<p>Some fixes: * Fixed issue with filters in old style URLs. * Supporting
+meta in the thumbor-url console. * Using storage crypto keys for hmac.</p>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-3-0-0-2-jul-2012">
+<h3>3.0.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/3.0.0">http://pypi.python.org/pypi/thumbor/3.0.0</a> - 2-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-3-0-0-2-jul-2012" title="Permalink to this headline">¶</a></h3>
+<p><strong>This release features a major change in the way URLs are handled</strong>.
+It’s still backwards compatible, but the old style URLs are deprecated
+and will go away in the next major. For more information read the
+3.0.0 release changes.</p>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/98">#98</a>.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-8-2-9-jul-2012">
+<h3>2.8.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.8.2">http://pypi.python.org/pypi/thumbor/2.8.2</a> - 9-Jul-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-8-2-9-jul-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixing size and manual crop for animated gifs. (Backport from 3.0.2)</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-8-1-29-jun-2012">
+<h3>2.8.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.8.1">http://pypi.python.org/pypi/thumbor/2.8.1</a> - 29-Jun-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-8-1-29-jun-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/97">#97</a>.
+Request parameters for the source image are now properly appended to
+the image URI.</li>
+<li>Fixes <a class="reference external" href="https://github.com/thumbor/thumbor/issues/96">#96</a>.
+Experimental support for animated gifs. Most filters are working.
+Only for PIL engine. Other engines to come.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-7-8-21-jun-2012">
+<h3>2.7.8 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.7.8">http://pypi.python.org/pypi/thumbor/2.7.8</a> - 21-Jun-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-7-8-21-jun-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes to the fill and watermark filters.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-7-7-01-jun-2012">
+<h3>2.7.7 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.7.7">http://pypi.python.org/pypi/thumbor/2.7.7</a> - 01-Jun-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-7-7-01-jun-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>New filter to strip ICC heders</li>
+<li>Issue with ORIG size and Max Height.</li>
+<li>Encoding issues for Unicode named images.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-7-4-30-mar-2012">
+<h3>2.7.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.7.4">http://pypi.python.org/pypi/thumbor/2.7.4</a> - 30-Mar-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-7-4-30-mar-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Support to “orig” style widths and heights.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-7-3-23-mar-2012">
+<h3>2.7.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.7.3">http://pypi.python.org/pypi/thumbor/2.7.3</a> - 23-Mar-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-7-3-23-mar-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Issue #90|https://github.com/thumbor/thumbor/issues/90 fixed.
+thumbor-url command now works properly.</li>
+<li>Key file and adaptive cropping support in thumbor-url.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-7-1-19-mar-2012">
+<h3>2.7.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.7.1">http://pypi.python.org/pypi/thumbor/2.7.1</a> - 19-Mar-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-7-1-19-mar-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Filter infrastructure refactored.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-7-0-14-mar-2012">
+<h3>2.7.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.7.0">http://pypi.python.org/pypi/thumbor/2.7.0</a> - 14-Mar-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-7-0-14-mar-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Improvements in the upload feature.</li>
+<li>Improvements in the C-Based filters.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-6-12-05-mar-2012">
+<h3>2.6.12 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.6.12">http://pypi.python.org/pypi/thumbor/2.6.12</a> - 05-Mar-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-6-12-05-mar-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>New sharpen filter.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-6-5-01-mar-2012">
+<h3>2.6.5 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.6.5">http://pypi.python.org/pypi/thumbor/2.6.5</a> - 01-Mar-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-6-5-01-mar-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed issue with fill filter.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-6-4-23-feb-2012">
+<h3>2.6.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.6.4">http://pypi.python.org/pypi/thumbor/2.6.4</a> - 23-Feb-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-6-4-23-feb-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Minor fixes in the red eye and equalize filters.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-6-3-21-feb-2012">
+<h3>2.6.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.6.3">http://pypi.python.org/pypi/thumbor/2.6.3</a> - 21-Feb-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-6-3-21-feb-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Minor fixes in the image uploading area.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-6-2-20-feb-2012">
+<h3>2.6.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.6.2">http://pypi.python.org/pypi/thumbor/2.6.2</a> - 20-Feb-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-6-2-20-feb-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Ticket <a class="reference external" href="https://github.com/thumbor/thumbor/issues/25">#25</a> in
+experimental status.</li>
+<li>Ticket <a class="reference external" href="https://github.com/thumbor/thumbor/issues/59">#59</a> done.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-5-1-02-feb-2012">
+<h3>2.5.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.5.1">http://pypi.python.org/pypi/thumbor/2.5.1</a> - 02-Feb-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-5-1-02-feb-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Better handling errors in queued detectors;</li>
+<li>Fallback to jpeg when we don’t know the image type;</li>
+<li>Increased test coverage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-5-0-30-jan-2012">
+<h3>2.5.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.5.0">http://pypi.python.org/pypi/thumbor/2.5.0</a> - 30-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-5-0-30-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Refactored base detector not to depend on opencv anymore.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-9-30-jan-2012">
+<h3>2.4.9 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.9">http://pypi.python.org/pypi/thumbor/2.4.9</a> - 30-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-9-30-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Atomic file move for ResultStorage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-7-27-jan-2012">
+<h3>2.4.7 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.7">http://pypi.python.org/pypi/thumbor/2.4.7</a> - 27-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-7-27-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Bug fixes.</li>
+<li>Password support for redis storage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-6-24-jan-2012">
+<h3>2.4.6 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.6">http://pypi.python.org/pypi/thumbor/2.4.6</a> - 24-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-6-24-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Bug fixes in Mongo and Redis Storages.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-4-18-jan-2012">
+<h3>2.4.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.4">http://pypi.python.org/pypi/thumbor/2.4.4</a> - 18-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-4-18-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Minor fixes in file descriptor management.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-3-18-jan-2012">
+<h3>2.4.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.3">http://pypi.python.org/pypi/thumbor/2.4.3</a> - 18-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-3-18-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>New setting that allows users to specify if unsafe images should be
+in result storage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-2-17-jan-2012">
+<h3>2.4.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.2">http://pypi.python.org/pypi/thumbor/2.4.2</a> - 17-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-2-17-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Minor tweaks to result storage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-1-17-jan-2012">
+<h3>2.4.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.1">http://pypi.python.org/pypi/thumbor/2.4.1</a> - 17-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-1-17-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Internal minor refactoring.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-4-0-17-jan-2012">
+<h3>2.4.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.4.0">http://pypi.python.org/pypi/thumbor/2.4.0</a> - 17-Jan-2012<a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-4-0-17-jan-2012" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Major refactoring of thumbor internals. Should not affect thumbor
+usage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-3-0">
+<h3>2.3.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.3.0">http://pypi.python.org/pypi/thumbor/2.3.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-3-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Features a RemoteCompleteDetector to perform both detections in one
+round-trip to remotecv.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-2-0">
+<h3>2.2.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.2.0">http://pypi.python.org/pypi/thumbor/2.2.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-2-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Included support for remotecv.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-1-0">
+<h3>2.1.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.1.0">http://pypi.python.org/pypi/thumbor/2.1.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-1-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Updated tornado to release 2.1.1.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-0-5">
+<h3>2.0.5 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.0.5">http://pypi.python.org/pypi/thumbor/2.0.5</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-0-5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Improved PIL graphics engine to support different ICC profiles. It
+now keeps the existing ICC profile if there is one. This improves
+drastically the image quality. Very recommended update.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-0-3">
+<h3>2.0.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.0.3">http://pypi.python.org/pypi/thumbor/2.0.3</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-0-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes to native extensions used in filters.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-0-2">
+<h3>2.0.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.0.2">http://pypi.python.org/pypi/thumbor/2.0.2</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-0-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed issue with specifying the jsonp callback.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-2-0-1">
+<h3>2.0.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/2.0.1">http://pypi.python.org/pypi/thumbor/2.0.1</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-2-0-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Debug mode.</li>
+<li>Filter Support.</li>
+<li>Brightness, Contrast, Noise, Quality, RGB, Round Corner and Watermark
+filters.</li>
+<li>ImageMagick engine removed.</li>
+<li>JSONP callback can now be passed as an argument.</li>
+<li>Minor fixes.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-1-2-1">
+<h3>1.2.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/1.2.1">http://pypi.python.org/pypi/thumbor/1.2.1</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-1-2-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed minor issues with storing openCV results.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-1-1-0">
+<h3>1.1.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/1.1.0">http://pypi.python.org/pypi/thumbor/1.1.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-1-1-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed bug with smart cropping manual cropped images.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-1-0-0">
+<h3>1.0.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/1.0.0">http://pypi.python.org/pypi/thumbor/1.0.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-1-0-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed major bug with manual cropping.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-9-6">
+<h3>0.9.6 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.9.6">http://pypi.python.org/pypi/thumbor/0.9.6</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-9-6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Crypto Handler refactored. Improved decrypting performance.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-9-4">
+<h3>0.9.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.9.4">http://pypi.python.org/pypi/thumbor/0.9.4</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-9-4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixing the number of processes to one.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-9-3">
+<h3>0.9.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.9.3">http://pypi.python.org/pypi/thumbor/0.9.3</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-9-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes issue with mysql storage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-9-1">
+<h3>0.9.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.9.1">http://pypi.python.org/pypi/thumbor/0.9.1</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-9-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixes issue with redis storage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-9-0">
+<h3>0.9.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.9.0">http://pypi.python.org/pypi/thumbor/0.9.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-9-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Serious BUG Fix. OpenCV Detector data was being returned incorrectly.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-8-2">
+<h3>0.8.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.8.2">http://pypi.python.org/pypi/thumbor/0.8.2</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-8-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Minor Fixes.</li>
+<li>Performance Fixes.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-8-0">
+<h3>0.8.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.8.0">http://pypi.python.org/pypi/thumbor/0.8.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-8-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/41">Ticket #41 - Store in the storage the detection results for later
+usage.</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-14">
+<h3>0.7.14 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.14">http://pypi.python.org/pypi/thumbor/0.7.14</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Minor Fixes.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-11">
+<h3>0.7.11 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.11">http://pypi.python.org/pypi/thumbor/0.7.11</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Loader and file storage fixed.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-10">
+<h3>0.7.10 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.10">http://pypi.python.org/pypi/thumbor/0.7.10</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fit-in bug fixed.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-9">
+<h3>0.7.9 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.9">http://pypi.python.org/pypi/thumbor/0.7.9</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Some performance fixes and MixedStorage.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-8">
+<h3>0.7.8 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.8">http://pypi.python.org/pypi/thumbor/0.7.8</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/36">Ticket #36 - Change Mongo Storage to use
+GridFS</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-7">
+<h3>0.7.7 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.7">http://pypi.python.org/pypi/thumbor/0.7.7</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/29">Ticket #29 - Create an OpenCV
+Engine</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-6">
+<h3>0.7.6 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.6">http://pypi.python.org/pypi/thumbor/0.7.6</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/35">Ticket #35 - MySQL
+Storage</a></li>
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/31">Ticket #31 - NoStorage Storage needs to be updated to include no
+crypto
+support</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-5">
+<h3>0.7.5 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.5">http://pypi.python.org/pypi/thumbor/0.7.5</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/34">Ticket #34 - Meta should have the option of returning as
+jsonp</a>
+(REOPENED)</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-4">
+<h3>0.7.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.4">http://pypi.python.org/pypi/thumbor/0.7.4</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/34">Ticket #34 - Meta should have the option of returning as
+jsonp</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-2">
+<h3>0.7.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.2">http://pypi.python.org/pypi/thumbor/0.7.2</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/32">Ticket #32 - Allow unlimited dimensions of
+images</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-7-0">
+<h3>0.7.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.7.0">http://pypi.python.org/pypi/thumbor/0.7.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-7-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/30">Ticket #30 - Allow users to use a fit-in
+flag</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-6-5">
+<h3>0.6.5 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.6.5">http://pypi.python.org/pypi/thumbor/0.6.5</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-6-5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/16">Ticket #16 - NoStorage
+Storage</a></li>
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/24">Ticket #24 - OpenCV File
+Issue</a></li>
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/26">Ticket #26 - BUG: Redis Configuration does not
+work</a></li>
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/27">Ticket #27 - BUG: Issue with
+cropping</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-6-4">
+<h3>0.6.4 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.6.4">http://pypi.python.org/pypi/thumbor/0.6.4</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-6-4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/7">Ticket #24 - OpenCV File
+Issue</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-6-3">
+<h3>0.6.3 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.6.3">http://pypi.python.org/pypi/thumbor/0.6.3</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-6-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Some refactoring and added App and Handler inheritance support.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-6-2">
+<h3>0.6.2 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.6.2">http://pypi.python.org/pypi/thumbor/0.6.2</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-6-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/7">Ticket #7 - Validate for file size on the http
+loader</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-6-1">
+<h3>0.6.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.6.1">http://pypi.python.org/pypi/thumbor/0.6.1</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-6-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Switched encryption from Triple-Des to AES due to standardization
+between programming languages.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-5-1">
+<h3>0.5.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.5.1">http://pypi.python.org/pypi/thumbor/0.5.1</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-5-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fixed a bug with encrypting relative dimension images.</li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-5-0">
+<h3>0.5.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.5.0">http://pypi.python.org/pypi/thumbor/0.5.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-5-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/5">Ticket #5 - Switch the unencrypted URL to be /unsafe and the
+encrypted to be the
+default</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-4-1">
+<h3>0.4.1 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.4.1">http://pypi.python.org/pypi/thumbor/0.4.1</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-4-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/4">Ticket #4 - Bug in the encrypted URL generation and
+parsing</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-4-0">
+<h3>0.4.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.4.0">http://pypi.python.org/pypi/thumbor/0.4.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-4-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/2">Ticket #2 - Command-line application to generate
+urls</a></li>
+</ul>
+</div>
+<div class="section" id="http-pypi-python-org-pypi-thumbor-0-3-0">
+<h3>0.3.0 - <a class="reference external" href="http://pypi.python.org/pypi/thumbor/0.3.0">http://pypi.python.org/pypi/thumbor/0.3.0</a><a class="headerlink" href="#http-pypi-python-org-pypi-thumbor-0-3-0" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/thumbor/thumbor/issues#issue/1">Ticket #1 - URL Cryptography
+Support</a>
+(FIXED)</li>
+<li>Internal logic refactored.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="licensing.html" class="btn btn-neutral float-left" title="Licensing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

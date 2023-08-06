@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Usage &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Imaging" href="imaging.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#image-endpoint">Image Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trim">Trim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-crop">Manual Crop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-in">Fit in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-size">Image Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#horizontal-align">Horizontal Align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vertical-align">Vertical Align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smart-cropping">Smart Cropping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-uri">Image URI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#metadata-endpoint">Metadata Endpoint</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>Using thumbor is really straightforward. thumbor offers one endpoint for
+retrieving the image and a very similar endpoint to retrieve metadata.</p>
+<div class="section" id="image-endpoint">
+<h2>Image Endpoint<a class="headerlink" href="#image-endpoint" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><strong>http://*thumbor-server*/hmac/trim/AxB:CxD/(adaptative-)(full-)fit-in/-Ex-F/HALIGN/VALIGN/smart/filters:FILTERNAME(ARGUMENT):FILTERNAME(ARGUMENT)/*image-uri*</strong></div></blockquote>
+<ul class="simple">
+<li><em>thumbor-server</em> is the address of the service currently running;</li>
+<li>hmac is the signature that ensures <a class="reference internal" href="security.html"><span class="doc">Security</span></a> ;</li>
+<li>trim removes surrounding space in images using top-left pixel color
+unless specified otherwise;</li>
+<li>AxB:CxD means manually crop the image at left-top point AxB and
+right-bottom point CxD;</li>
+<li>fit-in means that the generated image should not be auto-cropped and
+otherwise just fit in an imaginary box specified by ExF. If a full
+fit-in is specified, then the largest size is used for cropping (width
+instead of height, or the other way around). If adaptive fit-in is
+specified, it inverts requested width and height if it would get a better
+image definition;</li>
+<li>-Ex-F means resize the image to be ExF of width per height size. The
+minus signs mean flip horizontally and vertically;</li>
+<li>HALIGN is horizontal alignment of crop;</li>
+<li>VALIGN is vertical alignment of crop;</li>
+<li>smart means using smart detection of focal points;</li>
+<li>filters can be applied sequentially to the image before returning;</li>
+<li><em>image-uri</em> is the public URI for the image you want resized.</li>
+</ul>
+<div class="section" id="trim">
+<h3>Trim<a class="headerlink" href="#trim" title="Permalink to this headline">¶</a></h3>
+<p>Removing surrounding space in images can be done using the trim option.</p>
+<p>Unless specified trim assumes the top-left pixel color and no tolerance
+(more on tolerance below).</p>
+<p>To use it, just add a <code class="docutils literal notranslate"><span class="pre">/trim</span></code> part to your URL.</p>
+<p>If you need to specify the orientation from where to get the pixel
+color, just use <code class="docutils literal notranslate"><span class="pre">/trim:top-left</span></code> for the top-left pixel color or
+<code class="docutils literal notranslate"><span class="pre">/trim:bottom-right</span></code> for the bottom-right pixel color.</p>
+<p>Trim also supports color tolerance. The euclidian distance between the
+colors of the reference pixel and the surrounding pixels is used. If the
+distance is within the tolerance they’ll get trimmed. For a RGB image
+the tolerance would be within the range 0-442.</p>
+</div>
+<div class="section" id="manual-crop">
+<h3>Manual Crop<a class="headerlink" href="#manual-crop" title="Permalink to this headline">¶</a></h3>
+<p>The manual crop is entirely optional. This is very useful for
+applications that provide custom real-time cropping capabilities to
+their users.</p>
+<p>The manual crop part of the url takes two points as arguments, separated
+by a colon. The first point is the left-top point of the cropping
+rectangle. The second point is the right-bottom point.</p>
+<p>This crop is performed before the rest of the operations, so it can be
+used as a <em>prepare</em> step before resizing and smart-cropping. It is
+<strong>very</strong> useful when you just need to get that celebrity face on a big
+picture full of people, as an example.</p>
+</div>
+<div class="section" id="fit-in">
+<h3>Fit in<a class="headerlink" href="#fit-in" title="Permalink to this headline">¶</a></h3>
+<p>The fit-in argument specifies that the image should not be auto-cropped
+and auto-resized to be <strong>EXACTLY</strong> the specified size, and should be fit in
+an imaginary box of “E” width and “F” height, instead.</p>
+<p>Consider an image of 800px x 600px, and a fit of 300px x 200px. This is
+how thumbor would resize it:</p>
+<img alt="An image in a vertical fit-in" src="_images/vertical-fit-in.png" />
+<p>Consider an image of 400px x 600px, and a fit of 300px x 200px. This is
+how thumbor would resize it:</p>
+<img alt="An image in a horizontal fit-in" src="_images/horizontal-fit-in.png" />
+<p>This is very useful when you need to fit an image somewhere, but you
+have no idea about the original image dimensions.</p>
+<p>If a full fit-in is used, instead of using the largest size for cropping
+it uses the smallest one, so in the above scenarios:</p>
+<p>For the image of 800px x 600px, with a full fit-in of 300px x 200px, we
+would get an image of 300px x 225px.</p>
+<p>For the image of 400px x 600px, with a full fit-in of 300px x 200px, we
+would get an image of 300px x 450px.</p>
+</div>
+<div class="section" id="image-size">
+<h3>Image Size<a class="headerlink" href="#image-size" title="Permalink to this headline">¶</a></h3>
+<p>The image size argument specifies the size of the image that will be
+returned by the service. Thumbor uses smart <a class="reference internal" href="crop_and_resize_algorithms.html"><span class="doc">Crop and Resize Algorithms</span></a></p>
+<p>If you omit one of the dimensions or use zero as a value (as in 300x,
+300x0, x200, 0x200, and so on), Thumbor will determine that dimension as
+to be proportional to the original image. Say you have an 800x600 image
+and ask for a 400x0 image. Thumbor will infer that since 400 is half of
+800, then the height you are looking for is half of 600, which is 300px.</p>
+<p>If you use 0x0, Thumbor will use the original size of the image and thus
+won’t do any cropping or resizing.</p>
+<p>If you specify one of the dimensions as the string “orig” (as in
+origx100, 100xorig, origxorig), thumbor will interpret that you want
+that dimension to remain the same as in the original image. Consider an
+image of 800x600. If you ask for a 300xorig version of it, thumbor will
+interpret that you want a 300x600 image. If you instead ask for a
+origx300 version, thumbor will serve you an 800x300 image.</p>
+<p>If you use origxorig, Thumbor will use the original size of the image
+and thus won’t do any cropping or resizing.</p>
+<p><strong>The default value (in case it is omitted) for this option is to use
+proportional size (0) to the original image.</strong></p>
+</div>
+<div class="section" id="horizontal-align">
+<h3>Horizontal Align<a class="headerlink" href="#horizontal-align" title="Permalink to this headline">¶</a></h3>
+<p>As was explained above, unless the image is of the same proportion as
+the desired size, some cropping will need to occur.</p>
+<p>The horizontal align option controls where the cropping will occur if
+some width needs to be trimmed (unless some feature detection occurs -
+more on that later).</p>
+<p>So, if we need to trim 300px of the width and the current horizontal
+align is “left”, then we’ll trim 0px of the left of the image and 300px
+of the right side of the image.</p>
+<p>The possible values for this option are:</p>
+<ul class="simple">
+<li>left - only trims the right side;</li>
+<li>center - trims half of the width from the left side and half from the
+right side;</li>
+<li>right - only trims the left side.</li>
+</ul>
+<p>It is important to notice that this option is useless in case of the
+image being vertically trimmed, since Thumbor’s cropping algorithm only
+crops in one direction.</p>
+<p><strong>The default value (in case it is omitted) for this option is
+“center”.</strong></p>
+</div>
+<div class="section" id="vertical-align">
+<h3>Vertical Align<a class="headerlink" href="#vertical-align" title="Permalink to this headline">¶</a></h3>
+<p>The vertical align option is analogous to the horizontal one, except
+that it controls height trimming.</p>
+<p>So, if we need to trim 300px of the height and the current vertical
+align is “top”, then we’ll trim 0px of the top of the image and 300px of
+the bottom side of the image.</p>
+<p>The possible values for this option are:</p>
+<ul class="simple">
+<li>top - only trims the bottom;</li>
+<li>middle - trims half of the height from the top and half from the
+bottom;</li>
+<li>bottom - only trims the top.</li>
+</ul>
+<p>It is important to notice that this option is useless in case of the
+image being horizontally trimmed, since Thumbor’s cropping algorithm
+only crops in one direction.</p>
+<p><strong>The default value (in case it is omitted) for this option is
+“middle”.</strong></p>
+</div>
+<div class="section" id="smart-cropping">
+<h3>Smart Cropping<a class="headerlink" href="#smart-cropping" title="Permalink to this headline">¶</a></h3>
+<p>Thumbor uses some very advanced techniques for obtaining important
+points of the image (referred to as Focal Points in the rest of this
+documentation).</p>
+<p>Even though Thumbor comes with facial recognition of Focal Points as
+well as feature recognition, you can easily implement your own detectors
+as you’ll see further in the docs.</p>
+<p>There’s not much to this option, since we’ll cover it in the <a class="reference internal" href="detection_algorithms.html"><span class="doc">Detection Algorithms</span></a>
+page. If you use it in the url, smart cropping will be
+performed and will override both horizontal and vertical alignments if
+it finds any Focal Points.</p>
+<p><strong>The default value (in case it is omitted) for this option is not to
+use smart cropping.</strong></p>
+</div>
+<div class="section" id="filters">
+<h3>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
+<p>Thumbor allows for usage of a filter pipeline that will be applied
+sequentially to the image. Filters are covered in the
+<a class="reference internal" href="filters.html"><span class="doc">Filters</span></a> page if you want to know more.</p>
+<p>To use filters add a “filters:” part in your URL. Filters are like
+function calls “filter_name(argument, argument2, etc)” and are
+separated using the ‘:’ character.</p>
+</div>
+<div class="section" id="image-uri">
+<h3>Image URI<a class="headerlink" href="#image-uri" title="Permalink to this headline">¶</a></h3>
+<p>This is the image URI. The format of this option depends heavily on the
+image loader you are using. Thumbor comes pre-packaged with an HTTP
+loader and a Filesystem loader.</p>
+<p>If you use the HTTP loader, this option corresponds to the image
+complete URI.</p>
+<p>If you use the Filesystem loader, this option corresponds to the path of
+the image from the images root.</p>
+<p>You can learn more about the loaders in the <a class="reference internal" href="image_loader.html"><span class="doc">Image loader</span></a> page.</p>
+</div>
+</div>
+<div class="section" id="metadata-endpoint">
+<span id="usage-metadata-endpoint"></span><h2>Metadata Endpoint<a class="headerlink" href="#metadata-endpoint" title="Permalink to this headline">¶</a></h2>
+<p>The metadata endpoint has <strong>ALL</strong> the options that the image one has,
+but instead of actually performing the operations in the image, it just
+simulates the operations.</p>
+<p>Since it has the same options as the other endpoint, we won’t repeat all
+of them. To use the metadata endpoint, just add a <em>/meta</em> in the
+beginning of the url.</p>
+<p>Say we have the following crop URL:</p>
+<p><a class="reference external" href="http://my-server.thumbor.org/unsafe/-300x-200/left/top/smart/path/to/my/nice/image.jpg">http://my-server.thumbor.org/unsafe/-300x-200/left/top/smart/path/to/my/nice/image.jpg</a></p>
+<p>If we want the metadata on what thumbor would do, just change the url to
+be</p>
+<p><a class="reference external" href="http://my-server.thumbor.org/unsafe/meta/-300x-200/left/top/smart/path/to/my/nice/image.jpg">http://my-server.thumbor.org/unsafe/meta/-300x-200/left/top/smart/path/to/my/nice/image.jpg</a></p>
+<p>After the processing is finished, thumbor will return a json object
+containing metadata on the image and the operations that would have been
+performed.</p>
+<p>The json looks like this:</p>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">thumbor</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">source</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">url</span><span class="p">:</span> <span class="s2">&quot;path/to/my/nice/image.jpg&quot;</span><span class="p">,</span>
+            <span class="n">width</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+            <span class="n">height</span><span class="p">:</span> <span class="mi">600</span>
+        <span class="p">},</span>
+        <span class="n">operations</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;crop&quot;</span><span class="p">,</span>
+                <span class="n">left</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="n">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="n">right</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+                <span class="n">bottom</span><span class="p">:</span> <span class="mi">200</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span>
+                <span class="n">width</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+                <span class="n">height</span><span class="p">:</span> <span class="mi">200</span>
+            <span class="p">},</span>
+            <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;flip_horizontally&quot;</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="s2">&quot;flip_vertically&quot;</span> <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="imaging.html" class="btn btn-neutral float-right" title="Imaging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

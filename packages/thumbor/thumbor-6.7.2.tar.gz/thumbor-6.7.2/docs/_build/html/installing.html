@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="Welcome to Thumbor’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#stable">Stable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-debian-using-aptitude-apt-get">Ubuntu/Debian using aptitude (apt-get)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-the-source-of-a-stable-release">From the source of a stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#from-the-latest-version-of-the-source">From the latest version of the source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alternative-installation">Alternative installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/installing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing">
+<h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
+<p>Installing thumbor is really easy because it supports the distutils form
+of packaging (<a class="reference external" href="http://docs.python.org/distutils/setupscript.html">http://docs.python.org/distutils/setupscript.html</a>).</p>
+<div class="section" id="stable">
+<h2>Stable<a class="headerlink" href="#stable" title="Permalink to this headline">¶</a></h2>
+<p>The latest stable version of thumbor is always published in the Python
+Package Index (<a class="reference external" href="http://pypi.python.org/pypi">http://pypi.python.org/pypi</a>), so it can be easily
+installed using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">thumbor</span></code> or <code class="docutils literal notranslate"><span class="pre">easy_install</span> <span class="pre">thumbor</span></code>.</p>
+</div>
+<div class="section" id="ubuntu-debian-using-aptitude-apt-get">
+<h2>Ubuntu/Debian using aptitude (apt-get)<a class="headerlink" href="#ubuntu-debian-using-aptitude-apt-get" title="Permalink to this headline">¶</a></h2>
+<p>There’s now an officially supported ppa for thumbor if you are using
+aptitude.</p>
+<p>To install using aptitude, add the following lines to your sources list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ppa</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">thumbor</span><span class="o">/</span><span class="n">ppa</span><span class="o">/</span><span class="n">ubuntu</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">release</span><span class="o">&gt;</span> <span class="n">main</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ppa</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">thumbor</span><span class="o">/</span><span class="n">ppa</span><span class="o">/</span><span class="n">ubuntu</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">release</span><span class="o">&gt;</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>If you are using ubuntu 12.10 (quantal), it would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ppa</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">thumbor</span><span class="o">/</span><span class="n">ppa</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">quantal</span> <span class="n">main</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ppa</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">thumbor</span><span class="o">/</span><span class="n">ppa</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">quantal</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p>Or you can add the repository to you sources list via the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="p">:</span><span class="n">thumbor</span><span class="o">/</span><span class="n">ppa</span>
+</pre></div>
+</div>
+<p>After that just update your sources:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">aptitude</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>And install using plain old aptitude install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">aptitude</span> <span class="n">install</span> <span class="n">thumbor</span>
+</pre></div>
+</div>
+<p>A service will be created for you that gets started when the machine
+starts up (using upstart).</p>
+<p>By default thumbor will be disabled. Open <code class="docutils literal notranslate"><span class="pre">/etc/default/thumbor</span></code> and
+change (or remove) the flag <code class="docutils literal notranslate"><span class="pre">enabled</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> or use the command
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">thumbor</span> <span class="pre">start</span> <span class="pre">force=1</span></code> (force_start=1 for
+thumbor&lt;3.7.0) to temporarily start thumbor. You can also override other
+defaults like the location of the configuration file by editing
+<code class="docutils literal notranslate"><span class="pre">/etc/default/thumbor</span></code>.</p>
+<p>The configuration for thumbor will be at <code class="docutils literal notranslate"><span class="pre">/etc/thumbor.conf</span></code> and the
+security key at <code class="docutils literal notranslate"><span class="pre">/etc/thumbor.key</span></code>. There will be one instance running
+at <code class="docutils literal notranslate"><span class="pre">http://localhost:8888</span></code>.</p>
+<p>If you want to run many instances of thumbor you’ll need to run it in
+many ports. That means you’ll need to use some form of load balancing
+(NGINX, Apache, Varnish, Haproxy, etc).</p>
+<p>Running many instances of thumbor is as simple as editing
+<code class="docutils literal notranslate"><span class="pre">/etc/default/thumbor</span></code> and changing the <code class="docutils literal notranslate"><span class="pre">port</span></code> key to as many ports
+as you want, comma-separated: <code class="docutils literal notranslate"><span class="pre">port=8888,8889,8890</span></code> (for
+thumbor&gt;3.7.0).</p>
+<p>If you need more detail head to
+<a class="reference external" href="https://launchpad.net/~thumbor/+archive/ppa">https://launchpad.net/~thumbor/+archive/ppa</a>.</p>
+</div>
+<div class="section" id="from-the-source-of-a-stable-release">
+<h2>From the source of a stable release<a class="headerlink" href="#from-the-source-of-a-stable-release" title="Permalink to this headline">¶</a></h2>
+<p>Download the latest stable source-code version here on github or Pypi
+and decompress it.</p>
+<p>In the path you decompressed, execute <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> or
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p>
+</div>
+<div class="section" id="from-the-latest-version-of-the-source">
+<h2>From the latest version of the source<a class="headerlink" href="#from-the-latest-version-of-the-source" title="Permalink to this headline">¶</a></h2>
+<p>Clone thumbor’s repository and install it using one of the following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+git://github.com/thumbor/thumbor.git</span></code></p>
+<p>or</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">thumbor</span><span class="o">/</span><span class="n">thumbor</span><span class="o">.</span><span class="n">git</span>
+
+<span class="n">cd</span> <span class="n">thumbor</span>
+
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alternative-installation">
+<h2>Alternative installation<a class="headerlink" href="#alternative-installation" title="Permalink to this headline">¶</a></h2>
+<p>Works on Ubuntu 12.04 x32, except webp detection with opencv doesn’t
+seem to work :(</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ffmpeg</span> <span class="n">libjpeg</span><span class="o">-</span><span class="n">dev</span> <span class="n">libpng</span><span class="o">-</span><span class="n">dev</span> <span class="n">libtiff</span><span class="o">-</span><span class="n">dev</span> <span class="n">libjasper</span><span class="o">-</span><span class="n">dev</span> <span class="n">libgtk2</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span> <span class="n">python</span><span class="o">-</span><span class="n">pycurl</span> <span class="n">webp</span> <span class="n">python</span><span class="o">-</span><span class="n">opencv</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">thumbor</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Thumbor’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

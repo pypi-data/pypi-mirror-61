@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Image Metadata &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Format" href="format.html" />
+    <link rel="prev" title="Focal" href="focal.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="filters.html">Filters</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autojpg.html">AutoJPG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background_color.html">Background Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="blur.html">Blur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="brightness.html">Brightness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contrast.html">Contrast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="convolution.html">Convolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equalize.html">Equalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extract_focal_points.html">Extract focal points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filling.html">Filling</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="focal.html">Focal</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="focal.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="focal.html#arguments">Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="focal.html#example">Example</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="focal.html#warning">Warning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="format.html">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grayscale.html">Grayscale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="max_bytes.html">Max bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="no_upscale.html">No upscale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="noise.html">Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proportion.html">Proportion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quality.html">Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="red_eye.html">Red eye</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rgb.html">RGB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rotate.html">Rotate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="round_corners.html">Round corners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sharpen.html">Sharpen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stretch.html">Stretch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strip_exif.html">Strip EXIF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strip_icc.html">Strip ICC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upscale.html">Upscale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="watermark.html">Watermark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_storage.html">Image storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+          <li><a href="filters.html">Filters</a> &raquo;</li>
+        
+          <li><a href="focal.html">Focal</a> &raquo;</li>
+        
+      <li>Image Metadata</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/metadata.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image-metadata">
+<h1>Image Metadata<a class="headerlink" href="#image-metadata" title="Permalink to this headline">¶</a></h1>
+<p>Thumbor uses <a class="reference external" href="http://tilloy.net/dev/pyexiv2/">Pyexiv2</a> to read and write image metadata.</p>
+<p>If the Pyexif2 or Py3exif2 Python library is available, the PIL engine also stores image metadata
+in <code class="docutils literal notranslate"><span class="pre">engine.metadata</span></code>.</p>
+<div class="section" id="reading-and-writing-metadata">
+<h2>Reading and writing Metadata<a class="headerlink" href="#reading-and-writing-metadata" title="Permalink to this headline">¶</a></h2>
+<p>This part is copied from the <a class="reference external" href="http://tilloy.net/dev/pyexiv2/tutorial.html">Pyexiv2 Tutorial</a></p>
+<p>Let’s retrieve a list of all the available EXIF tags available in the image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">exif_keys</span>
+<span class="go">[&#39;Exif.Image.ImageDescription&#39;,</span>
+<span class="go"> &#39;Exif.Image.XResolution&#39;,</span>
+<span class="go"> &#39;Exif.Image.YResolution&#39;,</span>
+<span class="go"> &#39;Exif.Image.ResolutionUnit&#39;,</span>
+<span class="go"> &#39;Exif.Image.Software&#39;,</span>
+<span class="go"> &#39;Exif.Image.DateTime&#39;,</span>
+<span class="go"> &#39;Exif.Image.Artist&#39;,</span>
+<span class="go"> &#39;Exif.Image.Copyright&#39;,</span>
+<span class="go"> &#39;Exif.Image.ExifTag&#39;,</span>
+<span class="go"> &#39;Exif.Photo.Flash&#39;,</span>
+<span class="go"> &#39;Exif.Photo.PixelXDimension&#39;,</span>
+<span class="go"> &#39;Exif.Photo.PixelYDimension&#39;]</span>
+</pre></div>
+</div>
+<p>Each of those tags can be accessed with the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator on the metadata,
+much like a python dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tag</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Exif.Image.DateTime&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The value of an <code class="xref py py-class docutils literal notranslate"><span class="pre">ExifTag</span></code> object can be accessed in two different ways:
+with the <code class="xref py py-attr docutils literal notranslate"><span class="pre">raw_value</span></code> and with the <code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code> attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tag</span><span class="o">.</span><span class="n">raw_value</span>
+<span class="go">&#39;2004-07-13T21:23:44Z&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tag</span><span class="o">.</span><span class="n">value</span>
+<span class="go">datetime.datetime(2004, 7, 13, 21, 23, 44)</span>
+</pre></div>
+</div>
+<p>The raw value is always a byte string, this is how the value is stored in the
+file. The value is lazily computed from the raw value depending on the EXIF type
+of the tag, and is represented as a convenient python object to allow easy
+manipulation.</p>
+<p>Note that querying the value of a tag may raise an <code class="xref py py-exc docutils literal notranslate"><span class="pre">ExifValueError</span></code> if the
+format of the raw value is invalid according to the EXIF specification (may
+happen if it was written by other software that implements the specification in
+a broken manner), or if pyexiv2 doesn’t know how to convert it to a convenient
+python object.</p>
+<p>Accessing the value of a tag as a python object allows easy manipulation and
+formatting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tag</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%A </span><span class="si">%d</span><span class="s1"> %B %Y, %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="go">&#39;Tuesday 13 July 2004, 21:23:44&#39;</span>
+</pre></div>
+</div>
+<p>Now let’s modify the value of the tag and write it back to the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tag</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Similarly to reading the value of a tag, one can set either the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">raw_value</span></code> or the <code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code> (which will be automatically converted to
+a correctly formatted byte string by pyexiv2).</p>
+<p>You can also add new tags to the metadata by providing a valid key and value
+pair (see exiv2’s documentation for a list of valid
+<a class="reference external" href="http://exiv2.org/tags.html">EXIF tags</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;Exif.Photo.UserComment&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;This is a useful comment.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">pyexiv2</span><span class="o">.</span><span class="n">ExifTag</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As a handy shortcut, you can always assign a value for a given key regardless
+of whether it’s already present in the metadata.
+If a tag was present, its value is overwritten.
+If the tag was not present, one is created and its value is set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>The EXIF data may optionally embed a thumbnail in the JPEG or TIFF format.
+The thumbnail can be accessed, set from a JPEG file or buffer, saved to disk and
+erased:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">thumb</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">exif_thumbnail</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">thumb</span><span class="o">.</span><span class="n">set_from_file</span><span class="p">(</span><span class="s1">&#39;/tmp/thumbnail.jpg&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">thumb</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="s1">&#39;/tmp/copy&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">thumb</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engine</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Pyexiv2 depends on the following libraries:</p>
+<blockquote>
+<div><ul class="simple">
+<li>boost.python (<a class="reference external" href="http://www.boost.org/libs/python/doc/index.html">http://www.boost.org/libs/python/doc/index.html</a>)</li>
+<li>exiv2 (<a class="reference external" href="http://www.exiv2.org/">http://www.exiv2.org/</a>)</li>
+</ul>
+</div></blockquote>
+<p>On OSX you can use homebrew to install the dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">boost</span> <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">python</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">boost</span><span class="o">-</span><span class="n">python</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">exiv2</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">escaped</span><span class="o">/</span><span class="n">pyexiv2</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>If you are updating thumbor and already have an existing virtualenv, then you have to recreate it.
+If you have both a System Python and a Homebrew Python with the same version, then make sure
+the Virtualenv uses the Homebrew Python binary.</p>
+<p>On Linux Pyexiv2 can be installed with apt-get:</p>
+<blockquote>
+<div>apt-get install python-pyexiv2</div></blockquote>
+</div>
+<div class="section" id="module-pyexiv2.metadata">
+<span id="pyexiv2-metadata-api-reference"></span><h2>pyexiv2.metadata API reference<a class="headerlink" href="#module-pyexiv2.metadata" title="Permalink to this headline">¶</a></h2>
+<p>Currently PyExiv is deprecated in favor of GExiv. However, it is really difficult
+to install GExiv with Python on a non-Ubuntu system. Therefore Pyexiv2 is used.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="format.html" class="btn btn-neutral float-right" title="Format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="focal.html" class="btn btn-neutral float-left" title="Focal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

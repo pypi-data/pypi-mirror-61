@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Image storage &mdash; Thumbor 6.7.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lazy Detection" href="lazy_detection.html" />
+    <link rel="prev" title="Image loader" href="image_loader.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Thumbor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.7.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="imaging.html">Imaging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="detectors.html">Detectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crop_and_resize_algorithms.html">Crop and Resize Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="detection_algorithms.html">Detection Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how_to_upload_images.html">How to upload Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_loader.html">Image loader</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Image storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pre-packaged-storages">Pre-Packaged Storages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#filesystem-storage">Filesystem Storage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redis-storage">Redis Storage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mongodb-storage">MongoDB Storage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nostorage-storage">NoStorage Storage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mixedstorage-storage">MixedStorage Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-storages">Custom Storages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lazy_detection.html">Lazy Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="posting_putting_deleting.html">Posting, Putting and Deleting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="result_storage.html">Result Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="administration.html">Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more.html">More</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Thumbor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="imaging.html">Imaging</a> &raquo;</li>
+        
+      <li>Image storage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/image_storage.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image-storage">
+<h1>Image storage<a class="headerlink" href="#image-storage" title="Permalink to this headline">¶</a></h1>
+<p>thumbor uses image storages to perform less retrievals of images from
+the sources, thus potentially saving expensive resources (such as
+outbound network).</p>
+<div class="section" id="pre-packaged-storages">
+<h2>Pre-Packaged Storages<a class="headerlink" href="#pre-packaged-storages" title="Permalink to this headline">¶</a></h2>
+<p>thumbor comes with <strong>filesystem</strong>, <strong>redis</strong> and <strong>mongodb</strong> storages.
+There’s also a <strong>nostorage</strong> storage for debugging or benchmarking
+purposes.</p>
+<div class="section" id="filesystem-storage">
+<h3>Filesystem Storage<a class="headerlink" href="#filesystem-storage" title="Permalink to this headline">¶</a></h3>
+<p>thumbor can store original images in the filesystem.</p>
+<p>The file storage uses the <strong>FILE_STORAGE_ROOT_PATH</strong> configuration
+to save the images. It then joins the original image part of the URI to
+create the proper path to store the image in the filesystem.</p>
+<p>There’s a <strong>STORAGE_EXPIRATION_SECONDS</strong> option that will determine
+the time in seconds that a file is considered to be expired. When a file
+is expired, thumbor will try to retrieve the file using the specified
+<a class="reference internal" href="image_loader.html"><span class="doc">Image loader</span></a>.</p>
+<p>To use the filesystem storage set the configuration option of
+<strong>STORAGE</strong> to <strong>‘thumbor.storages.file_storage’</strong>.</p>
+</div>
+<div class="section" id="redis-storage">
+<h3>Redis Storage<a class="headerlink" href="#redis-storage" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://redis.io/">Redis</a> eliminates the risks of locks as well. In
+order to use the redis storage set the configuration option of
+<strong>STORAGE</strong> to <strong>‘thumbor.storages.redis_storage’</strong>.</p>
+<p>You also need to configure the redis connection information using the
+<strong>REDIS_STORAGE_SERVER_PORT</strong>, <strong>REDIS_STORAGE_SERVER_HOST</strong>
+and <strong>REDIS_STORAGE_SERVER_DB</strong>, like this:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REDIS_STORAGE_SERVER_HOST</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="n">REDIS_STORAGE_SERVER_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
+<span class="n">REDIS_STORAGE_SERVER_DB</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>There’s a <strong>STORAGE_EXPIRATION_SECONDS</strong> option that will determine
+the time in seconds that a file is considered to be expired. When a file
+is expired, thumbor will try to retrieve the file using the specified
+<a class="reference internal" href="image_loader.html"><span class="doc">Image loader</span></a>.</p>
+</div>
+<div class="section" id="mongodb-storage">
+<h3>MongoDB Storage<a class="headerlink" href="#mongodb-storage" title="Permalink to this headline">¶</a></h3>
+<p>In order to use the <a class="reference external" href="http://www.mongodb.org/">MongoDB</a> storage set
+the configuration option of <strong>STORAGE</strong> to
+<strong>‘thumbor.storages.mongo_storage’</strong>.</p>
+<p>You also need to configure the mongo connection information using the
+<strong>MONGO_STORAGE_SERVER_PORT</strong>, <strong>MONGO_STORAGE_SERVER_HOST</strong>,
+<strong>MONGO_STORAGE_SERVER_DB</strong> and
+<strong>MONGO_STORAGE_SERVER_COLLECTION</strong>, like this:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MONGO_STORAGE_SERVER_HOST</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="n">MONGO_STORAGE_SERVER_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
+<span class="n">MONGO_STORAGE_SERVER_DB</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">MONGO_STORAGE_SERVER_COLLECTION</span> <span class="o">=</span> <span class="s1">&#39;images&#39;</span>
+</pre></div>
+</div>
+<p>There’s a <strong>STORAGE_EXPIRATION_SECONDS</strong> option that will determine
+the time in seconds that a file is considered to be expired. When a file
+is expired, thumbor will try to retrieve the file using the specified
+<a class="reference internal" href="image_loader.html"><span class="doc">Image loader</span></a>.</p>
+</div>
+<div class="section" id="nostorage-storage">
+<h3>NoStorage Storage<a class="headerlink" href="#nostorage-storage" title="Permalink to this headline">¶</a></h3>
+<p>This is a storage intended for debugging or benchmarking purposes. It
+does not store any images and always returns None when thumbor asks for
+an image.</p>
+<p>In order to use this storage set the configuration option of
+<strong>STORAGE</strong> to <strong>‘thumbor.storages.no_storage’</strong>.</p>
+</div>
+<div class="section" id="mixedstorage-storage">
+<h3>MixedStorage Storage<a class="headerlink" href="#mixedstorage-storage" title="Permalink to this headline">¶</a></h3>
+<p>This is a storage intended for scenarios where you want to store the
+original images files one way and the security key another (or detector
+information).</p>
+<p>A good example would be storing files in the filesystem, while storing
+security keys in a database.</p>
+<p>In order to use this storage set the configuration option of
+<strong>STORAGE</strong> to <strong>‘thumbor.storages.mixed_storage’</strong>.</p>
+<p>You must specify the <code class="docutils literal notranslate"><span class="pre">MIXED_STORAGE_FILE_STORAGE</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MIXED_STORAGE_CRYPTO_STORAGE</span></code> and <code class="docutils literal notranslate"><span class="pre">MIXED_STORAGE_DETECTOR_STORAGE</span></code>
+options to define the original images storage, the security key storage
+and the detector results storage, respectively. Here’s a sample
+configuration:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MIXED_STORAGE_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor.storages.file_storage&#39;</span>
+<span class="n">MIXED_STORAGE_CRYPTO_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor.storages.redis_storage&#39;</span>
+<span class="n">MIXED_STORAGE_DETECTOR_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;thumbor.storages.redis_storage&#39;</span>
+
+<span class="n">FILE_STORAGE_ROOT_PATH</span> <span class="o">=</span> <span class="s1">&#39;/tmp/mypath&#39;</span>
+
+<span class="n">REDIS_STORAGE_SERVER_HOST</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="n">REDIS_STORAGE_SERVER_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
+<span class="n">REDIS_STORAGE_SERVER_DB</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>As you can see, you still have to tell thumbor the specific
+configurations for each storage you choose.</p>
+</div>
+</div>
+<div class="section" id="custom-storages">
+<h2>Custom Storages<a class="headerlink" href="#custom-storages" title="Permalink to this headline">¶</a></h2>
+<p>If the built-in storages do not suit your needs, you can always
+implement your own storage and use it in the <strong>STORAGE</strong>
+configuration.</p>
+<p>All you have to do is create a class called Storage that inherits from
+BaseStorage in your module, as can be seen in
+<a class="reference external" href="https://github.com/thumbor/thumbor/blob/master/thumbor/storages/file_storage.py">https://github.com/thumbor/thumbor/blob/master/thumbor/storages/file_storage.py</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lazy_detection.html" class="btn btn-neutral float-right" title="Lazy Detection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="image_loader.html" class="btn btn-neutral float-left" title="Image loader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Globo.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
