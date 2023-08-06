@@ -1,0 +1,48 @@
+SEARCHING
+---------
+
+The purpose of Zeitzono's city search is to find cities as quickly as
+possible.
+
+Search: TERM1 [TERM2 [ADMIN]]
+
+Entering a search term will search cities that match TERM1.
+
+Entering two search terms will search cities for match TERM1 AND TERM2
+
+Entering three search terms will search cities for match TERM1 AND TERM2
+and that have an adminsitrative area (country name or admin1/admin2
+field) that match ADMIN.
+
+EXAMPLES
+--------
+
+A search for "peter" will match a number of cities that contain that
+name including St Petersburg in Russia and the United States.
+
+A search for "peter boro" will match two cities named Peterborough in
+the UK and Canada.
+
+A search for "peter boro can" will match the Canadian city by that name.
+
+Search for city name will match against the city name as well as an
+alternative names list. So a search for "Bombay" will match "Mumbai".
+
+A search for "apple" will bring up New York City as a result, because
+"The Big Apple" is an alternate name for NYC.
+
+
+SELECTING A CITY
+----------------
+
+Search results are ordered such that the city with the largest
+population will be at the bottom.
+
+Hitting Enter will select the city at the bottom of the search results.
+
+If the search results return multiple cities, selecting 0-9 will select
+that particular city, where 0 selects the bottom city, and 1 selects the
+city above it, etc.
+
+Hitting Escape at any time will cancel the city search and return you to
+the main window.
