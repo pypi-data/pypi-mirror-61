@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+# Copyright (c) Ran Dugal 2014
+#
+# This file is part of dust.
+#
+# Licensed under the GNU Affero General Public License v3, which is available at
+# http://www.gnu.org/licenses/agpl-3.0.html
+# 
+# This program is distributed in the hope that it will be useful, but WITHOUT 
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Affero GPL for more details.
+#
+
+'''Dust is an ssh cluster shell for EC2 cloud nodes'''
+
+import os
+import sys
+import logging
+import argparse
+
+from dustcluster.console import Console
+
+if sys.version_info.major < 3:
+    print('Dust only works with Python 3.x Your version is %s.x Exiting.' % sys.version_info.major)
+    sys.exit(1)
+
+if 'posix' not in os.name:
+  print('Dust has only been tested with on Linux. Exiting')
+  sys.exit(1)
+
+def run_console():
+    '''
+    Invoke the command loop.
+    '''
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--profile", help="AWS credentials profile to use")
+    parser.add_argument("--verbose", help="true for verbose mode")
+    pargs = parser.parse_args()
+
+    try:
+        console = Console(pargs.profile, pargs.verbose)
+
+        while not console.exit_flag:
+            try:
+                console.cmdloop()
+            except KeyboardInterrupt:
+                sys.stdout.flush()
+                sys.stdout.write('\n\r')
+                continue
+    except:
+        errstr = '\n\nProgram exited. Rerun with "--verbose true" option for debug info.\n\n'
+        if pargs.verbose:
+            logging.exception(errstr)
+        else:
+            logging.error(errstr)
+
+if __name__ == '__main__':
+    run_console()
+
