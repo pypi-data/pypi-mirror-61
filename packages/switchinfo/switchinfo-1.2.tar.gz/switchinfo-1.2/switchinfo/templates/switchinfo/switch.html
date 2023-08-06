@@ -1,0 +1,46 @@
+{% extends 'switchinfo/base.html' %}
+
+{% block content %}
+    <h2><a href="{% url 'switchinfo:switch' name=switch.name %}">{{ switch }}</a></h2>
+    {% if switch.image %}
+        <img src="{{ switch.image }}" />
+    {% endif %}
+    <table border="1">
+        <tr>
+            <th>Location</th>
+            <td>{{ switch.location|default:"" }}</td>
+        </tr>
+        <tr>
+            <th>Model</th>
+            {% if switch.model %}
+            <td>{{ switch.type|default:"" }}&nbsp;<a href="{% url 'switchinfo:switch_model' model=switch.model %}">{{ switch.model }}</a></td>
+            {% else %}
+            <td>{{ switch.type|default:"" }}&nbsp;{{ switch.model|default:"" }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Series</th>
+            {% if switch.series %}
+                <td><a href="{% url 'switchinfo:switch_series' series=switch.series %}">{{ switch.series }}</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ switch.description|default:""|linebreaksbr }}</td>
+        </tr>
+
+    </table>
+    <p>
+    {% include 'switchinfo/switch_table.html' %}
+    </p>
+    <p>
+        <a href="{% url 'switchinfo:switch_load_interfaces' switch_name=switch.name %}">Update interfaces</a>
+        <br /><a href="{% url 'switchinfo:switch_load_mac' switch_name=switch.name %}">Update MAC</a>
+    {% if switch.has_backup %}
+        <br /><a href="/gitlist/{{ backup_folder }}/blob/master/{{ switch.name }}">Show config backup</a>
+    {% endif %}
+        <br /><a href="{% url 'switchinfo:switch_vlans' switch_name=switch.name %}">Show vlans on switch</a>
+    </p>
+{% endblock %}
