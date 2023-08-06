@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: jrImgTools
+Version: 0.1.0
+Summary: Image utility functions for personal use
+Home-page: https://github.com/jr-xing/jrImgTools
+Author: Jerry Xing
+Author-email: j.xing.www@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: SimpleITK
+
+# jxImgTools
+A simple toolbox for processing and visualizing medical images. 
+
+## Functions
+### Visualization
+#### VolSlice
+A tool to visualize 3D volume and segmentations in the same time.
+```python
+# Create fake data
+import numpy as np
+import matplotlib.pyplot as plt
+vol = np.zeros((50, 128, 128))
+vol[20:30, 40:88, 40:88] = 1
+vol += 0.1*np.random.rand(*vol.shape)
+# plt.imshow(vol[25,:,:], cmap='gray')
+
+seg1 = np.zeros((50, 128, 128))
+seg1[20:30, 40:88, 40:88] = 1
+
+seg2 = np.zeros((50, 128, 128))
+seg2[20:29, 45:95, 45:95] = 1
+seg2[29, 40:88, 40:88] = 1
+
+fig, axs = plt.subplots(1,3)
+axs[0].imshow(np.squeeze(vol[25,:,:]), cmap='gray')
+axs[1].imshow(np.squeeze(seg1[25,:,:]), cmap='gray')
+axs[2].imshow(np.squeeze(seg2[25,:,:]), cmap='gray')
+
+# Visualize using VolSlicer
+from jximgtools.metric import dicePerSlice, dice
+from jximgtools.visualization.volSlicer import VolSlicer
+
+dicee = dice(seg1, seg2)
+dices = dicePerSlice(seg1, seg2)
+volInfo = {'Name': 'Test Volume', 'DicePerSlice': dices}
+slicesInfo = [{'Dice': dices[sliceIdx]} for sliceIdx in range(50)]
+VolSlicer(vol, volInfo = volInfo, segs = [seg1, seg2], slicesInfo = slicesInfo)
+
+```
+
+## Installation
+```bash
+pip install jximgtools
+```
+
+
