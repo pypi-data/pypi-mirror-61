@@ -1,0 +1,119 @@
+Transaction support for Gaphor
+==============================
+
+Transaction support is located in module gaphor.transaction:
+
+    >>> from gaphor import transaction
+    >>> from gaphor.application import Application
+
+Do some basic initialization, so event emission will work:
+
+    >>> application = Application()
+    >>> session = application.new_session(services=['event_manager'])
+    >>> event_manager = session.get_service('event_manager')
+
+The Transaction class is used mainly to signal the begin and end of a transaction. This is done by the TransactionBegin, TransactionCommit and TransactionRollback events:
+
+    >>> from gaphor.core import event_handler
+    >>> @event_handler(transaction.TransactionBegin)
+    ... def transaction_begin_handler(event):
+    ...     print 'tx begin'
+    >>> event_manager.subscribe(transaction_begin_handler)
+
+Same goes for commit and rollback events:
+
+    >>> @event_handler(transaction.TransactionCommit)
+    ... def transaction_commit_handler(event):
+    ...     print 'tx commit'
+    >>> event_manager.subscribe(transaction_commit_handler)
+    >>> @event_handler(transaction.TransactionRollback)
+    ... def transaction_rollback_handler(event):
+    ...     print 'tx rollback'
+    >>> event_manager.subscribe(transaction_rollback_handler)
+
+
+A Transaction is started by initiating a Transaction instance:
+
+    >>> tx = transaction.Transaction(event_manager)
+    tx begin
+
+On success, a transaction can be committed:
+
+    >>> tx.commit()
+    tx commit
+
+After a commit, a rollback is no longer allowed (the transaction is closed):
+
+    >>> tx.rollback()
+    ... # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TransactionError: No Transaction on stack.
+
+
+Transactions may be nested:
+
+    >>> tx = transaction.Transaction(event_manager)
+    tx begin
+    >>> tx2 = transaction.Transaction(event_manager)
+    >>> tx2.commit()
+    >>> tx.commit()
+    tx commit
+
+Transactions should be closed in the right order (subtransactions first):
+
+    >>> tx = transaction.Transaction(event_manager)
+    tx begin
+    >>> tx2 = transaction.Transaction(event_manager)
+    >>> tx.commit()
+    ... # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TransactionError: Transaction on stack is not the transaction being closed.
+    >>> tx2.commit()
+    >>> tx.commit()
+    tx commit
+
+
+The transactional decorator can be used to mark functions as transactional:
+
+    >>> @transaction.transactional
+    ... def a():
+    ...     print 'do something'
+    >>> a()
+    tx begin
+    do something
+    tx commit
+
+If an exception is raised from within the decorated function a rollback is
+performed:
+
+    >>> @transaction.transactional
+    ... def a():
+    ...     raise IndexError, 'bla'
+    >>> a()
+    ... # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    IndexError: bla
+    >>> transaction.Transaction._stack
+    []
+
+All transactions are marked for rollback once an exception is raised:
+
+    >>> tx = transaction.Transaction(event_manager)
+    tx begin
+    >>> a()
+    ... # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    IndexError: bla
+    >>> tx._need_rollback
+    True
+    >>> tx.commit()
+    tx rollback
+
+
+Cleanup:
+
+    >>> application.shutdown()
