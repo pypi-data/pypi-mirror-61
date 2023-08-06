@@ -1,0 +1,3 @@
+# Xdeep
+
+Xdeep is an open source software library for automated Interpretable Machine Learning. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The ultimate goal of Xdeep is to provide easily accessible interpretation tools to people who want to figure out why the model predicts so. Xdeep provides a variety of methods to interpret a model locally and globally.
