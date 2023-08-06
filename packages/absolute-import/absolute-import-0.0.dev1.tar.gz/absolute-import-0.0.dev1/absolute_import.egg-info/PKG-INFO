@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: absolute-import
+Version: 0.0.dev1
+Summary: A package to automate setting up absolute imports and namespace.
+Home-page: https://github.com/cpuabuse/absolute-import
+Author: cpuabuse.com
+Author-email: pypi@cpuabuse.com
+License: UNKNOWN
+Description: # absolute-import
+        
+        ## About
+        
+        Package providing a one-line functionality to set up a project for ability to perform absolute imports both after setup and with plain download. Additionally, provides namespaces support.
+        
+        ## Usage
+        
+        ### Absolute import
+        
+        1. In the root `__init__.py`.
+        
+        	```python
+        	from absolute_import.absolute_import import absolute_import
+        
+        	absolute_import(file=__file__)
+        	```
+        
+        1. In the root `__main__.py` or root directly executable python files.
+        
+        	```python
+        	from absolute_import.absolute_import import absolute_import
+        
+        	if __name__ == "__main__":
+        		absolute_import(file=__file__)
+        	```
+        
+        ### Absolute import and namespace
+        
+        1. In the root `__init__.py`.
+        
+        	```python
+        	from absolute_import.absolute_import import absolute_import
+        
+        	absolute_import(file=__file__, name=__name__, path=__path__)
+        	```
+        
+        1. In the root `__main__.py` or root directly executable python files.
+        
+        	```python
+        	from absolute_import.absolute_import import absolute_import
+        
+        	if __name__ == "__main__":
+        		absolute_import(file=__file__, name=__name__, path=__path__)
+        	```
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.3
+Description-Content-Type: text/markdown
