@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: pypublibike
+Version: 2.0.1
+Summary: A python wrapper around the PubliBike API
+Home-page: https://github.com/eliabieri/pypublibike
+Author: Elia Bieri
+Author-email: contact@eliabieri.com
+License: MIT
+Description: 
+        ⚡️🚲 pypublibike - A python wrapper round the PubliBike API
+        ===============================
+        
+        pypublibike makes it easy to access the PubliBike API in your own Python projects.
+        
+        Quick Start
+        -----------
+            $ pip install pypublibike
+        
+        Examples
+        -----------
+        
+        Getting a list of all PubliBike stations
+        
+        ```python
+        from pypublibike import publibike, station
+        
+        pb = publibike.PubliBike()
+        for station in pb.getStations():
+        	station.refresh() # refresh load data of station
+        	print(station.numEbikes)
+        ```
+        
+        Finding the nearest PubliBike station
+        
+        ```python
+        from pypublibike import publibike, location
+        
+        pb = publibike.PubliBike()
+        ourLocation = location.Location(latitude=46.950043, longitude=7.443169)
+        
+        nearestStation = pb.findNearestStationTo(ourLocation)
+        
+        nearestStation.refresh()
+        print(nearestStation.name)
+        ```
+        
+        
+        Getting Help
+        ------------
+        
+        * Open a issue on GitHub if you run into any problems
+        
+        * Contact me on [Twitter](https://twitter.com/eliabieri)
+        
+        Todo
+        ------------
+        
+         * API documentation
+         * Error handling
+         * Add unittests
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.7.0
+Description-Content-Type: text/markdown
