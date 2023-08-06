@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: geoslurp
+Version: 1.0.0
+Summary: Python postgreSQL-PostGIS client for managing earth science datasets
+Home-page: https://github.com/strawpants/geoslurp
+Author: Roelof Rietbroek
+Author-email: roelof@wobbly.earth
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Science/Research
+Classifier: Development Status :: 4 - Beta
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: SQLAlchemy
+Requires-Dist: pycurl
+Requires-Dist: cryptography
+Requires-Dist: PyYAML
+Requires-Dist: lxml
+Requires-Dist: keyring
+Requires-Dist: pandas
+Requires-Dist: easywebdav
+Requires-Dist: motuclient
+Requires-Dist: netCDF4
+Requires-Dist: GDAL
+Requires-Dist: Shapely
+Requires-Dist: GeoAlchemy2
+
+# Download and manage datasets in a PostGreSQL database with the PostGIS
+The idea is that this tool contains script to download (i.e. **slurp**) commonly used datasets and to register them in a postgresql+postgis database. This database can then be queried allowing the retrieval of the relevant data or datafiles. 
+
+The main documentation lives at [wobbly.earth/geoslurp](https://wobbly.earth/geoslurp)
+
+## Workings
+
+The geoslurp module itself is a pure python module, which acts as a client. For this to work one needs to [set up a running PostGreSQL database](https://github.com/strawpants/docker-geoslurp).
+
+![Image of geoslurp clients versus database server](https://github.com/strawpants/geoslurp/raw/master/docsrc/graphics/geoslurp_network.svg)
+
+
+
+
+
+
