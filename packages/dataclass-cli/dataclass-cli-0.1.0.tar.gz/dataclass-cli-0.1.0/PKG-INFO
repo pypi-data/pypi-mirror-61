@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: dataclass-cli
+Version: 0.1.0
+Summary: A library for building simple CLIs from dataclasses
+Home-page: https://github.com/Jeremy-Stafford/datacli
+Author: Jeremy Stafford
+Author-email: jeremyspianopenguin@gmail.com
+License: UNKNOWN
+Description: # datacli
+        
+        `datacli` is a library for building simple command line interfaces from
+        dataclasses. It is built on `argparse` and has no dependencies.
+        
+        ## Usage
+        
+        A ~~picture~~ code snippet speaks a thousand words:
+        
+        ```python
+        # person.py
+        
+        from dataclasses import dataclass, field
+        from datacli import datacli
+        
+        @dataclass
+        class Person:
+            name: str
+            age: int = 30
+        
+        args = datacli(Person)
+        print(args)
+        ```
+        
+        ```shell
+        $ python person.py --name "Jeremy"
+        Person(name="Jeremy", age=30)
+        $ python person.py --name "Jeremy" --age 20
+        Person(name="Jeremy", age=20)
+        $ python person.py --help
+        usage: test.py [-h] --name NAME [--age AGE]
+        
+        optional arguments:
+          -h, --help   show this help message and exit
+          --name NAME
+          --age AGE
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
