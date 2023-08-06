@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "tasmidi"
+version = "0.1.1"
+description = ""
+authors = ["Mark Rawls <markrawls96@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/markrawls/tasmidi"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+mido = "^1.2.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+tasmidi-map = 'tasmidi.map:main'
+tasmidi-convert = 'tasmidi.convert:main'
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
