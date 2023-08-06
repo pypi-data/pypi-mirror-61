@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: magpy-raz
+Version: 1.0.9
+Summary: Extract project data from GitLab
+Home-page: https://gitlab.com/Razinka/magpy
+Author: Raz Nitzan
+Author-email: raz.nitzan@gmail.com
+License: UNKNOWN
+Description: # Magshimim GitLab Project Management
+        This package extracts project data from GitLab, and writes it to .csv files,
+        which can be used for monitoring and analysis (e.g., using Excel)
+        
+        The data extracted by this package includes:
+        * `events.csv` - (almost) every activity made, including opening and closing issues,
+        pushing to the repository, and more...
+        
+        * `backlog.csv` - a pool of issues, not associated with assignee or milestone.
+        
+        * `sprints.csv` - an advanced feature for close monitoring of sprint progress (see special requirements below)
+        
+        ### Installation
+        ```
+        pip install magpy-raz
+        ```
+        
+        ### Requirements
+        To use this package, you need to provide a [GitLab personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) file, with `api` scope.
+        
+        ### Assumptions
+        * Gitlab projects belong to GitLab groups (not individual users)
+        
+        * Each project has a defined `start_date` and `end_date`
+        
+        * Output csv files will be created in the same folder as the main  program
+        
+        ### Special Requirements for Sprint Tracking
+        To use the `sprints` feature, you need to implement the following in your 
+        GitLab projects:
+        *  Create a set of milestones, each with a start and due date, creating a 
+          continuous timeline (i.e., the due date of sprint-1 is the day before the 
+          start date of sprint-2)
+        
+        *  Define a work-hours budget for the sprint, by including the following line 
+          at the top of the milestone descrition: ` Budget: .... = __h`
+        
+        *  Define work estimate for each issue, associated with the milestone, by 
+          using the Gitlab `/estimate` command (see [GitLab Time Tracking](https://docs.gitlab.com/ee/user/project/time_tracking.html) for more details)
+        
+        *  Use the standard `To Do`, `In Progress` and `Done` labels, to indicate 
+          issue status.
+        
+        ### Example
+        ```python
+        import magpy.general as mg
+        import magpy.project as my
+        import magpy.projects as mp
+        import sys
+        
+        PROJECTS = "[ירושלים,14970506,2019-10-29,2020-03-30]" + \
+                   "[בית-שמש,14969935,2019-10-31,2020-04-01]"
+        
+        TOKEN = 'token-raz.txt'
+        
+        
+        def parse_projects(project_string):
+            '''
+            Convert Projects string to a list of projects
+            '''
+            project_list = []
+        
+            project_string_list = project_string.split(sep=']')
+            for project_string in project_string_list:
+                project_params = project_string.strip('[,').split(sep=',')
+                if len(project_string) >= 4:
+                    project_list.append((project_params[0],
+                                         project_params[1],
+                                         project_params[2],
+                                         project_params[3]))
+        
+            return project_list
+        
+        
+        def main():
+        
+            try:
+                # Get projects from a calling script (e.g., from Excel)
+                token = sys.argv[1]
+                project_list = parse_projects(sys.argv[2])
+            except BaseException:
+                # Get locally defined projects (for debug)
+                token = TOKEN
+                project_list = parse_projects(PROJECTS)
+        
+            # Connect to GitLab
+            gl = mg.MagGitlab(token)
+        
+            # Get data for my projects
+            projects = mp.Projects(gl, project_list)
+            projects.write_csv_files()
+        
+        
+        if __name__ == '__main__':
+            main()
+        ```
+        
+        ### Author
+        [Raz Nitzan](mailto:raz.nitzan@gmail.com)
+        
+        ### License
+        
+        Distributed under the [MIT License](LICENSE).
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
