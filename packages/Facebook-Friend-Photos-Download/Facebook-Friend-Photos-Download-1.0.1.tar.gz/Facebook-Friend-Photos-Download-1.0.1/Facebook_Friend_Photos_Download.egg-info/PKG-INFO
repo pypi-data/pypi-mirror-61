@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: Facebook-Friend-Photos-Download
+Version: 1.0.1
+Summary: A simple tool to download all photos (from all albums) from your friend's facebook.
+Home-page: https://github.com/nguyenph88/Facebook-Friend-Photos-Download
+Author: Peter Nguyen
+Author-email: nguyenph882@gmail.com
+License: UNKNOWN
+Description: # Facebook Friend's Photos Download
+        
+        [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+        
+        [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+        
+        FFPD is a simple script that allows you to download all photos from your friend's albums.
+        
+        # New Features
+        
+          - You can download photos from either Page or User
+          - Each download will be saved in separated folder
+        
+        ### How to use
+        First, install `Facebook-Friend-Photos-Download` with `pip`:  
+        ```bash
+        $ pip install Facebook-Friend-Photos-Download
+        ```  
+        
+        Then refer to the example.py as below:
+        
+        **Example code**  
+        
+        ```python
+        from Facebook-Friend-Photos-Download import FFPD
+        
+        bot = FFPD(token=your_facebook_token)
+        bot.download(user_of_of_your_friends_account)
+        ```
+        ### How to get token and user ID
+        
+        - Get your FB token: There are many ways to get your personal token but i strongly recommend using [Multiple Tools for Facebook by Loc Mai](https://chrome.google.com/webstore/detail/multiple-tools-for-facebo/eojdckfcadamkapabechhbnkleligand/reviews?hl=en&gl=001&bin_assignment_request=nct:on?utm_campaign%253Den) Chrome extention to get your token securely.
+        - Get your friend's ID: simply paste their profile URL into [This Website](!https://lookup-id.com/)
+        
+        License
+        ----
+        
+        MIT
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
