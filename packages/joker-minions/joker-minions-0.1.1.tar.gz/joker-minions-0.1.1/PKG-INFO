@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: joker-minions
+Version: 0.1.1
+Summary: simple cache server using gevent
+Home-page: https://github.com/frozflame/joker-minions
+Author: frozflame
+Author-email: frozflame@outlook.com
+License: GNU General Public License (GPL)
+Description: joker-minions
+        =============
+        
+        Simple cache server using gevent.
+        
+        Run a cache server:
+        
+            $ python3 -c "from joker.minions.cache import CacheServer; CacheServer().runserver()"
+        
+        Play with `netcat`:
+            
+            $ echo 'set url https://pypi.org/project/joker-minions/' | netcat 127.0.0.1 8333
+            
+            $ echo 'get url' | netcat 127.0.0.1 8333
+            https://pypi.org/project/joker-minions/ 
+            
+        There's also a `BloomFilter` class using `mmh3` hash.
+        
+        
+Keywords: socket server cache bloom-filter
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
