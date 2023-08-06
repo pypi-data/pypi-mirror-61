@@ -1,0 +1,87 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  - "nightly"
+  - "pypy"
+  - "pypy3"
+
+jobs:
+  include:
+    - name: "Python 2.7.17 on macOS"
+      os: osx
+      osx_image: xcode11.2
+      language: shell
+    - name: "Python 3.7.5 on macOS"
+      os: osx
+      osx_image: xcode11.2
+      language: shell
+      addons:
+        homebrew:
+          packages:
+           - python3
+      before_install:
+       - type python3
+       - type python
+       - type pip3
+       - type pip
+       - mkdir fake_bin
+       - ln -s $(type -p python3) fake_bin/python
+       - ln -s $(type -p pip3) fake_bin/pip
+       - ls -l fake_bin
+       - export PATH=$(pwd)/fake_bin:$PATH
+       - type python
+    - name: "Python 2.7.17 on Windows"
+      os: windows
+      language: shell
+      before_install:
+        - choco install python2 --version 2.7.17
+        - python -m pip install --upgrade pip
+        - python -m pip install PyInstaller==3.6
+      env:
+        - PATH=/c/Python27:/c/Python27/Scripts:$PATH
+    - name: "Python 3.7.6 on Windows"
+      os: windows
+      language: shell
+      env:
+        - PATH=/c/Python37:/c/Python37/Scripts:$PATH
+        - PYTHONIOENCODING=utf8
+        - PYTHONUTF8=1
+      before_install:
+        - choco install python --version 3.7.6
+        - python -m pip install --upgrade pip
+        - python -m pip install PyInstaller==3.6
+    - name: "Python 3.8.0 on Windows"
+      os: windows
+      language: shell
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+        - PYTHONIOENCODING=utf8
+        - PYTHONUTF8=1
+      before_install:
+        - choco install python --version 3.8.0
+        - python -m pip install --upgrade pip
+        - python -m pip install PyInstaller==3.6
+  allow_failures:
+    - python: "nightly"
+    - os: osx
+    - os: windows
+
+install:
+  - pip install -r requirements-dev.txt
+  - pip install coveralls
+
+script:
+  - pytest
+  - coveralls
+
+notifications:
+  email:
+    recipients:
+        - michal.tomasz.labedzki@gmail.com
+    on_success: always
+    on_failure: always
