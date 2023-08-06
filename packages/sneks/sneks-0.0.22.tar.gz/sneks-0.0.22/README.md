@@ -1,0 +1,2 @@
+# sneks
+Random python utilities.
