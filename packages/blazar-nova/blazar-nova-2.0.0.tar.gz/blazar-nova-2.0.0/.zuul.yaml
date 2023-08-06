@@ -1,0 +1,32 @@
+- project:
+    templates:
+      - check-requirements
+      - openstack-python3-ussuri-jobs
+    check:
+      jobs:
+        - openstack-tox-lower-constraints:
+            required-projects:
+              - openstack/nova
+        - openstack-tox-pep8:
+            required-projects:
+              - openstack/nova
+        - openstack-tox-py36:
+            required-projects:
+              - openstack/nova
+        - openstack-tox-py37:
+            required-projects:
+              - openstack/nova
+    gate:
+      jobs:
+        - openstack-tox-lower-constraints:
+            required-projects:
+              - openstack/nova
+        - openstack-tox-pep8:
+            required-projects:
+              - openstack/nova
+        - openstack-tox-py36:
+            required-projects:
+              - openstack/nova
+        - openstack-tox-py37:
+            required-projects:
+              - openstack/nova
