@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: sphinxcontrib-drawio
+Version: 0.0.5
+Summary: Sphinx Extension to include draw.io files
+Home-page: https://github.com/Modelmat/sphinxcontrib-drawio
+Author: Modelmat
+Author-email: modelmat@outlook.com.au
+License: UNKNOWN
+Description: # sphinxcontrib-drawio
+        Sphinx Extension to add the ``drawio`` directive to include draw.io diagrams.
+        
+        **Important:** This extension is in development and not all features will work as advertised or at all.
+        
+        The drawio-desktop package does not run without an x-server (e.g. when in a CI
+        environment), see
+        [this issue](https://github.com/jgraph/drawio-desktop/issues/146).
+        The workaround is to install `xvfb-run`.
+        
+        ## Installation
+        
+        1. `python3 -m pip install sphinxcontrib-drawio`
+        2. In your sphinx config:
+        ```python
+        extensions = [
+            "sphinxcontrib.drawio"
+        ]
+        ```
+        3. Add the binary to `$PATH`. For Windows add `C:\Program Files\draw.io` and on
+        Linux add `/opt/draw.io/`. 
+        4. (required by default, see below) `sudo apt install xvfb`
+        
+        ## Options
+        These are the available options and their default values.
+        
+        ```python
+        drawio_output_format = "png"
+        drawio_binary_path = "/path/to/draw.io-binary"
+        drawio_headless = True
+        ```
+        
+        ## Usage
+        ```
+        .. drawio:: example.drawio
+            :format: png
+            :alt: An Example
+            :align: center
+        ```
+        If any other of the `draw.io` CLI tool's options are wanted, please file an issue.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Sphinx :: Extension
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
