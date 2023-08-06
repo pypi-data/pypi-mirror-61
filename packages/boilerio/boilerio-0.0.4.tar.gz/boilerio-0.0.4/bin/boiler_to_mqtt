@@ -1,0 +1,128 @@
+#!/usr/bin/python -u
+
+import argparse
+import serial
+import sys
+import paho.mqtt.client as mqtt
+import json
+import logging
+from boilerio import config
+
+logging.basicConfig(level=logging.DEBUG)
+
+
+def on_connect(client, userdata, flags, rc):
+    if rc:
+        logging.error("Error connecting, rc %d", rc)
+        return
+    logging.info("Subscribing to %s", userdata['demand_topic'])
+    client.subscribe(userdata['demand_topic'])
+
+
+def on_message(client, userdata, msg):
+    if msg.topic != userdata['demand_topic']:
+        return
+
+    try:
+        request = json.loads(msg.payload)
+        request['thermostat'] = hex(int(request['thermostat'], 0))
+    except ValueError:
+        logging.error("Error parsing request")
+        return
+
+    if 'command' not in request or \
+       request['command'] not in ['O', 'X', 'L']:
+        logging.error("Invalid or no command specified")
+    if 'thermostat' not in request:
+        logging.error("Invalid or no thermostat ID specified")
+    userdata['command_queue'].append(request)
+    logging.debug("Queued command %s", str(request))
+
+
+def main(mqtt_host, mqtt_user, mqtt_password, zone_basetopic, demand_topic,
+         sensor_filename):
+    # command_queue is a shared queue containing request objects, which are
+    # dictionaries like: {'command': '[O|X|L]', 'thermostat': '0xXXXX'}
+    # Messages are added when received from mqtt and processed in the loop
+    # below, to avoid shared access to the serial device.
+    command_queue = []
+
+    userdata = {'demand_topic': demand_topic, 'command_queue': command_queue}
+
+    client = mqtt.Client(userdata=userdata)
+    client.username_pw_set(mqtt_user, mqtt_password)
+    client.on_connect = on_connect
+    client.on_message = on_message
+    client.connect(mqtt_host, 1883, 60)
+
+    client.loop_start()
+    try:
+        sensor_filename = sys.argv[1]
+        # Note that the timeout of 0.5s allows time between commands being
+        # sent/received
+        with serial.Serial(sensor_filename, 57600, timeout=0.5) as sensor_file:
+            data = ""
+            while True:
+                data = data + sensor_file.readline().decode('utf-8')
+
+                # Was a full message received?  If so, process it, otherwise
+                # keep it until next time.
+                if data.endswith('\n'):
+                    try:
+                        data = data.strip()
+                        if data == "Danfoss thermostat transceiver":
+                            logging.info("Device welcome banner received: "
+                                         "Operating normally")
+                            continue
+                        try:
+                            direction, tid, cmd = data.split()
+                            if direction not in ['ISSUE', 'RECV']:
+                                raise ValueError("Unknown direction {}".format(
+                                    direction))
+                            if cmd not in ['ON', 'OFF', 'LEARN']:
+                                raise ValueError("Unknown command {}".format(
+                                    cmd))
+                        except ValueError:
+                            logging.error("Couldn't parse input: {}".format(
+                                data))
+                            continue
+                        msg = {
+                            'thermostat': tid,
+                            'direction': direction,
+                            'cmd': cmd
+                        }
+                        logging.info("Publishing update to {}/{} : {}".format(
+                            zone_basetopic, tid, json.dumps(msg)))
+                        client.publish("{}/{}".format(zone_basetopic, tid),
+                                       json.dumps(msg))
+                    finally:
+                        data = ""
+                elif not data:
+                    # Nothing was received; send a command from the queue
+                    try:
+                        request = command_queue.pop()
+                    except IndexError:
+                        # There was nothing in the list
+                        continue
+                    sensor_file.write("{}{}\n".format(
+                        request['command'], request['thermostat']).encode())
+                    logging.debug("Pushed command %s", str(request))
+    finally:
+        client.loop_stop()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description='Interface between MQTT and serial-controlled '
+                    'heating relay')
+    parser.add_argument('device_path',
+                        help="Path to serial device for relay controller, "
+                             "e.g. /dev/ttyUSB0")
+    args = parser.parse_args()
+    conf = config.load_config()
+    main(conf.get('mqtt', 'host'),
+         conf.get('mqtt', 'user'),
+         conf.get('mqtt', 'password'),
+         conf.get('heating', 'info_basetopic'),
+         conf.get('heating', 'demand_request_topic'),
+         args.device_path)
