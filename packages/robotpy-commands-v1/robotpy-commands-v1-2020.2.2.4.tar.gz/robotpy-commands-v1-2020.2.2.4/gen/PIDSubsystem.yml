@@ -1,0 +1,40 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+
+classes:
+  PIDSubsystem:
+    shared_ptr: true
+    methods:
+      PIDSubsystem:
+        overloads:
+          wpi::Twine&, double, double, double:
+          wpi::Twine&, double, double, double, double:
+          wpi::Twine&, double, double, double, double, double:
+          double, double, double:
+          double, double, double, double:
+          double, double, double, double, double:
+      Enable:
+      Disable:
+      PIDWrite:
+      PIDGet:
+      SetSetpoint:
+      SetSetpointRelative:
+      SetInputRange:
+      SetOutputRange:
+      GetSetpoint:
+      GetPosition:
+      GetRate:
+      SetAbsoluteTolerance:
+      SetPercentTolerance:
+      OnTarget:
+      GetPIDController:
+        rename: getPIDController
+      ReturnPIDInput:
+        rename: returnPIDInput
+      UsePIDOutput:
+        rename: usePIDOutput
