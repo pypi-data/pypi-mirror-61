@@ -1,0 +1,63 @@
+[metadata]
+name = {1}
+url = fanzhao1986@
+author = fanzhao1986
+author-email = fanzhao1986@gmail.com
+description = {1}
+long_description = file: README.md, CHANGELOG, LICENSE
+keywords = {1}
+classifiers =
+        # Classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        Development Status :: 5 - Production/Stable
+        Intended Audience :: Developers
+        License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+        Operating System :: POSIX :: Linux
+        Programming Language :: Python
+        Programming Language :: Python :: 3.6
+        Programming Language :: Python :: 3.7
+        Topic :: Utilities
+license_file=LICENSE
+platforms = any
+
+[options]
+zip_safe = False
+include_package_data = True
+packages = find:
+package_dir =
+    = src
+
+[options.packages.find]
+where = src
+exclude =
+    tests
+
+#[options.entry_points]
+# Add here console scripts like:
+# console_scripts =
+#     script_name = test_project.module:function
+# For example:
+# console_scripts =
+#     fibonacci = test_project.skeleton:run
+
+
+#[aliases]
+#build = bdist_wheel
+#release = build upload
+
+[options.package_data]
+* = *.txt, *.rst
+
+[flake8]
+max-line-length = 79
+exclude = .git
+ignore = E402, W503, W504
+
+[nosetests]
+verbosity=1
+detailed-errors=1
+with-doctest=1
+with-coverage=1
+cover-package={1}
+debug=nose.loader
+pdb=1
+pdb-failures=1
