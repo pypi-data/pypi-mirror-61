@@ -1,0 +1,13 @@
+source "/Users/luis/OneDrive - Vale S.A/Random/TCC/fconcrete/ENV/bin/activate"
+
+clear;make doctest
+sphinx-apidoc -o . .. ../se* ../test* ../modules*  -f -e -d 100;make html
+
+sphinx-build -v -b coverage . _build/coverage
+travis
+tox
+
+clear;pytest -svv
+
+deploy:
+rm -rf ./dist && python3 setup.py sdist && twine upload dist/*
