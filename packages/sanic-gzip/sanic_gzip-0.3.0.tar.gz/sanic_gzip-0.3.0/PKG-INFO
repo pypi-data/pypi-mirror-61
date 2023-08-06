@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: sanic_gzip
+Version: 0.3.0
+Summary: Add compress to Sanic response as decorator
+Home-page: https://github.com/koug44/sanic-gzip
+Author: Damien Alexandre
+Author-email: damien.alexandre@muage.org
+License: UNKNOWN
+Description: # sanic-gzip
+        A Sanic plugin to manage compression as a decorator
+        
+        ## Installation
+        
+        Install with `pip`:
+        
+        `pip install sanic-gzip`
+        
+        ## Usage
+        
+        Usage is as simple as a decorator before your function
+        
+        ```python
+        from sanic import Sanic
+        from sanic_gzip import compress
+        
+        app = Sanic(__name__)
+        compress = Compress()
+        
+        @app.get("/logs")
+        @compress.compress()
+        async def my_verbose_function(request):
+        ```
+        
+        The current version supports both gzip and deflate algorithms.
+        
+        ## Options
+        
+        Config options are to be setted as init argument:
+        
+        * Compression min. size
+        * Compression level
+        * MIME types impacted
+        * Number of threadused for compression
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
