@@ -1,0 +1,3 @@
+# OUTLIER REMOVAL
+In statistics, an outlier is a data point that differs significantly from other observations. An outlier may be due to variability in the measurement or it may indicate experimental error; the latter are sometimes excluded from the data set. An outlier can cause serious problems in statistical analyses.
+A outlier package to remove outliers in a database using row outlier removal.
