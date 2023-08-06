@@ -1,0 +1,9 @@
+[console_scripts]
+cyborg = cyborgclient.shell:main
+
+[openstack.accelerator.v1]
+accelerator_list = cyborgclient.osc.v1.accelerator:ListAccelerator
+
+[openstack.cli.extension]
+accelerator = cyborgclient.osc.plugin
+
