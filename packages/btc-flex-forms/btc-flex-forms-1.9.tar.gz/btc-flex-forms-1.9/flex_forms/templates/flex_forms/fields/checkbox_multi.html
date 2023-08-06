@@ -1,0 +1,11 @@
+{% extends 'flex_forms/fields/generic.html' %}
+
+{% block field_widget_template %}
+    {% for choice in field %}
+        <label for="{{ choice.id_for_label }}" class="checkbox-container">
+            {{ choice.tag }}
+            <span class="choice-label">{{ choice.choice_label }}</span>
+          <span class="checkbox-checkmark"></span>
+        </label>
+    {% endfor %}
+{% endblock %}
