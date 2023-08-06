@@ -1,0 +1,47 @@
+# pytest-testrail-plugin
+
+PyTest plugin for integration with TestRail
+
+## Usage
+0. Installing
+    -e git+https://git.cashwagon.com/billing/pytest-testrail-plugin.git#egg=pytest_testrail_plugin
+
+1. Create config file .cfg
+`test/testrail_config.cfg`:
+```
+[API]
+url = https://cashwagon.testrail.io
+email = name@cashwagon.com
+password = pass
+
+[TESTRUN]
+project_id = your ID
+root_section = directory_name
+```
+
+2. Use `@pytestrail.case()` decorator for tests
+
+    `from pytest_testrail_plugin.plugin import pytestrail`
+    
+3. Use docstring in `yaml` or `json` format if you want customize test case
+
+    ```python
+   from pytest_testrail_plugin.plugin import pytestrail
+   @pytestrail.case()
+   def test_foo():
+       """
+       title: case title in TestRail
+       custom_preconds: preconditions info
+       custom_steps: steps info
+       custom_expected: this is too long a string 
+           to print in a single line
+       """
+       assert 1 == 1
+    ```
+4. Run test with flags
+
+    `py.test --testrail --tr-config=path/to/config/file.cfg`
+
+    If you want to delete unused cases and sections use `--tr-unsafe` flag:
+    
+    `py.test --testrail --tr-config=path/to/config/file.cfg --tr-unsafe`
