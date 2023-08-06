@@ -1,0 +1,201 @@
+{% extends "djmongo/console/base.html" %}
+
+
+{% block extra_head %}
+
+<script type="text/javascript">
+$('.dropdown-toggle').dropdown();
+</script>
+{% endblock %}
+
+
+{% block Content %}
+
+{% load i18n %}
+
+<div class="container">
+      
+      <br><br>
+ 
+      
+            
+
+
+      
+   
+      
+   <div class="row">
+      <div class="col-lg-12">
+         <a name="Databases"></a><h2>Data Console</h2>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-lg-12">
+
+       <table class="table table-striped table-bordered">
+      
+       <thead>
+       <tr>
+         <th><h5>Databases</h5></th>
+         <th><h5>Collections</h5></t3>
+       </tr>
+       </thead>
+        
+       <tbody>
+       {% for d in dbs %}
+       <tr>
+       <td>
+       <div class="btn-group">
+           <a class="btn dropdown-toggle btn-default btn-large" data-toggle="dropdown" href="#">
+          {{ d.name }}
+           <span class="caret"></span>
+           </a>
+           <ul class="dropdown-menu">
+              <li><a href="{% url 'djmongo_create_collection' d.name %}">
+                   <i class="fa fa-database"></i> Create Collection</a> </li>
+              <li role="presentation" class="divider"></li>   
+              
+			  
+		      <li><a href="{% url 'djmongo_import_csv_w_db' d.name %}">
+                    <i class="fa fa-arrow-right"></i> Import Data into a New Collection</a>
+                </li>
+			  
+              <li><a href="{% url 'djmongo_drop_database' d.name %}">
+                   <i class="fa fa-warning"></i> Drop Database</a>
+              </li>
+               
+              </ul>
+            </div>
+       </td>
+       <td>
+           {% for c in d.collections %}
+           <div class="btn-group">
+           <div class="btn">
+            <a class="btn dropdown-toggle btn-default btn-large" data-toggle="dropdown" href="#">
+            {{c}}
+            <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+     
+	           <li> <a href="{% url 'djmongo_show_apis' d.name c %}">
+                     <i class="fa fa-dashboard"></i> {% trans "API Dashboard" %}</a>
+                   </li>
+                  
+	             <li role="presentation" class="divider"></li> 
+                        <li><a  href="{% url 'djmongo_create_document_in_collection_w_params' d.name  c %}">
+                   <i class="fa fa-plus-circle"></i> {% trans "Create a Document" %}</a></li>
+						
+				            <li><a  href="{% url 'djmongo_update_document_in_collection_w_params' d.name c %}">
+                   <i class="fa fa-retweet"></i> {% trans "Update a Document" %}</a></li>
+			            <li><a  href="{% url 'djmongo_ensure_index' d.name c %}">
+                   <i class="fa fa-fighter-jet"></i> {% trans "Create an Index" %}</a></li>
+			
+			<li> <a  href="{% url 'djmongo_drop_collection' d.name c %}"">
+                    <i class="fa fa-warning"></i> {% trans "Drop Collection" %} </a></li>
+
+            
+            <li role="presentation" class="divider"></li> 
+                  
+            
+            <li> <a  target=_blank href="{% url 'djmongo_build_keys' d.name c %}">
+                <i class="fa fa-key"></i> {% trans "Build Key Collection" %}</a></li>
+ 
+ 
+              <li>
+                  <a  href="{% url 'djmongo_import_csv_w_params' d.name c %}">
+                  <i class="fa fa-arrow-right"></i> {% trans "Import a CSV" %}</a>
+              </li>
+
+               <li> <a  href="{% url 'djmongo_browse_saved_aggregations_w_params' d.name c %}">
+                  <i class="fa fa-cogs"></i> {% trans "Schedule Aggregations" %}</a>
+              </li>
+                         
+            </ul>
+          </div>
+          
+          
+           {% endfor %}
+         </div> 
+       {% endfor %}
+       </table>
+    </div>
+    </div>
+
+   <div class="row">
+       <div class="col-lg-12">  
+          <a name="APIS"></a><h1>APIs on this Server</h1>
+       </div>
+   </div>
+   
+   <div class="row">
+          <div class="col-lg-12">    
+
+               <table class="table table-striped table-bordered">
+              
+               <thead>
+               <tr>
+                 <th><h3>Endpoints</h3></th>
+                 <th><h3>Actions</h3></th>
+               </tr>
+               </thead>
+                
+               <tbody>
+                  {% for a in apis %}
+                  <tr>
+                  <td>
+                     <strong>Name (Slug):</strong>{{ a.slug }}<br>
+                     <strong>URL:</strong> {{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ a.url }}
+                  </td>
+
+                  <td>
+                   <button type="button" class="btn btn-default btn-large" data-toggle="modal" data-target="#myModal{{ forloop.counter0 }}"> <i class="fa fa-eye"></i> View Details</button>  
+                     <!-- Modal -->
+                     <div class="modal fade" id="myModal{{ forloop.counter0 }}" role="dialog">
+                       <div class="modal-dialog modal-sm">
+                         <div class="modal-content">
+                           <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal">&times;</button>
+                             <h4 class="modal-title">API Details</h4>
+                           </div>
+                           <div class="modal-body">
+                             <p>
+                              Authentication Method:  <pre>{{a.auth_method}}</pre>
+                              Database<pre>{{a.database_name}}</pre><br>
+                              Collection:<pre>{{a.collection_name}}</pre><br>
+                              Slug:<pre>{{a.slug}}</pre><br>
+                              Query Type: <pre>{{a.query_type}}</pre><br>
+                              HTTP Method:  <pre>{{a.http_method}}</pre><br>
+                             
+                              
+                              
+                             </p>
+                           </div>
+                           <div class="modal-footer">
+                             <button type="button" class="btn btn-default btn-large" data-dismiss="modal">Close</button>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   
+                  
+                   <a href="{{ a.edit_url }}" >
+									  <button type="button" class="btn btn-default  btn-large"> <i class="fa fa-edit"></i> Edit</button>
+									  </a>
+
+                  			  
+                             <a href="{{ a.delete_url }}" >
+									  <button type="button" class="btn btn-default  btn-large"> <i class="fa fa-trash"></i> Delete</button>
+									  </a>
+         
+                  </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+               </table>
+       </div>
+   </div>
+</div>
+</div>
+
+{% endblock %}
