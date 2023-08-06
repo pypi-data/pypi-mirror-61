@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: apk-signer
+Version: 1.1.1
+Summary: Sign the apk file
+Home-page: https://github.com/ksg97031/apk-signer
+Author: ksg97031
+Author-email: ksg97031@gmail.com
+License: UNKNOWN
+Description: apk-signer
+        ============================================================
+        | Easy to use apk signing
+        
+        .. code-block:: sh
+        
+           pip install apk-signer
+           
+        
+        .. code-block:: sh
+        
+          $ apk-signer sample.apk
+          [Warning] Signing with default keystore.
+          [Warning] Please pass --key_path, --key_alias, --key_pass, --ks_pass parameter, if you want to use your keystore
+          > sample-signed.apk
+          $ apk-signer sample.apk --key_path="sample.jks" --key_alias="sample" --key_pass="sample_key" --ks_pass="sample_ks"
+          > sample-signed.apk
+          $ apk-signer sample.apk --run
+          > Success
+          > Performing Streamed Install\nSuccess
+          > Starting: Intent { cmp=com.sample.activty/.MainActivity }
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/x-rst
