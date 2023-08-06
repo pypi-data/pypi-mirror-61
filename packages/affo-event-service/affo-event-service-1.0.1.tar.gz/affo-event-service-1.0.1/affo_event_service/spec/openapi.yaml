@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: Investex Event Service
+
+paths:
+  /event/:
+    post:
+      operationId: affo_event_service.api.event.create
+      tags:
+        - event
+      summary: Send a new analytics event.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: event
+              $ref: "#/components/schemas/Event"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventWithID"
+
+servers:
+  - url: /api/v1.0
+
+components:
+  schemas:
+    Event:
+      type: object
+      required:
+        - t
+      properties:
+        t:
+          description: The type of hit.
+          type: string
+          enum:
+            - pageview
+            - event
+        tid:
+          description: The tracking ID / web property ID. The format is AFFO-XXXX. All collected data is associated by this ID.
+          type: string
+          x-nullable: true
+        cid:
+          description: This anonymously identifies a particular user, device, or browser instance. For the web, this is generally stored as a first-party cookie with a two-year expiration. For mobile apps, this is randomly generated for each particular instance of an application install. The value of this field should be a random UUID (version 4) as described in http://www.ietf.org/rfc/rfc4122.txt.
+          type: string
+          format: uuid
+        cn:
+          description: Specifies the campaign name.
+          type: string
+          x-nullable: true
+        cf1:
+          description: The custom field 1.
+          type: string
+          x-nullable: true
+        cf2:
+          description: The custom field 2.
+          type: string
+          x-nullable: true
+        cf3:
+          description: The custom field 3.
+          type: string
+          x-nullable: true
+        cf4:
+          description: The custom field 4.
+          type: string
+          x-nullable: true
+        cf5:
+          description: The custom field 5.
+          type: string
+          x-nullable: true
+        dl:
+          description: Use this parameter to send the full URL (document location) of the page on which content resides.
+          type: string
+          x-nullable: true
+        dr:
+          description: Specifies which referral source brought traffic to a website. This value is also used to compute the traffic source. The format of this value is a URL.
+          type: string
+          x-nullable: true
+        uip:
+          description: The IP address of the user. This should be a valid IP address in IPv4 or IPv6 format. It will always be anonymized just as though &aip (anonymize IP) had been used.
+          type: string
+          x-nullable: true
+        utt:
+          description: Specifies the user timing value. The value is in milliseconds.
+          type: string
+          x-nullable: true
+        ua:
+          description: The User Agent of the browser. Note that Google has libraries to identify real user agents. Hand crafting your own agent could break at any time.
+          type: string
+          x-nullable: true
+
+    EventWithID:
+      allOf:
+        - $ref: "#/components/schemas/Event"
+        - type: object
+          required:
+            - id
+            - created_at
+          properties:
+            id:
+              type: integer
+              description: A message identifier
+            created_at:
+              type: string
+              format: date-time
+              description: A date the event was created

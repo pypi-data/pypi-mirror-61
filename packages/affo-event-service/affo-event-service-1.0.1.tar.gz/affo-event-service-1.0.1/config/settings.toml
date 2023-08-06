@@ -1,0 +1,11 @@
+[default]
+DEBUG = true
+DATABASE_NAME = "affo-event"
+
+[development]
+CELERY_BROKER_URL = "memory://"
+CELERY_TASK_ALWAYS_EAGER = true
+CELERY_TASK_EAGER_PROPAGATES = true
+
+[production]
+DEBUG = false
