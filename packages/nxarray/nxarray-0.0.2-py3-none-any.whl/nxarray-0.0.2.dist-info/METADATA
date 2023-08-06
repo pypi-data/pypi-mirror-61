@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: nxarray
+Version: 0.0.2
+Summary: xarray extension for NeXus input/output.
+Home-page: https://gitlab.com/nxarray/nxarray
+Author: Mirco Panighel
+Author-email: panighel@iom.cnr.it
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: xarray
+Requires-Dist: nexusformat
+
+# nxarray
+
+xarray extension for NeXus input/output.
+
+Introduction
+============
+nxarray extends xarray DatArrays and Datasets with a high-level
+python interface for NeXus file input and output.
+
+Installation
+============
+
+```
+    pip install nxarray
+```
+
+Prerequisites
+=============
+nxarray is built on and depends on nexusformat and xarray.
+
+* [nexusformat](https://github.com/nexpy/nexusformat)
+* [xarray](http://xarray.pydata.org)
+
+Usage
+=====
+The recommended import
+
+```
+    import nxarray as nxr
+```
+
+To save a DataArray or Dataset to a NeXus file use the
+nxr.save() method:
+
+```
+    dr = xarray.DataArray()
+    dr.nxr.save(path/to/file.nx)
+```
+
+To load a NeXus file into an xarray Dataset use the
+nxr.load() function:
+
+```
+    ds = nxr.load(path/to/file.nx)
+```
+See the docstring help for more detailed information.
+
+
