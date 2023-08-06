@@ -1,0 +1,165 @@
+#! /usr/bin/env python3
+
+import json
+import sys
+import os
+from difflib import Differ
+import tempfile
+import yaml
+import copy
+import pprint
+import iterm2
+
+from pterm import get_aws_profiles
+from pterm import create_aws_profiles
+from pterm import create_profile
+
+
+def main():
+    """docstring for main"""
+    import argparse
+    parser = argparse.ArgumentParser(
+        description='Generates iterm2 dynamic profiles'
+    )
+
+    parser.add_argument('--aws-config',
+                        default=os.path.expanduser('~/.aws/config'),
+                        help='aws config folder')
+
+    parser.add_argument('--dest',
+                        default=os.path.expanduser(
+                            "~/Library/Application Support/iTerm2/DynamicProfiles/aws-profiles.json"
+                        ),
+                        help='Destination file for the profiles')
+
+    parser.add_argument('-s', '--set-default',
+                        action='store_true',
+                        help='Help message')
+
+    parser.add_argument('--kube-config',
+                        default=os.path.expanduser("~/.kube/config"),
+                        help='kubectl configuration file')
+
+    parser.add_argument('-d', '--diff',
+                        action='store_true',
+                        help='Print a diff to the current profiles')
+    parser.add_argument('-n', '--dry-run',
+                        dest='dry',
+                        action='store_true',
+                        help='Dry run mode')
+    parser.add_argument('-v', '--verbose',
+                        action='count',
+                        default=0,
+                        help='Increase verbosity')
+
+    args = parser.parse_args()
+
+    if args.diff:
+        args.dry = True
+
+    aws_profiles = create_aws_profiles(args.aws_config)
+    k8s_profiles = create_k8s_profiles(args.kube_config, args.dry)
+
+    profiles = {
+        "Profiles":
+            aws_profiles +
+            k8s_profiles +
+            [create_profile("pterm-default", change_title=True, badge=False)]
+    }
+
+    if args.diff:
+        current = [x.rstrip() for x in list(tuple(open(args.dest, 'r')))]
+        new = json.dumps(profiles, indent=4).split('\n')
+        d = Differ()
+        result = list(d.compare(current, new))
+        result = [x for x in result if x[0] != ' ']
+        if result:
+            pp = pprint.PrettyPrinter(width=200)
+            pp.pprint(result)
+    elif args.dry:
+        print(json.dumps(profiles, indent=4))
+    else:
+        with open(args.dest, "w") as out:
+            out.write(json.dumps(profiles, indent=4))
+    if args.set_default:
+        iterm2.run_until_complete(set_default)
+
+async def set_default(connection):
+    all_profiles = await iterm2.PartialProfile.async_query(connection)
+    for profile in all_profiles:
+        if profile.name == "pterm-default":
+            await profile.async_make_default()
+            return
+
+
+def create_k8s_profiles(kube_config, dry):
+    """docstring for create_k8s_profiles"""
+    user = os.getenv("USER")
+
+    if not os.path.exists(kube_config):
+        return []
+
+    with open(os.path.expanduser(kube_config)) as file:
+        config = yaml.full_load(file)
+
+    clusters = [x['name'] for x in config['clusters']]
+
+    profiles = []
+    for cluster in clusters:
+        this = carve_k8s_cluster(config, cluster)
+        cfg = os.path.join(
+            os.path.dirname(kube_config),
+            f"config.{cluster.replace('/', '__')}.yml"
+        )
+        if not dry:
+            with open(cfg, "w") as out:
+                yaml.dump(this, out)
+        aws_profile = None
+        try:
+            env = this['users'][0]['user']['exec']['env'][0]
+            if env['name'] != 'AWS_PROFILE':
+                pass
+            aws_profile = env['value']
+        except KeyError:
+            pass
+        except TypeError:
+            pass
+        except IndexError:
+            pass
+
+        new = create_profile(
+            f'k8s-{cluster}',
+            cmd=f"/usr/bin/env KUBECONFIG={cfg} AWS_PROFILE={aws_profile} /usr/bin/login -fp {user}",
+            change_title=False,
+            tags=['k8s'],
+        )
+        new["Background Color"] = {
+            "Red Component": 0,
+            "Color Space": "sRGB",
+            "Blue Component": 0.38311767578125,
+            "Alpha Component": 1,
+            "Green Component": 0
+        }
+        profiles += [new]
+    return profiles
+
+
+def carve_k8s_cluster(config, cluster):
+    """docstring for carve_k8s_cluster"""
+
+    config_cluster = [x for x in config['clusters'] if x['name'] == cluster]
+    config_context = [x for x in config['contexts'] if x['name'] == cluster]
+    config_user = [x for x in config['users'] if x['name'] == cluster]
+
+    new = copy.deepcopy(config)
+    new['clusters'] = config_cluster
+    new['contexts'] = config_context
+    new['users'] = config_user
+    new['current-context'] = cluster
+
+    return new
+
+
+
+if __name__ == '__main__':
+    main()
