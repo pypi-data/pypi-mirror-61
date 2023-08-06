@@ -1,0 +1,32 @@
+six
+ordered-set
+
+[:platform_system == "Windows"]
+jaraco.windows
+
+[all]
+six
+ordered-set
+numpy
+xxhash
+Pygments
+xdoctest
+pytest
+pytest-cov
+coverage
+codecov
+
+[all:platform_system == "Windows"]
+jaraco.windows
+
+[optional]
+numpy
+xxhash
+Pygments
+
+[tests]
+xdoctest
+pytest
+pytest-cov
+coverage
+codecov
