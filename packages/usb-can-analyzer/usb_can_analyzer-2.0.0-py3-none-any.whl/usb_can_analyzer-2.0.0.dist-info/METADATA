@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: usb-can-analyzer
+Version: 2.0.0
+Summary: Python library for the usb can analyzer.
+Home-page: https://github.com/yncreahdf-robotics/usb_can_analyzer_py/tree/master/usb_can_analyzer
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: pyserial
+
+# usb_can_analyzer_py
+Python library for the usb can analyzer.
+========================================================
+
+The Converter class allows to read/write data from/to a USB connection with a
+usb can analyzer.
+
+You can install it with pip:
+
+    pip install usb_can_analyzer
+
+Exemple d'usage:
+
+    Read data:
+    >>> from usb_can_analyzer import Converter
+    >>> converter = Converter("/dev/ttyUSB0")
+    >>> while True:
+    ...   data = converter.readMessage()
+    ...     if type(data) != int:
+    ...       print(data)
+
+
