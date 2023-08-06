@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: longleding-mrc-engine-sdk
+Version: 0.1.0
+Summary: Longleding MRC Engine SDK
+Home-page: https://git.emhub.top/em/mrc-engine
+Author: Shi Ran
+Author-email: ran.shi@longleding.com
+License: UNKNOWN
+Description: Longleding Operation OCR Engine SDK
+        
+        # Supported Python Versions
+        
+        Python >= 3.6
+        
+        # Installation
+        
+        longleding-mrc-engine-sdk is available for Linux, macOS, and Windows.
+        
+        ```shell script
+        $ pip install longleding-mrc-engine-sdk
+        ```
+        
+        # Basic Usage
+        
+        ```python
+        # -*- coding: utf-8 -*-
+        import os
+        os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
+        import ocr_engine as oe
+        import mrc_engine as me
+        
+        
+        oe.init_service('10.3.1.167:10027', 'demo')
+        me.init_service('10.3.1.167:10028', 'demo')
+        
+        ocr_res: str
+        with open('./f2.jpg', 'rb') as f:
+            ocr_res = oe.ocr_with_image(image=f.read())
+        
+        hospital, doc_type, sub_doc_type = me.ocr_result_classify(ocr_res, "")
+        print(hospital, doc_type, sub_doc_type)
+        res = me.ocr_result_matching(ocr_res, hospital, doc_type, sub_doc_type, ['单核细胞计数'])
+        print(res)
+        
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: System :: Logging
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
