@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: chcko-r
+Version: 0.1.0
+Summary: A random mix of exercises for chcko
+Home-page: https://github.com/chcko/chcko-r
+Author: Roland Puntaier
+Author-email: roland.puntaier@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Topic :: Education
+Classifier: Topic :: Education :: Computer Aided Instruction (CAI)
+Description-Content-Type: text/x-rst
+
+chko-r
+======
+
+A random mix of exercises and texts,
+previously part of ``chcko``,
+but now a separate package within the ``chcko`` namespace.
+
+``chko-r`` is an example of content for ``chcko``.
+
+Depends on https://github.com/chcko/chcko,
+which is not automatically installed::
+
+    pip install --user chcko
+
+Prepare content::
+
+    cd ~/mine/chcko-r
+    # works also in sub-folders:
+    doit -kd. html
+
+    cd ~/mine/chcko-r
+    doit initdb
+
+To run content locally::
+
+    cd ~/mine/chcko-r
+    runchcko
+
+Install content::
+
+    cd ~/mine/chcko-r
+    pip install --user .
+
+Image files are compiled to ``/chcko-r/chcko/_images``,
+and copied to ``chcko/chcko/_images`` common to all content when installing.
+They need to have a globally unique name.
+Use ``<author_id>_<problem_id>_xxx`` scheme, e.g ``.. texfigure:: r_dg_c1.tex``.
+
+
+
