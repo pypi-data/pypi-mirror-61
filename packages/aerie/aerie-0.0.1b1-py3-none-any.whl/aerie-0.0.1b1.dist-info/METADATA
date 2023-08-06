@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: aerie
+Version: 0.0.1b1
+Summary: An object mapper for async python.
+Home-page: https://github.com/alex-oleshkevich/aerie
+License: MIT
+Keywords: asyncio,sql,orm,database,sqlalchemy
+Author: alex.oleshkevich
+Author-email: alex.oleshkevich@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: asyncpg (>=0.18.3,<0.19.0)
+Requires-Dist: databases (>=0.2.5,<0.3.0)
+Requires-Dist: psycopg2-binary (>=2.8.4,<3.0.0)
+Project-URL: Repository, https://github.com/alex-oleshkevich/aerie.git
+Description-Content-Type: text/markdown
+
+<p align="center">
+<a href="https://travis-ci.org/alex-oleshkevich/aerie">
+    <img src="https://api.travis-ci.com/alex-oleshkevich/aerie.svg?branch=master" alt="Build Status">
+</a>
+<a href="https://codecov.io/gh/alex-oleshkevich/aerie">
+    <img src="https://codecov.io/gh/alex-oleshkevich/aerie/branch/master/graph/badge.svg" alt="Coverage">
+</a>
+<a href="https://pypi.org/project/aerie/">
+    <img src="https://badge.fury.io/py/aerie.svg" alt="Package version">
+</a>
+</p>
+
+---
+
+# An object mapper for async python.
+
+## Installation
+
+```bash
+pip install aerie
+```
+
+## Usage
+
+```python
+from aerie import Connection, Store, Schema, fields
+
+connection = Connection('postgresql://user:pass@localhost/db_name')
+store = Store(connection)
+
+class User(Schema):
+    id = fields.IntegerField()
+    name = fields.StringField()
+
+rows = await store.raw('select * from users').to(User)
+
+```
+
