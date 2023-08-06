@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: arpa2.reservoir
+Version: 0.2.0
+Summary: ARPA2 Reservoir -- object store with metadata in LDAP
+Home-page: https://github.com/arpa2/reservoir
+Author: Rick van Rein (for the ARPA2 Reservoir project)
+Author-email: rick@openfortress.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: arpa2.shell
+Requires-Dist: python-ldap
+Requires-Dist: gssapi
+Requires-Dist: six
+Requires-Dist: enum34 ; python_version < "3"
+
+# ARPA2 Reservoir: API
+
+> *This is the central logic for manipulating the stored information
+> of ARPA2 Reservoir.  It manipulates metadata in LDAP as well as the
+> files that hold the litaral objects.*
+
+Reservoir is an object store with maximum exposure over standard
+protocols.  It stores metadata in LDAP, which may be searched from
+the outside.  The actual data is stored in a hierarchy of a given,
+simple structure.  This API controls both.
+
+To access the API, import its package:
+
+```
+from arpa2 import reservoir
+```
+
+This only includes the API.  You will separately have to add support
+from other tools if you need it.  Some tools are in fact commandline
+utilities that get installed through their `entry_point` as additional
+commands for the OS.
+
+## Layers on Top of this API
+
+On top of this API, there are a few other packages:
+
+**Work completed:**
+
+  * `reservoir.rmt` solutions may use the Reservoir like a remote tape for
+    backup.  It may implement the `rmt(1)` command set for anyone who
+    arrives over a secure shell connection.  We followed the "modern"
+    [protocol version 1]()http://schilytools.sourceforge.net/man/man1/rmt.1.html
+    for safety reasons, and will reject attempts of `erase` and `weof`
+    commands from older clients (such as GNU mt), simply because they
+    might be accidentally triggered by these older clients due to the
+    exchange of non-portable command codes.  They didn't realise this
+    to be a problem back in 1981.
+
+**Work in progress:**
+
+  * `arpa2reservoir` is a commandline shell over which administrators
+    can perform the actions offered by the API.  It also has an automation
+    interface centered around JSON messages.
+
+  * `wsgidav` is a WebDAV implementation with a backend plugin for the
+    Reservoir.  It digs up metadata in LDAP and serves the results over a
+    common WebDAV interface.  Even though LDAP would be more efficient to use,
+    there are many ways of making a WebDAV repository available as a virtual
+    drive or directory on a client machine.
+
+  * `reservoir.sftp` can be a plugin to OpenSSH2 that serves the SFTP protocol,
+    but in reality interacts with the Reservoir instead of (just) local files.
+
+**Further options** for which your help could make all the difference:
+
+  * `reservoir.amqp` servers will send and receive from queues in the
+    Reservoir, by connecting to other domains with AMQP 1.0, performing
+    mutual authentication and then passing objects with as much metadata
+    as the protocol can carry.
+
+  * `reservoir.lmtp` servers may receive information for Reservoir from a
+    variety of sources, including but not limited to a domain's mail server.
+
+  * `reservoir.volume` may be a service to provide images for a large
+    variety of purposes; these may include disk images for virtual machines,
+    CD-ROM images for OS installation, TFTP images of operating systems and
+    their initial disks, and so on.  Note that Reservoir can store hashes
+    of content in the metadata.
+
+  * `reservoir.cid` could perform lookups based on `Content-ID`, the header
+    defined in [RFC 2392](https://tools.ietf.org/html/rfc2392) and
+    commonly used to identify email attachments.  All this needs is an
+    apphint for this use under a user or domain or other.  A much nicer
+    way to exchange "attachments", and much easier to secure as well.
+
+## Functionalities
+
+The Python documentation will help you get going, but this is a quick start.
+
+There are a few classes of interest:
+
+  * `Resource` is like a file; it represents a stored object, including its metadata.
+  * `Index` is like a current working directory; it can progress to other indexes, as well as list or obtain resources held in them.
+  * The domain (or a user under a domain) has what is called a home index; this works a little differently; the first step is to provide a hinted application name that may have its own Index setup; if not, a default/unnamed Index that serves as a fallback is used instead.
+
+An Index points to a Collection of Resources.  You can access a name in the index to move to another such Collection.  New Collections may be added with a name, existing ones may be aliased to a name, and this is how Indexes grow and expand.
+
+Finally, Collections have Resources added to them.  Indexes that are home indexes for (a user under) a domain are not Collections, and they cannot have Resources underneath them.  This can be remedied simply with an application hint.
+
+
+
