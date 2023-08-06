@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: easyreq
+Version: 1.1.1
+Summary: Test package
+Home-page: https://kjaniszewski.pl
+Author: Krzysztof Janiszewski
+Author-email: krzychu.janiszewski@gmail.com
+License: MIT
+Download-URL: https://gitlab.com/Krzysidlo/easyreq
+Description: # EasyReq
+        
+        ### Python package for easy `requirements.txt` file generating or altering
+        
+            pip install easyreq
+            
+            easyreq --help
+            
+        > usage: easyreq [-h] [path]
+        > 
+        > Tool for easy requirements generating
+        > 
+        > positional arguments:  
+        > &nbsp;&nbsp;path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path to file with requirements  
+        > 
+        > optional arguments:  
+        > &nbsp;&nbsp;-h, --help&nbsp;&nbsp;show this help message and exit  
+        
+        ## Project searching
+        
+        It will find all packages imports used in files in project, check installed version of the package using `pip freeze` and generate `requirements.txt` file based on that 
+        
+        **If you want to search current directory you are in**
+        
+            :/home/user/projectName$ easyreq
+            
+        **Or you can specify a path to a project you want to use it for**
+        
+            :/home/user/projectName$ easyreq /home/user/someOtherProjectName/
+        
+        ## Altering already existing requirements.txt
+        
+        If a package in rquirements has specified version (eg. `urllib3==1.25.7`) it will be changed as a minimum (eg. `>=1.25.7`) and added a maximum one version higher (eg. `<2`)  
+        If a package has no version specified it will try to find installed one using `pip freeze` and add it as a minimum and add a maximum one version higher
+        
+        **In order to alter `requirements.txt` file**
+        
+            :/home/user/projectName$ easyreq /home/user/projectName/requiremnts.txt
+        
+        Or
+        
+            :/home/user/projectName$ easyreq requiremnts.txt
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
