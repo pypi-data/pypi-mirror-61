@@ -1,0 +1,101 @@
+{% load static %}
+{% load custom_tags_and_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{# This meta-tag forcefully disables 'compatibility mode' in Internet Explorer because it causes rendering problems. #}
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta charset="UTF-8">
+	<meta name="application-name" content="NanoFab Equipment Management and Operations (NEMO)">
+	<meta name="author" content="Center for Nanoscale Science and Technology">
+	<meta name="description" content="NEMO allows NanoFab users to make tool reservations, control access to tools in the NanoFab, and streamline logistics and communication">
+	<meta name="keywords" content="NanoFab, logistics, operations, nano-technology, nano-fabrication, reservation, tool control, status">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	{# Snippet to prevent clickjacking. Taken from https://www.codemagi.com/blog/post/194 #}
+	<style id="antiClickjack">
+		body
+		{
+			display: none !important;
+		}
+	</style>
+	<script type="text/javascript">
+		if(self === top)
+		{
+			var antiClickjack = document.getElementById("antiClickjack");
+			antiClickjack.parentNode.removeChild(antiClickjack);
+		}
+		else
+			top.location = self.location;
+	</script>
+
+	{# Moment #}
+	<script type="text/javascript" src="{% static "moment.js" %}"></script>
+
+	{# jQuery #}
+	<script type="text/javascript" src="{% static "jquery.js" %}"></script>
+
+	{# Bootstrap #}
+	<script type="text/javascript" src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.css" %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap-theme.css" %}"/>
+
+	{# Typeahead #}
+	<script type="text/javascript" src="{% static "typeahead.jquery.js" %}"></script>
+
+	{# NEMO #}
+	<script type="text/javascript" src="{% static "nemo.js" %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static "nemo.css" %}"/>
+
+	{% block extrahead %}{% endblock %}
+
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+{% if 'no_header' in request.GET and request.GET.no_header %}
+	<div style="height: 15px;"></div>
+{% else %}
+	{% include 'navbar.html' %}
+{% endif %}
+{% block body %}
+    <div class="body-container">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+        {% block extra_whitespace %}
+            <div style="height: 200px"></div>
+        {% endblock %}
+    </div>
+    <!-- Version -->
+    <footer class="page-footer">
+        {% app_version as app_version %}
+        <div class="container">
+            {% if app_version %}v {% app_version %}{% else %}&nbsp;{% endif %}
+        </div>
+    </footer>
+{% endblock %}
+
+{# This division is used to display dialog messages via Bootstrap. #}
+<div class="modal fade" id="dialog" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
+
+<script>
+	function csrf_token()
+	{
+		return '{{ csrf_token }}';
+	}
+	{# Add a global AJAX completion callback if sessions are able to timeout. #}
+	{# When an AJAX request receives an HTTP 403 (unauthorized) reply the user is #}
+	{# sent to the logoff page, which then redirects them back to the login page. #}
+	{% if logout_allowed %}
+		$(document).ajaxComplete(navigate_to_login_on_session_expiration);
+	{% endif %}
+</script>
+
+</body>
+</html>
