@@ -1,0 +1,71 @@
+[tool.isort]
+default_section = "THIRDPARTY"
+known_first_party = "qwikstart"
+multi_line_output = 3
+include_trailing_comma = true
+line_length = 88
+
+[tool.poetry]
+name = "qwikstart"
+version = "0.4.0"
+description = "Code generator for automating configuration, setup, and yak shaving."
+readme = "README.rst"
+repository = "https://github.com/tonysyu/qwikstart"
+documentation = "https://qwikstart.readthedocs.io/"
+authors = ["Tony S. Yu <tsyu80@gmail.com>"]
+license = "BSD-3-Clause"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development",
+    "License :: OSI Approved :: BSD License",
+
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+]
+keywords = ["console", "terminal"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+sphinx = { version = "<2", optional = true }
+sphinx-autobuild = { version = "*", optional = true }
+sphinxcontrib-napoleon = { version = "*", optional = true }
+rope = "^0.14.0"
+typing-extensions = "^3.7"
+jinja2 = "^2.10"
+click = "^7.0"
+# The dataclasses module is not in the stdlib in Python 3.6
+dataclasses = { version = "^0.7", python = "~3.6" }
+pyyaml = "^5.1"
+binaryornot = "^0.4.4"
+colorlog = "^4.0.2"
+termcolor = "^1.1.0"
+gitpython = "^3.0.5"
+prompt-toolkit = "^3.0.3"
+
+[tool.poetry.dev-dependencies]
+bumpversion = "*"
+coverage = "*"
+flake8 = "*"
+ipdb = "^0.12.2"
+mock = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
+twine = "*"
+wheel = "*"
+pre-commit = "^1.17"
+pyfakefs = "^3.7"
+flake8-bugbear = "^19.8.0"
+mypy = "^0.761"
+
+[tool.poetry.extras]
+docs = ["sphinx", "sphinx-autobuild", "sphinxcontrib-napoleon"]
+
+[tool.poetry.scripts]
+qwikstart = "qwikstart.cli.main:main"
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
