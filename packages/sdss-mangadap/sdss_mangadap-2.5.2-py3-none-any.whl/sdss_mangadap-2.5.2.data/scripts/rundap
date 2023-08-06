@@ -1,0 +1,15 @@
+#!python
+
+import sys
+if sys.version < '3':
+    raise ValueError('Must use python3 to run MaNGA DAP.')
+
+validation=True
+try: 
+    from mangadap.survey import rundap
+except ImportError as e: 
+    validation = False
+    print('ImportError: {0}'.format(str(e)))
+if validation:
+    rundap = rundap(console=True)
+
