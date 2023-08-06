@@ -1,0 +1,108 @@
+# Changelog
+
+## [Unreleased][]
+
+[Unreleased]: https://github.com/chaosiq/chaosiq-cloud/compare/0.8.0...HEAD
+
+## [0.8.0][] - 2020-02-17
+
+[0.8.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.7.1...0.8.0
+
+### Added
+
+- Added first tolerances
+- Added first probes
+
+## [0.7.1][] - 2020-02-05
+
+[0.7.1]: https://github.com/chaosiq/chaosiq-cloud/compare/0.7.0...0.7.1
+
+### Changed
+
+- Included the `chaoscloud.verify` package.
+
+[verification]: https://chaosiq.io/resources/chaos-engineering/from-chaos-to-verification
+
+## [0.7.0][] - 2020-02-05
+
+[0.7.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.6.0...0.7.0
+
+### Added
+
+- The `verify` command for running a [system verification][verification]. [#34][34]
+
+[verification]: https://chaosiq.io/resources/chaos-engineering/from-chaos-to-verification
+
+## [0.6.0][] - 2020-01-15
+
+[0.6.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.5.0...0.6.0
+
+### Added
+
+- Generate a `".chaosiq"` workspace file for registering experiment IDs
+  related to their local file names. [#30][30]
+
+### Changed
+
+- Adapted to use the organization/team schema of the remote API [#27][27]
+- Fixed: features were reset to default value when updating settings [#31][31]
+
+[27]: https://github.com/chaosiq/chaosiq-cloud/issues/27
+[30]: https://github.com/chaosiq/chaosiq-cloud/issues/30
+[31]: https://github.com/chaosiq/chaosiq-cloud/issues/31
+
+## [0.5.0][] - 2019-11-26
+
+[0.5.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.4.1...0.5.0
+
+### Added
+
+- Store the experiment and execution identifiers in the journal as an extension
+  named `"chaosiq"` so that they can used later on.
+- Store the safeguards that interrupted an execution into the `"chaosiq"`
+  extension of the journal [#22][22]
+- More graceful bail when certificate verification fails
+
+[22]: https://github.com/chaosiq/chaosiq-cloud/issues/22
+
+## [0.4.1][] - 2019-09-29
+
+[0.4.1]: https://github.com/chaosiq/chaosiq-cloud/compare/0.4.0...0.4.1
+
+### Changed
+
+- Defaulting to UTC when no local timezone could be found
+
+## [0.4.0][] - 2019-09-27
+
+[0.4.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.3.0...0.4.0
+
+### Changed
+
+- A little more robust to failure to fetch organizations
+- Catch SIGTERM to interrupt execution gracefully
+
+## [0.3.0][] - 2019-09-25
+
+[0.3.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.2.0...0.3.0
+
+### Changed
+
+- Renamed package to `chaosiq-cloud` to align with the product
+
+## [0.2.0][] - 2019-07-26
+
+[0.2.0]: https://github.com/chaosiq/chaosiq-cloud/compare/0.1.0...0.2.0
+
+### Added
+
+-   [Renamed `login` to `signin`](https://github.com/chaosiq/chaosiq-cloud/issues/10)
+-   [Add `org` command to switch default organisation](https://github.com/chaosiq/chaosiq-cloud/issues/11)
+
+## [0.1.0][] - 2019-07-24
+
+[0.1.0]: https://github.com/chaosiq/chaosiq-cloud/tree/0.1.0
+
+### Added
+
+-   Initial release
