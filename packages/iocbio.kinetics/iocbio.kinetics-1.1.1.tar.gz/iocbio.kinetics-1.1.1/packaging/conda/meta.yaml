@@ -1,0 +1,52 @@
+{% set name = "iocbio.kinetics" %}
+{% set version = "1.1.1" %}
+
+package:
+   name: '{{ name }}'
+   version: '{{ version }}'
+
+app:
+  entry: iocbio-kinetics
+  summary: IOCBio Kinetics
+  icon: icon.png
+  type: desk
+
+source:
+  url: ../../dist/{{ name }}-{{ version }}.tar.gz
+
+build:
+  number: 1
+  noarch: python
+  script: python3 -m pip install --no-deps . 
+  entry_points:
+    - iocbio-kinetics = iocbio.kinetics.app.gui:main
+    - iocbio-fetch = iocbio.kinetics.app.fetch:main
+    - iocbio-fetch-repeated =iocbio.kinetics.app.fetch_repeated:main
+    - iocbio-banova = iocbio.kinetics.app.banova:main
+    
+requirements:
+  build:
+    - python>=3.4
+    - setuptools
+  run:
+    - pyqt>=5.6
+    - h5py
+    - scipy
+    - numpy
+    - pyqtgraph
+    - keyring
+    - psycopg2
+    - XlsxWriter
+    - records
+    - SQLAlchemy
+    - tablib
+    - tabulate
+    - msgpack-python
+    - attrdict
+
+about:
+  home: https://gitlab.com/iocbio/kinetics
+  summary: IOCBio Kinetics
+  description: |
+     A cross-platform application for analysis of different traces
+  
