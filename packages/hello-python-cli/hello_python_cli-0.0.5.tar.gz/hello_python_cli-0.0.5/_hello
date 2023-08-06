@@ -1,0 +1,13 @@
+#compdef _hello hello
+
+function _hello {
+    local line
+
+    _arguments -C \
+        "-h[Show help information]" \
+        "--h[Show help information]" \
+        "--debug[Show debug output]" \
+        "--title[Title to use]" \
+        "--lower[Lower case everything]" \
+        "*::arg:->args"
+}
