@@ -1,0 +1,58 @@
+[relay]
+addresses_filepath = "addresses.json"
+update_indexed_networks_interval = 120
+
+[relay.gas_price_computation]
+method = "rpc"
+gas_price = 0
+
+[trustline_index]
+enable = true
+full_sync_interval = 300
+event_query_timeout = 20
+
+[tx_relay]
+enable = true
+
+[exchange]
+enable = true
+
+[node_rpc]
+port = 8545
+host = "localhost"
+use_ssl = false
+
+[faucet]
+enable = false
+
+[push_notification]
+enable = false
+firebase_credentials_path = "firebaseAccountKey.json"
+
+[rest]
+port = 5000
+host = ""
+
+[messaging]
+enable = true
+
+[delegate]
+enable = true
+enable_deploy_identity = true
+fees = []
+
+# [account]
+# keystore_path = "path-to-keystor"
+# keystore_password_path = "path-to-password"
+
+# [sentry]
+# dsn = "..."
+
+# [logging]
+# level = "INFO"
+
+# [logging.loggers."api.resources"]
+# level = "DEBUG"
+
+# [logging.loggers.node]
+# level = "DEBUG"
