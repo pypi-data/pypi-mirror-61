@@ -1,0 +1,170 @@
+steps:
+  # Install aqtinstall
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: $(PYTHON_VERSION)
+      architecture: 'x64'
+  - script: |
+      cd $(Build.SourcesDirectory)
+      python -m pip install -rrequirements.txt
+    displayName: 'Install dependency'
+  - task: PythonScript@0
+    inputs:
+      scriptSource: filePath
+      scriptPath: $(Build.SourcesDirectory)/setup.py
+      arguments: sdist bdist_wheel
+      workingDirectory: $(Build.SourcesDirectory)
+    displayName: build package
+  - powershell: |
+      $aqtVersion = & python $(Build.SourcesDirectory)/setup.py --version | Out-String -Stream
+      pip install $(Build.SourcesDirectory)/dist/aqtinstall-$aqtVersion-py2.py3-none-any.whl
+    displayName: install package
+
+  # Run Aqt
+  ##----------------------------------------------------
+  - script: python -m aqt install --outputdir $(Build.BinariesDirectory)/Qt $(QT_VERSION) $(HOST) $(TARGET) $(ARCH)
+    workingDirectory: $(Build.BinariesDirectory)
+    condition: and(not(variables['QT_BASE_MIRROR']), not(variables['TOOL_NAME']), not(variables['EXTERNAL']), eq(variables['MODULE'], ''))
+    displayName: Run Aqt (No Base URL Set)
+  - script: python -m aqt install --outputdir $(Build.BinariesDirectory)/Qt $(QT_VERSION) $(HOST) $(TARGET) $(ARCH) -b $(QT_BASE_MIRROR)
+    condition: and(variables['QT_BASE_MIRROR'], not(variables['TOOL_NAME']), not(variables['EXTERNAL']), eq(variables['MODULE'], ''))
+    workingDirectory: $(Build.BinariesDirectory)
+    displayName: Run Aqt (Base URL Set)
+  - script: python -m aqt install --outputdir $(Build.BinariesDirectory)/Qt $(QT_VERSION) $(HOST) $(TARGET) $(ARCH) -m $(MODULE)
+    workingDirectory: $(Build.BinariesDirectory)
+    condition: and(not(variables['TOOL_NAME']), not(variables['EXTERNAL']), ne(variables['MODULE'], ''))
+    displayName: Run Aqt (With modules)
+  - script: python -m aqt install --outputdir $(Build.BinariesDirectory)/Qt $(QT_VERSION) $(HOST) $(TARGET) $(ARCH) -E "$(EXTERNAL)"
+    workingDirectory: $(Build.BinariesDirectory)
+    condition: and(not(variables['TOOL_NAME']), variables['EXTERNAL'])
+    displayName: Run Aqt (With external 7zip)
+
+  # Test installation environments
+  ##----------------------------------------------------
+  # for Android on linux
+  - script: |
+      wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip
+      unzip android-ndk-r20b-linux-x86_64.zip
+    condition: and(eq(variables['TARGET'], 'android'), eq(variables['Agent.OS'], 'Linux'))
+    displayName: Download and extract Android NDK
+  # for Android on mac
+  - script: |
+      wget https://dl.google.com/android/repository/android-ndk-r20b-darwin-x86_64.zip
+      unzip android-ndk-r20b-darwin-x86_64.zip
+    condition: and(eq(variables['TARGET'], 'android'), eq(variables['Agent.OS'], 'Darwin'))
+    displayName: Download and extract Android NDK
+  - script: |
+      export ANDROID_NDK_ROOT=$(Build.SourcesDirectory)/android-ndk-r20b
+      mkdir $(Build.BinariesDirectory)/tests
+      (cd $(Build.BinariesDirectory)/tests; 7zr x $(Build.SourcesDirectory)/ci/accelbubble.7z)
+      $(Build.BinariesDirectory)/Qt/$(QT_VERSION)/$(ARCHDIR)/bin/qmake $(Build.BinariesDirectory)/tests/accelbubble && make
+    condition: and(eq(variables['TARGET'], 'android'), or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin')))
+    displayName: Build accelbubble example application to test for android
+
+  ##----------------------------------------------------
+  # Test build on Windows/Linux and Mac
+  # determine Windows build system
+  - powershell: |
+      Install-PackageProvider NuGet -Force
+      Import-PackageProvider NuGet -Force
+      Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+      Install-Module Pscx -AllowClobber
+      Install-Module VSSetup -Scope CurrentUser
+      if ('$(ARCH)' -like '*msvc*') {
+        echo '##vso[task.setvariable variable=TOOLCHAIN]MSVC'
+      }
+      if ('$(ARCH)' -like '*mingw*') {
+        echo '##vso[task.setvariable variable=TOOLCHAIN]MINGW'
+      }
+      if ('$(ARCH)' -like 'win64_msvc*') {
+        echo '##vso[task.setvariable variable=ARCHITECTURE]amd64'
+      } else {
+        echo '##vso[task.setvariable variable=ARCHITECTURE]x86'
+      }
+      if ('$(ARCH)' -like '*msvc2017*') {
+        echo '##vso[task.setvariable variable=VSVER]2017'
+      } else {
+        echo '##vso[task.setvariable variable=VSVER]2015'
+      }
+    condition: eq( variables['Agent.OS'], 'Windows_NT')
+    displayName: detect toolchain for Windows
+  - script: |
+      sudo apt-get install libgl1-mesa-dev
+    condition: and(eq( variables['TARGET'], 'desktop' ), eq(variables['Agent.OS'], 'Linux'))
+    displayName: install test dependency for Linux
+
+  # no modules
+  - powershell: |
+      Import-VisualStudioVars -VisualStudioVersion $(VSVER) -Architecture $(ARCHITECTURE)
+      mkdir $(Build.BinariesDirectory)/tests
+      cd $(Build.BinariesDirectory)/tests
+      7z x $(Build.SourcesDirectory)/ci/helloworld.7z
+      cd ..
+      $(Build.BinariesDirectory)/Qt/$(QT_VERSION)/$(ARCHDIR)/bin/qmake $(Build.BinariesDirectory)/tests/helloworld
+      nmake
+    condition: and(eq( variables['Agent.OS'], 'Windows_NT'), eq(variables['TOOLCHAIN'], 'MSVC'), eq(variables['MODULE'], ''))
+    displayName: build test with qmake with MSVC w/o extra module
+  - script: |
+      mkdir $(Build.BinariesDirectory)/tests
+      (cd $(Build.BinariesDirectory)/tests; 7zr x $(Build.SourcesDirectory)/ci/helloworld.7z)
+      $(Build.BinariesDirectory)/Qt/$(QT_VERSION)/$(ARCHDIR)/bin/qmake $(Build.BinariesDirectory)/tests/helloworld
+      make
+    condition: and(eq( variables['TARGET'], 'desktop' ), ne( variables['ARCH'], 'wasm_32' ), or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin')), eq(variables['MODULE'], ''))
+    displayName: Build test with qmake for Linux and macOS w/o extra module
+  # modules
+  - powershell: |
+      Import-VisualStudioVars -VisualStudioVersion $(VSVER) -Architecture $(ARCHITECTURE)
+      mkdir $(Build.BinariesDirectory)/tests
+      cd $(Build.BinariesDirectory)/tests
+      7z x $(Build.SourcesDirectory)/ci/redditclient.7z
+      cd ..
+      $(Build.BinariesDirectory)/Qt/$(QT_VERSION)/$(ARCHDIR)/bin/qmake $(Build.BinariesDirectory)/tests/redditclient
+      nmake
+    condition: and(eq( variables['Agent.OS'], 'Windows_NT'), eq(variables['TOOLCHAIN'], 'MSVC'), ne(variables['MODULE'], ''))
+    displayName: build test with qmake with MSVC with extra module
+  - script: |
+      mkdir $(Build.BinariesDirectory)/tests
+      (cd $(Build.BinariesDirectory)/tests; 7zr x $(Build.SourcesDirectory)/ci/redditclient.7z)
+      $(Build.BinariesDirectory)/Qt/$(QT_VERSION)/$(ARCHDIR)/bin/qmake $(Build.BinariesDirectory)/tests/redditclient
+      make
+    condition: and(eq( variables['TARGET'], 'desktop' ), or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin')), ne(variables['MODULE'], ''))
+    displayName: Build test with qmake for Linux and macOS with extra module
+
+  ##----------------------------------------------------
+  # for ios
+  - script: echo Currently not implemented.
+    condition: and(eq(variables['TARGET'], 'ios'), eq(variables['Agent.OS'], 'Darwin'))
+    displayName: Build test with qmake for ios
+
+  ##----------------------------------------------------
+  # Tools Support
+  - script: python -m aqt tool --outputdir $(Build.BinariesDirectory)/Qt $(HOST) $(TOOL_NAME) $(TOOL_VERSION) $(ARCH)
+    workingDirectory: $(Build.BinariesDirectory)
+    condition: variables['TOOL_NAME']
+    displayName: Run Aqt (Tool)
+  # Test installation results
+  - script: |
+      $(Build.BinariesDirectory)/Qt/Tools/$(TEST_EXECUTABLE) $(TEST_COMMAND)
+    condition: variables['TOOL_NAME']
+    displayName: Tool test
+  ##----------------------------------------------------
+
+  ##----------------------------------------------------
+  # wasm_32 on linux and mac
+  - script: |
+      git clone https://github.com/emscripten-core/emsdk.git
+      cd emsdk
+      ./emsdk install sdk-fastcomp-1.38.27-64bit
+      ./emsdk activate --embedded  sdk-fastcomp-1.38.27-64bit
+    workingDirectory: $(Build.BinariesDirectory)
+    condition: and(eq( variables['ARCH'], 'wasm_32' ), or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin')))
+    displayName: 'Install Emscripten SDK'
+  - script: |
+      source $(Build.BinariesDirectory)/emsdk/emsdk_env.sh
+      mkdir $(Build.BinariesDirectory)/tests
+      (cd $(Build.BinariesDirectory)/tests; 7zr x $(Build.SourcesDirectory)/ci/openglwindow.7z)
+      $(Build.BinariesDirectory)/Qt/$(QT_VERSION)/$(ARCHDIR)/bin/qmake $(Build.BinariesDirectory)/tests/openglwindow
+      make
+    workingDirectory: $(Build.BinariesDirectory)
+    condition: and(eq( variables['ARCH'], 'wasm_32' ), or(eq(variables['Agent.OS'], 'Linux'), eq(variables['Agent.OS'], 'Darwin')))
+    displayName: 'Build WebAssembler sample project'
