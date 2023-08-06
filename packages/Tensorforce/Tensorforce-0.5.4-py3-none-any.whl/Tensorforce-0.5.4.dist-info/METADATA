@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: Tensorforce
+Version: 0.5.4
+Summary: Tensorforce: a TensorFlow library for applied reinforcement learning
+Home-page: http://github.com/tensorforce/tensorforce
+Author: Alexander Kuhnle
+Author-email: tensorforce.team@gmail.com
+License: Apache 2.0
+Download-URL: https://github.com/tensorforce/tensorforce/archive/0.5.4.tar.gz
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: gym
+Requires-Dist: h5py
+Requires-Dist: matplotlib
+Requires-Dist: msgpack
+Requires-Dist: msgpack-numpy
+Requires-Dist: numpy
+Requires-Dist: pytest
+Requires-Dist: tqdm
+Provides-Extra: docs
+Requires-Dist: m2r ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Provides-Extra: envs
+Requires-Dist: gym[all] ; extra == 'envs'
+Requires-Dist: gym-retro ; extra == 'envs'
+Requires-Dist: mazeexp ; extra == 'envs'
+Requires-Dist: vizdoom ; extra == 'envs'
+Provides-Extra: gym
+Requires-Dist: gym[all] ; extra == 'gym'
+Provides-Extra: mazeexp
+Requires-Dist: mazeexp ; extra == 'mazeexp'
+Provides-Extra: retro
+Requires-Dist: gym-retro ; extra == 'retro'
+Provides-Extra: tf
+Requires-Dist: tensorflow (==2.0.1) ; extra == 'tf'
+Provides-Extra: tf_gpu
+Requires-Dist: tensorflow-gpu (==2.0.1) ; extra == 'tf_gpu'
+Provides-Extra: tfa
+Requires-Dist: tensorflow-addons ; extra == 'tfa'
+Provides-Extra: tune
+Requires-Dist: hpbandster ; extra == 'tune'
+Provides-Extra: vizdoom
+Requires-Dist: vizdoom ; extra == 'vizdoom'
+
+# Tensorforce: a TensorFlow library for applied reinforcement learning
+Tensorforce is an open-source deep reinforcement learning framework, with an emphasis on modularized flexible library design and straightforward usability for applications in research and practice. Tensorforce is built on top of [Google's TensorFlow framework](https://www.tensorflow.org/) version 2.0 (!) and compatible with Python 3 (Python 2 support was dropped with version 0.5).
+
+Tensorforce follows a set of high-level design choices which differentiate it from other similar libraries:
+
+- **Modular component-based design**: Feature implementations, above all, strive to be as generally applicable and configurable as possible, potentially at some cost of faithfully resembling details of the introducing paper.
+- **Separation of RL algorithm and application**: Algorithms are agnostic to the type and structure of inputs (states/observations) and outputs (actions/decisions), as well as the interaction with the application environment.
+- **Full-on TensorFlow models**: The entire reinforcement learning logic, including control flow, is implemented in TensorFlow, to enable portable computation graphs independent of application programming language, and to facilitate the deployment of models.
+
+
