@@ -1,0 +1,120 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "EnvironmentName": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "IamInstanceProfileWebServer": {
+            "DependsOn": "IamRoleWebServer",
+            "Metadata": {
+                "troposphere_mate_labels": [
+                    "iam_instance_profile_tier",
+                    "AWS::IAM::InstanceProfile"
+                ]
+            },
+            "Properties": {
+                "InstanceProfileName": {
+                    "Fn::Sub": [
+                        "${EnvironmentName}-web-server",
+                        {
+                            "EnvironmentName": {
+                                "Ref": "EnvironmentName"
+                            }
+                        }
+                    ]
+                },
+                "Roles": [
+                    {
+                        "Ref": "IamRoleWebServer"
+                    }
+                ]
+            },
+            "Type": "AWS::IAM::InstanceProfile"
+        },
+        "IamPolicy": {
+            "Metadata": {
+                "troposphere_mate_labels": [
+                    "iam_policy_tier",
+                    "AWS::IAM::ManagedPolicy"
+                ]
+            },
+            "Properties": {
+                "ManagedPolicyName": {
+                    "Fn::Sub": [
+                        "${EnvironmentName}-web-server",
+                        {
+                            "EnvironmentName": {
+                                "Ref": "EnvironmentName"
+                            }
+                        }
+                    ]
+                },
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": [
+                                "s3:Get*",
+                                "s3:List*",
+                                "s3:Describe*"
+                            ],
+                            "Effect": "Allow",
+                            "Resource": "*",
+                            "Sid": "VisualEditor0"
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                }
+            },
+            "Type": "AWS::IAM::ManagedPolicy"
+        },
+        "IamRoleWebServer": {
+            "DependsOn": "IamPolicy",
+            "Metadata": {
+                "troposphere_mate_labels": [
+                    "iam_role_tier",
+                    "AWS::IAM::Role"
+                ]
+            },
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": "sts:AssumeRole",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "ec2.amazonaws.com"
+                            }
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                },
+                "ManagedPolicyArns": [
+                    {
+                        "Ref": "IamPolicy"
+                    }
+                ],
+                "RoleName": {
+                    "Fn::Sub": [
+                        "${EnvironmentName}-web-server",
+                        {
+                            "EnvironmentName": {
+                                "Ref": "EnvironmentName"
+                            }
+                        }
+                    ]
+                },
+                "Tags": [
+                    {
+                        "Key": "EnvironmentName",
+                        "Value": {
+                            "Ref": "EnvironmentName"
+                        }
+                    }
+                ]
+            },
+            "Type": "AWS::IAM::Role"
+        }
+    }
+}
