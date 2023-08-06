@@ -1,0 +1,39 @@
+env:
+  global:
+    - GH_REF: github.com/rmcgibbo/sphinxcontrib-autodoc_doxygen.git
+    - secure: "IOntdkqWoBFFjZO/h2b8EAqvmfR9ueHk7t4mbNGlKZT6WAttlYM4x5K3/sW5ZrhfuBwj1kXcopmyrWJYmrvibdfekPihTQ8QXQ0z1uGXw70aRTONZs8D8sUT+SfVuKOooujvH4hFtJTzDduenpkP+0d9QFilyS44gNC3u+PkfYuBtG5u3+BvXInsP8mhfDHAhCcXSJOKrZ66I1PUCS2j+fjz92S7mCQRZYxh8b4WRpYAqq3sHMGihX7vRp4+gkAVEqac0Z5wtj0uDWdFUeU75n9rqdKv/1VHrFWIMqhIPHYswYJtGBCO5pBDuKo+XkJf5th143bjNNmig3RD9ucpsm7yh15VDxnJh+HGaDTAmEA9cY8zJnULkGyiQMz4OmM6SFocR/TKp+tL4pawpiieeQqeCc9ffwB66yMqoB8fpQVmR4IhETkmZWGrG6FUhhIrsmTIZ/o/pitjKpf8ImU/Jn+tCvRyZQY4ScS4k3ZYjA8wf00aVXkqCVjSJhQtnLdiyaUNlcK3GPrw/NeY8xiyPEztpt5uk+6XmYarH2g9cOga2DBwtHaP+AdFijvV7I4XI77wKLMQe3d3t9MgztiLQYuMb3O9Nmk+wteaT25FsDtHAG+vge4jv8FhF0RrxQZ5oEEP5ZjY6ebgvJDfq+QzlmUoSB/T71YdTd4pRZfSTX8="
+
+sudo: false
+language: python
+python:
+  - "3.6"
+  - "3.8"
+
+notifications:
+  email: false
+
+branches:
+  only:
+    - master
+
+before_install:
+  - ls $HOME/.wheelhouse
+  - pip install --upgrade pip wheel
+  - pip wheel -r requirements.txt -w $HOME/.wheelhouse -f $HOME/.wheelhouse
+
+install:
+  - pip install . --no-index -f $HOME/.wheelhouse
+
+script:
+  - py.test
+  - (cd examples && tar -xjf openmm-doxygen-xml.tar.bz2)
+  - (cd examples/openmm && python -m sphinx . $TRAVIS_BUILD_DIR/deploy-html)
+
+
+after_success:
+  - test $TRAVIS_PYTHON_VERSION = '3.5' && test $TRAVIS_PULL_REQUEST = 'false' &&
+   ./examples/deploy-ghpages.sh $TRAVIS_BUILD_DIR/deploy-html
+
+cache:
+  directories:
+    - $HOME/.wheelhouse
