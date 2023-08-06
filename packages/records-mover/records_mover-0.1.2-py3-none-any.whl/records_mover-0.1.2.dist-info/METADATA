@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: records-mover
+Version: 0.1.2
+Summary: Library and CLI to move relational data from one place to another - DBs/CSV/gsheets/dataframes/...
+Home-page: UNKNOWN
+Author: Vince Broz
+Author-email: vince.broz@bluelabs.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: boto (<3,>=2)
+Requires-Dist: boto3
+Requires-Dist: jsonschema
+Requires-Dist: timeout-decorator
+Requires-Dist: awscli
+Requires-Dist: PyYAML
+Requires-Dist: psycopg2
+Requires-Dist: sqlalchemy-vertica-python (<0.6,>=0.5.5)
+Requires-Dist: sqlalchemy-redshift (>=0.7.7)
+Requires-Dist: pybigquery
+Requires-Dist: sqlalchemy
+Requires-Dist: db-facts (<3,>=2.15.3)
+Requires-Dist: odictliteral
+Requires-Dist: smart-open (<1.9.0,>=1.8.4)
+Requires-Dist: chardet
+Requires-Dist: s3-concat (<0.2tenacity>=6<7,>=0.1.7)
+Provides-Extra: gsheets
+Requires-Dist: google ; extra == 'gsheets'
+Requires-Dist: google-auth-httplib2 ; extra == 'gsheets'
+Requires-Dist: google-api-python-client (<1.6.0,>=1.5.0) ; extra == 'gsheets'
+Requires-Dist: oauth2client (<2.1.0,>=2.0.2) ; extra == 'gsheets'
+Requires-Dist: PyOpenSSL ; extra == 'gsheets'
+Provides-Extra: movercli
+Requires-Dist: google ; extra == 'movercli'
+Requires-Dist: google-auth-httplib2 ; extra == 'movercli'
+Requires-Dist: google-api-python-client (<1.6.0,>=1.5.0) ; extra == 'movercli'
+Requires-Dist: oauth2client (<2.1.0,>=2.0.2) ; extra == 'movercli'
+Requires-Dist: PyOpenSSL ; extra == 'movercli'
+Requires-Dist: typing-inspect ; extra == 'movercli'
+Requires-Dist: docstring-parser ; extra == 'movercli'
+Requires-Dist: pandas (<2) ; extra == 'movercli'
+Requires-Dist: pyarrow ; extra == 'movercli'
+
+UNKNOWN
+
+
