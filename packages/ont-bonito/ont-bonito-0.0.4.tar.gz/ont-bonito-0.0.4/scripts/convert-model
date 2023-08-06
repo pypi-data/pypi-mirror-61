@@ -1,0 +1,155 @@
+#!/usr/bin/env python
+
+"""
+Convert a model from PyTorch to ONNX, CoreML, TF
+"""
+
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+import sys
+import time
+import warnings
+import traceback
+from argparse import ArgumentParser
+
+from bonito.util import load_model
+
+import onnx
+import onnx.utils
+import onnxruntime as runtime
+from onnx.version_converter import convert_version
+
+import torch
+import numpy as np
+import numpy.testing
+
+
+# set PYTHONWARNINGS=1 to bring back warnings
+if not sys.warnoptions:
+    pass
+
+
+def main(args):
+
+    if args.tracebacks:
+        warnings.showwarning = warn_with_traceback
+
+    model = load_model(args.model, "cpu")
+    
+    if args.verbose:
+        print("> torch model")
+        print(model)
+
+    data = torch.randn(args.batchsize, 1, args.chunksize)
+    print(data.shape)
+    
+    t0 = time.time()
+    torch_out = model(data)
+    t1 = time.time()
+    print("> torch took %.5f" % (t1 - t0))
+    
+    print(torch_out.shape)
+    
+    # export the model to onnx
+    t0 = time.time()
+    torch.onnx.export(model, data, args.output, do_constant_folding=True, verbose=args.vv)
+    t1 = time.time()
+    print("> model exported in %.5f :" % (t1 -t0), args.output)
+
+    model = onnx.load(args.output)
+        
+    if args.convert:
+        convert_version(model, 7)
+
+    if args.O1:
+        model = onnx.optimizer.optimize(model)
+
+    if args.O2:
+        model = onnx.optimizer.optimize(model, onnx.optimizer.get_available_passes())
+
+    if args.polish:
+        model = onnx.utils.polish_model(model)
+
+    onnx.checker.check_model(model)
+    print("> onnx checks passed")
+
+    session = runtime.InferenceSession(args.output)
+    input_name = session.get_inputs()[0].name
+    label_name = session.get_outputs()[0].name
+
+    print(input_name)
+    print(label_name)
+
+    input_name = session.get_inputs()[-1].name
+    label_name = session.get_outputs()[-1].name
+    print(input_name)
+    print(label_name)
+
+    
+    t0 = time.time()
+    onnxrt_out = session.run([label_name], {input_name: data.numpy()})
+    t1 = time.time()
+    print("> onnx took %.5f" % (t1 - t0))
+
+    import numpy as np
+    print(np.array(onnxrt_out[0]).shape)
+    
+    numpy.testing.assert_allclose(
+        torch_out.detach().numpy(),
+        onnxrt_out[0],
+        atol=1e-4
+    )
+    print("> onnx model within tolence of pytorch model")
+
+    if args.verbose:
+        print(onnx.helper.printable_graph(model.graph))
+
+    if args.coreml:
+        import onnx_coreml
+        onnx_coreml.convert(model)
+        print("> converted model to CoreML")
+
+    if args.tf:
+        # pip install tensorflow-gpu==1.1.15, onnx-tf, onnx==1.5
+        import tensorflow as tf
+        tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+        import onnx_tf
+
+        tf_model = onnx_tf.backend.prepare(model)
+        print("> converted model to TensorFlow")
+
+        #t0 = time.time()
+        #tf_out = tf_model.run(data)
+        #t1 = time.time()
+        #print("> tf took %.5f" % (t1 - t0))
+
+        #numpy.testing.assert_allclose(
+        #    torch_out.detach().numpy(),
+        #    tf_out[0],
+        #    atol=1e-4
+        #)
+        #print("> tf model within tolence of pytorch model")
+
+        #print(tf_out[0].shape)
+        
+        tf_model.export_graph(args.output + ".pb")
+        print("> exported .pb model")
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument("model")
+    parser.add_argument("-o", "--output", default="model.onnx")
+    parser.add_argument('-O1', action="store_true", default=False)
+    parser.add_argument('-O2', action="store_true", default=False)
+    parser.add_argument('--tf', action="store_true", default=False)
+    parser.add_argument('--batchsize', type=int, default=1)
+    parser.add_argument('--chunksize', type=int, default=1000)
+    parser.add_argument('--coreml', action="store_true", default=False)
+    parser.add_argument('--convert', action="store_true", default=False)
+    parser.add_argument('--polish', action="store_true", default=False)
+    parser.add_argument('--tracebacks', action="store_true", default=False)
+    parser.add_argument('-v', '--verbose', action="store_true", default=False)
+    parser.add_argument('-vv', action="store_true", default=False)
+    main(parser.parse_args())
