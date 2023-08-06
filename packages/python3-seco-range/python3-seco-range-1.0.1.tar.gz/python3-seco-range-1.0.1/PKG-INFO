@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: python3-seco-range
+Version: 1.0.1
+Summary: A Python 3 version of the library to interact with Range from ytoolshed
+Home-page: https://github.com/xadrnd/range/tree/master/python_seco_range/source
+Author: ytoolshed
+License: UNKNOWN
+Project-URL: Original Project, https://github.com/ytoolshed/range
+Description: # python3-seco-range
+        ### Requirements
+        - Python 3
+        - [pysvn](https://pysvn.sourceforge.io/downloads.html)
+        
+        ### Usage
+            $ python3
+            Python 3.6.8 (default, Aug  7 2019, 17:28:10) 
+            [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)] on linux
+            Type "help", "copyright", "credits" or "license" for more information.
+            >>> 
+            >>> import seco.range
+            >>> 
+            >>> range_session = seco.range.Range(host='localhost')
+            >>> range_session.expand('%{mycluster}:STABLE')
+            ['hostname1', 'hostname2']
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
