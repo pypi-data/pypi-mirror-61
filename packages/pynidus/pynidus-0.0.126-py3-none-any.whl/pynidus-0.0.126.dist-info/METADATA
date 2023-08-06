@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: pynidus
+Version: 0.0.126
+Summary: A handful of utilities.
+Home-page: https://github.com/appchoose/pynidus
+Author: Keurcien Luu
+Author-email: keurcien@appchoose.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: elasticsearch
+Requires-Dist: psycopg2
+Requires-Dist: google-cloud-storage
+Requires-Dist: bugsnag
+
+# pynidus
+
+[![Build Status](https://travis-ci.org/appchoose/pynidus.svg?branch=master)](https://travis-ci.org/appchoose/pynidus)
+[![Coverage status](https://codecov.io/gh/appchoose/pynidus/branch/master/graph/badge.svg)](https://codecov.io/github/appchoose/pynidus?branch=master)
+[![PyPI](https://img.shields.io/pypi/dm/pynidus.svg)](https://pypi.python.org/pypi)
+[![PyPI](https://img.shields.io/pypi/v/pynidus.svg)](https://pypi.python.org/pypi)
+
+A handful of utilities predominantly made to develop basic Cloud Run services that connect to
+the same databases. Any configuration variable should be passed as an environment variable from Cloud Run. 
+
+### TODO
+
+- Try lighter base image
+- Get rid of env-based config variables and use config only
+- Add a dev branch
+
+
