@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<form action="{{action or '/'}}" method="{{method or 'get'}}">
+    <label>{{msg or 'Input here...'}}</label>
+    <input name="{{name or 'input'}}" type="{{type or 'text'}}" placeholder="{{msg or 'Input here'}}">
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
