@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+
+import dinemic
+import logging
+import sys
+import time
+import urllib.request
+import yaml
+
+from starsheep.context import Context
+from starsheep.listeners.reject_listener import RejectListener
+from starsheep.command_line import get_url, load_application, import_application, import_data, apply_data, check_version
+
+
+if __name__ == "__main__":
+    options = sys.argv[1:]
+
+    if len(options) <= 0:
+        print('Use ' + sys.argv[0] + ' [options] yaml_file')
+        sys.exit(1)
+
+    if '--verbose' in sys.argv:
+        options.remove('--verbose')
+        logging.basicConfig(level=logging.DEBUG)
+        dinemic.set_loglevel('debug')
+    if '--debug' in sys.argv:
+        options.remove('--debug')
+        logging.basicConfig(level=logging.INFO)
+        dinemic.set_loglevel('info')
+    else:
+        logging.basicConfig(level=logging.ERROR)
+        dinemic.set_loglevel('none')
+
+    if '--no-data' in options:
+        load_data = False
+        options.remove('--no-data')
+    else:
+        load_data = True
+
+    if '--launch' in options:
+        launch = True
+        options.remove('--launch')
+    else:
+        launch = False
+
+    dinemic.prepare()
+
+    ctx = Context()
+    ctx.cmdline = options
+
+    f = urllib.request.urlopen(get_url(options[-1]))
+    document = yaml.load(f)
+    f.close()
+
+    listener_read = RejectListener('reject_unauthorized_read_authorized_keus',
+                              {'reason': 'not authorized',
+                               'action': 'reject',
+                               'trigger': '*:list_read_authorized_objects*',
+                               'call_on': ['unauthorized_update', 'unauthorized_delete', 'unauthorized_remove']},
+                              ctx)
+    listener_update = RejectListener('reject_unauthorized_update_authorized_keus',
+                              {'reason': 'not authorized',
+                               'action': 'reject',
+                               'trigger': '*:list_update_authorized_objects*',
+                               'call_on': ['unauthorized_update', 'unauthorized_delete', 'unauthorized_remove']},
+                              ctx)
+
+    check_version(document, ctx)
+    import_application(document, ctx)
+    load_application(document, ctx)
+    import_data(document, ctx)
+
+    if load_data:
+        import_data(document, ctx)
+        apply_data(document, ctx)
+
+    # TODO: Add CRUD
+    # TODO: Add launch mode
+
+    if launch:
+        logging.info('Starting launch mode')
+        dinemic.launch()
+
+        while True:
+            time.sleep(1)
