@@ -1,0 +1,65 @@
+image:
+  name: python:3.7-stretch
+
+services:
+  - docker:dind
+
+stages:
+  - test
+  - build
+  - publish
+
+test-tuxbuild:
+  stage: test
+  script:
+    - pip install -r requirements.txt -r requirements-dev.txt .
+    - pip install -e . # For some reason, pytest-cov does not work without this
+    - black --check .
+    - flake8 .
+    - pytest --cov=tuxbuild .
+
+test-dockerfile:
+  stage: test
+  image: hadolint/hadolint
+  script:
+    - hadolint Dockerfile
+
+build:
+  stage: build
+  script:
+    - python setup.py sdist bdist_wheel
+    - python setup.py --version > version.txt # save tuxbuild's version string
+  artifacts:
+    paths:
+      - dist/
+      - version.txt
+
+publish-pypi:
+  stage: publish
+  script:
+    - pip install -U twine
+    - twine upload dist/*
+  variables:
+    TWINE_NON_INTERACTIVE: "true"
+  only:
+    - tags
+  dependencies:
+    - build
+
+publish-dockerhub:
+  stage: publish
+  image: docker
+  script:
+    - docker info
+    - export tag="tuxbuild/tuxbuild:$(cat version.txt)"
+    - export latest="tuxbuild/tuxbuild:latest"
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker build --pull --tag "${tag}" --tag "${latest}" .
+    - docker push "${tag}"
+    - docker push "${latest}"
+  variables:
+    TWINE_NON_INTERACTIVE: "true"
+  only:
+    - tags
+  dependencies:
+    - build
