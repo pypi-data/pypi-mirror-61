@@ -1,0 +1,15 @@
+include MANIFEST.in
+include LICENCE.txt
+include README.md
+include Pipfile
+include Pipfile.lock
+include setup.py
+include tox.ini
+include impbus/imp_tables.json
+include impbus/imp_errors.json
+recursive-include docs *
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .DS_Store
+prune docs/_build
