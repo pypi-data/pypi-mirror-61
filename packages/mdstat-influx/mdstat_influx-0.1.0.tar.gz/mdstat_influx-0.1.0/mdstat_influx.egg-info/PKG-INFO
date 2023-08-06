@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: mdstat-influx
+Version: 0.1.0
+Summary: Read mdstat and output to line format
+Home-page: https://gitlab.com/rveach/mdstat-influx
+Author: Ryan Veach
+Author-email: rveach@gmail.com
+License: MIT
+Download-URL: https://gitlab.com/rveach/mdstat-influx/-/archive/master/mdstat-influx-master.tar.gz
+Description: # mdstat-influx
+        
+        read mdstat and format for line messages
+        
+        Includes a script mdstat-influx.py.  When run, it outputs messages in a line format.
+        
+        Example:
+        
+        ```
+        $ mdstat-influx.py
+        mdstat,device_name=md0,raid_level=raid5,hostname=tinfoil disks=3i,faulty_disks=0i,replacement_disks=0i,spare_disks=0i,faulty_pct=0.0
+        mdstat,device_name=md1,raid_level=raid5,hostname=tinfoil disks=3i,faulty_disks=0i,replacement_disks=0i,spare_disks=0i,faulty_pct=0.0
+        ```
+        
+Keywords: mdstat,mdadm,influxdb
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
