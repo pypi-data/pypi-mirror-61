@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: wuhan_stats
+Version: 1.5
+Summary: Simple desktop alert for Wuhan virus statistics updates
+Home-page: https://github.com/vipervit/wuhan_stats
+Author: vipervit
+Author-email: vitolg1@gmail.com
+License: Apache
+Description: # wuhan_stats
+        Simple alert on updates of Wuhan virus statistics.
+        
+        Generates alert using the Notifications feature on Mac or Windows as soon as new statistics are available at https://www.worldometers.info/coronavirus/  
+        
+        ![Alert sample](https://github.com/vipervit/wuhan_stats/raw/master/snapshot.jpeg)
+        
+        ## Dependencies:
+        - requests
+        - BeautifulSoup
+        - plyer
+        
+        ## To install:
+        *'pip install wuhan_stats'*
+        
+        ## To run:
+        
+        *'nohup python -m wuhan-stats &'* (Mac)
+        
+        *'pythonw -m wuhan_stats'*        (Windows)
+        
+        ## Notes
+        Polling period is 1 hour (hardcoded).
+        
+        Alert is generated only when the script is launched and then only if it finds (while checking hourly) the 'Last updated' field on the source site updated.
+        
+        For Windows, the notification's timeout is 1 hour.
+        
+        For Mac, make sure desired notification style is choosen for Script Editor in System Preferences->Notifications.  
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Description-Content-Type: text/markdown
