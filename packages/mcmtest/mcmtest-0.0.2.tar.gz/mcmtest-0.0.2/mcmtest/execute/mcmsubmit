@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+import argparse
+from mcmtest.submitter import Submitter
+from mcmtest.lib.helpers import mcmtest_path 
+
+def parse_commandlineargs():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('request', help='Name of the requests to be tested.')
+	parser.add_argument('--nodeos', help='The desired OS in working nodes. Specify "slc6" or "centos7" (defualt).')
+	args = parser.parse_args()
+	return args
+
+def get_prepid_list(args):
+	'''According to the request argument given to mcmsubmit,
+	   extract the prepid_list for the request.'''
+	request_name = args.request
+	# Extract the file in which the prepIDs are stored
+	reqfile = mcmtest_path(f'requests/{request_name}/requestlist.txt')
+	
+	prepid_list = []
+
+	with open(reqfile, 'r') as f:
+		lines = f.read().splitlines()
+		for line in lines:
+			if line.startswith('#') or line == '':
+				continue
+			prepid_list.append(line)
+		
+	return prepid_list
+
+def main():
+	args = parse_commandlineargs()
+	prepid_list = get_prepid_list(args)
+
+	node_os = args.nodeos
+	sub = Submitter(prepid_list=prepid_list, node_os=node_os)
+	sub.submit()
+
+if __name__ == '__main__':
+	main()
