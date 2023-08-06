@@ -1,0 +1,63 @@
+#!python
+
+# ********************************************************************************
+#                              Python Script Executable
+#
+# Working Commands:
+# ople-client -u -s -g ./data.csv
+# ople-client -u -s -g '{"bucket": "ople-dataset-nahid", "path": "data.csv"}'
+# ople-client -u -s -g "age,job,marital,education,default,balance,housing,loan,contact,day,month,duration,campaign,pdays,previous,poutcome\n58,management,married,tertiary,no,2143,yes,no,unknown,5,may,261,1,-1,0,unknown"
+# ople-client -u -s -g python3 client.py -u -s -g '{"columns": ["age", "job", "marital", "education", "default", "balance", "housing", "loan", "contact", "day", "month", "duration", "campaign", "pdays", "previous", "poutcome"], "rows": [["58", "management", "married", "tertiary", "no", "2143", "yes", "no", "unknown", "5", "may", "261", "1", "-1", "0", "unknown"]]}'
+#
+#
+# ********************************************************************************
+import pandas as pd
+import requests
+import argparse
+import boto3
+import json
+import os
+import io
+from io import StringIO
+from ople.client import OpleClient
+
+if __name__ == "__main__":
+
+    # 1. Code to read input
+    parser = argparse.ArgumentParser()
+    parser.add_argument('input', help="shows output")
+    parser.add_argument('-s','--shap', action="store_true",help="shows output")
+    parser.add_argument('-g', '--global_shap', action="store_true", help="shows output")
+    parser.add_argument('-u', '--allow_unknown_categories', action="store_true", help="shows output")
+    parser.add_argument('-K', '--key', default="ENV", help="shows output")
+    parser.add_argument('-S', '--secret', default="ENV", help="shows output")
+    parser.add_argument('-AK', '--aws_key', default="ENV", help="shows output")
+    parser.add_argument('-AS', '--aws_secret', default="ENV", help="shows output")
+    parser.add_argument('-ID', '--model_id', default="ENV", help="shows output")
+
+    args = parser.parse_args()
+
+    ople_key = args.key if args.key != "ENV" else os.environ['OPLE_KEY']
+    ople_secret = args.secret if args.secret != "ENV" else os.environ['OPLE_SECRET']
+    ople_model_id = args.model_id if args.model_id != "ENV" else os.environ['OPLE_MODEL_ID']
+    aws_key = args.aws_key if args.aws_key != "ENV" else os.environ['AWS_KEY']
+    aws_secret = args.aws_secret if args.aws_key != "ENV" else os.environ['AWS_SECRET']
+
+    print("*" * 70)
+    print(" "*30 + "Ople Client")
+    print("\nAccount Information:\n- Key: {}\n- Secret: {}\n- AWS Key: {}\n- AWS SECRET: {}".format(ople_key, ople_secret, aws_key, aws_secret))
+    print("\nModel Information:\n- Model ID: {}".format(ople_model_id))
+    print('\nPrediction Information:\n- Allow Unknown Categories: {}\n- Shap: {}\n- Global Shap: {}'.format(args.allow_unknown_categories, args.shap, args.global_shap))
+
+
+    # 2. Setup Credentials of Model
+    model = OpleClient(ople_key, ople_secret, ople_model_id, aws_key, aws_secret)
+
+    # 3. Make Prediction
+    result = model.predict(args.input,
+                  shap=args.shap,
+                  global_shap=args.global_shap,
+                  allow_unknown_categories=args.allow_unknown_categories)
+
+    print("\nResult:\n-Output: {}".format(result))
+    print("*" * 70)

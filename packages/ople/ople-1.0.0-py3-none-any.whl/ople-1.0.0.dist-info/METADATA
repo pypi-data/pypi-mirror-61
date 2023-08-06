@@ -1,0 +1,113 @@
+Metadata-Version: 2.1
+Name: ople
+Version: 1.0.0
+Summary: Ople Python Client
+Home-page: UNKNOWN
+Author: Ople Inc.
+Author-email: info@ople.ai
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Ople Client
+## Table of Contents
+1. Overview
+1. Installation and Setup
+1. Python Client
+1. Terminal Client
+
+
+## Overview
+Ople has created two clients to simplify the integration with your codebase and help you be more
+productive. You can use the python client to connect to your Ople models  with your python code. 
+You can also leverage the ople-client command to make predictions directly from the terminal.
+
+
+## Installation and Setup
+1. Install python3
+1. Run pip3 install ople (If it doesnt work run python3 -m pip install ople)
+1. Setup ENV variables to make the workflow easier
+    1. Run `export OPLE_KEY="<YOUR OPLE_KEY>" `
+    1. Run `export OPLE_SECRET="<YOUR OPLE_SECRET>" `
+    1. Run `export OPLE_MODEL_ID="<YOUR OPLE_MODEL_ID>" `
+1. If you want to use S3 to get data then you need to setup aws
+    1. Run `export AWS_KEY="<YOUR AWS_KEY>" `
+    1. Run `export AWS_SECRET="<YOUR AWS_SECRET>" `
+
+## Python Client
+Use the python code snippet below. All you need to update is the code for getting the input.
+The client handles the following inputs:
+- Dictionary with S3 information: '{"bucket": "<YOUR BUCKET>", "path": "<YOUR S3 FILEPATH>"}'`
+- Path to Local CSV File
+- String in CSV format
+- Dictioanry in Ople Format: `'{"columns": [<YOUR COLUMNS>], "rows": [[<YOUR ROW>]]}'`
+- Pandas DataFrame
+
+Here is the code snippet:
+```python
+from ople.client import OpleClient
+import os
+
+# ****************************************************
+
+input = "<YOUR CODE TO GET INPUT>"
+
+# ****************************************************
+
+# Specify what model to run
+ople_key = os.environ['OPLE_KEY']
+ople_secret = os.environ['OPLE_SECRET']
+ople_model_id = os.environ['OPLE_MODEL_ID']
+
+
+# OPTIONAL Parameters to use S3 to upload
+aws_key = os.environ['AWS_KEY']
+aws_secret = os.environ['AWS_SECRET']
+
+# Connect to Specified Model
+if aws_key or aws_key:
+    model = OpleClient(ople_key, ople_secret, ople_model_id)
+else:
+    model = OpleClient(ople_key, ople_secret, ople_model_id, aws_key, aws_secret)
+
+# Specify Prediction Parameters
+shap = False
+global_shap = False
+allow_unknown_categories = True
+
+# Make a Prediction with model
+result = model.predict(input,
+              shap=shap,
+              global_shap=global_shap,
+              allow_unknown_categories=allow_unknown_categories)
+```
+
+# Terminal Client
+To run the terminal client you need to follow the installation and setup steps above. After that
+you will be able to run the `ople-client` command. Here are the parameters you can specify:
+
+- '-s', '--shap': This flag returns the shap values for each predictions
+- '-g', '--global_shap': This flag returns the Global Shap values for each predictions
+- '-u', '--allow_unknown_categories': This flag 
+- '-K', '--key': This will set the ople key to whatever comes after it
+- '-S', '--secret': : This will set the ople secret to whatever comes after it
+- '-ID', '--model_id': : This will set the model_id to whatever comes after it
+- '-AS', '--aws_secret': : This will set the AWS secret to whatever comes after it
+- '-AK', '--aws_key': : This will set the AWS key to whatever comes after it
+
+Here are some examples of how to run the command:
+
+
+`ople-client -u -s -g '<YOUR FILE PATH>/<FILENAME>'`
+
+`ople-client -u -s -g '{"bucket": "<YOUR BUCKET>", "path": "<YOUR S3 FILEPATH>"}'`
+
+`ople-client -u -s -g '<YOUR CSV STRING>'`
+
+`ople-client -u -s -g '{"columns": [<YOUR COLUMNS>], "rows": [[<YOUR ROW>]]}'`
+
+
