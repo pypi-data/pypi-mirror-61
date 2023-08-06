@@ -1,0 +1,7 @@
+total {{file|map(attribute="stat")|map(attribute="st_size")|sum}}
+{%- for i in dir %}
+{{i.stat.st_mode|filemode}} {{"%3d"|format(i.stat.st_nlink)}} {{"%5d"|format(i.stat.st_uid)}} {{"%5d"|format(i.stat.st_gid)}} {{"%9d"|format(i.stat.st_size)}}  {{i.stat.st_mtime|strftime("%v %H:%M")}} {{i.name}}/
+{%- endfor %}
+{%- for i in file %}
+{{i.stat.st_mode|filemode}} {{"%3d"|format(i.stat.st_nlink)}} {{"%5d"|format(i.stat.st_uid)}} {{"%5d"|format(i.stat.st_gid)}} {{"%9d"|format(i.stat.st_size)}}  {{i.stat.st_mtime|strftime("%v %H:%M")}} {{i.name}}
+{%- endfor %}

@@ -1,0 +1,12 @@
+<html>
+<head><title>Index of {{root}}</title></head>
+<body>
+<h1>Index of {{root}}</h1><hr><pre><a href="../">../</a>
+{%- for i in dir %}
+<a href="{{i.name}}/">{{"%-55s"|format(i.name+"/</a>")}}{{i.stat.st_mtime | strftime("%d-%m-%Y %H:%M")}}{{"%20s"|format("-")}}
+{%- endfor %}
+{%- for i in file %}
+<a href="{{i.name}}/">{{"%-55s"|format(i.name+"</a>")}}{{i.stat.st_mtime | strftime("%d-%m-%Y %H:%M")}}{{"%20s"|format(i.stat.st_size | filesizeformat)}}
+{%- endfor %}
+</pre><hr></body>
+</html>

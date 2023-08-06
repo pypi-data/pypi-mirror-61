@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title>Index of {{root}}</title>
+  </head>
+
+  <body bgcolor="#99cc99" text="#000000" link="#2020ff" vlink="#4040cc">
+
+    <h2>Index of {{root}}</h2>
+
+    <pre>
+mode  links    bytes  last-changed  name
+    <hr>
+{%- for i in dir %}
+{{i.stat.st_mode|filemode|truncate(4, True, '')}}{{"%4d"|format(i.stat.st_nlink)}}{{"%12d"|format(i.stat.st_size)}}  {{i.stat.st_mtime|strftime("%b %d %H:%M")}}  <a href="{{i.name}}/">{{i.name}}</a>/
+{%- endfor %}
+{%- for i in file %}
+{{i.stat.st_mode|filemode|truncate(4, True, '')}}{{"%4d"|format(i.stat.st_nlink)}}{{"%12d"|format(i.stat.st_size)}}  {{i.stat.st_mtime|strftime("%b %d %H:%M")}}  <a href="{{i.name}}">{{i.name}}</a>
+{%- endfor %}
+    </pre>
+  </body>
+</html>
