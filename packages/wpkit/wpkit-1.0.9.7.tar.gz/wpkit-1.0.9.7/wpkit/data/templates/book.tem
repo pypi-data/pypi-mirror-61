@@ -1,0 +1,9 @@
+{% extends "sys/base.html" %}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <script>
+        os = new panjs.OS('{{ os_url }}');
+        var bookViewer=new apputiljs.BookViewer(os,'{{ book_path }}').view();
+    </script>
+{% endblock %}
