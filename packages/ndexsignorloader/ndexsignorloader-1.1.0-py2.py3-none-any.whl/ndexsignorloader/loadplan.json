@@ -1,0 +1,104 @@
+{
+    "context": {
+        "signor": "http://signor.uniroma2.it/relation_result.php?id=",
+        "BTO": "http://identifiers.org/bto/BTO:",
+        "uniprot": "http://identifiers.org/uniprot/",
+        "pubmed": "http://identifiers.org/pubmed/",
+        "CID": "http://identifiers.org/pubchem.compound/",
+        "SID": "http://identifiers.org/pubchem.substance/",
+        "chebi": "http://identifiers.org/chebi/CHEBI:",
+        "hgnc.symbol": "http://identifiers.org/hgnc.symbol/"
+    },
+    "source_plan":
+    {
+        "rep_column": "IDA",
+        "node_name_column": "ENTITYA",
+        "property_columns":
+           [
+               {
+                    "column_name": "TYPEA",
+                    "attribute_name": "type"
+                },
+               {
+                    "column_name": "DATABASEA",
+                    "attribute_name": "DATABASE"
+                },
+               {
+                    "column_name": "REGULATOR_LOCATION",
+                    "attribute_name": "location"
+
+               }
+           ]
+    },
+    "target_plan":
+    {
+        "rep_column": "IDB",
+        "node_name_column": "ENTITYB",
+        "property_columns":
+           [
+               {
+                    "column_name": "TYPEB",
+                    "attribute_name": "type"
+                },
+               {
+                    "column_name": "DATABASEB",
+                    "attribute_name": "DATABASE"
+                },
+               {
+                    "column_name": "TARGET_LOCATION",
+                    "attribute_name": "location"
+               }
+           ]
+    },
+    "edge_plan":
+    {
+        "default_predicate": "correlation",
+        "predicate_id_column": "EFFECT",
+        "property_columns": [
+                {
+                    "column_name": "PMID",
+                    "attribute_name": "citation",
+                    "value_prefix": "pubmed",
+                    "delimiter": "|"
+                },
+               {
+                    "column_name": "MECHANISM",
+                    "attribute_name": "mechanism"
+                },
+               {
+                    "column_name": "RESIDUE",
+                    "attribute_name": "residue"
+                },
+               {
+                    "column_name": "SEQUENCE",
+                    "attribute_name": "sequence"
+                },
+               {
+                    "column_name": "CELL_DATA",
+                    "attribute_name": "cell_data",
+                    "delimiter": ";"
+                },
+               {
+                    "column_name": "TISSUE_DATA",
+                    "attribute_name": "tissue_data",
+                    "delimiter": ";"
+                },
+               {
+                    "column_name": "DIRECT",
+                    "attribute_name": "direct"
+                },
+               {
+                    "column_name": "NOTES",
+                    "attribute_name": "notes"
+                },
+               {
+                    "column_name": "ANNOTATOR",
+                    "attribute_name": "annotator"
+                },
+               {
+                    "column_name": "SENTENCE",
+                    "attribute_name": "sentence"
+                }
+        ]
+    }
+}
