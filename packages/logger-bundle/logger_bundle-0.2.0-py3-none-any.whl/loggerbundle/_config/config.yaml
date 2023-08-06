@@ -1,0 +1,15 @@
+parameters:
+  loggerbundle:
+    messageFormat': '%(asctime)s %(levelname)s - %(message)s'
+    dateFormat': '%H:%M:%S'
+    defaultLogLevel: 20 # INFO
+
+services:
+  loggerbundle.stdout.StreamHandlerFactory:
+    arguments:
+      - '%loggerbundle.messageFormat%'
+      - '%loggerbundle.dateFormat%'
+
+  loggerbundle.azure.AzureLogHandlerFactory:
+    arguments:
+      - '%loggerbundle.azure.instrumentationKey%'
