@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: oatlib
+Version: 0.0.4rc5
+Summary: Observation Analysis Tool: library to handle time series
+Home-page: https://gitlab.com/ist-supsi/OAT
+Author: Massimiliano Cannata
+Author-email: massimiliano.cannata@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.8
+Description-Content-Type: text/x-rst
+Requires-Dist: datetime
+Requires-Dist: dateutils
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: requests
+Requires-Dist: spatialite
+Requires-Dist: isodate
+
+# Create pipy package
+---------------------
+python setup.py sdist bdist_wheel
+twine upload dist/*
+
+
