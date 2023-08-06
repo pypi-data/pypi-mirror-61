@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: b22ao
+Version: 0.0.1
+Summary: API for B22 AO operations
+Home-page: https://gitlab.diamond.ac.uk/douglas/b22ao
+Author: Douglas Winter
+Author-email: douglas.winter@diamond.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pyepics
+
+# b22ao: API for B22 adaptive optics operations
+
+This package provides the basic API for Adaptive Optics scripts running at beamline B22 in Diamond Light Source. 
+
+Adaptive Optics operations must implement b22ao.base.BaseOperation, which provides methods for deforming mirrors and
+capturing images. The implementation is run by the AO manager which will inject any given JSON configuration file.
+
+Example:
+```python
+from b22ao.base import BaseOperation
+import numpy
+
+class MyAO(BaseOperation):
+    def start(self):
+        max_iter = self.config['max_iter']
+
+        dm = which_dm()
+        self.select_dm(dm)
+
+        self.stopping = False
+        for iter in range(max_iter):
+            if self.stopping:
+                self.stopping = False
+                break
+            self.deform(numpy.zeros(97))
+            self.capture()
+
+        print("Finished!")
+
+    def which_dm(self):
+        from b22ao.aosystem import DM
+
+        dm = self.config['dm']
+        if dm == 1:
+            return DM.DM1
+        elif dm == 2:
+            return DM.DM2
+        else:
+            raise TypeError("Unrecognised deformable mirror configuration")
+
+    def stop(self):
+        self.stopping = True
+```
+And the configuration file:
+```json
+{
+  "max_iter": 300,
+  "dm": 2
+}
+```
+
+
