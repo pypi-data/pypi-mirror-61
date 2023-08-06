@@ -1,0 +1,2071 @@
+{
+  "issueInvoice": {
+    "type": "object",
+    "properties": {
+      "redirectURL": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس فراخوانی صادر کننده فاکتور"
+      },
+      "userId": {
+        "type": "integer",
+        "title": "شناسه کاربری مربوط به مشتری"
+      },
+      "billNumber": {
+        "type": "string",
+        "title": "شماره قبض"
+      },
+      "description": {
+        "type": "string",
+        "title": "توضیحات فاکتور"
+      },
+      "deadline": {
+        "type": "string",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+        "title": "تاریخ سر رسید به صورت شمسی"
+      },
+      "productList": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "integer",
+              "title": "شناسه محصول",
+              "description": "در صورتی که محصول در پلتفرم پاد ثبت نشده است مقدار 0 ارسال شود"
+            },
+            "price": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.00001
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
+              "title": "قیمت محصول",
+              "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+            },
+            "quantity": {
+              "type": "number",
+              "minimum": 0.00001,
+              "title": "تعداد"
+            },
+            "productDescription": {
+              "type": "string",
+              "minLength": 1,
+              "title": "توضیحات"
+            }
+          },
+          "required": [
+            "productId",
+            "price",
+            "quantity",
+            "productDescription"
+          ]
+        }
+      },
+      "guildCode": {
+        "type": "string",
+        "minLength": 1,
+        "title": "کد صنف"
+      },
+      "currencyCode": {
+        "type": "string",
+        "title": "کد ارز",
+        "description": "به طور مثال : IRR یا USD"
+      },
+      "addressId": {
+        "type": "integer",
+        "title": "شناسه آدرس کاربر",
+        "description": "شناسه آدرسی که کاربر در پلتفرم پاد ثبت کرده است"
+      },
+      "voucherHash": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "کد بن تخفیف"
+      },
+      "preferredTaxRate": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "title": "نرخ مالیات",
+        "description": "نرخ مالیات برای این خرید که برای تمام آیتم های فاکتور اعمال می شود. اگر مقداری ارسال نشود مقدار مالیات بر ارزش افزوده پیش فرض محاسبه می شود"
+      },
+      "verificationNeeded": {
+        "type": "boolean",
+        "title": "پرداخت دومرحله ای"
+      },
+      "verifyAfterTimeout": {
+        "type": "boolean",
+        "title": "تایید خودکار فاکتور در پرداخت دومرحله ای"
+      },
+      "preview": {
+        "type": "boolean",
+        "title": "پیش نمایش فاکتور (در سیستم ثبت نمی گردد)"
+      },
+      "metadata": {
+        "type": "string",
+        "title": "متادیتا برای فاکتور"
+      },
+      "safe": {
+        "type": "boolean",
+        "title": "پرداخت فاکتور به روش امن"
+      },
+      "postVoucherEnabled": {
+        "type": "boolean",
+        "title": "امکان اضافه کردن ووچر بعد از صدر فاکتور"
+      },
+      "hasEvent": {
+        "type": "boolean",
+        "title": "آیا فاکتور رویداد دارد"
+      },
+      "eventTitle": {
+        "type": "string",
+        "title": "عنوان رویداد"
+      },
+      "eventTimeZone": {
+        "type": "string",
+        "title": "منطقه زمانی رویداد"
+      },
+      "eventReminders": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "یادآورهای رویداد",
+        "description": "باید به فرمت json باشد. example 1 : {\"id\":0,\"numOfDaysBefore\":3,\"alarmTime\":1511789309821,\"alarmType\":\"Email\"}\"\nexample 2 : {\"id\":0,\"minute\":15,\"alarmType\":\"Notification\"}\n\n"
+      },
+      "eventDescription": {
+        "type": "string",
+        "title": "توضیحات رویداد"
+      },
+      "eventMetadata": {
+        "type": "string",
+        "title": "اطلاعات جانبی رویداد",
+        "description": "باید به فرمت json باشد. example 1 : {bussinessName=’test’, bussinessURL=’www.test.com’, bussinessIcon=’null’, actionList=[{command=’GET https://www.googleapis.com/calendar/v3/calendars/calendarId/events\n?privateExtendedProperty=petsAllowed%3Dyes\n&sharedExtendedProperty=createdBy%3DmyApp’, commandType={code=’1’, value=’GET’}}], metaData={\"petsAllowed\":\"yes\"}}\n\n"
+      },
+      "cellphoneNumber": {
+        "type": "string",
+        "title": "شماره تلفن همراه",
+        "pattern": "^(0|\\+98|0098){1}[9]{1}[\\d]{9}$"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "guildCode",
+      "productList"
+    ]
+  },
+  "createPreInvoice": {
+    "type": "object",
+    "properties": {
+      "redirectUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس فراخوانی صادر کننده فاکتور"
+      },
+      "token": {
+        "type": "string",
+        "minLength": 1,
+        "title": "توکن دسترسی کسب و کار"
+      },
+      "ott": {
+        "type": "string",
+        "title": "توکن یک بار مصرف",
+        "description": "این توکن را می توانید از آخرین درخواست دریافت کنید و یا از متد getOtt آن را دریافت کنید"
+      },
+      "userId": {
+        "type": "integer",
+        "title": "شناسه کاربری مربوط به مشتری"
+      },
+      "guildCode": {
+        "type": "string",
+        "minLength": 1,
+        "title": "کد صنف"
+      },
+      "productList": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "integer",
+              "title": "شناسه محصول",
+              "description": "در صورتی که محصول در پلتفرم پاد ثبت نشده است مقدار 0 ارسال شود"
+            },
+            "price": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.00001
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
+              "title": "قیمت محصول",
+              "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+            },
+            "quantity": {
+              "type": "number",
+              "minimum": 0.00001,
+              "title": "تعداد"
+            },
+            "productDescription": {
+              "type": "string",
+              "minLength": 1,
+              "title": "توضیحات"
+            }
+          },
+          "required": [
+            "productId",
+            "price",
+            "quantity",
+            "productDescription"
+          ]
+        }
+      },
+      "currencyCode": {
+        "type": "string",
+        "title": "کد ارز",
+        "description": "به طور مثال : IRR یا USD"
+      },
+      "callUrl": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "در صورت پرداخت موفق این آدرس صدا خواهد شد"
+      },
+      "billNumber": {
+        "type": "string",
+        "title": "شماره قبض"
+      },
+      "description": {
+        "type": "string",
+        "title": "توضیحات"
+      },
+      "deadline": {
+        "type": "string",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+        "title": "تاریخ سر رسید به صورت شمسی"
+      },
+      "preferredTaxRate": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "title": "نرخ مالیات",
+        "description": "نرخ مالیات برای این خرید که برای تمام آیتم های فاکتور اعمال می شود. اگر مقداری ارسال نشود مقدار مالیات بر ارزش افزوده پیش فرض محاسبه می شود"
+      },
+      "verificationNeeded": {
+        "type": "boolean",
+        "title": "پرداخت دومرحله ای"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "token",
+      "productList",
+      "guildCode",
+      "redirectUri",
+      "userId"
+    ]
+  },
+  "getInvoiceList": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "billNumber": {
+        "type": "string",
+        "title": "شماره قبض",
+        "description": "به تنهایی با آن می توان جستجو نمود"
+      },
+      "uniqueNumber": {
+        "type": "string",
+        "title": "شماره کد شده ی قبض",
+        "description": "به تنهایی با آن می توان جستجو نمود"
+      },
+      "trackerId": {
+        "type": "integer",
+        "title": "شماره پیگیری"
+      },
+      "fromDate": {
+        "type": "string",
+        "title": "از تاریخ صدور ( به صورت شمسی )",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])( (2[0-3]|[01]?[0-9]):[0-5]?[0-9](:[0-5]?[0-9])?)?$"
+      },
+      "toDate": {
+        "type": "string",
+        "title": "تا تاریخ صدور ( به صورت شمسی )",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])( (2[0-3]|[01]?[0-9]):[0-5]?[0-9](:[0-5]?[0-9])?)?$"
+      },
+      "isCanceled": {
+        "type": "boolean",
+        "title": "کنسلی"
+      },
+      "isPayed": {
+        "type": "boolean",
+        "title": "پرداخت شده"
+      },
+      "isClosed": {
+        "type": "boolean",
+        "title": "بسته شده"
+      },
+      "isWaiting": {
+        "type": "boolean",
+        "title": "منتظر پرداخت"
+      },
+      "guildCode": {
+        "type": "string",
+        "title": "کد صنف"
+      },
+      "referenceNumber": {
+        "type": "string",
+        "title": "شماره ارجاع"
+      },
+      "userId": {
+        "type": "integer",
+        "title": "شناسه کاربری مشتری"
+      },
+      "issuerId": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "title": "شناسه کاربری صادر کننده فاکتور"
+      },
+      "query": {
+        "type": "string",
+        "title": "عبارت برای جستجو"
+      },
+      "firstId": {
+        "type": "integer",
+        "description": "در صورتی که این فیلد وارد شود فیلدهای lastId و offset نباید وارد شوند و نتیجه صعودی مرتب می شود."
+      },
+      "lastId": {
+        "type": "integer",
+        "description": "در صورتی که این فیلد وارد شود فیلدهای firstId و offset نباید وارد شوند و نتیجه نزولی مرتب می شود"
+      },
+      "offset": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "در صورتی که این فیلد وارد شود فیلدهای lastId و firstId نباید وارد شوند و نتیجه نزولی مرتب می شود"
+      },
+      "productIdList": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "title": "لیست شناسه های محصول"
+      },
+      "size": {
+        "type": "integer",
+        "minimum": 1,
+        "title": "تعداد رکورد در هر صفحه"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "oneOf": [
+      {
+        "required": [
+          "offset"
+        ]
+      },
+      {
+        "required": [
+          "firstId"
+        ]
+      },
+      {
+        "required": [
+          "lastId"
+        ]
+      }
+    ]
+  },
+  "payInvoice": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "invoiceId"
+    ]
+  },
+  "payInvoiceByPos": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "terminalNumber": {
+        "type": "string",
+        "title": "شماره پایانه پرداخت"
+      },
+      "merchantCode": {
+        "type": "string",
+        "title": "شناسه پذیرنده پایانه پرداخت"
+      },
+      "wallet": {
+        "type": "string",
+        "title": "کیف پول"
+      },
+      "referenceNumber": {
+        "type": "string",
+        "title": "شماره مرجع"
+      },
+      "trackingNumber": {
+        "type": "string",
+        "title": "شماره پیگیری"
+      },
+      "transactionDate": {
+        "type": "string",
+        "title": "تاریخ تراکنش به فرمت yyyy/mm/dd HH:MM:ss",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])( (2[0-3]|[01]?[0-9]):[0-5]?[0-9](:[0-5]?[0-9])?)?$"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "invoiceId",
+      "terminalNumber",
+      "merchantCode",
+      "referenceNumber",
+      "trackingNumber",
+      "transactionDate"
+    ]
+  },
+  "getPayInvoiceByWalletLink": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "redirectUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس بازگشت",
+        "description": "آدرسی است که بعد از پرداخت کاربر به آن هدایت می گردد"
+      },
+      "callUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "بعد از پرداخت این آدرس صدا زده می شود"
+      }
+    },
+    "required": [
+      "invoiceId"
+    ]
+  },
+  "getPayInvoiceByUniqueNumberLink": {
+    "type": "object",
+    "properties": {
+      "uniqueNumber": {
+        "type": "string",
+        "minLength": 1,
+        "title": "شماره کد شده ی قبض",
+        "description": "اگر مقدار uniqueNumber اشتباه ارسال شود، به صفحه \"صفحه یافت نشد\" هدایت می شوید."
+      },
+      "redirectUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس بازگشت",
+        "description": "آدرسی است که بعد از پرداخت کاربر به آن هدایت می گردد"
+      },
+      "callUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "بعد از پرداخت این آدرس صدا زده می شود"
+      },
+      "gateway": {
+        "type": "string",
+        "title": "کد درگاه - PEP برای بانک پاسارگاد",
+        "description": "در صورتی که پارامتر gateway ارسال شود کاربر مستقیم به درگاه پرداخت بانک پاسارگاد متنقل می گردد. در غیر این صورت در صفحه ای که نمایش داده میشود کاربر می تواند وارد SSO شود و از امکانات کیف پول خود نیز استفاده نماید."
+      }
+    },
+    "required": [
+      "uniqueNumber"
+    ]
+  },
+  "sendInvoicePaymentSMS": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "wallet": {
+        "type": "string",
+        "title": "کد کیف پول"
+      },
+      "callbackUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "بعد از پرداخت این آدرس صدا زده می شود"
+      },
+      "redirectUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس بازگشت",
+        "description": "آدرسی است که بعد از پرداخت کاربر به آن هدایت می گردد"
+      },
+      "delegationId": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "شناسه اعتبار"
+      },
+      "forceDelegation": {
+        "type": "boolean",
+        "title": "پرداخت فقط از طریق اعتبار"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "invoiceId"
+    ]
+  },
+  "getInvoiceListByMetadata": {
+    "type": "object",
+    "properties": {
+      "metaQuery": {
+        "type": "object",
+        "items": {
+          "type": "string"
+        },
+        "title": "عبارت جستجو در متادیتا"
+      },
+      "offset": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "size": {
+        "type": "integer",
+        "minimum": 1,
+        "title": "تعداد رکورد در هر صفحه"
+      },
+      "isPayed": {
+        "type": "boolean",
+        "title": "پرداخت شده"
+      },
+      "isCancelled": {
+        "type": "boolean",
+        "title": "کنسل شده"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "metaQuery"
+    ]
+  },
+  "getInvoiceListAsFile": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "billNumber": {
+        "type": "string",
+        "title": "شماره قبض",
+        "description": "به تنهایی با آن می توان جستجو نمود"
+      },
+      "uniqueNumber": {
+        "type": "string",
+        "title": "شماره کد شده ی قبض",
+        "description": "به تنهایی با آن می توان جستجو نمود"
+      },
+      "trackerId": {
+        "type": "integer",
+        "title": "شماره پیگیری"
+      },
+      "fromDate": {
+        "type": "string",
+        "title": "از تاریخ صدور ( به صورت شمسی )",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])( (2[0-3]|[01]?[0-9]):[0-5]?[0-9](:[0-5]?[0-9])?)?$"
+      },
+      "toDate": {
+        "type": "string",
+        "title": "تا تاریخ صدور ( به صورت شمسی )",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])( (2[0-3]|[01]?[0-9]):[0-5]?[0-9](:[0-5]?[0-9])?)?$"
+      },
+      "isCanceled": {
+        "type": "boolean",
+        "title": "کنسلی"
+      },
+      "isPayed": {
+        "type": "boolean",
+        "title": "پرداخت شده"
+      },
+      "isClosed": {
+        "type": "boolean",
+        "title": "بسته شده"
+      },
+      "isWaiting": {
+        "type": "boolean",
+        "title": "منتظر پرداخت"
+      },
+      "guildCode": {
+        "type": "string",
+        "title": "کد صنف"
+      },
+      "referenceNumber": {
+        "type": "string",
+        "title": "شماره ارجاع"
+      },
+      "userId": {
+        "type": "integer",
+        "title": "شناسه کاربری مشتری"
+      },
+      "query": {
+        "type": "string",
+        "title": "عبارت برای جستجو"
+      },
+      "productIdList": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "title": "لیست شناسه های محصول"
+      },
+      "lastNRows": {
+        "type": "integer",
+        "title": "n ردیف آخر فاکتور"
+      },
+      "callbackUrl": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس فراخوانی پس از اتمام تولید گزارش"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "anyOf": [
+      {
+        "required": [
+          "lastNRows"
+        ]
+      },
+      {
+        "required": [
+          "fromDate"
+        ]
+      },
+      {
+        "required": [
+          "toDate"
+        ]
+      }
+    ]
+  },
+  "verifyInvoice": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "billNumber": {
+        "type": "string",
+        "title": "شماره قبض"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "oneOf": [
+      {
+        "required": [
+          "id"
+        ]
+      },
+      {
+        "required": [
+          "billNumber"
+        ]
+      }
+    ]
+  },
+  "cancelInvoice": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  },
+  "reduceInvoice": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "invoiceItemList": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "invoiceItemId": {
+              "type": "integer",
+              "title": "شناسه بند فاکتور"
+            },
+            "price": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.00001
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
+              "title": "مبلغ بند فاکتور",
+              "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+            },
+            "quantity": {
+              "type": "number",
+              "minimum": 0.00001,
+              "title": "لیست تعداد محصول در هر بند فاکتور"
+            },
+            "itemDescription": {
+              "type": "string",
+              "minLength": 1,
+              "title": "لیست توضیحات بند فاکتور"
+            }
+          },
+          "required": [
+            "invoiceItemId",
+            "price",
+            "quantity",
+            "itemDescription"
+          ]
+        }
+      },
+      "preferredTaxRate": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "title": "نرخ مالیات",
+        "description": "نرخ مالیات برای این خرید که برای تمام آیتم های فاکتور اعمال می شود. اگر مقداری ارسال نشود مقدار مالیات بر ارزش افزوده پیش فرض محاسبه می شود"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  },
+  "verifyAndCloseInvoice": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "شماره فاکتور"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  },
+  "closeInvoice": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "شماره فاکتور"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  },
+  "getInvoicePaymentLink": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer",
+        "title": "شماره فاکتور"
+      },
+      "redirectUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "آدرس بازگشت",
+        "description": "آدرسی است که بعد از پرداخت کاربر به آن هدایت می گردد"
+      },
+      "callbackUri": {
+        "type": "string",
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "title": "بعد از پرداخت این آدرس صدا زده می شود"
+      },
+      "gateway": {
+        "type": "string",
+        "title": "کد درگاه - PEP برای بانک پاسارگاد",
+        "description": "در صورتی که پارامتر gateway ارسال شود کاربر مستقیم به درگاه پرداخت بانک پاسارگاد متنقل می گردد. در غیر این صورت در صفحه ای که نمایش داده میشود کاربر می تواند وارد SSO شود و از امکانات کیف پول خود نیز استفاده نماید."
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "invoiceId"
+    ]
+  },
+  "payInvoiceByInvoice": {
+    "type": "object",
+    "properties": {
+      "creditorInvoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور بستانکار"
+      },
+      "debtorInvoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور بدهکار"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "creditorInvoiceId",
+      "debtorInvoiceId"
+    ]
+  },
+  "payInvoiceInFuture": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer",
+        "title": "شناسه فاکتور"
+      },
+      "date": {
+        "type": "string",
+        "pattern": "^[1][3-5][0-9]{2}\/([1-9]|0[1-9]|1[0-2])\/([1-2][0-9]|0[1-9]|3[0-1]|[1-9])$",
+        "title": "تاریخ شمسی سررسید"
+      },
+      "guildCode": {
+        "type": "string",
+        "title": "کد صنف"
+      },
+      "wallet": {
+        "type": "string",
+        "title": "کد کیف پول"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "oneOf": [
+      {
+        "required": [
+          "guildCode"
+        ]
+      },
+      {
+        "required": [
+          "wallet"
+        ]
+      }
+    ],
+    "required": [
+      "invoiceId",
+      "date"
+    ]
+  },
+  "getExportList": {
+    "type": "object",
+    "properties": {
+      "offset": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "size": {
+        "type": "integer",
+        "minimum": 1,
+        "title": "تعداد رکورد در هر صفحه"
+      },
+      "id": {
+        "type": "integer",
+        "title": "شناسه درخواست"
+      },
+      "statusCode": {
+        "type": "string",
+        "enum": [
+          "EXPORT_SERVICE_STATUS_CREATED",
+          "EXPORT_SERVICE_STATUS_RUNNING",
+          "EXPORT_SERVICE_STATUS_SUCCESSFUL",
+          "EXPORT_SERVICE_STATUS_FAILED"
+        ],
+        "title": "کد وضعیت"
+      },
+      "serviceUrl": {
+        "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*",
+        "type": "string",
+        "title": "آدرس سرویس"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "size",
+      "offset"
+    ]
+  },
+  "payInvoiceByCredit": {
+    "type": "object",
+    "properties": {
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      },
+      "invoiceId": {
+        "type": "integer"
+      },
+      "delegatorId": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "delegationHash": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "forceDelegation": {
+        "type": "string"
+      },
+      "wallet": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "invoiceId"
+    ]
+  },
+  "payAnyInvoiceByCredit": {
+    "type": "object",
+    "properties": {
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      },
+      "invoiceId": {
+        "type": "integer"
+      },
+      "delegatorId": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "delegationHash": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "forceDelegation": {
+        "type": "string"
+      },
+      "wallet": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "invoiceId",
+      "wallet"
+    ]
+  },
+  "issueMultiInvoice": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "redirectURL": {
+            "type": "string",
+            "pattern": "(https?|ftp)://[^\\s/$.?#].[^\\s]*"
+          },
+          "userId": {
+            "type": "integer",
+            "title": "شناسه کاربری مربوط به مشتری"
+          },
+          "currencyCode": {
+            "type": "string",
+            "title": "کد ارز",
+            "description": "به طور مثال : IRR یا USD"
+          },
+          "voucherHashs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preferredTaxRate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "title": "نرخ مالیات",
+            "description": "نرخ مالیات برای این خرید که برای تمام آیتم های فاکتور اعمال می شود. اگر مقداری ارسال نشود مقدار مالیات بر ارزش افزوده پیش فرض محاسبه می شود"
+          },
+          "verificationNeeded": {
+            "type": "boolean",
+            "title": "پرداخت دومرحله ای"
+          },
+          "preview": {
+            "type": "boolean",
+            "title": "پیش نمایش فاکتور (در سیستم ثبت نمی گردد)"
+          },
+          "mainInvoice": {
+            "type": "object",
+            "properties": {
+              "billNumber": {
+                "type": "string",
+                "title": "شماره قبض که در کسب و کار یکتا است"
+              },
+              "guildCode": {
+                "type": "string",
+                "title": "کد صنف"
+              },
+              "metadata": {
+                "type": "object"
+              },
+              "description": {
+                "type": "string",
+                "title": "توضیحات"
+              },
+              "invoiceItemVOs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "productId": {
+                      "type": "integer",
+                      "title": "شناسه محصول",
+                      "description": "در صورتی که محصول در پلتفرم پاد ثبت نشده است مقدار 0 ارسال شود"
+                    },
+                    "price": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0.00001
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "auto"
+                          ]
+                        }
+                      ],
+                      "title": "سهم معامله گر",
+                      "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+                    },
+                    "quantity": {
+                      "type": "number",
+                      "title": "تعداد"
+                    },
+                    "description": {
+                      "minLength": 1,
+                      "title": "توضیحات"
+                    }
+                  },
+                  "required": [
+                    "productId",
+                    "price",
+                    "quantity",
+                    "description"
+                  ],
+                  "additionalItems": false
+                }
+              }
+            },
+            "required": [
+              "guildCode",
+              "invoiceItemVOs"
+            ],
+            "additionalItems": false
+          },
+          "subInvoices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "businessId": {
+                  "type": "integer",
+                  "title": "شناسه کسب و کار ذینفع"
+                },
+                "guildCode": {
+                  "type": "string",
+                  "title": "کد صنف"
+                },
+                "billNumber": {
+                  "type": "string",
+                  "title": "شماره قبض که در کسب و کار یکتا است"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "description": {
+                  "minLength": 1,
+                  "title": "توضیحات"
+                },
+                "invoiceItemVOs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "productId": {
+                        "type": "integer",
+                        "title": "شناسه محصول",
+                        "description": "در صورتی که محصول در پلتفرم پاد ثبت نشده است مقدار 0 ارسال شود"
+                      },
+                      "price": {
+                        "oneOf": [
+                          {
+                            "type": "number",
+                            "minimum": 0.00001
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "auto"
+                            ]
+                          }
+                        ],
+                        "title": "سهم ذینفع",
+                        "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+                      },
+                      "quantity": {
+                        "type": "number",
+                        "title": "تعداد"
+                      },
+                      "description": {
+                        "minLength": 1,
+                        "title": "توضیحات"
+                      }
+                    },
+                    "required": [
+                      "productId",
+                      "price",
+                      "quantity",
+                      "description"
+                    ],
+                    "additionalItems": false
+                  }
+                }
+              },
+              "required": [
+                "businessId",
+                "guildCode",
+                "invoiceItemVOs"
+              ],
+              "additionalItems": false
+            }
+          },
+          "customerdescription": {
+            "type": "string",
+            "title": "توضیحات",
+            "description": "این توضیحات به مشتری نمایش داده می شود"
+          },
+          "customermetadata": {
+            "type": "object",
+            "title": "اطلاعات اضافی",
+            "description": "ساختار این اطلاعات باید به صورت json باشد"
+          },
+          "customerInvoiceItemVOs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productId": {
+                  "type": "integer",
+                  "title": "شناسه محصول",
+                  "description": "در صورتی که محصول در پلتفرم پاد ثبت نشده است مقدار 0 ارسال شود"
+                },
+                "price": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0.00001
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "auto"
+                      ]
+                    }
+                  ],
+                  "title": "قیمت محصول",
+                  "description": "مشتری این مبلغ را پرداخت می کند"
+                },
+                "quantity": {
+                  "type": "number",
+                  "title": "تعداد"
+                },
+                "description": {
+                  "minLength": 1,
+                  "title": "توضیحات"
+                }
+              },
+              "required": [
+                "productId",
+                "price",
+                "quantity",
+                "description"
+              ],
+              "additionalItems": false
+            }
+          }
+        },
+        "required": [
+          "mainInvoice",
+          "subInvoices",
+          "customerInvoiceItemVOs"
+        ],
+        "additionalItems": false
+      },
+      "delegatorId": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "title": "شناسه تفویض کنندگان",
+        "description": "ترتیب اولویت را مشخص می کند"
+      },
+      "delegationHash": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "کد تفویض برای اشاره به یک تفویض مشخص"
+      },
+      "forceDelegation": {
+        "type": "string",
+        "title": "پرداخت فقط از طریق تفویض"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "reduceMultiInvoice": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "preferredTaxRate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "title": "نرخ مالیات",
+            "description": "نرخ مالیات برای این خرید که برای تمام آیتم های فاکتور اعمال می شود. اگر مقداری ارسال نشود مقدار مالیات بر ارزش افزوده پیش فرض محاسبه می شود"
+          },
+          "mainInvoice": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "title": "شناسه فاکتور",
+                "description": "شناسه فاکتور اصلی که قصد ویرایش آن را دارید"
+              },
+              "reduceInvoiceItemVOs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "title": "شناسه آیتم در فاکتور"
+                    },
+                    "price": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0.00001
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "auto"
+                          ]
+                        }
+                      ],
+                      "title": "سهم معامله گر",
+                      "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+                    },
+                    "quantity": {
+                      "type": "number",
+                      "title": "تعداد"
+                    },
+                    "description": {
+                      "minLength": 1,
+                      "title": "توضیحات"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "price",
+                    "quantity",
+                    "description"
+                  ],
+                  "additionalItems": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "reduceInvoiceItemVOs"
+            ],
+            "additionalItems": false
+          },
+          "subInvoices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "title": "شناسه فاکتور",
+                  "description": "شناسه فاکتور ی که قصد ویرایش آن را دارید"
+                },
+                "reduceInvoiceItemVOs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "title": "شناسه آیتم در فاکتور"
+                      },
+                      "price": {
+                        "oneOf": [
+                          {
+                            "type": "number",
+                            "minimum": 0.00001
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "auto"
+                            ]
+                          }
+                        ],
+                        "title": "سهم ذینفع",
+                        "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+                      },
+                      "quantity": {
+                        "type": "number",
+                        "title": "تعداد"
+                      },
+                      "description": {
+                        "minLength": 1,
+                        "title": "توضیحات"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "price",
+                      "quantity",
+                      "description"
+                    ],
+                    "additionalItems": false
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "reduceInvoiceItemVOs"
+              ],
+              "additionalItems": false
+            }
+          },
+          "customerInvoiceItemVOs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "title": "شناسه آیتم در فاکتور"
+                },
+                "price": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0.00001
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "auto"
+                      ]
+                    }
+                  ],
+                  "title": "مبلغ",
+                  "description": "این مبلغ به مشتری نمایش داده می شود و  مشتری این مبلغ را پرداخت می کند"
+                },
+                "quantity": {
+                  "type": "number",
+                  "title": "تعداد"
+                },
+                "description": {
+                  "minLength": 1,
+                  "title": "توضیحات"
+                }
+              },
+              "required": [
+                "id",
+                "price",
+                "quantity",
+                "description"
+              ],
+              "additionalItems": false
+            }
+          }
+        },
+        "required": [
+          "mainInvoice",
+          "customerInvoiceItemVOs"
+        ],
+        "additionalItems": false
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+  "reduceMultiInvoiceAndCashout": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "preferredTaxRate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "title": "نرخ مالیات",
+            "description": "نرخ مالیات برای این خرید که برای تمام آیتم های فاکتور اعمال می شود. اگر مقداری ارسال نشود مقدار مالیات بر ارزش افزوده پیش فرض محاسبه می شود"
+          },
+          "mainInvoice": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "title": "شناسه فاکتور",
+                "description": "شناسه فاکتور اصلی که قصد ویرایش آن را دارید"
+              },
+              "reduceInvoiceItemVOs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "title": "شناسه آیتم در فاکتور"
+                    },
+                    "price": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0.00001
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "auto"
+                          ]
+                        }
+                      ],
+                      "title": "سهم معامله گر",
+                      "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+                    },
+                    "quantity": {
+                      "type": "number",
+                      "title": "تعداد"
+                    },
+                    "description": {
+                      "minLength": 1,
+                      "title": "توضیحات"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "price",
+                    "quantity",
+                    "description"
+                  ],
+                  "additionalItems": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "reduceInvoiceItemVOs"
+            ],
+            "additionalItems": false
+          },
+          "subInvoices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "title": "شناسه فاکتور",
+                  "description": "شناسه فاکتور ی که قصد ویرایش آن را دارید"
+                },
+                "reduceInvoiceItemVOs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "title": "شناسه آیتم در فاکتور"
+                      },
+                      "price": {
+                        "oneOf": [
+                          {
+                            "type": "number",
+                            "minimum": 0.00001
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "auto"
+                            ]
+                          }
+                        ],
+                        "title": "سهم ذینفع",
+                        "description": "در صورتی که می خواهید از قیمت ثبت شده در پلتفرم پاد استفاده کنید مقدار auto ارسال شود"
+                      },
+                      "quantity": {
+                        "type": "number",
+                        "title": "تعداد"
+                      },
+                      "description": {
+                        "minLength": 1,
+                        "title": "توضیحات"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "price",
+                      "quantity",
+                      "description"
+                    ],
+                    "additionalItems": false
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "reduceInvoiceItemVOs"
+              ],
+              "additionalItems": false
+            }
+          },
+          "customerInvoiceItemVOs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "title": "شناسه آیتم در فاکتور"
+                },
+                "price": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "auto"
+                      ]
+                    }
+                  ],
+                  "title": "مبلغ",
+                  "description": "این مبلغ به مشتری نمایش داده می شود و  مشتری این مبلغ را پرداخت می کند"
+                },
+                "quantity": {
+                  "type": "number",
+                  "title": "تعداد"
+                },
+                "description": {
+                  "minLength": 1,
+                  "title": "توضیحات"
+                }
+              },
+              "required": [
+                "id",
+                "price",
+                "quantity",
+                "description"
+              ],
+              "additionalItems": false
+            }
+          }
+        },
+        "required": [
+          "mainInvoice",
+          "customerInvoiceItemVOs"
+        ],
+        "additionalItems": false
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "data"
+    ]
+  },
+
+  "applyVoucher": {
+    "type": "object",
+    "properties": {
+      "invoiceId": {
+        "type": "integer"
+      },
+      "voucherHash": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "preview": {
+        "type": "string"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "invoiceId",
+      "voucherHash"
+    ]
+  },
+
+  "defineDirectWithdraw": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "type": "string",
+        "title": "نام کاربری",
+        "description": "نام کاربری دریافتی مبتنی بر حساب مبدا اعلام شده"
+      },
+      "privateKey": {
+        "type": "string"
+      },
+      "depositNumber": {
+        "type": "string"
+      },
+      "onDemand": {
+        "type": "string"
+      },
+      "minAmount": {
+        "type": "number"
+      },
+      "maxAmount": {
+        "type": "number"
+      },
+      "wallet": {
+        "type": "string"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "username",
+      "privateKey",
+      "depositNumber",
+      "onDemand",
+      "minAmount",
+      "maxAmount",
+      "wallet"
+    ]
+  },
+  "directWithdrawList": {
+    "type": "object",
+    "properties": {
+      "wallet": {
+        "type": "string"
+      },
+      "offset": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "size": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "offset",
+      "size"
+    ]
+  },
+  "updateDirectWithdraw": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "username": {
+        "type": "string"
+      },
+      "privateKey": {
+        "type": "string"
+      },
+      "depositNumber": {
+        "type": "number"
+      },
+      "onDemand": {
+        "type": "string"
+      },
+      "minAmount": {
+        "type": "number"
+      },
+      "maxAmount": {
+        "type": "number"
+      },
+      "wallet": {
+        "type": "string"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "id",
+      "username",
+      "privateKey",
+      "depositNumber",
+      "onDemand",
+      "minAmount",
+      "maxAmount",
+      "wallet"
+    ]
+  },
+  "revokeDirectWithdraw": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "scVoucherHash": {
+        "type": "array",
+        "title": "کد تخفیف برای فراخوانی سرویس کال",
+        "description": "کد تخفیف برای فراخوانی سرویس کال",
+        "items": {
+          "type": "string"
+        }
+      },
+      "scApiKey": {
+        "type": "string",
+        "title": "توکن برای فراخوانی سرویس کال"
+      }
+    },
+    "required": [
+      "id"
+    ]
+  }
+}
+
