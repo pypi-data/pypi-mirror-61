@@ -1,0 +1,875 @@
+#!python
+
+
+from tkinter import *
+from tkinter import ttk
+import os
+import json
+
+model={}
+
+def resourceExists(resource_id):
+    for i in model['resource_list']:
+        if i['id']==resource_id:
+            return True
+    return False
+
+
+def removeResource():
+    resource_id = resource_id_choice.get()
+    model['resource_list'] = [i for i in model['resource_list'] if not (i['id'] == resource_id)] 
+    updateSkuMenu()
+    updateResourceMenu()
+    resource_id_choice.set('None')
+    for i in model['resource_list']:
+        if('child_resources' in i):
+            i['child_resources'] = [j for j in i['child_resources'] if not (j['resource_id'] == resource_id)]
+    msg_desc.config(text="Resource is removed",bg="Yellow")
+
+
+def removeRole():
+    model['role_list'] = [i for i in model['role_list'] if not (i['role_mnemonic'] == role_id_choice.get())]
+    updateRoleMenu()
+    role_id_choice.set('None')
+    msg_desc.config(text="Role is removed",bg="Yellow")
+
+def createResource(resource_id,type,product,flavour,region):
+    resource_dict={}
+    resource_dict['id']=resource_id
+    resource_dict['type']=type
+    if(type=='sku'):
+        resource_dict['attributes']=[]
+        resource_dict['attributes'].append({'key':'PRODUCT','value':product})
+        resource_dict['attributes'].append({'key':'FLAVOR','value':flavour})
+        resource_dict['attributes'].append({'key':'REGION','value':region})
+    model['resource_list'].append(resource_dict)
+
+def callCreateResource():
+    id = resource_id.get()
+    type_value = type_val.get()
+    prod_val = product.get()
+    flav_val = flavour.get()
+    reg_val = region.get()
+    if not resourceExists(id):
+        createResource(id,type_value,prod_val,flav_val,reg_val)
+        msg_desc.config(text="Resource created",bg="Yellow")
+
+    updateSkuMenu()
+    updateResourceMenu()
+
+
+def callAddChildren():
+    id=resource_id_choice.get()
+    children_val=children_text_area.get("1.0","end-1c")
+    if(children_val):
+        children_list=(children_val.split("\n"))
+        print(children_list)
+        for i in children_list:
+            res=addChild(id,i)
+    if res:
+        msg_desc.config(text="Children added",bg="Yellow")
+    else:
+        msg_desc.config(text="Parent Not found",bg="Yellow")
+
+    updateSkuMenu()
+    updateResourceMenu()
+
+
+def roleExists(role_mnemonic):
+    global model
+    for i in model['role_list']:
+        if i['role_mnemonic']==role_mnemonic:
+            return True
+    return False
+
+def createRole(role_mnemonic,qbn_role_id,oii_role_id,role_type):
+    role_dict={}
+    role_dict['role_mnemonic']=role_mnemonic
+    role_dict['qbn_role_id']=qbn_role_id
+    role_dict['oii_role_id']=oii_role_id
+    role_dict['role_type']=role_type
+    role_dict['permissions']=[]
+    model['role_list'].append(role_dict)
+
+def callCreateRole():
+    role_mnemonic = role_mnemonic_id.get()
+    qbn_role_id = qbn_id.get()
+    oii_role_id = oii_id.get()
+    role_type = role_type_val.get()
+    if not roleExists(role_mnemonic):
+        createRole(role_mnemonic,qbn_role_id,oii_role_id,role_type)
+        msg_desc.config(text="Role created",bg="Yellow")
+
+    updateRoleMenu()
+
+def callAddPermissions():
+    role_mnemonic = role_id_choice.get()
+    permission_val=permissions_text_area.get("1.0","end-1c")
+    if(permission_val):
+        permissions_list=(permission_val.split("\n"))
+        print(permissions_list)
+        for i in permissions_list:
+            res=addPermissionString(role_mnemonic,i)
+
+    if res:
+        msg_desc.config(text="Permission added",bg="Yellow")
+    else:
+        msg_desc.config(text="Role Not found",bg="Yellow")
+
+
+def addChild(resource_id, child_id):
+    child_dict={}
+    child_dict['resource_id']=child_id
+    for i in model['resource_list']:
+        if(i['id']==resource_id):
+            if('child_resources' in i):
+                child_list = i['child_resources']
+                for j in child_list:
+                    if j['resource_id']==child_id:
+                        return True
+                i['child_resources'].append(child_dict)
+                return True
+            else:
+                i['child_resources']=[]
+                i['child_resources'].append(child_dict)
+                return True
+    return False
+
+def addPermissionString(role_mnemonic,permission_string):
+    permission_string_dict={}
+    permission_string_dict['permission_string']=permission_string
+    for i in model['role_list']:
+        if(i['role_mnemonic']==role_mnemonic):
+            if('permissions' in i):
+                for j in i['permissions']:
+                    if j['permission_string']==permission_string:
+                        return True
+                i['permissions'].append(permission_string_dict)
+                return True
+            else:
+                i['permissions']=[]
+                i['permissions'].append(permission_string_dict)
+                return True
+    return False
+
+def addAction(resource_id,action_id,permission_string):
+    action_dict={}
+    action_dict['id']=action_id
+    action_dict['name']=action_id.lower()
+    for i in model['resource_list']:
+        if(i['id']==resource_id):
+            if('actions' in i):
+                action_list = i['actions']
+                for j in action_list:
+                    if j['action']['id']==action_id and var3.get()==1:
+                        j['permission_string']=permission_string
+                        return True
+                    else:
+                        return True
+                i['actions'].append({"action":action_dict,"permission_string":permission_string})
+                return True
+            else:
+                i['actions']=[]
+                i['actions'].append({"action":action_dict,"permission_string":permission_string})
+                return True
+    return False
+
+def updateRoleMenu():
+    global model
+    role_list=model['role_list']
+
+    menu = roleMenu["menu"]
+    menu.delete(0, "end")
+    for i in role_list:
+        role_mnemonic = i['role_mnemonic']
+        menu.add_command(label=role_mnemonic, 
+                        command=lambda value=role_mnemonic: on_option_change_role(value))
+
+    default_val='None'
+    menu.add_command(label=default_val, 
+                        command=lambda value=default_val: on_option_change_role(value))
+
+    menu_remove = roleMenu_remove["menu"]
+    menu_remove.delete(0, "end")
+    for i in role_list:
+        role_mnemonic = i['role_mnemonic']
+        menu_remove.add_command(label=role_mnemonic, 
+                        command=lambda value=role_mnemonic: on_option_change_role_remove(value))
+
+    default_val='None'
+    menu_remove.add_command(label=default_val, 
+                        command=lambda value=default_val: on_option_change_role_remove(value))
+
+
+    menu = roleMenuView["menu"]
+    menu.delete(0, "end")
+    for i in role_list:
+        role_mnemonic = i['role_mnemonic']
+        menu.add_command(label=role_mnemonic, 
+                        command=lambda value=role_mnemonic: on_option_change_role_view(value))
+
+    default_val='None'
+    menu.add_command(label=default_val, 
+                        command=lambda value=default_val: on_option_change_role_view(value))
+
+
+
+def updateResourceMenu():
+    global model
+    resource_list=model['resource_list']
+    menu = resourceMenu["menu"]
+    menu.delete(0, "end")
+    for i in resource_list:
+        id = i['id']
+        menu.add_command(label=id, 
+                        command=lambda value=id: on_option_change_resource(value))
+
+    default_val='None'
+    menu.add_command(label=default_val, 
+                        command=lambda value=default_val: on_option_change_resource(value))
+
+    menu = resourceMenuView["menu"]
+    menu.delete(0, "end")
+    for i in resource_list:
+        id = i['id']
+        menu.add_command(label=id, 
+                        command=lambda value=id: on_option_change_resource_view(value))
+
+    default_val='None'
+    menu.add_command(label=default_val, 
+                        command=lambda value=default_val: on_option_change_resource_view(value))
+
+
+    
+
+def updateSkuMenu():
+    global model
+    resource_list=model['resource_list']
+    sku_list=[]
+    for i in resource_list:
+        if i['type'] == 'sku':
+            sku_list.append(i)
+    menu = skuMenu["menu"]
+    menu.delete(0, "end")
+    for i in sku_list:
+        id = i['id']
+        menu.add_command(label=id, 
+                        command=lambda value=id: on_option_change_sku(value))
+
+    default_val='None'
+    menu.add_command(label=default_val, 
+                        command=lambda value=default_val: on_option_change_sku(value))
+
+
+def addResources():
+    global model
+    dot_notation=dot_permission.get()
+    permission_string=permission_value.get()
+    if(not dot_notation or not permission_string):
+        msg_desc.config(text="Enter dot_notation and permission_string values",bg="Yellow")
+        return
+    role_mnemonic=role_id.get()
+    sku_id_value=sku_id.get()
+
+    print(dot_notation,permission_string,role_mnemonic,sku_id_value)
+
+    try:
+        dot_notation,action=dot_notation.split(",")
+    except:
+        msg_desc.config(text="Permission string with dot notation is not entered properly",bg="Yellow")
+        return
+
+    action=action.strip()
+
+    try:
+        dot_notation_list=dot_notation.split(".")
+    except:
+        msg_desc.config(text="Permission string with dot notation is not entered properly",bg="Yellow")
+        return
+
+    for i in dot_notation_list:
+        res = resourceExists(i)
+        if(not res):    
+            createResource(i,'feature','','','')
+    for i in range(1,len(dot_notation_list)):
+        res = addChild(dot_notation_list[i-1],dot_notation_list[i])
+        if(res=='False'):
+            msg_desc.config(text="Child could be added to" + dot_notation_list[i-1]  +", Parent not found",bg="Yellow")
+
+    res = addAction(dot_notation_list[-1],action,permission_string)
+    if(res=='False'):
+        msg_desc.config(text="Action could not be added",bg="Yellow")
+    else:
+        msg_desc.config(text="Permission added!",bg="Yellow")
+
+
+    print(model)
+
+    if(role_mnemonic!='None'):
+        if(not addPermissionString(role_mnemonic,permission_string)):
+            msg_desc.config(text="Permission could not be added to Role",bg="Yellow")
+    
+    if(sku_id_value!='None'):
+        if(not addChild(sku_id_value,dot_notation_list[0])):
+            msg_desc.config(text="Permission could not be added to Sku",bg="Yellow")
+
+    updateResourceMenu()
+
+
+def testWriteFile():
+    file=file_name.get()
+    with open(file, 'w') as outfile:
+        json.dump(model, outfile, indent=2)
+    msg_desc.config(text="File is updated.",bg="Yellow")
+
+
+def createModel():
+    file=file_name.get()
+    if(not file):
+        msg_desc.config(text="Enter file Name",bg="Yellow")
+        return
+    global model
+    resource_list=[]
+    role_list=[]
+    if(os.stat(file).st_size == 0):
+        model['resource_list']=resource_list
+        model['role_list']=role_list
+
+    else:
+        with open(file) as json_file:
+            model = json.load(json_file)
+
+    updateRoleMenu()
+    updateSkuMenu()
+    updateResourceMenu()
+            
+    print(model)
+    msg_desc.config(text="Model created",bg="Yellow")
+
+def on_option_change_resource(value):
+    resource_id_choice.set(value)
+    print(resource_id_choice.get())
+    return 
+
+def on_option_change_role_view(value):
+    role_area.delete(1.0,END)
+    global model
+    cnt=0
+    role_view_id.set(value)
+    print(role_view_id.get())
+    data='Value Not found'
+    tmp = ''
+    tmp = str(role_view_id.get())
+    for i in model['role_list']:
+        if i['role_mnemonic']==tmp:
+            data=json.dumps(i, indent=2)
+    print(data)
+    role_area.insert(str(float(cnt)),data)
+    return
+
+def on_option_change_resource_view(value):
+    resources_area.delete(1.0,END)
+    global model
+    cnt=0
+    resource_view_id.set(value)
+    print(resource_view_id.get())
+    data='Value Not found'
+    tmp = ''
+    tmp = str(resource_view_id.get())
+    for i in model['resource_list']:
+        if i['id']==tmp:
+            data=json.dumps(i, indent=2)
+    print(data)
+    resources_area.insert(str(float(cnt)),data)
+    return
+
+def on_option_change_role_remove(value):
+    role_id_choice.set(value)
+    print(role_id_choice.get())
+    return 
+
+def on_option_change_role(value):
+    role_desc.grid_forget()
+    role_id.set(value)
+    print(role_id.get())
+    role_desc.config(text=role_id.get())
+    role_desc.grid(column=3, row=3, sticky=W)
+    role_desc.config(font=("Courier New", 12))
+    return
+
+def on_option_change_sku(value):
+    sku_desc.grid_forget()
+    sku_id.set(value)
+    print(sku_id.get())
+    sku_desc.config(text=sku_id.get())
+    sku_desc.grid(column=3, row=4, sticky=W)
+    sku_desc.config(font=("Courier New", 12))
+    return
+
+def typeMenuOptionchange(*args):
+
+    if type_val.get() == 'sku' and resource_check.get()==1:
+        attr_desc.grid(column=1, row=3, sticky=W)
+        attr_desc.config(font=("Courier New", 12))
+        prod_desc.grid(column=1, row=4, sticky=W)
+        prod_desc.config(font=("Courier New", 12))
+        prod_entry.grid(row = 4, column = 2, sticky=W)
+        flav_desc.grid(column=1, row=5, sticky=W)
+        flav_desc.config(font=("Courier New", 12))
+        flav_entry.grid(row = 5, column = 2, sticky=W)
+        reg_desc.grid(column=1, row=6, sticky=W)
+        reg_desc.config(font=("Courier New", 12))
+        reg_entry.grid(row = 6, column = 2, sticky=W)
+
+    if type_val.get() == 'feature' or resource_check.get()==0:
+        attr_desc.grid_forget()
+        prod_desc.grid_forget()
+        prod_entry.grid_forget()
+        flav_desc.grid_forget()
+        flav_entry.grid_forget()
+        reg_desc.grid_forget()
+        reg_entry.grid_forget()
+
+def checkAddChildren():
+    if(var1.get()==1 and update_resource_check.get()==1):
+        add_child_desc.grid(column=2, row=15, sticky=W)
+        children_text_area.grid(column=2, row=16, sticky=(W, E))
+        update_resource_button.grid(row = 17, column = 3, pady=10)
+    else:
+        add_child_desc.grid_forget()
+        children_text_area.grid_forget()
+        update_resource_button.grid_forget()
+
+def checkUpdateResource():
+    if(update_resource_check.get()==1):
+        if(resource_check.get()==1):
+            resource_check.set(0)
+            checkAddResource()
+        resourceMenu.grid(column=2, row=13,sticky=W, pady=10)
+        child_desc.grid(column=2, row=14, sticky=W)  
+        add_child_check.grid(row=14, column=3,sticky=W, pady=10)
+        resource_remove_button.grid(row = 18, column = 3, sticky=W)   
+        remove_resource_desc.grid(row = 18, column = 2, sticky=W)
+    else:
+        resourceMenu.grid_forget()
+        add_child_check.grid_forget()
+        child_desc.grid_forget()
+        resource_remove_button.grid_forget()
+        remove_resource_desc.grid_forget()
+        
+    checkAddChildren()
+
+def checkUpdateRole():
+    if(update_role_check.get()==1):
+        if(role_check.get()==1):
+            role_check.set(0)
+            checkAddRole()
+        roleMenu_remove.grid(column=2, row=8,sticky=W, pady=10)
+        permission_desc.grid(column=2, row=9, sticky=W)  
+        add_perm_check.grid(row=9, column=3,sticky=W, pady=10)
+        remove_role_desc.grid(column=2, row=13, sticky=W)
+        role_remove_button.grid(column=3, row=13, sticky=W)
+    else:
+        roleMenu_remove.grid_forget()
+        permission_desc.grid_forget()
+        add_perm_check.grid_forget()
+        role_remove_button.grid_forget()
+        remove_role_desc.grid_forget()
+        
+    checkAddPermssion()
+
+def checkAddPermssion():
+    if(var2.get()==1 and update_role_check.get()==1):
+        permissions_desc.grid(column=2, row=10, sticky=W)
+        permissions_text_area.grid(column=2, row=11, sticky=(W, E))
+        add_perm_button.grid(row=12, column=3,sticky=W, pady=10)
+    else:
+        permissions_desc.grid_forget()
+        permissions_text_area.grid_forget()
+        add_perm_button.grid_forget()
+
+def checkAddResource():
+    if(resource_check.get()==1):
+        if(update_resource_check.get()==1):
+            update_resource_check.set(0)
+            checkUpdateResource()
+        resource_desc.grid(column=1, row=1, sticky=W)
+        resource_entry.grid(row = 1, column = 2, pady=10)
+        resource_type_desc.grid(column=1, row=2, sticky=W)
+        typeMenu.grid(column=2, row=2,sticky=W, pady=10)
+        resource_button.grid(row = 7, column = 3, pady=10)
+    else:
+        resource_desc.grid_forget()
+        resource_entry.grid_forget()
+        resource_type_desc.grid_forget()
+        typeMenu.grid_forget()
+        resource_button.grid_forget()
+    
+    typeMenuOptionchange()
+
+
+def checkAddRole():
+    if(role_check.get()==1):
+        if(update_role_check.get()==1):
+            update_role_check.set(0)
+            checkUpdateRole()
+        mnemonic_desc.grid(column=1, row=1, sticky=W)
+        role_entry.grid(row = 1, column = 2, pady=10)
+        qbn_desc.grid(column=1, row=2, sticky=W)
+        qbn_entry.grid(row = 2, column = 2, pady=10)
+        oii_desc.grid(column=1, row=3, sticky=W)
+        oii_entry.grid(row = 3, column = 2, pady=10)
+        type_desc.grid(column=1, row=4, sticky=W)
+        type_entry.grid(row = 4, column = 2, pady=10)
+        role_create_button.grid(row = 5, column = 3, pady=10)
+    else:
+        mnemonic_desc.grid_forget()
+        role_entry.grid_forget()
+        qbn_desc.grid_forget()
+        qbn_entry.grid_forget()
+        oii_desc.grid_forget()
+        oii_entry.grid_forget()
+        type_desc.grid_forget()
+        type_entry.grid_forget()
+        role_create_button.grid_forget()
+
+def copyClipboard():
+    data = json.dumps(model,indent=2)
+    os.system("echo '%s' | pbcopy" % data)
+    msg_desc.config(text="Copied to Clipboard.",bg="Yellow")
+####
+
+#Initialise Tkinter for the UI
+
+####
+root = Tk()
+root.resizable(width=False, height=False)
+root.title("Create Model")
+
+universal_height = 500
+universal_width = 500
+
+roles={'None'}
+role_id = StringVar()
+role_id.set('None')
+
+skus={'None'}
+sku_id = StringVar()
+sku_id.set('None')
+
+role_id_choice = StringVar()
+role_id_choice.set('None')
+
+resources={'None'}
+resource_id_choice = StringVar()
+resource_id_choice.set('None')
+
+resource_view_id = StringVar()
+resource_view_id.set('None')
+
+role_view_id = StringVar()
+role_view_id.set('None')
+
+nb = ttk.Notebook(root)
+
+source_file_page = ttk.Frame(nb, width= 500 ,height = universal_height)
+nb.add(source_file_page,text="Source File")
+
+insert_permission_page = ttk.Frame(nb, width= 400 ,height = universal_height)
+nb.add(insert_permission_page,text="Insert Permissions along Resource Heirarchy")
+
+create_resource_page = ttk.Frame(nb, width= universal_width ,height = universal_height)
+nb.add(create_resource_page,text="Create / Update Resource")
+
+create_role_page = ttk.Frame(nb, width= universal_width ,height = universal_height)
+nb.add(create_role_page,text="Create / Update Role")
+
+viewer = ttk.Frame(nb, width= universal_width ,height = universal_height)
+nb.add(viewer,text="Role / Resource Viewer")
+
+nb.grid(row=0)
+
+last_page = ttk.Frame(root, width= universal_width ,height = universal_height)
+last_page.grid(row=5)
+
+msg_desc=Label(root)
+msg_desc.grid(row=2)
+msg_desc.config(font=("Courier New", 18))
+
+Button(last_page, text = 'Save in file', command = testWriteFile).grid(row = 10,column = 0, sticky='E')
+Button(last_page, text = 'Copy to Clipboard', command = copyClipboard).grid(row = 10,column = 1,sticky='E')  
+
+#Add Components to the page based on the per Row
+
+#source_file_page
+desc=ttk.Label(source_file_page, text="Source File Path:")
+desc.grid(column=1, row=1, sticky=W)
+desc.config(font=("Courier New", 12))
+file_name = StringVar()
+Entry(source_file_page, textvariable = file_name, width=70).grid(row = 1, column = 2, pady=20)
+Button(source_file_page, text = 'Source file to Model', command = createModel).grid(row = 2, column = 2,sticky='E')
+
+#insert_permission_page
+
+#Dot notation permissions
+desc=ttk.Label(insert_permission_page, text="Permission String (with dot notation) :")
+desc.grid(column=1, row=1, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+dot_permission = StringVar()
+Entry(insert_permission_page, textvariable = dot_permission, width=40).grid(row = 1, column = 2, pady=10)
+
+#Profile permissions
+desc=ttk.Label(insert_permission_page, text="User Profile Permission String :")
+desc.grid(column=1, row=2, sticky=W)
+desc.config(font=("Courier New", 12))
+
+permission_value = StringVar()
+Entry(insert_permission_page, textvariable = permission_value, width=40).grid(row = 2, column = 2, pady=10)
+
+#Role
+desc=ttk.Label(insert_permission_page, text="Associate Role :")
+desc.grid(column=1, row=3, sticky=W)
+desc.config(font=("Courier New", 12))
+
+roleMenu = OptionMenu(insert_permission_page, role_id, *roles)
+roleMenu.config(width=20)
+roleMenu.grid(column=2, row=3,sticky=W, pady=10)
+
+role_desc=ttk.Label(insert_permission_page, text=role_id.get())
+role_desc.grid(column=3, row=3, sticky=W)
+role_desc.config(font=("Courier New", 12))
+
+#Sku
+desc=ttk.Label(insert_permission_page, text="Associate Sku :")
+desc.grid(column=1, row=4, sticky=W)
+desc.config(font=("Courier New", 12))
+
+skuMenu = OptionMenu(insert_permission_page, sku_id, *skus)
+skuMenu.config(width=20)
+skuMenu.grid(column=2, row=4, sticky=W, pady=10)
+
+sku_desc=ttk.Label(insert_permission_page, text=sku_id.get())
+sku_desc.grid(column=3, row=4, sticky=W)
+sku_desc.config(font=("Courier New", 12))
+
+# Update Action checkbox
+desc=ttk.Label(insert_permission_page, text="Update existing Action :")
+desc.grid(column=1, row=7, sticky=W)
+desc.config(font=("Courier New", 12))
+
+var3 = IntVar()
+Checkbutton(insert_permission_page, text="",variable=var3).grid(row=7, column=2,sticky=W, pady=10)
+
+Button(insert_permission_page, text = 'Update Model', command = addResources).grid(row = 7, column = 3, pady=10)
+
+
+#create_resource_page
+
+#New Resource
+
+desc=ttk.Label(create_resource_page, text="New Resource :")
+desc.grid(column=1, row=0, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+resource_check = IntVar()
+Checkbutton(create_resource_page, text="",variable=resource_check,command=checkAddResource).grid(row=0, column=2,sticky=W, pady=10)
+
+#Resource Id 
+resource_desc=ttk.Label(create_resource_page, text="Resource Id :")
+resource_desc.config(font=("Courier New", 12))
+
+resource_id = StringVar()
+resource_entry=Entry(create_resource_page, textvariable = resource_id, width=59)
+
+#Type 
+resource_type_desc=ttk.Label(create_resource_page, text="Resource type :")
+resource_type_desc.config(font=("Courier New", 12))
+
+type_val = StringVar()
+types = {'feature','sku'}
+type_val.set('feature')
+
+typeMenu = OptionMenu(create_resource_page, type_val, *types, command=typeMenuOptionchange)
+typeMenu.config(width=20)
+
+
+#Atrributes
+product=StringVar()
+flavour=StringVar()
+region=StringVar()
+
+attr_desc=ttk.Label(create_resource_page, text="Attributes:")
+
+prod_desc= ttk.Label(create_resource_page, text="Product:")
+prod_entry = Entry(create_resource_page, textvariable = product, width=40)
+
+flav_desc=ttk.Label(create_resource_page, text="Flavor:")
+flav_entry=Entry(create_resource_page, textvariable = flavour, width=40)
+
+reg_desc=ttk.Label(create_resource_page, text="Region:")
+reg_entry = Entry(create_resource_page, textvariable = region, width=40)
+
+resource_button = Button(create_resource_page, text = 'Create Resource', command = callCreateResource)
+
+#Update Resource
+
+desc=ttk.Label(create_resource_page, text="Update Existing Resource :")
+desc.grid(column=1, row=10, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+update_resource_check = IntVar()
+Checkbutton(create_resource_page, text="",variable=update_resource_check,command=checkUpdateResource).grid(row=10, column=2,sticky=W, pady=10)
+
+resourceMenu = OptionMenu(create_resource_page, resource_id_choice, *resources)
+resourceMenu.config(width=20)
+
+child_desc=ttk.Label(create_resource_page, text="1. Add Children :")
+child_desc.config(font=("Courier New", 12))
+
+var1 = IntVar()
+add_child_check=Checkbutton(create_resource_page, text="",variable=var1,command=checkAddChildren)
+
+add_child_desc=ttk.Label(create_resource_page, text="Provide list of children")
+add_child_desc.config(font=("Courier New", 12))
+
+children_text_area = Text(create_resource_page, relief=GROOVE ,wrap=WORD, height=10, width=20, borderwidth=2)
+children_text_area.insert(END, "")
+
+update_resource_button=Button(create_resource_page, text = 'Add', command = callAddChildren)
+
+remove_resource_desc=ttk.Label(create_resource_page, text="2. Remove Resource :")
+remove_resource_desc.config(font=("Courier New", 12))
+
+resource_remove_button=Button(create_resource_page, text = 'Remove from Model', command = removeResource)
+
+
+#create_role_page
+
+desc=ttk.Label(create_role_page, text="New Role :")
+desc.grid(column=1, row=0, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+role_check = IntVar()
+Checkbutton(create_role_page, text="",variable=role_check,command=checkAddRole).grid(row=0, column=2,sticky=W, pady=10)
+
+#Role Mnemonic Id 
+mnemonic_desc=ttk.Label(create_role_page, text="Rold Mnemonic Id :")
+mnemonic_desc.config(font=("Courier New", 12))
+
+role_mnemonic_id = StringVar()
+role_entry = Entry(create_role_page, textvariable = role_mnemonic_id, width=57)
+
+#QBN Role Id
+qbn_desc=ttk.Label(create_role_page, text="QBN Role Id :")
+qbn_desc.config(font=("Courier New", 12))
+
+qbn_id = StringVar()
+qbn_entry = Entry(create_role_page, textvariable = qbn_id, width=57)
+
+#OII Role Id
+oii_desc=ttk.Label(create_role_page, text="Rold OII Id :")
+oii_desc.config(font=("Courier New", 12))
+
+oii_id = StringVar()
+oii_entry = Entry(create_role_page, textvariable = oii_id, width=57)
+
+#Role Type
+type_desc=ttk.Label(create_role_page, text="Rold Type :")
+type_desc.config(font=("Courier New", 12))
+
+role_type_val = StringVar()
+type_entry = Entry(create_role_page, textvariable = role_type_val, width=57)
+
+role_create_button = Button(create_role_page, text = 'Create Role', command = callCreateRole)
+
+#Update Role
+
+desc=ttk.Label(create_role_page, text="Update Existing Role :")
+desc.grid(column=1, row=7, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+update_role_check = IntVar()
+Checkbutton(create_role_page, text="",variable=update_role_check,command=checkUpdateRole).grid(row=7, column=2,sticky=W, pady=10)
+
+roleMenu_remove = OptionMenu(create_role_page, role_id_choice, *roles)
+roleMenu_remove.config(width=20)
+
+permission_desc=ttk.Label(create_role_page, text="1. Add Permissions :")
+permission_desc.config(font=("Courier New", 12))
+
+var2 = IntVar()
+add_perm_check = Checkbutton(create_role_page, text="",variable=var2,command=checkAddPermssion)
+
+permissions_desc=ttk.Label(create_role_page, text="Provide list of permissions")
+permissions_desc.config(font=("Courier New", 12))
+
+permissions_text_area = Text(create_role_page, relief=GROOVE ,wrap=WORD, height=10, width=20, borderwidth=2)
+permissions_text_area.insert(END, "")
+
+add_perm_button = Button(create_role_page, text = 'Add', command = callAddPermissions)
+
+remove_role_desc=ttk.Label(create_role_page, text="2. Remove Role :")
+remove_role_desc.config(font=("Courier New", 12))
+
+role_remove_button=Button(create_role_page, text = 'Remove from Model', command = removeRole)
+
+
+#View
+
+def checkResourceView():
+    if resource_view_check.get()==1:
+        if role_view_check.get()==1:
+            role_view_check.set(0)
+            checkRoleView()
+        resourceMenuView.grid(column=2, row=1,sticky=W, pady=10)
+        resources_area.grid(column=2, row=2,sticky=W, pady=10)
+    else:
+        resourceMenuView.grid_forget()
+        resources_area.grid_forget()
+    return
+
+def checkRoleView():
+
+    if role_view_check.get()==1:
+        if resource_view_check.get()==1:
+                resource_view_check.set(0)
+                checkResourceView()
+        roleMenuView.grid(column=2, row=11,sticky=W, pady=10)
+        role_area.grid(column=2, row=12,sticky=W, pady=10)
+    else:
+        roleMenuView.grid_forget()
+        role_area.grid_forget()
+
+    return
+
+#Resource
+desc=ttk.Label(viewer, text="Resource :")
+desc.grid(column=1, row=0, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+resource_view_check = IntVar()
+Checkbutton(viewer, text="",variable=resource_view_check,command=checkResourceView).grid(row=0, column=2,sticky=W, pady=10)
+
+resourceMenuView = OptionMenu(viewer, resource_view_id, *resources)
+resourceMenuView.config(width=20)
+
+resources_area = Text(viewer, relief=GROOVE ,wrap=WORD, height=25, width=80, borderwidth=2)
+resources_area.insert(END, "")
+
+#Role
+
+desc=ttk.Label(viewer, text="Role :")
+desc.grid(column=1, row=10, sticky=W, pady=10)
+desc.config(font=("Courier New", 12))
+
+role_view_check = IntVar()
+Checkbutton(viewer, text="",variable=role_view_check,command=checkRoleView).grid(row=10, column=2,sticky=W, pady=10)
+
+roleMenuView = OptionMenu(viewer, role_view_id, *resources)
+roleMenuView.config(width=20)
+
+role_area = Text(viewer, relief=GROOVE ,wrap=WORD, height=25, width=80, borderwidth=2)
+role_area.insert(END, "")
+
+root.mainloop()
