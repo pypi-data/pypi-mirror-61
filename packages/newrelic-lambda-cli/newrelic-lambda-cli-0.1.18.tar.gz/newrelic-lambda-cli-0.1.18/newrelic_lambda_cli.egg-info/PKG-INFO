@@ -1,0 +1,601 @@
+Metadata-Version: 2.1
+Name: newrelic-lambda-cli
+Version: 0.1.18
+Summary: A CLI to install the New Relic AWS Lambda integration and layers.
+Home-page: https://github.com/newrelic/newrelic-lambda-cli
+Author: New Relic
+Author-email: serverless-dev@newrelic.com
+License: UNKNOWN
+Description: newrelic-lambda-cli
+        ===================
+        
+        A CLI to install the New Relic AWS Lambda integration and layers.
+        
+        Table of Contents
+        -----------------
+        
+        -  `Features <#features>`__
+        -  `Runtimes Supported <#runtimes-supported>`__
+        -  `Requirements <#requirements>`__
+        -  `Recommendations <#recommendations>`__
+        -  `Installation <#installation>`__
+        -  `Usage <#usage>`__
+        
+           -  `AWS Lambda Integration <#aws-lambda-integration>`__
+           -  `AWS Lambda Layers <#aws-lambda-layers>`__
+           -  `AWS Lambda Functions <#aws-lambda-functions>`__
+           -  `NewRelic Log Subscription <#newRelic-log-subscription>`__
+        
+        -  `Contributing <#contributing>`__
+        -  `Code Style <#code-style>`__
+        -  `Running Tests <#running-tests>`__
+        -  `Troubleshooting <#troubleshooting>`__
+        
+        Features
+        --------
+        
+        -  Installs the New Relic AWS Lambda integration onto your AWS account
+        -  Installs and configures a New Relic AWS Lambda layer onto your AWS
+           Lambda functions
+        -  Automatically selects the correct New Relic layer for your function’s
+           runtime and region
+        -  Wraps your AWS Lambda functions without requiring a code change
+        -  Supports Node.js and Python AWS Lambda runtimes
+        -  Easily uninstall the AWS Lambda layer with a single command
+        
+        Runtimes Supported
+        ------------------
+        
+        -  nodejs10.x
+        -  nodejs12.x
+        -  python2.7
+        -  python3.6
+        -  python3.7
+        -  python3.8
+        
+        Requirements
+        ------------
+        
+        -  Python >= 3.3
+        -  Retrieve your `New relic Account
+           ID <https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id>`__
+           and `User API
+           Key <https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#user-api-key>`__
+        
+        Recommendations
+        ---------------
+        
+        -  Install the `AWS CLI <https://github.com/aws/aws-cli>`__ and
+           configure your environment with ``aws configure``
+        
+        Installation
+        ------------
+        
+        .. code:: bash
+        
+           pip install newrelic-lambda-cli
+        
+        Or clone this repo and run:
+        
+        .. code:: bash
+        
+           python setup.py install
+        
+        To update the CLI, run:
+        
+        ::
+        
+           pip install --upgrade newrelic-lambda-cli
+        
+        Usage
+        -----
+        
+        AWS Lambda Integration
+        ~~~~~~~~~~~~~~~~~~~~~~
+        
+        Install Integration
+        ^^^^^^^^^^^^^^^^^^^
+        
+        In order to instrument your AWS Lambda functions using New Relic you
+        must first install the New Relic AWS Lambda integration and the log
+        ingestion function in the AWS region in which your Lambda functions are
+        located. If you have Lambda functions located in multiple regions you
+        can run the command multiple times specifying the AWS regions with
+        ``--aws-region <your aws region here>``. This command only needs to be
+        run once per AWS region. By default this command will look for a default
+        AWS profile configured via the AWS CLI.
+        
+        .. code:: bash
+        
+           newrelic-lambda integrations install \
+               --nr-account-id <account id> \
+               --nr-api-key <api key> \
+               --linked-account-name <linked account name>
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--nr-account- | Yes                   | The `New Relic Account     |
+        | id``            |                       | ID <https://docs.newrelic. |
+        | or ``-a``       |                       | com/docs/accounts/install- |
+        |                 |                       | new-relic/account-setup/ac |
+        |                 |                       | count-id>`__               |
+        |                 |                       | for this integration. Can  |
+        |                 |                       | also use the               |
+        |                 |                       | ``NEW_RELIC_ACCOUNT_ID``   |
+        |                 |                       | environment variable.      |
+        +-----------------+-----------------------+----------------------------+
+        | ``--nr-api-key` | Yes                   | Your `New Relic User API   |
+        | `               |                       | Key <https://docs.newrelic |
+        | or ``-k``       |                       | .com/docs/apis/get-started |
+        |                 |                       | /intro-apis/types-new-reli |
+        |                 |                       | c-api-keys#user-api-key>`_ |
+        |                 |                       | _.                         |
+        |                 |                       | Can also use the           |
+        |                 |                       | ``NEW_RELIC_API_KEY``      |
+        |                 |                       | environment variable.      |
+        +-----------------+-----------------------+----------------------------+
+        | ``--linked-acco | Yes                   | A label for the New Relic  |
+        | unt-name``      |                       | Linked ACcount. This is    |
+        | or ``-l``       |                       | how this integration will  |
+        |                 |                       | appear in New Relic.       |
+        +-----------------+-----------------------+----------------------------+
+        | ``--enable-logs | No                    | Enables forwarding logs to |
+        | ``              |                       | New Relic Logging. This is |
+        | or ``-e``       |                       | disabled by default. Make  |
+        |                 |                       | sure you run               |
+        |                 |                       | ``newrelic-lambda subscrip |
+        |                 |                       | tions install --function . |
+        |                 |                       | .. --filter-pattern ""``   |
+        |                 |                       | afterwards.                |
+        +-----------------+-----------------------+----------------------------+
+        | ``--nr-region`` | No                    | The New Relic region to    |
+        |                 |                       | use for the integration.   |
+        |                 |                       | Can use the                |
+        |                 |                       | ``NEW_RELIC_REGION``       |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to ``us``.        |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region for the     |
+        | `               |                       | integration. Can use       |
+        | or ``-r``       |                       | ``AWS_DEFAULT_REGION``     |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-role-po | No                    | Specify an alternative IAM |
+        | licy``          |                       | role policy ARN for this   |
+        |                 |                       | integration.               |
+        +-----------------+-----------------------+----------------------------+
+        
+        Uninstall Integration
+        ^^^^^^^^^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+           newrelic-lambda integrations uninstall
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region for the     |
+        | `               |                       | integration. Can use       |
+        | or ``-r``       |                       | ``AWS_DEFAULT_REGION``     |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        | ``--force`` or  | No                    | Forces uninstall           |
+        | ``-f``          |                       | non-interactively          |
+        +-----------------+-----------------------+----------------------------+
+        | ``--nr-account- | No                    | The `New Relic Account     |
+        | id``            |                       | ID <https://docs.newrelic. |
+        | or ``-a``       |                       | com/docs/accounts/install- |
+        |                 |                       | new-relic/account-setup/ac |
+        |                 |                       | count-id>`__               |
+        |                 |                       | for the integration. Only  |
+        |                 |                       | required if also           |
+        |                 |                       | uninstalling the New Relic |
+        |                 |                       | AWS Lambda integration.    |
+        |                 |                       | Can also use the           |
+        |                 |                       | ``NEW_RELIC_ACCOUNT_ID``   |
+        |                 |                       | environment variable.      |
+        +-----------------+-----------------------+----------------------------+
+        
+        AWS Lambda Layers
+        ~~~~~~~~~~~~~~~~~
+        
+        Install Layer
+        ^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+           newrelic-lambda layers install \
+               --function <name or arn> \
+               --nr-account-id <new relic account id>
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--function``  | Yes                   | The AWS Lambda function    |
+        | or ``-f``       |                       | name or ARN in which to    |
+        |                 |                       | add a layer. Can provide   |
+        |                 |                       | multiple ``--function``    |
+        |                 |                       | arguments. Will also       |
+        |                 |                       | accept ``all``,            |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` similar  |
+        |                 |                       | to                         |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``.                  |
+        +-----------------+-----------------------+----------------------------+
+        | ``--nr-account- | Yes                   | The `New Relic Account     |
+        | id``            |                       | ID <https://docs.newrelic. |
+        | or ``-a``       |                       | com/docs/accounts/install- |
+        |                 |                       | new-relic/account-setup/ac |
+        |                 |                       | count-id>`__               |
+        |                 |                       | this function should use.  |
+        |                 |                       | Can also use the           |
+        |                 |                       | ``NEW_RELIC_ACCOUNT_ID``   |
+        |                 |                       | environment variable.      |
+        +-----------------+-----------------------+----------------------------+
+        | ``--exclude``   | No                    | A function name to exclude |
+        | or ``-e``       |                       | while installing layers.   |
+        |                 |                       | Can provide multiple       |
+        |                 |                       | ``--exclude`` arguments.   |
+        |                 |                       | Only checked when ``all``, |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` are      |
+        |                 |                       | used. See                  |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``                   |
+        |                 |                       | for function names.        |
+        +-----------------+-----------------------+----------------------------+
+        | ``--layer-arn`` | No                    | Specify a specific layer   |
+        | or ``-l``       |                       | version ARN to use. This   |
+        |                 |                       | is auto detected by        |
+        |                 |                       | default.                   |
+        +-----------------+-----------------------+----------------------------+
+        | ``--upgrade``   | No                    | Permit upgrade to the      |
+        | or ``-u``       |                       | latest layer version for   |
+        |                 |                       | this region and runtime.   |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region this        |
+        | `               |                       | function is located. Can   |
+        | or ``-r``       |                       | use ``AWS_DEFAULT_REGION`` |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        
+        Uninstall Layer
+        ^^^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+           newrelic-lambda layers uninstall --function <name or arn>
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--function``  | Yes                   | The AWS Lambda function    |
+        | or ``-f``       |                       | name or ARN in which to    |
+        |                 |                       | remove a layer. Can        |
+        |                 |                       | provide multiple           |
+        |                 |                       | ``--function`` arguments.  |
+        |                 |                       | Will also accept ``all``,  |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` similar  |
+        |                 |                       | to                         |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``.                  |
+        +-----------------+-----------------------+----------------------------+
+        | ``--exclude``   | No                    | A function name to exclude |
+        | or ``-e``       |                       | while uninstalling layers. |
+        |                 |                       | Can provide multiple       |
+        |                 |                       | ``--exclude`` arguments.   |
+        |                 |                       | Only checked when ``all``, |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` are      |
+        |                 |                       | used. See                  |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``                   |
+        |                 |                       | for function names.        |
+        +-----------------+-----------------------+----------------------------+
+        | ``--layer-arn`` | No                    | Specify a specific layer   |
+        | or ``-l``       |                       | version ARN to remove.     |
+        |                 |                       | This is auto detected by   |
+        |                 |                       | default.                   |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region this        |
+        | `               |                       | function is located. Can   |
+        | or ``-r``       |                       | use ``AWS_DEFAULT_REGION`` |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        
+        AWS Lambda Functions
+        ~~~~~~~~~~~~~~~~~~~~
+        
+        List Functions
+        ^^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+           newrelic-lambda functions list
+        
+        List functions with layer installed:
+        
+        .. code:: bash
+        
+           newrelic-lambda functions list --filter installed
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--filter`` or | No                    | Filter to be applied to    |
+        | ``-f``          |                       | list of functions. Options |
+        |                 |                       | are ``all``, ``installed`` |
+        |                 |                       | and ``not-installed``.     |
+        |                 |                       | Defaults to ``all``.       |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region to use for  |
+        | `               |                       | htis command. Can use      |
+        | or ``-r``       |                       | ``AWS_DEFAULT_REGION``     |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        
+        NewRelic Log Subscription
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Install Log Subscription
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+           newrelic-lambda subscriptions install --function <name or arn>
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--function``  | Yes                   | The AWS Lambda function    |
+        | or ``-f``       |                       | name or ARN in which to    |
+        |                 |                       | add a log subscription.    |
+        |                 |                       | Can provide multiple       |
+        |                 |                       | ``--function`` arguments.  |
+        |                 |                       | Will also accept ``all``,  |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` similar  |
+        |                 |                       | to                         |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``.                  |
+        +-----------------+-----------------------+----------------------------+
+        | ``--exclude``   | No                    | A function name to exclude |
+        | or ``-e``       |                       | while installing           |
+        |                 |                       | subscriptions. Can provide |
+        |                 |                       | multiple ``--exclude``     |
+        |                 |                       | arguments. Only checked    |
+        |                 |                       | when ``all``,              |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` are      |
+        |                 |                       | used. See                  |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``                   |
+        |                 |                       | for function names.        |
+        +-----------------+-----------------------+----------------------------+
+        | ``--filter-patt | No                    | Specify a custom log       |
+        | ern``           |                       | subscription filter        |
+        |                 |                       | pattern. To collect all    |
+        |                 |                       | logs use                   |
+        |                 |                       | ``--filter_pattern ""``.   |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region this        |
+        | `               |                       | function is located. Can   |
+        | or ``-r``       |                       | use ``AWS_DEFAULT_REGION`` |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        
+        Uninstall Log Subscription
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        
+        .. code:: bash
+        
+           newrelic-lambda subscriptions uninstall --function <name or arn>
+        
+        +-----------------+-----------------------+----------------------------+
+        | Option          | Required?             | Description                |
+        +=================+=======================+============================+
+        | ``--function``  | Yes                   | The AWS Lambda function    |
+        | or ``-f``       |                       | name or ARN in which to    |
+        |                 |                       | remove a log subscription. |
+        |                 |                       | Can provide multiple       |
+        |                 |                       | ``--function`` arguments.  |
+        |                 |                       | Will also accept ``all``,  |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` similar  |
+        |                 |                       | to                         |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``.                  |
+        +-----------------+-----------------------+----------------------------+
+        | ``--exclude``   | No                    | A function name to exclude |
+        | or ``-e``       |                       | while uninstalling         |
+        |                 |                       | subscriptions. Can provide |
+        |                 |                       | multiple ``--exclude``     |
+        |                 |                       | arguments. Only checked    |
+        |                 |                       | when ``all``,              |
+        |                 |                       | ``installed`` and          |
+        |                 |                       | ``not-installed`` are      |
+        |                 |                       | used. See                  |
+        |                 |                       | ``newrelic-lambda function |
+        |                 |                       | s list``                   |
+        |                 |                       | for function names.        |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-profile | No                    | The AWS profile to use for |
+        | ``              |                       | this command. Can also use |
+        | or ``-p``       |                       | ``AWS_PROFILE``. Will also |
+        |                 |                       | check                      |
+        |                 |                       | ``AWS_ACCESS_KEY_ID`` and  |
+        |                 |                       | ``AWS_SECRET_ACCESS_KEY``  |
+        |                 |                       | environment variables if   |
+        |                 |                       | not using AWS CLI.         |
+        +-----------------+-----------------------+----------------------------+
+        | ``--aws-region` | No                    | The AWS region this        |
+        | `               |                       | function is located. Can   |
+        | or ``-r``       |                       | use ``AWS_DEFAULT_REGION`` |
+        |                 |                       | environment variable.      |
+        |                 |                       | Defaults to AWS session    |
+        |                 |                       | region.                    |
+        +-----------------+-----------------------+----------------------------+
+        
+        Docker
+        ------
+        
+        Now, you can run newrelic-lambda-cli as a container.
+        
+        .. code:: bash
+        
+           docker build -t newrelic-lambda-cli .
+           docker run -e AWS_PROFILE=your_profile -v $HOME/.aws:/home/newrelic-lambda-cli/.aws newrelic-lambda-cli functions list
+        
+        Contributing
+        ------------
+        
+        We welcome code contributions (in the form of pull requests) from our
+        user community. Before submitting a pull request please review `these
+        guidelines <CONTRIBUTING.md>`__.
+        
+        Following these helps us efficiently review and incorporate your
+        contribution and avoid breaking your code with future changes to the
+        agent.
+        
+        Code style
+        ----------
+        
+        We use the `black <https://github.com/ambv/black>`__ code formatter.
+        
+        .. code:: bash
+        
+           pip install black
+        
+        We recommend using it with
+        `pre-commit <https://pre-commit.com/#install>`__:
+        
+        .. code:: bash
+        
+           pip install pre-commit
+           pre-commit install
+        
+        Using these together will auto format your git commits.
+        
+        Running Tests
+        -------------
+        
+        .. code:: bash
+        
+           python setup.py test
+        
+        Troubleshooting
+        ---------------
+        
+        **Upgrade the CLI**: A good first step, as we push updates frequently.
+        
+        ::
+        
+           pip install --upgrade newrelic-lambda-cli
+        
+        **UnrecognizedClientException**:
+        >\ ``(UnrecognizedClientException) when calling the GetFunction operation: The security token included in the request is invalid.``
+        
+        If you see this error, it means that specifying the region is necessary,
+        and you need to supply the ``--aws-region`` flag to your command.
+        
+        **Unable to locate credentials:**
+        >\ ``Function: None, Region: None, Error: Failed to set up lambda integration: 'Unable to locate credentials. You can configure credentials by running "aws configure".'``
+        
+        1. The AWS profile may not be properly configured; review documentation
+           to `Configure your AWS
+           Profile <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html>`__
+           (make sure the default region is set!).
+        2. If there are multiple AWS profiles and the correct one is not
+           specified, you can run
+           ``export AWS_DEFAULT_PROFILE=MY_OTHER_PROFILE`` to set the
+           environment variable to the proper profile.
+        
+        **SimulatePrincipalPolicy**:
+        >\ ``botocore.errorfactory.InvalidInputException: An error occurred (InvalidInput) when calling the SimulatePrincipalPolicy operation: Invalid Entity Arn: arn:aws:sts::123456789012:assumed-role/u-admin/botocore-session-0987654321 does not clearly define entity type and name.``
+        
+        Some AWS accounts can have permission to operate on resources without
+        having access to SimulatePrincipalPolicy. If this is the case, supply
+        the ``--no-aws-permissions-check`` flag to your command.
+        
+        **Error adding new region to integration**:
+        >\ ``Linking New Relic account to AWS account Traceback (most recent call last):   ...   File "/Users/USER/PYTHONPATH/lib/python3.8/site-packages/newrelic_lambda_cli/gql.py", line 131, in link_account     return res["cloudLinkAccount"]["linkedAccounts"][0]   IndexError: list index out of range``
+        
+        This error can happen if you have an existing AWS integration, and are
+        running ``newrelic-lambda integrations install`` with a different
+        ``--linked-account-name`` (for instance, to add a new region to the
+        integration). The linked account name can be whatever you want it to be,
+        but needs to be consistent with the previously linked AWS account.
+        
+Platform: UNKNOWN
+Requires-Python: >=3.3
+Description-Content-Type: text/x-rst

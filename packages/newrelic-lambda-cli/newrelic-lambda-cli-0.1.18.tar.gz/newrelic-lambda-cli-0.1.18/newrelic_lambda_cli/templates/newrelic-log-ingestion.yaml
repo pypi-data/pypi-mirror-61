@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  NewRelicLicenseKey:
+    Type: String
+    Description: The New Relic account license key
+    Default: "YOUR_LICENSE_KEY"
+  NewRelicLoggingEnabled:
+    Type: String
+    Description: Determines if logs are forwarded to New Relic Logging
+    Default: "False"
+
+Resources:
+  NewRelicLogIngestion:
+    Type: AWS::Serverless::Application    
+    Properties:
+      Location:
+        ApplicationId: arn:aws:serverlessrepo:us-east-1:463657938898:applications/NewRelic-log-ingestion
+        SemanticVersion: 2.1.2
+      Parameters:
+        NRLicenseKey: !Ref NewRelicLicenseKey
+        NRLoggingEnabled: !Ref NewRelicLoggingEnabled
