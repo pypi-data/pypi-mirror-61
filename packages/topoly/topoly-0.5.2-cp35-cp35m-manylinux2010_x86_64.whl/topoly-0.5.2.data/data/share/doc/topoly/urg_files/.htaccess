@@ -1,0 +1,9 @@
+<IfModule mime_module>
+AddType application/x-httpd-py .py
+</IfModule>
+
+
+Options +ExecCGI +SymLinksIfOwnerMatch
+AddHandler cgi-script .py .cgi .pl
+SetHandler cgi-script
+
