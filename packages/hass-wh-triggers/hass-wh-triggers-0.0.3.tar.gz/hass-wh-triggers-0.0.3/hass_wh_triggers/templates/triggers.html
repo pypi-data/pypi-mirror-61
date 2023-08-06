@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block title %}Triggers{% endblock %}
+{% block content %}
+{% if current_user.is_authenticated %}
+{% for trigger in triggers %}
+<p><button class="button is-outlined is-fullwidth" onclick="{% if trigger.require_geo %}geo_{% endif %}fire(this, {{ trigger.id }}, {% if trigger.password | length %}true{% else %}false{% endif %}, null)">{{ trigger.caption }}{% if trigger.require_geo %}&nbsp;&#127760;{% endif %}</button></p><br />
+{% endfor %}
+<script>
+function geoError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      alert("Your location is required to fire this trigger.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable. Can not fire trigger.")
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out. Can not fire trigger.")
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred. Can not fire trigger.");
+      break;
+  }
+}
+
+function geo_fire(obj, id, password, position) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            fire(obj, id, password, position);
+        }, geoError);
+    } else {
+        alert("Your location is required to fire this trigger, but your browser does not support it.");
+    }
+}
+
+function fire(obj, id, password, position) {
+    body = new Object();
+    if (password) {
+        body.password = prompt("Password");
+    }
+    else {
+        body.password = "";
+    }
+    if (position !== null) {
+        body.latitude = position.coords.latitude.toFixed(6);
+        body.longitude = position.coords.longitude.toFixed(6);
+        body.accuracy = position.coords.accuracy;
+    }
+    console.log(position);
+    obj.classList.add("is-loading");
+    var url = "{{ url_for('triggers_fire', triggerid=0) }}".replace(new RegExp('0' + '$'), id);
+    fetch(url, {
+        method: 'post',
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(
+        function(response) {
+            if (response.status !== 200) {
+                obj.classList.remove("is-loading");
+                if (response.status === 401) {
+                    alert("Incorrect password.")
+                }
+                return;
+            }
+            response.json().then(function(data) {
+                obj.classList.remove("is-loading");
+                if (data.status == "success") {
+                    alert("Success");
+                }
+                else {
+                    alert("Error");
+                }
+            });
+        }
+    )
+    .catch(function(err) {
+        console.log("Fetch Error :-S", err);
+        obj.classList.remove("is-loading");
+    });
+}
+</script>
+{% endif %}
+{% endblock %}
