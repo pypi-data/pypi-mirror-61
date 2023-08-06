@@ -1,0 +1,2494 @@
+gpu_configs:
+    - {type: nvidia-tesla-k80,   count: 1, description: "NVIDIA Tesla K80, 1 GPU"}
+    - {type: nvidia-tesla-k80,   count: 2, description: "NVIDIA Tesla K80, 2 GPU"}
+    - {type: nvidia-tesla-k80,   count: 4, description: "NVIDIA Tesla K80, 4 GPU"}
+    - {type: nvidia-tesla-k80,   count: 8, description: "NVIDIA Tesla K80, 8 GPU"}
+    - {type: nvidia-tesla-k100,  count: 1, description: "NVIDIA Tesla K100, 1 GPU"}
+    - {type: nvidia-tesla-k100,  count: 2, description: "NVIDIA Tesla K100, 2 GPU"}
+    - {type: nvidia-tesla-k100,  count: 4, description: "NVIDIA Tesla K100, 4 GPU"}
+
+ # A dictionary of maya node types and their corresponing attributes name(s) for
+ # seeking out file dependencies (external filepaths)
+maya_dependency_attrs:
+    aiImage: # Arnold
+        - filename
+    aiPhotometricLight: # Arnold
+        - aiFilename
+    aiStandIn: # Arnold
+        - dso
+    aiVolume: # Arnold
+        - dso
+        - filename
+    AlembicNode: # Alembic (now maya builtin?)
+        - abc_File
+    CrowdProxyVRay: # Golaem
+        - cacheFileDir
+        - camFilePath
+    CrowdManagerNode: # Golaem
+        - escod
+        - efbxod
+        - eabcod
+        - eribod
+        - emrod
+        - evrod
+        - eassod
+        - cam
+    file: # maya builtin
+        - fileTextureName
+    igmDescription: # xgen
+        - xuvDir
+        - path
+    McdGlobal: # Miarmy
+        - outMD2Folder
+    mesh: # Maya/native
+        - dso # custom MtoA attr
+    pgYetiEmitter: # yeti
+        - iconName
+        - templatePath
+    pgYetiGroom: # yeti
+        - iconName
+        - templatePath
+    pgYetiMaya: # yeti
+        - cacheFileName
+        - imageSearchPath
+        - outputCacheFileName
+        - iconName
+        - templatePath
+    pgYetiMayaFeather: # yeti
+        - iconName
+        - templatePath
+    PxrAovLight: # Renderman
+        - iconName
+        - templatePath
+    PxrBarnLightFilter: # Renderman
+        - iconName
+        - templatePath
+    PxrBlocker: # Renderman
+        - iconName
+        - templatePath
+    PxrBlockerLightFilter: # Renderman
+        - iconName
+        - templatePath
+    PxrBump: # Renderman
+        - filename
+    PxrCookieLightFilter: # Renderman
+        - map
+        - iconName
+        - templatePath
+    PxrDiskLight: # Renderman
+        - iesProfile
+        - iconName
+        - templatePath
+    PxrDistantLight: # Renderman
+        - iconName
+        - templatePath
+    PxrDomeLight: # Renderman
+        - lightColorMap
+        - iconName
+        - templatePath
+    PxrEnvDayLight: # Renderman
+        - iconName
+        - templatePath
+    PxrGobo: # Renderman
+        - map
+        - iconName
+        - templatePath
+    PxrGoboLightFilter: # Renderman
+        - map
+        - iconName
+        - templatePath
+    PxrIntMultLightFilter: # Renderman
+        - iconName
+        - templatePath
+    PxrLayeredTexture: # Renderman
+        - maskTexture
+        - filename
+    PxrMeshLight: # Renderman
+        - iconName
+        - templatePath
+    PxrMultiTexture: # Renderman
+        - filename8
+        - filename9
+        - filename4
+        - filename5
+        - filename6
+        - filename7
+        - filename0
+        - filename1
+        - filename2
+        - filename3
+    PxrNormalMap: # Renderman
+         - filename
+    PxrOSL: # Renderman
+        - shadername
+    PxrPortalLight: # Renderman
+        - iconName
+        - templatePath
+    PxrProjectionLayer: # Renderman
+        - channelsFilenames
+        - filename
+    PxrPtexture: # Renderman
+        - filename
+    PxrRampLightFilter: # Renderman
+        - iconName
+        - templatePath
+    PxrRectLight: # Renderman
+        - lightColorMap
+        - iesProfile
+        - iconName
+        - templatePath
+    PxrRodLightFilter: # Renderman
+        - iconName
+        - templatePath
+    PxrSphereLight: # Renderman
+        - iesProfile
+        - iconName
+        - templatePath
+    PxrStdAreaLight: # Renderman
+        - profileMap
+        - rman__EmissionMap
+        - iconName
+        - iesProfile
+        - barnDoorMap
+        - templatePath
+    PxrStdEnvDayLight: # Renderman
+        - iconName
+        - templatePath
+    PxrStdEnvMapLight: # Renderman
+        - rman__EnvMap
+        - iconName
+        - templatePath
+    PxrTexture: # Renderman
+        - filename
+    PxrVisualizer: # Renderman
+        - matCap
+    RenderManArchive: # Renderman
+        - filename
+        - iconName
+        - templatePath
+    rmanImageFile: # Renderman
+        - File
+    rmanTexture3d: # Renderman
+        - File
+    RMSAreaLight: # Renderman
+        - mapname
+        - iconName
+        - templatePath
+    RMSCausticLight: # Renderman
+        - causticPhotonMap
+        - iconName
+        - templatePath
+    RMSEnvLight: # Renderman
+        - rman__EnvMap
+        - iconName
+        - templatePath
+    RMSGILight: # Renderman
+        - iconName
+        - templatePath
+    RMSGIPtcLight: # Renderman
+        - iconName
+        - templatePath
+    RMSGPSurface: # Renderman
+        - SpecularMapB
+        - SpecularMap
+        - RoughnessMap
+        - MaskMap
+        - SurfaceMap
+        - DisplacementMap
+    RMSGeoAreaLight: # Renderman
+        - profilemap
+        - iconName
+        - iesprofile
+        - lightcolormap
+        - barnDoorMap
+        - templatePath
+    RMSGeoLightBlocker: # Renderman
+        - Map
+        - iconName
+        - templatePath
+    RMSGlass: # Renderman
+        - roughnessMap
+        - surfaceMap
+        - specularMap
+        - displacementMap
+    RMSLightBlocker: # Renderman
+        - Map
+        - iconName
+        - templatePath
+    RMSMatte: # Renderman
+        - SurfaceMap
+        - MaskMap
+        - DisplacementMap
+    RMSMeshLight: # Renderman
+        - iconName
+        - templatePath
+    RMSOcean: # Renderman
+        - roughnessMap
+        - surfaceMap
+        - specularMap
+        - displacementMap
+    RMSPointLight: # Renderman
+        - iconName
+        - templatePath
+    xgmCurveToSpline: # xgen
+        - fileName
+    xgmDescription: # xgen
+        - ai_batch_render_patch
+    xgmPalette: # xgen
+        - xgDeltaFiles
+        - xgBaseFile
+        - xgFileName
+    xgmSplineCache: # xgen
+        - fileName
+    VRayMesh: # VRay
+        - fileName
+    VRaySettingsNode: # VRay
+        - ifile
+        - fnm
+    VRayVolumeGrid: #VRay
+        - if
+    VRayScene: #Vray Scene
+        - FilePath
+
+# Arnold .ass file depdency node attrs
+arnold_dependency_attrs:
+    MayaFile: 
+        - filename
+    xgen_procedural:
+        - data
+# xgen palette file depdency node attrs
+xgen_dependency_attrs:
+    Palette:       
+        - xgDataPath: 
+            null 
+        - xgProjectPath: 
+            null 
+    SplinePrimitive:
+        - cacheFileName: 
+            useCache: "true"
+    MapTextures:
+        - RandomGenerator: 
+            null
+        - SplinePrimitive: 
+            null
+    MeshCutFXModule:
+        - meshFile: 
+            active: "true"
+        
+# A dictionary of node types and their corresponing knobs(s) for
+# seeking out file dependencies (external filepaths)
+nuke_dependency_knobs:
+    AudioRead:
+        - file
+    Camera:
+        - file
+    Camera2:
+        - file
+    DeepRead:
+        - file
+    Group:
+        - vfield_file
+        - cdl_path
+    OCIOCDLTransform:
+        - file
+    Precomp:
+        - file
+    Read:
+        - file
+    ReadGeo2:
+        - file
+    ScannedGrain:
+        - fullGrain
+    Vectorfield:
+        - vfield_file
+
+maya_supported_plugins:
+    - vrayformaya
+    - arnold
+
+
+
+package_ids:
+    maya-io:
+        "Autodesk Maya 2016":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+
+        "Autodesk Maya 2016 SP1":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+        "Autodesk Maya 2016 SP2":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+
+        "Autodesk Maya 2016 SP3":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+
+        "Autodesk Maya 2016 SP4":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+
+        "Autodesk Maya 2016 SP5":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+
+        "Autodesk Maya 2016 SP6":
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+        "Autodesk Maya 2016 Extension 1 + SP5": # Not sure if this an actual product
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+
+        "Autodesk Maya 2016 Extension 1 + SP6": # Not sure if this an actual product
+            package: 7208372e306614d514944938c395e0e7 # Autodesk_MayaIO_2016
+            v-ray-maya:
+                "3.10.01": debb2da484387978a7da8da1c728227a
+                "3.30.01": 781b03c5609da53bcf254c5760ef9a25
+                "3.30.02": ab1f0722997e09c66954326464178f68
+                "3.40.02": c94e13e3f8defffe2444d509d6e24fe1
+                "3.40.03": 35829988af12bf70ac3f8c9be5b129ad
+                "3.40.04": 3a6e334e41e9a29517ce087d503c91e4
+                "3.52.01": 37759d6ab204516c75b8bb7fa8c555d3
+                "3.52.02": 1a4f2057d547dc2a177054d1d1eb8bff
+                "3.60.01": 0852ea6bfcd34dc59029c2b3a3ea1b8e
+                "3.60.03": b11fb9d577021918d0a9ea1a410c2486
+                "4.03.02": 20e3078b29ccc12e25d537817dea614c
+            arnold-maya:
+                "1.2.2.0": d6ff0e572eb121f5b3c5327f88f3ddf4
+                "1.2.3.0": 117bdb1282d82e741f8bbf9b50a0c547
+                "1.2.3.1": 112d90408d3871da851f231988ad8145
+                "1.2.4.0": 4e96e7df4291d285f30ad73d3871536e
+                "1.2.4.1": 304bd6c4b1714b20a2edab81f449b738
+                "1.2.4.2": b200eabaa755873677205d785c254d12
+                "1.2.4.3": 92d614d9b3961b34fdeba02ca4345d27
+                "1.2.5.0": a6ddf76a25809410b8c822d87da555b8
+                "1.2.6.0": 97d3a45868d9748eee58e49de82849d8
+                "1.2.6.1": a6c81da2ab4b322bfb6b77011bd54573
+                "1.2.7.0": ad9a76c60354805f6d54fa07e20b657a
+                "1.2.7.1": 0074771ed6622e6975a4770fa0cde004
+                "1.2.7.2": ae6b6564ca05e5f9f7c5df0ce72f47c2
+                "1.2.7.3": 88872a43918591b0e215c5a3390a5e71
+                "1.3.0.1": 42bab5fef264847a88c21381d89a8ab6
+                "1.3.1.0": 89ffb8a8cf65793569049a138ac179cf
+                "1.3.1.1": f75d289a73d81544b60441e090f0e082
+                "1.3.1.2": af88e90a7e6d37cb66c893f631e11638
+                "1.4.0.0": 94fa8c458e8147aa196a71c431165bf1
+                "1.4.1.0": a765be1ee7fe7f554d1db986422a3542
+                "1.4.1.1": fa30710c95f1afe77019874515d122fe
+                "1.4.1.2": 8f8447ccf80421bfa7301815b034a2ac
+                "1.4.2.0": 37ec5de4a420c693845ae6051c958e17
+                "1.4.2.1": 902340e3a17d6c216433dd538f76b1a1
+                "1.4.2.2": 65ce43b3189714f15bd3812a70f59c2e
+                "2.0.0.0": 7a7f842ec99a5498b1dbd57f42888ddb
+                "2.0.0.1": d7b03ce47d776e7c0aaa81605057f316
+                "2.0.1.0": bc3e8efee88223db05e4c84a69cbbed7
+                "2.0.2.2": b207880c13ded2258d43b2982f075766
+                "2.0.2.3": eac8ce5ae43407a1544df73dc2ae5c20
+                "2.0.2.4": a21a3832da741b8344077a3d565550ac
+                "2.1.0": ee7336e8a1799fc479617d5774bd43c7
+                "2.1.0.1": a0eddec3d5716765c8a11086abf88624
+                "2.1.0.2": d0e9caeba57ff51e0e9d1ef5e66cd6cf
+                "2.1.0.3": 4bac58ecc9a578ced7bb9306bba6bce7
+                "3.0.0": 376c8d7c44c638545ee6f587a9503baa
+                "3.0.0.1": 7939bd2f238c526372c62aac078e7463
+                "3.0.1": f19098319eec3be00be5eb1ce856f954
+                "3.0.1.1": df72be509340edce3db9aa1499a111a1
+                "3.1.0": 763532693788d08aae0cf5f7b30a5794
+                "3.1.1": c84222fe12f96cab18e3f3c0e0446877
+                "3.1.2": 01f63e88fbb3589f2757f23f9ee3f47a
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": 84af004297b442860ab1341a68361c8c
+                "21.4": a25f164826949ceab173c47b01c85217
+                "21.5": 47ef9c62ec986b35516094cbf321d77f
+                "21.6": a3a3e5e98293b1fcd87432296f158cb4
+                "21.7": f13f1b5df9ec1130fe6d5723bc8fa151
+                "21.8": 9ff8ced4f51edd4684ae7983cefef19e
+            yeti:
+                "2.0.26": f620fcf5c9e2bd7f0dc647b7bc3a180b
+                "2.1.0": 664e1023da17797ef8d9b8c08647b69f
+                "2.1.1": e9b7e31930a2d1acfea7977b235a4dac
+                "2.1.2": af43d67d06faaa8ffa01746c8600df12
+                "2.1.3": 9cfbd3f575b147e23600d47aeb6adfba
+                "2.1.4": 44232760be932209338a3c56be0abaec
+                "2.1.5": 989232671901a31479078a4b4a466e7e
+                "2.1.6": 43fd54d822801762a80e7df2b2786cd0
+                "2.1.7": 4c923a9f1bcefe569bc1a2eb68830bf2
+                "2.1.8": e5eb0335b9eb4af8c7e69db4276d767b
+                "2.1.9": b5a0add0e1c215243ae764ec73235c90
+                "2.1.10": b8658494c91306d5744470c466f93e07
+                "2.1.11": 8a0594b3e721f1ebe8cd0b6b9998ae9d
+                "2.1.12": 48785fa2fb81e6f6849f637363dbd087
+                "2.1.13": 44ff92f62be621986c7de89697d529b4
+                "2.1.15": f366e0cdc8e75171f9c8e4cce8881240
+            golaem:
+                "6.2.4": 2d1ab1b8e4888e6e6f31cbe33e77217f
+
+        "Autodesk Maya 2016 Extension 2":  # Not sure if this an actual product
+            package: 358ec09e234da63c29d612b49a77fb58 # Autodesk_MayaIO_2016_EXT2
+            v-ray-maya:
+                "3.40.02": a5e93d6fd07e290f4ab0660a921f8272
+                "3.40.03": 9d91660361d45834265fc6ef292c111f
+                "3.40.04": 62b1afdcbc7776ccb18089f107134963
+                "3.52.01": 495636d3affc4fb5f75d88ab0da51dfc
+                "3.52.02": a642ce35b29dc466830b583f308af04a
+                "3.60.01": 6e8d7b814b5ecccdf605bb1db7f78b9a
+                "3.60.03": 038886c08d799d90b43fd259761d3940
+                "3.60.04": 7e419f321332f8cc3c434ee2b68a70fe
+                "4.03.02": 16924fa6c066a59900f253c3e30c5ed8
+            arnold-maya:
+                "1.2.7.3": 79ff37973ef0c543a9dadd9bda8ff774
+                "1.3.0.1": bc64abcfac228eacd95103fefe19448c
+                "1.3.1.0": 75c5cb173010139cd32316d34198d7ba
+                "1.3.1.1": 54988e7858988d7a22d4ed61f5b3ec73
+                "1.3.1.2": 11acd981ea0f68e0380a9f0ccb0e9f6a
+                "1.4.0.0": 1dcc1bc86b3755502593ed508a92c0ca
+                "1.4.1.0": 91d1f3eaa378cdd0113c3875eb362d68
+                "1.4.1.1": cd75a431a4dc0db372d9b81cd142c3ff
+                "1.4.1.2": b594c5202575a5c1c245be072cf5eb76
+                "1.4.2.0": 6b4aa2c43227869df28703eaef3c3f2a
+                "1.4.2.1": f9444c429e30233b1eadc02d4a665a78
+                "1.4.2.2": 7cab2249b2964c31fcbbb29bf7c1c451
+                "2.0.0.0": e4e9283b3e7dd83e2e96e1b4a5344c2c
+                "2.0.0.1": 69a42a9410001b8a1535a27bcd1b9ded
+                "2.0.2.2": edda58b8f7f4f407204ab4380b6a8b92
+                "2.0.2.3": 310224896895ed8b5760feaf33dabd9c
+                "2.0.2.4": 55c37ce5db55be046461e16d05f67e8d
+                "2.1.0": ad6d64e2abb7877bcac1838e84d1a91d
+                "2.1.0.1": 50123b3cd11dbc64fdb062415ff1a20f
+                "2.1.0.2": bc992ba2e26a9820ade73266a6f300d8
+                "2.1.0.3": fc2175e873a99d64c459d516ce4ee6f4
+                "3.0.0": eafd6b0c0e336266fd63d74b378e8bd8
+                "3.0.0.1": ec7ca6ade19d6bcf5826fc245bfc3a47
+                "3.0.1": f68d6d1ed70e15a8374febde7171f67c
+                "3.0.1.1": f51bbec3c7e56da678a5f083b72f6c2f
+                "3.1.0": 1bf0b01f6e9a7aad7833c637d48ba95b
+                "3.1.1": b791127ac37360fa5803e4d033e90996
+                "3.1.2": 54b987febe4cb6f180b2be8513e7ad6e
+                "3.1.2.1": 4a32cb948bef01c503dd2e20569b3a37
+            renderman-maya:
+                "21.3": c691fab2d2770adc01d614e16b8d6e64
+                "21.4": ebf7f44b9e0b119b29c2768c1092c4c4
+                "21.5": 8357f93b33879389aa12dcd89f70f3ea
+                "21.6": 04116397b91f786baa0852ee6a33484a
+                "21.7": f8c5244b19e6b577737990ff211447a0
+                "21.8": 4be76eb1402a4d5b4f0986bd9300c06e
+            yeti:
+                "2.1.0": 82119097eed76bf061c1a568b0e78b5e
+                "2.1.1": 100a8027177d7cff4d4fbdb88f726bbb
+                "2.1.2": 8cf37a9943ce9b87aa81ffed070151a7
+                "2.1.3": d46fb7b3d53ee89320e93a13c29d3425
+                "2.1.4": 7124af8ab1321ec0890e18cf71bc6e8c
+                "2.1.5": 38fac398dfef11c7ed81ba2a8d480b72
+                "2.1.6": 94f52b5a7f549419110cfb1789a2d2b8
+                "2.1.7": 2a34b061dc2cdd4ec1395e8cf01fd744
+                "2.1.8": 5e5ac987b34b944f6e1ed4e3221671f0
+                "2.1.9": f7046a2b83668247fabf6450e3da9bdf
+                "2.1.10": c78c83f20b2c09bd65a72fcf333ed2e9
+                "2.1.11": fce72582b6b132f7e5607060f5c43757
+                "2.1.12": e5715be2533a85372dc5ce6c47e464fd
+                "2.1.13": 6fecce703a823ac96daa6470d5e4ac54
+                "2.1.14": 82317a36f70abbca7b4485307e341f96
+                "2.1.15": 04df12d1a3effc24725d33a249a1bc82
+            golaem:
+                "6.2.4": c3241305d1d44b48ad6b5849b5480566
+
+        "Autodesk Maya 2016 Extension 2 + SP1":
+            package: 358ec09e234da63c29d612b49a77fb58 # Autodesk_MayaIO_2016_EXT2
+            v-ray-maya:
+                "3.40.02": a5e93d6fd07e290f4ab0660a921f8272
+                "3.40.03": 9d91660361d45834265fc6ef292c111f
+                "3.40.04": 62b1afdcbc7776ccb18089f107134963
+                "3.52.01": 495636d3affc4fb5f75d88ab0da51dfc
+                "3.52.02": a642ce35b29dc466830b583f308af04a
+                "3.60.01": 6e8d7b814b5ecccdf605bb1db7f78b9a
+                "3.60.03": 038886c08d799d90b43fd259761d3940
+                "3.60.04": 7e419f321332f8cc3c434ee2b68a70fe
+                "4.03.02": 16924fa6c066a59900f253c3e30c5ed8
+            arnold-maya:
+                "1.2.7.3": 79ff37973ef0c543a9dadd9bda8ff774
+                "1.3.0.1": bc64abcfac228eacd95103fefe19448c
+                "1.3.1.0": 75c5cb173010139cd32316d34198d7ba
+                "1.3.1.1": 54988e7858988d7a22d4ed61f5b3ec73
+                "1.3.1.2": 11acd981ea0f68e0380a9f0ccb0e9f6a
+                "1.4.0.0": 1dcc1bc86b3755502593ed508a92c0ca
+                "1.4.1.0": 91d1f3eaa378cdd0113c3875eb362d68
+                "1.4.1.1": cd75a431a4dc0db372d9b81cd142c3ff
+                "1.4.1.2": b594c5202575a5c1c245be072cf5eb76
+                "1.4.2.0": 6b4aa2c43227869df28703eaef3c3f2a
+                "1.4.2.1": f9444c429e30233b1eadc02d4a665a78
+                "1.4.2.2": 7cab2249b2964c31fcbbb29bf7c1c451
+                "2.0.0.0": e4e9283b3e7dd83e2e96e1b4a5344c2c
+                "2.0.0.1": 69a42a9410001b8a1535a27bcd1b9ded
+                "2.0.2.2": edda58b8f7f4f407204ab4380b6a8b92
+                "2.0.2.3": 310224896895ed8b5760feaf33dabd9c
+                "2.0.2.4": 55c37ce5db55be046461e16d05f67e8d
+                "2.1.0": ad6d64e2abb7877bcac1838e84d1a91d
+                "2.1.0.1": 50123b3cd11dbc64fdb062415ff1a20f
+                "2.1.0.2": bc992ba2e26a9820ade73266a6f300d8
+                "2.1.0.3": fc2175e873a99d64c459d516ce4ee6f4
+                "3.0.0": eafd6b0c0e336266fd63d74b378e8bd8
+                "3.0.0.1": ec7ca6ade19d6bcf5826fc245bfc3a47
+                "3.0.1": f68d6d1ed70e15a8374febde7171f67c
+                "3.0.1.1": f51bbec3c7e56da678a5f083b72f6c2f
+                "3.1.0": 1bf0b01f6e9a7aad7833c637d48ba95b
+                "3.1.1": b791127ac37360fa5803e4d033e90996
+                "3.1.2": 54b987febe4cb6f180b2be8513e7ad6e
+                "3.1.2.1": 4a32cb948bef01c503dd2e20569b3a37
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": c691fab2d2770adc01d614e16b8d6e64
+                "21.4": ebf7f44b9e0b119b29c2768c1092c4c4
+                "21.5": 8357f93b33879389aa12dcd89f70f3ea
+                "21.6": 04116397b91f786baa0852ee6a33484a
+                "21.7": f8c5244b19e6b577737990ff211447a0
+                "21.8": 4be76eb1402a4d5b4f0986bd9300c06e
+            yeti:
+                "2.1.0": 82119097eed76bf061c1a568b0e78b5e
+                "2.1.1": 100a8027177d7cff4d4fbdb88f726bbb
+                "2.1.2": 8cf37a9943ce9b87aa81ffed070151a7
+                "2.1.3": d46fb7b3d53ee89320e93a13c29d3425
+                "2.1.4": 7124af8ab1321ec0890e18cf71bc6e8c
+                "2.1.5": 38fac398dfef11c7ed81ba2a8d480b72
+                "2.1.6": 94f52b5a7f549419110cfb1789a2d2b8
+                "2.1.7": 2a34b061dc2cdd4ec1395e8cf01fd744
+                "2.1.8": 5e5ac987b34b944f6e1ed4e3221671f0
+                "2.1.9": f7046a2b83668247fabf6450e3da9bdf
+                "2.1.10": c78c83f20b2c09bd65a72fcf333ed2e9
+                "2.1.11": fce72582b6b132f7e5607060f5c43757
+                "2.1.12": e5715be2533a85372dc5ce6c47e464fd
+                "2.1.13": 6fecce703a823ac96daa6470d5e4ac54
+                "2.1.14": 82317a36f70abbca7b4485307e341f96
+                "2.1.15": 04df12d1a3effc24725d33a249a1bc82
+            golaem:
+                "6.2.4": c3241305d1d44b48ad6b5849b5480566
+
+        "Autodesk Maya 2016 Extension 2 SP2":
+            package: 358ec09e234da63c29d612b49a77fb58 # Autodesk_MayaIO_2016_EXT2
+            v-ray-maya:
+                "3.40.02": a5e93d6fd07e290f4ab0660a921f8272
+                "3.40.03": 9d91660361d45834265fc6ef292c111f
+                "3.40.04": 62b1afdcbc7776ccb18089f107134963
+                "3.52.01": 495636d3affc4fb5f75d88ab0da51dfc
+                "3.52.02": a642ce35b29dc466830b583f308af04a
+                "3.60.01": 6e8d7b814b5ecccdf605bb1db7f78b9a
+                "3.60.03": 038886c08d799d90b43fd259761d3940
+                "3.60.04": 7e419f321332f8cc3c434ee2b68a70fe
+                "4.03.02": 16924fa6c066a59900f253c3e30c5ed8
+            arnold-maya:
+                "1.2.7.3": 79ff37973ef0c543a9dadd9bda8ff774
+                "1.3.0.1": bc64abcfac228eacd95103fefe19448c
+                "1.3.1.0": 75c5cb173010139cd32316d34198d7ba
+                "1.3.1.1": 54988e7858988d7a22d4ed61f5b3ec73
+                "1.3.1.2": 11acd981ea0f68e0380a9f0ccb0e9f6a
+                "1.4.0.0": 1dcc1bc86b3755502593ed508a92c0ca
+                "1.4.1.0": 91d1f3eaa378cdd0113c3875eb362d68
+                "1.4.1.1": cd75a431a4dc0db372d9b81cd142c3ff
+                "1.4.1.2": b594c5202575a5c1c245be072cf5eb76
+                "1.4.2.0": 6b4aa2c43227869df28703eaef3c3f2a
+                "1.4.2.1": f9444c429e30233b1eadc02d4a665a78
+                "1.4.2.2": 7cab2249b2964c31fcbbb29bf7c1c451
+                "2.0.0.0": e4e9283b3e7dd83e2e96e1b4a5344c2c
+                "2.0.0.1": 69a42a9410001b8a1535a27bcd1b9ded
+                "2.0.2.2": edda58b8f7f4f407204ab4380b6a8b92
+                "2.0.2.3": 310224896895ed8b5760feaf33dabd9c
+                "2.0.2.4": 55c37ce5db55be046461e16d05f67e8d
+                "2.1.0": ad6d64e2abb7877bcac1838e84d1a91d
+                "2.1.0.1": 50123b3cd11dbc64fdb062415ff1a20f
+                "2.1.0.2": bc992ba2e26a9820ade73266a6f300d8
+                "2.1.0.3": fc2175e873a99d64c459d516ce4ee6f4
+                "3.0.0": eafd6b0c0e336266fd63d74b378e8bd8
+                "3.0.0.1": ec7ca6ade19d6bcf5826fc245bfc3a47
+                "3.0.1": f68d6d1ed70e15a8374febde7171f67c
+                "3.0.1.1": f51bbec3c7e56da678a5f083b72f6c2f
+                "3.1.0": 1bf0b01f6e9a7aad7833c637d48ba95b
+                "3.1.1": b791127ac37360fa5803e4d033e90996
+                "3.1.2": 54b987febe4cb6f180b2be8513e7ad6e
+                "3.1.2.1": 4a32cb948bef01c503dd2e20569b3a37
+            miarmy:
+                "5.3.11": 01255ad4bb83bc5369d162d3af5fdec2
+            renderman-maya:
+                "21.3": c691fab2d2770adc01d614e16b8d6e64
+                "21.4": ebf7f44b9e0b119b29c2768c1092c4c4
+                "21.5": 8357f93b33879389aa12dcd89f70f3ea
+                "21.6": 04116397b91f786baa0852ee6a33484a
+                "21.7": f8c5244b19e6b577737990ff211447a0
+                "21.8": 4be76eb1402a4d5b4f0986bd9300c06e
+            yeti:
+                "2.1.0": 82119097eed76bf061c1a568b0e78b5e
+                "2.1.1": 100a8027177d7cff4d4fbdb88f726bbb
+                "2.1.2": 8cf37a9943ce9b87aa81ffed070151a7
+                "2.1.3": d46fb7b3d53ee89320e93a13c29d3425
+                "2.1.4": 7124af8ab1321ec0890e18cf71bc6e8c
+                "2.1.5": 38fac398dfef11c7ed81ba2a8d480b72
+                "2.1.6": 94f52b5a7f549419110cfb1789a2d2b8
+                "2.1.7": 2a34b061dc2cdd4ec1395e8cf01fd744
+                "2.1.8": 5e5ac987b34b944f6e1ed4e3221671f0
+                "2.1.9": f7046a2b83668247fabf6450e3da9bdf
+                "2.1.10": c78c83f20b2c09bd65a72fcf333ed2e9
+                "2.1.11": fce72582b6b132f7e5607060f5c43757
+                "2.1.12": e5715be2533a85372dc5ce6c47e464fd
+                "2.1.13": 6fecce703a823ac96daa6470d5e4ac54
+                "2.1.14": 82317a36f70abbca7b4485307e341f96
+                "2.1.15": 04df12d1a3effc24725d33a249a1bc82
+            golaem:
+                "6.2.4": c3241305d1d44b48ad6b5849b5480566
+
+        "Autodesk Maya 2017":
+            package: c14b3fcde1e0d8bd66f88a4e750856b6
+            v-ray-maya:
+                "3.40.04": d0a2b65e5b9f3f952e4129b64ac58a6d
+                "3.52.01": 68e5a3d6974edf2893fdd52b30530f4f
+                "3.52.02": 9560e1ec0f4416791dfaeedec70d1fa8
+                "3.60.01": 61942f7f892f575a6fc84a020f88e731
+                "3.60.03": 47147c0857472c6d740bb415ad2baa15
+                "3.60.04": efae83fc6aa519ebce84ad78b3ec2689
+                "4.03.02": 63a7413e901d4a674e625bea7c035a33
+                "4.04.03": b2786d25670bea527d4283aa38425efb
+                "4.12.02": 5396de681502958f909b3994ba9cc910
+            arnold-maya:
+                "1.3.0.1": aa12431901e3f5131ff7de7684a1c8f6
+                "1.3.1.0": 0b46953debbbfa33ff5ab1c7f1243f01
+                "1.3.1.1": 135e3a9c0a89e3c24007069d539b3327
+                "1.3.1.2": 287f2b09e5412f274ae6dd2a180abd27
+                "1.4.0.0": b3b5e583bc939e17b026622e73991158
+                "1.4.1.0": 0d916d11f14a314eab583a8adf5f17f4
+                "1.4.1.1": 7cb3946f3f6fee9a78eb79a355f8419d
+                "1.4.1.2": 83a296e6a7d352c8cbad4b7c704f144e
+                "1.4.2.0": f26a4613400954906cd2b86413f9d578
+                "1.4.2.1": 129863491e3fb8ab4de29d70d591fe9a
+                "1.4.2.2": da7ec279059a5df2476761446aa88386
+                "2.0.0.0": cf181526f12c2c1ac6f3c353bdc96a0c
+                "2.0.0.1": 1c60ad43131871cb775dba8d65e9f06b
+                "2.0.1": c893fb431fb65cc529faa90631800fc4
+                "2.0.2.2": a15ab7d63cfc10a02e7184b53b2c7b46
+                "2.0.2.3": 26044e372ad3ca98348a7b8c8df64e17
+                "2.0.2.4": 262c88142f1cea62fc2556b0dd5dcc0a
+                "2.1.0": 410fe5d88fe65eb62b746b5905681c6a
+                "2.1.0.1": 379b3514603cac841e36a7b0cc06f4d9
+                "2.1.0.2": 90f7878cad296e0813028fc37e6de448
+                "2.1.0.3": 7837c3154106ad84518c882a1e5127d9
+                "3.0.0": cd7c9d84d9fcece9cd743a838597cd05
+                "3.0.0.1": 315fda89c849ea356b08ddb36cda6f38
+                "3.0.1": 6fa6208cd009ff8a68f23378fa74920e
+                "3.0.1.1": 2bf3aa8c3e53265a17aa6a1664954223
+                "3.1.0": b6e7d66ce37f52f007b36ee32a933391
+                "3.1.1": 1b8e007fc22149d6be370445a2c99a1c
+                "3.1.2": e65679cbee53679f04eb6898e10db819
+                "3.1.2.1": b685ec28e6f9809fa248db8fcdf61c6e
+                "3.1.2.2": 84650509037ce24fe5b9de5791f5b1e0
+                "3.2.0": eecda0e706fbc429c779babb6d2065d4
+                "3.2.0.1": 14268720ac082687e5009c0a0118601e
+                "3.2.0.2": 4634a91fc34cfdead1e7b08ee2aca565
+                "3.2.1": 426fd34daad02bf17490bd85c5735037
+                "3.2.2": f6015e005de58b6e6dc85da737f5105d
+                "3.2.1.1": 5682cb2e598a387e3ef0080b8f6f2be1
+                "3.3.0": c5e6af0bf615750dcfe1fca17499369a
+            renderman-maya:
+                "21.3": 1e7b1b9c5f011b76555d8d751a49cc32
+                "21.4": 128a1a2126250f5413db08ab19c1de25
+                "21.5": cb14ddba549aefa42f8f047e6682f470
+                "21.6": 5c058e15fd8be1105e18db9687444898
+                "21.7": 94df29e845e81cd69b2afe611a347a72
+                "21.8": 9afb1189abc167f59426007f6a8db0c0
+            yeti:
+                "2.1.0": 56ee9e6997ccb7152793b341f068bb38
+                "2.1.1": daa939be7dc3308540fa058bdd8683bc
+                "2.1.2": ba3a84510fe36f64fe677411b315c18e
+                "2.1.3": f67453b3df8efcb69660dd6e0c70ca7a
+                "2.1.4": 497c905a1f476b705de5696f235bd8d8
+                "2.1.5": 7b534c730adec20c0be57006743223ce
+                "2.1.6": 63baaed728ec00f08fbeaaca7629578a
+                "2.1.7": 0aaa7b0a08eba7692de43ae7652b1220
+                "2.1.8": 48244255c789e3e8e00c6ce9633ffaf0
+                "2.1.9": d19dd8512a4c57a8f19020bf9d5c3a6c
+                "2.1.10": 317f4a70e9bf6f2be020f6e02b5edc52
+                "2.1.11": dbfaad664b9be011da2394ea36060d26
+                "2.1.12": 93fa5a7994683d488d1652990bd9ce4b
+                "2.1.13": 44095881037579ba2de3926a4416a6f0
+                "2.1.14": fb325fe5b3a3db1b17b77165366b38c4
+                "2.1.15": bd0be834be4e6894bfb31e0de5548d16
+                "2.2.1": 77e9e1dbfbf273dc1a3f6d676c310d0a
+                "2.2.2": 359252402f4bb8c3174c5f8cf01669f8
+                "2.2.3": 1972bd11022fb2507b7e9875fb9baaf0
+                "2.2.4": ed769e61551e416ea205f7d4b232db9b
+                "2.2.5": d17b74caab01172eb28cbc54ee67040c
+                "2.2.6": 47e193dcbdd625a4d7fff3f249cc6a94
+                "2.2.7": da89cdc35db605e58204715661b7245d
+                "2.2.8": c962af6233815122fd7bf2b147e7eefb
+                "2.2.9": 7403871b43d3381ce1d72dbab82aa0fb
+                "2.2.10": a895c11331eeea402c4e79b204b021d0
+            golaem:
+                "6.2.4": 2678102480821dbec9e7a814b317dccf
+                "7.0.1": 340844a53f76c3576607d7a44f55ebf8
+
+        "Autodesk Maya 2017 Security Fix": # We're treating this as SP0
+            package: c14b3fcde1e0d8bd66f88a4e750856b6
+            v-ray-maya:
+                "3.40.04": d0a2b65e5b9f3f952e4129b64ac58a6d
+                "3.52.01": 68e5a3d6974edf2893fdd52b30530f4f
+                "3.52.02": 9560e1ec0f4416791dfaeedec70d1fa8
+                "3.60.01": 61942f7f892f575a6fc84a020f88e731
+                "3.60.03": 47147c0857472c6d740bb415ad2baa15
+                "3.60.04": efae83fc6aa519ebce84ad78b3ec2689
+                "4.03.02": 63a7413e901d4a674e625bea7c035a33
+                "4.04.03": b2786d25670bea527d4283aa38425efb
+                "4.12.02": 5396de681502958f909b3994ba9cc910
+            arnold-maya:
+                "1.3.0.1": aa12431901e3f5131ff7de7684a1c8f6
+                "1.3.1.0": 0b46953debbbfa33ff5ab1c7f1243f01
+                "1.3.1.1": 135e3a9c0a89e3c24007069d539b3327
+                "1.3.1.2": 287f2b09e5412f274ae6dd2a180abd27
+                "1.4.0.0": b3b5e583bc939e17b026622e73991158
+                "1.4.1.0": 0d916d11f14a314eab583a8adf5f17f4
+                "1.4.1.1": 7cb3946f3f6fee9a78eb79a355f8419d
+                "1.4.1.2": 83a296e6a7d352c8cbad4b7c704f144e
+                "1.4.2.0": f26a4613400954906cd2b86413f9d578
+                "1.4.2.1": 129863491e3fb8ab4de29d70d591fe9a
+                "1.4.2.2": da7ec279059a5df2476761446aa88386
+                "2.0.0.0": cf181526f12c2c1ac6f3c353bdc96a0c
+                "2.0.0.1": 1c60ad43131871cb775dba8d65e9f06b
+                "2.0.1": c893fb431fb65cc529faa90631800fc4
+                "2.0.2.2": a15ab7d63cfc10a02e7184b53b2c7b46
+                "2.0.2.3": 26044e372ad3ca98348a7b8c8df64e17
+                "2.0.2.4": 262c88142f1cea62fc2556b0dd5dcc0a
+                "2.1.0": 410fe5d88fe65eb62b746b5905681c6a
+                "2.1.0.1": 379b3514603cac841e36a7b0cc06f4d9
+                "2.1.0.2": 90f7878cad296e0813028fc37e6de448
+                "2.1.0.3": 7837c3154106ad84518c882a1e5127d9
+                "3.0.0": cd7c9d84d9fcece9cd743a838597cd05
+                "3.0.0.1": 315fda89c849ea356b08ddb36cda6f38
+                "3.0.1": 6fa6208cd009ff8a68f23378fa74920e
+                "3.0.1.1": 2bf3aa8c3e53265a17aa6a1664954223
+                "3.1.0": b6e7d66ce37f52f007b36ee32a933391
+                "3.1.1": 1b8e007fc22149d6be370445a2c99a1c
+                "3.1.2": e65679cbee53679f04eb6898e10db819
+                "3.1.2.1": b685ec28e6f9809fa248db8fcdf61c6e
+                "3.1.2.2": 84650509037ce24fe5b9de5791f5b1e0
+                "3.2.0": eecda0e706fbc429c779babb6d2065d4
+                "3.2.0.1": 14268720ac082687e5009c0a0118601e
+                "3.2.0.2": 4634a91fc34cfdead1e7b08ee2aca565
+                "3.2.1": 426fd34daad02bf17490bd85c5735037
+                "3.2.2": f6015e005de58b6e6dc85da737f5105d
+                "3.2.1.1": 5682cb2e598a387e3ef0080b8f6f2be1
+                "3.3.0": c5e6af0bf615750dcfe1fca17499369a
+            renderman-maya:
+                "21.3": 1e7b1b9c5f011b76555d8d751a49cc32
+                "21.4": 128a1a2126250f5413db08ab19c1de25
+                "21.5": cb14ddba549aefa42f8f047e6682f470
+                "21.6": 5c058e15fd8be1105e18db9687444898
+                "21.7": 94df29e845e81cd69b2afe611a347a72
+                "21.8": 9afb1189abc167f59426007f6a8db0c0
+            yeti:
+                "2.1.0": 56ee9e6997ccb7152793b341f068bb38
+                "2.1.1": daa939be7dc3308540fa058bdd8683bc
+                "2.1.2": ba3a84510fe36f64fe677411b315c18e
+                "2.1.3": f67453b3df8efcb69660dd6e0c70ca7a
+                "2.1.4": 497c905a1f476b705de5696f235bd8d8
+                "2.1.5": 7b534c730adec20c0be57006743223ce
+                "2.1.6": 63baaed728ec00f08fbeaaca7629578a
+                "2.1.7": 0aaa7b0a08eba7692de43ae7652b1220
+                "2.1.8": 48244255c789e3e8e00c6ce9633ffaf0
+                "2.1.9": d19dd8512a4c57a8f19020bf9d5c3a6c
+                "2.1.10": 317f4a70e9bf6f2be020f6e02b5edc52
+                "2.1.11": dbfaad664b9be011da2394ea36060d26
+                "2.1.12": 93fa5a7994683d488d1652990bd9ce4b
+                "2.1.13": 44095881037579ba2de3926a4416a6f0
+                "2.1.14": fb325fe5b3a3db1b17b77165366b38c4
+                "2.1.15": bd0be834be4e6894bfb31e0de5548d16
+                "2.2.1": 77e9e1dbfbf273dc1a3f6d676c310d0a
+                "2.2.2": 359252402f4bb8c3174c5f8cf01669f8
+                "2.2.3": 1972bd11022fb2507b7e9875fb9baaf0
+                "2.2.4": ed769e61551e416ea205f7d4b232db9b
+                "2.2.5": d17b74caab01172eb28cbc54ee67040c
+                "2.2.6": 47e193dcbdd625a4d7fff3f249cc6a94
+                "2.2.7": da89cdc35db605e58204715661b7245d
+                "2.2.8": c962af6233815122fd7bf2b147e7eefb
+                "2.2.9": 7403871b43d3381ce1d72dbab82aa0fb
+                "2.2.10": a895c11331eeea402c4e79b204b021d0
+            golaem:
+                "6.2.4": 2678102480821dbec9e7a814b317dccf
+                "7.0.1": 340844a53f76c3576607d7a44f55ebf8
+
+        "Autodesk Maya 2017 Update 3":
+            package: 23f1d45354dd7eacf852386a659a8309
+            v-ray-maya:
+                "3.40.04": d0a2b65e5b9f3f952e4129b64ac58a6d
+                "3.52.01": 68e5a3d6974edf2893fdd52b30530f4f
+                "3.52.02": 9560e1ec0f4416791dfaeedec70d1fa8
+                "3.60.01": 61942f7f892f575a6fc84a020f88e731
+                "3.60.03": 47147c0857472c6d740bb415ad2baa15
+                "3.60.04": efae83fc6aa519ebce84ad78b3ec2689
+                "4.03.02": 63a7413e901d4a674e625bea7c035a33
+                "4.04.03": b2786d25670bea527d4283aa38425efb
+                "4.12.02": 5396de681502958f909b3994ba9cc910
+            arnold-maya:
+                "1.3.0.1": aa12431901e3f5131ff7de7684a1c8f6
+                "1.3.1.0": 0b46953debbbfa33ff5ab1c7f1243f01
+                "1.3.1.1": 135e3a9c0a89e3c24007069d539b3327
+                "1.3.1.2": 287f2b09e5412f274ae6dd2a180abd27
+                "1.4.0.0": b3b5e583bc939e17b026622e73991158
+                "1.4.1.0": 0d916d11f14a314eab583a8adf5f17f4
+                "1.4.1.1": 7cb3946f3f6fee9a78eb79a355f8419d
+                "1.4.1.2": 83a296e6a7d352c8cbad4b7c704f144e
+                "1.4.2.0": f26a4613400954906cd2b86413f9d578
+                "1.4.2.1": 129863491e3fb8ab4de29d70d591fe9a
+                "1.4.2.2": da7ec279059a5df2476761446aa88386
+                "2.0.0.0": cf181526f12c2c1ac6f3c353bdc96a0c
+                "2.0.0.1": 1c60ad43131871cb775dba8d65e9f06b
+                "2.0.1": c893fb431fb65cc529faa90631800fc4
+                "2.0.2.2": a15ab7d63cfc10a02e7184b53b2c7b46
+                "2.0.2.3": 26044e372ad3ca98348a7b8c8df64e17
+                "2.0.2.4": 262c88142f1cea62fc2556b0dd5dcc0a
+                "2.1.0": 410fe5d88fe65eb62b746b5905681c6a
+                "2.1.0.1": 379b3514603cac841e36a7b0cc06f4d9
+                "2.1.0.2": 90f7878cad296e0813028fc37e6de448
+                "2.1.0.3": 7837c3154106ad84518c882a1e5127d9
+                "3.0.0": cd7c9d84d9fcece9cd743a838597cd05
+                "3.0.0.1": 315fda89c849ea356b08ddb36cda6f38
+                "3.0.1": 6fa6208cd009ff8a68f23378fa74920e
+                "3.0.1.1": 2bf3aa8c3e53265a17aa6a1664954223
+                "3.1.0": b6e7d66ce37f52f007b36ee32a933391
+                "3.1.1": 1b8e007fc22149d6be370445a2c99a1c
+                "3.1.2": e65679cbee53679f04eb6898e10db819
+                "3.1.2.1": b685ec28e6f9809fa248db8fcdf61c6e
+                "3.1.2.2": 84650509037ce24fe5b9de5791f5b1e0
+                "3.2.0": eecda0e706fbc429c779babb6d2065d4
+                "3.2.0.1": 14268720ac082687e5009c0a0118601e
+                "3.2.0.2": 4634a91fc34cfdead1e7b08ee2aca565
+                "3.2.1": 426fd34daad02bf17490bd85c5735037
+                "3.2.2": f6015e005de58b6e6dc85da737f5105d
+                "3.2.1.1": 5682cb2e598a387e3ef0080b8f6f2be1
+                "3.3.0": c5e6af0bf615750dcfe1fca17499369a
+            renderman-maya:
+                "21.3": 1e7b1b9c5f011b76555d8d751a49cc32
+                "21.4": 128a1a2126250f5413db08ab19c1de25
+                "21.5": cb14ddba549aefa42f8f047e6682f470
+                "21.6": 5c058e15fd8be1105e18db9687444898
+                "21.7": 94df29e845e81cd69b2afe611a347a72
+                "21.8": 9afb1189abc167f59426007f6a8db0c0
+                "1.0": 61fb1e0d0ca32ab4cb7b709e651c7293 #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and identifies all 3 versions as version "1.0" in maya)
+                "22.3 @ 1923583": df45dbf20acb69e38d163cdf75d8746b # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version)
+                "22.4 @ 1946009": b3af4d5bd68e395e6efe95078a6160e1   
+                "22.5 @ 1970143": cbc5006bdb2368b91fe26f827f6039ca
+                "22.6 @ 1987952": 74841d506f09517da5ae3ddd256afe18
+            yeti:
+                "2.1.0": 56ee9e6997ccb7152793b341f068bb38
+                "2.1.1": daa939be7dc3308540fa058bdd8683bc
+                "2.1.2": ba3a84510fe36f64fe677411b315c18e
+                "2.1.3": f67453b3df8efcb69660dd6e0c70ca7a
+                "2.1.4": 497c905a1f476b705de5696f235bd8d8
+                "2.1.5": 7b534c730adec20c0be57006743223ce
+                "2.1.6": 63baaed728ec00f08fbeaaca7629578a
+                "2.1.7": 0aaa7b0a08eba7692de43ae7652b1220
+                "2.1.8": 48244255c789e3e8e00c6ce9633ffaf0
+                "2.1.9": d19dd8512a4c57a8f19020bf9d5c3a6c
+                "2.1.10": 317f4a70e9bf6f2be020f6e02b5edc52
+                "2.1.11": dbfaad664b9be011da2394ea36060d26
+                "2.1.12": 93fa5a7994683d488d1652990bd9ce4b
+                "2.1.13": 44095881037579ba2de3926a4416a6f0
+                "2.1.14": fb325fe5b3a3db1b17b77165366b38c4
+                "2.1.15": bd0be834be4e6894bfb31e0de5548d16
+                "2.2.1": 77e9e1dbfbf273dc1a3f6d676c310d0a
+                "2.2.2": 359252402f4bb8c3174c5f8cf01669f8
+                "2.2.3": 1972bd11022fb2507b7e9875fb9baaf0
+                "2.2.4": ed769e61551e416ea205f7d4b232db9b
+                "2.2.5": d17b74caab01172eb28cbc54ee67040c
+                "2.2.6": 47e193dcbdd625a4d7fff3f249cc6a94
+                "2.2.7": da89cdc35db605e58204715661b7245d
+                "2.2.8": c962af6233815122fd7bf2b147e7eefb
+                "2.2.9": 7403871b43d3381ce1d72dbab82aa0fb
+                "2.2.10": a895c11331eeea402c4e79b204b021d0
+            golaem:
+                "6.2.4": 2678102480821dbec9e7a814b317dccf
+                "7.0.1": 340844a53f76c3576607d7a44f55ebf8
+
+        "Autodesk Maya 2017 Update 4":
+            package: 830958e28d6e02263af4f0971f036473
+            v-ray-maya:
+                "3.40.04": d0a2b65e5b9f3f952e4129b64ac58a6d
+                "3.52.01": 68e5a3d6974edf2893fdd52b30530f4f
+                "3.52.02": 9560e1ec0f4416791dfaeedec70d1fa8
+                "3.60.01": 61942f7f892f575a6fc84a020f88e731
+                "3.60.03": 47147c0857472c6d740bb415ad2baa15
+                "3.60.04": efae83fc6aa519ebce84ad78b3ec2689
+                "4.03.02": 63a7413e901d4a674e625bea7c035a33
+                "4.04.03": b2786d25670bea527d4283aa38425efb
+                "4.12.02": 5396de681502958f909b3994ba9cc910
+            arnold-maya:
+                "1.3.0.1": aa12431901e3f5131ff7de7684a1c8f6
+                "1.3.1.0": 0b46953debbbfa33ff5ab1c7f1243f01
+                "1.3.1.1": 135e3a9c0a89e3c24007069d539b3327
+                "1.3.1.2": 287f2b09e5412f274ae6dd2a180abd27
+                "1.4.0.0": b3b5e583bc939e17b026622e73991158
+                "1.4.1.0": 0d916d11f14a314eab583a8adf5f17f4
+                "1.4.1.1": 7cb3946f3f6fee9a78eb79a355f8419d
+                "1.4.1.2": 83a296e6a7d352c8cbad4b7c704f144e
+                "1.4.2.0": f26a4613400954906cd2b86413f9d578
+                "1.4.2.1": 129863491e3fb8ab4de29d70d591fe9a
+                "1.4.2.2": da7ec279059a5df2476761446aa88386
+                "2.0.0.0": cf181526f12c2c1ac6f3c353bdc96a0c
+                "2.0.0.1": 1c60ad43131871cb775dba8d65e9f06b
+                "2.0.1": c893fb431fb65cc529faa90631800fc4
+                "2.0.2.2": a15ab7d63cfc10a02e7184b53b2c7b46
+                "2.0.2.3": 26044e372ad3ca98348a7b8c8df64e17
+                "2.0.2.4": 262c88142f1cea62fc2556b0dd5dcc0a
+                "2.1.0": 410fe5d88fe65eb62b746b5905681c6a
+                "2.1.0.1": 379b3514603cac841e36a7b0cc06f4d9
+                "2.1.0.2": 90f7878cad296e0813028fc37e6de448
+                "2.1.0.3": 7837c3154106ad84518c882a1e5127d9
+                "3.0.0": cd7c9d84d9fcece9cd743a838597cd05
+                "3.0.0.1": 315fda89c849ea356b08ddb36cda6f38
+                "3.0.1": 6fa6208cd009ff8a68f23378fa74920e
+                "3.0.1.1": 2bf3aa8c3e53265a17aa6a1664954223
+                "3.1.0": b6e7d66ce37f52f007b36ee32a933391
+                "3.1.1": 1b8e007fc22149d6be370445a2c99a1c
+                "3.1.2": e65679cbee53679f04eb6898e10db819
+                "3.1.2.1": b685ec28e6f9809fa248db8fcdf61c6e
+                "3.1.2.2": 84650509037ce24fe5b9de5791f5b1e0
+                "3.2.0": eecda0e706fbc429c779babb6d2065d4
+                "3.2.0.1": 14268720ac082687e5009c0a0118601e
+                "3.2.0.2": 4634a91fc34cfdead1e7b08ee2aca565
+                "3.2.1": 426fd34daad02bf17490bd85c5735037
+                "3.2.2": f6015e005de58b6e6dc85da737f5105d
+                "3.2.1.1": 5682cb2e598a387e3ef0080b8f6f2be1
+                "3.3.0": c5e6af0bf615750dcfe1fca17499369a
+            renderman-maya:
+                "21.3": 1e7b1b9c5f011b76555d8d751a49cc32
+                "21.4": 128a1a2126250f5413db08ab19c1de25
+                "21.5": cb14ddba549aefa42f8f047e6682f470
+                "21.6": 5c058e15fd8be1105e18db9687444898
+                "21.7": 94df29e845e81cd69b2afe611a347a72
+                "21.8": 9afb1189abc167f59426007f6a8db0c0
+                "1.0": 61fb1e0d0ca32ab4cb7b709e651c7293 #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and identifies all 3 versions as version "1.0" in maya)
+                "22.3 @ 1923583": df45dbf20acb69e38d163cdf75d8746b # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version)
+                "22.4 @ 1946009": b3af4d5bd68e395e6efe95078a6160e1   
+                "22.5 @ 1970143": cbc5006bdb2368b91fe26f827f6039ca
+                "22.6 @ 1987952": 74841d506f09517da5ae3ddd256afe18
+            yeti:
+                "2.1.0": 56ee9e6997ccb7152793b341f068bb38
+                "2.1.1": daa939be7dc3308540fa058bdd8683bc
+                "2.1.2": ba3a84510fe36f64fe677411b315c18e
+                "2.1.3": f67453b3df8efcb69660dd6e0c70ca7a
+                "2.1.4": 497c905a1f476b705de5696f235bd8d8
+                "2.1.5": 7b534c730adec20c0be57006743223ce
+                "2.1.6": 63baaed728ec00f08fbeaaca7629578a
+                "2.1.7": 0aaa7b0a08eba7692de43ae7652b1220
+                "2.1.8": 48244255c789e3e8e00c6ce9633ffaf0
+                "2.1.9": d19dd8512a4c57a8f19020bf9d5c3a6c
+                "2.1.10": 317f4a70e9bf6f2be020f6e02b5edc52
+                "2.1.11": dbfaad664b9be011da2394ea36060d26
+                "2.1.12": 93fa5a7994683d488d1652990bd9ce4b
+                "2.1.13": 44095881037579ba2de3926a4416a6f0
+                "2.1.14": fb325fe5b3a3db1b17b77165366b38c4
+                "2.1.15": bd0be834be4e6894bfb31e0de5548d16
+                "2.2.1": 77e9e1dbfbf273dc1a3f6d676c310d0a
+                "2.2.2": 359252402f4bb8c3174c5f8cf01669f8
+                "2.2.3": 1972bd11022fb2507b7e9875fb9baaf0
+                "2.2.4": ed769e61551e416ea205f7d4b232db9b
+                "2.2.5": d17b74caab01172eb28cbc54ee67040c
+                "2.2.6": 47e193dcbdd625a4d7fff3f249cc6a94
+                "2.2.7": da89cdc35db605e58204715661b7245d
+                "2.2.8": c962af6233815122fd7bf2b147e7eefb
+                "2.2.9": 7403871b43d3381ce1d72dbab82aa0fb
+                "2.2.10": a895c11331eeea402c4e79b204b021d0
+            golaem:
+                "6.2.4": 2678102480821dbec9e7a814b317dccf
+                "7.0.1": 340844a53f76c3576607d7a44f55ebf8
+
+        "Autodesk Maya 2017 Update 5":
+            package: 40b7a0da3efc58046f95269d533fbbed
+            v-ray-maya:
+                "3.40.04": d0a2b65e5b9f3f952e4129b64ac58a6d
+                "3.52.01": 68e5a3d6974edf2893fdd52b30530f4f
+                "3.52.02": 9560e1ec0f4416791dfaeedec70d1fa8
+                "3.60.01": 61942f7f892f575a6fc84a020f88e731
+                "3.60.03": 47147c0857472c6d740bb415ad2baa15
+                "3.60.04": efae83fc6aa519ebce84ad78b3ec2689
+                "4.03.02": 63a7413e901d4a674e625bea7c035a33
+                "4.04.03": b2786d25670bea527d4283aa38425efb
+                "4.12.02": 5396de681502958f909b3994ba9cc910
+            arnold-maya:
+                "1.3.0.1": aa12431901e3f5131ff7de7684a1c8f6
+                "1.3.1.0": 0b46953debbbfa33ff5ab1c7f1243f01
+                "1.3.1.1": 135e3a9c0a89e3c24007069d539b3327
+                "1.3.1.2": 287f2b09e5412f274ae6dd2a180abd27
+                "1.4.0.0": b3b5e583bc939e17b026622e73991158
+                "1.4.1.0": 0d916d11f14a314eab583a8adf5f17f4
+                "1.4.1.1": 7cb3946f3f6fee9a78eb79a355f8419d
+                "1.4.1.2": 83a296e6a7d352c8cbad4b7c704f144e
+                "1.4.2.0": f26a4613400954906cd2b86413f9d578
+                "1.4.2.1": 129863491e3fb8ab4de29d70d591fe9a
+                "1.4.2.2": da7ec279059a5df2476761446aa88386
+                "2.0.0.0": cf181526f12c2c1ac6f3c353bdc96a0c
+                "2.0.0.1": 1c60ad43131871cb775dba8d65e9f06b
+                "2.0.1": c893fb431fb65cc529faa90631800fc4
+                "2.0.2.2": a15ab7d63cfc10a02e7184b53b2c7b46
+                "2.0.2.3": 26044e372ad3ca98348a7b8c8df64e17
+                "2.0.2.4": 262c88142f1cea62fc2556b0dd5dcc0a
+                "2.1.0": 410fe5d88fe65eb62b746b5905681c6a
+                "2.1.0.1": 379b3514603cac841e36a7b0cc06f4d9
+                "2.1.0.2": 90f7878cad296e0813028fc37e6de448
+                "2.1.0.3": 7837c3154106ad84518c882a1e5127d9
+                "3.0.0": cd7c9d84d9fcece9cd743a838597cd05
+                "3.0.0.1": 315fda89c849ea356b08ddb36cda6f38
+                "3.0.1": 6fa6208cd009ff8a68f23378fa74920e
+                "3.0.1.1": 2bf3aa8c3e53265a17aa6a1664954223
+                "3.1.0": b6e7d66ce37f52f007b36ee32a933391
+                "3.1.1": 1b8e007fc22149d6be370445a2c99a1c
+                "3.1.2": e65679cbee53679f04eb6898e10db819
+                "3.1.2.1": b685ec28e6f9809fa248db8fcdf61c6e
+                "3.1.2.2": 84650509037ce24fe5b9de5791f5b1e0
+                "3.2.0": eecda0e706fbc429c779babb6d2065d4
+                "3.2.0.1": 14268720ac082687e5009c0a0118601e
+                "3.2.0.2": 4634a91fc34cfdead1e7b08ee2aca565
+                "3.2.1": 426fd34daad02bf17490bd85c5735037
+                "3.2.2": f6015e005de58b6e6dc85da737f5105d
+                "3.2.1.1": 5682cb2e598a387e3ef0080b8f6f2be1
+                "3.3.0": c5e6af0bf615750dcfe1fca17499369a
+            renderman-maya:
+                "21.3": 1e7b1b9c5f011b76555d8d751a49cc32
+                "21.4": 128a1a2126250f5413db08ab19c1de25
+                "21.5": cb14ddba549aefa42f8f047e6682f470
+                "21.6": 5c058e15fd8be1105e18db9687444898
+                "21.7": 94df29e845e81cd69b2afe611a347a72
+                "21.8": 9afb1189abc167f59426007f6a8db0c0
+                "1.0": 61fb1e0d0ca32ab4cb7b709e651c7293 #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and identifies all 3 versions as version "1.0" in maya)
+                "22.3 @ 1923583": df45dbf20acb69e38d163cdf75d8746b # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version)
+                "22.4 @ 1946009": b3af4d5bd68e395e6efe95078a6160e1   
+                "22.5 @ 1970143": cbc5006bdb2368b91fe26f827f6039ca
+                "22.6 @ 1987952": 74841d506f09517da5ae3ddd256afe18
+            yeti:
+                "2.1.0": 56ee9e6997ccb7152793b341f068bb38
+                "2.1.1": daa939be7dc3308540fa058bdd8683bc
+                "2.1.2": ba3a84510fe36f64fe677411b315c18e
+                "2.1.3": f67453b3df8efcb69660dd6e0c70ca7a
+                "2.1.4": 497c905a1f476b705de5696f235bd8d8
+                "2.1.5": 7b534c730adec20c0be57006743223ce
+                "2.1.6": 63baaed728ec00f08fbeaaca7629578a
+                "2.1.7": 0aaa7b0a08eba7692de43ae7652b1220
+                "2.1.8": 48244255c789e3e8e00c6ce9633ffaf0
+                "2.1.9": d19dd8512a4c57a8f19020bf9d5c3a6c
+                "2.1.10": 317f4a70e9bf6f2be020f6e02b5edc52
+                "2.1.11": dbfaad664b9be011da2394ea36060d26
+                "2.1.12": 93fa5a7994683d488d1652990bd9ce4b
+                "2.1.13": 44095881037579ba2de3926a4416a6f0
+                "2.1.14": fb325fe5b3a3db1b17b77165366b38c4
+                "2.1.15": bd0be834be4e6894bfb31e0de5548d16
+                "2.2.1": 77e9e1dbfbf273dc1a3f6d676c310d0a
+                "2.2.2": 359252402f4bb8c3174c5f8cf01669f8
+                "2.2.3": 1972bd11022fb2507b7e9875fb9baaf0
+                "2.2.4": ed769e61551e416ea205f7d4b232db9b
+                "2.2.5": d17b74caab01172eb28cbc54ee67040c
+                "2.2.6": 47e193dcbdd625a4d7fff3f249cc6a94
+                "2.2.7": da89cdc35db605e58204715661b7245d
+                "2.2.8": c962af6233815122fd7bf2b147e7eefb
+                "2.2.9": 7403871b43d3381ce1d72dbab82aa0fb
+                "2.2.10": a895c11331eeea402c4e79b204b021d0
+            golaem:
+                "6.2.4": 2678102480821dbec9e7a814b317dccf
+                "7.0.1": 340844a53f76c3576607d7a44f55ebf8
+
+        "Autodesk Maya 2018":
+            package: 460411ee5c24661ed354863bcb3d7c21
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0": 1fc4d328dddcdc0497fadac882b43325
+                "3.1.1": acacb46b8470d1fecc478741bbcaab5f
+                "3.1.2": 5469fbc1bb476d9bb3ee8dcb1c3dbf41
+                "3.1.2.1": 6331c580f0eb8d64fae9b4330449c8b0
+                "3.1.2.2": 65bd7a3fb5467d950b2abdc3670e9bd9
+                "3.2.0": 0f5c85f847bfcca874ca7e57c7840dfa
+                "3.2.0.1": a13babea6910eb7e33ac5f804c0e75b8
+                "3.2.0.2": 452d3830b64dc08a81aabaf0b745e239
+                "3.2.1": bc01c36af946e8600e05c5a630bc6a1c
+                "3.2.2": 9fa1e7de57dfe6c17cb0d479b4ebf280
+                "3.2.1.1": 936dac0a489071942be623da35dd71fb
+                "3.3.0": f6f36673273201b8eef21b5c3dd48f12
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya)
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version) 
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1   
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+                "2.2.10": 8108a51d187f50fad082bfc53cd1f150
+                "3.0.0": 336091bfb39f0056b28c8bb0e872b6ec
+                "3.0.1": 3679830f2272fbea0d76ad826e23b5c3
+                "3.0.2": cc69eb97c2e8e4703922ca8cdd75ce21
+                "3.0.3": d9c015771218dba8b43f4c6b8456401d
+                "3.0.4": d3e71f895ea19ad44150ad74318c4484
+                "3.0.5": b8888692a7c23e9be77038308dfca210
+                "3.0.6": 0e99fe1776212f57054efb91f957bffa
+                "3.0.7": 5945522322a9768acd12199666ad4dcf
+                "3.0.8": faa67470d482114013218e55b173e9cc
+                "3.1.15": faf558c6f642b58762055f13c08b9a14
+                "3.1.17": 4dde33570714ba989d3aff16cecea0c0
+                "3.5.1": e58369bb0add6c7560cff5fc88123bf0
+                "3.5.2": bfd963331a4478ddd624c0ec8743e7d0
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+
+        "Autodesk Maya 2018.1":
+            package: 38015a170f892bf61e5275deac8dd421
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0": 1fc4d328dddcdc0497fadac882b43325
+                "3.1.1": acacb46b8470d1fecc478741bbcaab5f
+                "3.1.2": 5469fbc1bb476d9bb3ee8dcb1c3dbf41
+                "3.1.2.1": 6331c580f0eb8d64fae9b4330449c8b0
+                "3.1.2.2": 65bd7a3fb5467d950b2abdc3670e9bd9
+                "3.2.0": 0f5c85f847bfcca874ca7e57c7840dfa
+                "3.2.0.1": a13babea6910eb7e33ac5f804c0e75b8
+                "3.2.0.2": 452d3830b64dc08a81aabaf0b745e239
+                "3.2.1": bc01c36af946e8600e05c5a630bc6a1c
+                "3.2.2": 9fa1e7de57dfe6c17cb0d479b4ebf280
+                "3.2.1.1": 936dac0a489071942be623da35dd71fb
+                "3.3.0": f6f36673273201b8eef21b5c3dd48f12
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya)
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version) 
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1   
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+                "2.2.10": 8108a51d187f50fad082bfc53cd1f150
+                "3.0.0": 336091bfb39f0056b28c8bb0e872b6ec
+                "3.0.1": 3679830f2272fbea0d76ad826e23b5c3
+                "3.0.2": cc69eb97c2e8e4703922ca8cdd75ce21
+                "3.0.3": d9c015771218dba8b43f4c6b8456401d
+                "3.0.4": d3e71f895ea19ad44150ad74318c4484
+                "3.0.5": b8888692a7c23e9be77038308dfca210
+                "3.0.6": 0e99fe1776212f57054efb91f957bffa
+                "3.0.7": 5945522322a9768acd12199666ad4dcf
+                "3.0.8": faa67470d482114013218e55b173e9cc
+                "3.1.15": faf558c6f642b58762055f13c08b9a14
+                "3.1.17": 4dde33570714ba989d3aff16cecea0c0
+                "3.5.1": e58369bb0add6c7560cff5fc88123bf0
+                "3.5.2": bfd963331a4478ddd624c0ec8743e7d0
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+
+        "Autodesk Maya 2018.2":
+            package: f7e93d6431686b48648a7bee94145d06
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0": 1fc4d328dddcdc0497fadac882b43325
+                "3.1.1": acacb46b8470d1fecc478741bbcaab5f
+                "3.1.2": 5469fbc1bb476d9bb3ee8dcb1c3dbf41
+                "3.1.2.1": 6331c580f0eb8d64fae9b4330449c8b0
+                "3.1.2.2": 65bd7a3fb5467d950b2abdc3670e9bd9
+                "3.2.0": 0f5c85f847bfcca874ca7e57c7840dfa
+                "3.2.0.1": a13babea6910eb7e33ac5f804c0e75b8
+                "3.2.0.2": 452d3830b64dc08a81aabaf0b745e239
+                "3.2.1": bc01c36af946e8600e05c5a630bc6a1c
+                "3.2.2": 9fa1e7de57dfe6c17cb0d479b4ebf280
+                "3.2.1.1": 936dac0a489071942be623da35dd71fb
+                "3.3.0": f6f36673273201b8eef21b5c3dd48f12
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya)
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version) 
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1   
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+                "2.2.10": 8108a51d187f50fad082bfc53cd1f150
+                "3.0.0": 336091bfb39f0056b28c8bb0e872b6ec
+                "3.0.1": 3679830f2272fbea0d76ad826e23b5c3
+                "3.0.2": cc69eb97c2e8e4703922ca8cdd75ce21
+                "3.0.3": d9c015771218dba8b43f4c6b8456401d
+                "3.0.4": d3e71f895ea19ad44150ad74318c4484
+                "3.0.5": b8888692a7c23e9be77038308dfca210
+                "3.0.6": 0e99fe1776212f57054efb91f957bffa
+                "3.0.7": 5945522322a9768acd12199666ad4dcf
+                "3.0.8": faa67470d482114013218e55b173e9cc
+                "3.1.15": faf558c6f642b58762055f13c08b9a14
+                "3.1.17": 4dde33570714ba989d3aff16cecea0c0
+                "3.5.1": e58369bb0add6c7560cff5fc88123bf0
+                "3.5.2": bfd963331a4478ddd624c0ec8743e7d0
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+                
+        "Autodesk Maya 2018.3":
+            package: c5b15175fe9575885244ae2f452f6c56
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0.0": 1fc4d328dddcdc0497fadac882b43325
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya)
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version) 
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1   
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+
+        "Autodesk Maya 2018.4":
+            package: f8a07ea6790a40abe2c06e404ff5849e
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0": 1fc4d328dddcdc0497fadac882b43325
+                "3.1.1": acacb46b8470d1fecc478741bbcaab5f
+                "3.1.2": 5469fbc1bb476d9bb3ee8dcb1c3dbf41
+                "3.1.2.1": 6331c580f0eb8d64fae9b4330449c8b0
+                "3.1.2.2": 65bd7a3fb5467d950b2abdc3670e9bd9
+                "3.2.0": 0f5c85f847bfcca874ca7e57c7840dfa
+                "3.2.0.1": a13babea6910eb7e33ac5f804c0e75b8
+                "3.2.0.2": 452d3830b64dc08a81aabaf0b745e239
+                "3.2.1": bc01c36af946e8600e05c5a630bc6a1c
+                "3.2.2": 9fa1e7de57dfe6c17cb0d479b4ebf280
+                "3.2.1.1": 936dac0a489071942be623da35dd71fb
+                "3.3.0": f6f36673273201b8eef21b5c3dd48f12
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya)
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version) 
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1   
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+                "2.2.10": 8108a51d187f50fad082bfc53cd1f150
+                "3.0.0": 336091bfb39f0056b28c8bb0e872b6ec
+                "3.0.1": 3679830f2272fbea0d76ad826e23b5c3
+                "3.0.2": cc69eb97c2e8e4703922ca8cdd75ce21
+                "3.0.3": d9c015771218dba8b43f4c6b8456401d
+                "3.0.4": d3e71f895ea19ad44150ad74318c4484
+                "3.0.5": b8888692a7c23e9be77038308dfca210
+                "3.0.6": 0e99fe1776212f57054efb91f957bffa
+                "3.0.7": 5945522322a9768acd12199666ad4dcf
+                "3.0.8": faa67470d482114013218e55b173e9cc
+                "3.1.15": faf558c6f642b58762055f13c08b9a14
+                "3.1.17": 4dde33570714ba989d3aff16cecea0c0
+                "3.5.1": e58369bb0add6c7560cff5fc88123bf0
+                "3.5.2": bfd963331a4478ddd624c0ec8743e7d0
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+
+        "Autodesk Maya 2018.5":
+            package: ef8023e09bc3e3a87d111e162aa1ad77
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0": 1fc4d328dddcdc0497fadac882b43325
+                "3.1.1": acacb46b8470d1fecc478741bbcaab5f
+                "3.1.2": 5469fbc1bb476d9bb3ee8dcb1c3dbf41
+                "3.1.2.1": 6331c580f0eb8d64fae9b4330449c8b0
+                "3.1.2.2": 65bd7a3fb5467d950b2abdc3670e9bd9
+                "3.2.0": 0f5c85f847bfcca874ca7e57c7840dfa
+                "3.2.0.1": a13babea6910eb7e33ac5f804c0e75b8
+                "3.2.0.2": 452d3830b64dc08a81aabaf0b745e239
+                "3.2.1": bc01c36af946e8600e05c5a630bc6a1c
+                "3.2.2": 9fa1e7de57dfe6c17cb0d479b4ebf280
+                "3.2.1.1": 936dac0a489071942be623da35dd71fb
+                "3.3.0": f6f36673273201b8eef21b5c3dd48f12
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya)
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version) 
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+                "2.2.10": 8108a51d187f50fad082bfc53cd1f150
+                "3.0.0": 336091bfb39f0056b28c8bb0e872b6ec
+                "3.0.1": 3679830f2272fbea0d76ad826e23b5c3
+                "3.0.2": cc69eb97c2e8e4703922ca8cdd75ce21
+                "3.0.3": d9c015771218dba8b43f4c6b8456401d
+                "3.0.4": d3e71f895ea19ad44150ad74318c4484
+                "3.0.5": b8888692a7c23e9be77038308dfca210
+                "3.0.6": 0e99fe1776212f57054efb91f957bffa
+                "3.0.7": 5945522322a9768acd12199666ad4dcf
+                "3.0.8": faa67470d482114013218e55b173e9cc
+                "3.1.15": faf558c6f642b58762055f13c08b9a14
+                "3.1.17": 4dde33570714ba989d3aff16cecea0c0
+                "3.5.1": e58369bb0add6c7560cff5fc88123bf0
+                "3.5.2": bfd963331a4478ddd624c0ec8743e7d0
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+
+        "Autodesk Maya 2018.6":
+            package: bcfe5df6e2361d77ca7d7b9da76e351b
+            v-ray-maya:
+                "3.60.01": 01fcbf1131d4eb5266c67efdcbf10fae
+                "3.60.03": 4948a81728a1612262ce781ed3c35511
+                "3.60.04": cd173fcd1a4e29ed4de6f1f189187a52
+                "4.03.02": 46724233e6e0df9f69979d58ddadb3ca
+                "4.04.03": e8b1258d14bd1c800576ebbc332f91db
+                "4.12.01": d6c5dffd448b88cc42c939a4ce996709
+                "4.12.02": a34575062b92a2cebc6a1b9026bdeb69
+            arnold-maya:
+                "2.0.1": 75267da8444add2de1a9ce615834e81a
+                "2.0.2.2": 77f6759fc59c8e902d7ebcf5db1087c0
+                "2.0.2.3": 0172d14d1aa2abbd56ba4b579c4c0577
+                "2.0.2.4": ed3839551e44709a7820cec9307a23fe
+                "2.1.0": cbe8d96aea67a3f39d17918f69312432
+                "2.1.0.1": 95a2241e0efdba008eec42deef13c24d
+                "2.1.0.2": 0c4af05117037150629d43e7a85c8389
+                "2.1.0.3": 88fd28f3b4f019a217e46e7466f7bbd7
+                "3.0.0": 8d60ca7e0d3ff0b0fd91e3dd2bcb21ba
+                "3.0.0.1": 7597f8285f0e3c97dbc72f462d073be2
+                "3.0.1": c07b1199c9995b3eac749898e95168f6
+                "3.0.1.1": 26e9640b903142f64f9177ae028d0006
+                "3.1.0": 1fc4d328dddcdc0497fadac882b43325
+                "3.1.1": acacb46b8470d1fecc478741bbcaab5f
+                "3.1.2": 5469fbc1bb476d9bb3ee8dcb1c3dbf41
+                "3.1.2.1": 6331c580f0eb8d64fae9b4330449c8b0
+                "3.1.2.2": 65bd7a3fb5467d950b2abdc3670e9bd9
+                "3.2.0": 0f5c85f847bfcca874ca7e57c7840dfa
+                "3.2.0.1": a13babea6910eb7e33ac5f804c0e75b8
+                "3.2.0.2": 452d3830b64dc08a81aabaf0b745e239
+                "3.2.1": bc01c36af946e8600e05c5a630bc6a1c
+                "3.2.2": 9fa1e7de57dfe6c17cb0d479b4ebf280
+                "3.2.1.1": 936dac0a489071942be623da35dd71fb
+                "3.3.0": f6f36673273201b8eef21b5c3dd48f12
+            renderman-maya:
+                "21.6": 914263d130a20364759697ba1aef15f1
+                "21.7": de37d61acba42b6e5961d63982b8381c
+                "21.8": 121a32084130fa034d81507ef5c942a2
+                "1.0": 4f12cd8b807ceb35bccee7a833f6ab38  #renderman 22.2 (22.0 and 22.1 will also use this version bc pixar goofed and all 3 are identified as version "1.0" in maya) 
+                "22.3 @ 1923583": 3714867f9dc803d50c19a060bbc843d6 # this actually the renderman 22.3_1923604 package. (I think pixar botched the build id in this version)
+                "22.4 @ 1946009": 6f89a555a35b99ec0df808951ffc8cb1
+                "22.5 @ 1970143": c2247fbfd82aff96b402d321f19241b2
+                "22.6 @ 1987952": 1c21a5a9627f912eefba666562f81e94
+            yeti:
+                "2.2.0": 1fce6c44b39acdf61fc798acdcb0dd90
+                "2.2.1": 94e2209873200b6f9513aa5430c94699
+                "2.2.2": 014e4fff6adbcf264da7a1cbdb95ea18
+                "2.2.3": 68aca85ad1e694c1cee36d06cb81689b
+                "2.2.4": 64950eaef0d9ae5a6b72da9a8deab4bd
+                "2.2.5": 25eee62bbcca44249ec55153a79c96ae
+                "2.2.6": c7ae678b1b7c406ef3bea0627a03e5f1
+                "2.2.7": 0f1ea7326948f6bdfdffcf153875abdb
+                "2.2.8": 341553d46e46aa87ab03e63de60232ff
+                "2.2.9": b4d9b3b5d9ea5e6296ed3af3bc43ad18
+                "2.2.10": 8108a51d187f50fad082bfc53cd1f150
+                "3.0.0": 336091bfb39f0056b28c8bb0e872b6ec
+                "3.0.1": 3679830f2272fbea0d76ad826e23b5c3
+                "3.0.2": cc69eb97c2e8e4703922ca8cdd75ce21
+                "3.0.3": d9c015771218dba8b43f4c6b8456401d
+                "3.0.4": d3e71f895ea19ad44150ad74318c4484
+                "3.0.5": b8888692a7c23e9be77038308dfca210
+                "3.0.6": 0e99fe1776212f57054efb91f957bffa
+                "3.0.7": 5945522322a9768acd12199666ad4dcf
+                "3.0.8": faa67470d482114013218e55b173e9cc
+                "3.1.15": faf558c6f642b58762055f13c08b9a14
+                "3.1.17": 4dde33570714ba989d3aff16cecea0c0
+                "3.5.1": e58369bb0add6c7560cff5fc88123bf0
+                "3.5.2": bfd963331a4478ddd624c0ec8743e7d0
+            golaem:
+                "6.2.4": 7840de1ec3aef59e56754a0661827b5e
+                "7.0.1": a429b694702c8e55f4431b23d2bd4e46
+
+        "Autodesk Maya 2019":
+            package: 732e688c522899625db1627adaa7cf3e
+            v-ray-maya:
+                "4.12.01": 92d17c7696eb5224df635c452cd3e1d9
+                "4.12.02": e58d3840447aa580e7129384db390365
+            arnold-maya:
+                "3.1.2.1": 90c9532d1c19e14624ec376ddb00a55b
+                "3.1.2.2": 8e87ae3ee8c721aad91f8a9e9c25db7e
+                "3.2.0": a56572e83b22a7f65ae0b90c341ae380
+                "3.2.0.1": b835940a73c0a23c3477357d0e85d173
+                "3.2.0.2": b4215d5d3f17044c36ec9603d7e4ca0f
+                "3.2.1": 547bc1807249afcb6746a20d539c8873
+                "3.2.2": cbe7c9bfa18c6e6c659f949177df3464
+                "3.2.1.1": 1a41b8c8bdecad489219800b46413d6c
+                "3.3.0": 349a5215172a144af69a51f7d18cb307
+            renderman-maya:
+                "22.4 @ 1946009": 7b3408bb02095191a5d66f0aac07feac
+                "22.5 @ 1970143": 265cbb9ceb0d162eedfca690504f45b5
+                "22.6 @ 1987952": 4e74cb32aeb1a318d258744b990f5335
+            yeti:
+                "3.1.15": d3f4a93bb8d4e08fbd7a00be77fd3a27
+                "3.1.17": 91a9b9a3cacf51a8f28ae38138c95a16
+                "3.5.1": 079d6da4826f77b20d13828ed914910b
+                "3.5.2": 8020c42dbb67966a00e0ddf02cc2009e
+            golaem:
+                "7.0.1": 5f0d9900a24d4ebb8783cbaee2e2ba82
+
+        "Autodesk Maya 2019.1":
+            package: e9912c6c9a3d9a7dfa0d255fb5a21f82
+            v-ray-maya:
+                "4.12.01": 92d17c7696eb5224df635c452cd3e1d9
+                "4.12.02": e58d3840447aa580e7129384db390365
+            arnold-maya:
+                "3.1.2.1": 90c9532d1c19e14624ec376ddb00a55b
+                "3.1.2.2": 8e87ae3ee8c721aad91f8a9e9c25db7e
+                "3.2.0": a56572e83b22a7f65ae0b90c341ae380
+                "3.2.0.1": b835940a73c0a23c3477357d0e85d173
+                "3.2.0.2": b4215d5d3f17044c36ec9603d7e4ca0f
+                "3.2.1": 547bc1807249afcb6746a20d539c8873
+                "3.2.2": cbe7c9bfa18c6e6c659f949177df3464
+                "3.2.1.1": 1a41b8c8bdecad489219800b46413d6c
+                "3.3.0": 349a5215172a144af69a51f7d18cb307
+            renderman-maya:
+                "22.4 @ 1946009": 7b3408bb02095191a5d66f0aac07feac
+                "22.5 @ 1970143": 265cbb9ceb0d162eedfca690504f45b5
+                "22.6 @ 1987952": 4e74cb32aeb1a318d258744b990f5335
+            yeti:
+                "3.1.15": d3f4a93bb8d4e08fbd7a00be77fd3a27
+                "3.1.17": 91a9b9a3cacf51a8f28ae38138c95a16
+                "3.5.1": 079d6da4826f77b20d13828ed914910b
+                "3.5.2": 8020c42dbb67966a00e0ddf02cc2009e
+            golaem:
+                "7.0.1": 5f0d9900a24d4ebb8783cbaee2e2ba82
+
+        "Autodesk Maya 2019.2":
+            package: a655bc8351720034555d09d82d0af07c
+            v-ray-maya:
+                "4.12.01": 92d17c7696eb5224df635c452cd3e1d9
+                "4.12.02": e58d3840447aa580e7129384db390365
+            arnold-maya:
+                "3.1.2.1": 90c9532d1c19e14624ec376ddb00a55b
+                "3.1.2.2": 8e87ae3ee8c721aad91f8a9e9c25db7e
+                "3.2.0": a56572e83b22a7f65ae0b90c341ae380
+                "3.2.0.1": b835940a73c0a23c3477357d0e85d173
+                "3.2.0.2": b4215d5d3f17044c36ec9603d7e4ca0f
+                "3.2.1": 547bc1807249afcb6746a20d539c8873
+                "3.2.2": cbe7c9bfa18c6e6c659f949177df3464
+                "3.2.1.1": 1a41b8c8bdecad489219800b46413d6c
+                "3.3.0": 349a5215172a144af69a51f7d18cb307
+            renderman-maya:
+                "22.4 @ 1946009": 7b3408bb02095191a5d66f0aac07feac
+                "22.5 @ 1970143": 265cbb9ceb0d162eedfca690504f45b5
+                "22.6 @ 1987952": 4e74cb32aeb1a318d258744b990f5335
+            yeti:
+                "3.1.15": d3f4a93bb8d4e08fbd7a00be77fd3a27
+                "3.1.17": 91a9b9a3cacf51a8f28ae38138c95a16
+                "3.5.1": 079d6da4826f77b20d13828ed914910b
+                "3.5.2": 8020c42dbb67966a00e0ddf02cc2009e
+            golaem:
+                "7.0.1": 5f0d9900a24d4ebb8783cbaee2e2ba82
+
+    "nuke":
+        "8.0v1":
+            package: c8467d09a1cf38e7940a0f87bd01d5da
+        "8.0v2":
+            package: 1f8ec80447d5a5b488ec30c286142836
+        "8.0v3":
+            package: 32198117247b9f61d5e5e9c6813719c2
+        "8.0v4":
+            package: 5bd8f125a16c88fe649580e6055750d5
+        "8.0v5":
+            package: 7fbda543c9c5cda9b372f9f680a498cb
+        "8.0v6":
+            package: 62e55fb1d919661e19c87a41b8a0ba81
+        "8.0v7":
+            package: a6e1c0d39d6b15d3020ff253c52d0aed
+        "9.0v1":
+            package: e483e408e1ca2271b26b16b0cd8b4ac5
+        "9.0v2":
+            package: 2e0a5baa698fd14a825b40a489d1f486
+        "9.0v3":
+            package: c1eb85c4c52fa5e33e51b1e500d62c9c
+        "9.0v4":
+            package: daedb4e65daebd3b3da58267a183db4e
+        "9.0v5":
+            package: 745faf0fe5be30fef1902ad180f6a914
+        "9.0v6":
+            package: 2916aad5bcbdc4753258f089d3fcf763
+        "9.0v7":
+            package: 6b0d63e0fafa86fc6662f773f701384c
+        "9.0v8":
+            package: 59dbb44a9f143bb43ef96f3939b59421
+        "9.0v9":
+            package: aec097099b34397226cf3e81f4987b3f
+        "10.0v1":
+            package: 1b40104837d6d167afc0925e69f00897
+        "10.0v2":
+            package: 6d48ae0212e2fccc7c476613616fbd00
+        "10.0v3":
+            package: 570172b9af4dbfbcaf30f7c343498486
+        "10.0v4":
+            package: f43561a9711ca071b52d5dd6b02fb939
+        "10.0v5":
+            package: bd18f0494f7c03b6da7a63b0205b1bfd
+        "10.0v6":
+            package: f6ce3297c453c131548952398dd03329
+        "10.5v1":
+            package: d6763f58e06666198f502e4f6a933e69
+        "10.5v2":
+            package: e4ed2a99ca5b4356a07414d3d17ec6f2
+        "10.5v3":
+            package: 4dfe3aa1994b091830ed1f3abc48e369
+        "10.5v4":
+            package: d718b7ed428634e164fccca3ff4e0833
+        "10.5v5":
+            package: 11228b2423a9217e03e7e5709c8cf2da
+        "10.5v8":
+            package: 0a81ec60785b2ab233ee92066a23b6e7
+        "11.0v1":
+            package: be7b11b0d8182ea853bbb96bf41c1432
+        "11.0v2":
+            package: d5ecfb15843ea47ca864c329f6d2f5dd
+        "11.0v3":
+            package: 4e827a90ff0cdcaea84a4874f6bbe9cf
+        "11.0v4":
+            package: c5bd7a5ac46ece3d637cfc0e11b23258
+        "11.1v1":
+            package: a66022567a0860a64e2d7a9390a2cabf
+        "11.1v2":
+            package: a48dca7488a890eb0d0cd91ecee8c970
+        "11.1v3":
+            package: 42909f8acd0de582823f7a603f773122
+        "11.1v4":
+            package: de10e13178c92ab7b0d513203966d121
+        "11.1v5":
+            package: 9740b8f9db20bc353adb8a223571b02f
+        "11.1v6":
+            package: 1ca67e2cca69f7ecf80a0be88db1ca26
+        "11.2v1":
+            package: 693cd9db13cca8bcdde2f5e0e63ac971
+        "11.2v2":
+            package: 78cb9abb8136f747a0f6b2f3f87e6e85
+        "11.2v3":
+            package: 85c6f4118bfabd8afe600b54bf929baa
+        "11.2v4":
+            package: 4bbb7526b1dc0f57cfd0032ab7337a80
+        "11.2v5":
+            package: da87061430a8ad663cc2d63a174511e5
+        "11.2v7":
+            package: 8fb2d36e3cf124c5e4cdd81ae6545677
+        "11.3v1":
+            package: 279a71f135bc17b848003afe7b228d90
+        "11.3v5":
+            package: 1f146093b811f19ff071d06e93358e42
+
+
+           
+    # This houdini section has fake data for testing / QA purposes
+
+    "houdini":
+        "16.0.736":
+            package: 40ac5f8ccfc2493380ec54e0aef1c9fe
+            v-ray-houdini:
+                "3.60.01": 9294e24981d840f9bc1a086940d84708
+            htoa:
+                "2.0.1": f3471d0224cf466eb26a3963e825dbdc
+                "2.0.2.2": c28f3f5071b045df9c89f2fa4e844c77
+                "2.0.2.3": 597593f11a8f46348489f18ec5bed45b
+                "2.0.2.4": a8978a85641d430a929158322f91ef25
+                "2.1.0": bb11595b0dd54b5faee22d51d23a1493
+                "2.1.0.1": f23fa07afcf44971a138738d871c92e8
+                "2.1.0.2": ea05ee52c3bc4fceadb6a681afd0de24
+                "2.2.2": 9c0ce24ca688445b8db795546b573940
+            renderman-houdini:
+                "21.6": a42bbfff792c4759b46fa6c386a2bbf7
+            yeti-houdini:
+                "2.2.0": bb89cd0f7b754cf9bfbc27652be90ac0
+                "2.2.1": 9ad582ae811f4e2eaf051c83c9183066
+                "2.2.2": 626bacf45bf049d8943d8f0c60194087
+                "2.2.3": f02dfe8a1d3b40ca81f1a349e00ce14a
+                "2.2.4": 1c6acb1027544d48ab11bd75c81bbfdb
+                "2.2.5": 734632a2150b431f88dcedabc013f177
+
+        "16.5.268":
+            package: e1b35e649d384bd382b0d37054d6b6af
+            v-ray-houdini:
+                "3.60.01": 9294e24981d840f9bc1a086940d84708
+            htoa:
+                "2.0.1": f3471d0224cf466eb26a3963e825dbdc
+                "2.0.2.2": c28f3f5071b045df9c89f2fa4e844c77
+                "2.0.2.3": 597593f11a8f46348489f18ec5bed45b
+                "2.0.2.4": a8978a85641d430a929158322f91ef25
+                "2.1.0": bb11595b0dd54b5faee22d51d23a1493
+                "2.1.0.1": f23fa07afcf44971a138738d871c92e8
+                "2.1.0.2": ea05ee52c3bc4fceadb6a681afd0de24
+                "2.2.2": 9c0ce24ca688445b8db795546b573940
+            renderman-houdini:
+                "21.6": a42bbfff792c4759b46fa6c386a2bbf7
+            yeti-houdini:
+                "2.2.0": bb89cd0f7b754cf9bfbc27652be90ac0
+                "2.2.1": 9ad582ae811f4e2eaf051c83c9183066
+                "2.2.2": 626bacf45bf049d8943d8f0c60194087
+                "2.2.3": f02dfe8a1d3b40ca81f1a349e00ce14a
+                "2.2.4": 1c6acb1027544d48ab11bd75c81bbfdb
+                "2.2.5": 734632a2150b431f88dcedabc013f177
+
+        "16.5.323":
+            package: 99f156102d6c4b358ff88e8c2e98fc0c
+            v-ray-houdini:
+                "3.60.01": 9294e24981d840f9bc1a086940d84708
+            htoa:
+                "2.0.1": f3471d0224cf466eb26a3963e825dbdc
+                "2.0.2.2": c28f3f5071b045df9c89f2fa4e844c77
+                "2.0.2.3": 597593f11a8f46348489f18ec5bed45b
+                "2.0.2.4": a8978a85641d430a929158322f91ef25
+                "2.1.0": bb11595b0dd54b5faee22d51d23a1493
+                "2.1.0.1": f23fa07afcf44971a138738d871c92e8
+                "2.1.0.2": ea05ee52c3bc4fceadb6a681afd0de24
+                "2.2.2": 9c0ce24ca688445b8db795546b573940
+            renderman-houdini:
+                "21.6": a42bbfff792c4759b46fa6c386a2bbf7
+            yeti-houdini:
+                "2.2.0": bb89cd0f7b754cf9bfbc27652be90ac0
+                "2.2.1": 9ad582ae811f4e2eaf051c83c9183066
+                "2.2.2": 626bacf45bf049d8943d8f0c60194087
+                "2.2.3": f02dfe8a1d3b40ca81f1a349e00ce14a
+                "2.2.4": 1c6acb1027544d48ab11bd75c81bbfdb
+                "2.2.5": 734632a2150b431f88dcedabc013f177
+
+
