@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Factory &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Failure" href="scml.scml2020.Failure.html" />
+    <link rel="prev" title="FactoryProfile" href="scml.scml2020.FactoryProfile.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules/scml2020.html">SCML2020</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../modules/scml2020.html#classes">Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../modules/scml2020.html">SCML2020</a> &raquo;</li>
+        
+      <li>Factory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/scml.scml2020.Factory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="factory">
+<h1>Factory<a class="headerlink" href="#factory" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="scml.scml2020.Factory">
+<em class="property">class </em><code class="sig-prename descclassname">scml.scml2020.</code><code class="sig-name descname">Factory</code><span class="sig-paren">(</span><em class="sig-param">profile</em>, <em class="sig-param">initial_balance</em>, <em class="sig-param">inputs</em>, <em class="sig-param">outputs</em>, <em class="sig-param">catalog_prices</em>, <em class="sig-param">world</em>, <em class="sig-param">compensate_before_past_debt</em>, <em class="sig-param">buy_missing_products</em>, <em class="sig-param">production_buy_missing</em>, <em class="sig-param">production_penalty</em>, <em class="sig-param">production_no_bankruptcy</em>, <em class="sig-param">production_no_borrow</em>, <em class="sig-param">agent_id</em>, <em class="sig-param">agent_name=None</em>, <em class="sig-param">confirm_production=True</em>, <em class="sig-param">initial_inventory=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A simulated factory</p>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.current_balance" title="scml.scml2020.Factory.current_balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_balance</span></code></a></p></td>
+<td><p>Current wallet balance</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2020.Factory.current_inventory" title="scml.scml2020.Factory.current_inventory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_inventory</span></code></a></p></td>
+<td><p>Current inventory contents</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.state" title="scml.scml2020.Factory.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code></a></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../reference/scml.html#scml.FactoryState" title="scml.scml2020.world.FactoryState"><code class="xref py py-class docutils literal notranslate"><span class="pre">FactoryState</span></code></a></p>
+</dd>
+</dl>
+</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.available_for_production" title="scml.scml2020.Factory.available_for_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_for_production</span></code></a>(repeats[, step, …])</p></td>
+<td><p>Finds available times and lines for scheduling production.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2020.Factory.bankrupt" title="scml.scml2020.Factory.bankrupt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bankrupt</span></code></a>(required)</p></td>
+<td><p>Bankruptcy processing for the given agent</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.buy" title="scml.scml2020.Factory.buy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buy</span></code></a>(product, quantity, unit_price, …[, …])</p></td>
+<td><p>Executes a transaction to buy/sell involving adding quantity and paying price (both are signed)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2020.Factory.cancel_production" title="scml.scml2020.Factory.cancel_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cancel_production</span></code></a>(step, line)</p></td>
+<td><p>Cancels pre-ordered production given that it did not start yet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.order_production" title="scml.scml2020.Factory.order_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">order_production</span></code></a>(process, steps, lines)</p></td>
+<td><p>Orders production of the given process</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2020.Factory.pay" title="scml.scml2020.Factory.pay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pay</span></code></a>(money[, no_bankruptcy, no_borrowing, unit])</p></td>
+<td><p>Pays money</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.schedule_production" title="scml.scml2020.Factory.schedule_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">schedule_production</span></code></a>(process, repeats[, …])</p></td>
+<td><p>Orders production of the given process on the given step and line.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2020.Factory.spot_price" title="scml.scml2020.Factory.spot_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spot_price</span></code></a>(product, spot_loss)</p></td>
+<td><p>Get the current spot price for buying the given product on the spot market</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2020.Factory.step" title="scml.scml2020.Factory.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a>()</p></td>
+<td><p>Override this method to modify stepping logic.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2020.Factory.store" title="scml.scml2020.Factory.store"><code class="xref py py-obj docutils literal notranslate"><span class="pre">store</span></code></a>(product, quantity, buy_missing, spot_price)</p></td>
+<td><p>Stores the given amount of product (signed) to the factory.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="scml.scml2020.Factory.current_balance">
+<code class="sig-name descname">current_balance</code><a class="headerlink" href="#scml.scml2020.Factory.current_balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current wallet balance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2020.Factory.current_inventory">
+<code class="sig-name descname">current_inventory</code><a class="headerlink" href="#scml.scml2020.Factory.current_inventory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current inventory contents</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2020.Factory.state">
+<code class="sig-name descname">state</code><a class="headerlink" href="#scml.scml2020.Factory.state" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../reference/scml.html#scml.FactoryState" title="scml.scml2020.world.FactoryState"><code class="xref py py-class docutils literal notranslate"><span class="pre">FactoryState</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="scml.scml2020.Factory.available_for_production">
+<code class="sig-name descname">available_for_production</code><span class="sig-paren">(</span><em class="sig-param">repeats</em>, <em class="sig-param">step=-1</em>, <em class="sig-param">line=-1</em>, <em class="sig-param">override=True</em>, <em class="sig-param">method='latest'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.available_for_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.available_for_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds available times and lines for scheduling production.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>repeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – How many times to repeat the process</p></li>
+<li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) – The simulation step or a range of steps. The special value ANY_STEP gives the factory the freedom to
+schedule production at any step in the present or future.</p></li>
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The production line. The special value ANY_LINE gives the factory the freedom to use any line</p></li>
+<li><p><strong>override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to override any existing commands at that line at that time.</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – When to schedule the command if step was set to a range. Options are latest, earliest, all</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple[np.ndarray, np.ndarray] The steps and lines at which production is scheduled.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You cannot order production in the past or in the current step</p></li>
+<li><p>Ordering production, will automatically update inventory and balance for all simulation steps assuming
+that this production will be carried out. At the indicated <a class="reference internal" href="#scml.scml2020.Factory.step" title="scml.scml2020.Factory.step"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">step</span></code></a> if production was not possible (due
+to insufficient funds or insufficient inventory of the input product), the predictions for the future
+will be corrected.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.bankrupt">
+<code class="sig-name descname">bankrupt</code><span class="sig-paren">(</span><em class="sig-param">required</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.bankrupt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.bankrupt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bankruptcy processing for the given agent</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>required</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The money required after the bankruptcy is processed</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The amount of money to pay back to the entity that should have been paid <code class="xref any docutils literal notranslate"><span class="pre">money</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.buy">
+<code class="sig-name descname">buy</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em>, <em class="sig-param">unit_price</em>, <em class="sig-param">buy_missing</em>, <em class="sig-param">penalty</em>, <em class="sig-param">no_bankruptcy=False</em>, <em class="sig-param">no_borrowing=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.buy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.buy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes a transaction to buy/sell involving adding quantity and paying price (both are signed)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The product transacted on</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The quantity (added)</p></li>
+<li><p><strong>unit_price</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The unit price (paid)</p></li>
+<li><p><strong>buy_missing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, attempt buying missing products from the spot market</p></li>
+<li><p><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The penalty as a fraction to be paid for breaches</p></li>
+<li><p><strong>no_bankruptcy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, this transaction can never lead to bankruptcy</p></li>
+<li><p><strong>no_borrowing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, this transaction can never lead to borrowing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple[int, int] The actual quantities bought and the total cost</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.cancel_production">
+<code class="sig-name descname">cancel_production</code><span class="sig-paren">(</span><em class="sig-param">step</em>, <em class="sig-param">line</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.cancel_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.cancel_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancels pre-ordered production given that it did not start yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Step to cancel at</p></li>
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Line to cancel at</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if step &gt;= self.current_step</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Cannot cancel a process in the past or present.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.order_production">
+<code class="sig-name descname">order_production</code><span class="sig-paren">(</span><em class="sig-param">process</em>, <em class="sig-param">steps</em>, <em class="sig-param">lines</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.order_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.order_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Orders production of the given process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The process to run</p></li>
+<li><p><strong>steps</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – The time steps to run the process at as an np.ndarray</p></li>
+<li><p><strong>lines</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – The corresponding lines to run the process at</p></li>
+</ul>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>len(steps) must equal len(lines)</p></li>
+<li><p>No checks are done in this function. It is expected to be used after calling <a class="reference internal" href="#scml.scml2020.Factory.available_for_production" title="scml.scml2020.Factory.available_for_production"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">available_for_production</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.pay">
+<code class="sig-name descname">pay</code><span class="sig-paren">(</span><em class="sig-param">money</em>, <em class="sig-param">no_bankruptcy=False</em>, <em class="sig-param">no_borrowing=False</em>, <em class="sig-param">unit=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.pay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.pay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pays money</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>money</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – amount to pay</p></li>
+<li><p><strong>no_bankruptcy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, this transaction can never lead to bankruptcy</p></li>
+<li><p><strong>no_borrowing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, this transaction can never lead to borrowing</p></li>
+<li><p><strong>unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – If nonzero then an integer multiple of unit will be paid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The amount actually paid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.schedule_production">
+<code class="sig-name descname">schedule_production</code><span class="sig-paren">(</span><em class="sig-param">process</em>, <em class="sig-param">repeats</em>, <em class="sig-param">step=-1</em>, <em class="sig-param">line=-1</em>, <em class="sig-param">override=True</em>, <em class="sig-param">method='latest'</em>, <em class="sig-param">partial_ok=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.schedule_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.schedule_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Orders production of the given process on the given step and line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The process index</p></li>
+<li><p><strong>repeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – How many times to repeat the process</p></li>
+<li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) – The simulation step or a range of steps. The special value ANY_STEP gives the factory the freedom to
+schedule production at any step in the present or future.</p></li>
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The production line. The special value ANY_LINE gives the factory the freedom to use any line</p></li>
+<li><p><strong>override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to override any existing commands at that line at that time.</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – When to schedule the command if step was set to a range. Options are latest, earliest, all</p></li>
+<li><p><strong>partial_ok</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, it is OK to produce only a subset of repeats</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tuple[np.ndarray, np.ndarray] The steps and lines at which production is scheduled.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You cannot order production in the past or in the current step</p></li>
+<li><p>Ordering production, will automatically update inventory and balance for all simulation steps assuming
+that this production will be carried out. At the indicated <a class="reference internal" href="#scml.scml2020.Factory.step" title="scml.scml2020.Factory.step"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">step</span></code></a> if production was not possible (due
+to insufficient funds or insufficient inventory of the input product), the predictions for the future
+will be corrected.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.spot_price">
+<code class="sig-name descname">spot_price</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">spot_loss</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.spot_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.spot_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current spot price for buying the given product on the spot market</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Product</p></li>
+<li><p><strong>spot_loss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Spot loss specific to that agent</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The unit price</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override this method to modify stepping logic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="../reference/scml.html#scml.Failure" title="scml.scml2020.world.Failure"><code class="xref py py-class docutils literal notranslate"><span class="pre">Failure</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2020.Factory.store">
+<code class="sig-name descname">store</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em>, <em class="sig-param">buy_missing</em>, <em class="sig-param">spot_price</em>, <em class="sig-param">no_bankruptcy=False</em>, <em class="sig-param">no_borrowing=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2020/world.html#Factory.store"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2020.Factory.store" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the given amount of product (signed) to the factory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Product</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – quantity to store/take out (-ve means take out)</p></li>
+<li><p><strong>buy_missing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If the quantity is negative and not enough product exists in the market, it buys the product
+from the spot-market at an increased price of penalty</p></li>
+<li><p><strong>spot_price</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The fraction of unit_price added because we are buying from the spot market. Only effective if
+quantity is negative and not enough of the product exists in the inventory</p></li>
+<li><p><strong>no_bankruptcy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Never bankrupt the agent on this transaction</p></li>
+<li><p><strong>no_borrowing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Never borrow for this transaction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The quantity actually stored or taken out (always positive)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scml.scml2020.Failure.html" class="btn btn-neutral float-right" title="Failure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scml.scml2020.FactoryProfile.html" class="btn btn-neutral float-left" title="FactoryProfile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1118 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>negmas.java &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>negmas.java</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for negmas.java</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implements Java interoperability allowing parts of negmas to work smoothly with their Java counterparts in jnegmas</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="kn">from</span> <span class="nn">pandas.io.json</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+<span class="kn">from</span> <span class="nn">py4j.clientserver</span> <span class="kn">import</span> <span class="n">ClientServer</span><span class="p">,</span> <span class="n">JavaParameters</span><span class="p">,</span> <span class="n">PythonParameters</span>
+<span class="kn">from</span> <span class="nn">py4j.java_collections</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ListConverter</span><span class="p">,</span>
+    <span class="n">JavaMap</span><span class="p">,</span>
+    <span class="n">MapConverter</span><span class="p">,</span>
+    <span class="n">JavaList</span><span class="p">,</span>
+    <span class="n">JavaSet</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">py4j.java_gateway</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">JavaGateway</span><span class="p">,</span>
+    <span class="n">GatewayParameters</span><span class="p">,</span>
+    <span class="n">CallbackServerParameters</span><span class="p">,</span>
+    <span class="n">JavaObject</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># @todo use launch_gateway to start the java side. Will need to know the the jar location so jnegmas shoud save that</span>
+<span class="c1">#  somewhere</span>
+<span class="kn">from</span> <span class="nn">py4j.protocol</span> <span class="kn">import</span> <span class="n">Py4JNetworkError</span>
+
+<span class="kn">from</span> <span class="nn">.helpers</span> <span class="kn">import</span> <span class="n">get_class</span><span class="p">,</span> <span class="n">instantiate</span><span class="p">,</span> <span class="n">camel_case</span><span class="p">,</span> <span class="n">snake_case</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;JavaCallerMixin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JNegmasGateway&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_java&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;from_java&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jnegmas_bridge_is_running&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;init_jnegmas_bridge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jnegmas_connection&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;from_java&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;java_link&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_dict&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_flat_dict&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PYTHON_CLASS_IDENTIFIER&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">DEFAULT_JNEGMAS_PATH</span> <span class="o">=</span> <span class="s2">&quot;external/jnegmas-1.0-SNAPSHOT-all.jar&quot;</span>
+<span class="n">PYTHON_CLASS_IDENTIFIER</span> <span class="o">=</span> <span class="s2">&quot;__python_class__&quot;</span>
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">jnegmas_connection</span><span class="p">(</span>
+    <span class="n">init</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">java_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">python_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">client_server</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">shutdown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A connection to jnegmas that closes automatically&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">init</span><span class="p">:</span>
+        <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">start_java_side</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">java_port</span><span class="o">=</span><span class="n">java_port</span><span class="p">)</span>
+    <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">java_port</span><span class="o">=</span><span class="n">java_port</span><span class="p">,</span> <span class="n">python_port</span><span class="o">=</span><span class="n">python_port</span><span class="p">,</span> <span class="n">client_server</span><span class="o">=</span><span class="n">client_server</span>
+    <span class="p">)</span>
+    <span class="k">yield</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span>
+    <span class="k">if</span> <span class="n">shutdown</span><span class="p">:</span>
+        <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">init_jnegmas_bridge</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">start_java_side</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">java_port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">jnegmas_bridge_is_running</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks whether a JNegMAS Bridge is running. This bridge is needed to use any objects in the jnegmas package</span>
+
+<span class="sd">    Remarks:</span>
+
+<span class="sd">        You can start a JNegMAS Bridge in at least two ways:</span>
+
+<span class="sd">        - execute the python function `init_jnegmas_bridge()` in this module</span>
+<span class="sd">        - run &quot;negmas jnegmas&quot; on the terminal</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">is_running</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PyEntryPoint</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Used as an entry point from the java side allowing it to create objects in python and take initiative in calling</span>
+<span class="sd">    python&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a python object and returns it.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            class_name: python full class name</span>
+<span class="sd">            params: params to pass by value to the constructor of the object</span>
+
+<span class="sd">        Remarks:</span>
+<span class="sd">            - Notice that the returned object will only be usable in Java if it is implementing a Java interface which</span>
+<span class="sd">              means that it *must* have an internal Java class with an `implements` list of interfaces that it</span>
+<span class="sd">              implements.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">from_java</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">fallback_class_name</span><span class="o">=</span><span class="n">class_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_shadow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="n">lst</span> <span class="o">=</span> <span class="n">class_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ending</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;Negotiator&quot;</span><span class="p">,</span> <span class="s2">&quot;FactoryManager&quot;</span><span class="p">,</span> <span class="s2">&quot;UtilityFunction&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ending</span><span class="p">):</span>
+                <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;_Shadow&quot;</span> <span class="o">+</span> <span class="p">(</span>
+                    <span class="n">ending</span> <span class="k">if</span> <span class="n">ending</span> <span class="o">!=</span> <span class="s2">&quot;Negotiator&quot;</span> <span class="k">else</span> <span class="s2">&quot;SAONegotiator&quot;</span>
+                <span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;_Shadow&quot;</span> <span class="o">+</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">shadow_class_name</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="n">shadow_class_name</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">from_java</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">fallback_class_name</span><span class="o">=</span><span class="n">class_name</span><span class="p">)</span>
+        <span class="n">shadow</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">shadow</span>
+
+    <span class="k">class</span> <span class="nc">Java</span><span class="p">:</span>
+        <span class="n">implements</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;jnegmas.EntryPoint&quot;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">JNegmasGateway</span><span class="p">:</span>
+    <span class="n">DEFAULT_PYTHON_PORT</span> <span class="o">=</span> <span class="mi">25334</span>
+    <span class="n">DEFAULT_JAVA_PORT</span> <span class="o">=</span> <span class="mi">25333</span>
+
+    <span class="n">gateway</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">JavaGateway</span><span class="p">,</span> <span class="n">ClientServer</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">start_java_side</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">java_port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Initializes a connection to jnegmas</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            # &gt;&gt;&gt; start_java_side(port=35337)</span>
+<span class="sd">            # &gt;&gt;&gt; a = JNegmasGateway.do_nothing_manager()</span>
+<span class="sd">            # &gt;&gt;&gt; a.java_uuid.startswith(&#39;jnegmas&#39;)</span>
+<span class="sd">            # True</span>
+<span class="sd">            # &gt;&gt;&gt; len(a.java_uuid)- len(a.java_class_name) == 36 # length of UUID</span>
+<span class="sd">            # True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span>
+                <span class="s2">&quot;negmas&quot;</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="n">DEFAULT_JNEGMAS_PATH</span>
+            <span class="p">)</span>
+        <span class="n">java_port</span> <span class="o">=</span> <span class="n">java_port</span> <span class="k">if</span> <span class="n">java_port</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DEFAULT_JAVA_PORT</span>
+        <span class="k">if</span> <span class="n">jnegmas_bridge_is_running</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">java_port</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>  <span class="c1"># [&#39;java&#39;, &#39;-jar&#39;,  path, &#39;--die-on-exit&#39;, f&#39;{port}&#39;]</span>
+                <span class="sa">f</span><span class="s2">&quot;java -jar </span><span class="si">{path}</span><span class="s2"> --doe --client-server --port </span><span class="si">{java_port}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">path</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">auto_load_java</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">java_port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">python_port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">auto_load_java</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">client_server</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        connects to jnegmas</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">java_port</span><span class="p">:</span>
+            <span class="n">java_port</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DEFAULT_JAVA_PORT</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">python_port</span><span class="p">:</span>
+            <span class="n">python_port</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DEFAULT_PYTHON_PORT</span>
+        <span class="k">if</span> <span class="n">auto_load_java</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">start_java_side</span><span class="p">(</span><span class="n">java_port</span><span class="o">=</span><span class="n">java_port</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">eager_load</span><span class="p">,</span> <span class="n">auto_convert</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span>
+            <span class="n">auto_field</span><span class="p">,</span> <span class="n">auto_gc</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span>
+            <span class="n">propagate_exceptions</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">client_server</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span> <span class="o">=</span> <span class="n">ClientServer</span><span class="p">(</span>
+                    <span class="n">java_parameters</span><span class="o">=</span><span class="n">JavaParameters</span><span class="p">(</span>
+                        <span class="n">port</span><span class="o">=</span><span class="n">java_port</span><span class="p">,</span>
+                        <span class="n">auto_convert</span><span class="o">=</span><span class="n">auto_convert</span><span class="p">,</span>
+                        <span class="n">eager_load</span><span class="o">=</span><span class="n">eager_load</span><span class="p">,</span>
+                        <span class="n">auto_close</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">auto_gc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">auto_field</span><span class="o">=</span><span class="n">auto_field</span><span class="p">,</span>
+                        <span class="n">daemonize_memory_management</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">python_parameters</span><span class="o">=</span><span class="n">PythonParameters</span><span class="p">(</span>
+                        <span class="n">port</span><span class="o">=</span><span class="n">python_port</span><span class="p">,</span>
+                        <span class="n">propagate_java_exceptions</span><span class="o">=</span><span class="n">propagate_exceptions</span><span class="p">,</span>
+                        <span class="n">daemonize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">eager_load</span><span class="o">=</span><span class="n">eager_load</span><span class="p">,</span>
+                        <span class="n">auto_gc</span><span class="o">=</span><span class="n">auto_gc</span><span class="p">,</span>
+                        <span class="n">daemonize_connections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">python_server_entry_point</span><span class="o">=</span><span class="n">PyEntryPoint</span><span class="p">(),</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pyparams</span> <span class="o">=</span> <span class="n">CallbackServerParameters</span><span class="p">(</span>
+                    <span class="n">port</span><span class="o">=</span><span class="n">python_port</span><span class="p">,</span>
+                    <span class="n">daemonize_connections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">daemonize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">eager_load</span><span class="o">=</span><span class="n">eager_load</span><span class="p">,</span>
+                    <span class="n">propagate_java_exceptions</span><span class="o">=</span><span class="n">propagate_exceptions</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span> <span class="o">=</span> <span class="n">JavaGateway</span><span class="p">(</span>
+                    <span class="n">gateway_parameters</span><span class="o">=</span><span class="n">GatewayParameters</span><span class="p">(</span>
+                        <span class="n">port</span><span class="o">=</span><span class="n">java_port</span><span class="p">,</span>
+                        <span class="n">auto_convert</span><span class="o">=</span><span class="n">auto_convert</span><span class="p">,</span>
+                        <span class="n">auto_field</span><span class="o">=</span><span class="n">auto_field</span><span class="p">,</span>
+                        <span class="n">eager_load</span><span class="o">=</span><span class="n">eager_load</span><span class="p">,</span>
+                        <span class="n">auto_close</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">callback_server_parameters</span><span class="o">=</span><span class="n">pyparams</span><span class="p">,</span>
+                    <span class="n">auto_convert</span><span class="o">=</span><span class="n">auto_convert</span><span class="p">,</span>
+                    <span class="n">start_callback_server</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">eager_load</span><span class="o">=</span><span class="n">eager_load</span><span class="p">,</span>
+                    <span class="n">python_server_entry_point</span><span class="o">=</span><span class="n">PyEntryPoint</span><span class="p">(),</span>
+                <span class="p">)</span>
+            <span class="n">python_port</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">get_callback_server</span><span class="p">()</span><span class="o">.</span><span class="n">get_listening_port</span><span class="p">()</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">java_gateway_server</span><span class="o">.</span><span class="n">resetCallbackClient</span><span class="p">(</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">java_gateway_server</span><span class="o">.</span><span class="n">getCallbackClient</span><span class="p">()</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(),</span>
+                <span class="n">python_port</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">shutdown</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">shutdown_callback_server</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks whether a JNegMAS Bridge is running. This bridge is needed to use any objects in the jnegmas package</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            You can start a JNegMAS Bridge in at least two ways:</span>
+
+<span class="sd">            - execute the python function `init_jnegmas_bridge()` in this module</span>
+<span class="sd">            - run &quot;negmas jnegmas&quot; on the terminal</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">port</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">port</span> <span class="o">=</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">DEFAULT_JAVA_PORT</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">ConnectionRefusedError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">Py4JNetworkError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">java_identifier</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">camel_case</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+
+<span class="k">def</span> <span class="nf">to_flat_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encodes the given value as a flat dictionary</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value:</span>
+<span class="sd">        deep:</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">to_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="n">deep</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">camel</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Encodes the given value as nothing not more complex than simple dict of either dicts, lists or builtin numeric</span>
+<span class="sd">    or string values</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        value: Any object</span>
+<span class="sd">        deep: Whether we should go deep in the encoding or do a shallow encoding</span>
+<span class="sd">        add_type_field: Whether to add a type field. If True, A field named `PYTHON_CLASS_IDENTIFIER` will be added</span>
+<span class="sd">        giving the type of `value`</span>
+<span class="sd">        camel: Convert to camel_case if True</span>
+
+<span class="sd">    Remarks:</span>
+
+<span class="sd">        - All iterables are converted to lists when `deep` is true.</span>
+<span class="sd">        - If the `value` object has a `to_java` member, it will be called to do the conversion, otherwise its `__dict__`</span>
+<span class="sd">          or `__slots__` member will be used.</span>
+
+<span class="sd">    See Also:</span>
+<span class="sd">          `from_java`, `PYTHON_CLASS_IDENTIFIER`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_j</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">camel</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">java_identifier</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;python_&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;java&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">k</span> <span class="o">!=</span> <span class="n">PYTHON_CLASS_IDENTIFIER</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">JavaObject</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">deep</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">to_dict</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="n">add_type_field</span><span class="p">,</span> <span class="n">camel</span><span class="o">=</span><span class="n">camel</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">deep</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">to_dict</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="n">add_type_field</span><span class="p">,</span> <span class="n">camel</span><span class="o">=</span><span class="n">camel</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;to_java&quot;</span><span class="p">):</span>
+        <span class="n">converted</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">to_java</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">converted</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">add_type_field</span> <span class="ow">and</span> <span class="p">(</span><span class="n">PYTHON_CLASS_IDENTIFIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">converted</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">converted</span><span class="p">[</span><span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">converted</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">converted</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;__dict__&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">to_dict</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="n">add_type_field</span><span class="p">,</span> <span class="n">camel</span><span class="o">=</span><span class="n">camel</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">)}</span>
+        <span class="k">if</span> <span class="n">add_type_field</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">)</span>
+
+        <span class="c1"># ugly ugly ugly ugly</span>
+        <span class="k">if</span> <span class="s2">&quot;_NamedObject__uuid&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_NamedObject__uuid&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;_NamedObject__name&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_NamedObject__name&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">d</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;__slots__&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">zip</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__slots__</span><span class="p">),</span>
+                    <span class="p">(</span>
+                        <span class="n">to_dict</span><span class="p">(</span>
+                            <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span>
+                            <span class="n">add_type_field</span><span class="o">=</span><span class="n">add_type_field</span><span class="p">,</span>
+                            <span class="n">camel</span><span class="o">=</span><span class="n">camel</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__slots__</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">zip</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">_j</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__slots__</span><span class="p">),</span>
+                    <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="vm">__slots__</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">add_type_field</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+    <span class="c1"># a builtin</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="k">def</span> <span class="nf">java_link</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a link in java to the object given without copying it.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        obj: The object for which to create a java shadow</span>
+<span class="sd">        map: construction parameters</span>
+<span class="sd">        copyable: If true, we will assume that the java object is PyCopyable otherwise PyConstructable. Only checked if</span>
+<span class="sd">        map is not None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A java object. Cannot be used directly in python but can be used as an argument to a call to of a java object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">class_name</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="n">class_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+    <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;j&quot;</span> <span class="o">+</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_Shadow&quot;</span><span class="p">):</span>
+        <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;_Shadow&quot;</span><span class="p">)</span> <span class="p">:]</span>
+    <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Shadow&quot;</span><span class="p">):</span>
+        <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;Shadow&quot;</span><span class="p">)</span> <span class="p">:]</span>
+    <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span> <span class="o">+</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">class_name</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+    <span class="n">java_obj</span> <span class="o">=</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">map</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">java_obj</span><span class="o">.</span><span class="n">fromMap</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">java_obj</span><span class="o">.</span><span class="n">fromMap</span><span class="p">(</span><span class="n">to_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">java_obj</span>
+
+
+<span class="k">def</span> <span class="nf">to_java</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">python_class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Encodes the given value as nothing not more complex than simple dict of either dicts, lists or builtin numeric</span>
+<span class="sd">    or string values</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        value: Any object</span>
+<span class="sd">        add_type_field: If true, the `PYTHON_CLASS_IDENTIFIER`  will be added with the python class field on it</span>
+<span class="sd">        python_class_name: It given it overrides the class name written when `add_type_field` is True otherwise, the</span>
+<span class="sd">        class name will be inferred as the __class__ of `value`.</span>
+
+<span class="sd">    Remarks:</span>
+
+<span class="sd">        - All iterables are converted to lists when `deep` is true.</span>
+<span class="sd">        - If the `value` object has a `to_java` member, it will be called to do the conversion, otherwise its `__dict__`</span>
+<span class="sd">          or `__slots__` member will be used.</span>
+
+<span class="sd">    See Also:</span>
+<span class="sd">          `from_java`, `PYTHON_CLASS_IDENTIFIER`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">to_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_type_field</span><span class="o">=</span><span class="n">add_type_field</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">JavaObject</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">):</span>
+                <span class="n">value</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">add_type_field</span> <span class="ow">and</span> <span class="n">python_class_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value</span><span class="p">[</span><span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">]</span> <span class="o">=</span> <span class="n">python_class_name</span>
+        <span class="k">return</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createJavaObjectFromMap</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ListConverter</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createJavaObjectFromMap</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">_</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">value</span>
+            <span class="p">],</span>
+            <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">_gateway_client</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="k">def</span> <span class="nf">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a key to snake case keeping dunder keys alone</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        k: string to be converted</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        snake-case string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">k</span> <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">snake_case</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">from_java</span><span class="p">(</span>
+    <span class="n">d</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_type_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fallback_class_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Decodes a dict coming from java recovering all objects in the way</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        d: The value to be decoded. If it is not a dict, it is returned as it is.</span>
+<span class="sd">        deep: If true, decode recursively</span>
+<span class="sd">        remove_type_field: If true the field called `PYTHON_CLASS_IDENTIFIER` will be removed if found.</span>
+<span class="sd">        fallback_class_name: If given, it is used as the fall-back  type if ``PYTHON_CLASS_IDENTIFIER` is not in the dict.</span>
+
+<span class="sd">    Remarks:</span>
+
+<span class="sd">        - If the object is not a dict or if it has no `PYTHON_CLASS_IDENTIFIER` field and no `fallback_class_name` is</span>
+<span class="sd">          given, the input `d` is returned as it is. It will not even be copied.</span>
+
+<span class="sd">    See Also:</span>
+<span class="sd">        `to_java`, `PYTHON_CLASS_IDENTIFIER`</span>
+
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;python_&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;java&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">k</span> <span class="o">!=</span> <span class="n">PYTHON_CLASS_IDENTIFIER</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">d</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">JavaList</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">d</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">JavaSet</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">d</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">JavaMap</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">from_java</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">deep</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">JavaObject</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">toMap</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">from_java</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">deep</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">remove_type_field</span><span class="p">:</span>
+            <span class="n">python_class_name</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">,</span> <span class="n">fallback_class_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">python_class_name</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">PYTHON_CLASS_IDENTIFIER</span><span class="p">,</span> <span class="n">fallback_class_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">python_class_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">python_class_name</span> <span class="o">=</span> <span class="n">py_class_name</span><span class="p">(</span><span class="n">python_class_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">python_class_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;Issue&quot;</span><span class="p">):</span>
+                <span class="n">python_class</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="s2">&quot;negmas.outcomes.Issue&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">python_class</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="n">python_class_name</span><span class="p">)</span>
+            <span class="c1"># we resolve sub-objects first from the dict if deep is specified before calling from_java on the class</span>
+            <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">from_java</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="c1"># from_java needs to do a shallow conversion from a dict as deep conversion is taken care of already.</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">python_class</span><span class="p">,</span> <span class="s2">&quot;from_java&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">python_class</span><span class="o">.</span><span class="n">from_java</span><span class="p">(</span>
+                    <span class="p">{</span><span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span> <span class="n">python_class_name</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">from_java</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">python_identifier</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">good_field</span><span class="p">(</span><span class="n">k</span><span class="p">)}</span>
+            <span class="k">return</span> <span class="n">python_class</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+    <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">py_class_name</span><span class="p">(</span><span class="n">python_class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a class name that we got from Java to the corresponding class name in python</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        python_class_name: The class name we got from JNEgMAS</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        The class name in negmas.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="n">python_class_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Python&quot;</span><span class="p">):</span>
+        <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;Python&quot;</span><span class="p">)</span> <span class="p">:]</span>
+    <span class="n">python_class_name</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">python_class_name</span>
+
+
+<span class="k">class</span> <span class="nc">JavaCallerMixin</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A mixin to enable calling a java counterpart. This mixin can ONLY be used with a `NamedObject` because it uses</span>
+<span class="sd">    its id property.</span>
+
+<span class="sd">    Other than inheriting this mixin, you should call its `init_java_bridge` in your `__init__` (or whenever your object</span>
+<span class="sd">    is initialized and you need to create the Java counterpart). You should then implement all your functions as calls</span>
+<span class="sd">    to `java_object`.</span>
+
+<span class="sd">    If for example you have a function `do_this`, you can just define it as follows:</span>
+
+<span class="sd">    .. code</span>
+
+<span class="sd">        def do_this(self, x, y, z) -&gt; Type:</span>
+<span class="sd">            return self.java_object.doThis(x, y, z)</span>
+
+<span class="sd">    Notice that you cannot use named arguments when calling the function in `java_object` and that the names are</span>
+<span class="sd">    converted to camelCase instead of snake_case. Moreover, property x will be implemented as a pair getX, setX on the</span>
+<span class="sd">    Java side.</span>
+
+<span class="sd">    If your class needs just to call the corresponding java object but is never called back from it then you are done</span>
+<span class="sd">    after inheriting from this mixin.</span>
+
+<span class="sd">    If your objects need to be called from the java counterpart, then you need to add the following to your class</span>
+<span class="sd">    definition</span>
+
+<span class="sd">    .. code</span>
+
+<span class="sd">        class Java:</span>
+<span class="sd">            implements = [&#39;jnegmas.ClassName&#39;]</span>
+
+<span class="sd">    This assumes that your class is named `ClassName` and that there is an interface called `ClassName` defined in</span>
+<span class="sd">    jnegmas that has the *same* public interface as your class (or whatever part of it to be called from Java).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">java_object</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a Python object representing the corresponding Java object&quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">_java_object</span> <span class="o">=</span> <span class="n">java_object</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">_java_class_name</span> <span class="o">=</span> <span class="n">java_object</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getSimpleName</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">init_java_bridge</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">java_object</span><span class="p">,</span>
+        <span class="n">java_class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">auto_load_java</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">python_shadow_object</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        initializes a connection to the java bridge creating a member called `java_object` that can be used to access</span>
+<span class="sd">        the counterpart object in Java</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            java_object: A java object that already exists of the correct type. If given no new objects will be created</span>
+<span class="sd">            java_class_name: The type of the Java object to be created</span>
+<span class="sd">            auto_load_java: When true, a JVM will be automatically created (if one is not available)</span>
+<span class="sd">            python_shadow_object: A python object to shadow the java object. The object will just call the corresponding</span>
+<span class="sd">            method on this shadow object whenever it needs.</span>
+
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - sets a member called java_object that can be used to access the corresponding Java object crated</span>
+<span class="sd">            - if `python_shadow_object` is given, it must be an object of a type that has an internal class called</span>
+<span class="sd">              Java which has a single member called &#39;implements&#39; which is a list of one string element</span>
+<span class="sd">              representing the Java interface being implemented (it must be either jnegmas.PyCallable or an extension of</span>
+<span class="sd">              it).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_java_class_name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">java_class_name</span>
+            <span class="k">if</span> <span class="n">java_class_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">java_object</span><span class="o">.</span><span class="n">getClass</span><span class="p">()</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">auto_load_java</span><span class="o">=</span><span class="n">auto_load_java</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_java_object</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">java_object</span>
+            <span class="k">if</span> <span class="n">java_object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create</span><span class="p">(</span><span class="n">python_shadow_object</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">python_shadow</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates the internal object.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">              python_shadow: An object that has an internal Java class with implements = [&#39;jnegmas.Callable&#39;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">python_shadow</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_java_class_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">JNegmasGateway</span><span class="o">.</span><span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_java_class_name</span><span class="p">,</span> <span class="n">python_shadow</span>
+        <span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

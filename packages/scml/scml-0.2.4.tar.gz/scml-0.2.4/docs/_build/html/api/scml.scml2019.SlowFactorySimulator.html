@@ -1,0 +1,1370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SlowFactorySimulator &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FastFactorySimulator" href="scml.scml2019.FastFactorySimulator.html" />
+    <link rel="prev" title="FactorySimulator" href="scml.scml2019.FactorySimulator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules/scml2019.html">SCML2019</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../modules/scml2019.html#classes">Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../modules/scml2019.html">SCML2019</a> &raquo;</li>
+        
+      <li>SlowFactorySimulator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/scml.scml2019.SlowFactorySimulator.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="slowfactorysimulator">
+<h1>SlowFactorySimulator<a class="headerlink" href="#slowfactorysimulator" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="scml.scml2019.SlowFactorySimulator">
+<em class="property">class </em><code class="sig-prename descclassname">scml.scml2019.</code><code class="sig-name descname">SlowFactorySimulator</code><span class="sig-paren">(</span><em class="sig-param">initial_wallet</em>, <em class="sig-param">initial_storage</em>, <em class="sig-param">n_steps</em>, <em class="sig-param">n_products</em>, <em class="sig-param">profiles</em>, <em class="sig-param">max_storage</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="scml.scml2019.FactorySimulator.html#scml.scml2019.FactorySimulator" title="scml.scml2019.simulators.FactorySimulator"><code class="docutils literal notranslate"><span class="pre">scml.scml2019.FactorySimulator</span></code></a></p>
+<p>A slow factory simulator that runs an internal factory to find-out what will happen in the future</p>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>It is <em>much</em> faster to always access the properties/methods of this class in ascending time. If that is not
+the case, each time reversal will cause a complete reset.</p></li>
+<li><p>It is recommended to call <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.fix_before" title="scml.scml2019.SlowFactorySimulator.fix_before"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">fix_before</span></code></a> () to fix the past once a production step is completed. That will speed
+up operations</p></li>
+</ul>
+</div></blockquote>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.final_balance" title="scml.scml2019.SlowFactorySimulator.final_balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">final_balance</span></code></a></p></td>
+<td><p>Final balance given everything scheduled so-far</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.fixed_before" title="scml.scml2019.SlowFactorySimulator.fixed_before"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_before</span></code></a></p></td>
+<td><p>Gives the time before which the schedule is fixed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.initial_storage" title="scml.scml2019.SlowFactorySimulator.initial_storage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_storage</span></code></a></p></td>
+<td><p>Initial inventory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.initial_wallet" title="scml.scml2019.SlowFactorySimulator.initial_wallet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_wallet</span></code></a></p></td>
+<td><p>Initial cash in wallet</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.max_storage" title="scml.scml2019.SlowFactorySimulator.max_storage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_storage</span></code></a></p></td>
+<td><p>Maximum storage available</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.n_lines" title="scml.scml2019.SlowFactorySimulator.n_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_lines</span></code></a></p></td>
+<td><p>Number of lines</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.n_steps" title="scml.scml2019.SlowFactorySimulator.n_steps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_steps</span></code></a></p></td>
+<td><p>Number of steps to predict ahead.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.add_loan" title="scml.scml2019.SlowFactorySimulator.add_loan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_loan</span></code></a>(total, t)</p></td>
+<td><p>Adds a loan at the given time</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.available_storage_at" title="scml.scml2019.SlowFactorySimulator.available_storage_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_storage_at</span></code></a>(t)</p></td>
+<td><p>Returns the <em>available</em> storage of all products <em>at</em> time t</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.available_storage_to" title="scml.scml2019.SlowFactorySimulator.available_storage_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">available_storage_to</span></code></a>(t)</p></td>
+<td><p>Returns the <em>available</em> storage of all products <em>up to</em> time t.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.balance_at" title="scml.scml2019.SlowFactorySimulator.balance_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">balance_at</span></code></a>(t)</p></td>
+<td><p>Returns the balance fo the factory at time t.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.balance_to" title="scml.scml2019.SlowFactorySimulator.balance_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">balance_to</span></code></a>(t)</p></td>
+<td><p>Returns the balance fo the factory <em>up to</em> time t.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.bookmark" title="scml.scml2019.SlowFactorySimulator.bookmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bookmark</span></code></a>()</p></td>
+<td><p>Sets a bookmark to the current location</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.buy" title="scml.scml2019.SlowFactorySimulator.buy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buy</span></code></a>(product, quantity, price, t[, …])</p></td>
+<td><p>Buy a given quantity of a product for a given price at some time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.delete_bookmark" title="scml.scml2019.SlowFactorySimulator.delete_bookmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_bookmark</span></code></a>(bookmark_id)</p></td>
+<td><p>Commits everything since the bookmark so it cannot be rolled back</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.fix_before" title="scml.scml2019.SlowFactorySimulator.fix_before"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fix_before</span></code></a>(t)</p></td>
+<td><p>Fix the history before this point</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.goto" title="scml.scml2019.SlowFactorySimulator.goto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">goto</span></code></a>(t)</p></td>
+<td><p>Steps the factory to the end of step t :type t: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> :param t: time</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.line_schedules_at" title="scml.scml2019.SlowFactorySimulator.line_schedules_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">line_schedules_at</span></code></a>(t)</p></td>
+<td><p>Returns the schedule of each line at a given timestep</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.line_schedules_to" title="scml.scml2019.SlowFactorySimulator.line_schedules_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">line_schedules_to</span></code></a>(t)</p></td>
+<td><p>Returns the schedule of each line up to a given timestep</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.loans_at" title="scml.scml2019.SlowFactorySimulator.loans_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loans_at</span></code></a>(t)</p></td>
+<td><p>Returns loans at time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.loans_to" title="scml.scml2019.SlowFactorySimulator.loans_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loans_to</span></code></a>(t)</p></td>
+<td><p>Returns loans up to time t</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.pay" title="scml.scml2019.SlowFactorySimulator.pay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pay</span></code></a>(payment, t[, ignore_money_shortage])</p></td>
+<td><p>Simulate payment at time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.receive" title="scml.scml2019.SlowFactorySimulator.receive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">receive</span></code></a>(payment, t)</p></td>
+<td><p>Simulates receiving payment at time t</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserve" title="scml.scml2019.SlowFactorySimulator.reserve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reserve</span></code></a>(product, quantity, t)</p></td>
+<td><p>Simulates reserving the given quantity of the given product at times &gt;= t.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_at" title="scml.scml2019.SlowFactorySimulator.reserved_storage_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reserved_storage_at</span></code></a>(t)</p></td>
+<td><p>Returns the <em>reserved</em> storage of all products <em>at</em> time t</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_to" title="scml.scml2019.SlowFactorySimulator.reserved_storage_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reserved_storage_to</span></code></a>(t)</p></td>
+<td><p>Returns the <em>reserved</em> storage of all products <em>up to</em> time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reset_to" title="scml.scml2019.SlowFactorySimulator.reset_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_to</span></code></a>(t)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.rollback" title="scml.scml2019.SlowFactorySimulator.rollback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rollback</span></code></a>(bookmark_id)</p></td>
+<td><p>Rolls back to the given bookmark ID</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.schedule" title="scml.scml2019.SlowFactorySimulator.schedule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">schedule</span></code></a>(job[, ignore_inventory_shortage, …])</p></td>
+<td><p>Simulates scheduling the given job at its <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job.time" title="scml.scml2019.Job.time"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">time</span></code></a> and <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job.line" title="scml.scml2019.Job.line"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">line</span></code></a> optionally overriding whatever was already scheduled</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.sell" title="scml.scml2019.SlowFactorySimulator.sell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sell</span></code></a>(product, quantity, price, t[, …])</p></td>
+<td><p>sell a given quantity of a product for a given price at some time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.set_state" title="scml.scml2019.SlowFactorySimulator.set_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_state</span></code></a>(t, storage, wallet, loans, …)</p></td>
+<td><p>Sets the current state at the given time-step.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">storage_at</span></code></a>(t)</p></td>
+<td><p>Returns the storage of all products <em>at</em> time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">storage_to</span></code></a>(t)</p></td>
+<td><p>Returns the storage of all products <em>up to</em> time t</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_storage_at</span></code></a>(t)</p></td>
+<td><p>The total storage <em>at</em> a given time</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_storage_to</span></code></a>(t)</p></td>
+<td><p>The total storage <em>up to</em> a given time</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.transport_to" title="scml.scml2019.SlowFactorySimulator.transport_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transport_to</span></code></a>(product, quantity, t[, …])</p></td>
+<td><p>Simulates transporting products to/from storage at time t</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.wallet_at" title="scml.scml2019.SlowFactorySimulator.wallet_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wallet_at</span></code></a>(t)</p></td>
+<td><p>Returns the cash in wallet <em>at</em> a given timestep (given all simulated actions)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.wallet_to" title="scml.scml2019.SlowFactorySimulator.wallet_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wallet_to</span></code></a>(t)</p></td>
+<td><p>Returns the cash in wallet up to and including time t.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.final_balance">
+<code class="sig-name descname">final_balance</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.final_balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Final balance given everything scheduled so-far</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.fixed_before">
+<code class="sig-name descname">fixed_before</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.fixed_before" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the time before which the schedule is fixed.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.fix_before" title="scml.scml2019.SlowFactorySimulator.fix_before"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">fix_before</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.initial_storage">
+<code class="sig-name descname">initial_storage</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.initial_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial inventory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.initial_wallet">
+<code class="sig-name descname">initial_wallet</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.initial_wallet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial cash in wallet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.max_storage">
+<code class="sig-name descname">max_storage</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.max_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum storage available</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.n_lines">
+<code class="sig-name descname">n_lines</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.n_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of lines</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SlowFactorySimulator.n_steps">
+<code class="sig-name descname">n_steps</code><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.n_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of steps to predict ahead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.add_loan">
+<code class="sig-name descname">add_loan</code><span class="sig-paren">(</span><em class="sig-param">total</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.add_loan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.add_loan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a loan at the given time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>total</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Total amount of the loan</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time step to take the loan</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or failure</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Taking a loan is simulated as reception of money. Payment back of the loan is not simulated in this call.
+To simulate paying back the loan, use <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.pay" title="scml.scml2019.SlowFactorySimulator.pay"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">pay</span></code></a> at the times of installment payments.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.available_storage_at">
+<code class="sig-name descname">available_storage_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.available_storage_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <em>available</em> storage of all products <em>at</em> time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a> giving the quantity of each product available at time-step <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Available storage is defined as the difference between storage and reserved storage.</p></li>
+<li><p>Reserved storage <em>is counted</em> in calls to <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a>
+, <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a></p></li>
+<li><p>Reserving quantities of products is a tool that can be used to avoid double counting availability of given
+products in the inventory for multiple contracts.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_at" title="scml.scml2019.SlowFactorySimulator.reserved_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reserved_storage_at</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.available_storage_to">
+<code class="sig-name descname">available_storage_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.available_storage_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <em>available</em> storage of all products <em>up to</em> time t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a> * <code class="xref any docutils literal notranslate"><span class="pre">t</span></code> giving the quantity of each product available at every step up to <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Available storage is defined as the difference between storage and reserved storage.</p></li>
+<li><p>Reserved storage <em>is counted</em> in calls to <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a>
+, <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a></p></li>
+<li><p>Reserving quantities of products is a tool that can be used to avoid double counting availability of given
+products in the inventory for multiple contracts.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_to" title="scml.scml2019.SlowFactorySimulator.reserved_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reserved_storage_to</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.balance_at">
+<code class="sig-name descname">balance_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.balance_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the balance fo the factory at time t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The balance is defined as the cash in wallet minus loans</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.loans_at" title="scml.scml2019.SlowFactorySimulator.loans_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">loans_at</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.wallet_at" title="scml.scml2019.SlowFactorySimulator.wallet_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">wallet_at</span></code></a></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.balance_to">
+<code class="sig-name descname">balance_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.balance_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the balance fo the factory <em>up to</em> time t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The balance is defined as the cash in wallet minus loans</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.loans_to" title="scml.scml2019.SlowFactorySimulator.loans_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">loans_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.wallet_to" title="scml.scml2019.SlowFactorySimulator.wallet_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">wallet_to</span></code></a></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.bookmark">
+<code class="sig-name descname">bookmark</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.bookmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.bookmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a bookmark to the current location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>bookmark ID</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Bookmarks can be used to implement transactions.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.delete_bookmark" title="scml.scml2019.SlowFactorySimulator.delete_bookmark"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">delete_bookmark</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.rollback" title="scml.scml2019.SlowFactorySimulator.rollback"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">rollback</span></code></a> <a class="reference internal" href="scml.scml2019.transaction.html#scml.scml2019.transaction" title="scml.scml2019.transaction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">transaction</span></code></a> <a class="reference internal" href="scml.scml2019.temporary_transaction.html#scml.scml2019.temporary_transaction" title="scml.scml2019.temporary_transaction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">temporary_transaction</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.buy">
+<code class="sig-name descname">buy</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em>, <em class="sig-param">price</em>, <em class="sig-param">t</em>, <em class="sig-param">ignore_money_shortage=True</em>, <em class="sig-param">ignore_space_shortage=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.buy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.buy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Buy a given quantity of a product for a given price at some time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Product to buy (ID/index)</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – quantity to buy</p></li>
+<li><p><strong>price</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – unit price</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p></li>
+<li><p><strong>ignore_money_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If True, shortage in money will be ignored and the wallet can go negative</p></li>
+<li><p><strong>ignore_space_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Ignore the limit on total storage which may lead to total_storage &gt; max_storage</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or failure</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>buy cannot ever have inventory shortage</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.sell" title="scml.scml2019.SlowFactorySimulator.sell"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">sell</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.delete_bookmark">
+<code class="sig-name descname">delete_bookmark</code><span class="sig-paren">(</span><em class="sig-param">bookmark_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.delete_bookmark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.delete_bookmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commits everything since the bookmark so it cannot be rolled back</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>The bookmark ID returned from bookmark</strong> (<em>bookmark_id</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success/failure</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You can delete bookmarks in the reverse order of their creation only. If the bookmark ID given here is
+not the one at the top of the bookmarks stack, the deletion will fail (return False).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.delete_bookmark" title="scml.scml2019.SlowFactorySimulator.delete_bookmark"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">delete_bookmark</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.rollback" title="scml.scml2019.SlowFactorySimulator.rollback"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">rollback</span></code></a> <a class="reference internal" href="scml.scml2019.transaction.html#scml.scml2019.transaction" title="scml.scml2019.transaction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">transaction</span></code></a> <a class="reference internal" href="scml.scml2019.temporary_transaction.html#scml.scml2019.temporary_transaction" title="scml.scml2019.temporary_transaction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">temporary_transaction</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.fix_before">
+<code class="sig-name descname">fix_before</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.fix_before"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.fix_before" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fix the history before this point</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success/failure</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>After this function is called at any time-step <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>, there is no way to change any component of the factory
+state at any timestep before <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p></li>
+<li><p>This function is useful for <em>fixing</em> any difference between the simulator and the real state (in
+conjunction with <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.set_state" title="scml.scml2019.SlowFactorySimulator.set_state"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">set_state</span></code></a>).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.set_state" title="scml.scml2019.SlowFactorySimulator.set_state"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">set_state</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.fixed_before" title="scml.scml2019.SlowFactorySimulator.fixed_before"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">fixed_before</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.goto">
+<code class="sig-name descname">goto</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.goto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.goto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Steps the factory to the end of step t
+:type t: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>
+:param t: time</p>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.line_schedules_at">
+<code class="sig-name descname">line_schedules_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.line_schedules_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the schedule of each line at a given timestep</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.n_lines" title="scml.scml2019.SlowFactorySimulator.n_lines"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_lines</span></code></a> values giving the schedule up at <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A <code class="xref any docutils literal notranslate"><span class="pre">NO_PRODUCTION</span></code> value means no production, otherwise the index of the process being run</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.line_schedules_to">
+<code class="sig-name descname">line_schedules_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.line_schedules_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.line_schedules_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the schedule of each line up to a given timestep</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.n_lines" title="scml.scml2019.SlowFactorySimulator.n_lines"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_lines</span></code></a> * <code class="xref any docutils literal notranslate"><span class="pre">t</span></code> values giving the schedule up to <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A <code class="xref any docutils literal notranslate"><span class="pre">NO_PRODUCTION</span></code> value means no production, otherwise the index of the process being run</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.loans_at">
+<code class="sig-name descname">loans_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.loans_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns loans at time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.loans_to">
+<code class="sig-name descname">loans_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.loans_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.loans_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns loans up to time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of <code class="xref any docutils literal notranslate"><span class="pre">t</span></code> real numbers giving the loans registered at time-steps up to <code class="xref any docutils literal notranslate"><span class="pre">t</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.pay">
+<code class="sig-name descname">pay</code><span class="sig-paren">(</span><em class="sig-param">payment</em>, <em class="sig-param">t</em>, <em class="sig-param">ignore_money_shortage=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.pay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.pay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate payment at time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>payment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Amount payed</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p></li>
+<li><p><strong>ignore_money_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If True, shortage in money will be ignored and the wallet can go negative</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or failure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.receive">
+<code class="sig-name descname">receive</code><span class="sig-paren">(</span><em class="sig-param">payment</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates receiving payment at time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>payment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Amount received</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or failure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.reserve">
+<code class="sig-name descname">reserve</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.reserve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates reserving the given quantity of the given product at times &gt;= t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Index/ID of the product being reserved</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – quantity being reserved</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success/failure</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Reserved products show in calls to  <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> etc.</p></li>
+<li><p>Reserving a product does nothing more than mark some quantity as reserved for calls to
+<a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_at" title="scml.scml2019.SlowFactorySimulator.reserved_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reserved_storage_at</span></code></a> and <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.available_storage_at" title="scml.scml2019.SlowFactorySimulator.available_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">available_storage_at</span></code></a>.</p></li>
+<li><p>This feature can be used to simulate inventory hiding commands in the real factory and to avoid
+double counting of inventory when calculating needs for future contracts.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.reserved_storage_at">
+<code class="sig-name descname">reserved_storage_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <em>reserved</em> storage of all products <em>at</em> time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a> giving the quantity of each product reserved at time-step <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Reserved storage <em>is counted</em> in calls to <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a>
+, <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a></p></li>
+<li><p>Reserving quantities of products is a tool that can be used to avoid double counting availability of given
+products in the inventory for multiple contracts.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_at" title="scml.scml2019.SlowFactorySimulator.reserved_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reserved_storage_at</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.reserved_storage_to">
+<code class="sig-name descname">reserved_storage_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <em>reserved</em> storage of all products <em>up to</em> time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a> * <code class="xref any docutils literal notranslate"><span class="pre">t</span></code> giving the quantity of each product reserved at every step up to <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Reserved storage <em>is counted</em> in calls to <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> , <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a>
+, <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a></p></li>
+<li><p>Reserving quantities of products is a tool that can be used to avoid double counting availability of given
+products in the inventory for multiple contracts.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.reserved_storage_at" title="scml.scml2019.SlowFactorySimulator.reserved_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reserved_storage_at</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.reset_to">
+<code class="sig-name descname">reset_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.reset_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.reset_to" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.rollback">
+<code class="sig-name descname">rollback</code><span class="sig-paren">(</span><em class="sig-param">bookmark_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.rollback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.rollback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rolls back to the given bookmark ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>The bookmark ID returned from bookmark</strong> (<em>bookmark_id</em>) – </p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You can only rollback in the reverse order of bookmarks. If the bookmark ID given here is not the one
+at the top of the bookmarks stack, the rollback will fail (return False)</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.delete_bookmark" title="scml.scml2019.SlowFactorySimulator.delete_bookmark"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">delete_bookmark</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.rollback" title="scml.scml2019.SlowFactorySimulator.rollback"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">rollback</span></code></a> <a class="reference internal" href="scml.scml2019.transaction.html#scml.scml2019.transaction" title="scml.scml2019.transaction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">transaction</span></code></a> <a class="reference internal" href="scml.scml2019.temporary_transaction.html#scml.scml2019.temporary_transaction" title="scml.scml2019.temporary_transaction"><code class="xref any py py-func docutils literal notranslate"><span class="pre">temporary_transaction</span></code></a></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.schedule">
+<code class="sig-name descname">schedule</code><span class="sig-paren">(</span><em class="sig-param">job</em>, <em class="sig-param">ignore_inventory_shortage=True</em>, <em class="sig-param">ignore_money_shortage=True</em>, <em class="sig-param">ignore_space_shortage=True</em>, <em class="sig-param">override=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.schedule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates scheduling the given job at its <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job.time" title="scml.scml2019.Job.time"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">time</span></code></a> and <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job.line" title="scml.scml2019.Job.line"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">line</span></code></a> optionally overriding whatever was already scheduled</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job</strong> (<a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.common.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>) – Production job</p></li>
+<li><p><strong>ignore_inventory_shortage</strong> – If true shortages in inputs will be ignored</p></li>
+<li><p><strong>ignore_money_shortage</strong> – If true, shortage in money will be ignored</p></li>
+<li><p><strong>ignore_space_shortage</strong> – If true, shortage in space will be ignored</p></li>
+<li><p><strong>override</strong> – Whether the job should override any already registered job at its time-step</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success/failure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.sell">
+<code class="sig-name descname">sell</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em>, <em class="sig-param">price</em>, <em class="sig-param">t</em>, <em class="sig-param">ignore_money_shortage=True</em>, <em class="sig-param">ignore_inventory_shortage=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.sell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.sell" title="Permalink to this definition">¶</a></dt>
+<dd><p>sell a given quantity of a product for a given price at some time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Index/ID of the product to be sold</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – quantity to be sold</p></li>
+<li><p><strong>price</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – unit price</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p></li>
+<li><p><strong>ignore_money_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If True, shortage in money will be ignored and the wallet can go negative</p></li>
+<li><p><strong>ignore_inventory_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Ignore shortage in the <a class="reference internal" href="scml.scml2019.InputOutput.html#scml.scml2019.InputOutput.product" title="scml.scml2019.InputOutput.product"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">product</span></code></a> which may lead to negative storage[product]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or failure</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sell cannot ever have space shortage</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.buy" title="scml.scml2019.SlowFactorySimulator.buy"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">buy</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.set_state">
+<code class="sig-name descname">set_state</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">storage</em>, <em class="sig-param">wallet</em>, <em class="sig-param">loans</em>, <em class="sig-param">line_schedules</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.set_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.set_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current state at the given time-step. It implicitly causes a fix_before(t + 1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time step to set the state at</p></li>
+<li><p><strong>storage</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code>) – quantity of every product (array of integers of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a>)</p></li>
+<li><p><strong>wallet</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Cash in wallet</p></li>
+<li><p><strong>loans</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Loans</p></li>
+<li><p><strong>line_schedules</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code>) – Line schedules (array of process numbers/NO_PRODUCTION of size <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.n_lines" title="scml.scml2019.SlowFactorySimulator.n_lines"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_lines</span></code></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.storage_at">
+<code class="sig-name descname">storage_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the storage of all products <em>at</em> time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a> giving the quantity of each product in storage at time-step <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.wallet_at" title="scml.scml2019.SlowFactorySimulator.wallet_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">wallet_at</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.storage_to">
+<code class="sig-name descname">storage_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.storage_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the storage of all products <em>up to</em> time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An array of size <a class="reference internal" href="scml.scml2020.AWI.html#scml.scml2020.AWI.n_products" title="scml.scml2020.AWI.n_products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_products</span></code></a> * <code class="xref any docutils literal notranslate"><span class="pre">t</span></code> giving the quantity of each product in storage at every step up to <code class="xref any docutils literal notranslate"><span class="pre">t</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.total_storage_at">
+<code class="sig-name descname">total_storage_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total storage <em>at</em> a given time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an integer giving the total quantity of stored products in the inventory at timestep <code class="xref any docutils literal notranslate"><span class="pre">t</span></code></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="scml.scml2019.SlowFactorySimulator.total_storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_to</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_at" title="scml.scml2019.SlowFactorySimulator.storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_at</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.total_storage_to">
+<code class="sig-name descname">total_storage_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.total_storage_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total storage <em>up to</em> a given time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an array of size <code class="xref any docutils literal notranslate"><span class="pre">t</span></code> giving the total quantity of stored products in the inventory up to timestep <code class="xref any docutils literal notranslate"><span class="pre">t</span></code></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.total_storage_at" title="scml.scml2019.SlowFactorySimulator.total_storage_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">total_storage_at</span></code></a> <a class="reference internal" href="#scml.scml2019.SlowFactorySimulator.storage_to" title="scml.scml2019.SlowFactorySimulator.storage_to"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">storage_to</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.transport_to">
+<code class="sig-name descname">transport_to</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em>, <em class="sig-param">t</em>, <em class="sig-param">ignore_inventory_shortage=True</em>, <em class="sig-param">ignore_space_shortage=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.transport_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.transport_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates transporting products to/from storage at time t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – product ID (index)</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – quantity to transport</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – time</p></li>
+<li><p><strong>ignore_inventory_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Ignore shortage in the <a class="reference internal" href="scml.scml2019.InputOutput.html#scml.scml2019.InputOutput.product" title="scml.scml2019.InputOutput.product"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">product</span></code></a> which may lead to negative storage[product]</p></li>
+<li><p><strong>ignore_space_shortage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Ignore the limit on total storage which may lead to total_storage &gt; max_storage</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or failure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.wallet_at">
+<code class="sig-name descname">wallet_at</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.wallet_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the cash in wallet <em>at</em> a given timestep (given all simulated actions)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – </p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SlowFactorySimulator.wallet_to">
+<code class="sig-name descname">wallet_to</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/simulators.html#SlowFactorySimulator.wallet_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SlowFactorySimulator.wallet_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the cash in wallet up to and including time t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Time</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scml.scml2019.FastFactorySimulator.html" class="btn btn-neutral float-right" title="FastFactorySimulator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scml.scml2019.FactorySimulator.html" class="btn btn-neutral float-left" title="FactorySimulator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

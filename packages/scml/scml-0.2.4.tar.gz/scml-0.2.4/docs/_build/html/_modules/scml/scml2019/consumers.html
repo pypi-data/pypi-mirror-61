@@ -1,0 +1,1078 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>scml.scml2019.consumers &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>scml.scml2019.consumers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for scml.scml2019.consumers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">dirichlet</span>
+
+<span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">AgentMechanismInterface</span><span class="p">,</span> <span class="n">MechanismState</span>
+<span class="kn">from</span> <span class="nn">.common</span> <span class="kn">import</span> <span class="n">FinancialReport</span><span class="p">,</span> <span class="n">DEFAULT_NEGOTIATOR</span>
+<span class="kn">from</span> <span class="nn">negmas.events</span> <span class="kn">import</span> <span class="n">Notification</span>
+<span class="kn">from</span> <span class="nn">negmas.helpers</span> <span class="kn">import</span> <span class="n">get_class</span>
+<span class="kn">from</span> <span class="nn">negmas.negotiators</span> <span class="kn">import</span> <span class="n">Negotiator</span>
+<span class="kn">from</span> <span class="nn">negmas.situated</span> <span class="kn">import</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">Breach</span>
+<span class="kn">from</span> <span class="nn">negmas.situated</span> <span class="kn">import</span> <span class="n">RenegotiationRequest</span>
+<span class="kn">from</span> <span class="nn">negmas.utilities</span> <span class="kn">import</span> <span class="n">ComplexWeightedUtilityFunction</span><span class="p">,</span> <span class="n">MappingUtilityFunction</span>
+<span class="kn">from</span> <span class="nn">.common</span> <span class="kn">import</span> <span class="n">CFP</span>
+<span class="kn">from</span> <span class="nn">.agent</span> <span class="kn">import</span> <span class="n">SCML2019Agent</span>
+<span class="kn">from</span> <span class="nn">.helpers</span> <span class="kn">import</span> <span class="n">pos_gauss</span>
+
+<span class="k">if</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1">#</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+    <span class="kn">from</span> <span class="nn">.common</span> <span class="kn">import</span> <span class="n">Loan</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.awi</span> <span class="kn">import</span> <span class="n">SCMLAWI</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Consumer&quot;</span><span class="p">,</span> <span class="s2">&quot;ConsumptionProfile&quot;</span><span class="p">,</span> <span class="s2">&quot;JustInTimeConsumer&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ConsumptionProfile"><a class="viewcode-back" href="../../../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ConsumptionProfile</span><span class="p">:</span>
+    <span class="n">schedule</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">underconsumption</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">overconsumption</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="n">dynamicity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">cv</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="n">alpha_q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">alpha_u</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="n">beta_q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span>
+    <span class="n">beta_u</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+    <span class="n">tau_q</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">tau_u</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span>
+
+<div class="viewcode-block" id="ConsumptionProfile.random"><a class="viewcode-back" href="../../../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile.random">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ConsumptionProfile</span><span class="p">(</span>
+            <span class="n">schedule</span><span class="o">=</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+            <span class="n">overconsumption</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">random</span><span class="p">(),</span>
+            <span class="n">underconsumption</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">random</span><span class="p">(),</span>
+            <span class="n">cv</span><span class="o">=</span><span class="n">random</span><span class="p">(),</span>
+            <span class="n">beta_q</span><span class="o">=</span><span class="mi">99</span> <span class="o">*</span> <span class="n">random</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">beta_u</span><span class="o">=</span><span class="mi">99</span> <span class="o">*</span> <span class="n">random</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">tau_q</span><span class="o">=</span><span class="mi">3</span> <span class="o">*</span> <span class="n">random</span><span class="p">(),</span>
+            <span class="n">tau_u</span><span class="o">=</span><span class="n">random</span><span class="p">(),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ConsumptionProfile.schedule_at"><a class="viewcode-back" href="../../../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile.schedule_at">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">[</span><span class="n">time</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="ConsumptionProfile.schedule_within"><a class="viewcode-back" href="../../../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile.schedule_within">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_within</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ConsumptionProfile.set_schedule_at"><a class="viewcode-back" href="../../../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile.set_schedule_at">[docs]</a>    <span class="k">def</span> <span class="nf">set_schedule_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_steps</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_steps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span>
+                    <span class="o">*</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_steps</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">))))</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">[</span><span class="n">time</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">)]</span> <span class="o">=</span> <span class="n">value</span></div></div>
+
+
+<div class="viewcode-block" id="Consumer"><a class="viewcode-back" href="../../../api/scml.scml2019.Consumer.html#scml.scml2019.Consumer">[docs]</a><span class="k">class</span> <span class="nc">Consumer</span><span class="p">(</span><span class="n">SCML2019Agent</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class of all consumer classes&quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="JustInTimeConsumer"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer">[docs]</a><span class="k">class</span> <span class="nc">JustInTimeConsumer</span><span class="p">(</span><span class="n">Consumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Consumer class&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_contract_executed"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_contract_executed">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_executed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_contract_breached"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_contract_breached">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_breached</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">],</span> <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Contract</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_inventory_change"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_inventory_change">[docs]</a>    <span class="k">def</span> <span class="nf">on_inventory_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cause</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_cash_transfer"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_cash_transfer">[docs]</a>    <span class="k">def</span> <span class="nf">on_cash_transfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">cause</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_new_report"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_new_report">[docs]</a>    <span class="k">def</span> <span class="nf">on_new_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinancialReport</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_neg_request_rejected"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_neg_request_rejected">[docs]</a>    <span class="k">def</span> <span class="nf">on_neg_request_rejected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">by</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_neg_request_accepted"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_neg_request_accepted">[docs]</a>    <span class="k">def</span> <span class="nf">on_neg_request_accepted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_negotiation_failure"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_negotiation_failure">[docs]</a>    <span class="k">def</span> <span class="nf">on_negotiation_failure</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">partners</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">annotation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">MechanismState</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_negotiation_success"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_negotiation_success">[docs]</a>    <span class="k">def</span> <span class="nf">on_negotiation_success</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_contract_cancelled"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_contract_cancelled">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">rejectors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_contract_nullified"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_contract_nullified">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_nullified</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">bankrupt_partner</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">compensation</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_agent_bankrupt"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_agent_bankrupt">[docs]</a>    <span class="k">def</span> <span class="nf">on_agent_bankrupt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.confirm_partial_execution"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.confirm_partial_execution">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_partial_execution</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_remove_cfp"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_remove_cfp">[docs]</a>    <span class="k">def</span> <span class="nf">on_remove_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+    <span class="n">MAX_UNIT_PRICE</span> <span class="o">=</span> <span class="mf">100.0</span>
+    <span class="n">RELATIVE_MAX_PRICE</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">profiles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ConsumptionProfile</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">negotiator_type</span><span class="o">=</span><span class="n">DEFAULT_NEGOTIATOR</span><span class="p">,</span>
+        <span class="n">consumption_horizon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="n">immediate_cfp_update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="n">negotiator_type</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ConsumptionProfile</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">ConsumptionProfile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_profiles</span><span class="p">(</span><span class="n">profiles</span><span class="o">=</span><span class="n">profiles</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="o">=</span> <span class="n">consumption_horizon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">immediate_cfp_update</span> <span class="o">=</span> <span class="n">immediate_cfp_update</span>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_new_cfp"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_new_cfp">[docs]</a>    <span class="k">def</span> <span class="nf">on_new_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>  <span class="c1"># consumers never respond to CFPs</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.init"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">register_interest</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.set_profiles"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.set_profiles">[docs]</a>    <span class="k">def</span> <span class="nf">set_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profiles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ConsumptionProfile</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">ConsumptionProfile</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">profiles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">profiles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.register_product_cfps"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.register_product_cfps">[docs]</a>    <span class="k">def</span> <span class="nf">register_product_cfps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="n">ConsumptionProfile</span><span class="p">):</span>
+        <span class="n">current_schedule</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">product</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">awi</span><span class="p">:</span> <span class="n">SCMLAWI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span>
+        <span class="k">if</span> <span class="n">current_schedule</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">awi</span><span class="o">.</span><span class="n">bb_remove</span><span class="p">(</span>
+                <span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span>
+                <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;product_index&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">},</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">max_price</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">JustInTimeConsumer</span><span class="o">.</span><span class="n">RELATIVE_MAX_PRICE</span> <span class="o">*</span> <span class="n">product</span><span class="o">.</span><span class="n">catalog_price</span>
+            <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">catalog_price</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">JustInTimeConsumer</span><span class="o">.</span><span class="n">MAX_UNIT_PRICE</span>
+        <span class="p">)</span>
+        <span class="n">cfps</span> <span class="o">=</span> <span class="n">awi</span><span class="o">.</span><span class="n">bb_query</span><span class="p">(</span>
+            <span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cfps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">cfps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">cfp</span> <span class="ow">in</span> <span class="n">cfps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_quantity</span> <span class="o">!=</span> <span class="n">current_schedule</span><span class="p">:</span>
+                    <span class="n">cfp</span> <span class="o">=</span> <span class="n">CFP</span><span class="p">(</span>
+                        <span class="n">is_buy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">publisher</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                        <span class="n">product</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                        <span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+                        <span class="n">unit_price</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_price</span><span class="p">),</span>
+                        <span class="n">quantity</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_schedule</span><span class="p">),</span>
+                    <span class="p">)</span>
+                    <span class="n">awi</span><span class="o">.</span><span class="n">bb_remove</span><span class="p">(</span>
+                        <span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span>
+                        <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">},</span>
+                    <span class="p">)</span>
+                    <span class="n">awi</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+                    <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cfp</span> <span class="o">=</span> <span class="n">CFP</span><span class="p">(</span>
+                <span class="n">is_buy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">publisher</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">product</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                <span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+                <span class="n">unit_price</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_price</span><span class="p">),</span>
+                <span class="n">quantity</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_schedule</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">awi</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.step"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">horizon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">horizon</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">profile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">,</span> <span class="n">horizon</span>
+            <span class="p">):</span>  <span class="c1"># + self.transportation_delay</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">register_product_cfps</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="n">profile</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.confirm_contract_execution"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.confirm_contract_execution">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_contract_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_qufun</span><span class="p">(</span><span class="n">outcome</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">tau</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="n">ConsumptionProfile</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The ufun value for quantity&quot;&quot;&quot;</span>
+        <span class="n">q</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">outcome</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">],</span> <span class="n">outcome</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">schedule_within</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">overconsumption</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">underconsumption</span>
+        <span class="k">if</span> <span class="n">q</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">o</span> <span class="o">*</span> <span class="p">((</span><span class="n">q</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">q</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">o</span> <span class="o">*</span> <span class="p">(((</span><span class="n">q</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span> <span class="o">*</span> <span class="p">(((</span><span class="n">y</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">complex</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">real</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="JustInTimeConsumer.respond_to_negotiation_request"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.respond_to_negotiation_request">[docs]</a>    <span class="k">def</span> <span class="nf">respond_to_negotiation_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">,</span> <span class="n">partner</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">is_bankrupt</span><span class="p">(</span><span class="n">partner</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">alpha_u</span><span class="p">,</span> <span class="n">alpha_q</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">alpha_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">alpha_q</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">alpha_u</span><span class="p">,</span> <span class="n">alpha_q</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+                <span class="n">dirichlet</span><span class="p">((</span><span class="n">profile</span><span class="o">.</span><span class="n">alpha_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">alpha_q</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="n">beta_u</span> <span class="o">=</span> <span class="n">pos_gauss</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">beta_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
+        <span class="n">tau_u</span> <span class="o">=</span> <span class="n">pos_gauss</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">tau_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
+        <span class="n">tau_q</span> <span class="o">=</span> <span class="n">pos_gauss</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">tau_q</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
+        <span class="n">ufun</span> <span class="o">=</span> <span class="n">ComplexWeightedUtilityFunction</span><span class="p">(</span>
+            <span class="n">ufuns</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">MappingUtilityFunction</span><span class="p">(</span>
+                    <span class="n">mapping</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="n">tau_u</span> <span class="o">/</span> <span class="n">beta_u</span>
+                <span class="p">),</span>
+                <span class="n">MappingUtilityFunction</span><span class="p">(</span>
+                    <span class="n">mapping</span><span class="o">=</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                        <span class="n">JustInTimeConsumer</span><span class="o">.</span><span class="n">_qufun</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau_q</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="n">profile</span>
+                    <span class="p">)</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="n">alpha_u</span><span class="p">,</span> <span class="n">alpha_q</span><span class="p">],</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">partner</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">negotiator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;*&quot;</span> <span class="o">+</span> <span class="n">partner</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">ufun</span><span class="o">=</span><span class="n">ufun</span><span class="p">)</span>
+        <span class="c1"># negotiator.utility_function = ufun</span>
+        <span class="k">return</span> <span class="n">negotiator</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.set_renegotiation_agenda"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.set_renegotiation_agenda">[docs]</a>    <span class="k">def</span> <span class="nf">set_renegotiation_agenda</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RenegotiationRequest</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Received by partners in ascending order of their total breach levels in order to set the</span>
+<span class="sd">        renegotiation agenda when contract execution fails</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            contract: The contract that was breached about which re-negotiation is offered</span>
+<span class="sd">            breaches: The list of breaches by all parties for the breached contract.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            None if renegotiation is not to be started, otherwise a re-negotiation agenda.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.respond_to_renegotiation_request"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.respond_to_renegotiation_request">[docs]</a>    <span class="k">def</span> <span class="nf">respond_to_renegotiation_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">],</span> <span class="n">agenda</span><span class="p">:</span> <span class="n">RenegotiationRequest</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called to respond to a renegotiation request</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            agenda: Renegotiation agenda (issues to renegotiate about).</span>
+<span class="sd">            contract: The contract that was breached</span>
+<span class="sd">            breaches: All breaches on that contract</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            None to refuse to enter the negotiation, otherwise, a negotiator to use for this negotiation.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.confirm_loan"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.confirm_loan">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_loan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loan</span><span class="p">:</span> <span class="n">Loan</span><span class="p">,</span> <span class="n">bankrupt_if_rejected</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;called by the world manager to confirm a loan if needed by the buyer of a contract that is about to be</span>
+<span class="sd">        breached&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">bankrupt_if_rejected</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.sign_contract"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.sign_contract">[docs]</a>    <span class="k">def</span> <span class="nf">sign_contract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;cfp&quot;</span><span class="p">]</span>
+        <span class="n">agreement</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span>  <span class="c1"># type: ignore</span>
+        <span class="n">schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">schedule</span> <span class="o">-</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="JustInTimeConsumer.on_contract_signed"><a class="viewcode-back" href="../../../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer.on_contract_signed">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_signed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;cfp&quot;</span><span class="p">]</span>
+        <span class="n">agreement</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span>  <span class="c1"># type: ignore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span> <span class="o">+=</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span>
+        <span class="n">old_quantity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+        <span class="n">new_quantity</span> <span class="o">=</span> <span class="n">old_quantity</span> <span class="o">-</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">set_schedule_at</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">new_quantity</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">immediate_cfp_update</span> <span class="ow">and</span> <span class="n">new_quantity</span> <span class="o">!=</span> <span class="n">old_quantity</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">register_product_cfps</span><span class="p">(</span>
+                <span class="n">p</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">negotiation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_negotiations</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span>
+                <span class="n">negotiation</span><span class="o">.</span><span class="n">negotiator</span><span class="p">,</span> <span class="n">Notification</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;ufun_modified&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+            <span class="p">)</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">ScheduleDrivenConsumer</span><span class="p">(</span><span class="n">Consumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Consumer class&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">on_contract_executed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_contract_breached</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">],</span> <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Contract</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_inventory_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cause</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_cash_transfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">cause</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_new_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">report</span><span class="p">:</span> <span class="n">FinancialReport</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_neg_request_rejected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">by</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_neg_request_accepted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_negotiation_failure</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">partners</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">annotation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">MechanismState</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_negotiation_success</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_contract_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">rejectors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_contract_nullified</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">bankrupt_partner</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">compensation</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">on_agent_bankrupt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">confirm_partial_execution</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">on_remove_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="n">MAX_UNIT_PRICE</span> <span class="o">=</span> <span class="mf">100.0</span>
+    <span class="n">RELATIVE_MAX_PRICE</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">profiles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ConsumptionProfile</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">negotiator_type</span><span class="o">=</span><span class="n">DEFAULT_NEGOTIATOR</span><span class="p">,</span>
+        <span class="n">consumption_horizon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="n">immediate_cfp_update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="n">negotiator_type</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ConsumptionProfile</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">ConsumptionProfile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_profiles</span><span class="p">(</span><span class="n">profiles</span><span class="o">=</span><span class="n">profiles</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="o">=</span> <span class="n">consumption_horizon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">immediate_cfp_update</span> <span class="o">=</span> <span class="n">immediate_cfp_update</span>
+
+    <span class="k">def</span> <span class="nf">on_new_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>  <span class="c1"># consumers never respond to CFPs</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">register_interest</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">set_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profiles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ConsumptionProfile</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">ConsumptionProfile</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">profiles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profiles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">profiles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">register_product_cfps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="n">ConsumptionProfile</span><span class="p">):</span>
+        <span class="n">current_schedule</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">product</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">awi</span><span class="p">:</span> <span class="n">SCMLAWI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span>
+        <span class="k">if</span> <span class="n">current_schedule</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">awi</span><span class="o">.</span><span class="n">bb_remove</span><span class="p">(</span>
+                <span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span>
+                <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;product_index&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">},</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">max_price</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">JustInTimeConsumer</span><span class="o">.</span><span class="n">RELATIVE_MAX_PRICE</span> <span class="o">*</span> <span class="n">product</span><span class="o">.</span><span class="n">catalog_price</span>
+            <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">catalog_price</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">JustInTimeConsumer</span><span class="o">.</span><span class="n">MAX_UNIT_PRICE</span>
+        <span class="p">)</span>
+        <span class="n">cfps</span> <span class="o">=</span> <span class="n">awi</span><span class="o">.</span><span class="n">bb_query</span><span class="p">(</span>
+            <span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cfps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">cfps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">cfp</span> <span class="ow">in</span> <span class="n">cfps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_quantity</span> <span class="o">!=</span> <span class="n">current_schedule</span><span class="p">:</span>
+                    <span class="n">cfp</span> <span class="o">=</span> <span class="n">CFP</span><span class="p">(</span>
+                        <span class="n">is_buy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">publisher</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                        <span class="n">product</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                        <span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+                        <span class="n">unit_price</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_price</span><span class="p">),</span>
+                        <span class="n">quantity</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_schedule</span><span class="p">),</span>
+                    <span class="p">)</span>
+                    <span class="n">awi</span><span class="o">.</span><span class="n">bb_remove</span><span class="p">(</span>
+                        <span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span>
+                        <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">},</span>
+                    <span class="p">)</span>
+                    <span class="n">awi</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+                    <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cfp</span> <span class="o">=</span> <span class="n">CFP</span><span class="p">(</span>
+                <span class="n">is_buy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">publisher</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">product</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                <span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+                <span class="n">unit_price</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_price</span><span class="p">),</span>
+                <span class="n">quantity</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_schedule</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">awi</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">horizon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">horizon</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption_horizon</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">profile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">,</span> <span class="n">horizon</span>
+            <span class="p">):</span>  <span class="c1"># + self.transportation_delay</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">register_product_cfps</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="n">profile</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">confirm_contract_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_qufun</span><span class="p">(</span><span class="n">outcome</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">tau</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="n">ConsumptionProfile</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The ufun value for quantity&quot;&quot;&quot;</span>
+        <span class="n">q</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">outcome</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">],</span> <span class="n">outcome</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">schedule_within</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">overconsumption</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">underconsumption</span>
+        <span class="k">if</span> <span class="n">q</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">o</span> <span class="o">*</span> <span class="p">((</span><span class="n">q</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">q</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">o</span> <span class="o">*</span> <span class="p">(((</span><span class="n">q</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span> <span class="o">*</span> <span class="p">(((</span><span class="n">y</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="n">tau</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">complex</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">real</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">respond_to_negotiation_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">,</span> <span class="n">partner</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">is_bankrupt</span><span class="p">(</span><span class="n">partner</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">profile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">alpha_u</span><span class="p">,</span> <span class="n">alpha_q</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">alpha_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">alpha_q</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">alpha_u</span><span class="p">,</span> <span class="n">alpha_q</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+                <span class="n">dirichlet</span><span class="p">((</span><span class="n">profile</span><span class="o">.</span><span class="n">alpha_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">alpha_q</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="n">beta_u</span> <span class="o">=</span> <span class="n">pos_gauss</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">beta_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
+        <span class="n">tau_u</span> <span class="o">=</span> <span class="n">pos_gauss</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">tau_u</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
+        <span class="n">tau_q</span> <span class="o">=</span> <span class="n">pos_gauss</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">tau_q</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
+        <span class="n">ufun</span> <span class="o">=</span> <span class="n">ComplexWeightedUtilityFunction</span><span class="p">(</span>
+            <span class="n">ufuns</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">MappingUtilityFunction</span><span class="p">(</span>
+                    <span class="n">mapping</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="n">tau_u</span> <span class="o">/</span> <span class="n">beta_u</span>
+                <span class="p">),</span>
+                <span class="n">MappingUtilityFunction</span><span class="p">(</span>
+                    <span class="n">mapping</span><span class="o">=</span><span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+                        <span class="n">JustInTimeConsumer</span><span class="o">.</span><span class="n">_qufun</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">tau_q</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="n">profile</span>
+                    <span class="p">)</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="n">alpha_u</span><span class="p">,</span> <span class="n">alpha_q</span><span class="p">],</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">partner</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">negotiator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;*&quot;</span> <span class="o">+</span> <span class="n">partner</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">ufun</span><span class="o">=</span><span class="n">ufun</span><span class="p">)</span>
+        <span class="c1"># negotiator.utility_function = ufun</span>
+        <span class="k">return</span> <span class="n">negotiator</span>
+
+    <span class="k">def</span> <span class="nf">set_renegotiation_agenda</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RenegotiationRequest</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Received by partners in ascending order of their total breach levels in order to set the</span>
+<span class="sd">        renegotiation agenda when contract execution fails</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            contract: The contract that was breached about which re-negotiation is offered</span>
+<span class="sd">            breaches: The list of breaches by all parties for the breached contract.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            None if renegotiation is not to be started, otherwise a re-negotiation agenda.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">respond_to_renegotiation_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">],</span> <span class="n">agenda</span><span class="p">:</span> <span class="n">RenegotiationRequest</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called to respond to a renegotiation request</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            agenda: Renegotiation agenda (issues to renegotiate about).</span>
+<span class="sd">            contract: The contract that was breached</span>
+<span class="sd">            breaches: All breaches on that contract</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            None to refuse to enter the negotiation, otherwise, a negotiator to use for this negotiation.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">confirm_loan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loan</span><span class="p">:</span> <span class="n">Loan</span><span class="p">,</span> <span class="n">bankrupt_if_rejected</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;called by the world manager to confirm a loan if needed by the buyer of a contract that is about to be</span>
+<span class="sd">        breached&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">bankrupt_if_rejected</span>
+
+    <span class="k">def</span> <span class="nf">sign_contract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;cfp&quot;</span><span class="p">]</span>
+        <span class="n">agreement</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span>  <span class="c1"># type: ignore</span>
+        <span class="n">schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">schedule</span> <span class="o">-</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="k">def</span> <span class="nf">on_contract_signed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">contract</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;cfp&quot;</span><span class="p">]</span>
+        <span class="n">agreement</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span>  <span class="c1"># type: ignore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secured_quantities</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span> <span class="o">+=</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span>
+        <span class="n">old_quantity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">schedule_at</span><span class="p">(</span><span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+        <span class="n">new_quantity</span> <span class="o">=</span> <span class="n">old_quantity</span> <span class="o">-</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">set_schedule_at</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">new_quantity</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">immediate_cfp_update</span> <span class="ow">and</span> <span class="n">new_quantity</span> <span class="o">!=</span> <span class="n">old_quantity</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">register_product_cfps</span><span class="p">(</span>
+                <span class="n">p</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">profiles</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">negotiation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_negotiations</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span>
+                <span class="n">negotiation</span><span class="o">.</span><span class="n">negotiator</span><span class="p">,</span> <span class="n">Notification</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;ufun_modified&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+            <span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

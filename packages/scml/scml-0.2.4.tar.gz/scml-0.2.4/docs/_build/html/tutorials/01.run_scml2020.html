@@ -1,0 +1,1741 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Run a session of the SCML world (2020) &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developing an agent for SCML2020" href="02.develop_agent_scml2020.html" />
+    <link rel="prev" title="Tutorials" href="../tutorials.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>Run a session of the SCML world (2020)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/01.run_scml2020.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="run-a-session-of-the-scml-world-2020">
+<h1>Run a session of the SCML world (2020)<a class="headerlink" href="#run-a-session-of-the-scml-world-2020" title="Permalink to this headline">¶</a></h1>
+<p>The SCML world (Supply Chain Management League) runs on top of
+<code class="docutils literal notranslate"><span class="pre">NegMAS</span></code>.</p>
+<p>In this tutorial, you will test a run of this world.</p>
+<p>Firstly, let’s import everything from the SCML app</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>There are several ways to create an SCML world. One of the simplest is
+to use the <code class="docutils literal notranslate"><span class="pre">generate</span></code> method of the <code class="docutils literal notranslate"><span class="pre">SCML2020World</span></code> class. This will
+create a dict that can be passed to the <code class="docutils literal notranslate"><span class="pre">SCML2020World</span></code> constructor as
+keyword arguments.</p>
+<p>Here we explicitly set <code class="docutils literal notranslate"><span class="pre">construct_graphs</span></code> to True which slows the
+simulation yet allows us to see graph representations of what is
+happening in the world.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">DecentralizingAgent</span><span class="p">,</span> <span class="n">BuyCheapSellExpensiveAgent</span><span class="p">,</span>
+               <span class="n">IndDecentralizingAgent</span><span class="p">,</span> <span class="n">MovingRangeAgent</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+        <span class="n">agent_types</span><span class="o">=</span><span class="n">agent_types</span><span class="p">,</span>
+        <span class="n">n_steps</span><span class="o">=</span><span class="mi">50</span>
+    <span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s draw a graph to see what is in this world</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_6_0.png" src="../_images/01.run_scml2020_6_0.png" />
+<p><em>If you want to just test your installation (and do not care whether you
+get an accurate indicator of agent performance), you can set the number
+of steps to a small value (e.g. n_steps=10).</em></p>
+<p>Now you can run this world simulation by just calling <code class="docutils literal notranslate"><span class="pre">run</span></code>.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="o">.</span><span class="n">run_with_progress</span><span class="p">()</span> <span class="c1"># may take few minutes</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>100%|██████████| 50/50 [05:11&lt;00:00,  6.24s/it]
+</pre></div>
+</div>
+<p>Let’s see what happened in this run. Firstly, how many negotiations were
+conducted over time</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;n_negotiations&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;N. Negotiations&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_10_0.png" src="../_images/01.run_scml2020_10_0.png" />
+<p>It is clear that many negotiations happened at the beginning of the
+simulation with smaller number later. That is expected as the agents at
+the first and last production layer receive more exogenous contracts in
+the beginning.</p>
+<p>Several other market statistics are available:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;@&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_</span>  <span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;n_registered_negotiations_before&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_dropped&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_nullified_now&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_bankrupt&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trading_price_0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sold_quantity_0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unit_price_0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trading_price_1&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sold_quantity_1&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unit_price_1&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trading_price_2&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sold_quantity_2&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unit_price_2&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trading_price_3&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sold_quantity_3&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unit_price_3&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trading_price_4&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sold_quantity_4&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unit_price_4&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;productivity&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;market_size&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;production_failures&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bankruptcy&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_executed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_erred&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_nullified&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_cancelled&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_breaches&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;breach_level&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_signed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_contracts_concluded&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_negotiations&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_negotiation_rounds_successful&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_negotiation_rounds_failed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_negotiation_successful&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_negotiation_failed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;n_registered_negotiations_after&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;activity_level&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;step_time&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;total_time&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Let’s start by seeing how long did each step take (note that <code class="docutils literal notranslate"><span class="pre">stats</span></code>
+access the stats as a Dict[str, List] but <code class="docutils literal notranslate"><span class="pre">stats_df</span></code> access the same
+data as a pandas dataframe.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">world</span><span class="o">.</span><span class="n">stats_df</span><span class="p">[</span><span class="s1">&#39;step_time&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_14_0.png" src="../_images/01.run_scml2020_14_0.png" />
+<p>There are statistics specific for each agent that all have
+“_{agent_name}”. Lets check what is available for the winner agent:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">winner</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">winners</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">winner</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">_</span> <span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;spot_market_quantity_00Dec@0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;spot_market_loss_00Dec@0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;balance_00Dec@0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;inventory_00Dec@0_input&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;inventory_00Dec@0_output&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;productivity_00Dec@0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;assets_00Dec@0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bankrupt_00Dec@0&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;score_00Dec@0&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The convension is that agent names has the form {ind}{Type}{process}
+where <strong>ind</strong> is a unique index, <strong>Type</strong> is a shortened version of the
+agent’s type name, and <strong>process</strong> is the process the agnet can run.
+Note that the agent’s input product has the same number as its process
+and its output product has the next number (i.e. an agent that runs
+process 1, has input product 1 and output product 2).</p>
+<p>We can see that 8 pieces of information are available (for each
+time-step of the simulation):</p>
+<ul class="simple">
+<li><p><strong>bankrupt</strong> If true, the agent is bankrupt.</p></li>
+<li><p><strong>balance</strong> The money the agent has in its wallet (account).</p></li>
+<li><p><strong>inventory (input)</strong> The number of units of the agent’s input
+product available in its inventory (by the end of the simulation
+step).</p></li>
+<li><p><strong>inventory (output)</strong> The number of units of the agent’s output
+product available in its inventory (by the end of the simulation
+step).</p></li>
+<li><p><strong>assets</strong> The value of the agent’s assets (input and output products
+in inventory) evaluated at the trading price</p></li>
+<li><p><strong>spot market quantity</strong> The quantity bought by this agent from the
+spot market (of its output product on this step). This can only
+happen as a result of a product-breach.</p></li>
+<li><p><strong>spot market loss</strong> The spot market price for the agent. This value
+will go up the more the agent buys from the spot market and will be
+used to calculate the price for this agent at future steps. This way
+agents that depend on the spot market instead of negotiation get
+punished.</p></li>
+<li><p><strong>productivity</strong> The fraction of the agent’s production lines that
+were active at a given time-step.</p></li>
+<li><p><strong>score</strong> The score of the agent according to the evaluation rule of
+ANAC SCML 2020</p></li>
+</ul>
+<p>Let’s see how did our agent do</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#show the first and last value of each of the agent statistics</span>
+<span class="n">pprint</span><span class="p">({</span><span class="n">k</span><span class="p">:(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">winner</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">k</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;assets_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">162.0</span><span class="p">,</span> <span class="mf">483.28091511614116</span><span class="p">),</span>
+ <span class="s1">&#39;balance_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">18008</span><span class="p">,</span> <span class="mi">22287</span><span class="p">),</span>
+ <span class="s1">&#39;bankrupt_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+ <span class="s1">&#39;inventory_00Dec@0_input&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+ <span class="s1">&#39;inventory_00Dec@0_output&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+ <span class="s1">&#39;productivity_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+ <span class="s1">&#39;score_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.0004972925185103326</span><span class="p">,</span> <span class="mf">0.24481381686142506</span><span class="p">),</span>
+ <span class="s1">&#39;spot_market_loss_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">2.352</span><span class="p">),</span>
+ <span class="s1">&#39;spot_market_quantity_00Dec@0&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="s2">&quot;productivity&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;spot_market_quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;spot_market_loss&quot;</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{key}</span><span class="s2">_</span><span class="si">{winner}</span><span class="s2">&quot;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_19_0.png" src="../_images/01.run_scml2020_19_0.png" />
+<p>We can for example check the activity level of this world (defined as
+the total amount of money transferred due to trade)</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;activity_level&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Activitiy Level ($)</span><span class="se">\n</span><span class="s1">Total Money Transferred&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_21_0.png" src="../_images/01.run_scml2020_21_0.png" />
+<p>We can see a picture of contracting in this world as follows:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;n_contracts_concluded&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Concluded Contracts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;n_contracts_cancelled&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cancelled Contracts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;n_contracts_signed&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Signed Contracts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;n_contracts_executed&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Executed Contracts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;N. Contracts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_23_0.png" src="../_images/01.run_scml2020_23_0.png" />
+<p>We can also check the breaches that happened</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;breach_level&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Total Breach Level&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_25_0.png" src="../_images/01.run_scml2020_25_0.png" />
+<p>Notice that there can be multiple winners</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">winner_profits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">world</span><span class="o">.</span><span class="n">scores</span><span class="p">()[</span><span class="n">_</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">winners</span><span class="p">]</span>
+<span class="n">winner_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_</span><span class="o">.</span><span class="n">short_type_name</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">winners</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{world.winners}</span><span class="s2"> of type </span><span class="si">{winner_types}</span><span class="s2"> won at </span><span class="si">{winner_profits}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">00</span><span class="n">Dec</span><span class="o">@</span><span class="mi">0</span><span class="p">]</span> <span class="n">of</span> <span class="nb">type</span> <span class="p">[</span><span class="s1">&#39;decentralizing&#39;</span><span class="p">]</span> <span class="n">won</span> <span class="n">at</span> <span class="p">[</span><span class="mf">24.481381686142505</span><span class="p">]</span><span class="o">%</span>
+</pre></div>
+</div>
+<p>Let’s check how did the first winner’s inventory changes over time:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the keys in stats for the input and output inventory</span>
+<span class="n">in_key</span> <span class="o">=</span> <span class="p">[</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">_</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inventory_</span><span class="si">{winner}</span><span class="s1">_input&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">out_key</span> <span class="o">=</span> <span class="p">[</span><span class="n">_</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">_</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inventory_</span><span class="si">{winner}</span><span class="s1">_output&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># find input and output product indices</span>
+<span class="n">input_product</span><span class="p">,</span> <span class="n">output_product</span> <span class="o">=</span> <span class="n">winner</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">my_input_product</span><span class="p">,</span> <span class="n">winner</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">my_output_product</span>
+<span class="c1"># draw</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">quantity</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">quantity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="n">in_key</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Input Product&quot;</span><span class="p">)</span>
+<span class="n">quantity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="n">out_key</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Output Product&quot;</span><span class="p">)</span>
+<span class="n">quantity</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Winner</span><span class="se">\&#39;</span><span class="s1">s Total Storage (item)&#39;</span><span class="p">)</span>
+<span class="n">quantity</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="n">in_key</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;trading_price_</span><span class="si">{input_product}</span><span class="s2">&quot;</span><span class="p">])</span>
+              <span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Input Product&quot;</span><span class="p">)</span>
+<span class="n">value</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="n">out_key</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;trading_price_</span><span class="si">{output_product}</span><span class="s2">&quot;</span><span class="p">])</span>
+              <span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Output Product&quot;</span><span class="p">)</span>
+<span class="n">value</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Winner</span><span class="se">\&#39;</span><span class="s1">s Inventory Value ($)&#39;</span><span class="p">)</span>
+<span class="n">value</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_29_0.png" src="../_images/01.run_scml2020_29_0.png" />
+<p>We can actually check what happens to ALL competitors:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020.world</span> <span class="kn">import</span> <span class="n">is_system_agent</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">profit</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">snames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">snames</span><span class="p">:</span>
+    <span class="n">profit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;balance_</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;balance_</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">score</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;score_</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Player Profit Ignoring Inventory (%)&#39;</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">)</span>
+<span class="n">score</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Player Score (%)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_31_0.png" src="../_images/01.run_scml2020_31_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020.world</span> <span class="kn">import</span> <span class="n">is_system_agent</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">profit</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">snames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">snames</span><span class="p">:</span>
+    <span class="n">profit</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;balance_</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">])),</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">score</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;score_</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;balance_</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Player Balance ($)&#39;</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">)</span>
+<span class="n">score</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Simulation Step&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Player Score Unnormalized ($)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_32_0.png" src="../_images/01.run_scml2020_32_0.png" />
+<p>or just look at the end of the game</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">profit</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">final_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score_</span><span class="si">{_}</span><span class="s2">&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">]</span>
+<span class="n">final_profits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;balance_</span><span class="si">{_}</span><span class="s2">&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;balance_</span><span class="si">{_}</span><span class="s2">&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">100</span>
+                 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">profit</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">score</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">,</span> <span class="n">final_scores</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">,</span> <span class="n">final_profits</span><span class="p">)</span>
+<span class="n">score</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Final Score (%)&quot;</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Final Profit (%)&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_34_0.png" src="../_images/01.run_scml2020_34_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">profit</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">final_scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score_</span><span class="si">{_}</span><span class="s2">&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;balance_</span><span class="si">{_}</span><span class="s2">&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">]</span>
+<span class="n">final_profits</span> <span class="o">=</span> <span class="p">[</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;balance_</span><span class="si">{_}</span><span class="s2">&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">score</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">profit</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_majorticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">score</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">,</span> <span class="n">final_scores</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">,</span> <span class="n">final_profits</span><span class="p">)</span>
+<span class="n">score</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Final Unnormalized Score ($)&quot;</span><span class="p">)</span>
+<span class="n">profit</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Final Balance  ($)&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_35_0.png" src="../_images/01.run_scml2020_35_0.png" />
+<p>You can inspect what happened in the simulation by plotting different
+output statistics. For example, we can see how did the trading price of
+different products change over the simulation time.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;trading_price&quot;</span><span class="p">,</span> <span class="s2">&quot;sold_quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">n_products</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{key}</span><span class="s2">_</span><span class="si">{p}</span><span class="s2">&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Product </span><span class="si">{p}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-.</span><span class="mi">5</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_37_0.png" src="../_images/01.run_scml2020_37_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;spot_market_quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;spot_market_loss&quot;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{key}</span><span class="s2">_</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-.</span><span class="mi">2</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_38_0.png" src="../_images/01.run_scml2020_38_0.png" />
+<p>You can dig futher to understand what happened during this siumulation.
+For example, let’s see some of the contracts that were signed:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a view with only signed contracts</span>
+<span class="n">contracts</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">contracts_df</span>
+<span class="n">signed</span> <span class="o">=</span> <span class="n">contracts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">contracts</span><span class="o">.</span><span class="n">signed_at</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;seller_name&quot;</span><span class="p">,</span> <span class="s2">&quot;buyer_name&quot;</span><span class="p">,</span> <span class="s2">&quot;delivery_time&quot;</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;signed_at&quot;</span><span class="p">,</span> <span class="s2">&quot;executed&quot;</span><span class="p">,</span> <span class="s2">&quot;breached&quot;</span><span class="p">,</span> <span class="s2">&quot;nullified&quot;</span><span class="p">,</span> <span class="s2">&quot;erred&quot;</span><span class="p">]</span>
+<span class="n">signed</span><span class="p">[</span><span class="n">fields</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>seller_name</th>
+      <th>buyer_name</th>
+      <th>delivery_time</th>
+      <th>quantity</th>
+      <th>unit_price</th>
+      <th>signed_at</th>
+      <th>executed</th>
+      <th>breached</th>
+      <th>nullified</th>
+      <th>erred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>703</th>
+      <td>07Buy@2</td>
+      <td>09Dec@3</td>
+      <td>9</td>
+      <td>66</td>
+      <td>31</td>
+      <td>2</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>722</th>
+      <td>06Buy@2</td>
+      <td>09Dec@3</td>
+      <td>10</td>
+      <td>65</td>
+      <td>31</td>
+      <td>2</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>733</th>
+      <td>06Buy@2</td>
+      <td>10Dec@3</td>
+      <td>9</td>
+      <td>62</td>
+      <td>31</td>
+      <td>2</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>700</th>
+      <td>06Buy@2</td>
+      <td>10Dec@3</td>
+      <td>10</td>
+      <td>61</td>
+      <td>31</td>
+      <td>2</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>698</th>
+      <td>07Buy@2</td>
+      <td>10Dec@3</td>
+      <td>8</td>
+      <td>53</td>
+      <td>31</td>
+      <td>2</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>916</th>
+      <td>08Ind@2</td>
+      <td>09Dec@3</td>
+      <td>15</td>
+      <td>46</td>
+      <td>31</td>
+      <td>4</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>709</th>
+      <td>06Buy@2</td>
+      <td>09Dec@3</td>
+      <td>7</td>
+      <td>45</td>
+      <td>31</td>
+      <td>2</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>905</th>
+      <td>06Buy@2</td>
+      <td>10Dec@3</td>
+      <td>22</td>
+      <td>45</td>
+      <td>31</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2254</th>
+      <td>05Dec@1</td>
+      <td>08Ind@2</td>
+      <td>36</td>
+      <td>38</td>
+      <td>35</td>
+      <td>26</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>913</th>
+      <td>06Buy@2</td>
+      <td>09Dec@3</td>
+      <td>24</td>
+      <td>31</td>
+      <td>31</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Let’s check some of the contracts that were fully executed</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">signed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">signed</span><span class="o">.</span><span class="n">executed</span><span class="p">,</span> <span class="n">fields</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>seller_name</th>
+      <th>buyer_name</th>
+      <th>delivery_time</th>
+      <th>quantity</th>
+      <th>unit_price</th>
+      <th>signed_at</th>
+      <th>executed</th>
+      <th>breached</th>
+      <th>nullified</th>
+      <th>erred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2254</th>
+      <td>05Dec@1</td>
+      <td>08Ind@2</td>
+      <td>36</td>
+      <td>38</td>
+      <td>35</td>
+      <td>26</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1247</th>
+      <td>05Dec@1</td>
+      <td>08Ind@2</td>
+      <td>14</td>
+      <td>28</td>
+      <td>35</td>
+      <td>8</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2450</th>
+      <td>08Ind@2</td>
+      <td>09Dec@3</td>
+      <td>39</td>
+      <td>23</td>
+      <td>45</td>
+      <td>34</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>828</th>
+      <td>08Ind@2</td>
+      <td>09Dec@3</td>
+      <td>27</td>
+      <td>22</td>
+      <td>48</td>
+      <td>3</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2399</th>
+      <td>08Ind@2</td>
+      <td>10Dec@3</td>
+      <td>37</td>
+      <td>20</td>
+      <td>45</td>
+      <td>31</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1725</th>
+      <td>00Dec@0</td>
+      <td>03Ind@1</td>
+      <td>23</td>
+      <td>20</td>
+      <td>26</td>
+      <td>15</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2222</th>
+      <td>04Dec@1</td>
+      <td>08Ind@2</td>
+      <td>35</td>
+      <td>19</td>
+      <td>37</td>
+      <td>25</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2225</th>
+      <td>04Dec@1</td>
+      <td>07Buy@2</td>
+      <td>30</td>
+      <td>19</td>
+      <td>35</td>
+      <td>25</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2449</th>
+      <td>03Ind@1</td>
+      <td>07Buy@2</td>
+      <td>39</td>
+      <td>19</td>
+      <td>35</td>
+      <td>34</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2288</th>
+      <td>00Dec@0</td>
+      <td>05Dec@1</td>
+      <td>37</td>
+      <td>19</td>
+      <td>18</td>
+      <td>27</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">signed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">signed</span><span class="o">.</span><span class="n">breached</span><span class="p">,</span> <span class="n">fields</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;breaches&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>seller_name</th>
+      <th>buyer_name</th>
+      <th>delivery_time</th>
+      <th>quantity</th>
+      <th>unit_price</th>
+      <th>signed_at</th>
+      <th>breaches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>703</th>
+      <td>07Buy@2</td>
+      <td>09Dec@3</td>
+      <td>9</td>
+      <td>66</td>
+      <td>31</td>
+      <td>2</td>
+      <td>07Buy@2:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>722</th>
+      <td>06Buy@2</td>
+      <td>09Dec@3</td>
+      <td>10</td>
+      <td>65</td>
+      <td>31</td>
+      <td>2</td>
+      <td>06Buy@2:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>733</th>
+      <td>06Buy@2</td>
+      <td>10Dec@3</td>
+      <td>9</td>
+      <td>62</td>
+      <td>31</td>
+      <td>2</td>
+      <td>06Buy@2:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>700</th>
+      <td>06Buy@2</td>
+      <td>10Dec@3</td>
+      <td>10</td>
+      <td>61</td>
+      <td>31</td>
+      <td>2</td>
+      <td>06Buy@2:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>698</th>
+      <td>07Buy@2</td>
+      <td>10Dec@3</td>
+      <td>8</td>
+      <td>53</td>
+      <td>31</td>
+      <td>2</td>
+      <td>07Buy@2:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>916</th>
+      <td>08Ind@2</td>
+      <td>09Dec@3</td>
+      <td>15</td>
+      <td>46</td>
+      <td>31</td>
+      <td>4</td>
+      <td>08Ind@2:product(0.5869565217391305)</td>
+    </tr>
+    <tr>
+      <th>709</th>
+      <td>06Buy@2</td>
+      <td>09Dec@3</td>
+      <td>7</td>
+      <td>45</td>
+      <td>31</td>
+      <td>2</td>
+      <td>06Buy@2:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>2070</th>
+      <td>01Ind@0</td>
+      <td>05Dec@1</td>
+      <td>30</td>
+      <td>27</td>
+      <td>18</td>
+      <td>22</td>
+      <td>01Ind@0:product(1.0)</td>
+    </tr>
+    <tr>
+      <th>737</th>
+      <td>01Ind@0</td>
+      <td>04Dec@1</td>
+      <td>13</td>
+      <td>24</td>
+      <td>18</td>
+      <td>2</td>
+      <td>01Ind@0:product(0.5833333333333334)</td>
+    </tr>
+    <tr>
+      <th>983</th>
+      <td>00Dec@0</td>
+      <td>05Dec@1</td>
+      <td>14</td>
+      <td>24</td>
+      <td>18</td>
+      <td>5</td>
+      <td>00Dec@0:product(0.5833333333333334)</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>We can now see how does the singning day affect delivery day, product
+and quantity</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;delivery_time&quot;</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;product_index&quot;</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">signed</span><span class="o">.</span><span class="n">signed_at</span><span class="p">,</span> <span class="n">signed</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Signing Day&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_46_0.png" src="../_images/01.run_scml2020_46_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;delivery_time&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;product_index&quot;</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">signed</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span> <span class="n">signed</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Quantity&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_47_0.png" src="../_images/01.run_scml2020_47_0.png" />
+<p>Did any agents go bankrupt and when?</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bankruptcy</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;bankrupt_</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">non_system_agent_names</span><span class="p">}</span>
+<span class="n">pprint</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="s2">&quot;No&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">1</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;at: </span><span class="si">{v[0]}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">bankruptcy</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;00Dec@0&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;01Ind@0&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;02Mov@0&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;03Ind@1&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;04Dec@1&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;05Dec@1&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;06Buy@2&#39;</span><span class="p">:</span> <span class="s1">&#39;at: 17&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;07Buy@2&#39;</span><span class="p">:</span> <span class="s1">&#39;at: 43&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;08Ind@2&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;09Dec@3&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;10Dec@3&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;11Mov@3&#39;</span><span class="p">:</span> <span class="s1">&#39;No&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>You can see what happened during this simulation by drawing graphs at
+different steps. The meaning of different edge colors can be drawn as
+follows:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">show_edge_colors</span>
+<span class="n">show_edge_colors</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_51_0.png" src="../_images/01.run_scml2020_51_0.png" />
+<p>You can see what happened in this world in a series of graphs using the
+<code class="docutils literal notranslate"><span class="pre">draw</span></code> method</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">together</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_53_0.png" src="../_images/01.run_scml2020_53_0.png" />
+<p>You can also run a simple animation to see what happens at every step
+(you need to download the jupyter notebook and execute it to see the
+animation) :</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare animation</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+<span class="kn">from</span> <span class="nn">negmas.helpers</span> <span class="kn">import</span> <span class="n">humanize_time</span>
+<span class="kn">import</span> <span class="nn">gif</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># define animation parameters</span>
+<span class="n">draw_every</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># draw every 5 steps (drawing is REALLY slow)</span>
+<span class="n">single_graph</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># show a graph for every event type</span>
+<span class="c1"># what = [&quot;contracts-signed&quot;, &quot;contracts-breached&quot;, &quot;contracts-executed&quot;,]</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># define the animation function. Simply draw the world</span>
+<span class="nd">@gif</span><span class="o">.</span><span class="n">frame</span>
+<span class="k">def</span> <span class="nf">plot_frame</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="c1">#what=what,</span>
+               <span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">draw_every</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span>
+               <span class="n">together</span><span class="o">=</span><span class="n">single_graph</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="c1"># create frames</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">%</span> <span class="n">draw_every</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot_frame</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;run.gif&quot;</span>
+<span class="n">path</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gif</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">duration</span><span class="o">=</span><span class="mi">1000</span> <span class="o">//</span> <span class="n">fps</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HBox</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">(</span><span class="n">FloatProgress</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">50.0</span><span class="p">),</span> <span class="n">HTML</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>then show the animation</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;img src=&quot;run.gif&quot;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="run.gif"><p>Note that this graph shows only what happened in the last <code class="docutils literal notranslate"><span class="pre">draw_every</span></code>
+steps.</p>
+<p>Let’s see some statistics about the simulation.</p>
+</div>
+<div class="section" id="running-a-tournament">
+<h1>Running a tournament<a class="headerlink" href="#running-a-tournament" title="Permalink to this headline">¶</a></h1>
+<p>Now that you can run simple world simulations, let’s try to run a
+complete tournament and see its results. Let’s start by running a
+standard tournament (in which each agent is represented by a single
+factory). Running a collusion tournament will be exactly the same with
+the only difference that <code class="docutils literal notranslate"><span class="pre">anac2020_std</span></code> will be replaced with
+<code class="docutils literal notranslate"><span class="pre">anac2020_collusion</span></code>.</p>
+<p>Note that in the real competition we use thousands of configurations and
+longer simulation steps (e.g. 50 <span class="math notranslate nohighlight">\(\le\)</span> n_steps <span class="math notranslate nohighlight">\(\le\)</span> 500).</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020.utils</span> <span class="kn">import</span> <span class="n">anac2020_std</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tournament_types</span> <span class="o">=</span> <span class="n">agent_types</span> <span class="o">+</span> <span class="p">[</span><span class="n">RandomAgent</span><span class="p">]</span>
+<span class="c1"># may take a long time</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">anac2020_std</span><span class="p">(</span>
+    <span class="n">competitors</span><span class="o">=</span><span class="n">tournament_types</span><span class="p">,</span>
+    <span class="n">n_configs</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="c1"># number of different configurations to generate</span>
+    <span class="n">n_runs_per_world</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># number of times to repeat every simulation (with agent assignment)</span>
+    <span class="n">n_steps</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="c1"># number of days (simulation steps) per simulation</span>
+    <span class="n">print_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Who was the winner?</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">winners</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;decentralizing_agent&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>How many simulations were actually run?</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">scores</span><span class="o">.</span><span class="n">run_id</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">60</span>
+</pre></div>
+</div>
+<p>The total number of simulations <span class="math notranslate nohighlight">\(n_{s}\)</span> will be
+<span class="math notranslate nohighlight">\(n_t \times n_c \times n_r\)</span> where <span class="math notranslate nohighlight">\(n_t\)</span> is the number of
+competitor agent types, <span class="math notranslate nohighlight">\(n_c\)</span> is the number of configurations, and
+<span class="math notranslate nohighlight">\(n_r\)</span> is the number of runs per configuration</p>
+<p>We can also see the scores that every agent type got</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">score_stats</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agent_type</th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>60.0</td>
+      <td>-0.460880</td>
+      <td>0.399413</td>
+      <td>-2.202297</td>
+      <td>-0.512401</td>
+      <td>-0.321267</td>
+      <td>-0.249171</td>
+      <td>-0.044618</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>decentralizing_agent</td>
+      <td>60.0</td>
+      <td>0.180795</td>
+      <td>0.205134</td>
+      <td>-0.123303</td>
+      <td>0.034685</td>
+      <td>0.142906</td>
+      <td>0.323354</td>
+      <td>0.657287</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ind_decentralizing_agent</td>
+      <td>60.0</td>
+      <td>0.161280</td>
+      <td>0.199404</td>
+      <td>-0.122533</td>
+      <td>0.023384</td>
+      <td>0.120836</td>
+      <td>0.239894</td>
+      <td>0.832956</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>moving_range_agent</td>
+      <td>60.0</td>
+      <td>-0.052376</td>
+      <td>0.081866</td>
+      <td>-0.211015</td>
+      <td>-0.108780</td>
+      <td>-0.052406</td>
+      <td>0.000000</td>
+      <td>0.146121</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>random_agent</td>
+      <td>60.0</td>
+      <td>-0.538307</td>
+      <td>0.375828</td>
+      <td>-1.905989</td>
+      <td>-0.540328</td>
+      <td>-0.391387</td>
+      <td>-0.352393</td>
+      <td>-0.162312</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>You can also do statistical significance testing using ttest or kstest
+(with multi-comparison correction)</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">kstest</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>t</th>
+      <th>p</th>
+      <th>n_a</th>
+      <th>n_b</th>
+      <th>n_effective</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ind_decentralizing_agent</td>
+      <td>decentralizing_agent</td>
+      <td>0.133333</td>
+      <td>6.647506e-01</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ind_decentralizing_agent</td>
+      <td>random_agent</td>
+      <td>1.000000</td>
+      <td>2.070074e-35</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ind_decentralizing_agent</td>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>0.983333</td>
+      <td>2.484089e-33</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ind_decentralizing_agent</td>
+      <td>moving_range_agent</td>
+      <td>0.633333</td>
+      <td>1.306907e-11</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>decentralizing_agent</td>
+      <td>random_agent</td>
+      <td>1.000000</td>
+      <td>2.070074e-35</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>decentralizing_agent</td>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>0.983333</td>
+      <td>2.484089e-33</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>decentralizing_agent</td>
+      <td>moving_range_agent</td>
+      <td>0.650000</td>
+      <td>2.904237e-12</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>random_agent</td>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>0.366667</td>
+      <td>5.569711e-04</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>random_agent</td>
+      <td>moving_range_agent</td>
+      <td>0.983333</td>
+      <td>2.484089e-33</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>moving_range_agent</td>
+      <td>0.850000</td>
+      <td>2.164592e-22</td>
+      <td>60</td>
+      <td>60</td>
+      <td>60</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>see the total score</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">total_scores</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agent_type</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>decentralizing_agent</td>
+      <td>0.142906</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ind_decentralizing_agent</td>
+      <td>0.120836</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>moving_range_agent</td>
+      <td>-0.052406</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>-0.321267</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>random_agent</td>
+      <td>-0.391387</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>or the aggregated statistics of the world. For example, let’s draw the
+activity level for different simulations.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">agg_stats</span><span class="p">)),</span>
+             <span class="n">results</span><span class="o">.</span><span class="n">agg_stats</span><span class="o">.</span><span class="n">activity_level_mean</span><span class="p">,</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">agg_stats</span><span class="o">.</span><span class="n">activity_level_var</span><span class="p">)</span>
+             <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Simulation Number&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Activity Level&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_73_0.png" src="../_images/01.run_scml2020_73_0.png" />
+<p>We can even get the scores of every agent belonging to every agent type
+at every simulation</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">scores</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;agent_name&quot;</span><span class="p">,</span> <span class="s2">&quot;agent_type&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agent_name</th>
+      <th>agent_type</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00Ind@0</td>
+      <td>ind_decentralizing_agent</td>
+      <td>0.626623</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01Dec@0</td>
+      <td>decentralizing_agent</td>
+      <td>0.322342</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>02Ran@1</td>
+      <td>random_agent</td>
+      <td>-1.372634</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>04Buy@2</td>
+      <td>buy_cheap_sell_expensive_agent</td>
+      <td>-0.334364</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>05Mov@2</td>
+      <td>moving_range_agent</td>
+      <td>-0.134590</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>or inspect any statistic we like</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">stats</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;step&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;activity_level&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Activity Level / Business Size ($)&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Step Number&quot;</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_77_0.png" src="../_images/01.run_scml2020_77_0.png" />
+<p>Let’s see how did the location at the production graph affect the score
+of each type.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;level&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">scores</span><span class="o">.</span><span class="n">agent_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">scores</span><span class="p">[[</span><span class="s2">&quot;agent_type&quot;</span><span class="p">,</span> <span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]],</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;agent_type&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;level&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="s2">&quot;b--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/01.run_scml2020_79_0.png" src="../_images/01.run_scml2020_79_0.png" />
+<p>Now that you can run simulations and complete tournament, let’s see how
+are we going to develop a new agent for the SCML2020 league
+<span class="math notranslate nohighlight">\(\rightarrow\)</span></p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/f8f8d36abcbf42c2073419dfac852be4/01.run_scml2020.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Notebook</span></code></a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02.develop_agent_scml2020.html" class="btn btn-neutral float-right" title="Developing an agent for SCML2020" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tutorials.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SCMLAWI &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FactoryManager" href="scml.scml2019.FactoryManager.html" />
+    <link rel="prev" title="FactoryState" href="scml.scml2019.FactoryState.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules/scml2019.html">SCML2019</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../modules/scml2019.html#classes">Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../modules/scml2019.html">SCML2019</a> &raquo;</li>
+        
+      <li>SCMLAWI</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/scml.scml2019.SCMLAWI.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scmlawi">
+<h1>SCMLAWI<a class="headerlink" href="#scmlawi" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="scml.scml2019.SCMLAWI">
+<em class="property">class </em><code class="sig-prename descclassname">scml.scml2019.</code><code class="sig-name descname">SCMLAWI</code><span class="sig-paren">(</span><em class="sig-param">world</em>, <em class="sig-param">agent</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">negmas.situated.AgentWorldInterface</span></code></p>
+<p>A single contact point between SCML agents and the world simulation.</p>
+<p>The agent can access the world simulation in one of two ways:</p>
+<ol class="arabic simple">
+<li><p>Attributes and methods available in this Agent-SCML2020World-Interface</p></li>
+<li><p>Attributes and methods in the <a class="reference internal" href="scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> object itself which provide handy shortcuts
+to the agent-world interface</p></li>
+</ol>
+<p><strong>Attributes</strong></p>
+<p><em>Simulation settings</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.current_step" title="scml.scml2019.SCMLAWI.current_step"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">current_step</span></code></a> : Current simulation step</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.default_signing_delay" title="scml.scml2019.SCMLAWI.default_signing_delay"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">default_signing_delay</span></code></a> : The grace period allowed between contract conclusion and signature
+by default (i.e. if not agreed upon during the negotiation)</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.n_steps" title="scml.scml2019.SCMLAWI.n_steps"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">n_steps</span></code></a> : Total number of simulation steps.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.relative_time" title="scml.scml2019.SCMLAWI.relative_time"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">relative_time</span></code></a> : The fraction of total simulation time elapsed (it will be a number between 0 and 1)</p></li>
+</ul>
+<p><em>Production Graph</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.products" title="scml.scml2019.SCMLAWI.products"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">products</span></code></a> : A list of <a class="reference internal" href="scml.scml2019.Product.html#scml.scml2019.Product" title="scml.scml2019.Product"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Product</span></code></a> objects giving all products defined in the world simulation</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.processes" title="scml.scml2019.SCMLAWI.processes"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">processes</span></code></a> : A list of <a class="reference internal" href="scml.scml2019.Process.html#scml.scml2019.Process" title="scml.scml2019.Process"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> objects giving all products defined in the world simulation</p></li>
+</ul>
+<p><em>Agent Related</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.state" title="scml.scml2019.SCMLAWI.state"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> : The current private state available to the agent. In SCML it is a <a class="reference internal" href="scml.scml2019.FactoryState.html#scml.scml2019.FactoryState" title="scml.scml2019.FactoryState"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryState</span></code></a> object.</p></li>
+</ul>
+<p><strong>Methods</strong></p>
+<p><em>Production Control</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.schedule_job" title="scml.scml2019.SCMLAWI.schedule_job"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">schedule_job</span></code></a> : Schedules a <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.Job"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> for production sometime in the future</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.schedule_production" title="scml.scml2019.SCMLAWI.schedule_production"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">schedule_production</span></code></a> : Schedules production using profile number instead of a <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.Job"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.cancel_production" title="scml.scml2019.SCMLAWI.cancel_production"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">cancel_production</span></code></a> : Cancels already scheduled production (if it did not start yet) or stop a running
+production.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.execute" title="scml.scml2019.SCMLAWI.execute"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">execute</span></code></a> : A general function to execute any command on the factory. There is no need to directly call
+this function as the SCMLAWI provides convenient functions (e.g. <a class="reference internal" href="#scml.scml2019.SCMLAWI.schedule_job" title="scml.scml2019.SCMLAWI.schedule_job"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">schedule_job</span></code></a> , <a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_funds" title="scml.scml2019.SCMLAWI.hide_funds"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hide_funds</span></code></a> , etc)
+to achieve the same goal without having to worry about creating <code class="xref any docutils literal notranslate"><span class="pre">Action</span></code> objects</p></li>
+</ul>
+<p><em>Storage and Wallet Control</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_funds" title="scml.scml2019.SCMLAWI.hide_funds"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hide_funds</span></code></a> : Hides funds from the view of the simulator. Note that when bankruptcy is considered, hidden
+funds are visible to the simulator.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_inventory" title="scml.scml2019.SCMLAWI.hide_inventory"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hide_inventory</span></code></a> : Hides inventory from the view of the simulator. Note that when bankruptcy is considered, hidden
+funds are visible to the simulator.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.unhide_funds" title="scml.scml2019.SCMLAWI.unhide_funds"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">unhide_funds</span></code></a> : Un-hides funds hidden earlier with a call to <a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_funds" title="scml.scml2019.SCMLAWI.hide_funds"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hide_funds</span></code></a></p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.unhide_inventory" title="scml.scml2019.SCMLAWI.unhide_inventory"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">unhide_inventory</span></code></a> : Un-hides inventory hidden earlier with a call to <a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_inventory" title="scml.scml2019.SCMLAWI.hide_inventory"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">hide_inventory</span></code></a></p></li>
+</ul>
+<p><em>Negotiation and CFP Control</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.register_cfp" title="scml.scml2019.SCMLAWI.register_cfp"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">register_cfp</span></code></a> : Registers a Call-for-Proposals on the bulletin board.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.remove_cfp" title="scml.scml2019.SCMLAWI.remove_cfp"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">remove_cfp</span></code></a> : Removes a Call-for-Proposals from the  bulletin board.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.request_negotiation" title="scml.scml2019.SCMLAWI.request_negotiation"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">request_negotiation</span></code></a> : Requests a negotiation based on the content of a CFP published on the bulletin-board.
+<a href="#id1"><span class="problematic" id="id2">*</span></a>It is recommended not to use this method directly and to request negotiations using the
+request_negotiation method of <a class="reference internal" href="scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> (i.e. use self.request_negotiation instead
+of self.awi.request_negotiation). This makes it possible for NegMAS to keep track of
+existing <a class="reference internal" href="scml.scml2019.Bank.html#scml.scml2019.Bank.requested_negotiations" title="scml.scml2019.Bank.requested_negotiations"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">requested_negotiations</span></code></a> and <a class="reference internal" href="scml.scml2019.Bank.html#scml.scml2019.Bank.running_negotiations" title="scml.scml2019.Bank.running_negotiations"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">running_negotiations</span></code></a> for you.</p></li>
+</ul>
+<p><em>Notification Control</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.receive_financial_reports" title="scml.scml2019.SCMLAWI.receive_financial_reports"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">receive_financial_reports</span></code></a> : Register/unregisters interest in receiving financial reports for an agent, a set of
+agents or all agents.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.register_interest" title="scml.scml2019.SCMLAWI.register_interest"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">register_interest</span></code></a> : registers interest in receiving CFPs about a set of products. By default all
+<a class="reference internal" href="scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> objects are registered to receive all CFPs for any product they
+can produce or need to consumer according to their line-profiles.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.unregister_interest" title="scml.scml2019.SCMLAWI.unregister_interest"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">unregister_interest</span></code></a> : unregisters interest in receiving CFPs about a set of products.</p></li>
+</ul>
+<p><em>Information about Other Agents</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.is_bankrupt" title="scml.scml2019.SCMLAWI.is_bankrupt"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">is_bankrupt</span></code></a> : Asks about the bankruptcy status of an agent</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.receive_financial_reports" title="scml.scml2019.SCMLAWI.receive_financial_reports"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">receive_financial_reports</span></code></a> : Register/unregisters interest in receiving financial reports for an agent, a set of
+agents or all agents.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.reports_at" title="scml.scml2019.SCMLAWI.reports_at"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reports_at</span></code></a> : reads <em>all</em> financial reports produced at a given time-step</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.reports_for" title="scml.scml2019.SCMLAWI.reports_for"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">reports_for</span></code></a> : reads <em>all</em> financial reports of a given agent</p></li>
+</ul>
+<p><em>Financial Control</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.evaluate_insurance" title="scml.scml2019.SCMLAWI.evaluate_insurance"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">evaluate_insurance</span></code></a> : Asks for the premium to be paid for insuring against partner breaches
+for a given contract</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.buy_insurance" title="scml.scml2019.SCMLAWI.buy_insurance"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">buy_insurance</span></code></a> : Buys an insurance against partner breaches for a given contract</p></li>
+</ul>
+<p><em>Bulletin-Board</em></p>
+<p>The bulletin-board is a key-value store. These methods allows the agent to interact with it. <em>The `SCMLAWI` provides
+convenient functions for recording to the bulletin-board so you mostly need to use read/query functions</em>.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_read" title="scml.scml2019.SCMLAWI.bb_read"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">bb_read</span></code></a> : Reads a complete section or a single value from the bulletin-board</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_query" title="scml.scml2019.SCMLAWI.bb_query"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">bb_query</span></code></a> : Returns all records in the given section/sections of the bulletin-board that satisfy a query</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_record" title="scml.scml2019.SCMLAWI.bb_record"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">bb_record</span></code></a> : Registers a record in the bulletin-board.</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_remove" title="scml.scml2019.SCMLAWI.bb_remove"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">bb_remove</span></code></a> : Removes a record from the bulletin-board.</p></li>
+</ul>
+<p>The following list of sections are available in the SCML Bulletin-Board (Use the exact string for the <code class="docutils literal notranslate"><span class="pre">section</span></code>
+parameter of any method starting with <code class="docutils literal notranslate"><span class="pre">bb_</span></code>):</p>
+<ul>
+<li><p><strong>cfps</strong>: All CFPs currently on the board. The key is the CFP ID</p></li>
+<li><p><strong>products</strong>: A list of all products. The key is the product index/ID</p></li>
+<li><p><strong>processes</strong>: A list of all processes. The key is the product index/ID</p></li>
+<li><p><strong>bankruptcy</strong>: The bankruptcy list giving names of all bankrupt agents.</p></li>
+<li><p><strong>reports_time</strong>: Financial reports indexed by time.</p></li>
+<li><p><strong>reports_agent</strong>: Financial reports indexed by agent</p></li>
+<li><p><strong>breaches</strong>: Breach-list indexed by breach ID giving all breaches committed in the system</p></li>
+<li><p><strong>settings</strong>: Static settings of the simulation.</p>
+<p>The following settings are currently available:</p>
+<ul class="simple">
+<li><p><em>breach_penalty_society</em>: Penalty of breaches paid to society (as a fraction of contract value). This is always
+paid for every breach whether or not there is a negotiated breach.</p></li>
+<li><p><em>breach_penalty_victim</em>: Penalty of breaches paid to victim (as a fraction of contract value). This is always
+paid for every breach whether or not there is a negotiated breach.</p></li>
+<li><p><em>immediate_negotiations</em>: Whether negotiations start immediately when registered (the other possibility – which
+is the default – is for them to start at the next production step).</p></li>
+<li><p><em>negotiation_speed_multiple</em>: Number of negotiation steps that finish in a single production step.</p></li>
+<li><p><em>negotiation_n_steps</em>: Maximum allowed number of steps (rounds) in any negotiation</p></li>
+<li><p><em>negotiation_step_time_limit</em>: The maximum real-time allowed for each negotiation step (round)</p></li>
+<li><p><em>negotiation_time_limit</em>: The time limit for a complete negotiation.</p></li>
+<li><p><em>transportation_delay</em>: Transportation delay when products are moved between factories. Default is zero.</p></li>
+<li><p><em>transfer_delay</em>: The delay in transferring funds between factories when executing a contract. Default is zero.</p></li>
+<li><p><em>n_steps</em>: Number of simulation steps</p></li>
+<li><p><em>time_limit</em>: Time limit for the complete simulation</p></li>
+</ul>
+</li>
+<li><p>stats: Global statistics about the simulation. <strong>Not available for SCML 2019 league</strong>.</p></li>
+</ul>
+<p><em>Logging</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logerror" title="scml.scml2019.SCMLAWI.logerror"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">logerror</span></code></a> : Logs an error in the world simulation log file</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logwarning" title="scml.scml2019.SCMLAWI.logwarning"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">logwarning</span></code></a> : Logs a warning in the world simulation log file</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.loginfo" title="scml.scml2019.SCMLAWI.loginfo"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">loginfo</span></code></a> : Logs information in the world simulation log file</p></li>
+<li><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logdebug" title="scml.scml2019.SCMLAWI.logdebug"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">logdebug</span></code></a> : Logs debug information in the world simulation log file</p></li>
+</ul>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.current_step" title="scml.scml2019.SCMLAWI.current_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_step</span></code></a></p></td>
+<td><p>Current simulation step</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.default_signing_delay" title="scml.scml2019.SCMLAWI.default_signing_delay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_signing_delay</span></code></a></p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.n_steps" title="scml.scml2019.SCMLAWI.n_steps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_steps</span></code></a></p></td>
+<td><p>Number of steps in a simulation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.processes" title="scml.scml2019.SCMLAWI.processes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processes</span></code></a></p></td>
+<td><p>Processes in the world</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.products" title="scml.scml2019.SCMLAWI.products"><code class="xref py py-obj docutils literal notranslate"><span class="pre">products</span></code></a></p></td>
+<td><p>Products in the world</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.relative_time" title="scml.scml2019.SCMLAWI.relative_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">relative_time</span></code></a></p></td>
+<td><p>Relative time of the simulation going from 0 to 1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.settings" title="scml.scml2019.SCMLAWI.settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settings</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.state" title="scml.scml2019.SCMLAWI.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code></a></p></td>
+<td><p>Returns the private state of the agent in that world.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_query" title="scml.scml2019.SCMLAWI.bb_query"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bb_query</span></code></a>(section, query[, query_keys])</p></td>
+<td><p>Returns all records in the given section/sections of the bulletin-board that satisfy the query</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_read" title="scml.scml2019.SCMLAWI.bb_read"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bb_read</span></code></a>(section, key)</p></td>
+<td><p>Reads the value associated with given key from the bulletin board</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_record" title="scml.scml2019.SCMLAWI.bb_record"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bb_record</span></code></a>(section, value[, key])</p></td>
+<td><p>Records data in the given section of the bulletin board</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.bb_remove" title="scml.scml2019.SCMLAWI.bb_remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bb_remove</span></code></a>(section, *[, query, key, …])</p></td>
+<td><p>Removes a value or a set of values from the bulletin Board</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.buy_insurance" title="scml.scml2019.SCMLAWI.buy_insurance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">buy_insurance</span></code></a>(contract)</p></td>
+<td><p>Buys insurance for the contract by the premium calculated by the insurance company.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.cancel_production" title="scml.scml2019.SCMLAWI.cancel_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cancel_production</span></code></a>(line, step, contract[, …])</p></td>
+<td><p>Stops/cancels production scheduled at the given line at the given time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.evaluate_insurance" title="scml.scml2019.SCMLAWI.evaluate_insurance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_insurance</span></code></a>(contract[, t])</p></td>
+<td><p>Can be called to evaluate the premium for insuring the given contract against breaches committed by others</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.execute" title="scml.scml2019.SCMLAWI.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execute</span></code></a>(action[, callback])</p></td>
+<td><p>Executes an action in the world simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_funds" title="scml.scml2019.SCMLAWI.hide_funds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hide_funds</span></code></a>(amount)</p></td>
+<td><p>Hides the given amount of money so that it is not accessible by the simulator and does not appear in reports etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.hide_inventory" title="scml.scml2019.SCMLAWI.hide_inventory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hide_inventory</span></code></a>(product, quantity)</p></td>
+<td><p>Hides the given quantity of the given product so that it is not accessible by the simulator and does not appear in reports etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.is_bankrupt" title="scml.scml2019.SCMLAWI.is_bankrupt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_bankrupt</span></code></a>(agent_id)</p></td>
+<td><p>Checks whether the given agent is bankrupt</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logdebug" title="scml.scml2019.SCMLAWI.logdebug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logdebug</span></code></a>(msg)</p></td>
+<td><p>Logs a WARNING message</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logdebug_agent" title="scml.scml2019.SCMLAWI.logdebug_agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logdebug_agent</span></code></a>(msg)</p></td>
+<td><p>Logs a WARNING message to the agent’s log</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logerror" title="scml.scml2019.SCMLAWI.logerror"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logerror</span></code></a>(msg)</p></td>
+<td><p>Logs a WARNING message</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logerror_agent" title="scml.scml2019.SCMLAWI.logerror_agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logerror_agent</span></code></a>(msg)</p></td>
+<td><p>Logs a WARNING message to the agent’s log</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.loginfo" title="scml.scml2019.SCMLAWI.loginfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loginfo</span></code></a>(msg)</p></td>
+<td><p>Logs an INFO message</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.loginfo_agent" title="scml.scml2019.SCMLAWI.loginfo_agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loginfo_agent</span></code></a>(msg)</p></td>
+<td><p>Logs an INFO message to the agent’s log</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logwarning" title="scml.scml2019.SCMLAWI.logwarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logwarning</span></code></a>(msg)</p></td>
+<td><p>Logs a WARNING message</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.logwarning_agent" title="scml.scml2019.SCMLAWI.logwarning_agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logwarning_agent</span></code></a>(msg)</p></td>
+<td><p>Logs a WARNING message to the agent’s log</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.receive_financial_reports" title="scml.scml2019.SCMLAWI.receive_financial_reports"><code class="xref py py-obj docutils literal notranslate"><span class="pre">receive_financial_reports</span></code></a>([receive, agents])</p></td>
+<td><p>Registers/unregisters interest in receiving financial reports</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.register_cfp" title="scml.scml2019.SCMLAWI.register_cfp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_cfp</span></code></a>(cfp)</p></td>
+<td><p>Registers a CFP</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.register_interest" title="scml.scml2019.SCMLAWI.register_interest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_interest</span></code></a>(products)</p></td>
+<td><p>registers interest in receiving callbacks about CFPs related to these products</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.remove_cfp" title="scml.scml2019.SCMLAWI.remove_cfp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_cfp</span></code></a>(cfp)</p></td>
+<td><p>Removes a CFP</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.reports_at" title="scml.scml2019.SCMLAWI.reports_at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reports_at</span></code></a>([step])</p></td>
+<td><p>Gets all financial reports of all agents at a given step</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.reports_for" title="scml.scml2019.SCMLAWI.reports_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reports_for</span></code></a>(agent_id)</p></td>
+<td><p>Gets all financial reports of an agent (in the order of their publication)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.request_negotiation" title="scml.scml2019.SCMLAWI.request_negotiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">request_negotiation</span></code></a>(cfp, req_id[, roles, …])</p></td>
+<td><p>Requests a negotiation with the publisher of a given CFP</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.request_negotiation_about" title="scml.scml2019.SCMLAWI.request_negotiation_about"><code class="xref py py-obj docutils literal notranslate"><span class="pre">request_negotiation_about</span></code></a>(issues, partners, …)</p></td>
+<td><p>Overrides the method of the same name in the base class to disable it in SCM Worlds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.run_negotiation" title="scml.scml2019.SCMLAWI.run_negotiation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_negotiation</span></code></a>(issues, partners, negotiator)</p></td>
+<td><p>Runs a negotiation until completion</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.run_negotiations" title="scml.scml2019.SCMLAWI.run_negotiations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_negotiations</span></code></a>(issues, partners, negotiators)</p></td>
+<td><p>Requests to run a set of negotiations simultaneously.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.schedule_job" title="scml.scml2019.SCMLAWI.schedule_job"><code class="xref py py-obj docutils literal notranslate"><span class="pre">schedule_job</span></code></a>(job, contract)</p></td>
+<td><p>Schedules production using a <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.Job"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.schedule_production" title="scml.scml2019.SCMLAWI.schedule_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">schedule_production</span></code></a>(profile, step[, …])</p></td>
+<td><p>Schedules production on the agent’s factory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.stop_production" title="scml.scml2019.SCMLAWI.stop_production"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_production</span></code></a>(line, step, contract[, override])</p></td>
+<td><p>Stops/cancels production scheduled at the given line at the given time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.unhide_funds" title="scml.scml2019.SCMLAWI.unhide_funds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unhide_funds</span></code></a>(amount)</p></td>
+<td><p>Un-hides the given amount of money so that it is not accessible by the simulator and does not appear in reports etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.unhide_inventory" title="scml.scml2019.SCMLAWI.unhide_inventory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unhide_inventory</span></code></a>(product, quantity)</p></td>
+<td><p>Un-hides the given quantity of the given product so that it is not accessible by the simulator and does not appear in reports etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scml.scml2019.SCMLAWI.unregister_interest" title="scml.scml2019.SCMLAWI.unregister_interest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unregister_interest</span></code></a>(products)</p></td>
+<td><p>registers interest in receiving callbacks about CFPs related to these products</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.current_step">
+<code class="sig-name descname">current_step</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.current_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current simulation step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.default_signing_delay">
+<code class="sig-name descname">default_signing_delay</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.default_signing_delay" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.n_steps">
+<code class="sig-name descname">n_steps</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.n_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of steps in a simulation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.processes">
+<code class="sig-name descname">processes</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.processes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes in the world</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="scml.scml2019.Process.html#scml.scml2019.Process" title="scml.scml2019.common.Process"><code class="xref py py-class docutils literal notranslate"><span class="pre">Process</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.products">
+<code class="sig-name descname">products</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.products" title="Permalink to this definition">¶</a></dt>
+<dd><p>Products in the world</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="scml.scml2019.Product.html#scml.scml2019.Product" title="scml.scml2019.common.Product"><code class="xref py py-class docutils literal notranslate"><span class="pre">Product</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.relative_time">
+<code class="sig-name descname">relative_time</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.relative_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relative time of the simulation going from 0 to 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.settings">
+<code class="sig-name descname">settings</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.settings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="scml.scml2019.SCMLAWI.state">
+<code class="sig-name descname">state</code><a class="headerlink" href="#scml.scml2019.SCMLAWI.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the private state of the agent in that world.</p>
+<p>In the SCML world, that is a reference to its factory. You are allowed to read information from the returned
+<a class="reference internal" href="scml.scml2019.Factory.html#scml.scml2019.Factory" title="scml.scml2019.Factory"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Factory</span></code></a> but <strong>not to modify it or call ANY methods on it that modify the state</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="scml.scml2019.FactoryState.html#scml.scml2019.FactoryState" title="scml.scml2019.common.FactoryState"><code class="xref py py-class docutils literal notranslate"><span class="pre">FactoryState</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.bb_query">
+<code class="sig-name descname">bb_query</code><span class="sig-paren">(</span><em class="sig-param">section</em>, <em class="sig-param">query</em>, <em class="sig-param">query_keys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.bb_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all records in the given section/sections of the bulletin-board that satisfy the query</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – Either a section name, a list of sections or None specifying ALL public sections (see remarks)</p></li>
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – The query which is USUALLY a dict with conditions on it when querying values and a RegExp when</p></li>
+<li><p><strong>keys</strong> (<em>querying</em>) – </p></li>
+<li><p><strong>query_keys</strong> – Whether the query is to be applied to the keys or values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value pairs giving all records that satisfied the given requirements.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>A dictionary with key</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A public section is a section with a name that does not start with an underscore</p></li>
+<li><p>If a set of sections is given, and two records in different sections had the same key, only one of them
+will be returned</p></li>
+<li><p>Key queries use regular expressions and match from the beginning using the standard re.match function</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.bb_read">
+<code class="sig-name descname">bb_read</code><span class="sig-paren">(</span><em class="sig-param">section</em>, <em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.bb_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the value associated with given key from the bulletin board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – section name</p></li>
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Content of that key in the bulletin-board</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.bb_record">
+<code class="sig-name descname">bb_record</code><span class="sig-paren">(</span><em class="sig-param">section</em>, <em class="sig-param">value</em>, <em class="sig-param">key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.bb_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Records data in the given section of the bulletin board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – section name (can contain subsections separated by ‘/’)</p></li>
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The key</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) – The value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.bb_remove">
+<code class="sig-name descname">bb_remove</code><span class="sig-paren">(</span><em class="sig-param">section</em>, <em class="sig-param">*</em>, <em class="sig-param">query=None</em>, <em class="sig-param">key=None</em>, <em class="sig-param">query_keys=False</em>, <em class="sig-param">value=None</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.bb_remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a value or a set of values from the bulletin Board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – The section</p></li>
+<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – the query to use to select what to remove</p></li>
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – the key to remove (no need to give a full query)</p></li>
+<li><p><strong>query_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to apply the query (if given) to keys or values</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]) – Value to be removed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Success of failure</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.buy_insurance">
+<code class="sig-name descname">buy_insurance</code><span class="sig-paren">(</span><em class="sig-param">contract</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.buy_insurance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.buy_insurance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Buys insurance for the contract by the premium calculated by the insurance company.</p>
+<dl class="simple">
+<dt>Remarks:</dt><dd><p>The agent can call <a class="reference internal" href="#scml.scml2019.SCMLAWI.evaluate_insurance" title="scml.scml2019.SCMLAWI.evaluate_insurance"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">evaluate_insurance</span></code></a> to find the premium that will be used.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.cancel_production">
+<code class="sig-name descname">cancel_production</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">step</em>, <em class="sig-param">contract</em>, <em class="sig-param">override=True</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.cancel_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops/cancels production scheduled at the given line at the given time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – One of the factory lines (index)</p></li>
+<li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Step to stop/cancel production at</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.evaluate_insurance">
+<code class="sig-name descname">evaluate_insurance</code><span class="sig-paren">(</span><em class="sig-param">contract</em>, <em class="sig-param">t=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.evaluate_insurance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.evaluate_insurance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can be called to evaluate the premium for insuring the given contract against breaches committed by others</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contract</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Contract</span></code>) – hypothetical contract</p></li>
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – time at which the policy is to be bought. If None, it means current step</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.execute">
+<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param">action</em>, <em class="sig-param">callback=None</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes an action in the world simulation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.hide_funds">
+<code class="sig-name descname">hide_funds</code><span class="sig-paren">(</span><em class="sig-param">amount</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.hide_funds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.hide_funds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hides the given amount of money so that it is not accessible by the simulator and does not appear
+in reports etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>amount</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The amount of money to hide</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>if the current cash in the agent’s wallet is less than the amount to be hidden, all the cash is hidden.</p></li>
+<li><p>hiding is always immediate</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.hide_inventory">
+<code class="sig-name descname">hide_inventory</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.hide_inventory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.hide_inventory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hides the given quantity of the given product so that it is not accessible by the simulator and does not appear
+in reports etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – product index</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – the amount of the product to hide</p></li>
+</ul>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>if the current quantity in storage of the product is less than the amount to be hidden, whatever quantity
+exists is hidden</p></li>
+<li><p>hiding is always immediate</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.is_bankrupt">
+<code class="sig-name descname">is_bankrupt</code><span class="sig-paren">(</span><em class="sig-param">agent_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.is_bankrupt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.is_bankrupt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the given agent is bankrupt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>agent_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Agent ID</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The bankruptcy state of the agent</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.logdebug">
+<code class="sig-name descname">logdebug</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.logdebug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a WARNING message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.logdebug_agent">
+<code class="sig-name descname">logdebug_agent</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.logdebug_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a WARNING message to the agent’s log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.logerror">
+<code class="sig-name descname">logerror</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.logerror" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a WARNING message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.logerror_agent">
+<code class="sig-name descname">logerror_agent</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.logerror_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a WARNING message to the agent’s log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.loginfo">
+<code class="sig-name descname">loginfo</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.loginfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs an INFO message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.loginfo_agent">
+<code class="sig-name descname">loginfo_agent</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.loginfo_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs an INFO message to the agent’s log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.logwarning">
+<code class="sig-name descname">logwarning</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.logwarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a WARNING message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.logwarning_agent">
+<code class="sig-name descname">logwarning_agent</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.logwarning_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a WARNING message to the agent’s log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The message to log</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.receive_financial_reports">
+<code class="sig-name descname">receive_financial_reports</code><span class="sig-paren">(</span><em class="sig-param">receive=True</em>, <em class="sig-param">agents=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.receive_financial_reports"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.receive_financial_reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers/unregisters interest in receiving financial reports</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>receive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – True to receive and False to stop receiving</p></li>
+<li><p><strong>agents</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – If given reception is enabled/disabled only for the given set of agents.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>by default financial reports are not sent to any agents. To opt-in to receive financial reports, call this
+method.</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.register_cfp">
+<code class="sig-name descname">register_cfp</code><span class="sig-paren">(</span><em class="sig-param">cfp</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.register_cfp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.register_cfp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a CFP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.register_interest">
+<code class="sig-name descname">register_interest</code><span class="sig-paren">(</span><em class="sig-param">products</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.register_interest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.register_interest" title="Permalink to this definition">¶</a></dt>
+<dd><p>registers interest in receiving callbacks about CFPs related to these products</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.remove_cfp">
+<code class="sig-name descname">remove_cfp</code><span class="sig-paren">(</span><em class="sig-param">cfp</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.remove_cfp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.remove_cfp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a CFP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.reports_at">
+<code class="sig-name descname">reports_at</code><span class="sig-paren">(</span><em class="sig-param">step=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.reports_at"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.reports_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all financial reports of all agents at a given step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) – Step at which the reports are required. If None, the last set of reports is returned</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="scml.scml2019.FinancialReport.html#scml.scml2019.FinancialReport" title="scml.scml2019.common.FinancialReport"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialReport</span></code></a>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary with agent IDs in keys and their financial reports at the given time as values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.reports_for">
+<code class="sig-name descname">reports_for</code><span class="sig-paren">(</span><em class="sig-param">agent_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.reports_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.reports_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all financial reports of an agent (in the order of their publication)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>agent_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Agent ID</p>
+</dd>
+</dl>
+<p>Returns:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="scml.scml2019.FinancialReport.html#scml.scml2019.FinancialReport" title="scml.scml2019.common.FinancialReport"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialReport</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.request_negotiation">
+<code class="sig-name descname">request_negotiation</code><span class="sig-paren">(</span><em class="sig-param">cfp</em>, <em class="sig-param">req_id</em>, <em class="sig-param">roles=None</em>, <em class="sig-param">mechanism_name=None</em>, <em class="sig-param">mechanism_params=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.request_negotiation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.request_negotiation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Requests a negotiation with the publisher of a given CFP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfp</strong> (<a class="reference internal" href="scml.scml2019.CFP.html#scml.scml2019.CFP" title="scml.scml2019.common.CFP"><code class="xref py py-class docutils literal notranslate"><span class="pre">CFP</span></code></a>) – The CFP to negotiate about</p></li>
+<li><p><strong>req_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – A string that is passed back to the caller in all callbacks related to this negotiation</p></li>
+<li><p><strong>roles</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – The roles of the CFP publisher and the agent (in that order). By default no roles are passed (None)</p></li>
+<li><p><strong>mechanism_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The mechanism type to use. If not given the default mechanism from the world will be used</p></li>
+<li><p><strong>mechanism_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]) – Parameters of the mechanism</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success of failure of the negotiation request</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <a class="reference internal" href="scml.scml2019.SCML2019Agent.html#scml.scml2019.SCML2019Agent" title="scml.scml2019.SCML2019Agent"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SCML2019Agent</span></code></a> class implements another request_negotiation method that does not receive a <code class="xref any docutils literal notranslate"><span class="pre">req_id</span></code>. This
+helper method is recommended as it generates the required req_id and passes it keeping track of requested
+negotiations (and later of running negotiations). Call this method direclty <em>only</em> if you do not
+intend to use the <a class="reference internal" href="scml.scml2019.Bank.html#scml.scml2019.Bank.requested_negotiations" title="scml.scml2019.Bank.requested_negotiations"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">requested_negotiations</span></code></a> and <a class="reference internal" href="scml.scml2019.Bank.html#scml.scml2019.Bank.running_negotiations" title="scml.scml2019.Bank.running_negotiations"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">running_negotiations</span></code></a> properties of the <a class="reference internal" href="scml.scml2019.SCML2019Agent.html#scml.scml2019.SCML2019Agent" title="scml.scml2019.SCML2019Agent"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SCML2019Agent</span></code></a> class</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.request_negotiation_about">
+<code class="sig-name descname">request_negotiation_about</code><span class="sig-paren">(</span><em class="sig-param">issues</em>, <em class="sig-param">partners</em>, <em class="sig-param">req_id</em>, <em class="sig-param">roles=None</em>, <em class="sig-param">annotation=None</em>, <em class="sig-param">mechanism_name=None</em>, <em class="sig-param">mechanism_params=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.request_negotiation_about"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.request_negotiation_about" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overrides the method of the same name in the base class to disable it in SCM Worlds.</p>
+<p><strong>Do not call this method</strong></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.run_negotiation">
+<code class="sig-name descname">run_negotiation</code><span class="sig-paren">(</span><em class="sig-param">issues</em>, <em class="sig-param">partners</em>, <em class="sig-param">negotiator</em>, <em class="sig-param">ufun=None</em>, <em class="sig-param">caller_role=None</em>, <em class="sig-param">roles=None</em>, <em class="sig-param">annotation=None</em>, <em class="sig-param">mechanism_name=None</em>, <em class="sig-param">mechanism_params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.run_negotiation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs a negotiation until completion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>partners</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Collection" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code>]) – The list of partners that the agent wants to negotiate with. Roles will be determined by these agents.</p></li>
+<li><p><strong>negotiator</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Negotiator</span></code>) – The negotiator to be used in the negotiation</p></li>
+<li><p><strong>ufun</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UtilityFunction</span></code>]) – The utility function. Only needed if the negotiator does not already know it</p></li>
+<li><p><strong>caller_role</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The role of the caller in the negotiation</p></li>
+<li><p><strong>issues</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Collection" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Issue</span></code>]) – Negotiation issues</p></li>
+<li><p><strong>annotation</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]) – Extra information to be passed to the <code class="xref any docutils literal notranslate"><span class="pre">partners</span></code> when asking them to join the negotiation</p></li>
+<li><p><strong>partners</strong> – A list of partners to participate in the negotiation</p></li>
+<li><p><strong>roles</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Collection" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – The roles of different partners. If None then each role for each partner will be None</p></li>
+<li><p><strong>mechanism_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – Name of the mechanism to use. It must be one of the mechanism_names that are supported by the</p></li>
+<li><p><strong>or None which means that the World should select the mechanism. If None</strong><strong>, </strong><strong>then roles and my_role</strong> (<em>World</em>) – </p></li>
+<li><p><strong>also be None</strong> (<em>must</em>) – </p></li>
+<li><p><strong>mechanism_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]) – A dict of parameters used to initialize the mechanism object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Contract</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AgentMechanismInterface</span></code>]]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A Tuple of a contract and the ami of the mechanism used to get it in case of success. None otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.run_negotiations">
+<code class="sig-name descname">run_negotiations</code><span class="sig-paren">(</span><em class="sig-param">issues</em>, <em class="sig-param">partners</em>, <em class="sig-param">negotiators</em>, <em class="sig-param">ufuns=None</em>, <em class="sig-param">caller_roles=None</em>, <em class="sig-param">roles=None</em>, <em class="sig-param">annotations=None</em>, <em class="sig-param">mechanism_names=None</em>, <em class="sig-param">mechanism_params=None</em>, <em class="sig-param">all_or_none=False</em><span class="sig-paren">)</span><a class="headerlink" href="#scml.scml2019.SCMLAWI.run_negotiations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Requests to run a set of negotiations simultaneously. Returns after all negotiations are run to completion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>partners</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code>]]) – The list of partners that the agent wants to negotiate with. Roles will be determined by these agents.</p></li>
+<li><p><strong>issues</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Issue</span></code>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Issue</span></code>]]]) – Negotiation issues</p></li>
+<li><p><strong>negotiators</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Negotiator</span></code>]) – The negotiator to be used in the negotiation</p></li>
+<li><p><strong>ufuns</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UtilityFunction</span></code>]]) – The utility function. Only needed if the negotiator does not already know it</p></li>
+<li><p><strong>caller_roles</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – The role of the caller in the negotiation</p></li>
+<li><p><strong>annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]]]) – Extra information to be passed to the <code class="xref any docutils literal notranslate"><span class="pre">partners</span></code> when asking them to join the negotiation</p></li>
+<li><p><strong>partners</strong> – A list of partners to participate in the negotiation</p></li>
+<li><p><strong>roles</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]]]) – The roles of different partners. If None then each role for each partner will be None</p></li>
+<li><p><strong>mechanism_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – Name of the mechanism to use. It must be one of the mechanism_names that are supported by the</p></li>
+<li><p><strong>or None which means that the World should select the mechanism. If None</strong><strong>, </strong><strong>then roles and my_role</strong> (<em>World</em>) – </p></li>
+<li><p><strong>also be None</strong> (<em>must</em>) – </p></li>
+<li><p><strong>mechanism_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]], <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – A dict of parameters used to initialize the mechanism object</p></li>
+<li><p><strong>all_or_none</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If true, either no negotiations will be started execpt if all partners accepted</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>contract (None for failure) and ami (The mechanism info [None if the
+corresponding partner refused to negotiation])</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A list of tuples each with two values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.schedule_job">
+<code class="sig-name descname">schedule_job</code><span class="sig-paren">(</span><em class="sig-param">job</em>, <em class="sig-param">contract</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.schedule_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.schedule_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schedules production using a <a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.Job"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> object. This can be used to schedule any kind of job</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job</strong> (<a class="reference internal" href="scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.common.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>) – The job description</p></li>
+<li><p><strong>contract</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Contract</span></code>]) – The contract for which the job is scheduled (optional)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Notice that actions that require the profile member of Job (run) never use the line member and vice versa.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.schedule_production">
+<code class="sig-name descname">schedule_production</code><span class="sig-paren">(</span><em class="sig-param">profile</em>, <em class="sig-param">step</em>, <em class="sig-param">contract=None</em>, <em class="sig-param">override=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.schedule_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.schedule_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schedules production on the agent’s factory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>profile</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Index of the profile in the agent’s <code class="xref any docutils literal notranslate"><span class="pre">compiled_profiles</span></code> list</p></li>
+<li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The step to start production according to the given profile</p></li>
+<li><p><strong>contract</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Contract</span></code>]) – The contract for which the production is scheduled (optional)</p></li>
+<li><p><strong>override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to override existing production jobs schedules at the same time.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.stop_production">
+<code class="sig-name descname">stop_production</code><span class="sig-paren">(</span><em class="sig-param">line</em>, <em class="sig-param">step</em>, <em class="sig-param">contract</em>, <em class="sig-param">override=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.stop_production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.stop_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops/cancels production scheduled at the given line at the given time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – One of the factory lines (index)</p></li>
+<li><p><strong>step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Step to stop/cancel production at</p></li>
+<li><p><strong>contract</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Contract</span></code>]) – The contract for which the job is scheduled (optional)</p></li>
+<li><p><strong>override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to override existing production jobs schedules at the same time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.unhide_funds">
+<code class="sig-name descname">unhide_funds</code><span class="sig-paren">(</span><em class="sig-param">amount</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.unhide_funds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.unhide_funds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Un-hides the given amount of money so that it is not accessible by the simulator and does not appear
+in reports etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>amount</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The amount of money to unhide</p>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>if the current cash in the agent’s wallet is less than the amount to be hidden, all the cash is hidden.</p></li>
+<li><p>hiding is always immediate</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.unhide_inventory">
+<code class="sig-name descname">unhide_inventory</code><span class="sig-paren">(</span><em class="sig-param">product</em>, <em class="sig-param">quantity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.unhide_inventory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.unhide_inventory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Un-hides the given quantity of the given product so that it is not accessible by the simulator and does not appear
+in reports etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>product</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – product index</p></li>
+<li><p><strong>quantity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – the amount of the product to hide</p></li>
+</ul>
+</dd>
+</dl>
+<p>Remarks:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>if the current quantity in storage of the product is less than the amount to be hidden, whatever quantity
+exists is hidden</p></li>
+<li><p>hiding is always immediate</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scml.scml2019.SCMLAWI.unregister_interest">
+<code class="sig-name descname">unregister_interest</code><span class="sig-paren">(</span><em class="sig-param">products</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/scml/scml2019/awi.html#SCMLAWI.unregister_interest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#scml.scml2019.SCMLAWI.unregister_interest" title="Permalink to this definition">¶</a></dt>
+<dd><p>registers interest in receiving callbacks about CFPs related to these products</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scml.scml2019.FactoryManager.html" class="btn btn-neutral float-right" title="FactoryManager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scml.scml2019.FactoryState.html" class="btn btn-neutral float-left" title="FactoryState" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1000 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>scml.scml2019.awi &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>scml.scml2019.awi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for scml.scml2019.awi</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implements an agent-world-interface (see `AgentWorldInterface`) for the SCM world.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">Issue</span>
+<span class="kn">from</span> <span class="nn">scml.scml2019.common</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scml.scml2019.common</span> <span class="kn">import</span> <span class="n">FactoryState</span>
+<span class="kn">from</span> <span class="nn">negmas.java</span> <span class="kn">import</span> <span class="n">to_java</span><span class="p">,</span> <span class="n">from_java</span><span class="p">,</span> <span class="n">to_dict</span>
+<span class="kn">from</span> <span class="nn">negmas.situated</span> <span class="kn">import</span> <span class="n">AgentWorldInterface</span><span class="p">,</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">Action</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SCMLAWI&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="SCMLAWI"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI">[docs]</a><span class="k">class</span> <span class="nc">SCMLAWI</span><span class="p">(</span><span class="n">AgentWorldInterface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A single contact point between SCML agents and the world simulation.</span>
+
+<span class="sd">    The agent can access the world simulation in one of two ways:</span>
+
+<span class="sd">    1. Attributes and methods available in this Agent-SCML2020World-Interface</span>
+<span class="sd">    2. Attributes and methods in the `FactoryManager` object itself which provide handy shortcuts</span>
+<span class="sd">       to the agent-world interface</span>
+
+<span class="sd">    **Attributes**</span>
+
+<span class="sd">    *Simulation settings*</span>
+
+<span class="sd">    - `current_step` : Current simulation step</span>
+<span class="sd">    - `default_signing_delay` : The grace period allowed between contract conclusion and signature</span>
+<span class="sd">      by default (i.e. if not agreed upon during the negotiation)</span>
+<span class="sd">    - `n_steps` : Total number of simulation steps.</span>
+<span class="sd">    - `relative_time` : The fraction of total simulation time elapsed (it will be a number between 0 and 1)</span>
+
+<span class="sd">    *Production Graph*</span>
+
+<span class="sd">    - `products` : A list of `Product` objects giving all products defined in the world simulation</span>
+<span class="sd">    - `processes` : A list of `Process` objects giving all products defined in the world simulation</span>
+
+<span class="sd">    *Agent Related*</span>
+
+<span class="sd">    - `state` : The current private state available to the agent. In SCML it is a `FactoryState` object.</span>
+
+<span class="sd">    **Methods**</span>
+
+<span class="sd">    *Production Control*</span>
+
+<span class="sd">    - `schedule_job` : Schedules a `Job` for production sometime in the future</span>
+<span class="sd">    - `schedule_production` : Schedules production using profile number instead of a `Job` object</span>
+<span class="sd">    - `cancel_production` : Cancels already scheduled production (if it did not start yet) or stop a running</span>
+<span class="sd">      production.</span>
+<span class="sd">    - `execute` : A general function to execute any command on the factory. There is no need to directly call</span>
+<span class="sd">      this function as the SCMLAWI provides convenient functions (e.g. `schedule_job` , `hide_funds` , etc)</span>
+<span class="sd">      to achieve the same goal without having to worry about creating `Action` objects</span>
+
+<span class="sd">    *Storage and Wallet Control*</span>
+
+<span class="sd">    - `hide_funds` : Hides funds from the view of the simulator. Note that when bankruptcy is considered, hidden</span>
+<span class="sd">      funds are visible to the simulator.</span>
+<span class="sd">    - `hide_inventory` : Hides inventory from the view of the simulator. Note that when bankruptcy is considered, hidden</span>
+<span class="sd">      funds are visible to the simulator.</span>
+<span class="sd">    - `unhide_funds` : Un-hides funds hidden earlier with a call to `hide_funds`</span>
+<span class="sd">    - `unhide_inventory` : Un-hides inventory hidden earlier with a call to `hide_inventory`</span>
+
+<span class="sd">    *Negotiation and CFP Control*</span>
+
+<span class="sd">    - `register_cfp` : Registers a Call-for-Proposals on the bulletin board.</span>
+<span class="sd">    - `remove_cfp` : Removes a Call-for-Proposals from the  bulletin board.</span>
+<span class="sd">    - `request_negotiation` : Requests a negotiation based on the content of a CFP published on the bulletin-board.</span>
+<span class="sd">      *It is recommended not to use this method directly and to request negotiations using the</span>
+<span class="sd">      request_negotiation method of `FactoryManager` (i.e. use self.request_negotiation instead</span>
+<span class="sd">      of self.awi.request_negotiation). This makes it possible for NegMAS to keep track of</span>
+<span class="sd">      existing `requested_negotiations` and `running_negotiations` for you.</span>
+
+<span class="sd">    *Notification Control*</span>
+
+<span class="sd">    - `receive_financial_reports` : Register/unregisters interest in receiving financial reports for an agent, a set of</span>
+<span class="sd">      agents or all agents.</span>
+<span class="sd">    - `register_interest` : registers interest in receiving CFPs about a set of products. By default all</span>
+<span class="sd">      `FactoryManager` objects are registered to receive all CFPs for any product they</span>
+<span class="sd">      can produce or need to consumer according to their line-profiles.</span>
+<span class="sd">    - `unregister_interest` : unregisters interest in receiving CFPs about a set of products.</span>
+
+<span class="sd">    *Information about Other Agents*</span>
+
+<span class="sd">    - `is_bankrupt` : Asks about the bankruptcy status of an agent</span>
+<span class="sd">    - `receive_financial_reports` : Register/unregisters interest in receiving financial reports for an agent, a set of</span>
+<span class="sd">      agents or all agents.</span>
+<span class="sd">    - `reports_at` : reads *all* financial reports produced at a given time-step</span>
+<span class="sd">    - `reports_for` : reads *all* financial reports of a given agent</span>
+
+<span class="sd">    *Financial Control*</span>
+
+<span class="sd">    - `evaluate_insurance` : Asks for the premium to be paid for insuring against partner breaches</span>
+<span class="sd">      for a given contract</span>
+<span class="sd">    - `buy_insurance` : Buys an insurance against partner breaches for a given contract</span>
+
+<span class="sd">    *Bulletin-Board*</span>
+
+<span class="sd">    The bulletin-board is a key-value store. These methods allows the agent to interact with it. *The `SCMLAWI` provides</span>
+<span class="sd">    convenient functions for recording to the bulletin-board so you mostly need to use read/query functions*.</span>
+
+<span class="sd">    - `bb_read` : Reads a complete section or a single value from the bulletin-board</span>
+<span class="sd">    - `bb_query` : Returns all records in the given section/sections of the bulletin-board that satisfy a query</span>
+<span class="sd">    - `bb_record` : Registers a record in the bulletin-board.</span>
+<span class="sd">    - `bb_remove` : Removes a record from the bulletin-board.</span>
+
+<span class="sd">    The following list of sections are available in the SCML Bulletin-Board (Use the exact string for the ``section``</span>
+<span class="sd">    parameter of any method starting with ``bb_``):</span>
+
+<span class="sd">    - **cfps**: All CFPs currently on the board. The key is the CFP ID</span>
+<span class="sd">    - **products**: A list of all products. The key is the product index/ID</span>
+<span class="sd">    - **processes**: A list of all processes. The key is the product index/ID</span>
+<span class="sd">    - **bankruptcy**: The bankruptcy list giving names of all bankrupt agents.</span>
+<span class="sd">    - **reports_time**: Financial reports indexed by time.</span>
+<span class="sd">    - **reports_agent**: Financial reports indexed by agent</span>
+<span class="sd">    - **breaches**: Breach-list indexed by breach ID giving all breaches committed in the system</span>
+<span class="sd">    - **settings**: Static settings of the simulation.</span>
+
+<span class="sd">      The following settings are currently available:</span>
+
+<span class="sd">      - *breach_penalty_society*: Penalty of breaches paid to society (as a fraction of contract value). This is always</span>
+<span class="sd">        paid for every breach whether or not there is a negotiated breach.</span>
+<span class="sd">      - *breach_penalty_victim*: Penalty of breaches paid to victim (as a fraction of contract value). This is always</span>
+<span class="sd">        paid for every breach whether or not there is a negotiated breach.</span>
+<span class="sd">      - *immediate_negotiations*: Whether negotiations start immediately when registered (the other possibility -- which</span>
+<span class="sd">        is the default -- is for them to start at the next production step).</span>
+<span class="sd">      - *negotiation_speed_multiple*: Number of negotiation steps that finish in a single production step.</span>
+<span class="sd">      - *negotiation_n_steps*: Maximum allowed number of steps (rounds) in any negotiation</span>
+<span class="sd">      - *negotiation_step_time_limit*: The maximum real-time allowed for each negotiation step (round)</span>
+<span class="sd">      - *negotiation_time_limit*: The time limit for a complete negotiation.</span>
+<span class="sd">      - *transportation_delay*: Transportation delay when products are moved between factories. Default is zero.</span>
+<span class="sd">      - *transfer_delay*: The delay in transferring funds between factories when executing a contract. Default is zero.</span>
+<span class="sd">      - *n_steps*: Number of simulation steps</span>
+<span class="sd">      - *time_limit*: Time limit for the complete simulation</span>
+
+<span class="sd">    - stats: Global statistics about the simulation. **Not available for SCML 2019 league**.</span>
+
+<span class="sd">    *Logging*</span>
+
+<span class="sd">    - `logerror` : Logs an error in the world simulation log file</span>
+<span class="sd">    - `logwarning` : Logs a warning in the world simulation log file</span>
+<span class="sd">    - `loginfo` : Logs information in the world simulation log file</span>
+<span class="sd">    - `logdebug` : Logs debug information in the world simulation log file</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SCMLAWI.register_cfp"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.register_cfp">[docs]</a>    <span class="k">def</span> <span class="nf">register_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Registers a CFP&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">n_new_cfps</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">cfp</span><span class="o">.</span><span class="n">money_resolution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">money_resolution</span>
+        <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">id</span>
+        <span class="p">)</span>  <span class="c1"># force the publisher to be the agent using this AWI.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{self.agent.name}</span><span class="s2"> registered CFP {str(cfp)}&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bb_record</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">cfp</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.register_interest"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.register_interest">[docs]</a>    <span class="k">def</span> <span class="nf">register_interest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">products</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;registers interest in receiving callbacks about CFPs related to these products&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">register_interest</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">products</span><span class="o">=</span><span class="n">products</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.unregister_interest"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.unregister_interest">[docs]</a>    <span class="k">def</span> <span class="nf">unregister_interest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">products</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;registers interest in receiving callbacks about CFPs related to these products&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">unregister_interest</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">products</span><span class="o">=</span><span class="n">products</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.remove_cfp"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.remove_cfp">[docs]</a>    <span class="k">def</span> <span class="nf">remove_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Removes a CFP&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb_remove</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">cfp</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.evaluate_insurance"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.evaluate_insurance">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_insurance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Can be called to evaluate the premium for insuring the given contract against breaches committed by others</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            contract: hypothetical contract</span>
+<span class="sd">            t: time at which the policy is to be bought. If None, it means current step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">evaluate_insurance</span><span class="p">(</span><span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.buy_insurance"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.buy_insurance">[docs]</a>    <span class="k">def</span> <span class="nf">buy_insurance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Buys insurance for the contract by the premium calculated by the insurance company.</span>
+
+<span class="sd">        Remarks:</span>
+<span class="sd">            The agent can call `evaluate_insurance` to find the premium that will be used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">buy_insurance</span><span class="p">(</span><span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_create_annotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">,</span> <span class="n">partner</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates full annotation based on a cfp that the agent is receiving&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">_create_annotation</span><span class="p">(</span><span class="n">cfp</span><span class="p">,</span> <span class="n">partner</span><span class="o">=</span><span class="n">partner</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SCMLAWI.request_negotiation"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.request_negotiation">[docs]</a>    <span class="k">def</span> <span class="nf">request_negotiation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span><span class="p">,</span>
+        <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">roles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mechanism_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mechanism_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Requests a negotiation with the publisher of a given CFP</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            cfp: The CFP to negotiate about</span>
+<span class="sd">            req_id: A string that is passed back to the caller in all callbacks related to this negotiation</span>
+<span class="sd">            roles: The roles of the CFP publisher and the agent (in that order). By default no roles are passed (None)</span>
+<span class="sd">            mechanism_name: The mechanism type to use. If not given the default mechanism from the world will be used</span>
+<span class="sd">            mechanism_params: Parameters of the mechanism</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success of failure of the negotiation request</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - The `SCML2019Agent` class implements another request_negotiation method that does not receive a `req_id`. This</span>
+<span class="sd">              helper method is recommended as it generates the required req_id and passes it keeping track of requested</span>
+<span class="sd">              negotiations (and later of running negotiations). Call this method direclty *only* if you do not</span>
+<span class="sd">              intend to use the `requested_negotiations` and `running_negotiations` properties of the `SCML2019Agent` class</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">prevent_cfp_tampering</span><span class="p">:</span>
+            <span class="n">cfp_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">bulletin_board</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;cfps&quot;</span><span class="p">,</span> <span class="n">cfp</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cfp_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">logwarning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;CFP {str(cfp)} with id </span><span class="si">{cfp.id}</span><span class="s2"> was tampered with by </span><span class="si">{self.agent.name}</span><span class="s2"> and will be ignored&quot;</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">cfp</span> <span class="o">=</span> <span class="n">cfp_</span>
+        <span class="n">default_annotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_annotation</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">request_negotiation_about</span><span class="p">(</span>
+            <span class="n">issues</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">issues</span><span class="p">,</span>
+            <span class="n">req_id</span><span class="o">=</span><span class="n">req_id</span><span class="p">,</span>
+            <span class="n">partners</span><span class="o">=</span><span class="n">default_annotation</span><span class="p">[</span><span class="s2">&quot;partners&quot;</span><span class="p">],</span>
+            <span class="n">roles</span><span class="o">=</span><span class="n">roles</span><span class="p">,</span>
+            <span class="n">annotation</span><span class="o">=</span><span class="n">default_annotation</span><span class="p">,</span>
+            <span class="n">mechanism_name</span><span class="o">=</span><span class="n">mechanism_name</span><span class="p">,</span>
+            <span class="n">mechanism_params</span><span class="o">=</span><span class="n">mechanism_params</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.request_negotiation_about"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.request_negotiation_about">[docs]</a>    <span class="k">def</span> <span class="nf">request_negotiation_about</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">issues</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Issue</span><span class="p">],</span>
+        <span class="n">partners</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">roles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">annotation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mechanism_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mechanism_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Overrides the method of the same name in the base class to disable it in SCM Worlds.</span>
+
+<span class="sd">        **Do not call this method**</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;request_negotiation_about should never be called directly in the SCM world&quot;</span>
+            <span class="s2">&quot;, call request_negotiation instead.&quot;</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.is_bankrupt"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.is_bankrupt">[docs]</a>    <span class="k">def</span> <span class="nf">is_bankrupt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks whether the given agent is bankrupt</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            agent_id: Agent ID</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The bankruptcy state of the agent</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bb_read</span><span class="p">(</span><span class="s2">&quot;bankruptcy&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">agent_id</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.reports_for"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.reports_for">[docs]</a>    <span class="k">def</span> <span class="nf">reports_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">FinancialReport</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets all financial reports of an agent (in the order of their publication)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            agent_id: Agent ID</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb_read</span><span class="p">(</span><span class="s2">&quot;reports_agent&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">agent_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reports</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">reports</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.reports_at"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.reports_at">[docs]</a>    <span class="k">def</span> <span class="nf">reports_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">FinancialReport</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets all financial reports of all agents at a given step</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            step: Step at which the reports are required. If None, the last set of reports is returned</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            A dictionary with agent IDs in keys and their financial reports at the given time as values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">reports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb_query</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s2">&quot;reports_time&quot;</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+            <span class="n">reports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb_read</span><span class="p">(</span>
+                <span class="s2">&quot;reports_time&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="nb">max</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">reports</span><span class="o">.</span><span class="n">keys</span><span class="p">()]))</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">reports</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb_read</span><span class="p">(</span><span class="s2">&quot;reports_time&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">step</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">reports</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">reports</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.receive_financial_reports"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.receive_financial_reports">[docs]</a>    <span class="k">def</span> <span class="nf">receive_financial_reports</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">receive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">agents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Registers/unregisters interest in receiving financial reports</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            receive: True to receive and False to stop receiving</span>
+<span class="sd">            agents: If given reception is enabled/disabled only for the given set of agents.</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - by default financial reports are not sent to any agents. To opt-in to receive financial reports, call this</span>
+<span class="sd">              method.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">receive_financial_reports</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">agents</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FactoryState</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the private state of the agent in that world.</span>
+
+<span class="sd">        In the SCML world, that is a reference to its factory. You are allowed to read information from the returned</span>
+<span class="sd">        `Factory` but **not to modify it or call ANY methods on it that modify the state**.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">get_private_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">products</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Product</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Products in the world&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">products</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">processes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Process</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Processes in the world&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span><span class="o">.</span><span class="n">processes</span>
+
+    <span class="c1"># sugar functions (implementing actions that can all be done through execute</span>
+
+<div class="viewcode-block" id="SCMLAWI.schedule_production"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.schedule_production">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_production</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">profile</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">contract</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Contract</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">override</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schedules production on the agent&#39;s factory</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            profile: Index of the profile in the agent&#39;s `compiled_profiles` list</span>
+<span class="sd">            step: The step to start production according to the given profile</span>
+<span class="sd">            contract: The contract for which the production is scheduled (optional)</span>
+<span class="sd">            override: Whether to override existing production jobs schedules at the same time.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="n">profile</span><span class="p">,</span>
+                    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">step</span><span class="p">,</span>
+                    <span class="s2">&quot;contract&quot;</span><span class="p">:</span> <span class="n">contract</span><span class="p">,</span>
+                    <span class="s2">&quot;override&quot;</span><span class="p">:</span> <span class="n">override</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.stop_production"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.stop_production">[docs]</a>    <span class="k">def</span> <span class="nf">stop_production</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Contract</span><span class="p">],</span> <span class="n">override</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stops/cancels production scheduled at the given line at the given time.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            line: One of the factory lines (index)</span>
+<span class="sd">            step: Step to stop/cancel production at</span>
+<span class="sd">            contract: The contract for which the job is scheduled (optional)</span>
+<span class="sd">            override: Whether to override existing production jobs schedules at the same time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;stop&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;line&quot;</span><span class="p">:</span> <span class="n">line</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">step</span><span class="p">}))</span></div>
+
+    <span class="n">cancel_production</span> <span class="o">=</span> <span class="n">stop_production</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stops/cancels production scheduled at the given line at the given time.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        line: One of the factory lines (index)</span>
+<span class="sd">        step: Step to stop/cancel production at</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SCMLAWI.schedule_job"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.schedule_job">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job</span><span class="p">:</span> <span class="n">Job</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Contract</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Schedules production using a `Job` object. This can be used to schedule any kind of job</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            job: The job description</span>
+<span class="sd">            contract: The contract for which the job is scheduled (optional)</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - Notice that actions that require the profile member of Job (run) never use the line member and vice versa.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="n">job</span><span class="o">.</span><span class="n">action</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="n">job</span><span class="o">.</span><span class="n">profile</span><span class="p">,</span>
+                    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">job</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+                    <span class="s2">&quot;line&quot;</span><span class="p">:</span> <span class="n">job</span><span class="o">.</span><span class="n">line</span><span class="p">,</span>
+                    <span class="s2">&quot;contract&quot;</span><span class="p">:</span> <span class="n">contract</span><span class="p">,</span>
+                    <span class="s2">&quot;override&quot;</span><span class="p">:</span> <span class="n">job</span><span class="o">.</span><span class="n">override</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.hide_inventory"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.hide_inventory">[docs]</a>    <span class="k">def</span> <span class="nf">hide_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hides the given quantity of the given product so that it is not accessible by the simulator and does not appear</span>
+<span class="sd">        in reports etc.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product: product index</span>
+<span class="sd">            quantity: the amount of the product to hide</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - if the current quantity in storage of the product is less than the amount to be hidden, whatever quantity</span>
+<span class="sd">              exists is hidden</span>
+<span class="sd">            - hiding is always immediate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hide_product&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">product</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="n">quantity</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.hide_funds"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.hide_funds">[docs]</a>    <span class="k">def</span> <span class="nf">hide_funds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hides the given amount of money so that it is not accessible by the simulator and does not appear</span>
+<span class="sd">        in reports etc.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            amount: The amount of money to hide</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - if the current cash in the agent&#39;s wallet is less than the amount to be hidden, all the cash is hidden.</span>
+<span class="sd">            - hiding is always immediate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;hide_funds&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">amount</span><span class="p">}))</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.unhide_inventory"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.unhide_inventory">[docs]</a>    <span class="k">def</span> <span class="nf">unhide_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Un-hides the given quantity of the given product so that it is not accessible by the simulator and does not appear</span>
+<span class="sd">        in reports etc.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            product: product index</span>
+<span class="sd">            quantity: the amount of the product to hide</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - if the current quantity in storage of the product is less than the amount to be hidden, whatever quantity</span>
+<span class="sd">              exists is hidden</span>
+<span class="sd">            - hiding is always immediate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;unhide_product&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">product</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="n">quantity</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="SCMLAWI.unhide_funds"><a class="viewcode-back" href="../../../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI.unhide_funds">[docs]</a>    <span class="k">def</span> <span class="nf">unhide_funds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Un-hides the given amount of money so that it is not accessible by the simulator and does not appear</span>
+<span class="sd">        in reports etc.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            amount: The amount of money to unhide</span>
+
+<span class="sd">        Remarks:</span>
+
+<span class="sd">            - if the current cash in the agent&#39;s wallet is less than the amount to be hidden, all the cash is hidden.</span>
+<span class="sd">            - hiding is always immediate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">Action</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;unhide_funds&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">amount</span><span class="p">}))</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">_ShadowSCMLAWI</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An SCMLAWI As seen by JNegMAS.</span>
+
+<span class="sd">    This is an object that is not visible to python code. It is not directly called from python ever. It is only called</span>
+<span class="sd">    from a corresponding Java object to represent an internal python object. Because of he way py4j works, we cannot</span>
+<span class="sd">    just use dunders to implement this kind of object in general. We will have to implement each such class</span>
+<span class="sd">    independently.</span>
+
+<span class="sd">    This kind of classes will always have an internal Java class implementing a Java interface in Jnegmas that starts</span>
+<span class="sd">    with Py.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">to_java</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">awi</span><span class="p">:</span> <span class="n">SCMLAWI</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span> <span class="o">=</span> <span class="n">awi</span>
+
+    <span class="k">def</span> <span class="nf">getProducts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">to_java</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">products</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getProcesses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">to_java</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">processes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getState</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">to_java</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">relativeTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">relative_time</span>
+
+    <span class="k">def</span> <span class="nf">getCurrentStep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">current_step</span>
+
+    <span class="k">def</span> <span class="nf">getNSteps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">n_steps</span>
+
+    <span class="k">def</span> <span class="nf">getDefaultSigningDelay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">default_signing_delay</span>
+
+    <span class="k">def</span> <span class="nf">requestNegotiation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">,</span> <span class="n">req_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">roles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mechanism_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mechanism_params</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">request_negotiation</span><span class="p">(</span>
+            <span class="n">from_java</span><span class="p">(</span><span class="n">cfp</span><span class="p">),</span> <span class="n">req_id</span><span class="p">,</span> <span class="n">roles</span><span class="p">,</span> <span class="n">mechanism_name</span><span class="p">,</span> <span class="n">mechanism_params</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">registerCFP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Registers a CFP&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">from_java</span><span class="p">(</span><span class="n">cfp</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">removeCFP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Removes a CFP&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">remove_cfp</span><span class="p">(</span><span class="n">from_java</span><span class="p">(</span><span class="n">cfp</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">registerInterest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">products</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;registers interest in receiving callbacks about CFPs related to these products&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">register_interest</span><span class="p">(</span><span class="n">from_java</span><span class="p">(</span><span class="n">products</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">unregisterInterest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">products</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;registers interest in receiving callbacks about CFPs related to these products&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">unregister_interest</span><span class="p">(</span><span class="n">from_java</span><span class="p">(</span><span class="n">products</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">evaluateInsurance</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Can be called to evaluate the premium for insuring the given contract against breaches committed by others</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            contract: hypothetical contract</span>
+<span class="sd">            t: time at which the policy is to be bought. If None, it means current step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">evaluate_insurance</span><span class="p">(</span><span class="n">from_java</span><span class="p">(</span><span class="n">contract</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">buyInsurance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Buys insurance for the contract by the premium calculated by the insurance company.</span>
+
+<span class="sd">        Remarks:</span>
+<span class="sd">            The agent can call `evaluate_insurance` to find the premium that will be used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">buy_insurance</span><span class="p">(</span><span class="n">from_java</span><span class="p">(</span><span class="n">contract</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">loginfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">logwarning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">logwarning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">logdebug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">logerror</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="o">.</span><span class="n">logerror</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Java</span><span class="p">:</span>
+        <span class="n">implements</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;jnegmas.apps.scml.awi.SCMLAWI&quot;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

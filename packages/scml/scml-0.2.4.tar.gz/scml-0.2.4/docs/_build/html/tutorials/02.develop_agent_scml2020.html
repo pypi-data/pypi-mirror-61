@@ -1,0 +1,1212 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developing an agent for SCML2020 &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="../faq.html" />
+    <link rel="prev" title="Run a session of the SCML world (2020)" href="01.run_scml2020.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>Developing an agent for SCML2020</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/02.develop_agent_scml2020.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developing-an-agent-for-scml2020">
+<h1>Developing an agent for SCML2020<a class="headerlink" href="#developing-an-agent-for-scml2020" title="Permalink to this headline">¶</a></h1>
+<p>Let’s see the simplest possible agent (a do-nothing agent)</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020</span> <span class="kn">import</span> <span class="n">SCML2020Agent</span><span class="p">,</span> <span class="n">SCML2020World</span><span class="p">,</span> <span class="n">RandomAgent</span><span class="p">,</span> <span class="n">DecentralizingAgent</span>
+<span class="n">ComparisonAgent</span> <span class="o">=</span> <span class="n">DecentralizingAgent</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyDoNothing</span><span class="p">(</span><span class="n">SCML2020Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;My Agent that does nothing&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Now, let’s try to run a simulation with it</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">ComparisonAgent</span><span class="p">,</span> <span class="n">MyDoNothing</span><span class="p">],</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="do-nothing-agent">
+<h2>Do Nothing Agent<a class="headerlink" href="#do-nothing-agent" title="Permalink to this headline">¶</a></h2>
+<p>Let’s test this agent to confirm that it is really doing nothing</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">together</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_8_0.png" src="../_images/02.develop_agent_scml2020_8_0.png" />
+<p>You can see that our agent did not do anything in the world. It did
+receive some negotiation requests which it rejected and it did not
+engage in any negotiations</p>
+</div>
+<div class="section" id="agent-anatomy">
+<h2>Agent Anatomy<a class="headerlink" href="#agent-anatomy" title="Permalink to this headline">¶</a></h2>
+<p>For an agent to be successul in the SCML world, it needs to buy input
+materials through negotiation, manufacture them, then sell output
+products through negotiation. In this tutorial we structure our agent as
+a combination of three main strategies/components:</p>
+<ol class="arabic simple">
+<li><p><strong>Trading Strategy</strong>: Deciding the quantity (and price) to buy and
+sell at every time-step. This component can employ two subcomponents:</p></li>
+</ol>
+<ul class="simple">
+<li><p>a pre-negotiation component that decides the quantities/prices to
+negotaite about based on prediction of future market behavior
+(<strong>trade prediction strategy</strong>) and partner behavior (<strong>partner
+beahvior prediction strategy</strong>)</p></li>
+<li><p>a post-negotiation component that decides what agreements to sign as
+contracts (<strong>signing strategy</strong>).</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Negotiation Control Strategy</strong>: This component is responsible for
+proactively request negotiations, responding to negotiation requests
+and actually conducting concurrent negotaitions. This component can
+further be divided into two subcomponents:</p></li>
+</ol>
+<ul class="simple">
+<li><p>a pre negotiation component that decides which negotiations to accept
+and which to engage in (<strong>negotiation manager</strong>)</p></li>
+<li><p>The <strong>negotiation algorithm</strong> used to carry out the negotiations
+decided by the negotiation manger.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p><strong>Production Strategy</strong>: Decides what to produce at every time-step.</p></li>
+</ol>
+<p>You are free to organize your agent in a different way but - for the
+purposes of this tutorial - we will stick with this organization.</p>
+<p>The SCML platform provides several components that can be used to
+implement each of these strategies.</p>
+<div class="section" id="strategies">
+<h3>Strategies<a class="headerlink" href="#strategies" title="Permalink to this headline">¶</a></h3>
+<p>SCML uses collaborative inheritance for composing agents by combining
+components implement the strategies mentioned above.</p>
+<p>Each one of those components can implement any of the methods/callbacks
+provided in the SCMLAgent class and use the AWI to do so as a
+representative of the agent. All of them call the <code class="docutils literal notranslate"><span class="pre">super</span></code> version of
+any method they override to make sure that all othe components get
+executed.</p>
+<p>Components also reveal some useful members to other components and the
+main agent either as data-members, methods, or properties. Let’s see an
+example</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;img src=&quot;anatomy.png&quot;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="anatomy.png"><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scml</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scml</span><span class="o">.</span><span class="n">scml2020</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">TradingStrategy</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Base class for all trading strategies.
+
+    Provides:
+        - <a class="reference internal" href="../reference/scml.html#scml.TradingStrategy.inputs_needed" title="scml.TradingStrategy.inputs_needed"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">inputs_needed</span></code></a> (np.ndarray):  How many items of the input product do I need at every time step
+          (n_steps vector)
+        - <a class="reference internal" href="../reference/scml.html#scml.TradingStrategy.outputs_needed" title="scml.TradingStrategy.outputs_needed"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">outputs_needed</span></code></a> (np.ndarray):  How many items of the output product do I need at every time step
+          (n_steps vector)
+        - <a class="reference internal" href="../reference/scml.html#scml.TradingStrategy.inputs_secured" title="scml.TradingStrategy.inputs_secured"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">inputs_secured</span></code></a> (np.ndarray):  How many items of the output product do I need at every time step
+          (n_steps vector)
+        - <a class="reference internal" href="../reference/scml.html#scml.TradingStrategy.outputs_secured" title="scml.TradingStrategy.outputs_secured"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">outputs_secured</span></code></a> (np.ndarray):  How many units of the output product I have already secured per step
+              (n_steps vector)
+
+    Hooks Into:
+        - <a class="reference internal" href="../api/scml.scml2019.Bank.html#scml.scml2019.Bank.init" title="scml.scml2019.Bank.init"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">init</span></code></a>
+        - <a class="reference internal" href="../api/scml.scml2020.BuyCheapSellExpensiveAgent.html#scml.scml2020.BuyCheapSellExpensiveAgent.internal_state" title="scml.scml2020.BuyCheapSellExpensiveAgent.internal_state"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">internal_state</span></code></a>
+
+    Remarks:
+        - <code class="xref any docutils literal notranslate"><span class="pre">Attributes</span></code> section describes the attributes that can be used to construct the component (passed to its
+          <code class="xref any docutils literal notranslate"><span class="pre">__init__</span></code> method).
+        - <code class="xref any docutils literal notranslate"><span class="pre">Provides</span></code> section describes the attributes (methods, properties, data-members) made available by this
+          component directly. Note that everything provided by the bases of this components are also available to the
+          agent (Check the <code class="xref any docutils literal notranslate"><span class="pre">Bases</span></code> section above for all the bases of this component).
+        - <code class="xref any docutils literal notranslate"><span class="pre">Requires</span></code> section describes any requirements from the agent using this component. It defines a set of methods
+          or properties/data-members that must exist in the agent that uses this component. These requirement are
+          usually implemented as abstract methods in the component
+        - <code class="xref any docutils literal notranslate"><span class="pre">Abstract</span></code> section describes abstract methods that MUST be implemented by any descendant of this component.
+        - <code class="xref any docutils literal notranslate"><span class="pre">Hooks</span> <span class="pre">Into</span></code> section describes the methods this component overrides calling <a class="reference external" href="https://docs.python.org/3/library/functions.html#super" title="(in Python v3.8)"><code class="xref any docutils literal notranslate"><span class="pre">super</span></code></a> () which allows other
+          components to hook into the same method (by overriding it). Usually callbacks starting with <code class="xref any docutils literal notranslate"><span class="pre">on_</span></code> are
+          hooked into this way.
+        - <code class="xref any docutils literal notranslate"><span class="pre">Overrides</span></code> section describes the methods this component overrides without calling <a class="reference external" href="https://docs.python.org/3/library/functions.html#super" title="(in Python v3.8)"><code class="xref any docutils literal notranslate"><span class="pre">super</span></code></a> effectively
+          disallowing any other components after it in the MRO to call this method. Usually methods that do some
+          action (i.e. not starting with <code class="xref any docutils literal notranslate"><span class="pre">on_</span></code>) are overridden this way.</pre>
+<p>The docstring above describes the six possible sections in each
+component’s docstring which define how is it to be constructed
+(attributes), what it provides to other components (provides), what it
+assumes about the agent (requires), what abstract methods must be
+overriden by any subclass of it (abstract), which callbacks of the agent
+does it hook-into while allowing other components to run and which does
+it completely override (preventing components after it in the MRO from
+running).</p>
+<p><strong>To successfully use components to construct your agent, you need to
+remember to always call the ``super`` version of every method you
+overrided in your agent class to allow all components to run except if
+you want to completey override the behavior of all components that use
+this callback.</strong>. As a rule of thump, callbacks that start with “on_”,
+“init”, and “step” should call super, the rest should not. For a clear
+explanation of the use of <code class="docutils literal notranslate"><span class="pre">super</span></code> refer to <a class="reference external" href="https://rhettinger.wordpress.com/2011/05/26/super-considered-super/">Hettinger’s
+post</a>.</p>
+</div>
+<div class="section" id="production-strategy">
+<h3>Production Strategy<a class="headerlink" href="#production-strategy" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start with what may be the simplest of the aforementioned
+components: the production strategy. What should an agent produce? There
+are three main limitations on the answer to this question:</p>
+<ol class="arabic">
+<li><p>Production capacity which is controlled by the number of lines the
+agent has</p>
+<blockquote>
+<div><p>self.awi.n_lines</p>
+</div></blockquote>
+</li>
+<li><p>The available quantity of the input material</p>
+<blockquote>
+<div><p>self.awi.current_inventory(self.awi.my_input_product)</p>
+</div></blockquote>
+</li>
+<li><p>The <em>needed</em> quantity of outputs. That depends on how many sell
+contracts the agent already have (you may also consider future sell
+contracts that it expects to have).</p></li>
+</ol>
+<p>The platform provides three basic strategies for production:
+SupplyDriven producing based on buy-contracts, DemandDriven producing
+based on sell-contracts and ContracDriven producing based on both.</p>
+<p>Let’s add a demand-driven strategy to our agent. This means that our
+agent will only produce based on the contracts it actually signs.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020.components.production</span> <span class="kn">import</span> <span class="n">DemandDrivenProductionStrategy</span><span class="p">,</span> <span class="n">ProductionStrategy</span>
+<span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">DemandDrivenProductionStrategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;My agent&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>As you can see, using this strategy and all other components provided by
+the SCML platform amounts to just inheriting from it. You have to
+remember when using any of these strategies to call <code class="docutils literal notranslate"><span class="pre">super().f</span></code>
+whenever you implement any of the methods in <code class="docutils literal notranslate"><span class="pre">SCML2020Agent</span></code> in your
+agent to allow the components you are using to do their thing.</p>
+<p>It is instructive to see how does this strategy work. This is its
+complete code (with type-hints and the docstring removed):</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DemandDrivenProductionStrategy</span><span class="p">(</span><span class="n">ProductionStrategy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_contracts_finalized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signed</span><span class="p">,</span> <span class="n">cancelled</span><span class="p">,</span> <span class="n">rejectors</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">on_contracts_finalized</span><span class="p">(</span><span class="n">signed</span><span class="p">,</span> <span class="n">cancelled</span><span class="p">,</span> <span class="n">rejectors</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">contract</span> <span class="ow">in</span> <span class="n">signed</span><span class="p">:</span>
+            <span class="n">is_seller</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;seller&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+            <span class="c1"># do nothing if this is not a sell contract</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_seller</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+            <span class="c1"># find the earliest time I can do anything about this contract</span>
+            <span class="n">earliest_production</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span>
+            <span class="k">if</span> <span class="n">step</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="n">earliest_production</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="c1"># Schedule production before the delivery time</span>
+            <span class="n">output_product</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span>
+            <span class="n">input_product</span> <span class="o">=</span> <span class="n">output_product</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">schedule_production</span><span class="p">(</span>
+                <span class="n">process</span><span class="o">=</span><span class="n">input_product</span><span class="p">,</span>
+                <span class="n">repeats</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s2">&quot;quantity&quot;</span><span class="p">],</span>
+                <span class="n">step</span><span class="o">=</span><span class="p">(</span><span class="n">earliest_production</span><span class="p">,</span> <span class="n">step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="n">line</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">partial_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="c1"># set the schedule_range which is provided for other components</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schedule_range</span><span class="p">[</span><span class="n">contract</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">min</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="nb">max</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">is_seller</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="c1"># that is all folks</span>
+</pre></div>
+</div>
+<p>This component works by implementing both <code class="docutils literal notranslate"><span class="pre">confirm_production</span></code> and
+<code class="docutils literal notranslate"><span class="pre">on_contracts_finalized</span></code>.</p>
+<ul class="simple">
+<li><p>The main work happens in <code class="docutils literal notranslate"><span class="pre">on_contracts_finalized</span></code>. For each signed
+contract, the agent schedules as much production as possible to
+produce the required quantity before the time it is needed at.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">confirm_production</span></code> simply confirms everything because it assumes
+that the agent already scheduled correctly. Notice that despite not
+needing to get the output of the call of <code class="docutils literal notranslate"><span class="pre">super</span></code>, it is already
+called to allow other components overriding this method to work
+properly.</p></li>
+</ul>
+<p>Now let’s test our agent with its new production strategy.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">ComparisonAgent</span><span class="p">,</span> <span class="n">MyDoNothing</span><span class="p">],</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">world</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">together</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_19_0.png" src="../_images/02.develop_agent_scml2020_19_0.png" />
+<p>As expected nothing happens. Our agent is still outside the market
+because it does not negotiate. We need to add the other two strategies
+(trading and negotiation control strategies) to get it going.</p>
+</div>
+<div class="section" id="trading-strategy">
+<h3>Trading Strategy<a class="headerlink" href="#trading-strategy" title="Permalink to this headline">¶</a></h3>
+<p>The second component of our agent, we will implement is the trading
+strategy.</p>
+<p>Trading strategies provide the following four data-members to the agent
+which can be used by other components:</p>
+<ul class="simple">
+<li><p>inputs_needed (np.ndarray): How many items of the input product do I
+need at every time step (n_steps vector)</p></li>
+<li><p>outputs_needed (np.ndarray): How many items of the output product do
+I need at every time step (n_steps vector)</p></li>
+<li><p>inputs_secured (np.ndarray): How many items of the output product do
+I need at every time step (n_steps vector)</p></li>
+<li><p>inputs_needed (np.ndarray): How many units of the output product I
+have already secured per step (n_steps vector)</p></li>
+</ul>
+<p>There are two built-in trading strategies provided:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NoTradingStrategy</span></code> Simply sign any contracts that can in principle
+be satisifed given the production capacity (i.e. n. lines) of the
+factory. Other than that there is no strategy. This strategy is not
+expected to work well but is useful as a baseline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PredictionBasedTradingStrategy</span></code> This strategy use a trade
+prediction strategy internally to predict how many inputs are
+expected to be available and how many outputs are expected to be sold
+by the agent at every time-step. Given these two quantities, it
+maintains the amounts of inputs/outputs that it needs. It then
+employs a controller to manage negotiations and update the amounts
+secured.</p></li>
+</ol>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">PredictionBasedTradingStrategy</span></code> for our agent.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020.components.production</span> <span class="kn">import</span> <span class="n">DemandDrivenProductionStrategy</span>
+<span class="kn">from</span> <span class="nn">scml.scml2020.components.trading</span> <span class="kn">import</span> <span class="n">PredictionBasedTradingStrategy</span>
+<span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">PredictionBasedTradingStrategy</span><span class="p">,</span> <span class="n">DemandDrivenProductionStrategy</span><span class="p">,</span> <span class="n">SCML2020Agent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;My agent&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">ComparisonAgent</span><span class="p">,</span> <span class="n">MyAgent</span><span class="p">],</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">world</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">together</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_22_0.png" src="../_images/02.develop_agent_scml2020_22_0.png" />
+<p>The last piece of the buzzle to complete our agent is to add a
+negotiation control strategy. We will start by reusing one of the
+existing strategies then develop our own.</p>
+</div>
+<div class="section" id="negotiation-control-strategy">
+<h3>Negotiation Control Strategy<a class="headerlink" href="#negotiation-control-strategy" title="Permalink to this headline">¶</a></h3>
+<p>Let’s first try to just reuse one of the existing negotiation strategies
+to see how it works.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020.components.negotiation</span> <span class="kn">import</span> <span class="n">IndependentNegotiationsManager</span>
+<span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">IndependentNegotiationsManager</span><span class="p">,</span> <span class="n">PredictionBasedTradingStrategy</span><span class="p">,</span> <span class="n">DemandDrivenProductionStrategy</span><span class="p">,</span> <span class="n">SCML2020Agent</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">ComparisonAgent</span><span class="p">,</span> <span class="n">MyAgent</span><span class="p">],</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">world</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">You</span> <span class="n">must</span> <span class="n">implement</span> <span class="n">target_quantity</span>
+</pre></div>
+</div>
+<p>What the system is telling us is that we forgot to implement the method
+<code class="docutils literal notranslate"><span class="pre">targe_quantity</span></code> . Consulting the documentation we find that we must
+implement two methods to use any negotiation control strategy:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target_quantity</span></code> which gives the quantity that the negotiators
+should targe to achieve for any given time step (selling and buying)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">acceptable_unit_price</span></code> The maximum acceptable unit price for
+buying and the minimum acceptable unit price for selling</p></li>
+</ol>
+<p>Moreover, the independent negotiation strategy requires us to implement
+a utility function that should work for any negotiation.</p>
+<p>Let’s add a simple implementation of both</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">LinearUtilityFunction</span>
+<span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">IndependentNegotiationsManager</span><span class="p">,</span> <span class="n">PredictionBasedTradingStrategy</span>
+              <span class="p">,</span> <span class="n">DemandDrivenProductionStrategy</span><span class="p">,</span> <span class="n">SCML2020Agent</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">target_quantity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sell</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;A fixed target quantity of half my production capacity&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_lines</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">acceptable_unit_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sell</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The catalog price seems OK&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">catalog_prices</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">my_output_product</span><span class="p">]</span> <span class="k">if</span> <span class="n">sell</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">catalog_prices</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">my_input_product</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">create_ufun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_seller</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">issues</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A utility function that penalizes high cost and late delivery for buying and and awards them for selling&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_seller</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">LinearUtilityFunction</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">LinearUtilityFunction</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">ComparisonAgent</span><span class="p">,</span> <span class="n">MyAgent</span><span class="p">,</span> <span class="n">RandomAgent</span><span class="p">],</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">world</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">together</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_28_0.png" src="../_images/02.develop_agent_scml2020_28_0.png" />
+<p>Our agent is now doing things in the market. It buys and sells and
+commits breaches. How well is it doing? Let’s see how did our agents do</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="k">def</span> <span class="nf">show_agent_scores</span><span class="p">(</span><span class="n">world</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">aid</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">world</span><span class="o">.</span><span class="n">scores</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">scores</span><span class="p">[</span><span class="n">world</span><span class="o">.</span><span class="n">agents</span><span class="p">[</span><span class="n">aid</span><span class="p">]</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">show_agent_scores</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_30_0.png" src="../_images/02.develop_agent_scml2020_30_0.png" />
+<p>Not as good as the comparison agent :-( yet better than random :-)</p>
+<p>But what did we expect with almost zero code.</p>
+</div>
+</div>
+<div class="section" id="creating-our-own-negotiation-control-strategy">
+<h2>Creating our own negotiation control strategy<a class="headerlink" href="#creating-our-own-negotiation-control-strategy" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create a new negotiation control strategy and use it to replace
+the <code class="docutils literal notranslate"><span class="pre">IndependentNegotiationsManager</span></code> we used in our last attempt.</p>
+<p>To start, we need to know what is expected from our component.</p>
+<p>We know that the trading strategy provides us with the following four
+data-members and we leave for it the responsibility of updating them
+correctly:</p>
+<ul class="simple">
+<li><p>inputs_needed (np.ndarray): How many items of the input product do I
+need at every time step (n_steps vector)</p></li>
+<li><p>outputs_needed (np.ndarray): How many items of the output product do
+I need at every time step (n_steps vector)</p></li>
+<li><p>inputs_secured (np.ndarray): How many items of the output product do
+I need at every time step (n_steps vector)</p></li>
+<li><p>inputs_needed (np.ndarray): How many units of the output product I
+have already secured per step (n_steps vector)</p></li>
+</ul>
+<p>What we need from our negotiation control strategy is to find <em>the best</em>
+or at least <em>a good</em> way to satisfy these needs.</p>
+<p>One way to do that is to have a <code class="docutils literal notranslate"><span class="pre">Controller</span></code> agent for selling and
+buying responsible of satisfying the <em>exact</em> needs at every time-step.
+NegMAS provides an easy to use controller that fits the bill called
+<code class="docutils literal notranslate"><span class="pre">SAOSyncController</span></code></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">SAOSyncController</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">SAOSyncController</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">controller</span> <span class="n">that</span> <span class="n">can</span> <span class="n">manage</span> <span class="n">multiple</span> <span class="n">negotiators</span> <span class="n">synchronously</span>
+</pre></div>
+</div>
+<p>Let’s create our controller and see what do we need. The main idea here
+is that the controller will define a utility function for any possible
+outcome. It will then collect offers from all partners and responds in
+this way:</p>
+<ul class="simple">
+<li><p>If the best offer is invalid, reject everything and offer the best
+offer you can in every negotiation</p></li>
+<li><p>If the best offer is good enough (i.e. within some threshold of the
+best possible utility on that given negotiation) accept it</p></li>
+<li><p>Otherwise, send the best offer to everyone else and try to further
+improve this offer until near the end of the negotiation</p></li>
+</ul>
+<p>This is a straight forward implementation of this idea</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scml.scml2020</span> <span class="kn">import</span> <span class="n">TIME</span><span class="p">,</span> <span class="n">QUANTITY</span><span class="p">,</span> <span class="n">UNIT_PRICE</span>
+<span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">ResponseType</span><span class="p">,</span> <span class="n">outcome_is_valid</span>
+<span class="kn">from</span> <span class="nn">negmas.sao</span> <span class="kn">import</span> <span class="n">SAOResponse</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
+<span class="k">class</span> <span class="nc">SyncController</span><span class="p">(</span><span class="n">SAOSyncController</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Will try to get the best deal which is defined as being nearest to the agent</span>
+<span class="sd">    needs and with lowest price.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        is_seller: Are we trying to sell (or to buy)?</span>
+<span class="sd">        parent: The agent from which we will access `needed` and `secured` arrays</span>
+<span class="sd">        price_weight: The importance of price in utility calculation</span>
+<span class="sd">        utility_threshold: Accept anything with a relative utility above that</span>
+<span class="sd">        time_threshold: Accept anything with a positive utility when we are that close</span>
+<span class="sd">                        to the end of the negotiation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">is_seller</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="s2">&quot;PredictionBasedTradingStrategy&quot;</span><span class="p">,</span>
+        <span class="n">price_weight</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">utility_threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">time_threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_seller</span> <span class="o">=</span> <span class="n">is_seller</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_threshold</span> <span class="o">=</span> <span class="n">time_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_price_weight</span> <span class="o">=</span> <span class="n">price_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_utility_threshold</span> <span class="o">=</span> <span class="n">utility_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_best_utils</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># find out my needs and the amount secured lists</span>
+
+    <span class="k">def</span> <span class="nf">utility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;A simple utility function</span>
+
+<span class="sd">        Remarks:</span>
+<span class="sd">             - If the time is invalid or there is no need to get any more agreements</span>
+<span class="sd">               at the given time, return -1000</span>
+<span class="sd">             - Otherwise use the price-weight to calculate a linear combination of</span>
+<span class="sd">               the price and the how much of the needs is satisfied by this contract</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># get my needs and secured amounts arrays</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_seller</span><span class="p">:</span>
+            <span class="n">_needed</span><span class="p">,</span> <span class="n">_secured</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">outputs_needed</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">outputs_secured</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_needed</span><span class="p">,</span> <span class="n">_secured</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">inputs_needed</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">inputs_secured</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># invalide offers have no utility</span>
+        <span class="k">if</span> <span class="n">offer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1000</span>
+
+        <span class="c1"># offers for contracts that can never be executed have no utility</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">offer</span><span class="p">[</span><span class="n">TIME</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="ow">or</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">1000.0</span>
+
+        <span class="c1"># offers that exceed my needs have no utility (that can be improved)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">_needed</span><span class="p">[</span><span class="n">offer</span><span class="p">[</span><span class="n">TIME</span><span class="p">]]</span> <span class="o">-</span> <span class="p">(</span><span class="n">offer</span><span class="p">[</span><span class="n">QUANTITY</span><span class="p">]</span> <span class="o">+</span> <span class="n">_secured</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mf">1000.0</span>
+
+        <span class="c1"># The utility of any offer is a linear combination of its price and how</span>
+        <span class="c1"># much it satisfy my needs</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">offer</span><span class="p">[</span><span class="n">UNIT_PRICE</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_seller</span>
+            <span class="k">else</span> <span class="o">-</span><span class="n">offer</span><span class="p">[</span><span class="n">UNIT_PRICE</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_price_weight</span> <span class="o">*</span> <span class="n">price</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_price_weight</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span>
+
+    <span class="k">def</span> <span class="nf">is_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">negotiator_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">offer</span><span class="p">:</span> <span class="s2">&quot;Outcome&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Is this a valid offer for that negotiation&quot;&quot;&quot;</span>
+        <span class="n">issues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiators</span><span class="p">[</span><span class="n">negotiator_id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ami</span><span class="o">.</span><span class="n">issues</span>
+        <span class="k">return</span> <span class="n">outcome_is_valid</span><span class="p">(</span><span class="n">offer</span><span class="p">,</span> <span class="n">issues</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">counter_all</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">offers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Outcome&quot;</span><span class="p">],</span> <span class="n">states</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;SAOState&quot;</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;SAOResponse&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Calculate a response to all offers from all negotiators (negotiator ID is the key).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            offers: Maps negotiator IDs to offers</span>
+<span class="sd">            states: Maps negotiator IDs to offers AT the time the offers were made.</span>
+
+<span class="sd">        Remarks:</span>
+<span class="sd">            - The response type CANNOT be WAIT.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># find the best offer</span>
+        <span class="n">negotiator_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">offers</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">utils</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">utility</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">offers</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+
+        <span class="n">best_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">utils</span><span class="p">))</span>
+        <span class="n">best_utility</span> <span class="o">=</span> <span class="n">utils</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span>
+        <span class="n">best_partner</span> <span class="o">=</span> <span class="n">negotiator_ids</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span>
+        <span class="n">best_offer</span> <span class="o">=</span> <span class="n">offers</span><span class="p">[</span><span class="n">best_partner</span><span class="p">]</span>
+
+        <span class="c1"># find my best proposal for each negotiation</span>
+        <span class="n">best_proposals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_proposals</span><span class="p">()</span>
+
+        <span class="c1"># if the best offer is still so bad just reject everything</span>
+        <span class="k">if</span> <span class="n">best_utility</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">SAOResponse</span><span class="p">(</span><span class="n">ResponseType</span><span class="o">.</span><span class="n">REJECT_OFFER</span><span class="p">,</span> <span class="n">best_proposals</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">offers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="p">}</span>
+
+        <span class="n">relative_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">_</span><span class="o">.</span><span class="n">relative_time</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+        <span class="c1"># if this is good enough or the negotiation is about to end accept the best offer</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">best_utility</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_utility_threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_utils</span><span class="p">[</span><span class="n">best_partner</span><span class="p">]</span>
+            <span class="ow">or</span> <span class="n">relative_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_threshold</span>
+        <span class="p">):</span>
+            <span class="n">responses</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">SAOResponse</span><span class="p">(</span>
+                    <span class="n">ResponseType</span><span class="o">.</span><span class="n">REJECT_OFFER</span><span class="p">,</span>
+                    <span class="n">best_offer</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">best_offer</span><span class="p">)</span> <span class="k">else</span> <span class="n">best_proposals</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">offers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">responses</span><span class="p">[</span><span class="n">best_partner</span><span class="p">]</span> <span class="o">=</span> <span class="n">SAOResponse</span><span class="p">(</span><span class="n">ResponseType</span><span class="o">.</span><span class="n">ACCEPT_OFFER</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">responses</span>
+
+        <span class="c1"># send the best offer to everyone else and try to improve it</span>
+        <span class="n">responses</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">SAOResponse</span><span class="p">(</span>
+                <span class="n">ResponseType</span><span class="o">.</span><span class="n">REJECT_OFFER</span><span class="p">,</span>
+                <span class="n">best_offer</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">best_offer</span><span class="p">)</span> <span class="k">else</span> <span class="n">best_proposals</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">offers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="n">responses</span><span class="p">[</span><span class="n">best_partner</span><span class="p">]</span> <span class="o">=</span> <span class="n">SAOResponse</span><span class="p">(</span>
+            <span class="n">ResponseType</span><span class="o">.</span><span class="n">REJECT_OFFER</span><span class="p">,</span> <span class="n">best_proposals</span><span class="p">[</span><span class="n">best_partner</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">responses</span>
+
+    <span class="k">def</span> <span class="nf">first_proposals</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Outcome&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Gets a set of proposals to use for initializing the negotiation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">nid</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_proposal</span><span class="p">(</span><span class="n">nid</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">nid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiators</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+
+    <span class="k">def</span> <span class="nf">on_negotiation_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">negotiator_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="s2">&quot;MechanismState&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Update the secured quantities whenever a negotiation ends&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">agreement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">q</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="n">QUANTITY</span><span class="p">],</span> <span class="n">state</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="n">TIME</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_seller</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">outputs_secured</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">q</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span><span class="o">.</span><span class="n">inputs_secured</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">q</span>
+
+
+    <span class="k">def</span> <span class="nf">best_proposal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Outcome&quot;</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finds the best proposal for the given negotiation</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            nid: Negotiator ID</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The outcome with highest utility and the corresponding utility</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">negotiator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiators</span><span class="p">[</span><span class="n">nid</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">negotiator</span><span class="o">.</span><span class="n">ami</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span>
+        <span class="n">utils</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">utility</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">negotiator</span><span class="o">.</span><span class="n">ami</span><span class="o">.</span><span class="n">outcomes</span><span class="p">])</span>
+        <span class="n">best_indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">utils</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_best_utils</span><span class="p">[</span><span class="n">nid</span><span class="p">]</span> <span class="o">=</span> <span class="n">utils</span><span class="p">[</span><span class="n">best_indx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">utils</span><span class="p">[</span><span class="n">best_indx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">utils</span><span class="p">[</span><span class="n">best_indx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">negotiator</span><span class="o">.</span><span class="n">ami</span><span class="o">.</span><span class="n">outcomes</span><span class="p">[</span><span class="n">best_indx</span><span class="p">],</span> <span class="n">utils</span><span class="p">[</span><span class="n">best_indx</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Let’s understand exactly what is this controller doing. In NegMAS, a
+<code class="docutils literal notranslate"><span class="pre">Controller</span></code> is a class that manages multiple negotiations. Usually
+these negotiations run independently and there is no central point to
+collect offers from them. A special type of controller is the
+<code class="docutils literal notranslate"><span class="pre">SAOSyncController</span></code> which synchronizes the process of offering and
+responding to offers. Any <code class="docutils literal notranslate"><span class="pre">SAOSyncController</span></code> needs to implement two
+methods:</p>
+<ol class="arabic simple">
+<li><p><em>first_proposals</em> which is used to generate one proposal for each
+negotiation to start the negotiation process.</p></li>
+<li><p><em>counter_all</em> which receives offers from all the negotiations under
+the control of this controller and have to respond to each one of
+them by either accepting it, rejecting it and countering or ending
+the negotiation. When loops form among controllers, the system breaks
+them by having <em>counter_all</em> being called with a subset of the
+negotiations.</p></li>
+</ol>
+<p>Our controller defines a utility function which is a linear combination
+of the price and difference between the quantity and the agent’s needs
+at the delivery time.</p>
+<p>It also defines a <code class="docutils literal notranslate"><span class="pre">best_proposal</span></code> helper which finds for any
+negotiation the outcome with maximum utiltiy (as well as the value of
+this maximum utility).</p>
+<p>Implementing <code class="docutils literal notranslate"><span class="pre">first_proposals</span></code> is now straightforward. Just find the
+<em>best proposal</em> for each negotiation.</p>
+<p>The most interseting part of the controller is the <code class="docutils literal notranslate"><span class="pre">counter_all</span></code>
+method. The gist of this method is finding the best offer among the set
+currently received. If the negotiation is about to end or this offer has
+a utility above some threshold it is accepted, otherwise, it is sent to
+all other negotiators as our new offer while sending to the partner who
+gave that best offer the offer with maximum utility.</p>
+<p>The next step is to use this controller in our negotiation strategy</p>
+<p>Our negotiation control strategy will work as follows:</p>
+<ol class="arabic simple">
+<li><p>It will instantiate two <code class="docutils literal notranslate"><span class="pre">SyncController</span></code> objects one for selling
+and one for buying.</p></li>
+<li><p>It will start negotiations to satisfy the needs that it gets from the
+trading strategy using these controllers every simulation step.</p></li>
+</ol>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyNegotiationManager</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;My negotiation strategy</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        price_weight: The relative importance of price in the utility calculation.</span>
+<span class="sd">        utility_threshold: The fraction of maximum utility above which all offers will be accepted.</span>
+<span class="sd">        time_threshold: The fraction of the negotiation time after which any valid offers will be accepted.</span>
+<span class="sd">        time_range: The time-range for each controller as a fraction of the number of simulation steps</span>
+
+<span class="sd">    Hooks Into:</span>
+<span class="sd">        - `init`</span>
+<span class="sd">        - `step`</span>
+
+<span class="sd">    Remarks:</span>
+<span class="sd">        - `Attributes` section describes the attributes that can be used to construct the component (passed to its</span>
+<span class="sd">          `__init__` method).</span>
+<span class="sd">        - `Provides` section describes the attributes (methods, properties, data-members) made available by this</span>
+<span class="sd">          component directly. Note that everything provided by the bases of this components are also available to the</span>
+<span class="sd">          agent (Check the `Bases` section above for all the bases of this component).</span>
+<span class="sd">        - `Requires` section describes any requirements from the agent using this component. It defines a set of methods</span>
+<span class="sd">          or properties/data-members that must exist in the agent that uses this component. These requirement are</span>
+<span class="sd">          usually implemented as abstract methods in the component</span>
+<span class="sd">        - `Abstract` section describes abstract methods that MUST be implemented by any descendant of this component.</span>
+<span class="sd">        - `Hooks Into` section describes the methods this component overrides calling `super` () which allows other</span>
+<span class="sd">          components to hook into the same method (by overriding it). Usually callbacks starting with `on_` are</span>
+<span class="sd">          hooked into this way.</span>
+<span class="sd">        - `Overrides` section describes the methods this component overrides without calling `super` effectively</span>
+<span class="sd">          disallowing any other components after it in the MRO to call this method. Usually methods that do some</span>
+<span class="sd">          action (i.e. not starting with `on_`) are overridden this way.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">price_weight</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">utility_threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">time_threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">time_horizon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_horizon</span> <span class="o">=</span> <span class="n">time_horizon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_threshold</span> <span class="o">=</span> <span class="n">time_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_price_weight</span> <span class="o">=</span> <span class="n">price_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_utility_threshold</span> <span class="o">=</span> <span class="n">utility_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">SyncController</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="kc">False</span><span class="p">:</span> <span class="n">SyncController</span><span class="p">(</span>
+                <span class="n">is_seller</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">price_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_price_weight</span><span class="p">,</span>
+                <span class="n">time_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_threshold</span><span class="p">,</span>
+                <span class="n">utility_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_utility_threshold</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="kc">True</span><span class="p">:</span> <span class="n">SyncController</span><span class="p">(</span>
+                <span class="n">is_seller</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">price_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_price_weight</span><span class="p">,</span>
+                <span class="n">time_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_threshold</span><span class="p">,</span>
+                <span class="n">utility_threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_utility_threshold</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="c1"># find the range of steps about which we plan to negotiate</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span> <span class="o">=</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_horizon</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span><span class="p">)),</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">seller</span><span class="p">,</span> <span class="n">needed</span><span class="p">,</span> <span class="n">secured</span><span class="p">,</span> <span class="n">product</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs_needed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs_secured</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">my_input_product</span><span class="p">),</span>
+            <span class="p">(</span>
+                <span class="kc">True</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">outputs_needed</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">outputs_secured</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">my_output_product</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">]:</span>
+            <span class="c1"># find the maximum amount needed at any time-step in the given range</span>
+            <span class="n">needs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+                <span class="n">needed</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span><span class="p">]</span>
+                <span class="o">-</span> <span class="n">secured</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">needs</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># set a range of prices</span>
+            <span class="k">if</span> <span class="n">seller</span><span class="p">:</span>
+                <span class="c1"># for selling set a price that is at least the catalog price</span>
+                <span class="n">min_price</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">catalog_prices</span><span class="p">[</span><span class="n">product</span><span class="p">]</span>
+                <span class="n">price_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_price</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">min_price</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># for buying sell a price that is at most the catalog price</span>
+                <span class="n">price_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">catalog_prices</span><span class="p">[</span><span class="n">product</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">request_negotiations</span><span class="p">(</span>
+                <span class="ow">not</span> <span class="n">seller</span><span class="p">,</span>
+                <span class="n">product</span><span class="p">,</span>
+                <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">needs</span><span class="p">),</span>
+                <span class="n">price_range</span><span class="p">,</span>
+                <span class="n">time</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span><span class="p">),</span>
+                <span class="n">controller</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">[</span><span class="n">seller</span><span class="p">],</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">respond_to_negotiation_request</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initiator</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">issues</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Issue&quot;</span><span class="p">],</span>
+        <span class="n">annotation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">mechanism</span><span class="p">:</span> <span class="s2">&quot;AgentMechanismInterface&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Negotiator&quot;</span><span class="p">]:</span>
+        <span class="c1"># refuse to negotiate if the time-range does not intersect</span>
+        <span class="c1"># the current range</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
+            <span class="n">issues</span><span class="p">[</span><span class="n">TIME</span><span class="p">]</span><span class="o">.</span><span class="n">min_value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_end</span>
+            <span class="ow">or</span> <span class="n">issues</span><span class="p">[</span><span class="n">TIME</span><span class="p">]</span><span class="o">.</span><span class="n">max_value</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_start</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="p">[</span><span class="ow">not</span> <span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;is_buy&quot;</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">controller</span><span class="o">.</span><span class="n">create_negotiator</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can now replace the built-in negotiation manager in our agent with
+our new negotiation manager.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyNewAgent</span><span class="p">(</span><span class="n">MyNegotiationManager</span><span class="p">,</span> <span class="n">PredictionBasedTradingStrategy</span><span class="p">,</span>
+              <span class="n">DemandDrivenProductionStrategy</span><span class="p">,</span> <span class="n">SCML2020Agent</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Let’s see how did our simple new agent do:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span> <span class="o">=</span> <span class="n">SCML2020World</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">SCML2020World</span><span class="o">.</span><span class="n">generate</span><span class="p">([</span><span class="n">ComparisonAgent</span><span class="p">,</span> <span class="n">MyAgent</span><span class="p">,</span> <span class="n">MyNewAgent</span><span class="p">],</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">construct_graphs</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">world</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="n">world</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span><span class="n">n_steps</span><span class="p">),</span> <span class="n">together</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_41_0.png" src="../_images/02.develop_agent_scml2020_41_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_agent_scores</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/02.develop_agent_scml2020_42_0.png" src="../_images/02.develop_agent_scml2020_42_0.png" />
+<p>OK not bad. It is better than the original agent we developed using only
+built-in compoenents. If we re-run this notebook, we may get a different
+result though.</p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/8e4de3a3f527687af1cf7e55402872c5/02.develop_agent_scml2020.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Notebook</span></code></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01.run_scml2020.html" class="btn btn-neutral float-left" title="Run a session of the SCML world (2020)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

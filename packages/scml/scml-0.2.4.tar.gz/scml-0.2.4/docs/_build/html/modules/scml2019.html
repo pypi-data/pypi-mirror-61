@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SCML2019 &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="transaction" href="../api/scml.scml2019.transaction.html" />
+    <link rel="prev" title="FAQ" href="../faq.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>SCML2019</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/scml2019.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scml2019">
+<h1>SCML2019<a class="headerlink" href="#scml2019" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>This module describes the Supply Chain Management League Platform as run in 2019</p>
+</div></blockquote>
+<div class="section" id="module-scml.scml2019">
+<span id="scml-scml2019-package"></span><h2>scml.scml2019 Package<a class="headerlink" href="#module-scml.scml2019" title="Permalink to this headline">¶</a></h2>
+<p>The implementation file for all entities needed for ANAC-SCML 2019.</p>
+<p>Participants need to provide a class inherited from <a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> that implements all of its abstract functions.</p>
+<p>Participants can optionally override any other methods of this class or implement new <code class="xref any docutils literal notranslate"><span class="pre">NegotiatorUtility</span></code> class.</p>
+<div class="section" id="simulation-steps">
+<h3>Simulation steps:<a class="headerlink" href="#simulation-steps" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>prepare custom stats (call <code class="xref any docutils literal notranslate"><span class="pre">_pre_step_stats</span></code>)</p></li>
+<li><p>sign contracts that are to be signed at this step calling <a class="reference internal" href="../api/scml.scml2019.Bank.html#scml.scml2019.Bank.on_contract_signed" title="scml.scml2019.Bank.on_contract_signed"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">on_contract_signed</span></code></a> as needed</p></li>
+<li><p>step all existing negotiations <code class="xref any docutils literal notranslate"><span class="pre">negotiation_speed_multiple</span></code> times handling any failed negotiations and creating
+contracts for any resulting agreements</p></li>
+<li><p>run all <code class="xref any docutils literal notranslate"><span class="pre">Entity</span></code> objects registered (i.e. all agents). <a class="reference internal" href="../api/scml.scml2019.Consumer.html#scml.scml2019.Consumer" title="scml.scml2019.Consumer"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Consumer</span></code></a> s run first then <a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> s then
+<a class="reference internal" href="../api/scml.scml2019.Miner.html#scml.scml2019.Miner" title="scml.scml2019.Miner"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Miner</span></code></a> s</p></li>
+<li><p>execute contracts that are executable at this time-step handling any breaches</p></li>
+<li><dl class="simple">
+<dt>Custom Simulation Steps:</dt><dd><ol class="arabic simple">
+<li><p>step all factories (<a class="reference internal" href="../api/scml.scml2019.Factory.html#scml.scml2019.Factory" title="scml.scml2019.Factory"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Factory</span></code></a> objects) running any pre-scheduled commands</p></li>
+<li><p>Apply interests and pay loans</p></li>
+<li><p>remove expired <a class="reference internal" href="../api/scml.scml2019.CFP.html#scml.scml2019.CFP" title="scml.scml2019.CFP"><code class="xref any py py-class docutils literal notranslate"><span class="pre">CFP</span></code></a> s</p></li>
+<li><p>Deliver any products that are in transportation</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>remove any negotiations that are completed!</p></li>
+<li><p>update basic stats</p></li>
+<li><p>update custom stats (call <code class="xref any docutils literal notranslate"><span class="pre">_post_step_stats</span></code>)</p></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="remarks-about-re-negotiation-on-breaches">
+<h3>Remarks about re-negotiation on breaches:<a class="headerlink" href="#remarks-about-re-negotiation-on-breaches" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>The victim is asked first to specify the negotiation agenda (issues) then the perpetrator</p></li>
+<li><p>renegotiations for breaches run immediately to completion independent from settings of
+<code class="xref any docutils literal notranslate"><span class="pre">negotiation_speed_multiplier</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">immediate_negotiations</span></code>. That include conclusion and signing of any resulting
+agreements.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="remarks-about-timing">
+<h3>Remarks about timing:<a class="headerlink" href="#remarks-about-timing" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p>The order of events within a single time-step are as follows:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Contracts scheduled to be signed are signed.</p></li>
+<li><p>Scheduled negotiations run for the predefined number of steps. Any negotiation that result in a contract or
+fail may trigger other negotiations.</p></li>
+<li><p>If <code class="xref any docutils literal notranslate"><span class="pre">immediate_negotiations</span></code>, some of the newly added negotiations may be concluded/failed.</p></li>
+<li><p>Any newly concluded contracts that are to be signed at this step are signed</p></li>
+<li><p>Contracts are executed including full execution of any re-negotiations and breaches are handled. Notice that
+if re-negotiation leads to new contracts, these will be concluded and signed immediately at this step. Please
+note the following about contract execution:</p>
+<ul class="simple">
+<li><p>Products are moved from the seller’s storage to a temporary <em>truck</em> as long as they are available at the
+time of contract execution. Because contract execution happens <em>before</em> actual production, outputs from
+production processes <em>CANNOT</em> be sold at the same time-step.</p></li>
+</ul>
+</li>
+<li><p>Production is executed on all factories. For a <a class="reference internal" href="../api/scml.scml2019.Process.html#scml.scml2019.Process" title="scml.scml2019.Process"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> to start/continue on a <code class="xref any docutils literal notranslate"><span class="pre">Line</span></code>, all its inputs
+required at this time-step <strong>MUST</strong> be available in storage of the corresponding factory <em>by this point</em>.
+This implies that it is impossible for any processes to start at time-step <em>0</em> except if initial storage was
+nonzero. <a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> s are informed about processes that cannot start due to storage or fund shortage
+(or cannot continue due to storage shortage) through an <a class="reference internal" href="../api/scml.scml2019.CheapBuyerFactoryManager.html#scml.scml2019.CheapBuyerFactoryManager.on_production_failure" title="scml.scml2019.CheapBuyerFactoryManager.on_production_failure"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">on_production_failure</span></code></a> call.</p></li>
+<li><p>Outputs of the <a class="reference internal" href="../api/scml.scml2019.Process.html#scml.scml2019.Process" title="scml.scml2019.Process"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Process</span></code></a> are generated at <em>the end</em> of the corresponding time-step. It is immediately moved
+to storage. Because outputs are generated at the <em>end</em> of the step and inputs are consumed at the beginning,
+a factory cannot use outputs of a process as inputs to another process that starts at the same time-step.</p></li>
+<li><p>Products are moved from the temporary <em>truck</em> to the buyer’s storage after the <code class="xref any docutils literal notranslate"><span class="pre">transportation_delay</span></code> have
+passed at the <em>end</em> of the time-step. Transportation completes at the <em>end</em> of the time-step no matter
+what is the value for <code class="xref any docutils literal notranslate"><span class="pre">transportation_delay</span></code>. This means that if a <a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> believes
+that it can produce some product at time <em>t</em>, it should never contract to sell it before <em>t+d + 1</em> where
+<em>d</em> is the <code class="xref any docutils literal notranslate"><span class="pre">transportation_delay</span></code> (the <em>1</em> comes from the fact that contract execution happens <em>before</em>
+production). Even for a zero transportation delay, you cannot produce something and sell it in the same
+time-step. Moreover, the buyer should never use the product to be delivered at time <em>t</em> as an input to a
+production process that needs it before step <em>t+1</em>.</p></li>
+<li><p>When contracts are executed, the funds are deducted from the buyer’s wallet at the <em>beginning</em> of the
+simulation step and deposited in the seller’s wallet at the <em>end</em> of that step (similar to what happens to
+the products). This means that a factory manager cannot use funds it receives from sales at time <em>t</em> for
+buying products before <em>t + 1</em>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="remarks-about-anac-2019-scml-league">
+<h3>Remarks about ANAC 2019 SCML League:<a class="headerlink" href="#remarks-about-anac-2019-scml-league" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Given the information above, and settings for the ANAC 2019 SCML you can confirm for yourself that the following
+rules are all correct:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>No agents except miners should contract on delivery at time <em>0</em>.</p></li>
+<li><p><a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> s should never sign contracts to sell the output of their production with delivery at <em>t</em>
+except if this production starts at step <em>t</em> and the contract is signed no later than than <em>t-1</em>.</p></li>
+<li><p>If not all inputs are available in storage, <a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactoryManager</span></code></a> s should never sign contracts to sell the output
+of production with delivery at <em>t</em> later than <em>t-2</em> (and that is optimistic).</p></li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.transaction.html#scml.scml2019.transaction" title="scml.scml2019.transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transaction</span></code></a>(simulator)</p></td>
+<td><p>Runs the simulated actions then confirms them if they are not rolled back</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.temporary_transaction.html#scml.scml2019.temporary_transaction" title="scml.scml2019.temporary_transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">temporary_transaction</span></code></a>(simulator)</p></td>
+<td><p>Runs the simulated actions then rolls them back</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.anac2019_world.html#scml.scml2019.anac2019_world" title="scml.scml2019.anac2019_world"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anac2019_world</span></code></a>([competitors, params, …])</p></td>
+<td><p>Creates a world compatible with the ANAC 2019 competition.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.anac2019_tournament.html#scml.scml2019.anac2019_tournament" title="scml.scml2019.anac2019_tournament"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anac2019_tournament</span></code></a>(competitors[, …])</p></td>
+<td><p>The function used to run ANAC 2019 SCML tournament (collusion track).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.anac2019_collusion.html#scml.scml2019.anac2019_collusion" title="scml.scml2019.anac2019_collusion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anac2019_collusion</span></code></a>(competitors[, …])</p></td>
+<td><p>The function used to run ANAC 2019 SCML tournament (collusion track).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.anac2019_std.html#scml.scml2019.anac2019_std" title="scml.scml2019.anac2019_std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anac2019_std</span></code></a>(competitors[, …])</p></td>
+<td><p>The function used to run ANAC 2019 SCML tournament (standard track).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.balance_calculator.html#scml.scml2019.balance_calculator" title="scml.scml2019.balance_calculator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">balance_calculator</span></code></a>(worlds, scoring_context, …)</p></td>
+<td><p>A scoring function that scores factory managers’ performance by the final balance only ignoring whatever still in their inventory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.anac2019_sabotage.html#scml.scml2019.anac2019_sabotage" title="scml.scml2019.anac2019_sabotage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anac2019_sabotage</span></code></a>(competitors[, …])</p></td>
+<td><p>The function used to run ANAC 2019 SCML tournament (collusion track).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.pos_gauss.html#scml.scml2019.pos_gauss" title="scml.scml2019.pos_gauss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pos_gauss</span></code></a>(mu, sigma)</p></td>
+<td><p>Returns a sample from a rectified gaussian</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019._safe_max.html#scml.scml2019._safe_max" title="scml.scml2019._safe_max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_safe_max</span></code></a>(a, b)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.zero_runs.html#scml.scml2019.zero_runs" title="scml.scml2019.zero_runs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_runs</span></code></a>(a)</p></td>
+<td><p>Finds all runs of zero in an array</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.Product.html#scml.scml2019.Product" title="scml.scml2019.Product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Product</span></code></a>(id, production_level, name, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.Process.html#scml.scml2019.Process" title="scml.scml2019.Process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Process</span></code></a>(id, production_level, name, inputs, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.InputOutput.html#scml.scml2019.InputOutput" title="scml.scml2019.InputOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InputOutput</span></code></a>(product, quantity, step)</p></td>
+<td><p>An input/output to a production process</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.RunningCommandInfo.html#scml.scml2019.RunningCommandInfo" title="scml.scml2019.RunningCommandInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunningCommandInfo</span></code></a>(profile, beg, end, step, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfile.html#scml.scml2019.ManufacturingProfile" title="scml.scml2019.ManufacturingProfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManufacturingProfile</span></code></a>(n_steps, cost, …)</p></td>
+<td><p>The costs/time required for running a process on a line (with associated cancellation costs etc).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.ManufacturingProfileCompiled.html#scml.scml2019.ManufacturingProfileCompiled" title="scml.scml2019.ManufacturingProfileCompiled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManufacturingProfileCompiled</span></code></a>(n_steps, cost, …)</p></td>
+<td><p>The costs/time required for running a process on a line (with associated cancellation costs etc).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.ProductManufacturingInfo.html#scml.scml2019.ProductManufacturingInfo" title="scml.scml2019.ProductManufacturingInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductManufacturingInfo</span></code></a>(profile, quantity, step)</p></td>
+<td><p>Gives full information about a manufacturing process that can generate or consume a product.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.FactoryStatusUpdate.html#scml.scml2019.FactoryStatusUpdate" title="scml.scml2019.FactoryStatusUpdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FactoryStatusUpdate</span></code></a>(balance, storage)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.Job.html#scml.scml2019.Job" title="scml.scml2019.Job"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Job</span></code></a>(profile, time, line, action, contract, …)</p></td>
+<td><p>Describes a job to be run on one production line of a <a class="reference internal" href="../api/scml.scml2019.Factory.html#scml.scml2019.Factory" title="scml.scml2019.Factory"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Factory</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.ProductionNeed.html#scml.scml2019.ProductionNeed" title="scml.scml2019.ProductionNeed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionNeed</span></code></a>(product, needed_for, …)</p></td>
+<td><p>Describes some quantity of a product that is needed to honor a (sell) contract.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.MissingInput.html#scml.scml2019.MissingInput" title="scml.scml2019.MissingInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MissingInput</span></code></a>(product, quantity)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.ProductionReport.html#scml.scml2019.ProductionReport" title="scml.scml2019.ProductionReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionReport</span></code></a>(line, started, continuing, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.ProductionFailure.html#scml.scml2019.ProductionFailure" title="scml.scml2019.ProductionFailure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProductionFailure</span></code></a>(line, command, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.FinancialReport.html#scml.scml2019.FinancialReport" title="scml.scml2019.FinancialReport"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FinancialReport</span></code></a>(agent, step, cash, …)</p></td>
+<td><p>Reports that financial standing of an agent at a given time in the simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.SCMLAgreement.html#scml.scml2019.SCMLAgreement" title="scml.scml2019.SCMLAgreement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCMLAgreement</span></code></a>(time, unit_price, quantity[, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.SCMLAction.html#scml.scml2019.SCMLAction" title="scml.scml2019.SCMLAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCMLAction</span></code></a>(line, profile, action[, time])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.CFP.html#scml.scml2019.CFP" title="scml.scml2019.CFP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CFP</span></code></a>(is_buy, publisher, product, time, …[, …])</p></td>
+<td><p>A Call for proposal upon which a negotiation can start</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.Loan.html#scml.scml2019.Loan" title="scml.scml2019.Loan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Loan</span></code></a>(amount, starts_at, total, interest, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.InsurancePolicy.html#scml.scml2019.InsurancePolicy" title="scml.scml2019.InsurancePolicy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InsurancePolicy</span></code></a>(premium, contract, at_time, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.Factory.html#scml.scml2019.Factory" title="scml.scml2019.Factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Factory</span></code></a>(initial_storage[, initial_wallet, …])</p></td>
+<td><p>Represents a factory within an SCML world.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.FactoryState.html#scml.scml2019.FactoryState" title="scml.scml2019.FactoryState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FactoryState</span></code></a>(max_storage, line_schedules, …)</p></td>
+<td><p>Read Only State of a factory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI" title="scml.scml2019.SCMLAWI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCMLAWI</span></code></a>(world, agent)</p></td>
+<td><p>A single contact point between SCML agents and the world simulation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" title="scml.scml2019.FactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FactoryManager</span></code></a>([name, simulator_type])</p></td>
+<td><p>Base factory manager class that will be inherited by participant negmas in ANAC 2019.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.DoNothingFactoryManager.html#scml.scml2019.DoNothingFactoryManager" title="scml.scml2019.DoNothingFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoNothingFactoryManager</span></code></a>([name, simulator_type])</p></td>
+<td><p>The default factory manager that will be implemented by the committee of ANAC-SCML 2019</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.GreedyFactoryManager.html#scml.scml2019.GreedyFactoryManager" title="scml.scml2019.GreedyFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GreedyFactoryManager</span></code></a>([name, simulator_type, …])</p></td>
+<td><p>The default factory manager that will be implemented by the committee of ANAC-SCML 2019</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.JavaFactoryManager.html#scml.scml2019.JavaFactoryManager" title="scml.scml2019.JavaFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JavaFactoryManager</span></code></a>([java_object, …])</p></td>
+<td><p>Allows factory managers implemented in Java (using jnegmas) to participate in SCML worlds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.JavaDoNothingFactoryManager.html#scml.scml2019.JavaDoNothingFactoryManager" title="scml.scml2019.JavaDoNothingFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JavaDoNothingFactoryManager</span></code></a>([…])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.JavaGreedyFactoryManager.html#scml.scml2019.JavaGreedyFactoryManager" title="scml.scml2019.JavaGreedyFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JavaGreedyFactoryManager</span></code></a>([auto_load_java, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.JavaDummyMiddleMan.html#scml.scml2019.JavaDummyMiddleMan" title="scml.scml2019.JavaDummyMiddleMan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JavaDummyMiddleMan</span></code></a>([auto_load_java, name, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.FJ2FactoryManager.html#scml.scml2019.FJ2FactoryManager" title="scml.scml2019.FJ2FactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FJ2FactoryManager</span></code></a>([name, simulator_type, …])</p></td>
+<td><p>My factory manager</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.RaptFactoryManager.html#scml.scml2019.RaptFactoryManager" title="scml.scml2019.RaptFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RaptFactoryManager</span></code></a>([name, simulator_type, …])</p></td>
+<td><p>My factory manager</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.InsuranceFraudFactoryManager.html#scml.scml2019.InsuranceFraudFactoryManager" title="scml.scml2019.InsuranceFraudFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InsuranceFraudFactoryManager</span></code></a>([optimism, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager" title="scml.scml2019.SAHAFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SAHAFactoryManager</span></code></a>([name, simulator_type, …])</p></td>
+<td><p>The default factory manager that will be implemented by the committee of ANAC-SCML 2019</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.CheapBuyerFactoryManager.html#scml.scml2019.CheapBuyerFactoryManager" title="scml.scml2019.CheapBuyerFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CheapBuyerFactoryManager</span></code></a>([name, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.NVMFactoryManager.html#scml.scml2019.NVMFactoryManager" title="scml.scml2019.NVMFactoryManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NVMFactoryManager</span></code></a>([name, simulator_type, …])</p></td>
+<td><p>This agent implements a multi-period news-vendor model (MPNVM) -based strategy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.DefaultBank.html#scml.scml2019.DefaultBank" title="scml.scml2019.DefaultBank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultBank</span></code></a>(minimum_balance, interest_rate, …)</p></td>
+<td><p>Represents a bank in the world</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.Bank.html#scml.scml2019.Bank" title="scml.scml2019.Bank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bank</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Base class for all banks</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.DefaultInsuranceCompany.html#scml.scml2019.DefaultInsuranceCompany" title="scml.scml2019.DefaultInsuranceCompany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultInsuranceCompany</span></code></a>(premium, …[, …])</p></td>
+<td><p>Represents an insurance company in the world</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.InsuranceCompany.html#scml.scml2019.InsuranceCompany" title="scml.scml2019.InsuranceCompany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InsuranceCompany</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Base class for all insurance companies</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.SCML2019Agent.html#scml.scml2019.SCML2019Agent" title="scml.scml2019.SCML2019Agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCML2019Agent</span></code></a>([name])</p></td>
+<td><p>The base for all SCM Agents</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.FactorySimulator.html#scml.scml2019.FactorySimulator" title="scml.scml2019.FactorySimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FactorySimulator</span></code></a>(initial_wallet, …[, …])</p></td>
+<td><p>Simulates a factory allowing for prediction of storage/balance in the future.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.SlowFactorySimulator.html#scml.scml2019.SlowFactorySimulator" title="scml.scml2019.SlowFactorySimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SlowFactorySimulator</span></code></a>(initial_wallet, …)</p></td>
+<td><p>A slow factory simulator that runs an internal factory to find-out what will happen in the future</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.FastFactorySimulator.html#scml.scml2019.FastFactorySimulator" title="scml.scml2019.FastFactorySimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FastFactorySimulator</span></code></a>(initial_wallet, …)</p></td>
+<td><p>A faster implementation of the <a class="reference internal" href="../api/scml.scml2019.FactorySimulator.html#scml.scml2019.FactorySimulator" title="scml.scml2019.FactorySimulator"><code class="xref any py py-class docutils literal notranslate"><span class="pre">FactorySimulator</span></code></a> interface (compared with <a class="reference internal" href="../api/scml.scml2019.SlowFactorySimulator.html#scml.scml2019.SlowFactorySimulator" title="scml.scml2019.SlowFactorySimulator"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SlowFactorySimulator</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.DefaultGreedyManager.html#scml.scml2019.DefaultGreedyManager" title="scml.scml2019.DefaultGreedyManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultGreedyManager</span></code></a>(*args[, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.ScheduleInfo.html#scml.scml2019.ScheduleInfo" title="scml.scml2019.ScheduleInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScheduleInfo</span></code></a>(final_balance[, valid, start, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.Scheduler.html#scml.scml2019.Scheduler" title="scml.scml2019.Scheduler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Scheduler</span></code></a>(manager_id, awi[, …])</p></td>
+<td><p>Base class for all schedulers</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.GreedyScheduler.html#scml.scml2019.GreedyScheduler" title="scml.scml2019.GreedyScheduler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GreedyScheduler</span></code></a>(manager_id, awi[, …])</p></td>
+<td><p>Default scheduler used by the DefaultFactoryManager</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.SCML2019World.html#scml.scml2019.SCML2019World" title="scml.scml2019.SCML2019World"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCML2019World</span></code></a>(products, processes, …[, …])</p></td>
+<td><p>The <a class="reference internal" href="../api/scml.scml2020.SCML2020World.html#scml.scml2020.SCML2020World" title="scml.scml2020.SCML2020World"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SCML2020World</span></code></a> class running a simulation of supply chain management.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.Factory.html#scml.scml2019.Factory" title="scml.scml2019.Factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Factory</span></code></a>(initial_storage[, initial_wallet, …])</p></td>
+<td><p>Represents a factory within an SCML world.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.Consumer.html#scml.scml2019.Consumer" title="scml.scml2019.Consumer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Consumer</span></code></a>([name])</p></td>
+<td><p>Base class of all consumer classes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile" title="scml.scml2019.ConsumptionProfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConsumptionProfile</span></code></a>([schedule, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer" title="scml.scml2019.JustInTimeConsumer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JustInTimeConsumer</span></code></a>([profiles, …])</p></td>
+<td><p>Consumer class</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.Miner.html#scml.scml2019.Miner" title="scml.scml2019.Miner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Miner</span></code></a>([name])</p></td>
+<td><p>Base class of all miners</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/scml.scml2019.MiningProfile.html#scml.scml2019.MiningProfile" title="scml.scml2019.MiningProfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MiningProfile</span></code></a>([cv, alpha_t, alpha_q, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/scml.scml2019.ReactiveMiner.html#scml.scml2019.ReactiveMiner" title="scml.scml2019.ReactiveMiner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReactiveMiner</span></code></a>([profiles, negotiator_type, …])</p></td>
+<td><p>Raw Material Generator</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h3>
+<div class="graphviz"><img src="../_images/inheritance-f3a6634f26fbfa92ab2edd4c7be22a5202f95f89.png" alt="Inheritance diagram of scml.scml2019.common.Product, scml.scml2019.common.Process, scml.scml2019.common.InputOutput, scml.scml2019.common.RunningCommandInfo, scml.scml2019.common.ManufacturingProfile, scml.scml2019.common.ManufacturingProfileCompiled, scml.scml2019.common.ProductManufacturingInfo, scml.scml2019.common.FactoryStatusUpdate, scml.scml2019.common.Job, scml.scml2019.common.ProductionNeed, scml.scml2019.common.MissingInput, scml.scml2019.common.ProductionReport, scml.scml2019.common.ProductionFailure, scml.scml2019.common.FinancialReport, scml.scml2019.common.SCMLAgreement, scml.scml2019.common.SCMLAction, scml.scml2019.common.CFP, scml.scml2019.common.Loan, scml.scml2019.common.InsurancePolicy, scml.scml2019.common.Factory, scml.scml2019.common.FactoryState, scml.scml2019.awi.SCMLAWI, scml.scml2019.factory_managers.builtins.FactoryManager, scml.scml2019.factory_managers.builtins.DoNothingFactoryManager, scml.scml2019.factory_managers.builtins.GreedyFactoryManager, scml.scml2019.factory_managers.builtins.JavaFactoryManager, scml.scml2019.factory_managers.builtins.JavaDoNothingFactoryManager, scml.scml2019.factory_managers.builtins.JavaGreedyFactoryManager, scml.scml2019.factory_managers.builtins.JavaDummyMiddleMan, scml.scml2019.factory_managers.fj2.FJ2FactoryManager, scml.scml2019.factory_managers.rapt_fm.RaptFactoryManager, scml.scml2019.factory_managers.iffm.InsuranceFraudFactoryManager, scml.scml2019.factory_managers.saha.SAHAFactoryManager, scml.scml2019.factory_managers.cheap_buyer.cheapbuyer.CheapBuyerFactoryManager, scml.scml2019.factory_managers.nvm.nmv_agent.NVMFactoryManager, scml.scml2019.bank.DefaultBank, scml.scml2019.bank.Bank, scml.scml2019.insurance.DefaultInsuranceCompany, scml.scml2019.insurance.InsuranceCompany, scml.scml2019.agent.SCML2019Agent, scml.scml2019.simulators.FactorySimulator, scml.scml2019.simulators.SlowFactorySimulator, scml.scml2019.simulators.FastFactorySimulator, scml.scml2019.utils.DefaultGreedyManager, scml.scml2019.schedulers.ScheduleInfo, scml.scml2019.schedulers.Scheduler, scml.scml2019.schedulers.GreedyScheduler, scml.scml2019.world.SCML2019World, scml.scml2019.common.Factory, scml.scml2019.consumers.Consumer, scml.scml2019.consumers.ConsumptionProfile, scml.scml2019.consumers.JustInTimeConsumer, scml.scml2019.miners.Miner, scml.scml2019.miners.MiningProfile, scml.scml2019.miners.ReactiveMiner" usemap="#inheritanceaa19f5e5a9" class="inheritance graphviz" /></div>
+<map id="inheritanceaa19f5e5a9" name="inheritanceaa19f5e5a9">
+<area shape="rect" id="node8" href="../api/scml.scml2019.Bank.html#scml.scml2019.Bank" target="_top" title="Base class for all banks" alt="" coords="259,707,278,727"/>
+<area shape="rect" id="node14" href="../api/scml.scml2019.Consumer.html#scml.scml2019.Consumer" target="_top" title="Base class of all consumer classes" alt="" coords="333,568,365,587"/>
+<area shape="rect" id="node20" href="../api/scml.scml2019.InsuranceCompany.html#scml.scml2019.InsuranceCompany" target="_top" title="Base class for all insurance companies" alt="" coords="240,681,296,701"/>
+<area shape="rect" id="node22" href="../api/scml.scml2019.FactoryManager.html#scml.scml2019.FactoryManager" target="_top" title="Base factory manager class that will be inherited by participant negmas in ANAC 2019." alt="" coords="325,630,373,649"/>
+<area shape="rect" id="node27" href="../api/scml.scml2019.FactorySimulator.html#scml.scml2019.FactorySimulator" target="_top" title="Simulates a factory allowing for prediction of storage/balance in the future." alt="" coords="168,590,217,610"/>
+<area shape="rect" id="node33" href="../api/scml.scml2019.Scheduler.html#scml.scml2019.Scheduler" target="_top" title="Base class for all schedulers" alt="" coords="176,626,208,645"/>
+<area shape="rect" id="node48" href="../api/scml.scml2019.Miner.html#scml.scml2019.Miner" target="_top" title="Base class of all miners" alt="" coords="339,656,359,675"/>
+<area shape="rect" id="node15" href="../api/scml.scml2019.SCML2019Agent.html#scml.scml2019.SCML2019Agent" target="_top" title="The base for all SCM Agents" alt="" coords="243,642,293,661"/>
+<area shape="rect" id="node66" href="../api/scml.scml2019.SCMLAWI.html#scml.scml2019.SCMLAWI" target="_top" title="A single contact point between SCML agents and the world simulation." alt="" coords="106,609,138,629"/>
+<area shape="rect" id="node17" href="../api/scml.scml2019.DefaultBank.html#scml.scml2019.DefaultBank" target="_top" title="Represents a bank in the world" alt="" coords="330,707,367,727"/>
+<area shape="rect" id="node9" href="../api/scml.scml2019.CFP.html#scml.scml2019.CFP" target="_top" title="A Call for proposal upon which a negotiation can start" alt="" coords="112,558,132,577"/>
+<area shape="rect" id="node68" href="../api/scml.scml2019.SCMLAgreement.html#scml.scml2019.SCMLAgreement" target="_top" title="SCMLAgreement(time: int, unit_price: float, quantity: int, penalty: Union[float, NoneType] = None, signing_delay: int = &#45;1)" alt="" coords="97,583,147,603"/>
+<area shape="rect" id="node11" href="../api/scml.scml2019.CheapBuyerFactoryManager.html#scml.scml2019.CheapBuyerFactoryManager" target="_top" title="CheapBuyerFactoryManager" alt="" coords="586,636,666,656"/>
+<area shape="rect" id="node12" href="../api/scml.scml2019.GreedyFactoryManager.html#scml.scml2019.GreedyFactoryManager" target="_top" title="The default factory manager that will be implemented by the committee of ANAC&#45;SCML 2019" alt="" coords="497,636,563,656"/>
+<area shape="rect" id="node18" href="../api/scml.scml2019.DefaultGreedyManager.html#scml.scml2019.DefaultGreedyManager" target="_top" title="DefaultGreedyManager" alt="" coords="593,662,659,681"/>
+<area shape="rect" id="node25" href="../api/scml.scml2019.FJ2FactoryManager.html#scml.scml2019.FJ2FactoryManager" target="_top" title="My factory manager" alt="" coords="597,688,655,707"/>
+<area shape="rect" id="node59" href="../api/scml.scml2019.RaptFactoryManager.html#scml.scml2019.RaptFactoryManager" target="_top" title="My factory manager" alt="" coords="596,610,656,630"/>
+<area shape="rect" id="node44" href="../api/scml.scml2019.JustInTimeConsumer.html#scml.scml2019.JustInTimeConsumer" target="_top" title="Consumer class" alt="" coords="406,568,466,587"/>
+<area shape="rect" id="node16" href="../api/scml.scml2019.ConsumptionProfile.html#scml.scml2019.ConsumptionProfile" target="_top" title="ConsumptionProfile(schedule: Union[int, List[int]] = 0, underconsumption: float = 0.1, overconsumption: float = 0.01, dynamicity: float = 0.0, cv: float = 0.1, alpha_q: float = 0.5, alpha_u: float = 1.0, beta_q: float = 10.0, beta_u: float = 10.0, tau_q: float = 2, tau_u: float = 0.25)" alt="" coords="15,545,71,564"/>
+<area shape="rect" id="node19" href="../api/scml.scml2019.DefaultInsuranceCompany.html#scml.scml2019.DefaultInsuranceCompany" target="_top" title="Represents an insurance company in the world" alt="" coords="312,681,386,701"/>
+<area shape="rect" id="node21" href="../api/scml.scml2019.DoNothingFactoryManager.html#scml.scml2019.DoNothingFactoryManager" target="_top" title="The default factory manager that will be implemented by the committee of ANAC&#45;SCML 2019" alt="" coords="399,630,473,649"/>
+<area shape="rect" id="node51" href="../api/scml.scml2019.NVMFactoryManager.html#scml.scml2019.NVMFactoryManager" target="_top" title="This agent implements a multi&#45;period news&#45;vendor model (MPNVM) &#45;based strategy." alt="" coords="500,662,560,681"/>
+<area shape="rect" id="node62" href="../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager" target="_top" title="The default factory manager that will be implemented by the committee of ANAC&#45;SCML 2019" alt="" coords="498,610,561,630"/>
+<area shape="rect" id="node40" href="../api/scml.scml2019.JavaFactoryManager.html#scml.scml2019.JavaFactoryManager" target="_top" title="Allows factory managers implemented in Java (using jnegmas) to participate in SCML worlds." alt="" coords="406,727,466,746"/>
+<area shape="rect" id="node26" href="../api/scml.scml2019.Factory.html#scml.scml2019.Factory" target="_top" title="Represents a factory within an SCML world. It is only accessed by the SCML2020World so it need not be made public." alt="" coords="30,519,55,538"/>
+<area shape="rect" id="node30" href="../api/scml.scml2019.FastFactorySimulator.html#scml.scml2019.FastFactorySimulator" target="_top" title="A faster implementation of the `FactorySimulator` interface (compared with `SlowFactorySimulator`." alt="" coords="238,564,298,584"/>
+<area shape="rect" id="node70" href="../api/scml.scml2019.SlowFactorySimulator.html#scml.scml2019.SlowFactorySimulator" target="_top" title="A slow factory simulator that runs an internal factory to find&#45;out what will happen in the future" alt="" coords="237,590,299,610"/>
+<area shape="rect" id="node28" href="../api/scml.scml2019.FactoryState.html#scml.scml2019.FactoryState" target="_top" title="Read Only State of a factory" alt="" coords="24,493,62,512"/>
+<area shape="rect" id="node29" href="../api/scml.scml2019.FactoryStatusUpdate.html#scml.scml2019.FactoryStatusUpdate" target="_top" title="FactoryStatusUpdate(balance: float, storage: Dict[int, int])" alt="" coords="13,467,73,486"/>
+<area shape="rect" id="node31" href="../api/scml.scml2019.FinancialReport.html#scml.scml2019.FinancialReport" target="_top" title="Reports that financial standing of an agent at a given time in the simulation" alt="" coords="20,441,66,461"/>
+<area shape="rect" id="node32" href="../api/scml.scml2019.GreedyScheduler.html#scml.scml2019.GreedyScheduler" target="_top" title="Default scheduler used by the DefaultFactoryManager" alt="" coords="243,616,293,635"/>
+<area shape="rect" id="node34" href="../api/scml.scml2019.InputOutput.html#scml.scml2019.InputOutput" target="_top" title="An input/output to a production process" alt="" coords="25,415,61,435"/>
+<area shape="rect" id="node35" href="../api/scml.scml2019.InsuranceFraudFactoryManager.html#scml.scml2019.InsuranceFraudFactoryManager" target="_top" title="InsuranceFraudFactoryManager" alt="" coords="679,584,767,604"/>
+<area shape="rect" id="node37" href="../api/scml.scml2019.InsurancePolicy.html#scml.scml2019.InsurancePolicy" target="_top" title="InsurancePolicy(premium: float, contract: negmas.situated.Contract, at_time: int, against: &#39;SCML2019Agent&#39;)" alt="" coords="20,389,66,409"/>
+<area shape="rect" id="node39" href="../api/scml.scml2019.JavaDoNothingFactoryManager.html#scml.scml2019.JavaDoNothingFactoryManager" target="_top" title="JavaDoNothingFactoryManager" alt="" coords="486,753,573,772"/>
+<area shape="rect" id="node41" href="../api/scml.scml2019.JavaDummyMiddleMan.html#scml.scml2019.JavaDummyMiddleMan" target="_top" title="JavaDummyMiddleMan" alt="" coords="497,701,563,720"/>
+<area shape="rect" id="node42" href="../api/scml.scml2019.JavaGreedyFactoryManager.html#scml.scml2019.JavaGreedyFactoryManager" target="_top" title="JavaGreedyFactoryManager" alt="" coords="491,727,569,746"/>
+<area shape="rect" id="node43" href="../api/scml.scml2019.Job.html#scml.scml2019.Job" target="_top" title="Describes a job to be run on one production line of a `Factory`." alt="" coords="33,364,53,383"/>
+<area shape="rect" id="node45" href="../api/scml.scml2019.Loan.html#scml.scml2019.Loan" target="_top" title="Loan(amount: float, starts_at: int, total: float, interest: float, installment: float, n_installments: int)" alt="" coords="33,338,53,357"/>
+<area shape="rect" id="node46" href="../api/scml.scml2019.ManufacturingProfile.html#scml.scml2019.ManufacturingProfile" target="_top" title="The costs/time required for running a process on a line (with associated cancellation costs etc). This" alt="" coords="14,312,72,331"/>
+<area shape="rect" id="node47" href="../api/scml.scml2019.ManufacturingProfileCompiled.html#scml.scml2019.ManufacturingProfileCompiled" target="_top" title="The costs/time required for running a process on a line (with associated cancellation costs etc)." alt="" coords="1,286,84,305"/>
+<area shape="rect" id="node60" href="../api/scml.scml2019.ReactiveMiner.html#scml.scml2019.ReactiveMiner" target="_top" title="Raw Material Generator" alt="" coords="415,656,457,675"/>
+<area shape="rect" id="node49" href="../api/scml.scml2019.MiningProfile.html#scml.scml2019.MiningProfile" target="_top" title="MiningProfile(cv: float = 0.05, alpha_t: float = 1.0, alpha_q: float = 1.0, alpha_u: float = 1.0, beta_t: float = 1.0, beta_q: float = 100.0, beta_u: float = 100.0, tau_t: float = &#45;0.25, tau_q: float = 0.25, tau_u: float = 1.0)" alt="" coords="23,260,62,279"/>
+<area shape="rect" id="node50" href="../api/scml.scml2019.MissingInput.html#scml.scml2019.MissingInput" target="_top" title="MissingInput(product: int, quantity: int)" alt="" coords="24,234,62,254"/>
+<area shape="rect" id="node53" href="../api/scml.scml2019.Process.html#scml.scml2019.Process" target="_top" title="Process(id: int, production_level: int, name: str, inputs: List[scml.scml2019.common.InputOutput], outputs: List[scml.scml2019.common.InputOutput], historical_cost: Union[float, NoneType])" alt="" coords="30,208,56,228"/>
+<area shape="rect" id="node54" href="../api/scml.scml2019.Product.html#scml.scml2019.Product" target="_top" title="Product(id: int, production_level: int, name: str, expires_in: Union[int, NoneType], catalog_price: Union[float, NoneType])" alt="" coords="30,182,56,202"/>
+<area shape="rect" id="node55" href="../api/scml.scml2019.ProductManufacturingInfo.html#scml.scml2019.ProductManufacturingInfo" target="_top" title="Gives full information about a manufacturing process that can generate or consume a product." alt="" coords="7,157,79,176"/>
+<area shape="rect" id="node56" href="../api/scml.scml2019.ProductionFailure.html#scml.scml2019.ProductionFailure" target="_top" title="ProductionFailure(line: int, command: scml.scml2019.common.RunningCommandInfo, missing_inputs: List[scml.scml2019.common.MissingInput], missing_money: float, missing_space: int)" alt="" coords="17,131,68,150"/>
+<area shape="rect" id="node57" href="../api/scml.scml2019.ProductionNeed.html#scml.scml2019.ProductionNeed" target="_top" title="Describes some quantity of a product that is needed to honor a (sell) contract." alt="" coords="19,105,66,124"/>
+<area shape="rect" id="node58" href="../api/scml.scml2019.ProductionReport.html#scml.scml2019.ProductionReport" target="_top" title="ProductionReport(line: int, started: Union[scml.scml2019.common.RunningCommandInfo, NoneType], continuing: Union[scml.scml2019.common.RunningCommandInfo, NoneType], finished: Union[scml.scml2019.common.RunningCommandInfo, NoneType], failure: Union[scml.scml2019.common.ProductionFailure, NoneType], updates: scml.scml2019.common.FactoryStatusUpdate)" alt="" coords="18,79,68,98"/>
+<area shape="rect" id="node61" href="../api/scml.scml2019.RunningCommandInfo.html#scml.scml2019.RunningCommandInfo" target="_top" title="RunningCommandInfo(profile: scml.scml2019.common.ManufacturingProfile, beg: int, end: int, step: int, paused: bool, action: str, updates: Dict[int, ForwardRef(&#39;FactoryStatusUpdate&#39;)])" alt="" coords="11,53,74,73"/>
+<area shape="rect" id="node63" href="../api/scml.scml2019.SCML2019World.html#scml.scml2019.SCML2019World" target="_top" title="The `SCML2020World` class running a simulation of supply chain management." alt="" coords="244,764,293,784"/>
+<area shape="rect" id="node67" href="../api/scml.scml2019.SCMLAction.html#scml.scml2019.SCMLAction" target="_top" title="SCMLAction(line: str, profile: Union[int, NoneType], action: str, time: int = 0)" alt="" coords="24,27,62,47"/>
+<area shape="rect" id="node69" href="../api/scml.scml2019.ScheduleInfo.html#scml.scml2019.ScheduleInfo" target="_top" title="ScheduleInfo(final_balance: float, valid: bool = True, start: Union[int, NoneType] = None, end: Union[int, NoneType] = None, needs: List[scml.scml2019.common.ProductionNeed] = &lt;factory&gt;, jobs: List[scml.scml2019.common.Job] = &lt;factory&gt;, failed_contracts: List[negmas.situated.Contract] = &lt;factory&gt;, ignored_contracts: List[negmas.situated.Contract] = &lt;factory&gt;)" alt="" coords="23,1,62,21"/>
+</map></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api/scml.scml2019.transaction.html" class="btn btn-neutral float-right" title="transaction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../faq.html" class="btn btn-neutral float-left" title="FAQ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

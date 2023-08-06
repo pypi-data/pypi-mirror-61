@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>scml.scml2019.factory_managers.saha &mdash; scml 0.2.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> scml
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../readme.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../readme.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../readme.html#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01.run_scml2020.html">Run a session of the SCML world (2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/01.run_scml2020.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html">Developing an agent for SCML2020</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#do-nothing-agent">Do Nothing Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#agent-anatomy">Agent Anatomy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#strategies">Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#production-strategy">Production Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#trading-strategy">Trading Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#negotiation-control-strategy">Negotiation Control Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../tutorials/02.develop_agent_scml2020.html#creating-our-own-negotiation-control-strategy">Creating our own negotiation control strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../faq.html#how-can-i-access-a-data-file-in-my-package">How can I access a data file in my package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../faq.html#can-i-print-to-the-screen-to-debug-my-agent">Can I print to the screen to debug my agent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../faq.html#can-i-write-arbitrary-code-in-my-module-besides-the-agent-class-definition">Can I write arbitrary code in my module besides the agent class definition?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/scml2019.html">SCML2019</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modules/scml2019.html#module-scml.scml2019">scml.scml2019 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#simulation-steps">Simulation steps:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#remarks-about-re-negotiation-on-breaches">Remarks about re-negotiation on breaches:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#remarks-about-timing">Remarks about timing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#remarks-about-anac-2019-scml-league">Remarks about ANAC 2019 SCML League:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.transaction.html">transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.temporary_transaction.html">temporary_transaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.anac2019_world.html">anac2019_world</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.anac2019_tournament.html">anac2019_tournament</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.anac2019_collusion.html">anac2019_collusion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.anac2019_std.html">anac2019_std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.balance_calculator.html">balance_calculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.anac2019_sabotage.html">anac2019_sabotage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.pos_gauss.html">pos_gauss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019._safe_max.html">_safe_max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.zero_runs.html">zero_runs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Product.html">Product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Process.html">Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.InputOutput.html">InputOutput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.RunningCommandInfo.html">RunningCommandInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ManufacturingProfile.html">ManufacturingProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ManufacturingProfileCompiled.html">ManufacturingProfileCompiled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ProductManufacturingInfo.html">ProductManufacturingInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FactoryStatusUpdate.html">FactoryStatusUpdate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ProductionNeed.html">ProductionNeed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.MissingInput.html">MissingInput</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ProductionReport.html">ProductionReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ProductionFailure.html">ProductionFailure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SCMLAgreement.html">SCMLAgreement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SCMLAction.html">SCMLAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.CFP.html">CFP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Loan.html">Loan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.InsurancePolicy.html">InsurancePolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SCMLAWI.html">SCMLAWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FactoryManager.html">FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.DoNothingFactoryManager.html">DoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.GreedyFactoryManager.html">GreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.JavaFactoryManager.html">JavaFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.JavaDoNothingFactoryManager.html">JavaDoNothingFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.JavaGreedyFactoryManager.html">JavaGreedyFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.JavaDummyMiddleMan.html">JavaDummyMiddleMan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FJ2FactoryManager.html">FJ2FactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.RaptFactoryManager.html">RaptFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.InsuranceFraudFactoryManager.html">InsuranceFraudFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SAHAFactoryManager.html">SAHAFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.CheapBuyerFactoryManager.html">CheapBuyerFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.NVMFactoryManager.html">NVMFactoryManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.DefaultBank.html">DefaultBank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Bank.html">Bank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.DefaultInsuranceCompany.html">DefaultInsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.InsuranceCompany.html">InsuranceCompany</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SCML2019Agent.html">SCML2019Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FactorySimulator.html">FactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SlowFactorySimulator.html">SlowFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.FastFactorySimulator.html">FastFactorySimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.DefaultGreedyManager.html">DefaultGreedyManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ScheduleInfo.html">ScheduleInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Scheduler.html">Scheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.GreedyScheduler.html">GreedyScheduler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.SCML2019World.html">SCML2019World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Consumer.html">Consumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ConsumptionProfile.html">ConsumptionProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.JustInTimeConsumer.html">JustInTimeConsumer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.Miner.html">Miner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.MiningProfile.html">MiningProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2019.ReactiveMiner.html">ReactiveMiner</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2019.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/scml2020.html">SCML2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modules/scml2020.html#module-scml.scml2020">scml.scml2020 Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2020.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.is_system_agent.html">is_system_agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2020.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.RandomAgent.html">RandomAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.DoNothingAgent.html">DoNothingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.IndependentNegotiationsAgent.html">IndependentNegotiationsAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.BuyCheapSellExpensiveAgent.html">BuyCheapSellExpensiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.DecentralizingAgent.html">DecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.IndDecentralizingAgent.html">IndDecentralizingAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.ReactiveAgent.html">ReactiveAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.MovingRangeAgent.html">MovingRangeAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.FactoryState.html">FactoryState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.SCML2020Agent.html">SCML2020Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.AWI.html">AWI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.SCML2020World.html">SCML2020World</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.FinancialReport.html">FinancialReport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.FactoryProfile.html">FactoryProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.Factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.Failure.html">Failure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.Simulation.html">Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.ProductionStrategy.html">ProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.SupplyDrivenProductionStrategy.html">SupplyDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.DemandDrivenProductionStrategy.html">DemandDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.TradeDrivenProductionStrategy.html">TradeDrivenProductionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.TradePredictionStrategy.html">TradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.FixedTradePredictionStrategy.html">FixedTradePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.ExecutionRatePredictionStrategy.html">ExecutionRatePredictionStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.FixedERPStrategy.html">FixedERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.MeanERPStrategy.html">MeanERPStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.SignAll.html">SignAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.SignAllPossible.html">SignAllPossible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.TradingStrategy.html">TradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.ReactiveTradingStrategy.html">ReactiveTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.PredictionBasedTradingStrategy.html">PredictionBasedTradingStrategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.NegotiationManager.html">NegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.StepNegotiationManager.html">StepNegotiationManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.IndependentNegotiationsManager.html">IndependentNegotiationsManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/scml.scml2020.MovingRangeNegotiationManager.html">MovingRangeNegotiationManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/scml2020.html#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scripts.html">Command Line Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#tournament-command-scml-tournament">Tournament Command (scml tournament)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../scripts.html#creating-a-tournament">Creating a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../scripts.html#running-a-tournament">Running a tournament</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../scripts.html#combining-tournament-results">Combining tournament results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../scripts.html#finding-the-winners-of-a-tournament">Finding the winners of a tournament</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#running-an-scml2020-world-scml-run2020">Running an SCML2020 world (scml run2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts.html#running-an-scml2019-world-scml-run2019">Running an SCML2019 world (scml run2019)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/scml.html">scml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#bug-reports">Bug reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#documentation-improvements">Documentation improvements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#feature-requests-and-feedback">Feature requests and feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#development">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../contributing.html#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id1">0.2.3 (2019.2.15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id2">0.2.2 (2019.1.31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id3">0.2.1 (2019.1.23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id4">0.2.0 (2019.1.8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id5">0.1.5 (2019.12.11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id6">0.1.3 (2019-12-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id7">0.1.2 (2019-12-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id8">0.1.1 (2019-11-25)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../changelog.html#id9">0.1.0 (2019-11-20)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">scml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>scml.scml2019.factory_managers.saha</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for scml.scml2019.factory_managers.saha</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module implements a factory manager for the SCM league of ANAC 2019 competition. This advanced version has all</span>
+<span class="sd">callbacks. Please refer to the [http://www.yasserm.com/scml/scml.pdf](game description)</span>
+<span class="sd">for all the callbacks.</span>
+
+<span class="sd">Your agent can learn about the state of the world and itself by accessing properties in the AWI it has. For example::</span>
+
+<span class="sd">self.awi.n_steps  # gives the number of simulation steps</span>
+
+<span class="sd">You can access the state of your factory as::</span>
+
+<span class="sd">self.awi.state</span>
+
+<span class="sd">Your agent can act in the world by calling methods in the AWI it has. For example: &gt;&gt;&gt; self.awi.register_cfp(cfp)  # registers a new CFP</span>
+
+<span class="sd">You can access the full list of these capabilities on the documentation.</span>
+
+<span class="sd">- For properties/methods available only to SCM agents, check the list here:</span>
+<span class="sd">https://negmas.readthedocs.io/en/latest/api/scml.scml2019.SCMLAWI.html</span>
+
+<span class="sd">- For properties/methods available to all kinds of agents in all kinds of worlds, check the list here:</span>
+<span class="sd">https://negmas.readthedocs.io/en/latest/api/negmas.situated.AgentWorldInterface.html</span>
+
+<span class="sd">The SCML2019Agent class itself has some helper properties/methods that internally call the AWI. These include:</span>
+
+<span class="sd">- request_negotiation(): Generates a unique identifier for this negotiation request and passes it to the AWI through a</span>
+<span class="sd">                         call of awi.request_negotiation(). It is recommended to use this method always to request</span>
+<span class="sd">                         negotiations. This way, you can access internal lists of requested_negotiations, and</span>
+<span class="sd">                         running_negotiations. If on the other hand you use awi.request_negotiation(), these internal</span>
+<span class="sd">                         lists will not be updated and you will have to keep track to requested and running negotiations</span>
+<span class="sd">                         manually if you need to use them.</span>
+<span class="sd">- can_expect_agreement(): Checks if it is possible in principle to get an agreement on this CFP by the time it becomes</span>
+<span class="sd">                          executable</span>
+<span class="sd">- products, processes: shortcuts to awi.products and awi.processes</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">attrgetter</span>
+
+<span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">Breach</span><span class="p">,</span> <span class="n">RenegotiationRequest</span><span class="p">,</span> <span class="n">Negotiator</span><span class="p">,</span> <span class="n">AgentMechanismInterface</span>
+<span class="kn">from</span> <span class="nn">negmas</span> <span class="kn">import</span> <span class="n">MechanismState</span>
+<span class="kn">from</span> <span class="nn">negmas.events</span> <span class="kn">import</span> <span class="n">Notification</span>
+<span class="kn">from</span> <span class="nn">negmas.helpers</span> <span class="kn">import</span> <span class="n">get_class</span>
+<span class="kn">from</span> <span class="nn">negmas.sao</span> <span class="kn">import</span> <span class="n">AspirationNegotiator</span>
+<span class="kn">from</span> <span class="nn">negmas.utilities</span> <span class="kn">import</span> <span class="n">normalize</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">scml.scml2019.awi</span> <span class="kn">import</span> <span class="n">SCMLAWI</span>
+<span class="kn">from</span> <span class="nn">scml.scml2019.common</span> <span class="kn">import</span> <span class="n">SCMLAgreement</span><span class="p">,</span> <span class="n">INVALID_UTILITY</span><span class="p">,</span> <span class="n">CFP</span><span class="p">,</span> <span class="n">Loan</span><span class="p">,</span> <span class="n">ProductionFailure</span>
+<span class="kn">from</span> <span class="nn">scml.scml2019.consumers</span> <span class="kn">import</span> <span class="n">ScheduleDrivenConsumer</span><span class="p">,</span> <span class="n">ConsumptionProfile</span>
+<span class="kn">from</span> <span class="nn">scml.scml2019.schedulers</span> <span class="kn">import</span> <span class="n">Scheduler</span><span class="p">,</span> <span class="n">ScheduleInfo</span><span class="p">,</span> <span class="n">GreedyScheduler</span>
+<span class="kn">from</span> <span class="nn">scml.scml2019.simulators</span> <span class="kn">import</span> <span class="n">FactorySimulator</span><span class="p">,</span> <span class="n">FastFactorySimulator</span><span class="p">,</span> <span class="n">temporary_transaction</span>
+<span class="kn">from</span> <span class="nn">.builtins</span> <span class="kn">import</span> <span class="n">DoNothingFactoryManager</span><span class="p">,</span> <span class="n">NegotiatorUtility</span><span class="p">,</span> <span class="n">PessimisticNegotiatorUtility</span><span class="p">,</span> \
+    <span class="n">OptimisticNegotiatorUtility</span><span class="p">,</span> <span class="n">AveragingNegotiatorUtility</span>
+
+
+<span class="k">class</span> <span class="nc">ProductData</span><span class="p">:</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">stock</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">minstock</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">SellThreshold</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">BuyThreshold</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">MinPrice</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">MaxPrice</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">HistoryMin</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="n">HistoryMax</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="c1">#HistoryPublishers: []</span>
+    <span class="n">Asked</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">retracted</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">lastSigned</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">source_of</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">transformable</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">prevMax</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">prevMin</span><span class="p">:</span> <span class="nb">int</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">SellThreshold</span><span class="p">,</span> <span class="n">BuyThreshold</span><span class="p">,</span> <span class="n">MinPrice</span><span class="p">,</span> <span class="n">MaxPrice</span><span class="p">,</span> <span class="n">minstock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stock</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minstock</span> <span class="o">=</span> <span class="n">minstock</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SellThreshold</span> <span class="o">=</span> <span class="n">SellThreshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BuyThreshold</span> <span class="o">=</span> <span class="n">BuyThreshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MinPrice</span> <span class="o">=</span> <span class="n">MinPrice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">=</span> <span class="n">MaxPrice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">HistoryMin</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">HistoryMax</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#self.HistoryPublishers = []</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Asked</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retracted</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_of</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformable</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prevMax</span> <span class="o">=</span> <span class="n">MaxPrice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prevMin</span> <span class="o">=</span> <span class="n">MinPrice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastSigned</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+
+
+<div class="viewcode-block" id="SAHAFactoryManager"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager">[docs]</a><span class="k">class</span> <span class="nc">SAHAFactoryManager</span><span class="p">(</span><span class="n">DoNothingFactoryManager</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The default factory manager that will be implemented by the committee of ANAC-SCML 2019&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SAHAFactoryManager.on_production_failure"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_production_failure">[docs]</a>    <span class="k">def</span> <span class="nf">on_production_failure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">failures</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ProductionFailure</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.confirm_loan"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.confirm_loan">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_loan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loan</span><span class="p">:</span> <span class="n">Loan</span><span class="p">,</span> <span class="n">bankrupt_if_rejected</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bankrupt_if_rejected</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.confirm_contract_execution"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.confirm_contract_execution">[docs]</a>    <span class="k">def</span> <span class="nf">confirm_contract_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.set_renegotiation_agenda"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.set_renegotiation_agenda">[docs]</a>    <span class="k">def</span> <span class="nf">set_renegotiation_agenda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RenegotiationRequest</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.respond_to_renegotiation_request"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.respond_to_renegotiation_request">[docs]</a>    <span class="k">def</span> <span class="nf">respond_to_renegotiation_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">],</span>
+                                         <span class="n">agenda</span><span class="p">:</span> <span class="n">RenegotiationRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">simulator_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">FactorySimulator</span><span class="p">]]</span> <span class="o">=</span> <span class="n">FastFactorySimulator</span>
+                 <span class="p">,</span> <span class="n">scheduler_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">Scheduler</span><span class="p">]]</span> <span class="o">=</span> <span class="n">GreedyScheduler</span>
+                 <span class="p">,</span> <span class="n">scheduler_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+                 <span class="p">,</span> <span class="n">optimism</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+                 <span class="p">,</span> <span class="n">negotiator_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">&#39;negmas.sao.AspirationNegotiator&#39;</span>
+                 <span class="p">,</span> <span class="n">negotiator_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+                 <span class="p">,</span> <span class="n">n_retrials</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">use_consumer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reactive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sign_only_guaranteed_contracts</span><span class="o">=</span><span class="kc">False</span>
+                 <span class="p">,</span> <span class="n">riskiness</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_insurance_premium</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">simulator_type</span><span class="o">=</span><span class="n">simulator_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="n">negotiator_type</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_params</span> <span class="o">=</span> <span class="n">negotiator_params</span> <span class="k">if</span> <span class="n">negotiator_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimism</span> <span class="o">=</span> <span class="n">optimism</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">NegotiatorUtility</span><span class="p">],</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">NegotiatorUtility</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">optimism</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span> <span class="o">=</span> <span class="n">PessimisticNegotiatorUtility</span>
+        <span class="k">elif</span> <span class="n">optimism</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-6</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span> <span class="o">=</span> <span class="n">OptimisticNegotiatorUtility</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span><span class="p">:</span> <span class="n">NegotiatorUtility</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">agent</span><span class="p">,</span> <span class="n">annotation</span><span class="p">:</span> \
+                <span class="n">AveragingNegotiatorUtility</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span> <span class="n">annotation</span><span class="o">=</span><span class="n">annotation</span><span class="p">,</span> <span class="n">optimism</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">optimism</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_insurance_premium</span> <span class="o">=</span> <span class="n">max_insurance_premium</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_retrials</span> <span class="o">=</span> <span class="n">n_retrials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_neg_trials</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_consumer</span> <span class="o">=</span> <span class="n">use_consumer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactive</span> <span class="o">=</span> <span class="n">reactive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sign_only_guaranteed_contracts</span> <span class="o">=</span> <span class="n">sign_only_guaranteed_contracts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contract_schedules</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ScheduleInfo</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">riskiness</span> <span class="o">=</span> <span class="n">riskiness</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negotiation_margin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">n_retrials</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">riskiness</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Scheduler</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_class</span><span class="p">(</span><span class="n">scheduler_type</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">:</span> <span class="n">Scheduler</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">scheduler_params</span> <span class="k">if</span> <span class="n">scheduler_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxdebt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">firstArrival</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<div class="viewcode-block" id="SAHAFactoryManager.total_utility"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.total_utility">[docs]</a>    <span class="k">def</span> <span class="nf">total_utility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contracts</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="n">Contract</span><span class="p">]</span> <span class="o">=</span> <span class="p">())</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Calculates the total utility for the agent of a collection of contracts&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot calculate total utility without a scheduler&#39;</span><span class="p">)</span>
+        <span class="n">min_concluded_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span>
+        <span class="n">min_sign_at</span> <span class="o">=</span> <span class="n">min_concluded_at</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">default_signing_delay</span>
+        <span class="k">with</span> <span class="n">temporary_transaction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">):</span>
+            <span class="n">schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">contracts</span><span class="o">=</span><span class="n">contracts</span><span class="p">,</span> <span class="n">assume_no_further_negotiations</span><span class="o">=</span><span class="kc">False</span>
+                                               <span class="p">,</span> <span class="n">ensure_storage_for</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transportation_delay</span>
+                                               <span class="p">,</span> <span class="n">start_at</span><span class="o">=</span><span class="n">min_sign_at</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">schedule</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">INVALID_UTILITY</span>
+        <span class="k">return</span> <span class="n">schedule</span><span class="o">.</span><span class="n">final_balance</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.init"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_consumer</span><span class="p">:</span>
+            <span class="c1"># @todo add the parameters of the consumption profile as parameters of the greedy factory manager</span>
+
+            <span class="n">consumer_products</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">consuming</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+                                    <span class="p">(</span><span class="n">ConsumptionProfile</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+
+            <span class="n">a</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">],</span>
+                       <span class="p">(</span><span class="n">ConsumptionProfile</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="p">[</span><span class="n">_</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span>
+            <span class="n">consumer_products</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="p">:</span> <span class="n">ScheduleDrivenConsumer</span> <span class="o">=</span> <span class="n">ScheduleDrivenConsumer</span><span class="p">(</span><span class="n">profiles</span><span class="o">=</span><span class="n">consumer_products</span>
+                                                                           <span class="p">,</span> <span class="n">consumption_horizon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span><span class="p">,</span>
+                                                                           <span class="n">immediate_cfp_update</span><span class="o">=</span><span class="kc">True</span>
+                                                                           <span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">awi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">init_</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler_type</span><span class="p">(</span><span class="n">manager_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">awi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span>
+                                             <span class="p">,</span> <span class="n">max_insurance_premium</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_insurance_premium</span>
+                                             <span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">simulator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="p">,</span> <span class="n">products</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">,</span> <span class="n">processes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">processes</span>
+                            <span class="p">,</span> <span class="n">producing</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">producing</span><span class="p">,</span> <span class="n">profiles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compiled_profiles</span><span class="p">)</span>
+
+        <span class="c1">#print(self.name, &quot;   consume: &quot;, self.consuming.keys(), &quot;     produce: &quot;, self.producing.keys())</span>
+
+        <span class="n">raw_product</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;production_level&quot;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">raw_product</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consuming</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">raw_product</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProductData</span><span class="p">(</span><span class="n">raw_product</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">raw_product</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">,</span>
+                                                           <span class="n">raw_product</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">)</span>
+
+        <span class="n">refined_product</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;production_level&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">refined_product</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">producing</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">refined_product</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProductData</span><span class="p">(</span><span class="n">refined_product</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span>
+                                                               <span class="n">refined_product</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">,</span>
+                                                               <span class="n">refined_product</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consuming</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="n">ProductData</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">transformable</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">producing</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="n">ProductData</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">catalog_price</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">product</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">production_level</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">product</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">production_level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">product</span><span class="o">.</span><span class="n">source_of</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">id</span>
+                    <span class="k">break</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.on_contract_breached"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_contract_breached">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_breached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">breaches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Breach</span><span class="p">],</span> <span class="n">resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Contract</span><span class="p">]):</span>
+        <span class="n">cfp</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;cfp&quot;</span><span class="p">]</span>
+        <span class="sd">&quot;&quot;&quot;print(&quot;breach! step:&quot;, self.awi.current_step, &quot; seller: &quot;, contract.annotation[&quot;seller&quot;], &quot; buyer: &quot;,</span>
+<span class="sd">              contract.annotation[&quot;buyer&quot;], &quot; quantity: &quot;, contract.agreement[&#39;quantity&#39;], &quot;product: &quot;, cfp.product, &quot;stock: &quot;,</span>
+<span class="sd">              self.cfp_records[cfp.product].stock, &quot; real stock: &quot;, self.awi.state.storage[cfp.product])</span>
+<span class="sd">              &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;seller&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">+=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">transformable</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">source_of</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">-=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">-=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="SAHAFactoryManager.respond_to_negotiation_request"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.respond_to_negotiation_request">[docs]</a>    <span class="k">def</span> <span class="nf">respond_to_negotiation_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s2">&quot;CFP&quot;</span><span class="p">,</span> <span class="n">partner</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Negotiator</span><span class="p">]:</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">is_bankrupt</span><span class="p">(</span><span class="n">partner</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_consumer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">respond_to_negotiation_request</span><span class="p">(</span><span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span><span class="p">,</span> <span class="n">partner</span><span class="o">=</span><span class="n">partner</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span> <span class="o">+</span> <span class="n">partner</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">negotiator_params</span><span class="p">)</span>
+            <span class="n">ufun</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_annotation</span><span class="p">(</span><span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span><span class="p">))</span>
+            <span class="n">neg</span><span class="o">.</span><span class="n">utility_function</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">ufun</span><span class="p">,</span>
+                                             <span class="n">outcomes</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">outcomes</span><span class="p">,</span> <span class="n">infeasible_cutoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">neg</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.on_negotiation_success"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_negotiation_success">[docs]</a>    <span class="k">def</span> <span class="nf">on_negotiation_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_consumer</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">on_negotiation_success</span><span class="p">(</span><span class="n">contract</span><span class="p">,</span> <span class="n">mechanism</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.on_negotiation_failure"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_negotiation_failure">[docs]</a>    <span class="k">def</span> <span class="nf">on_negotiation_failure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">partners</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">annotation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">mechanism</span><span class="p">:</span> <span class="n">AgentMechanismInterface</span>
+                               <span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">MechanismState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">cfp</span> <span class="o">=</span> <span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;cfp&#39;</span><span class="p">]</span>
+        <span class="sd">&quot;&quot;&quot;print(&quot;negotiation fail. Timeout: &quot;, mechanism.state.timedout, &quot; Seller: &quot;, annotation[&#39;seller&#39;],</span>
+<span class="sd">              &quot; buyer: &quot;, annotation[&#39;buyer&#39;], &quot; quantity: &quot;, cfp.quantity, &quot; product: &quot;, cfp.product,</span>
+<span class="sd">        &quot; prices: &quot;, cfp.unit_price, &quot; time: &quot;, cfp.time, &quot; step: &quot;, self.awi.current_step)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mechanism</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">timedout</span><span class="p">:</span>
+            <span class="k">return</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_execute_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">schedule</span><span class="p">:</span> <span class="n">ScheduleInfo</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No factory simulator is defined&#39;</span><span class="p">)</span>
+        <span class="n">awi</span><span class="p">:</span> <span class="n">SCMLAWI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+        <span class="n">product</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;cfp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">product</span>
+        <span class="k">if</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;buyer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">buy</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+                               <span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+                               <span class="p">)</span>
+            <span class="k">if</span> <span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_insurance_premium</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">contract</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">premium</span> <span class="o">=</span> <span class="n">awi</span><span class="o">.</span><span class="n">evaluate_insurance</span><span class="p">(</span><span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">premium</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">relative_premium</span> <span class="o">=</span> <span class="n">premium</span> <span class="o">/</span> <span class="n">total</span>
+            <span class="k">if</span> <span class="n">relative_premium</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_insurance_premium</span><span class="p">:</span>
+                <span class="n">awi</span><span class="o">.</span><span class="n">buy_insurance</span><span class="p">(</span><span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">pay</span><span class="p">(</span><span class="n">premium</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># I am a seller</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">sell</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+                            <span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">schedule</span><span class="o">.</span><span class="n">jobs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">job</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;run&#39;</span><span class="p">:</span>
+                <span class="n">awi</span><span class="o">.</span><span class="n">schedule_job</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">job</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span>
+                <span class="n">awi</span><span class="o">.</span><span class="n">stop_production</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">job</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">job</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="n">job</span><span class="o">.</span><span class="n">override</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">awi</span><span class="o">.</span><span class="n">schedule_job</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">job</span><span class="o">=</span><span class="n">job</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">need</span> <span class="ow">in</span> <span class="n">schedule</span><span class="o">.</span><span class="n">needs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">schedule_production</span><span class="p">(</span><span class="n">need</span><span class="o">.</span><span class="n">product</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">,</span><span class="n">contract</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SAHAFactoryManager.sign_contract"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.sign_contract">[docs]</a>    <span class="k">def</span> <span class="nf">sign_contract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">is_bankrupt</span><span class="p">(</span><span class="n">partner</span><span class="p">)</span> <span class="k">for</span> <span class="n">partner</span> <span class="ow">in</span> <span class="n">contract</span><span class="o">.</span><span class="n">partners</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">product</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;cfp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">product</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">&lt;</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">maxdebt</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">signature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">with</span> <span class="n">temporary_transaction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">):</span>
+            <span class="n">schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">assume_no_further_negotiations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">contracts</span><span class="o">=</span><span class="p">[</span><span class="n">contract</span><span class="p">]</span>
+                                               <span class="p">,</span> <span class="n">ensure_storage_for</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transportation_delay</span>
+                                               <span class="p">,</span> <span class="n">start_at</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sign_only_guaranteed_contracts</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">schedule</span><span class="o">.</span><span class="n">valid</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">schedule</span><span class="o">.</span><span class="n">needs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{self.name}</span><span class="s1"> refused to sign contract </span><span class="si">{contract.id}</span><span class="s1"> because it cannot be scheduled&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">schedule</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+            <span class="n">profit</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">final_balance</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="o">.</span><span class="n">final_balance</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{self.name}</span><span class="s1"> singing contract </span><span class="si">{contract.id}</span><span class="s1"> expecting &#39;</span>
+                              <span class="sa">f</span><span class="s1">&#39;{-profit if profit &lt; 0 else profit} {&quot;loss&quot; if profit &lt; 0 else &quot;profit&quot;}&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">logdebug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{self.name}</span><span class="s1"> singing contract </span><span class="si">{contract.id}</span><span class="s1"> expecting breach&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">contract_schedules</span><span class="p">[</span><span class="n">contract</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">schedule</span>
+        <span class="k">return</span> <span class="n">signature</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.on_contract_signed"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_contract_signed">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_signed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">):</span>
+
+        <span class="n">cfp</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s2">&quot;cfp&quot;</span><span class="p">]</span>
+        <span class="sd">&quot;&quot;&quot;print(&quot;contract signed. Seller: &quot;, contract.annotation[&#39;seller&#39;], &quot; buyer: &quot;, contract.annotation[&#39;buyer&#39;],</span>
+<span class="sd">              &quot; quantity: &quot;, contract.agreement[&#39;quantity&#39;], &quot; product: &quot;, cfp.product, &quot; price: &quot;, contract.agreement[&#39;unit_price&#39;],</span>
+<span class="sd">              &quot; time: &quot;, contract.agreement[&#39;time&#39;], &quot; step: &quot;, self.awi.current_step)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;buyer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">product</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consuming</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">source_of</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">+=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstArrival</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">firstArrival</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">+=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">-=</span> <span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">prevMin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MinPrice</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">prevMax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MaxPrice</span>
+
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">min_unit_price</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMin</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMin</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">min_unit_price</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_unit_price</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMax</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">max_unit_price</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">recalculate_prices</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">lastSigned</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span>
+
+        <span class="k">if</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;buyer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_consumer</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">on_contract_signed</span><span class="p">(</span><span class="n">contract</span><span class="p">)</span>
+        <span class="n">schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contract_schedules</span><span class="p">[</span><span class="n">contract</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">schedule</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">schedule</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_execute_schedule</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;buyer&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_consumer</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">negotiation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_negotiations</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">negotiation</span><span class="o">.</span><span class="n">negotiator</span><span class="p">,</span> <span class="n">Notification</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ufun_modified&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="nf">_process_buy_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s1">&#39;CFP&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">is_bankrupt</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="sd">&quot;&quot;&quot;if self.simulator is None or not self.can_expect_agreement(cfp=cfp, margin=self.negotiation_margin):</span>
+<span class="sd">            return</span>
+<span class="sd">        if not self.can_produce(cfp=cfp):</span>
+<span class="sd">            return&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">&lt;</span> <span class="n">cfp</span><span class="o">.</span><span class="n">min_quantity</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span> <span class="o">&lt;</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">maxdebt</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_time</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstArrival</span> <span class="o">&gt;=</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">cfp</span><span class="o">.</span><span class="n">unit_price</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_price_ranges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">BuyThreshold</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">SellThreshold</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span> <span class="o">==</span> <span class="n">AspirationNegotiator</span><span class="p">:</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">assume_normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_negotiation</span><span class="p">(</span><span class="n">negotiator</span><span class="o">=</span><span class="n">neg</span><span class="p">,</span> <span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span>
+                                 <span class="p">,</span> <span class="n">ufun</span><span class="o">=</span><span class="n">normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_annotation</span><span class="p">(</span><span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span><span class="p">))</span>
+                                                  <span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">outcomes</span><span class="p">,</span> <span class="n">infeasible_cutoff</span><span class="o">=-</span><span class="mi">1500</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">_process_sell_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s1">&#39;CFP&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">is_bankrupt</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">cfp</span><span class="o">.</span><span class="n">unit_price</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_price_ranges</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MinPrice</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MinPrice</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">BuyThreshold</span><span class="p">)</span>
+
+
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span> <span class="o">==</span> <span class="n">AspirationNegotiator</span><span class="p">:</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">assume_normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">negotiator_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_negotiation</span><span class="p">(</span><span class="n">negotiator</span><span class="o">=</span><span class="n">neg</span><span class="p">,</span> <span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span>
+                                 <span class="p">,</span> <span class="n">ufun</span><span class="o">=</span><span class="n">normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ufun_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_annotation</span><span class="p">(</span><span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span><span class="p">))</span>
+                                                  <span class="p">,</span> <span class="n">outcomes</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">outcomes</span><span class="p">,</span> <span class="n">infeasible_cutoff</span><span class="o">=-</span><span class="mi">1500</span><span class="p">))</span>
+
+<div class="viewcode-block" id="SAHAFactoryManager.on_new_cfp"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_new_cfp">[docs]</a>    <span class="k">def</span> <span class="nf">on_new_cfp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="s1">&#39;CFP&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">product</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">:</span>
+            <span class="c1">#self.cfp_records[cfp.product].HistoryPublishers.append(cfp.publisher)</span>
+            <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">min_unit_price</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMin</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMin</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">min_unit_price</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_unit_price</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMax</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">max_unit_price</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recalculate_prices</span><span class="p">(</span><span class="n">cfp</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
+
+        <span class="n">want</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">want</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">producing</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">satisfies</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;is_buy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;products&#39;</span><span class="p">:</span> <span class="n">want</span><span class="p">}):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_process_buy_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+
+        <span class="n">want</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">satisfies</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;is_buy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;products&#39;</span><span class="p">:</span> <span class="n">want</span><span class="p">}):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_process_sell_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.recalculate_prices"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.recalculate_prices">[docs]</a>    <span class="k">def</span> <span class="nf">recalculate_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMin</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MinPrice</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMin</span><span class="p">)),</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMax</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">HistoryMax</span><span class="p">)),</span> <span class="mi">1000</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.generate_price_ranges"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.generate_price_ranges">[docs]</a>    <span class="k">def</span> <span class="nf">generate_price_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minPrice</span><span class="p">,</span> <span class="n">maxPrice</span><span class="p">):</span>
+        <span class="n">stepSize</span> <span class="o">=</span> <span class="p">(</span><span class="n">maxPrice</span><span class="o">-</span><span class="n">minPrice</span><span class="p">)</span><span class="o">/</span><span class="mi">19</span>
+        <span class="n">prices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">numSteps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="mi">19</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">maxPrice</span><span class="o">-</span><span class="n">minPrice</span><span class="p">)]))</span>
+        <span class="k">if</span> <span class="n">numSteps</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">stepSize</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numSteps</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">minPrice</span> <span class="o">+</span> <span class="n">step</span><span class="o">*</span><span class="n">stepSize</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">numSteps</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">prices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maxPrice</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prices</span></div>
+<div class="viewcode-block" id="SAHAFactoryManager.on_contract_executed"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.on_contract_executed">[docs]</a>    <span class="k">def</span> <span class="nf">on_contract_executed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;print(&quot;contract executed!!!. Seller: &quot;, contract.annotation[&#39;seller&#39;], &quot; buyer: &quot;, contract.annotation[&#39;buyer&#39;],</span>
+<span class="sd">              &quot; quantity: &quot;, contract.agreement[&#39;quantity&#39;], &quot; product: &quot;, contract.annotation[&#39;cfp&#39;].product,</span>
+<span class="sd">              &quot; price: &quot;, contract.agreement[&#39;unit_price&#39;], &quot; time: &quot;, contract.agreement[&#39;time&#39;],</span>
+<span class="sd">              &quot; step: &quot;, self.awi.current_step)</span>
+<span class="sd">              &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">contract</span><span class="o">.</span><span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;cfp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">product</span><span class="p">]</span><span class="o">.</span><span class="n">transformable</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="n">contract</span><span class="o">.</span><span class="n">agreement</span><span class="p">[</span><span class="s1">&#39;quantity&#39;</span><span class="p">],</span> <span class="mi">10</span><span class="p">])):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">schedule_production</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span></div>
+
+
+<div class="viewcode-block" id="SAHAFactoryManager.step"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxdebt</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span> <span class="o">-</span> <span class="mi">30</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">lastSigned</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">-</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">retracted</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">-</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">HistoryMin</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">item</span><span class="o">.</span><span class="n">HistoryMin</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">HistoryMin</span><span class="p">))</span>
+                    <span class="c1">#item.HistoryMin.pop()</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">HistoryMax</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1">#item.HistoryMax.pop()</span>
+                    <span class="n">item</span><span class="o">.</span><span class="n">HistoryMax</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">HistoryMax</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recalculate_prices</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">retracted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span>
+
+
+
+        <span class="c1">#print(&quot;step: &quot;, self.awi.current_step)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">transformable</span><span class="p">:</span>
+                <span class="n">stock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">source_of</span><span class="p">]</span><span class="o">.</span><span class="n">stock</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">storage</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">storage</span><span class="p">[</span><span class="n">key</span><span class="p">]])):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">schedule_production</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stock</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">stock</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">producing</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">stock</span> <span class="o">&lt;=</span> <span class="n">item</span><span class="o">.</span><span class="n">minstock</span> \
+                    <span class="ow">and</span> <span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">Asked</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">:</span>
+                <span class="n">queries</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consuming</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">queries</span> <span class="o">=</span> <span class="mi">3</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+                    <span class="n">cfp</span> <span class="o">=</span> <span class="n">CFP</span><span class="p">(</span><span class="n">is_buy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">publisher</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">id</span>
+                          <span class="p">,</span> <span class="n">time</span><span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="nb">min</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="mi">6</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">n_steps</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+                          <span class="p">,</span> <span class="n">unit_price</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_price_ranges</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">catalog_price</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">products</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">catalog_price</span>
+                                    <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfp_records</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">BuyThreshold</span><span class="p">)</span>
+                          <span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">Asked</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span>
+
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">stock</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consuming</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">stock</span><span class="p">):</span>
+                    <span class="n">unit_price</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_price_ranges</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">-</span> <span class="n">item</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">BuyThreshold</span><span class="p">,</span>
+                                  <span class="n">item</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">+</span> <span class="n">item</span><span class="o">.</span><span class="n">MaxPrice</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">SellThreshold</span><span class="p">)</span>
+
+                    <span class="n">cfp</span> <span class="o">=</span> <span class="n">CFP</span><span class="p">(</span><span class="n">is_buy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">publisher</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">id</span>
+                              <span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="nb">max</span><span class="p">([</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]),</span>
+                              <span class="n">unit_price</span><span class="o">=</span><span class="n">unit_price</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">register_cfp</span><span class="p">(</span><span class="n">cfp</span><span class="p">)</span>
+                    <span class="n">item</span><span class="o">.</span><span class="n">Asked</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.can_produce"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.can_produce">[docs]</a>    <span class="k">def</span> <span class="nf">can_produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfp</span><span class="p">:</span> <span class="n">CFP</span><span class="p">,</span> <span class="n">assume_no_further_negotiations</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether or not we can produce the required item in time&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">product</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">producing</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">agreement</span> <span class="o">=</span> <span class="n">SCMLAgreement</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">max_time</span><span class="p">,</span> <span class="n">unit_price</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">max_unit_price</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">min_quantity</span><span class="p">)</span>
+        <span class="n">min_concluded_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">immediate_negotiations</span><span class="p">)</span>
+        <span class="n">min_sign_at</span> <span class="o">=</span> <span class="n">min_concluded_at</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">default_signing_delay</span>
+        <span class="k">if</span> <span class="n">cfp</span><span class="o">.</span><span class="n">max_time</span> <span class="o">&lt;</span> <span class="n">min_sign_at</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># 1 is minimum time to produce the product</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">with</span> <span class="n">temporary_transaction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">):</span>
+            <span class="n">schedule</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">contracts</span><span class="o">=</span><span class="p">[</span><span class="n">Contract</span><span class="p">(</span><span class="n">partners</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">cfp</span><span class="o">.</span><span class="n">publisher</span><span class="p">]</span>
+                                                                   <span class="p">,</span> <span class="n">agreement</span><span class="o">=</span><span class="n">agreement</span>
+                                                                   <span class="p">,</span> <span class="n">annotation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_create_annotation</span><span class="p">(</span><span class="n">cfp</span><span class="o">=</span><span class="n">cfp</span><span class="p">)</span>
+                                                                   <span class="p">,</span> <span class="n">issues</span><span class="o">=</span><span class="n">cfp</span><span class="o">.</span><span class="n">issues</span><span class="p">,</span> <span class="n">signed_at</span><span class="o">=</span><span class="n">min_sign_at</span>
+                                                                   <span class="p">,</span> <span class="n">concluded_at</span><span class="o">=</span><span class="n">min_concluded_at</span><span class="p">)]</span>
+                                               <span class="p">,</span> <span class="n">ensure_storage_for</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">transportation_delay</span>
+                                               <span class="p">,</span> <span class="n">assume_no_further_negotiations</span><span class="o">=</span><span class="n">assume_no_further_negotiations</span>
+                                               <span class="p">,</span> <span class="n">start_at</span><span class="o">=</span><span class="n">min_sign_at</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">schedule</span><span class="o">.</span><span class="n">valid</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_secure_needs</span><span class="p">(</span><span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">awi</span><span class="o">.</span><span class="n">current_step</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SAHAFactoryManager.can_secure_needs"><a class="viewcode-back" href="../../../../api/scml.scml2019.SAHAFactoryManager.html#scml.scml2019.SAHAFactoryManager.can_secure_needs">[docs]</a>    <span class="k">def</span> <span class="nf">can_secure_needs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">schedule</span><span class="p">:</span> <span class="n">ScheduleInfo</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finds if it is possible in principle to arrange these needs at the given time.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            schedule:</span>
+<span class="sd">            step:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">needs</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">needs</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">needs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">need</span> <span class="ow">in</span> <span class="n">needs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">need</span><span class="o">.</span><span class="n">quantity_to_buy</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">need</span><span class="o">.</span><span class="n">step</span> <span class="o">&lt;</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">immediate_negotiations</span><span class="p">):</span>  <span class="c1"># @todo check this</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yasser Mohammad
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
