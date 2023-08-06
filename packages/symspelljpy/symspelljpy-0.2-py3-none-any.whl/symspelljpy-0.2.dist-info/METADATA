@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: symspelljpy
+Version: 0.2
+Summary: Spelling Correction
+Home-page: https://bitbucket.org/rbcmllab/spellchecker/symspelljpy/master
+Author: Keyi Tang
+Author-email: keyi.tang@rbc.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# SymSpellJPy
+This is a python wrapper module for a Java implementation of the SymSpell library.
+
+## Dependencies
+1. python3.6: ```conda create --name <ENV_NAME> python=3.6```
+2. Java 1.8 SDK
+
+## Install
+1. Install Dependencies
+2. Activate the Python virtual environment: ```conda activate <ENV_NAME>```
+2. Install SymSpellJPy: ```pip install symspelljpy``` 
+
+## Usage
+```python
+import symspelljpy
+
+spell_client = symspelljpy.SymSpellClient(distance_type='QWE')
+print(spell_client.lookup('plase correcme'))
+```
+
+
+```python
+{"inputText":"plase correcme","output":[{"outputText":"please correct me ","mode":"COMPOUND","distance":3.0,"count":4.4467949E7}]}
+```
+
+This python wrapper is build on top of the following jar file:
+```bash
+$ java -jar ./symspell-console/target/spellcheckclient-jar-with-dependencies.jar -h
+usage: java -jar
+            symspell-console-6.6-SNAPSHOT-jar-with-dependencies.jar.jar
+ -b,--bigram <arg>     bi-gram dictionary file path
+ -d,--distance <arg>   spelling correction distance type:
+                       'VDL': vanilla Damerau Levenshtein distance.
+                       'WDL': weighted Damerau Levenshtein distance.
+                       'QWE': qwerty distance.
+ -e,--edits <arg>      maximum number of edits (default 2)
+ -h,--help             this help message
+ -k,--topk <arg>       number of candidates to output (default 5)
+ -m,--mode <arg>       spelling correction mode: 'SMART'(Default), 'ALL',
+                       'WORD', 'COMPOUND' or 'SEGMENTATION'.
+                       WORD: Individual word spelling correction.
+                       COMPOUND: Compound splitting/decompounding +
+                       Automatic spelling correction. Space can only be
+                       inserted/deleted for a token once.
+                       SEGMENTATION: Word segmentation  + Automatic
+                       spelling correction. Existing spaces are allowed
+                       and considered for optimum segmentation.
+                       SMART: when there is no space in the input text and
+                       the text length is over the maximum word length,
+                       enable word segmenation. Otherwise choose COMPOUND
+                       word correction model.
+                       ALL: COMPOUND + SEGMENTATION.
+ -t,--timer            execution time per input in milliseconds.
+ -u,--unigram <arg>    uni-gram dictionary file path
+ -w,--word <arg>       maximum word length for word segmentation (default
+                       10)
+```
+
