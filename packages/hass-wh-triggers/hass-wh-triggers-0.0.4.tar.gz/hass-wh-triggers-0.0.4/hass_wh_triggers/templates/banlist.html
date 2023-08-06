@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Banlist{% endblock %}
+{% block content %}
+{% if current_user.is_authenticated %}
+<h2>Banlist</h2>
+<div class="table-container">
+<table class="table is-bordered is-fullwidth is-hoverable">
+    <thead>
+        <tr>
+            <th>ID</th><th>IP</th><th>Last attempt</th><th>Failed attempts</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for banned in banlist %}
+        <tr>
+            <td>{{ banned.id }}</td>
+            <td>{{ banned.ip }}</td>
+            <td>{{ banned.last_attempt | ctime }}</td>
+            <td>{{ banned.failed_attempts }}</td>
+            <td><a href="{{ url_for('banlist', del_banned=banned.id) }}" class="button is-danger is-small">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr>
+<a href="{{ url_for('banlist', purge=1) }}" class="button is-danger is-small">Purge</a>
+<br />
+</div>
+{% endif %}
+{% endblock %}
