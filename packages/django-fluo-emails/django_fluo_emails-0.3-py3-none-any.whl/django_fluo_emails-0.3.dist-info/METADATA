@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: django-fluo-emails
+Version: 0.3
+Summary: emails on database
+Home-page: https://bitbucket.org/rsalmaso/django-fluo-emails
+Author: Raffaele Salmaso
+Author-email: raffaele@salmaso.org
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: JavaScript
+Description-Content-Type: text/markdown
+Requires-Dist: django-fluo
+
+# django-fluo-emails #
+
+Simple emails template system db-dased and optional email db backend.
+
+
+## Install ##
+
+### DB Templates ###
+Add `emails.apps.EmailsConfig` into your `INSTALLED_APPS`
+
+```
+#!python
+INSTALLED_APPS = [
+    ...
+    "emails.apps.EmailsConfig",
+    ...
+]
+```
+
+### Email backend ###
+
+Set `EMAIL_BACKEND` to `'emails.backend.EmailBackend'`
+
+```
+#!python
+EMAIL_BACKEND = 'emails.backend.EmailBackend'
+```
+Now every email is archived on db.
+
+
+## Usage ##
+
+```
+#!python
+from emails.models import EmailTemplate
+
+template = EmailTemplate.objects.get(name="myemail")
+email = template.send(to=["receiver@example.com"])
+```
+
+
+## CHANGES ##
+
+
+0.2.0
+=====
+
+
+* drop python2 support
+* support for django 1.10
+
+
