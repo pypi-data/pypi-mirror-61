@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: gcgc
+Version: 0.12.1
+Summary: GCGC is a preprocessing library for biological sequence model development.
+Home-page: http://gcgc.trenthauck.com/
+License: MIT
+Author: Trent Hauck
+Author-email: trent@trenthauck.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: biopython (>=1.76,<2.0)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: pydantic (>=1.1,<2.0)
+Requires-Dist: sentencepiece (>=0.1,<0.2)
+Requires-Dist: typing-extensions (>=3.7,<4.0)
+Project-URL: Repository, https://github.com/tshauck/gcgc
+Description-Content-Type: text/markdown
+
+# GCGC
+
+> GCGC is a tool for feature processing on Biological Sequences.
+
+[![](https://github.com/tshauck/gcgc/workflows/Run%20Tests%20and%20Lint/badge.svg)](https://github.com/tshauck/gcgc/actions?query=workflow%3A%22Run+Tests+and+Lint%22)
+[![](https://img.shields.io/pypi/v/gcgc.svg)](https://pypi.python.org/pypi/gcgc)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2329966.svg)](https://doi.org/10.5281/zenodo.2329966)
+[![code style black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+## Installation
+
+GCGC is primarily intended to be used as part of a larger workflow inside
+Python, but it can also be used as a docker container.
+
+To install via pip:
+
+```sh
+$ pip install gcgc
+```
+
+And to pull the docker image:
+
+```sh
+$ docker pull docker.io/thauck/gcgc
+```
+
+## Documentation
+
+The GCGC documentation is at [gcgc.trenthauck.com](http://gcgc.trenthauck.com),
+please see it for an example.
+
+## Citing GCGC
+
+If you use GCGC in your research, cite it with the following:
+
+```
+@misc{trent_hauck_2018_2329966,
+  author       = {Trent Hauck},
+  title        = {GCGC},
+  month        = dec,
+  year         = 2018,
+  doi          = {10.5281/zenodo.2329966},
+  url          = {https://doi.org/10.5281/zenodo.2329966}
+}
+```
+
