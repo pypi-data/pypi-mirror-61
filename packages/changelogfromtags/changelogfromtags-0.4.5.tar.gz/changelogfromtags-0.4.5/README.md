@@ -1,0 +1,136 @@
+changelogfromtags ![Git Logo](images/git.png)
+[![pipeline status](https://gitlab.com/cdlr75/changelogfromtags/badges/master/pipeline.svg)](https://gitlab.com/cdlr75/changelogfromtags/commits/master)
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-green.svg)](https://www.python.org/dev/peps/pep-0008/)
+[![Downloads](https://pepy.tech/badge/changelogfromtags)](https://pepy.tech/project/changelogfromtags)
+===
+
+### Changelog generation has never been so easy
+
+**Fully automated changelog generation** - This package generates a changelog file based on **git tags**.
+
+Since you don't have to fill your `CHANGELOG.md` manually now: just run the script, relax and take a cup of :coffee: before your next release! :tada:
+
+### *What’s the point of a changelog?*
+
+To make it easier for users and contributors to see precisely what notable changes have been made between each release (or version) of the project.
+
+### *Why should I care?*
+
+Because software tools are for _people_. "Changelogs make it easier for users and
+contributors to see precisely what notable changes have been made between each
+release (or version) of the project."
+
+→ *[https://keepachangelog.com](https://keepachangelog.com)*
+
+## Installation
+
+Install the python package like:
+
+    $ pip install changelogfromtags
+
+
+:warning: `changelogfromtags` have been successuflly tested with git version >= 2.20.0
+It doesn't works with git version 2.11.0 and under...
+
+## Usage
+
+Assuming you have a message for git tags:
+```
+$ git tag -l -n200
+0.1.0           First release
+    You retrieve the content of `git tag 0.1.0 -n200`
+0.1.1           Deploy package changelogfromtags on pypi
+```
+
+### Running with CLI:
+
+```
+usage: changelogfromtags [-h] [-p [PREFIX]] [-t [TITLE]] [--tag TAG]
+                         [--verbose]
+
+Generate a change log from git tags.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p [PREFIX], --prefix [PREFIX]
+                        Append a charachter before each line of the message
+                        tag if it is not present.
+  -t [TITLE], --title [TITLE]
+                        Title in the header
+  --tag TAG             Display entry for the given tag
+  --verbose, -v
+```
+
+#### Example
+```
+$ changelogfromtags
+Changelog
+=========
+
+0.1.1 (06/01/2020)
+------------------
+Deploy package changelogfromtags on pypi
+
+0.1.0 (06/01/2020)
+------------------
+First release
+You retrieve the content of `git tag 0.1.0 -n200`
+
+```
+
+**To add a prefix on entries if not present:**
+```
+$ changelogfromtags --prefix "- "
+Changelog
+=========
+
+0.1.1 (06/01/2020)
+------------------
+- Deploy package changelogfromtags on pypi
+
+0.1.0 (06/01/2020)
+------------------
+- First release
+- You retrieve the content of `git tag 0.1.0 -n200`
+
+```
+
+**To the entry of a specific tag:**
+```
+$ changelogfromtags --tag 0.1.1
+0.1.1 (06/01/2020)
+------------------
+- Deploy package changelogfromtags on pypi
+
+```
+
+### Running with Docker
+
+```sh
+docker run -it --rm -v $(pwd):/app r4mb0/changelogfromtags
+```
+
+[See changelogfromtags docker image](https://hub.docker.com/r/r4mb0/changelogfromtags).
+
+## Output example
+
+- Look at **[CHANGELOG.md](https://cdlr75.gitlab.io/changelogfromtags/CHANGELOG.html)** for this project
+
+
+## Features and advantages of this project
+
+- Changelog entries are directly taken from git tags messages
+- No requirements except python and git
+- Generate canonical, neat changelog file, with default sections that follow [basic changelog guidelines](http://keepachangelog.com)
+
+
+### Alternatives
+
+Here is a [wikipage list of alternatives](https://github.com/github-changelog-generator/Github-Changelog-Generator/wiki/Alternatives) that I found. But none satisfied my requirements.
+
+*If you know other projects, feel free to edit this Wiki page!*
+
+
+## License
+
+changelogfromtags is released under the [MIT License](http://www.opensource.org/licenses/MIT).
