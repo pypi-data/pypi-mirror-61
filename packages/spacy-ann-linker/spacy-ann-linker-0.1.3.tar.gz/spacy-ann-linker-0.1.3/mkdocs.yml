@@ -1,0 +1,57 @@
+site_name: spaCy ANN Linker
+site_description: spaCy ANN Linker, a pipeline component for generating spaCy KnowledgeBase Alias Candidates for Entity Linking based on an Approximate Nearest Neighbors (ANN) index computed on the Character N-Gram TF-IDF representation of all aliases in your KnowledgeBase.
+site_url: https://microsoft.github.com/spacy-ann-linker
+
+theme:
+    name: 'material'
+    palette:
+        primary: 'blue'
+        accent: 'white'
+    logo: 'img/icon-white.svg'
+    favicon: 'img/favicon.ico'
+
+repo_name: microsoft/spacy-ann-linker
+repo_url: https://github.com/microsoft/spacy-ann-linker
+edit_uri: 'https://github.com/microsoft/spacy-ann-linker/docs'
+
+nav:
+    - Introduction: 'index.md'
+    - Tutorial:
+        - Create an Index: 'tutorial/create_index.md'
+        - Local Entity Linking: 'tutorial/local_entity_linking.md'
+        - Remote Entity Linking: 'tutorial/remote_entity_linking_new.md'
+
+    - Development - Contributing: 'contributing.md'
+    - Release Notes: release-notes.md
+
+markdown_extensions:
+    - toc:
+        permalink: true
+    - markdown.extensions.codehilite:
+        guess_lang: false
+    - markdown_include.include:
+        base_path: docs
+    - admonition
+    - codehilite
+    - extra
+    - pymdownx.superfences:
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_div_format
+
+extra:
+    social:
+        - type: 'github'
+          link: 'https://github.com/microsoft/spacy-ann-linker'
+        - type: 'twitter'
+          link: 'https://twitter.com/kabir_khan14'
+
+extra_css:
+    - 'css/termynal.css'
+    - 'css/custom.css'
+
+extra_javascript:
+    - 'js/termynal.js'
+    - 'js/custom.js'
+    - 'https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js'
