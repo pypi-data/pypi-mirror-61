@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+{%block head%}
+
+{%endblock%}
+{%block body%}
+<style>
+    body{height:100vh;}
+</style>
+<script>
+    //Prevent Ctrl+S (and Ctrl+W for old browsers and Edge)
+$(document).ready(()=>{
+    disable_ctrl_s();
+})
+</script>
+<link rel="stylesheet" href="/assets/editor.md/css/editormd.css" />
+<div id="editor" style="height: 100vh;">
+    <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+    <textarea style="display:none;">### Hello Editor.md !</textarea>
+</div>
+<script src="/assets/editor.md/editormd.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var editor = editormd("editor", {
+            width: "100%",
+            height: "100%",
+            // markdown: "xxxx",     // dynamic set Markdown text
+            path : "/assets/editor.md/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+        });
+    });
+</script>
+{%endblock%}
