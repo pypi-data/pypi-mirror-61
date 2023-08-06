@@ -1,0 +1,87 @@
+
+<!-- Alertas para implementar en los procedimientos de la base de datos -->
+
+<div class="alertas">
+      <div class="box-alertas">
+        <!-- MENSAJES DE ESTADOS (ALERTAS) -->
+        {% if respuesta.mensaje == 1 %}
+        <div class="alert-style alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>¡Exito!</strong> Registro agregado correctamente.
+        </div>
+        {% endif %}
+        {% if respuesta.mensaje == 2 %}
+        <div class="alert-style alert alert-success alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>¡Exito!</strong> Registro eliminado correctamente.
+                        </div>
+        {% endif %}
+        {% if respuesta.mensaje == 3 %}
+        <div class="alert-style alert alert-success alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Exito!</strong> Registro actualizado correctamente.
+                    </div>
+        {% endif %}
+            <!-- MENSAJES OPCIONALES -->
+            {% if respuesta.mensaje == 4 %}
+              <div class="alert-style alert alert-warning alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Advertencia!</strong> No existe direccion registrada.
+                    </div>
+              {% endif %}
+                  {% if respuesta.mensaje == 6 %}
+                    <div class="alert-style alert alert-warning alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Advertencia!</strong> No existe tipo de documento registrado.
+                    </div>
+                  {% endif %}
+                  {% if respuesta.mensaje == 5 %}
+                    <div class="alert-style alert alert-warning alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Advertencia!</strong> El registro esta siendo usando en el modulo [{{respuesta.constraint}}]
+                      y no se puede eliminar.
+                    </div>
+                  {% endif %}
+                  {% if respuesta.mensaje == 7 %}
+                    <div class="alert-style alert alert-danger alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Exito!</strong> Registro eliminado correctamente.
+                    </div>
+                  {% endif %}
+                  {% if respuesta.mensaje == 8 %}
+                    <div class="alert-style alert alert-warning alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Advertencia!</strong> Campos vacios o sin seleccion.
+                    </div>
+                  {% endif %}
+                  {% if respuesta.mensaje == 10 %}
+                    <div class="alert-style alert alert-dark alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Error!</strong> en Sistema. **{{respuesta.Error}}
+                    </div>
+                  {% endif %}
+                  {% if respuesta.mensaje == 11 %}
+                    <div class="alert-style alert alert-success alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Exito!</strong> La etiqueta se actualizo correctamente.
+                    </div>
+                  {% endif %}
+
+                  {% if respuesta.mensaje == 20 %}
+                    <div class="alert-style alert alert-success alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Exito!</strong> la cotización ahora es una orden de trabajo.
+                    </div>
+                  {% endif %}
+                  {% if respuesta.mensaje == 21 %}
+                    <div class="alert-style alert alert-warning alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>¡Advertencia!</strong> Te faltan por entregar documentos (NO OPCIONALES).
+                    </div>
+                  {% endif %}
+
+                  <!-- MENSAJES OPCIONALES -->
+
+                <!-- MENSAJES DE ESTADOS (ALERTAS) -->
+      </div>
+    </div>

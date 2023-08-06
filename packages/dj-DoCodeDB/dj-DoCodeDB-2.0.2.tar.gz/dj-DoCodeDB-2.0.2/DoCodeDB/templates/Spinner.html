@@ -1,0 +1,52 @@
+{% block css %}
+  <style>
+    /*** Spinner ***/
+    .back-circle {
+    /* background: rgba(0, 0, 0, 0.8); */
+    background-color: rgba(16, 53, 82, 0.8);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999; }
+
+    #circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    z-index: 99999; }
+
+    .loader {
+    width: calc(100% - 0px);
+    height: calc(100% - 0px);
+    border: 8px solid rgba(22, 37, 52, 0);
+    border-top: 8px solid #ff5840; /*** Modificar Color de Spinner ***/
+    border-radius: 50%;
+    animation: rotate 5s linear infinite; }
+
+    @keyframes rotate {
+    100% {
+        transform: rotate(360deg); } }
+    /*** End Spinner ***/
+  </style>
+{% endblock css %}
+
+<!-- SPINNER  -->
+  <div id="spinner" class="container">
+    <div class="back-circle">
+      <div id="circle">
+        <div class="loader">
+          <div class="loader">
+              <div class="loader">
+                 <div class="loader"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Fin SPINNER -->

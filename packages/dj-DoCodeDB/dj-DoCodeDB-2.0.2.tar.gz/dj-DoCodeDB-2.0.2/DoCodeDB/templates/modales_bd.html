@@ -1,0 +1,277 @@
+
+<!-- Modales para los procedimientos almacenados de la base de datos -->
+
+<div class="modales">
+  <!-- The Modal ELIMINAR D-->
+  <div class="modal" id="modal_eliminar">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Eliminando Registro</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h4>¿Está seguro de eliminarlo?</h4>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <form method="post">
+          {% csrf_token %}
+            <input id="idEliminar" class="d-none" type="text" name="idEliminar" value="">
+            <input id="eliminarOrigen" class="d-none" type="text" name="eliminarOrigen" value="">
+            <input class="d-none" type="text" name="idForm" value="eliminar">
+            <button type="submit" class="btn btn-danger btn-block activar-spinner" >Eliminar</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- The Modal Agregar-->
+  <div class="modal" id="nuevo">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><b>Nuevo Registro</b> </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form method="post" class="form-new" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input class="d-none" type="text" name="idForm" value="nuevo">
+            <div class="row">
+              {% for campo in campos %}
+              {% if campo.foreign %}
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                  <select id="{{campo.nombre}}" name="{{campo.nombre}}" class="custom-select">
+                    <option value="" selected>Elegir Tipo</option>
+                    {% for data in campo.qdata %}
+                    <option value="{{data.id}}">{{data.campo_i}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              {% else %}
+              {% if campo.tipo == 'DateField' %}
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                  <input type="date" class="form-control" id="{{campo.nombre}}" name="{{campo.nombre}}" value="">
+                </div>
+              </div>
+              {% elif campo.tipo == 'CharField' %}
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                  <input type="text" class="form-control" id="{{campo.nombre}}" name="{{campo.nombre}}">
+                </div>
+                </div>
+                {% elif campo.tipo == 'BooleanField' %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="checkbox" id="{{campo.nombre}}_editar" name="{{campo.nombre}}" checked>{{campo.nombre}}<br>
+                  </div>
+                </div>
+                {% elif campo.tipo == "choices" %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <select id="{{campo.nombre}}" name="{{campo.nombre}}" class="custom-select">
+                      <option value="" selected>Elegir Tipo</option>
+                      {% for data in campo.qdata %}
+                      <option value="{{data.0}}">{{data.1}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                {% elif campo.tipo == "FloatField" %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="number" step="0.01" class="form-control" id="{{campo.nombre}}" name="{{campo.nombre}}">
+                  </div>
+                </div>
+                {% elif campo.tipo == "IntegerField" %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="number" class="form-control" id="{{campo.nombre}}" name="{{campo.nombre}}">
+                  </div>
+                </div>
+                {% elif campo.tipo == "TextField" %}
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <textarea type="text" class="form-control" id="{{campo.nombre}}" rows="5" name="{{campo.nombre}}" value="ob">
+                    </textarea>
+                  </div>
+                </div>
+                {% elif campo.tipo == "FileField" %}
+                <div class="col-md-12">
+                  <div id="FileSection" class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="file" id="{{campo.nombre}}" name="{{campo.nombre}}" accept="image/png,image/jpeg,image/jpg"/>
+                  </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+              </div>
+              <button type="submit" class="btn btn-success btn-block activar-spinner">Agregar</button>
+              <!-- ********************* SUBMODALES ************************ -->
+            </form>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+  <!-- The Modal Editar-->
+  <div class="modal" id="modal_editar">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><b>Actualizar Registro</b> </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form method="post" class="form-new" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input id="idEditar" class="d-none" type="text" name="idEditar" value="">
+            <input class="d-none" type="text" name="idForm" value="editar">
+            <div class="row">
+            {% for campo in campos %}
+              {% if campo.foreign %}
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <select id="{{campo.nombre}}_editar" name="{{campo.nombre}}" class="custom-select">
+                      <option value="" selected>Elegir Tipo</option>
+                      {% for data in campo.qdata %}
+                      <option value="{{data.id}}">{{data.campo_i}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                {% else %}
+                {% if campo.tipo == 'DateField' %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="date" class="form-control" id="{{campo.nombre}}_editar" name="{{campo.nombre}}" value="">
+                  </div>
+                </div>
+                {% elif campo.tipo == 'CharField' %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="text" class="form-control" id="{{campo.nombre}}_editar" name="{{campo.nombre}}">
+                  </div>
+                </div>
+                {% elif campo.tipo == 'BooleanField' %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="checkbox" id="{{campo.nombre}}_editar" name="{{campo.nombre}}" checked>{{campo.nombre}}<br>
+                  </div>
+                </div>
+                {% elif campo.tipo == "choices" %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <select id="{{campo.nombre}}_editar" name="{{campo.nombre}}" class="custom-select">
+                      <option value="" selected>Elegir Tipo</option>
+                      {% for data in campo.qdata %}
+                      <option value="{{data.0}}">{{data.1}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                {% elif campo.tipo == "FloatField" %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="number" step="0.01" class="form-control" id="{{campo.nombre}}_editar" name="{{campo.nombre}}">
+                  </div>
+                </div>
+                {% elif campo.tipo == "IntegerField" %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="number" class="form-control" id="{{campo.nombre}}_editar" name="{{campo.nombre}}">
+                  </div>
+                </div>
+                {% elif campo.tipo == "TextField" %}
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <textarea type="text" class="form-control" id="{{campo.nombre}}_editar" rows="5" name="{{campo.nombre}}">
+                    </textarea>
+                  </div>
+                </div>
+                {% elif campo.tipo == "FileField" %}
+                <div class="col-md-12">
+                  <div id="FileSection_editar" class="form-group">
+                    <label for="{{campo.nombre}}">{{campo.nombre}}</label>
+                    <input type="file" id="{{campo.nombre}}_editar" name="{{campo.nombre}}" accept="image/png,image/jpeg,image/jpg"/>
+                  </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+
+                </div>
+                <button type="submit" class="btn btn-success btn-block activar-spinner">Actualizar</button>
+
+                <!-- ********************* SUBMODALES ************************ -->
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+  </div>
+
+  <!-- The modal Notas Imprimir -->
+  {% if nota != None %}
+  <div class="modal" id="notas">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modificar Nota</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input class="d-none" id="idEditar_notas" value="{{nota.id}}">
+            <div class="form-group">
+              <label for="nota">Nota:</label>
+              <textarea id="_editar_notas" class="form-control" rows="20">{{nota.nota}}</textarea>
+            </div>
+            <button type="button" class="btn btn-success" onclick="editar_nota()" data-dismiss="modal">
+              Modificar Nota
+            </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+
+</div>
