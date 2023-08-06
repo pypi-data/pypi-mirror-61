@@ -1,0 +1,35 @@
+diff --git a/src/_editline.c b/src/_editline.c
+index 261c0ad..8daa1e2 100644
+--- a/src/_editline.c
++++ b/src/_editline.c
+@@ -109,6 +109,9 @@ copy_to_buffer(EditLineObject *self, const char *src, int len)
+ 	self->buffer_size = nsize;
+     }
+ 
++    /* keep things extra tidy */
++    memset(self->buffer, 0, self->buffer_size);
++
+     /* copy it */
+     strncpy(self->buffer, src, len);
+ 
+@@ -569,7 +572,10 @@ common_line_interaction(EditLineObject *self)
+ 	PyErr_NoMemory();
+ 	return NULL;
+     }
+-	
++
++    /* clear out the buffer */
++    memset(self->buffer, 0, self->buffer_size);
++
+     /* Copy the malloc'ed buffer into a PyMem_Malloc'ed one. */
+     strncpy(p, buf, n);
+     p[n] = '\0';
+@@ -726,7 +732,7 @@ get_line_buffer(EditLineObject *self, PyObject *noarg)
+     linfo = el_line(self->el); 
+ 
+     /* use the temporary store */
+-	copy_to_buffer(self, linfo->buffer, (linfo->lastchar - linfo->buffer));
++    copy_to_buffer(self, linfo->buffer, (linfo->lastchar - linfo->buffer));
+ 
+     /* convert to 'str' */
+     return decode(self->buffer);
