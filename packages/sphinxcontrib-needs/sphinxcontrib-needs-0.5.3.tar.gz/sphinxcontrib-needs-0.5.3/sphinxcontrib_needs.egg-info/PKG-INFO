@@ -1,0 +1,85 @@
+Metadata-Version: 1.1
+Name: sphinxcontrib-needs
+Version: 0.5.3
+Summary: Sphinx needs extension for managing needs/requirements and specifications
+Home-page: http://github.com/useblocks/sphinxcontrib-needs
+Author: team useblocks
+Author-email: info@useblocks.com
+License: MIT
+Download-URL: http://pypi.python.org/pypi/sphinxcontrib-needs
+Description: **Complete documentation**: http://sphinxcontrib-needs.readthedocs.io/en/latest/
+        
+        Introduction
+        ============
+        
+        ``Sphinx-Needs`` allows the definition, linking and filtering of class-like need-objects, which are by default:
+        
+        * requirements
+        * specifications
+        * implementations
+        * test cases.
+        
+        This list can be easily customized via configuration (for instance to support bugs or user stories).
+        
+        A default requirement need looks like:
+        
+        .. image:: https://raw.githubusercontent.com/useblocks/sphinxcontrib-needs/master/docs/_images/need_1.png
+           :align: center
+        
+        Layout and style of needs can be highly customized, so that a need can also look like:
+        
+        .. image:: https://raw.githubusercontent.com/useblocks/sphinxcontrib-needs/master/docs/_images/need_2.png
+           :align: center
+        
+        Take a look into our `Examples <https://sphinxcontrib-needs.readthedocs.io/en/latest/examples/index.html>`_ for more
+        pictures and ideas how to use ``Sphinx-Needs``.
+        
+        For filtering and analyzing needs, ``Sphinx-Needs`` provides different, powerful possibilities:
+        
+        .. list-table::
+           :header-rows: 1
+           :widths: 46,14,40
+        
+           - * `needtable <https://sphinxcontrib-needs.readthedocs.io/en/latest/directives/needtable.html>`_
+             * `needflow <https://sphinxcontrib-needs.readthedocs.io/en/latest/directives/needflow.html>`_
+             * `needpie <https://sphinxcontrib-needs.readthedocs.io/en/latest/directives/needpie.html>`_
+           - * .. image:: https://raw.githubusercontent.com/useblocks/sphinxcontrib-needs/master/docs/_images/needtable_1.png
+             * .. image:: https://raw.githubusercontent.com/useblocks/sphinxcontrib-needs/master/docs/_images/needflow_1.png
+             * .. image:: https://raw.githubusercontent.com/useblocks/sphinxcontrib-needs/master/docs/_images/needpie_1.png
+        
+        Installation
+        ============
+        
+        Using pip
+        ---------
+        ::
+        
+            pip install sphinxcontrib-needs
+        
+        Using sources
+        -------------
+        ::
+        
+            git clone https://github.com/useblocks/sphinxcontrib-needs
+            python setup.py install
+        
+        Activation
+        ----------
+        
+        Add **sphinxcontrib.needs** to your extensions::
+        
+            extensions = ["sphinxcontrib.needs",]
+        
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Documentation
+Classifier: Topic :: Utilities
