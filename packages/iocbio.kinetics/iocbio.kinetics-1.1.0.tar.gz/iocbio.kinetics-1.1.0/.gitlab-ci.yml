@@ -1,0 +1,23 @@
+image: python:buster
+
+before_script:
+  - pip3 install --upgrade pip
+  - pip3 install mkdocs
+  ## Add your custom theme if not inside a theme_dir
+  ## (https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
+  # - pip install mkdocs-material
+  - pip3 install sphinx sphinx-glpi-theme recommonmark
+
+pages:
+  script:
+  - mkdocs build
+  - rm -rf site/api-docs/
+  - pip3 install --upgrade-strategy only-if-needed -e .
+  - sphinx-build -b html docs/api site/api-docs
+  - rm -rf site/api
+  - mv site public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
