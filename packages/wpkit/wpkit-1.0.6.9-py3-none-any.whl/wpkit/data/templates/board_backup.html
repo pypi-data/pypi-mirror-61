@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="/pkg-resource/css/bootstrap.min.css" rel="stylesheet">
+    <title>Board</title>
+    <!--      在这里放脚本-->
+
+
+    <!--      结束-->
+</head>
+<body>
+<!--    主体-->
+<div name="menu-bar" style="width: 100%;background-color: inherit;padding-left: 5px;padding-right: 5px;">
+<button id="btn_save" style="padding: 5px;background-color: inherit;color: inherit;border-color: cornsilk;">Save</button>
+</div>
+<div id="edit_box" spellcheck="false" style="padding: 20px;border-color: chocolate;border-width:5px;background-color: aliceblue; width: 100%;min-height: 200px;" contenteditable="true">
+{{content}}
+</div>
+
+
+<!--结束-->
+
+<script src="/pkg-resource/js/jquery-3.4.1.js"></script>
+<script src="/pkg-resource/js/popper.min.js"></script>
+<script src="/pkg-resource/js/bootstrap.min.js"></script>
+
+<!--      在这里放脚本-->
+<script>
+        $(document).ready(()=>{
+            $('#btn_save').click((e)=>{
+                console.log(e);
+                var content=$('#edit_box').html();
+                var data={content:content};
+                var res=$.ajax('/board/post',{
+                    data:JSON.stringify(data),
+                    type:'POST',
+                    contentType : 'application/json'
+                });
+                console.log('return data:',res);
+            })
+            }
+        )
+    </script>
+<!--      结束-->
+
+</body>
+</html>

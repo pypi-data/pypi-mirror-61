@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="/pkg-resource/css/bootstrap.min.css" rel="stylesheet">
+    <title>Post</title>
+    <!--      在这里放脚本-->
+<script>
+    function url_submit() {
+        var url_input=$('#url_input');
+        var v=url_input.val();
+        json={
+            url:v
+        };
+        console.log(json);
+        $.ajax('/post_and_download',{
+            data:JSON.stringify(json),
+            type:'POST',
+            contentType : 'application/json'
+        });
+        url_input.val('');
+    }
+</script>
+
+    <!--      结束-->
+</head>
+<body>
+<!--    主体-->
+<div style="padding:30px;">
+    <form onsubmit="url_submit();" class="form">
+    <label class="label-danger">网址:</label>
+    <input  type="text" id="url_input" spellcheck="false" class="form-control">
+    <label onclick="url_submit()" class="btn-info" >提交</label>
+</form>
+    <div class="badge-info"><a href="/">Home</a></div>
+</div>
+<!--结束-->
+
+<script src="/pkg-resource/js/jquery-3.4.1.js"></script>
+<script src="/pkg-resource/js/popper.min.js"></script>
+<script src="/pkg-resource/js/bootstrap.min.js"></script>
+
+<!--      在这里放脚本-->
+
+
+<!--      结束-->
+
+</body>
+</html>

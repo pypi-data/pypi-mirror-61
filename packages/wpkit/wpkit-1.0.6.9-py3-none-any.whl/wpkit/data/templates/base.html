@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="/pkg-resource/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/pkg-resource/css/hljs/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <title>Hello, world!</title>
+    <script src="/pkg-resource/js/jquery-3.4.1.js"></script>
+    <script src="/pkg-resource/js/jwerty.js"></script>
+    <script src="/pkg-resource/js/highlight.js"></script>
+    <script src="/pkg-resource/js/marked.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();
+    marked.setOptions({
+            renderer: new marked.Renderer(),
+            highlight: function (code) {
+                return hljs.highlightAuto(code).value;
+            },
+            pedantic: false,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false,
+            xhtml: false
+        }
+    );
+    </script>
+    <script src="/pkg-resource/js/popper.min.js"></script>
+    <script src="/pkg-resource/js/bootstrap.min.js"></script>
+    <script src="/pkg-resource/js/store.everything.min.js"></script>
+{#    <script src="/pkg-resource/js/editormd.min.js"></script>#}
+    <script src="/pkg-resource/js/vue.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+{#    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">#}
+{#    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">#}
+{#    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>#}
+    <!--    <script src="/pkg-resource/js/dragresize.js"></script>-->
+    <!--    <script src="/pkg-resource/js/my.js"></script>-->
+    <script>{% include "wp.js" %}</script>
+    <script>{% include "pan.js" %}</script>
+    <script>{% include "switches.js" %}</script>
+    <script>{% include "gui.js" %}</script>
+    <script>{% include "win.js" %}</script>
+    <script>{% include "system.js" %}</script>
+    <script>{% include "apputils.js" %}</script>
+    <script>{% include "fastapps.js" %}</script>
+    <script>{% include "editor.js" %}</script>
+    <script>{% include "explorer.js" %}</script>
+    <script>{% include "imview.js" %}</script>
+
+
+    <!--      在这里放脚本-->
+    {% block head %}{% endblock %}
+
+    <!--      结束-->
+</head>
+<body>
+{% block body %}
+
+{% endblock %}
+
+</body>
+</html>
