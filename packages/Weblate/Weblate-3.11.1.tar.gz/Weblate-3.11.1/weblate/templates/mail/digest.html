@@ -1,0 +1,9 @@
+{% extends "mail/base.html" %}
+
+{% load i18n %}{% load translations %}
+
+{% block content %}
+
+{% include "last-changes-content.html" with hide_links=True last_changes=changes %}
+
+{% endblock %}
