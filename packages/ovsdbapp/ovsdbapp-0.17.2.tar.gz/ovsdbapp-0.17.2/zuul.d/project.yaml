@@ -1,0 +1,15 @@
+- project:
+    templates:
+      - openstack-python-jobs
+      - openstack-python3-train-jobs
+      - check-requirements
+    check:
+      jobs:
+        - openstack-tox-lower-constraints
+        - openstack-tox-functional
+        - ovsdbapp-tempest-dsvm-networking-ovn-ovs-release
+    gate:
+      jobs:
+        - openstack-tox-lower-constraints
+        - openstack-tox-functional
+        - ovsdbapp-tempest-dsvm-networking-ovn-ovs-release
