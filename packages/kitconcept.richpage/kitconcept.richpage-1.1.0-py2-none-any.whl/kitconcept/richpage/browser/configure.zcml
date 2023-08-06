@@ -1,0 +1,60 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="kitconcept.richpage">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="kitconcept.richpage.interfaces.IKitconceptRichpageLayer"
+      />
+
+  <!-- Publish static files -->
+  <browser:resourceDirectory
+      name="kitconcept.richpage"
+      directory="static"
+      />
+
+  <browser:page
+      for="kitconcept.richpage.content.video.IVideo"
+      name="youtube_view"
+      class="plone.dexterity.browser.view.DefaultView"
+      template="item.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="kitconcept.richpage.content.audio.IAudio"
+      name="audio_view"
+      class="plone.dexterity.browser.view.DefaultView"
+      template="item.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="kitconcept.richpage.content.googlemap.IGoogleMap"
+      name="googlemap_view"
+      class="plone.dexterity.browser.view.DefaultView"
+      template="item.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="kitconcept.richpage.content.image.IImage"
+      name="image_view"
+      class="plone.dexterity.browser.view.DefaultView"
+      template="item.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="kitconcept.richpage.content.text.IText"
+      name="text_view"
+      class="plone.dexterity.browser.view.DefaultView"
+      template="item.pt"
+      permission="zope2.View"
+      />
+
+</configure>

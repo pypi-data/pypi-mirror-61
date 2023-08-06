@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="kitconcept.richpage">
+
+  <genericsetup:upgradeDepends
+    source="1000"
+    destination="1001"
+    profile="kitconcept.richpage:default"
+    title="Make title optional"
+    import_steps="typeinfo"
+    />
+
+  <genericsetup:upgradeDepends
+    source="1001"
+    destination="1002"
+    profile="kitconcept.richpage:default"
+    title="Improve types on RichPage"
+    import_steps="typeinfo"
+    />
+
+  <genericsetup:upgradeDepends
+    source="1002"
+    destination="1003"
+    profile="kitconcept.richpage:default"
+    title="Add dexterity searchable"
+    import_steps="typeinfo"
+    />
+
+  <genericsetup:upgradeDepends
+    source="1003"
+    destination="1004"
+    profile="kitconcept.richpage:default"
+    title="Add dexterity searchable"
+    import_steps="typeinfo"
+    />
+
+</configure>
