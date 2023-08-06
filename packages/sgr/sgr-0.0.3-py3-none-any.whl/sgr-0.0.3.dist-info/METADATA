@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: sgr
+Version: 0.0.3
+Summary: SageMaker Registry
+Home-page: https://github.com/felixgao/sgr.git
+Author: Felix Gao
+License: http://www.apache.org/licenses/LICENSE-2.0
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# SageMaker Job Registry
+
+This is a generic class that can be used to register your SageMaker jobs that is both train and, or serve by sub-classing the SageMakerRegistry class. 
+
+The dockerized code automatically load code in /opt/program to register any classes that is sub-classed and use that in the `serve` and `train` method
+
+
+
+
