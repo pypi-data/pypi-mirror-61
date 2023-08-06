@@ -1,0 +1,114 @@
+Metadata-Version: 2.1
+Name: flirror
+Version: 0.0.9
+Summary: A smartmirror based on Flask
+Home-page: https://github.com/felixedel/flirror
+License: MIT
+Keywords: smartmirror,magicmirror,flask
+Author: Felix Edel
+Author-email: felixfelix.schmidt@googlemail.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: Flask-Assets (>=2.0,<3.0)
+Requires-Dist: Pillow (>=7.0.0,<8.0.0)
+Requires-Dist: alpha_vantage (>=2.1.3,<3.0.0)
+Requires-Dist: arrow (>=0.15.5,<0.16.0)
+Requires-Dist: click (>=7.0,<8.0)
+Requires-Dist: feedparser (>=5.2.1,<6.0.0)
+Requires-Dist: flask (>=1.1.1,<2.0.0)
+Requires-Dist: google-api-python-client (>=1.7.11,<2.0.0)
+Requires-Dist: google-auth-httplib2 (>=0.0.3,<0.0.4)
+Requires-Dist: google-auth-oauthlib (>=0.4.1,<0.5.0)
+Requires-Dist: pony (>=0.7.11,<0.8.0)
+Requires-Dist: pyScss (>=1.3.5,<2.0.0)
+Requires-Dist: pyowm (>=2.10.0,<3.0.0)
+Requires-Dist: qrcode (>=6.1,<7.0)
+Requires-Dist: schedule (>=0.6.0,<0.7.0)
+Project-URL: Documentation, https://github.com/felixedel/flirror/blob/master/README.md
+Project-URL: Repository, https://github.com/felixedel/flirror
+Description-Content-Type: text/markdown
+
+# Flirror - A smartmirror based on Flask
+
+
+# Deploy flirror on a Raspberry Pi
+
+## Requirements
+- [Docker](https://www.docker.com/)
+- [docker-compose](https://docs.docker.com/compose/)
+
+### Install docker
+To install docker on raspbian OS, you can simply run the following command:
+
+```
+$ curl -sSL https://get.docker.com | sh
+```
+
+This will download the installation script and directly execute it via shell.
+Running the script may take some time. Afterwards, you might want to add your
+user (pi) to the docker group, so you can run docker without sudo:
+
+```
+$ sudo usermod -aG docker pi
+```
+
+Afterwards log out and back or reboot the Raspberry Pi via
+
+```
+$ sudo reboot -h
+```
+
+### Install docker-compose
+There are various ways to install docker-compose. Please see the
+[docker-compose installation guide](https://docs.docker.com/compose/install/)
+for more detailed information.
+
+I personally installed docker-compose via
+[pipx](https://pipxproject.github.io/pipx/). Using this variant requires
+the `python-dev` and `libffi-dev` packages to be installed on the system.
+
+```
+$ sudo apt install python-dev libffi-dev
+$ python3 -m pip install --user pipx
+$ python3 -m pipx ensurepath
+$ pipx install docker-compose
+```
+
+## Start flirror
+
+Both components, `flirror-web` and `flirror-crawler` can be started via the
+`docker-compose.yaml` file within this repository. Thus, you can simply start
+both services by running.
+
+```
+$ docker-compose up web crawler
+```
+
+within the root of this repository.
+
+With both services running we still need to open some kind of browser to
+see the actual flirror UI. This can be done by executing the `helpers/start_gui.sh`
+script. Apart from starting chromium in full screen mode targeting the running
+flirror-web instance inside the docker container, the script also ensures that
+some environment variables like `DISPLAY` are set and deactivates screen saver
+and energy saving mode of the X server - so the display doesn't go into sleep
+mode after a few minutes.
+
+## Optional configuration
+
+To hide the mouse cursor, install unclutter via
+
+```
+sudo apt install unclutter
+```
+
+and add the following line to `/home/pi/.config/lxsession/LXDE-pi/autostart`
+
+```
+@unclutter -display :0 -noevents -grab
+```
+
