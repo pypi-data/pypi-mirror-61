@@ -1,0 +1,298 @@
+#!/usr/bin/env python2
+#
+# Copyright 2018 Rick Chang <chchang915@gmail.com>
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+from __future__ import print_function
+import sys, os, subprocess, shutil, time, argparse, re
+
+if hasattr(__builtins__, 'raw_input'):
+    input = raw_input
+try:
+    import configparser as ConfigParser
+except ImportError:
+    import ConfigParser
+
+RED    = "\x1b[31m"
+GREEN  = "\x1b[32m"
+YELLOW = "\x1b[33m"
+NONE   = "\x1b[0m"
+
+CONFIG = {
+    'config_path': '~/.csmgr.config',
+    'backup_prefix': '.tmp.',
+    'suffixes': '.c .h .js .cpp .py',
+    'out_list': 'cscope.files',
+    'meta_files': 'cscope.in.out cscope.out cscope.po.out tags',
+    'exclude_dirs': '.git node_modules', 
+    'exec_cmds': 'cscope -bqk -i $out_list && ctags -a -L $out_list',
+    'max_display': 20,
+    'delim': "-" * 80,
+    'delim_end': '=' * 80,
+}
+
+def Log(s, endPat=None):
+    print(s, end=endPat)
+    sys.stdout.flush()
+
+def Loge(s):
+    Log(RED + s + NONE)
+
+def Logm(s, endPat=None):
+    Log(GREEN + s + NONE, endPat)
+
+def Logw(s):
+    Log(YELLOW + s + NONE)
+
+def Logv(s, verbose):
+    if verbose:
+        Log(s)
+
+class FakeSection(object):
+    SECTION = 'fake section'
+    def __init__(self, f, name):
+        self.f = f
+        self.first = True
+        self.sectionName = "[%s]\n" % name
+
+    def readline(self):
+        if self.first:
+            self.first = False
+            return self.sectionName
+        return self.f.readline()
+
+    def __iter__(self):
+        if self.first:
+            self.first = False
+            yield self.sectionName
+        line = self.f.readline()
+        while line:
+            yield line
+            line = self.f.readline()
+
+def InitConfig():
+    config_file = os.path.expanduser(CONFIG['config_path'])
+    if not os.path.isfile(config_file):
+        return
+    Log("Use config file: %s" % config_file)
+    config = ConfigParser.SafeConfigParser()
+    config.readfp(FakeSection(open(config_file), FakeSection.SECTION))
+    for key, val in CONFIG.items():
+        if not config.has_option(FakeSection.SECTION, key):
+            continue
+        val = config.get(FakeSection.SECTION, key)
+        CONFIG[key] = val
+    return
+
+def SetConfig(opts):
+    config = vars(opts)
+    for key, val in CONFIG.items():
+        if key in config and config[key] is not None:
+            continue
+        config[key] = val
+
+    config['exclude_dirs'] = list(map(lambda x: x.rstrip('/'), config['exclude_dirs']))
+    return opts
+
+def ShowPath(opts, line, path):
+    if line > opts.max_display:
+        return
+    if line == opts.max_display:
+        Log('...')
+        return
+    Log(path)
+
+def DeleteMeta(opts):
+    if opts.dry_run:
+        Log('[dryrun] Remove %s' % ' '.join(opts.meta_files))
+        return 0
+    Log('Remove %s' % ' '.join(opts.meta_files))
+    for f in opts.meta_files:
+        try:
+            os.remove(f)
+        except:
+            pass
+    return 0
+
+def Run(cmd):
+    if not cmd:
+        return
+    Log('Run %s ...' % cmd, '')
+    start_time = time.time()
+    subprocess.call(tuple(re.split('\s+', cmd)))
+    elapsed_time = time.time() - start_time
+    Log("done (" + str(round(elapsed_time, 3)) + "s)")
+
+def UpdateTag(opts, regen=False):
+    if regen:
+        DeleteMeta(opts)
+    Log("Generating tag ...")
+    Log(opts.delim)
+    cmds = []
+    for cmd in opts.exec_cmds:
+        cmd = cmd.replace('$out_list', opts.out_list).strip()
+        cmds.append(cmd)
+    for cmd in cmds:
+        if opts.dry_run:
+            Log('[dryrun] %s' % cmd)
+            continue
+        Run(cmd)
+    Log(opts.delim_end)
+    return 0
+
+def BackupFileList(opts):
+    path = opts.out_list
+    shutil.copy2(path, opts.backup_prefix + path)
+
+def RecoverFileList(opts):
+    cur = opts.out_list
+    backup = opts.backup_prefix + cur
+    tmp = backup + ".tmp"
+    if not os.path.isfile(cur):
+        if os.path.isfile(backup):
+            os.rename(backup, cur)
+        return
+
+    if not os.path.isfile(backup):
+        Log('No previous version.')
+        return
+    os.rename(cur, tmp)
+    os.rename(backup, cur)
+    os.rename(tmp, backup)
+    Logm("Rollback list file ...Done")
+
+def SaveFileList(opts, filelist):
+    if len(filelist) == 0 or opts.dry_run:
+        return
+
+    filename = opts.out_list
+    if os.path.isfile(filename):
+        BackupFileList(opts)
+
+    with open(filename, 'a') as f:
+        for i, path in enumerate(filelist):
+            f.write(path + "\n")
+
+def IsExclude(opts, path):
+    for exclude_dir in opts.exclude_dirs:
+        if path.startswith(exclude_dir):
+            return True
+    return False
+
+def FilterDir(opts, folder, file_list, existed_set):
+    for i, (path, dirs, files) in enumerate(os.walk(folder)):
+        for f in files:
+            if IsExclude(opts, os.path.relpath(path, folder)):
+                continue;
+            full_path = os.path.join(path, f)
+            FilterFile(opts, full_path, file_list, existed_set)
+
+def FilterFile(opts, path, file_list, existed_set):
+    if not path.endswith(tuple(opts.suffixes)) or os.path.islink(path):
+        return
+    if path in existed_set:
+        return
+    ShowPath(opts, len(file_list), path)
+    file_list.append(path)
+
+def AddFileList(opts):
+    start_time = time.time()
+    for path in opts.path:
+        if not os.path.exists(path):
+            Loge("'" + path + "' not exited.")
+            sys.exit(1)
+
+    existed_set = set(LoadFileList(opts))
+    file_list = []
+    for path in opts.path:
+        if os.path.isfile(path):
+            FilterFile(opts, path, file_list, existed_set)
+        elif os.path.isdir(path):
+            FilterDir(opts, path, file_list, existed_set)
+    SaveFileList(opts, file_list)
+    if opts.dry_run:
+        Logm('[dryrun] ', '')
+    elapsed_time = time.time() - start_time
+    Logm('Added %d files (%ss)' % (len(file_list), round(elapsed_time, 3)))
+    return file_list
+
+def LoadFileList(opts):
+    name = opts.out_list
+    if not os.path.isfile(name):
+        return []
+    with open(name, 'r') as f:
+        return f.read().splitlines()
+
+def ParseArguments(argv):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path', nargs='*', default=None,
+                        help = 'ex. dir/, file.c')
+    parser.add_argument('-o', '--out-list', type=str,
+                        help='assign the name of ouput list file (default: %s)' % CONFIG['out_list'])
+    parser.add_argument('-f', '--force', action='store_true', default=False,
+                        help='delete meta data and generate tag')
+    parser.add_argument('-r', '--roll-back', action='store_true', default=False,
+                        help='roll back list file to the previous version')
+    parser.add_argument('-s', '--suffixes', nargs='+', default=re.split('\s+', CONFIG['suffixes']),
+                        help='assign suffixes filter (default: %s)' % CONFIG['suffixes'])
+    parser.add_argument('-m', '--meta-files', nargs='+', default=re.split('\s+', CONFIG['meta_files']),
+                        help='assign meta data files (default: %s)' % CONFIG['meta_files'])
+    parser.add_argument('-e', '--exclude-dirs', nargs='+', default=re.split('\s+', CONFIG['exclude_dirs']),
+                        help='assign exclude dirs (default: %s)' % CONFIG['exclude_dirs'])
+    parser.add_argument('-d', '--delete-meta', action='store_true', default=False,
+                        help='delete all meta data')
+    parser.add_argument('--dry-run', action='store_true', default=False,
+                        help='show what would be done')
+    parser.add_argument('--max-display', type=int, default=CONFIG['max_display'],
+                        help='assign how many paths will be shown in the log')
+    parser.add_argument('-x', '--exec-cmds', nargs='+', default=CONFIG['exec_cmds'].split('&&'),
+                        help='assign cmd to generate tag. $out_list will be replaced by list file name. Cmds will be triggered only when a new file is added in $out_list. (default: %s)' % CONFIG['exec_cmds'])
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='show more logs')
+    parser.add_argument('-v', '--version', action='version', version='1.0.2')
+
+    opts = SetConfig(parser.parse_args(argv[1:]))
+    Logv(opts, opts.verbose)
+    return opts, parser
+
+def main(argv):
+    InitConfig()
+
+    opts, parser = ParseArguments(argv)
+    if opts.delete_meta:
+        return DeleteMeta(opts)
+    if opts.force:
+        return UpdateTag(opts, True)
+    if opts.roll_back:
+        RecoverFileList(opts)
+        return
+    if len(opts.path) == 0:
+        parser.print_help()
+        return 1
+    Log(opts.delim_end)
+
+    start_time = time.time()
+    ret = 0
+    Log("Searching file list ...")
+    Log(opts.delim)
+    new_list = AddFileList(opts)
+    Log(opts.delim_end)
+    if len(new_list):
+        ret = UpdateTag(opts)
+    elapsed_time = time.time() - start_time
+    Logm("Completed (" + str(round(elapsed_time, 3)) + "s)")
+    return ret
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
+
