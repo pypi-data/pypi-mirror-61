@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: cloudfiles-light
+Version: 0.1.0
+Summary: Lightweight helper for using rackspace cloudfiles
+Home-page: UNKNOWN
+License: MIT
+Author: David Szotten
+Author-email: davidszotten@gmail.com
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: requests (>=20.0.0,<21.0.0)
+Description-Content-Type: text/x-rst
+
+Cloudfiles-light
+================
+
+Lightweight helper for using rackspace cloudfiles. Has way fewer dependencies (and features) than the official sdk `pyrax <https://github.com/pycontribs/pyrax>`_
+
+Usage
+=====
+
+::
+
+    from cloudfiles_light import CloudFilesSession
+
+    session = CloudFilesSession(username, apikey, region)
+    # list files
+    session.get('my-container')
+
+``session`` is a `requests <http://docs.python-requests.org/en/master/>`_ session that prepends the endpoint base url and handles authentication (requests and refreshes tokens and adds as headers)
+
+This is aimed at using the `Rackspace Cloud Files API 1.0 <https://developer.rackspace.com/docs/cloud-files/v1/>`_
+
+License
+=======
+
+MIT
+
