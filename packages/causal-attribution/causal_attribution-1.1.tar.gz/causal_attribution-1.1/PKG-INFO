@@ -1,0 +1,28 @@
+Metadata-Version: 1.2
+Name: causal_attribution
+Version: 1.1
+Summary: Select and score features for causal inferences.
+Home-page: https://github.com/rpryzant/causal_attribution
+Author: Reid Pryzant
+Author-email: rpryzant@stanford.edu
+License: UNKNOWN
+Description: 
+        This package has two interfaces:
+        
+        (1) score_vocab(): Given text (T), vocab (V), outcome(s) Y, and 
+            confound(s) (C), this method will score each element of the
+            vocab according to how well it explains each Y, controlling 
+            for all of the C's.
+        
+        (2) evaluate_vocab(): Measure's the strength of a vocab's causal
+            effects on Y (controlling for C).
+        
+        (c) Reid Pryzant 2019 https://cs.stanford.edu/~rpryzant/
+        May be used and distributed under the MIT license.
+        
+Keywords: feature selection
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
