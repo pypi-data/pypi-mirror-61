@@ -1,0 +1,69 @@
+[tool.poetry]
+name = "beercraft"
+version = "0.1.3-alpha"
+description = "A pub/sub library."
+authors = ["Mark Gemmill <gitlab@markgemmill.com>"]
+license = "BSD-4-Clause"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3.5"
+pytest-cov = "^2.8.1"
+pylint = "^2.4.4"
+flake8 = "^3.7.9"
+black = "^19.10b0"
+xini = "^0.2.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.dover]
+versioned_files = [
+    "pyproject.toml",
+    "README.rst",
+    "src/beercraft/__init__.py"
+]
+
+[tool.black]
+verbose = true
+
+[tool.pylint]
+disable = [
+    "missing-docstring",
+    "line-too-long",
+    "invalid-name",
+    "logging-format-interpolation",
+    "consider-using-ternary"
+]
+
+[tool.flake8]
+statistics = true
+ignore = ["E501","W503","E241","E731"]
+max-line-length = 80
+max-complexity = 7
+tee = true
+exclude = [
+    ".git",
+    ".tox",
+    "__pycache__",
+    "docs",
+    "build",
+    "dist"
+]
+
+[tool.pytest]
+addopts = "-vv --strict --cov=beercraft --cov-report=term-missing"
+
+[tool.coverage.run]
+source = "beercraft"
+branch = true
+
+[tool.coverage.paths]
+source = "beercraft"
+
+[tool.coverage.report]
+show_missing = true
