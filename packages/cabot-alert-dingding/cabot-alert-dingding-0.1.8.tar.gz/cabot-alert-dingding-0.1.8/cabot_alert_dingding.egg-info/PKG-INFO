@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: cabot-alert-dingding
+Version: 0.1.8
+Summary: A Dingding plugin for Cabot
+Home-page: https://github.com/hanya070603
+Author: hanya
+Author-email: 464975798@qq.com
+License: UNKNOWN
+Download-URL: https://github.com/hanya070603/
+Description: ==========================
+        Cabot Dingding Alert Plugin
+        ==========================
+        
+        A plugin for `Cabot`_ service monitoring that will post alerts to a URL.
+        
+        The plugin will POST a payload like the following to a user-defined endpoint::
+        
+                payload = {
+                    "msgtype": "text", 
+                    "text": {
+                        "content": message
+                    }, 
+                    "at": {
+                        "atMobiles": [
+                          service.name
+                        ], 
+                        "isAtAll": True
+                    }
+                }
+        
+        Installation
+        ============
+        
+        Install from pip::
+        
+            $ pip install cabot-alert-dingding
+        
+        Edit `conf/*.env`::
+        
+            # add cabot_alert_dingding to your comma separated list
+            CABOT_PLUGINS_ENABLED=cabot_alert_dingding
+        
+        Run migrations and restart cabot::
+        
+            $ cabot migrate
+        
+        .. _Cabot: https://cabotapp.com
+        
+Keywords: cabot,dingding,status check
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
