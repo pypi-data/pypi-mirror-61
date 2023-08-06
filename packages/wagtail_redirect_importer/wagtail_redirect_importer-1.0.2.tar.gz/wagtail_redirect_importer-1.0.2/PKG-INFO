@@ -1,0 +1,116 @@
+Metadata-Version: 1.1
+Name: wagtail_redirect_importer
+Version: 1.0.2
+Summary: Lets you import redirects into Wagtail from different tabular data formats (like .csv, xls, xlsx)
+Home-page: https://github.com/Frojd/wagtail-redirect-importer
+Author: Fröjd
+Author-email: martin@marteinn.se
+License: MIT
+Description: |Build Status| # Wagtail Redirect Importer
+        
+        Your friendly neighborhood importer that lets you import redirects from
+        different tabular data formats, such as .csv and .xls
+        
+        .. figure:: https://raw.githubusercontent.com/frojd/wagtail-redirect-importer/develop/img/screen_1.png
+           :alt: Screen1
+        
+           Screen1
+        
+        Features
+        --------
+        
+        -  Bulk import redirects from the Wagtail admin
+        -  Supports these formats:
+        
+           -  csv
+           -  tsv
+           -  xls
+           -  xlsx
+           -  df
+           -  Basically `all import formats supported by
+              tablib <https://tablib.readthedocs.io/en/stable/formats/>`__
+        
+        -  The cli tool ``import_redirects`` for powerusers
+        
+        Requirements
+        ------------
+        
+        -  Python 3.5+
+        -  Wagtail 2.7+
+        
+        Installation
+        ------------
+        
+        1. Install the library:
+        
+        ::
+        
+           pip install wagtail_redirect_importer
+        
+        2. Add ``wagtail_redirect_importer`` to your ``INSTALLED_APPS`` in
+           Django settings.
+        
+        .. code:: python
+        
+           INSTALLED_APPS = (
+               # ...
+               'wagtail_redirect_importer',
+           )
+        
+        Screenshots
+        -----------
+        
+        .. figure:: https://raw.githubusercontent.com/frojd/wagtail-redirect-importer/develop/img/screen_1.png
+           :alt: Screen1
+        
+           Screen1
+        
+        Step 1: Select data file and format
+        
+        .. figure:: https://raw.githubusercontent.com/frojd/wagtail-redirect-importer/develop/img/screen_2.png
+           :alt: Screen2
+        
+           Screen2
+        
+        Step 2: Inspect data, configure header mapping and target site, then hit
+        import
+        
+        .. figure:: https://raw.githubusercontent.com/frojd/wagtail-redirect-importer/develop/img/screen_3.png
+           :alt: Screen3
+        
+           Screen3
+        
+        Step 3: After import is complete you get a summary with potential error
+        details
+        
+        Credits
+        -------
+        
+        -  `django-import-export <https://github.com/django-import-export/django-import-export>`__
+           - Pieces of the admin code are heavily inspired by this library, it
+           also includes the modules for formats and temporary storage.
+        -  `tablib <https://github.com/jazzband/tablib>`__ - Enables us to load
+           data from several data formats.
+        
+        License
+        -------
+        
+        Wagtail-Redirect-Importer is released under the `MIT
+        License <http://www.opensource.org/licenses/MIT>`__.
+        
+        .. |Build Status| image:: https://travis-ci.org/frojd/wagtail-redirect-importer.svg?branch=develop
+           :target: https://travis-ci.org/frojd/wagtail-redirect-importer
+        
+Keywords: wagtail_redirect_importer
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django :: 2.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Utilities
+Classifier: Framework :: Wagtail
+Classifier: Framework :: Wagtail :: 2
