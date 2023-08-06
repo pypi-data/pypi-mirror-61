@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import argparse
+import time
+import kachery as ka
+
+def main():
+    old_stdout = sys.stdout
+    sys.stdout = sys.stderr
+
+    parser = argparse.ArgumentParser(description='List the contents of a directory.')
+    parser.add_argument('path', help='Hash path to the directory (e.g. sha1dir://ffab0b71c5086486970d4a5b3fe44bae366697e0.tests)')
+    ka._add_download_args(parser)
+
+    args = parser.parse_args()
+    path = args.path
+
+    ka._set_download_config_from_parsed_args(args)
+
+    dd = ka.read_dir(path=path)
+    if not dd:
+        raise Exception('Error loading directory.')
+
+    sys.stdout = old_stdout
+
+    dnames = sorted(dd['dirs'].keys())
+    for dname in dnames:
+        print(dname+'/')
+    fnames = sorted(dd['files'].keys())
+    for fname in fnames:
+        print(fname)
+
+if __name__ == "__main__":
+    main()
