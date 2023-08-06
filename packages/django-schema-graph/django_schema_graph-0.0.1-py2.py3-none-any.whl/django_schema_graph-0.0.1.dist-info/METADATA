@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: django-schema-graph
+Version: 0.0.1
+Summary: An interactive graph of your Django model structure.
+Home-page: https://github.com/meshy/django-schema-graph
+Author: Charlie Denton
+Author-email: charlie@meshy.co.uk
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Database
+Classifier: Topic :: Documentation
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: attrs
+
+# Django Schema Graph
+
+## Installation
+
+Add to `INSTALLED_APPS`:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'schema_graph',
+    ...
+]
+```
+
+Add to your URLs.
+
+```python
+from schema_graph.views import Schema
+urlpatterns += [
+    path("schema/" Schema.as_view()),
+]
+```
+
+Or, on Django < 2:
+
+```python
+urlpatterns += [
+    url(r"^schema/$", Schema.as_view()),
+]
+```
+
+
+# Use
+
+Browse to `/schema/` (assuming that's where you put it in your URLs).
+
+Note: `DEBUG` mode is required, on the assumption that you don't want to leak
+sensitive information about your website outside of local development.
+
+
