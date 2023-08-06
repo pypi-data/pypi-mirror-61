@@ -1,0 +1,61 @@
+#!/Users/drapp/miniconda3/envs/redblackgraph/bin/python
+import argparse
+import sys
+
+from pathlib import Path
+import redblackgraph as rb
+from redblackgraph.util.relationship_file_io import RelationshipFileReader, RedBlackGraphWriter
+from redblackgraph.reference.triangularization import canonical_sort
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description="rgbcf - get cannonical form: parses rbg ingest files and generates the cannonical form",
+        add_help=False,
+        usage="rgbcf -f <base-file> -o <out-directory> (<base-file>.vertices.csv and <base-file>.edges.csv must exist)",
+    )
+    parser.add_argument("-f", "--basefile", metavar="<STR>", type=str, help="base file name", required=True)
+    parser.add_argument("-o", "--outdir", metavar="<STR>", type=str, help="output directory (default is same directory as basefile")
+
+    # extract arguments from the command line
+    try:
+        parser.error = parser.exit
+        args = parser.parse_args()
+    except SystemExit:
+        parser.print_help()
+        sys.exit(2)
+
+    basefile = args.basefile
+    vertices_file = Path(basefile + ".vertices.csv")
+    edges_file = Path(basefile + ".edges.csv")
+
+    if not vertices_file.exists():
+        sys.stderr.write(f"{vertices_file} not found")
+        sys.exit(2)
+    if not edges_file.exists():
+        sys.stderr.write(f"{edges_file} not found")
+        sys.exit(2)
+
+    outdir = args.outdir
+    if not outdir:
+        outdir = Path(basefile).parent
+
+    outputfile = outdir / "output.simple.xlsx"
+    cannonicalfile = outdir / "output.cannonical.xlsx"
+    if outputfile.exists():
+        sys.stderr.write(f"{outputfile} already exists")
+        sys.exit(2)
+    if cannonicalfile.exists():
+        sys.stderr.write(f"{cannonicalfile} already exists")
+        sys.exit(2)
+
+    reader = RelationshipFileReader(vertices_file, edges_file)
+    graph: rb.array = reader()
+    writer = rb.RedBlackGraphWriter(reader)
+    writer(graph, outputfile)
+
+    R_star = graph.transitive_closure().W
+    R_cannonical = canonical_sort(R_star)
+    writer(R_cannonical.A, output_file=cannonicalfile, key_permutation=R_cannonical.label_permutation)
+
+
+
