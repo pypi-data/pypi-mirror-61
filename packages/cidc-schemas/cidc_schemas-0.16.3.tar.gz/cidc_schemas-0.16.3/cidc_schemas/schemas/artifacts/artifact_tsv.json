@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "tsv_artifact",
+  "title": "TSV Artifact",
+  "type": "object",
+  "description": "Information about a tab Separated file.",
+  "allOf": [
+    {
+      "$ref": "artifacts/artifact_core.json"
+    },
+    {
+      "properties": {
+        "data_format": {
+          "description": "Data format.",
+          "const": "TSV"
+        }
+      }
+    }
+  ],
+  "mergeStrategy": "objectMerge"
+}
+
