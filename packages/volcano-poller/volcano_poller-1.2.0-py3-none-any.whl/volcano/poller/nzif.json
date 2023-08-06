@@ -1,0 +1,125 @@
+[
+  {
+    "id": "SET_4TM_03M_BASE",
+    "abstract": true,
+    "-Inom": null,
+    "-Unom": null,
+    "direct": false,
+    "3_phase": true,
+    "type_code": 8,
+    "profiles": true,
+    "ci": 1,
+    "ks": 2,
+    "max_words_per_req": 93,
+    "st_bytes": 5
+  },
+
+  {
+    "id": "SET_4TM_03M_MSR",
+    "abstract": true,
+    "msr-1ph":[
+      {"tag": "F", "f": "F_Hz", "rwri": [4, 0, 0]}
+    ],
+    "msr-3ph":[
+      {"tags": [null,  "Ia",   "Ib",   "Ic"],   "f": "I_A",     "rwri": [2, 0, null]},
+      {"tags": [null,  "Ua",   "Ub",   "Uc"],   "f": "U_V",     "rwri": [1, 0, null]},
+      {"tags": [null,  "Uab",  "Ubc",  "Uca"],  "f": "U_V",     "rwri": [1, 1, null]},
+      {"tags": ["Cos", "Cos1", "Cos2", "Cos3"], "f": "Cos",     "rwri": [3, 0, null]},
+      {"tags": ["P",   "P1",   "P2",   "P3"],   "f": "PQS_kwt", "rwri": [0, 0, "P"]},
+      {"tags": ["Q",   "Q1",   "Q2",   "Q3"],   "f": "PQS_kwt", "rwri": [0, 1, "Q"]},
+      {"tags": ["S",   "S1",   "S2",   "S3"],   "f": "PQS_kwt", "rwri": [0, 2, null]}
+    ],
+    "energy":[
+      {"tags": ["Eap", "Ean", "Erp", "Ern"], "arr": 0}
+    ]
+  },
+
+  {"id": "SET_4TM_03M",    "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_01", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_02", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_03", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_04", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_05", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_06", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_07", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_08", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_09", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_10", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_11", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_12", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_13", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_14", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_15", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 5, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_16", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_17", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_18", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_19", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_20", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_21", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_22", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_02M_23", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "57_115"},
+  {"id": "SET_4TM_03M_24", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_25", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_26", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_27", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_28", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_03M_29", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_30", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+  {"id": "SET_4TM_02M_31", "based_on": ["SET_4TM_03M_BASE", "SET_4TM_03M_MSR"], "Inom": 1, "Unom": "120_230"},
+
+
+  {
+    "id": "SEB_1TM_02D_BASE",
+    "abstract": true,
+    "Inom": 5,
+    "Unom": "120_230",
+    "direct": true,
+    "3_phase": false,
+    "type_code": 9,
+    "-profiles": null,
+    "ci": 10,
+    "ks": 10,
+    "max_words_per_req": 16,
+    "st_bytes": 5
+  },
+  {"id": "SEB_1TM_02D_02", "based_on": "SEB_1TM_02D_BASE", "profiles": true},
+  {"id": "SEB_1TM_02D_03", "based_on": "SEB_1TM_02D_BASE", "profiles": false},
+  {"id": "SEB_1TM_02D_06", "based_on": "SEB_1TM_02D_BASE", "profiles": true},
+  {"id": "SEB_1TM_02D_07", "based_on": "SEB_1TM_02D_BASE", "profiles": false},
+
+
+  {
+    "id": "PSCh_4TM_05MD_BASE",
+    "abstract": true,
+    "-Inom": null,
+    "-Unom": null,
+    "-direct": null,
+    "3_phase": true,
+    "type_code": 13,
+    "profiles": true,
+    "ci": 1,
+    "-ks": null,
+    "max_words_per_req": 133,
+    "st_bytes": 5
+  },
+  {"id": "PSCh_4TM_05MD_01", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "57_115", "direct": false, "ks": 1},
+  {"id": "PSCh_4TM_05MD_03", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 1, "Unom": "57_115", "direct": false, "ks": 1},
+  {"id": "PSCh_4TM_05MD_05", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "120_230", "direct": false, "ks": 2},
+  {"id": "PSCh_4TM_05MD_07", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 1, "Unom": "120_230", "direct": false, "ks": 1},
+  {"id": "PSCh_4TM_05MD_09", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "57_115", "direct": false, "ks": 1},
+  {"id": "PSCh_4TM_05MD_11", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "120_230", "direct": false, "ks": 2},
+  {"id": "PSCh_4TM_05MD_13", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "57_115", "direct": false, "ks": 1},
+  {"id": "PSCh_4TM_05MD_15", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 1, "Unom": "57_115", "direct": false, "ks": 1},
+  {"id": "PSCh_4TM_05MD_17", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "120_230", "direct": false, "ks": 2},
+  {"id": "PSCh_4TM_05MD_19", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 1, "Unom": "120_230", "direct": false, "ks": 1},
+
+  {"id": "PSCh_4TM_05MD_21", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "120_230", "direct": true, "ks": 2},
+  {"id": "PSCh_4TM_05MD_23", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "120_230", "direct": true, "ks": 2},
+  {"id": "PSCh_4TM_05MD_25", "based_on": "PSCh_4TM_05MD_BASE", "Inom": 5, "Unom": "120_230", "direct": true, "ks": 2},
+
+
+  {"id": "terminator", "abstract": true}
+]
+
+
+
