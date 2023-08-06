@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Velocity data &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LinMaze module" href="linmaze.html" />
+    <link rel="prev" title="Recorder module" href="gramrec.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="gramrec.html">Recorder module</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="gramrec.html#output">Output</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="gramrec.html">Recorder module</a> &raquo;</li>
+        
+      <li>Velocity data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gramrec_out.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="velocity-data">
+<h1>Velocity data<a class="headerlink" href="#velocity-data" title="Permalink to this headline">¶</a></h1>
+<p>Each .vlg file contains as many groups as many recordings were made. Each recording has a unique identifier eg.: 12EB29805B3652C7 that is the name of the group.</p>
+<p>The groups have two datasets:</p>
+<dl class="simple">
+<dt>time</dt><dd><p>An array of 64 bit floats that contain the time in milliseconds</p>
+</dd>
+<dt>velocity</dt><dd><p>An array of 64 bit floats that contain the velocity in counts/second. One full rotation of the disk is 14400 counts.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="metadata">
+<h1>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h1>
+<p>The metadata of each recording is saved as an attribute of the group:</p>
+<dl class="simple">
+<dt>id</dt><dd><p>The id of the record set by the user</p>
+</dd>
+<dt>comment</dt><dd><p>The comment of the record set by the user</p>
+</dd>
+<dt>mean_velocity</dt><dd><p>The mean of the velocity in this record</p>
+</dd>
+<dt>date_hr</dt><dd><p>The date of the record in a human readable format (%Y.%m.%d.)</p>
+</dd>
+<dt>start_time</dt><dd><p>The start time of the record in UNIX format</p>
+</dd>
+<dt>start_time_hr</dt><dd><p>The start time of the record in a human readable format (%H:%M:%S)</p>
+</dd>
+<dt>finish_time</dt><dd><p>The finish time of the record in UNIX format</p>
+</dd>
+<dt>finish_time_hr</dt><dd><p>The finish time of the record in a human readable format (%H:%M:%S)</p>
+</dd>
+<dt>length</dt><dd><p>The length of the record in seconds</p>
+</dd>
+<dt>length_hr</dt><dd><p>The length of the record in a human readable format (%M:%S)</p>
+</dd>
+<dt>device_serial</dt><dd><p>The serial number of the device the recording was made with</p>
+</dd>
+<dt>sampling_freq</dt><dd><p>The target sampling frequency set in the software (actual value might be different)</p>
+</dd>
+<dt>software_version</dt><dd><p>What version of GramophoneTools was used to make this log</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,927 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gramophone &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="../_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>Gramophone</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Gramophone</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">sample</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">time</span>
+
+<span class="kn">import</span> <span class="nn">usb.core</span>
+<span class="kn">import</span> <span class="nn">usb.backend.libusb1</span>
+
+<span class="n">DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">background</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Decorator for functions that should run in the background. &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kw</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">t</span>
+    <span class="k">return</span> <span class="n">run</span>
+
+<span class="k">def</span> <span class="nf">find_devices</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Return a dict of Gramophone devices with their serials as keys. &quot;&quot;&quot;</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">usb</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">libusb1</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="n">find_library</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DIR</span><span class="o">+</span><span class="s2">&quot;/libusb-1.0.dll&quot;</span><span class="p">)</span>
+    <span class="n">devs</span> <span class="o">=</span> <span class="n">usb</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">idVendor</span><span class="o">=</span><span class="mh">0x0483</span><span class="p">,</span> <span class="n">idProduct</span><span class="o">=</span><span class="mh">0x5750</span><span class="p">,</span> <span class="n">find_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">devices</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">devs</span><span class="p">:</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">Gramophone</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">read_product_info</span><span class="p">()</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">read_firmware_info</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;GRAMO-01&#39;</span><span class="p">:</span>
+            <span class="n">ser</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">]</span>
+            <span class="n">devices</span><span class="p">[</span><span class="n">ser</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span>
+
+    <span class="k">return</span> <span class="n">devices</span>
+
+<div class="viewcode-block" id="Packet"><a class="viewcode-back" href="../comms_module.html#Gramophone.Packet">[docs]</a><span class="k">class</span> <span class="nc">Packet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 64 byte data packet that can be sent to the Gramophone.</span>
+<span class="sd">    </span>
+<span class="sd">    :param target: 2 byte address of the target. source of the reply given to this packet</span>
+<span class="sd">    :type target: [int, int]</span>
+<span class="sd">    </span>
+<span class="sd">    :param source: 2 byte address of the source. target of the reply given to this packet</span>
+<span class="sd">    :type source: [int, int]</span>
+<span class="sd">    </span>
+<span class="sd">    :param cmd: Identifier of the command</span>
+<span class="sd">    :type cmd: int</span>
+<span class="sd">    </span>
+<span class="sd">    :param payload: The payload for the command eg.: the value to write</span>
+<span class="sd">    :type payload: list of ints</span>
+<span class="sd">    </span>
+<span class="sd">    :param msn: Any number. The reply packet&#39;s msn will be the same.</span>
+<span class="sd">    :type msn: int</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">msn</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">msn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">cmd</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span>
+
+        <span class="k">if</span> <span class="n">msn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">msn</span> <span class="o">=</span> <span class="p">[</span><span class="n">Packet</span><span class="o">.</span><span class="n">msn</span><span class="p">]</span>
+            <span class="n">Packet</span><span class="o">.</span><span class="n">msn</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">Packet</span><span class="o">.</span><span class="n">msn</span> <span class="o">%=</span> <span class="mi">256</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">msn</span> <span class="o">=</span> <span class="p">[</span><span class="n">msn</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Packet(target=</span><span class="si">{}</span><span class="s1">, source=</span><span class="si">{}</span><span class="s1">, msn=</span><span class="si">{}</span><span class="s1">, cmd=</span><span class="si">{}</span><span class="s1">, payload=</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">plen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">filler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">65</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">plen</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">encoded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">msn</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmd</span> <span class="o">+</span>\
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">plen</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">payload</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filler</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_array</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">msn</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">plen</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">7</span><span class="o">+</span><span class="n">plen</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">msn</span><span class="o">=</span><span class="n">msn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone">[docs]</a><span class="k">class</span> <span class="nc">Gramophone</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Representation of a Gramophone device.</span>
+
+<span class="sd">    :param device: The USB device.</span>
+<span class="sd">    :type device: usb.core.Device</span>
+
+<span class="sd">    :param verbose: If set to True the details of the communication are printed.</span>
+<span class="sd">    :type verbose: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">error_codes</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x00</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_UNKNOWNCMD&#39;</span><span class="p">,</span>
+                   <span class="mh">0x01</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_INVALIDCMDSYNTAX&#39;</span><span class="p">,</span>
+                   <span class="mh">0x04</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_INVALIDPARAMSYNTAX&#39;</span><span class="p">,</span>
+                   <span class="mh">0x05</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_RANGEERROR&#39;</span><span class="p">,</span>
+                   <span class="mh">0x06</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_PARAMNOTFOUND&#39;</span><span class="p">,</span>
+                   <span class="mh">0x07</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_VALIDFAIL&#39;</span><span class="p">,</span>
+                   <span class="mh">0x08</span><span class="p">:</span> <span class="s1">&#39;PACKET_FAIL_ACCESSVIOLATION&#39;</span><span class="p">}</span>
+
+    <span class="n">Parameter</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Parameter&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">])</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mh">0x01</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;VSEN3V3&#39;</span><span class="p">,</span> <span class="s1">&#39;Voltage on 3.3V rail.&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">),</span>
+        <span class="mh">0x02</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;VSEN5V&#39;</span><span class="p">,</span> <span class="s1">&#39;Voltage on 5V rail.&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">),</span>
+        <span class="mh">0x03</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;TSENMCU&#39;</span><span class="p">,</span> <span class="s1">&#39;Internal teperature of the MCU.&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">),</span>
+        <span class="mh">0x04</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;TSENEXT&#39;</span><span class="p">,</span> <span class="s1">&#39;External temperature sensor on the board.&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">),</span>
+        <span class="mh">0x0A</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;SENSORS&#39;</span><span class="p">,</span> <span class="s1">&#39;The voltages and temperatures in one parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">),</span>
+        <span class="mh">0x0B</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;VOLTAGES&#39;</span><span class="p">,</span> <span class="s1">&#39;The voltages in one parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">),</span>
+        <span class="mh">0x0C</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;TEMPS&#39;</span><span class="p">,</span> <span class="s1">&#39;The temperatures in one parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">),</span>
+        <span class="mh">0x05</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;TIME&#39;</span><span class="p">,</span> <span class="s1">&#39;The time of the internal clock of the device.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint64&#39;</span><span class="p">),</span>
+        <span class="mh">0x10</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;ENCPOS&#39;</span><span class="p">,</span> <span class="s1">&#39;Encoder position.&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">),</span>
+        <span class="mh">0x11</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;ENCVEL&#39;</span><span class="p">,</span> <span class="s1">&#39;Encoder velocity.&#39;</span><span class="p">,</span> <span class="s1">&#39;vel&#39;</span><span class="p">),</span>
+        <span class="mh">0x12</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;ENCVELWIN&#39;</span><span class="p">,</span> <span class="s1">&#39;Encoder velocity window size.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint16&#39;</span><span class="p">),</span>
+        <span class="mh">0x13</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;ENCHOME&#39;</span><span class="p">,</span> <span class="s1">&#39;Encoder homing.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x14</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;ENCHOMEPOS&#39;</span><span class="p">,</span> <span class="s1">&#39;Encoder home position.&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">),</span>
+        <span class="mh">0x20</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DI-1&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital input 1.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x21</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DI-2&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital input 2.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x25</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DI&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital inputs.&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">),</span>
+        <span class="mh">0x30</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DO-1&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital output 1.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x31</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DO-2&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital output 2.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x32</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DO-3&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital output 3.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x33</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DO-4&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital output 4.&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0x35</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;DO&#39;</span><span class="p">,</span> <span class="s1">&#39;Digital outputs.&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">),</span>
+        <span class="mh">0x40</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;AO&#39;</span><span class="p">,</span> <span class="s1">&#39;Analogue output.&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">),</span>
+        <span class="mh">0xFF</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;LED&#39;</span><span class="p">,</span> <span class="s1">&#39;LED state changed&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">),</span>
+        <span class="mh">0xAA</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;REC&#39;</span><span class="p">,</span> <span class="s1">&#39;Bundle of parameters for the Recorder module.&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">),</span>
+        <span class="mh">0xBB</span><span class="p">:</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;LINM&#39;</span><span class="p">,</span> <span class="s1">&#39;Bundle of parameters for the LinMaze module.&#39;</span><span class="p">,</span> <span class="s1">&#39;combo&#39;</span><span class="p">)</span>
+                  <span class="p">}</span>
+
+    <span class="n">type_lengths</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;float&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                    <span class="s1">&#39;double&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+                    <span class="s1">&#39;uint8&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s1">&#39;uint16&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="s1">&#39;uint32&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                    <span class="s1">&#39;uint64&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+                    <span class="s1">&#39;int8&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s1">&#39;int16&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="s1">&#39;int32&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                    <span class="s1">&#39;int64&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+                    <span class="s1">&#39;vel&#39;</span><span class="p">:</span> <span class="mi">5</span>
+                    <span class="p">}</span>
+
+    <span class="n">combos</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mh">0x0A</span><span class="p">:[</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">],</span> <span class="c1"># Sensors</span>
+        <span class="mh">0x0B</span><span class="p">:[</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">],</span> <span class="c1"># Voltages</span>
+        <span class="mh">0x0C</span><span class="p">:[</span><span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">],</span> <span class="c1"># Temperatures</span>
+        <span class="mh">0x25</span><span class="p">:[</span><span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">],</span> <span class="c1"># Digital inputs</span>
+        <span class="mh">0x35</span><span class="p">:[</span><span class="mh">0x30</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">],</span> <span class="c1"># Digital outputs</span>
+        <span class="mh">0xAA</span><span class="p">:[</span><span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">,</span> <span class="mh">0x30</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">],</span> <span class="c1"># Time, vel, io</span>
+        <span class="mh">0xBB</span><span class="p">:[</span><span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">,</span> <span class="mh">0x30</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">]</span>  <span class="c1"># Time, pos, io</span>
+        <span class="p">}</span>
+
+    <span class="n">device_states</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x00</span><span class="p">:</span> <span class="s1">&#39;IAP&#39;</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">:</span> <span class="s1">&#39;Application&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">set_configuration</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">firmware_info</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">product_info</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dev_state</span> <span class="o">=</span> <span class="s1">&#39;Unknown&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bursting</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                         <span class="mi">2</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                         <span class="mi">3</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                         <span class="mi">4</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">readers</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Gramophone.decode_payload"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.decode_payload">[docs]</a>    <span class="k">def</span> <span class="nf">decode_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Decodes the given payload based on the type of the parameter.</span>
+
+<span class="sd">        :param param_id: The key for the parameter dict. See: Gramophone.parameters</span>
+<span class="sd">        :type param_id: int</span>
+
+<span class="sd">        :param payload: The payload that will be decoded</span>
+<span class="sd">        :type payload: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_id</span><span class="p">]</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;float&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_id</span><span class="p">]</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;int8&#39;</span><span class="p">,</span> <span class="s1">&#39;int16&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_id</span><span class="p">]</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;uint8&#39;</span><span class="p">,</span> <span class="s1">&#39;uint16&#39;</span><span class="p">,</span> <span class="s1">&#39;uint32&#39;</span><span class="p">,</span> <span class="s1">&#39;uint64&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_id</span><span class="p">]</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;vel&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_id</span><span class="p">]</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;combo&#39;</span><span class="p">:</span>
+            <span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">elemet_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">combos</span><span class="p">[</span><span class="n">param_id</span><span class="p">]:</span>
+                <span class="n">e_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">elemet_id</span><span class="p">]</span><span class="o">.</span><span class="n">type</span>
+                <span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_lengths</span><span class="p">[</span><span class="n">e_type</span><span class="p">]</span> 
+                <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_payload</span><span class="p">(</span><span class="n">elemet_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">[</span><span class="n">I</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="n">length</span><span class="p">])</span>
+                <span class="n">I</span> <span class="o">+=</span> <span class="n">length</span>
+                <span class="n">values</span><span class="p">[</span><span class="n">elemet_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">element</span>
+            <span class="k">return</span> <span class="n">values</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_input"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_input">[docs]</a>    <span class="k">def</span> <span class="nf">read_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the state of a digital input.</span>
+
+<span class="sd">        :param input_id: The number of the digital input (1 or 2)</span>
+<span class="sd">        :type input_id: int</span>
+
+<span class="sd">        :returns: 0 if the input is low, 1 if it is high</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x20</span><span class="o">+</span><span class="n">input_id</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_inputs"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">read_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the state of all digital inputs.</span>
+
+<span class="sd">        :returns: dict with input numbers as keys, and their states as values. eg: {1:1, 2:1} when both inputs are high</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0x25</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_output"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_output">[docs]</a>    <span class="k">def</span> <span class="nf">read_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the state of a digital output.</span>
+
+<span class="sd">        :param output_id: The number of the digital output (1 to 4)</span>
+<span class="sd">        :type output_id: int</span>
+
+<span class="sd">        :returns: 0 if the output is low, 1 if it is high</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x30</span><span class="o">+</span><span class="n">output_id</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_outputs"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">read_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the state of all digital outputs.</span>
+
+<span class="sd">        :returns: dict with output numbers as keys, and their states as values. eg: {1:0, 2:0, 3:0, 4:0} when both outputs are low</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0x35</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_analog_out"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_analog_out">[docs]</a>    <span class="k">def</span> <span class="nf">read_analog_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the voltage of the analog output.</span>
+
+<span class="sd">        :returns: The voltage the analog output is set to.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x40</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Gramophone.read_sensors"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_sensors">[docs]</a>    <span class="k">def</span> <span class="nf">read_sensors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the values from the voltage and temperature sensors.</span>
+<span class="sd">        </span>
+<span class="sd">        :returns: A dict with the parameter ids as keys. See: Gramophone.parameters</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0x0A</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_voltages"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_voltages">[docs]</a>    <span class="k">def</span> <span class="nf">read_voltages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the values from the voltage sensors.</span>
+<span class="sd">        </span>
+<span class="sd">        :returns: A dict with the parameter ids as keys. See: Gramophone.parameters</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0x0B</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_temperatures"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_temperatures">[docs]</a>    <span class="k">def</span> <span class="nf">read_temperatures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the values from the temperature sensors.</span>
+<span class="sd">        </span>
+<span class="sd">        :returns: A dict with the parameter ids as keys. See: Gramophone.parameters</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0x0C</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_time"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_time">[docs]</a>    <span class="k">def</span> <span class="nf">read_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the time from the Gramophone&#39;s clock</span>
+
+<span class="sd">        :returns: Time in ms/10</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x05</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_position"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_position">[docs]</a>    <span class="k">def</span> <span class="nf">read_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the position register of the Gramophone.</span>
+
+<span class="sd">        :returns: The position in counts travelled (1 full rotation = 14400 counts)</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x10</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_velocity"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_velocity">[docs]</a>    <span class="k">def</span> <span class="nf">read_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the velocity of the Gramophones disk. Velocity is averaged in a window with a set size.</span>
+
+<span class="sd">        :returns: Velocity in counts/sec (1 full rotation = 14400 counts)</span>
+<span class="sd">        :rtype: </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x11</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_window_size"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_window_size">[docs]</a>    <span class="k">def</span> <span class="nf">read_window_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the window size of the velocity calculation, ie. how many position differences are averaged to</span>
+<span class="sd">        get the velocity. Larger windows result in smoother velocity but slower response.</span>
+
+<span class="sd">        :retruns: The window size</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x12</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_homing_state"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_homing_state">[docs]</a>    <span class="k">def</span> <span class="nf">read_homing_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reads wheter the device is homing. A home position can be set and this value changes when it is reached.</span>
+<span class="sd">        0 if the encoder is not trying to find the home position, </span>
+<span class="sd">        1 if it is homing and 2 if the home position was found. </span>
+
+<span class="sd">        :returns: 0, 1 or 2 dependin on the state</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x13</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_homing_position"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_homing_position">[docs]</a>    <span class="k">def</span> <span class="nf">read_homing_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The home postion that can be found by homing.</span>
+<span class="sd">        </span>
+<span class="sd">        :returns: The position</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_param</span><span class="p">(</span><span class="mh">0x14</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_firmware_info"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_firmware_info">[docs]</a>    <span class="k">def</span> <span class="nf">read_firmware_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Read the firmware information from the Gramophone.</span>
+<span class="sd">        Sets the fimware related variables of the object.</span>
+
+<span class="sd">        :returns: A dictionary with the firmware info fields in a human readable format.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ask_firmware</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">firmware_packet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ask_firmware</span><span class="p">)</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">firmware_packet</span><span class="o">.</span><span class="n">payload</span>
+
+        <span class="n">firmware_release</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">firmware_sub</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">firmware_build</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">firmware_year</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span> <span class="n">payload</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">firmware_month</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="n">firmware_day</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="n">firmware_hour</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+        <span class="n">firmware_minute</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+        <span class="n">firmware_second</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;release&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">firmware_release</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">firmware_sub</span><span class="p">),</span>
+            <span class="s1">&#39;build&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">firmware_build</span><span class="p">),</span>
+            <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">firmware_day</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">firmware_month</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">firmware_year</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+            <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">firmware_hour</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">firmware_minute</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">firmware_second</span><span class="p">),</span>
+            <span class="s1">&#39;date_format&#39;</span><span class="p">:</span> <span class="s1">&#39;dd/mm/yyyy&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;time_format&#39;</span><span class="p">:</span> <span class="s1">&#39;24h&#39;</span>
+            <span class="p">}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Firmware version:&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Relase:&#39;</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;release&#39;</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Build:&#39;</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;build&#39;</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Date (</span><span class="si">{}</span><span class="s1">): </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;date_format&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Time (</span><span class="si">{}</span><span class="s1">): </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">firmware_info</span> <span class="o">=</span> <span class="n">info</span>
+        <span class="k">return</span> <span class="n">info</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_product_info"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_product_info">[docs]</a>    <span class="k">def</span> <span class="nf">read_product_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Read the product information from the Gramophone.</span>
+<span class="sd">        Sets the product related variables of the object.</span>
+
+<span class="sd">        :returns: A dictionary with the product info fields in a human readable format.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ask_product_info</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">product_info_packet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ask_product_info</span><span class="p">)</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">product_info_packet</span><span class="o">.</span><span class="n">payload</span>
+
+        <span class="n">product_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span> <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span> <span class="k">if</span> <span class="n">byte</span> <span class="o">!=</span> <span class="mh">0x00</span><span class="p">])</span>
+        <span class="n">product_revision</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span> <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">payload</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="mi">24</span><span class="p">]])</span>
+        <span class="n">product_serial</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="mi">28</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">product_year</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">28</span><span class="p">:</span><span class="mi">30</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">product_month</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">product_day</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="mi">31</span><span class="p">:</span><span class="mi">32</span><span class="p">],</span> <span class="s1">&#39;little&#39;</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">product_name</span><span class="p">,</span>
+            <span class="s1">&#39;revision&#39;</span><span class="p">:</span> <span class="n">product_revision</span><span class="p">,</span>
+            <span class="s1">&#39;serial&#39;</span><span class="p">:</span> <span class="n">product_serial</span><span class="p">,</span> 
+            <span class="s1">&#39;production&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">product_day</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">product_month</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">product_year</span><span class="p">),</span>
+            <span class="s1">&#39;production_format&#39;</span><span class="p">:</span><span class="s1">&#39;dd/mm/yyyy&#39;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Product info:&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Name:&#39;</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Revision:&#39;</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;revision&#39;</span><span class="p">]</span> <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Serial:&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; -Production (</span><span class="si">{}</span><span class="s1">): </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;production_format&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;production&#39;</span><span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">product_info</span> <span class="o">=</span> <span class="n">info</span>
+        <span class="k">return</span> <span class="n">info</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_recorder_params"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_recorder_params">[docs]</a>    <span class="k">def</span> <span class="nf">read_recorder_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read the parameters for the Recorder module. Time, velocity, and IO combined.</span>
+
+<span class="sd">        :retruns: A dict with the read parameters, with ids as keys</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0xAA</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_linmaze_params"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_linmaze_params">[docs]</a>    <span class="k">def</span> <span class="nf">read_linmaze_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Read the parameters for the LineMaze module. Time, position, and IO combined.</span>
+
+<span class="sd">        :retruns: A dict with the read parameters, with ids as keys</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_params</span><span class="p">(</span><span class="mh">0xBB</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_dev_state"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_dev_state">[docs]</a>    <span class="k">def</span> <span class="nf">read_dev_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Read the state of the device. The device should be in 0x01 state for usage.</span>
+<span class="sd">        The 0x00 state is for setup.</span>
+
+<span class="sd">        :returns: The device state. &#39;Application&#39; or &#39;IAP&#39;</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ask_dev_state</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">dev_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ask_dev_state</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dev_state</span> <span class="o">=</span> <span class="n">dev_state</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_states</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dev_state</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Device state:&#39;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">state</span></div>
+
+<div class="viewcode-block" id="Gramophone.write_output"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.write_output">[docs]</a>    <span class="k">def</span> <span class="nf">write_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the given output to a given state, eg. output 1 to 1 (high). </span>
+<span class="sd">        </span>
+<span class="sd">        :param output: The output to set (1 to 4)</span>
+<span class="sd">        :type output: int</span>
+
+<span class="sd">        :param value: The state to set (1 is high, 0 is low)</span>
+<span class="sd">        :type value: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_param</span><span class="p">(</span><span class="mh">0x30</span><span class="o">+</span><span class="n">output</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="Gramophone.write_analog"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.write_analog">[docs]</a>    <span class="k">def</span> <span class="nf">write_analog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the analog output to the given voltage, eg. to 2.1 V</span>
+
+<span class="sd">        :param value: The voltage that will be set.</span>
+<span class="sd">        :type value: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_param</span><span class="p">(</span><span class="mh">0x40</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="Gramophone.ping"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Send a ping packet with 5 bytes and print the time the process took. &quot;&quot;&quot;</span>
+        <span class="n">rdata</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">ping_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+        <span class="n">ping_packet</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">rdata</span><span class="p">)</span>
+        <span class="n">pong_packet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ping_packet</span><span class="p">)</span>
+        <span class="n">took</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">ping_time</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ping!&#39;</span><span class="p">,</span> <span class="n">ping_packet</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pong!&#39;</span><span class="p">,</span> <span class="n">pong_packet</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Took:&#39;</span><span class="p">,</span> <span class="n">took</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Gramophone.reset"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Reset the device. Returns None if successful and the error string otherwise. &quot;&quot;&quot;</span>
+        <span class="n">reset_command</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">reset_command</span><span class="p">)</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">err</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reset successful...&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">err</span></div>
+
+<div class="viewcode-block" id="Gramophone.decode_response"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.decode_response">[docs]</a>    <span class="k">def</span> <span class="nf">decode_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Decodes a response. Returns the error message if the command </span>
+<span class="sd">        was not successful and None otherwise.</span>
+
+<span class="sd">        :param response: The response to decode.</span>
+<span class="sd">        :ptype response: Packet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x02</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_codes</span><span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span></div>
+            
+<div class="viewcode-block" id="Gramophone.reset_time"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.reset_time">[docs]</a>    <span class="k">def</span> <span class="nf">reset_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Reset the Gramophone&#39;s internal clock to 0. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_param</span><span class="p">(</span><span class="mh">0x05</span><span class="p">,</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Gramophone.reset_position"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.reset_position">[docs]</a>    <span class="k">def</span> <span class="nf">reset_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Reset the Gramophone&#39;s internal position counter to 0. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_param</span><span class="p">(</span><span class="mh">0x10</span><span class="p">,</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_param"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_param">[docs]</a>    <span class="k">def</span> <span class="nf">read_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read a single parameter and return its value.</span>
+<span class="sd">        </span>
+<span class="sd">        :param param_id: The id of the parameter that should be read.</span>
+<span class="sd">        :type param_id: int</span>
+
+<span class="sd">        :returns: The value of the parameter</span>
+<span class="sd">        :rtype: depends on the parameter, see: Gramophone.parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ask_param</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x0B</span><span class="p">,</span> <span class="p">[</span><span class="n">param_id</span><span class="p">])</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ask_param</span><span class="p">)</span><span class="o">.</span><span class="n">payload</span>
+
+        <span class="k">if</span> <span class="n">payload</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_payload</span><span class="p">(</span><span class="n">param_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_id</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">val</span></div>
+
+<div class="viewcode-block" id="Gramophone.read_params"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.read_params">[docs]</a>    <span class="k">def</span> <span class="nf">read_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combo_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Read multiple parameters and return them in a dict. &quot;&quot;&quot;</span>
+        <span class="n">ask_params</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x0B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">combos</span><span class="p">[</span><span class="n">combo_id</span><span class="p">])</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">ask_params</span><span class="p">)</span><span class="o">.</span><span class="n">payload</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_payload</span><span class="p">(</span><span class="n">combo_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">combos</span><span class="p">[</span><span class="n">combo_id</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">values</span></div>
+
+<div class="viewcode-block" id="Gramophone.write_param"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.write_param">[docs]</a>    <span class="k">def</span> <span class="nf">write_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Write the given payload into the given parameter. &quot;&quot;&quot;</span>
+        <span class="n">set_param</span> <span class="o">=</span> <span class="n">Packet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="mh">0x0C</span><span class="p">,</span> <span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="o">+</span><span class="n">payload</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">set_param</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Writing&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;succeeded.&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x02</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Writing&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;failed.&#39;</span><span class="p">,</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">error_codes</span><span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span></div>
+
+<div class="viewcode-block" id="Gramophone.send"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">packet</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a Packet to the device.</span>
+
+<span class="sd">        :param packet: The Packet to send.</span>
+<span class="sd">        :ptype packet: Packet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span> <span class="n">packet</span><span class="o">.</span><span class="n">encoded</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="n">Packet</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mh">0x81</span><span class="p">,</span> <span class="mi">64</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">and</span> \
+                        <span class="n">resp</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="ow">and</span> \
+                        <span class="n">resp</span><span class="o">.</span><span class="n">msn</span> <span class="o">==</span> <span class="n">packet</span><span class="o">.</span><span class="n">msn</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">resp</span>
+
+        <span class="k">except</span> <span class="n">usb</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">USBError</span> <span class="k">as</span> <span class="n">usb_error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GramophoneError</span><span class="p">(</span><span class="n">usb_error</span><span class="p">)</span></div>
+
+    <span class="nd">@background</span>
+    <span class="k">def</span> <span class="nf">start_burst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">on_time</span><span class="p">,</span> <span class="n">pause_time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start turning the given port on and off in the background.</span>
+
+<span class="sd">        :param port: The port that will be turned on and off</span>
+<span class="sd">        :type port: int (1-4)</span>
+
+<span class="sd">        :param on_time: How long should the port be on (high) in seconds</span>
+<span class="sd">        :type on_time: float</span>
+
+<span class="sd">        :param pause_time: How long should the port be off (low) in seconds</span>
+<span class="sd">        :type pause_time: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bursting</span><span class="p">[</span><span class="n">port</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">bursting</span><span class="p">[</span><span class="n">port</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">on_time</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">pause_time</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Gramophone.stop_burst"><a class="viewcode-back" href="../comms_module.html#Gramophone.Gramophone.stop_burst">[docs]</a>    <span class="k">def</span> <span class="nf">stop_burst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop turning the given port on and off. see: start_burst</span>
+
+<span class="sd">        :param port: The port that will stop being turned on and off</span>
+<span class="sd">        :type port: int (1-4)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bursting</span><span class="p">[</span><span class="n">port</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span></div></div>
+        
+
+<div class="viewcode-block" id="GramophoneError"><a class="viewcode-back" href="../comms_module.html#Gramophone.GramophoneError">[docs]</a><span class="k">class</span> <span class="nc">GramophoneError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Exception for Gramophone related communication errors. &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

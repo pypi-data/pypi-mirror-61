@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Main module" href="comms_module.html" />
+    <link rel="prev" title="Comms module" href="comms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="comms.html">Comms module</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="comms.html">Comms module</a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/comms_overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>The Gramophone is a Raw-HID (Human Interface Device). It can send and receive 64 byte long packets (byte arrays). Numbers that take up multiple bytes are encoded in a little endian manner.</p>
+<p>If you are implementing communication in Python you can use the GramophoneTools.Comms.Gramophone.Packet class to construct a packet.</p>
+<p>Note: Some communication modules require a 65 byte long packet. In this case the extra byte should be in the begining and equal to 0.</p>
+<div class="section" id="packet-structure">
+<h2>Packet structure<a class="headerlink" href="#packet-structure" title="Permalink to this headline">¶</a></h2>
+<p>Each of the sent and received packets have a the following structure:</p>
+<dl class="simple">
+<dt>packet[0:2] - Target</dt><dd><p>The 2 byte adress of the target of the packet. Can be anything. The response packet will have this as its Source</p>
+</dd>
+<dt>packet[2:4] - Source</dt><dd><p>The 2 byte adress of the source of the packet. Can be anything. The response packet will have this as its Target</p>
+</dd>
+<dt>packet[4] - MSN</dt><dd><p>A single byte that can be used for identification. The response packet will have the same MSN.</p>
+</dd>
+<dt>packet[5] - CMD</dt><dd><p>The 1 byte ID of the command. See commands below.</p>
+</dd>
+<dt>packet[6] - Payload length</dt><dd><p>A single byte that holds the length of the payload. The payload will only be evaluated to whis length.</p>
+</dd>
+<dt>packet[7:64] - Payload</dt><dd><p>The payload of the packet.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<p>The possible user commands (values for packet[6]) are the following:</p>
+<dl class="simple">
+<dt>0x00 - Ping</dt><dd><p>Whatever payload is sent with this command will be sent back as a response.</p>
+</dd>
+<dt>0x01 - OK response</dt><dd><p>This is the command sent back after writing a parameter successfuly.</p>
+</dd>
+<dt>0x02 - FAILED response</dt><dd><p>This is the command sent back after writing a parameter failed. The payload is the errorcode (see below).</p>
+</dd>
+<dt>0x04 - Get firmware info</dt><dd><p>Get information about the firmware. The structure of the reply is explained below.</p>
+</dd>
+<dt>0x05 - Device state</dt><dd><p>Check the state of the device. The device should be in 0x01 state for usage. The 0x00 state is for setup.</p>
+</dd>
+<dt>0x06 - Store</dt><dd><p>Save persistent variables into the FLASH.</p>
+</dd>
+<dt>0x07 - Restore</dt><dd><p>Load persistent variables from the FLASH.</p>
+</dd>
+<dt>0x08 - Get product info</dt><dd><p>Get information about the product. The structure of the reply is explained below.</p>
+</dd>
+<dt>0x0B - Read parameter(s)</dt><dd><p>Read the value of the parameters given in the payload. The list of parameters are given below. More that one parameter can be read in one command. The order of the values in the response will be the same as the order of the parameters in the payload of this command.</p>
+</dd>
+<dt>0x0C - Write parameter</dt><dd><p>Write the parameter given by the first byte of the payload with the value that follows it.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="error-codes">
+<h2>Error codes<a class="headerlink" href="#error-codes" title="Permalink to this headline">¶</a></h2>
+<p>The codes received in the payload of a FAILED response packet can be the following:</p>
+<dl class="simple">
+<dt>0x00 - PACKET_FAIL_UNKNOWNCMD</dt><dd><p>Unknown command.</p>
+</dd>
+<dt>0x01 - PACKET_FAIL_INVALIDCMDSYNTAX</dt><dd><p>Invalid syntax.</p>
+</dd>
+<dt>0x04 - PACKET_FAIL_INVALIDPARAMSYNTAX</dt><dd><p>Invaid parameter syntax.</p>
+</dd>
+<dt>0x05 - PACKET_FAIL_RANGEERROR</dt><dd><p>Parameter out of range.</p>
+</dd>
+<dt>0x06 - PACKET_FAIL_PARAMNOTFOUND</dt><dd><p>Parameter not found.</p>
+</dd>
+<dt>0x07 - PACKET_FAIL_VALIDFAIL</dt><dd><p>Packet validation failed.</p>
+</dd>
+<dt>0x08 - PACKET_FAIL_ACCESSVIOLATION</dt><dd><p>Access to the parameter was violated (writing read only parameter).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<p>The following parameters can be read or written with the 0x0B and 0x0C commands:</p>
+<dl class="simple">
+<dt>0x01 - VSEN3V3 (float)</dt><dd><p>Voltage on 3.3V rail.</p>
+</dd>
+<dt>0x02 - VSEN5V (float)</dt><dd><p>Voltage on 5V rail.</p>
+</dd>
+<dt>0x03 - TSENMCU (float)</dt><dd><p>Internal teperature of the MCU.</p>
+</dd>
+<dt>0x04 - TSENEXT (float)</dt><dd><p>External temperature sensor on the board.</p>
+</dd>
+<dt>0x05 - TIME (uint64)</dt><dd><p>The time of the internal clock of the device in 0.1 ms steps.</p>
+</dd>
+<dt>0x10 - ENCPOS (int32)</dt><dd><p>Encoder position.</p>
+</dd>
+<dt>0x11 - ENCVEL (float + uint8)</dt><dd><p>Encoder velocity. The float part is the velocity of the disk, the integer is 1 if the disk is moving or 0 if it is not.</p>
+</dd>
+<dt>0x12 - ENCVELWIN (uint16)</dt><dd><p>Encoder velocity window size.</p>
+</dd>
+<dt>0x13 - ENCHOME (uint8)</dt><dd><p>Encoder homing. 0 if the encoder is not trying to find the home position, 1 if it is homing and 2 if the home position was found.</p>
+</dd>
+<dt>0x14 - ENCHOMEPOS (int32)</dt><dd><p>Encoder home position.</p>
+</dd>
+<dt>0x20 - DI-1 (uint8)</dt><dd><p>Digital input 1.</p>
+</dd>
+<dt>0x21 - DI-2 (uint8)</dt><dd><p>Digital input 2.</p>
+</dd>
+<dt>0x30 - DO-1 (uint8)</dt><dd><p>Digital output 1.</p>
+</dd>
+<dt>0x31 - DO-2 (uint8)</dt><dd><p>Digital output 2.</p>
+</dd>
+<dt>0x32 - DO-3 (uint8)</dt><dd><p>Digital output 3.</p>
+</dd>
+<dt>0x33 - DO-4 (uint8)</dt><dd><p>Digital output 4.</p>
+</dd>
+<dt>0x40 - AO (float)</dt><dd><p>Analogue output.</p>
+</dd>
+<dt>0xFF - LED (uint8)</dt><dd><p>On board LED state. 0 is off, 1 is on.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="firmware-info-structure">
+<h2>Firmware info structure<a class="headerlink" href="#firmware-info-structure" title="Permalink to this headline">¶</a></h2>
+<p>The firmware information received after sending the 0x04 command has the following structure.</p>
+<dl class="simple">
+<dt>payload[0] (uint8)</dt><dd><p>Release</p>
+</dd>
+<dt>payload[1] (uint8)</dt><dd><p>Subrelease</p>
+</dd>
+<dt>payload[2:4] (uint16)</dt><dd><p>Build</p>
+</dd>
+<dt>payload[4:6] (uint16)</dt><dd><p>Year</p>
+</dd>
+<dt>payload[6] (uint8)</dt><dd><p>Month</p>
+</dd>
+<dt>payload[7] (uint8)</dt><dd><p>Day</p>
+</dd>
+<dt>payload[8] (uint8)</dt><dd><p>Hour</p>
+</dd>
+<dt>payload[9] (uint8)</dt><dd><p>Minute</p>
+</dd>
+<dt>payload[10] (uint8)</dt><dd><p>Second</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="product-info-structure">
+<h2>Product info structure<a class="headerlink" href="#product-info-structure" title="Permalink to this headline">¶</a></h2>
+<p>The product information received after sending the 0x08 command has the following structure:</p>
+<dl class="simple">
+<dt>payload[0:18] (char[18])</dt><dd><p>Name</p>
+</dd>
+<dt>payload[18:24] (char[6])</dt><dd><p>Revision</p>
+</dd>
+<dt>payload[24:28] (uint32)</dt><dd><p>Serial</p>
+</dd>
+<dt>payload[28:30] (uint16)</dt><dd><p>Product year</p>
+</dd>
+<dt>payload[30] (uint8)</dt><dd><p>Product month</p>
+</dd>
+<dt>payload[31] (uint8)</dt><dd><p>Product day</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

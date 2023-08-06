@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Abstract Rule class &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Zone class" href="zone.html" />
+    <link rel="prev" title="Abstract Event class" href="event.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="linmaze.html">LinMaze module</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="linmaze.html#rule">Rule</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="linmaze.html">LinMaze module</a> &raquo;</li>
+        
+      <li>Abstract Rule class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rule.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="abstract-rule-class">
+<h1>Abstract Rule class<a class="headerlink" href="#abstract-rule-class" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Rule.Rule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">Rule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#Rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.Rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generic Rule all specific Rules intherit from.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<a class="reference internal" href="level.html#Level.Level" title="Level.Level"><em>Level</em></a>) – The Level this Rule is active on.</p></li>
+<li><p><strong>event</strong> (<a class="reference internal" href="event.html#Event.Event" title="Event.Event"><em>Event.Event</em></a>) – The event the rule triggers.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.Rule.check">
+<em class="property">abstract </em><code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">*arg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#Rule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.Rule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the rules’s event should be triggered.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Rule.Rule.trigger">
+<code class="sig-name descname">trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#Rule.trigger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.Rule.trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggers the associated event and prints out a message about it.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="specific-rules">
+<h1>Specific Rules<a class="headerlink" href="#specific-rules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="zone-rule">
+<h2>Zone Rule<a class="headerlink" href="#zone-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Rule.ZoneRule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">ZoneRule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em>, <em class="sig-param">zone_type</em>, <em class="sig-param">delay</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#ZoneRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.ZoneRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Rule.Rule" title="Rule.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule.Rule</span></code></a></p>
+<p>A Rule that triggers if the animal is in a given type of zone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<a class="reference internal" href="level.html#Level.Level" title="Level.Level"><em>Level</em></a>) – The Level this Rule is active on.</p></li>
+<li><p><strong>event</strong> (<a class="reference internal" href="event.html#Event.Event" title="Event.Event"><em>Event.Event</em></a>) – The event the rule triggers.</p></li>
+<li><p><strong>zone_type</strong> (<em>str</em>) – The type of Zone this Rule is active in.</p></li>
+<li><p><strong>delay</strong> (<em>float</em>) – How many seconds should be spent in the Zone before triggering.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.ZoneRule.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">current_zone_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#ZoneRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.ZoneRule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the Zone rule should be triggered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>current_zone_type</strong> (<em>str</em>) – Type of the curren zone.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="velocity-rule">
+<h2>Velocity Rule<a class="headerlink" href="#velocity-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Rule.VelocityRule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">VelocityRule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em>, <em class="sig-param">vel_rule_type</em>, <em class="sig-param">threshold</em>, <em class="sig-param">delay</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#VelocityRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.VelocityRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Rule.Rule" title="Rule.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule.Rule</span></code></a></p>
+<p>A Rule that triggers if the velocity is above or below a certain threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<a class="reference internal" href="level.html#Level.Level" title="Level.Level"><em>Level</em></a>) – The Level this Rule is active on.</p></li>
+<li><p><strong>event</strong> (<a class="reference internal" href="event.html#Event.Event" title="Event.Event"><em>Event.Event</em></a>) – The event the rule triggers.</p></li>
+<li><p><strong>vel_rule_type</strong> (<em>str</em>) – Type of comparison. Can be ‘above’ or ‘below’.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Absolute velocity should be above or below this value.</p></li>
+<li><p><strong>delay</strong> (<em>float</em>) – How long should the absolute velocity be above or below the threshold.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.VelocityRule.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">vel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#VelocityRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.VelocityRule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the Velocity rule should be triggered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vel</strong> (<em>int</em>) – The current velocity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="smooth-velocity-rule">
+<h2>Smooth Velocity Rule<a class="headerlink" href="#smooth-velocity-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Rule.SmoothVelocityRule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">SmoothVelocityRule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em>, <em class="sig-param">bin_size</em>, <em class="sig-param">vel_rule_type</em>, <em class="sig-param">threshold</em>, <em class="sig-param">delay</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#SmoothVelocityRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.SmoothVelocityRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Rule.VelocityRule" title="Rule.VelocityRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule.VelocityRule</span></code></a></p>
+<p>A Rule that triggers if the moveing average of velocity is above or below a certain threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<a class="reference internal" href="level.html#Level.Level" title="Level.Level"><em>Level</em></a>) – The Level this Rule is active on.</p></li>
+<li><p><strong>event</strong> (<a class="reference internal" href="event.html#Event.Event" title="Event.Event"><em>Event.Event</em></a>) – The event the rule triggers.</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em>) – How many velocities should be used for calculating the moving average.</p></li>
+<li><p><strong>vel_rule_type</strong> (<em>str</em>) – Type of comparison. Can be ‘above’ or ‘below’.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Smoothed absolute velocity should be above or below this value.</p></li>
+<li><p><strong>delay</strong> (<em>float</em>) – How long should the smoothed absolute velocity be above or below the threshold.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.SmoothVelocityRule.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">vel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#SmoothVelocityRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.SmoothVelocityRule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the Smooth velocity rule should be triggered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vel</strong> (<em>int</em>) – The current velocity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="speed-rule">
+<h2>Speed Rule<a class="headerlink" href="#speed-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Rule.SpeedRule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">SpeedRule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em>, <em class="sig-param">speed_rule_type</em>, <em class="sig-param">threshold</em>, <em class="sig-param">bin_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#SpeedRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.SpeedRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Rule.Rule" title="Rule.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule.Rule</span></code></a></p>
+<p>A Rule that triggers if the absolute integral of the velocity on a
+given range is above or below a given threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<a class="reference internal" href="level.html#Level.Level" title="Level.Level"><em>Level</em></a>) – The Level this Rule is active on.</p></li>
+<li><p><strong>event</strong> (<a class="reference internal" href="event.html#Event.Event" title="Event.Event"><em>Event.Event</em></a>) – The event the rule triggers.</p></li>
+<li><p><strong>speed_rule_type</strong> (<em>str</em>) – Type of comparison. Can be ‘above’
+or ‘below’.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The calculated integral should be above or below
+this value.</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em>) – How many velocities should be used for the integral.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.SpeedRule.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">vel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#SpeedRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.SpeedRule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the Speed rule should be triggered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vel</strong> (<em>int</em>) – The current velocity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="keypress-rule">
+<h2>Keypress Rule<a class="headerlink" href="#keypress-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Rule.KeyPressRule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">KeyPressRule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em>, <em class="sig-param">key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#KeyPressRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.KeyPressRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Rule.Rule" title="Rule.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule.Rule</span></code></a></p>
+<p>A Rule that triggers when a selected key on the keyboard is pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – The key that triggers the rule.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.KeyPressRule.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#KeyPressRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.KeyPressRule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the rules’s event should be triggered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="input-rule">
+<h2>Input Rule<a class="headerlink" href="#input-rule" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Rule.InputRule">
+<em class="property">class </em><code class="sig-prename descclassname">Rule.</code><code class="sig-name descname">InputRule</code><span class="sig-paren">(</span><em class="sig-param">level</em>, <em class="sig-param">event</em>, <em class="sig-param">input_id</em>, <em class="sig-param">trigger_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#InputRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.InputRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Rule.Rule" title="Rule.Rule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rule.Rule</span></code></a></p>
+<p>A Rule that triggers when the given digital output rises, falls or
+changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_id</strong> (<em>int</em>) – The number of the input (1 or 2)</p></li>
+<li><p><strong>trigger_type</strong> (<em>str</em>) – ‘rise’, ‘fall’ or ‘change’</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Rule.InputRule.check">
+<code class="sig-name descname">check</code><span class="sig-paren">(</span><em class="sig-param">input_id</em>, <em class="sig-param">state</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Rule.html#InputRule.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Rule.InputRule.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the rules’s event should be triggered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

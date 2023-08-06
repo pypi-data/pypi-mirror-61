@@ -1,0 +1,856 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Recorder module &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Velocity data" href="gramrec_out.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Recorder module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gramrec.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="recorder-module">
+<h1>Recorder module<a class="headerlink" href="#recorder-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-Recorder.Recorder">
+<span id="main-module"></span><h2>Main module<a class="headerlink" href="#module-Recorder.Recorder" title="Permalink to this headline">¶</a></h2>
+<p>Software made for recording velocity form a Femto-Gramophone
+in a triggered manner. Can be used in conjunction with two-photon
+microscoppes by Femtonics Inc.</p>
+<dl class="class">
+<dt id="Recorder.Recorder.Reader">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">Reader</code><span class="sig-paren">(</span><em class="sig-param">gram</em>, <em class="sig-param">frequency</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#Reader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>A worker that can continnously send commands to the Gramophone with a given frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of this reader. Can be used for identification to stop a specific reader.</p></li>
+<li><p><strong>read_func</strong> (<em>function</em>) – The read function that should be called.</p></li>
+<li><p><strong>frequency</strong> (<em>float</em>) – The frequency at which the function should be called in Hz.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Recorder.Recorder.Reader.read">
+<code class="sig-name descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#Reader.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.Reader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start calling the read function repeatedly. Slot for a QThread.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Recorder.Recorder.VelLogModel">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">VelLogModel</code><span class="sig-paren">(</span><em class="sig-param">log</em>, <em class="sig-param">parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>QT modell for velocity logs. Used to make an interface
+between the GUI’s table view and the Velocity log object</p>
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.add_record">
+<code class="sig-name descname">add_record</code><span class="sig-paren">(</span><em class="sig-param">record</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.add_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.add_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the given Record object the the current velocity log.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.columnCount">
+<code class="sig-name descname">columnCount</code><span class="sig-paren">(</span><em class="sig-param">parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.columnCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.columnCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of columns to be displayed.
+One column for each header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.data">
+<code class="sig-name descname">data</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">role</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to receive information about a cell of the table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.flags">
+<code class="sig-name descname">flags</code><span class="sig-paren">(</span><em class="sig-param">index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.flags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.flags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns flag to decide which cells are editable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.headerData">
+<code class="sig-name descname">headerData</code><span class="sig-paren">(</span><em class="sig-param">section</em>, <em class="sig-param">orientation</em>, <em class="sig-param">role</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.headerData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.headerData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the haeder data the GUI is asking for.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.plot_record">
+<code class="sig-name descname">plot_record</code><span class="sig-paren">(</span><em class="sig-param">selection</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.plot_record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.plot_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the selected record(s) using Matplotlib.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.removeRows">
+<code class="sig-name descname">removeRows</code><span class="sig-paren">(</span><em class="sig-param">row</em>, <em class="sig-param">count</em>, <em class="sig-param">parent=&lt;PyQt5.QtCore.QModelIndex object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.removeRows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.removeRows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes ‘count’ number of rows starting at ‘row’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.rowCount">
+<code class="sig-name descname">rowCount</code><span class="sig-paren">(</span><em class="sig-param">parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.rowCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.rowCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of rows to be displayed.
+one row for each recording.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.VelLogModel.setData">
+<code class="sig-name descname">setData</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">value</em>, <em class="sig-param">role=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#VelLogModel.setData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.VelLogModel.setData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to set the data in a cell of the table.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Recorder.Recorder.aboutWindow">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">aboutWindow</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#aboutWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.aboutWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The window shown if the user clicks the About
+option in the Help menu. Displays basic info
+about the software.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Recorder.Recorder.deviceInfoWindow">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">deviceInfoWindow</code><span class="sig-paren">(</span><em class="sig-param">gram</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#deviceInfoWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.deviceInfoWindow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="Recorder.Recorder.licenseWindow">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">licenseWindow</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#licenseWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.licenseWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The window shown if the user clicks the License
+option in the Help menu. Displays the open source
+license the software is distributed under.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Recorder.Recorder.pyGramWindow">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">pyGramWindow</code><span class="sig-paren">(</span><em class="sig-param">devmode</em>, <em class="sig-param">log_file</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main window of the Gramophone reader.</p>
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.closeEvent">
+<code class="sig-name descname">closeEvent</code><span class="sig-paren">(</span><em class="sig-param">event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.closeEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.closeEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The built in close event of QMainWindow. User is
+trying to close the program. Ignore the passed
+event if you want to stop the user from doing so.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects to the currently selected Gramophone.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.connect_btn_cb">
+<code class="sig-name descname">connect_btn_cb</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.connect_btn_cb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.connect_btn_cb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for the connect button.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.delete_btn_cb">
+<code class="sig-name descname">delete_btn_cb</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.delete_btn_cb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.delete_btn_cb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for the Delete button.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.delete_warning">
+<code class="sig-name descname">delete_warning</code><span class="sig-paren">(</span><em class="sig-param">count</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.delete_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.delete_warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a message box to ask for confirmation. Call it
+if the user is trying to delete velocity records.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.disconnect">
+<code class="sig-name descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnects the currently connected Gramophone.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.gramophone_error">
+<code class="sig-name descname">gramophone_error</code><span class="sig-paren">(</span><em class="sig-param">error_message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.gramophone_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.gramophone_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for the errorOccurred signal of the Gramophone. Displays
+a message box with the warning, disconnects if necessary.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.log_changed">
+<code class="sig-name descname">log_changed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.log_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.log_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calll this function when the velocity log is modified
+and it should be saved.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.make_dummy">
+<code class="sig-name descname">make_dummy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.make_dummy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.make_dummy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function only available for developers. Creates
+a dummy record in the current velocity log with
+randomized data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.new_file">
+<code class="sig-name descname">new_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.new_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new blank velocity log file and sets it
+as the current working file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.new_window">
+<code class="sig-name descname">new_window</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.new_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.new_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a new instance of the Gramophone recorder.
+New windows can be used for simultanious recording
+of an other Gramophone device.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.open">
+<code class="sig-name descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a velocity log from file and sets it as the
+current working file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.plot_btn_cb">
+<code class="sig-name descname">plot_btn_cb</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.plot_btn_cb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.plot_btn_cb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback for the Plot button.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.quit">
+<code class="sig-name descname">quit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.quit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close all windows and disconnrect form the Gramohone.
+Call this right before exiting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.record_warning">
+<code class="sig-name descname">record_warning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.record_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.record_warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a warning if the recording is in progress.
+Call it if the user tries to exit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.refresh_gram_list">
+<code class="sig-name descname">refresh_gram_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.refresh_gram_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.refresh_gram_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refreshes the list of available Gramophones.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.reset_gram_timer">
+<code class="sig-name descname">reset_gram_timer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.reset_gram_timer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.reset_gram_timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function only available for developers. Sends a Reset
+internal clock command to the Gramophone.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.reset_graph">
+<code class="sig-name descname">reset_graph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.reset_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.reset_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the live velocity plot to its starting
+state ie. erases the plot if there is already
+something on it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the currently used log file. Returns
+True if the file is saved or False if saving
+was cancelled</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.save_as">
+<code class="sig-name descname">save_as</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.save_as"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.save_as" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as save, but shows a file selection dialog
+to save to an other file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.save_warning">
+<code class="sig-name descname">save_warning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.save_warning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.save_warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a warning if there are unsaved changes to the log file.
+Call it if the user tries to exit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.select_file">
+<code class="sig-name descname">select_file</code><span class="sig-paren">(</span><em class="sig-param">mode='save'</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.select_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.select_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a file selection dialog for velocity
+log files. Mode can be ‘save’ or ‘open’.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.selected_rows">
+<em class="property">property </em><code class="sig-name descname">selected_rows</code><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.selected_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds a list of the selected rows of
+the current velocity log.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.set_autosave">
+<code class="sig-name descname">set_autosave</code><span class="sig-paren">(</span><em class="sig-param">val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.set_autosave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.set_autosave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns automatic saving on (True) or off (False)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>bool</em>) – The sate to set</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.show_about">
+<code class="sig-name descname">show_about</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.show_about"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.show_about" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the About window.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.show_license">
+<code class="sig-name descname">show_license</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.show_license"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.show_license" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the License window.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.show_manual">
+<code class="sig-name descname">show_manual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.show_manual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.show_manual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens the Gramophone User Guide in the default
+pdf reader.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.show_settings">
+<code class="sig-name descname">show_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.show_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.show_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens a settings window.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.update_conn_state">
+<code class="sig-name descname">update_conn_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.update_conn_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.update_conn_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the GUI depending on wheter the software is
+currently connected to a Gramophone.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.update_graph">
+<code class="sig-name descname">update_graph</code><span class="sig-paren">(</span><em class="sig-param">velocity</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.update_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.update_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for the vel_signal of the Gramophone. Shifts the
+graph to the right and appends with the value received.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.update_rec_state">
+<code class="sig-name descname">update_rec_state</code><span class="sig-paren">(</span><em class="sig-param">in_state_1</em>, <em class="sig-param">in_state_2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.update_rec_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.update_rec_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for the rec_signal of the Grmaophone. Updates
+the state of recording and the GUI.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.update_table_size">
+<code class="sig-name descname">update_table_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.update_table_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.update_table_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update all except last the row’s width to fit content in
+the list of velocity recordings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.update_timer">
+<code class="sig-name descname">update_timer</code><span class="sig-paren">(</span><em class="sig-param">millis</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.update_timer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.update_timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slot for the time_signal of the Gramophone. Updates the
+timer on the GUI.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Recorder.Recorder.pyGramWindow.update_title">
+<code class="sig-name descname">update_title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#pyGramWindow.update_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.pyGramWindow.update_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the tile of the window with the name of the
+current file and a * character if there are unsaved
+changes made to said file. Called after the current
+file is changed or saved.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Recorder.Recorder.settingsWindow">
+<em class="property">class </em><code class="sig-prename descclassname">Recorder.Recorder.</code><code class="sig-name descname">settingsWindow</code><span class="sig-paren">(</span><em class="sig-param">main_win</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Recorder/Recorder.html#settingsWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Recorder.Recorder.settingsWindow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-logger">
+<span id="logging-module"></span><h2>Logging module<a class="headerlink" href="#module-logger" title="Permalink to this headline">¶</a></h2>
+<p>Module for logging Velocity data form the Gramophone into HDF5 files.</p>
+<dl class="class">
+<dt id="logger.DummyRecord">
+<em class="property">class </em><code class="sig-prename descclassname">logger.</code><code class="sig-name descname">DummyRecord</code><a class="reference internal" href="_modules/logger.html#DummyRecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.DummyRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>A record with random data insted of recorded velocity. Can be used for
+testing purposes.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="logger.FileRecord">
+<em class="property">class </em><code class="sig-prename descclassname">logger.</code><code class="sig-name descname">FileRecord</code><span class="sig-paren">(</span><em class="sig-param">file_group</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#FileRecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.FileRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>A velocity record that is saved in a HDF5 file.</p>
+<dl class="method">
+<dt id="logger.FileRecord.comment">
+<em class="property">property </em><code class="sig-name descname">comment</code><a class="headerlink" href="#logger.FileRecord.comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the record’s comment form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.device_serial">
+<em class="property">property </em><code class="sig-name descname">device_serial</code><a class="headerlink" href="#logger.FileRecord.device_serial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the record’s device id form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.finish_time">
+<em class="property">property </em><code class="sig-name descname">finish_time</code><a class="headerlink" href="#logger.FileRecord.finish_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the finish time form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.mean_vel">
+<em class="property">property </em><code class="sig-name descname">mean_vel</code><a class="headerlink" href="#logger.FileRecord.mean_vel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the record’s mean velocity form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.rec_id">
+<em class="property">property </em><code class="sig-name descname">rec_id</code><a class="headerlink" href="#logger.FileRecord.rec_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the record’s ID form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.sampling_freq">
+<em class="property">property </em><code class="sig-name descname">sampling_freq</code><a class="headerlink" href="#logger.FileRecord.sampling_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the record’s mean velocity form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">log_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#FileRecord.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.FileRecord.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the modified fields and returns itself.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.software_version">
+<em class="property">property </em><code class="sig-name descname">software_version</code><a class="headerlink" href="#logger.FileRecord.software_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the record’s device id form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.start_time">
+<em class="property">property </em><code class="sig-name descname">start_time</code><a class="headerlink" href="#logger.FileRecord.start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the start time form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.times">
+<em class="property">property </em><code class="sig-name descname">times</code><a class="headerlink" href="#logger.FileRecord.times" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the time data form file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.FileRecord.velocities">
+<em class="property">property </em><code class="sig-name descname">velocities</code><a class="headerlink" href="#logger.FileRecord.velocities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the velocity data form file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="logger.MemoryRecord">
+<em class="property">class </em><code class="sig-prename descclassname">logger.</code><code class="sig-name descname">MemoryRecord</code><span class="sig-paren">(</span><em class="sig-param">rec_id</em>, <em class="sig-param">sampling_freq</em>, <em class="sig-param">device_serial</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#MemoryRecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.MemoryRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>A velocity record that is in memory ie. not saved yet.</p>
+<dl class="method">
+<dt id="logger.MemoryRecord.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">gtime</em>, <em class="sig-param">vel</em>, <em class="sig-param">rec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#MemoryRecord.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.MemoryRecord.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends this record with the given time and velocity
+if the recording state is 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.MemoryRecord.finish">
+<code class="sig-name descname">finish</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#MemoryRecord.finish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.MemoryRecord.finish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called then the recording to this record is finished.
+Saves the current time as the finish time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.MemoryRecord.start">
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#MemoryRecord.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.MemoryRecord.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when recording to this record is started.
+Saves the current time as the start time.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="logger.Record">
+<em class="property">class </em><code class="sig-prename descclassname">logger.</code><code class="sig-name descname">Record</code><a class="reference internal" href="_modules/logger.html#Record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.Record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class for velocity records.</p>
+<dl class="method">
+<dt id="logger.Record.date_hr">
+<em class="property">property </em><code class="sig-name descname">date_hr</code><a class="headerlink" href="#logger.Record.date_hr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds the starting date in a human readable format
+defined by the data_format class variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.finish_time_hr">
+<em class="property">property </em><code class="sig-name descname">finish_time_hr</code><a class="headerlink" href="#logger.Record.finish_time_hr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds the finishing time in a human readable format
+defined by the time_format class variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.length">
+<em class="property">property </em><code class="sig-name descname">length</code><a class="headerlink" href="#logger.Record.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds the length of this recording in seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.length_hr">
+<em class="property">property </em><code class="sig-name descname">length_hr</code><a class="headerlink" href="#logger.Record.length_hr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds the length of the recording in a human readable
+format defined by the length_format class variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.mean_vel">
+<em class="property">property </em><code class="sig-name descname">mean_vel</code><a class="headerlink" href="#logger.Record.mean_vel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds the mean of the recorded velocities.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">log_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#Record.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.Record.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves this record into a file and returns a FileRecord that can replace it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_file</strong> (<em>h5py.File</em>) – An opened HDF5 file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.start_time_hr">
+<em class="property">property </em><code class="sig-name descname">start_time_hr</code><a class="headerlink" href="#logger.Record.start_time_hr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that holds the starting time in a human readable format
+defined by the time_format class variable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="logger.Record.unique_id">
+<em class="property">property </em><code class="sig-name descname">unique_id</code><a class="headerlink" href="#logger.Record.unique_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A property that stores a unique id based on the start time
+of this record. Used for naming folders in the HDF5 file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="logger.VelocityLog">
+<em class="property">class </em><code class="sig-prename descclassname">logger.</code><code class="sig-name descname">VelocityLog</code><a class="reference internal" href="_modules/logger.html#VelocityLog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.VelocityLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>A container object for velocity recordins. Handles
+saving records to HDF5 files.</p>
+<dl class="method">
+<dt id="logger.VelocityLog.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/logger.html#VelocityLog.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#logger.VelocityLog.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves all records from this log to file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

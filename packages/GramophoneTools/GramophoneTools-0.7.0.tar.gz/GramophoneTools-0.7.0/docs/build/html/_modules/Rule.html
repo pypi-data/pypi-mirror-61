@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rule &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="../_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>Rule</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Rule</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Triggers an event on a given criteria &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyglet</span>
+
+<span class="kn">from</span> <span class="nn">GramophoneTools.LinMaze</span> <span class="kn">import</span> <span class="n">Event</span>
+<span class="kn">from</span> <span class="nn">GramophoneTools.LinMaze</span> <span class="kn">import</span> <span class="n">Level</span>
+
+<span class="kn">from</span> <span class="nn">GramophoneTools.LinMaze.Tools.Timer</span> <span class="kn">import</span> <span class="n">Timer</span>
+
+
+<div class="viewcode-block" id="Rule"><a class="viewcode-back" href="../rule.html#Rule.Rule">[docs]</a><span class="k">class</span> <span class="nc">Rule</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic Rule all specific Rules intherit from.</span>
+
+<span class="sd">    :param level: The Level this Rule is active on.</span>
+<span class="sd">    :type level: Level</span>
+
+<span class="sd">    :param event: The event the rule triggers.</span>
+<span class="sd">    :type event: Event.Event</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">:</span> <span class="n">Level</span> <span class="o">=</span> <span class="n">level</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="o">.</span><span class="n">Event</span> <span class="o">=</span> <span class="n">event</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="Rule.trigger"><a class="viewcode-back" href="../rule.html#Rule.Rule.trigger">[docs]</a>    <span class="k">def</span> <span class="nf">trigger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Triggers the associated event and prints out a message about it. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">triggerable</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;rule triggered&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">True</span></div>
+            <span class="c1"># print(self.event)</span>
+
+<div class="viewcode-block" id="Rule.check"><a class="viewcode-back" href="../rule.html#Rule.Rule.check">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Check whether the rules&#39;s event should be triggered. &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="ZoneRule"><a class="viewcode-back" href="../rule.html#Rule.ZoneRule">[docs]</a><span class="k">class</span> <span class="nc">ZoneRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    A Rule that triggers if the animal is in a given type of zone.</span>
+
+<span class="sd">    :param level: The Level this Rule is active on.</span>
+<span class="sd">    :type level: Level</span>
+
+<span class="sd">    :param event: The event the rule triggers.</span>
+<span class="sd">    :type event: Event.Event</span>
+
+<span class="sd">    :param zone_type: The type of Zone this Rule is active in.</span>
+<span class="sd">    :type zone_type: str</span>
+
+<span class="sd">    :param delay: How many seconds should be spent in the Zone before triggering.</span>
+<span class="sd">    :type delay: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">zone_type</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zone_type</span> <span class="o">=</span> <span class="n">zone_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;In &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zone_type</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; zone for &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; sec&quot;</span>
+
+<div class="viewcode-block" id="ZoneRule.check"><a class="viewcode-back" href="../rule.html#Rule.ZoneRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_zone_type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Check whether the Zone rule should be triggered.</span>
+
+<span class="sd">        :param current_zone_type: Type of the curren zone.</span>
+<span class="sd">        :type current_zone_type: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># print(&#39;Checking &#39;,self)</span>
+        <span class="c1"># print(&#39;CZ&#39;,current_zone_type)</span>
+        <span class="k">if</span> <span class="n">current_zone_type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">zone_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="c1"># Zone entry &gt;&gt; Rule activation</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="c1"># Waiting for timer to run out</span>
+                <span class="k">pass</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="c1"># Timer ran out, trigger event</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="n">Event</span><span class="o">.</span><span class="n">RandomTeleport</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># print(&#39;current&#39;,current_zone_type,&#39;not in&#39;,self.zone_type)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span></div></div>
+
+
+<div class="viewcode-block" id="VelocityRule"><a class="viewcode-back" href="../rule.html#Rule.VelocityRule">[docs]</a><span class="k">class</span> <span class="nc">VelocityRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Rule that triggers if the velocity is above or below a certain threshold.</span>
+
+<span class="sd">    :param level: The Level this Rule is active on.</span>
+<span class="sd">    :type level: Level</span>
+
+<span class="sd">    :param event: The event the rule triggers.</span>
+<span class="sd">    :type event: Event.Event</span>
+
+<span class="sd">    :param vel_rule_type: Type of comparison. Can be &#39;above&#39; or &#39;below&#39;.</span>
+<span class="sd">    :type vel_rule_type: str</span>
+
+<span class="sd">    :param threshold: Absolute velocity should be above or below this value.</span>
+<span class="sd">    :type threshold: float</span>
+
+<span class="sd">    :param delay: How long should the absolute velocity be above or below the threshold.</span>
+<span class="sd">    :type delay: float    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">vel_rule_type</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vel_rule_type</span> <span class="o">=</span> <span class="n">vel_rule_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Velocity &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vel_rule_type</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span> <span class="o">+</span>\
+            <span class="s2">&quot; for &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; sec&quot;</span>
+
+<div class="viewcode-block" id="VelocityRule.check"><a class="viewcode-back" href="../rule.html#Rule.VelocityRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Check whether the Velocity rule should be triggered.</span>
+
+<span class="sd">        :param vel: The current velocity.</span>
+<span class="sd">        :type vel: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vel_rule_type</span> <span class="o">==</span> <span class="s2">&quot;above&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vel</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vel</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vel_rule_type</span> <span class="o">==</span> <span class="s2">&quot;below&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vel</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vel</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delay_timer</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span></div></div>
+
+
+<div class="viewcode-block" id="SmoothVelocityRule"><a class="viewcode-back" href="../rule.html#Rule.SmoothVelocityRule">[docs]</a><span class="k">class</span> <span class="nc">SmoothVelocityRule</span><span class="p">(</span><span class="n">VelocityRule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Rule that triggers if the moveing average of velocity is above or below a certain threshold.</span>
+
+<span class="sd">    :param level: The Level this Rule is active on.</span>
+<span class="sd">    :type level: Level</span>
+
+<span class="sd">    :param event: The event the rule triggers.</span>
+<span class="sd">    :type event: Event.Event</span>
+
+<span class="sd">    :param bin_size: How many velocities should be used for calculating the moving average.</span>
+<span class="sd">    :type bin_size: int</span>
+
+<span class="sd">    :param vel_rule_type: Type of comparison. Can be &#39;above&#39; or &#39;below&#39;.</span>
+<span class="sd">    :type vel_rule_type: str</span>
+
+<span class="sd">    :param threshold: Smoothed absolute velocity should be above or below this value.</span>
+<span class="sd">    :type threshold: float</span>
+
+<span class="sd">    :param delay: How long should the smoothed absolute velocity be above or below the threshold.</span>
+<span class="sd">    :type delay: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="n">vel_rule_type</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">vel_rule_type</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_size</span> <span class="o">=</span> <span class="n">bin_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vels</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([],</span> <span class="n">bin_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Smooth velocity (avg. of &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_size</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;) &quot;</span> \
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vel_rule_type</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="s2">&quot; for &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; sec&quot;</span>
+
+<div class="viewcode-block" id="SmoothVelocityRule.check"><a class="viewcode-back" href="../rule.html#Rule.SmoothVelocityRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Check whether the Smooth velocity rule should be triggered.</span>
+
+<span class="sd">        :param vel: The current velocity.</span>
+<span class="sd">        :type vel: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vel</span><span class="p">)</span>
+        <span class="n">smooth_vel</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vels</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">smooth_vel</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="SpeedRule"><a class="viewcode-back" href="../rule.html#Rule.SpeedRule">[docs]</a><span class="k">class</span> <span class="nc">SpeedRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Rule that triggers if the absolute integral of the velocity on a</span>
+<span class="sd">    given range is above or below a given threshold.</span>
+
+<span class="sd">    :param level: The Level this Rule is active on.</span>
+<span class="sd">    :type level: Level</span>
+
+<span class="sd">    :param event: The event the rule triggers.</span>
+<span class="sd">    :type event: Event.Event</span>
+
+<span class="sd">    :param speed_rule_type: Type of comparison. Can be &#39;above&#39;</span>
+<span class="sd">        or &#39;below&#39;.</span>
+<span class="sd">    :type speed_rule_type: str</span>
+
+<span class="sd">    :param threshold: The calculated integral should be above or below</span>
+<span class="sd">        this value.</span>
+<span class="sd">    :type threshold: float</span>
+
+<span class="sd">    :param bin_size: How many velocities should be used for the integral.</span>
+<span class="sd">    :type bin_size: int</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">speed_rule_type</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_rule_type</span> <span class="o">=</span> <span class="n">speed_rule_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_size</span> <span class="o">=</span> <span class="n">bin_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bin_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Absolute sum of the last &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; velocities &quot;</span> <span class="o">+</span>\
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">speed_rule_type</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SpeedRule.check"><a class="viewcode-back" href="../rule.html#Rule.SpeedRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check whether the Speed rule should be triggered.</span>
+
+<span class="sd">        :param vel: The current velocity.</span>
+<span class="sd">        :type vel: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vel</span><span class="p">)</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed_rule_type</span> <span class="o">==</span> <span class="s2">&quot;above&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">norm</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed_rule_type</span> <span class="o">==</span> <span class="s2">&quot;below&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">norm</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span></div></div>
+
+        <span class="c1"># print(&#39;sum: &#39;, norm)</span>
+
+
+<div class="viewcode-block" id="KeyPressRule"><a class="viewcode-back" href="../rule.html#Rule.KeyPressRule">[docs]</a><span class="k">class</span> <span class="nc">KeyPressRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Rule that triggers when a selected key on the keyboard is pressed.</span>
+
+<span class="sd">    :param key: The key that triggers the rule.</span>
+<span class="sd">    :type key: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="n">pyglet</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="vm">__dict__</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; keypress&quot;</span>
+
+<div class="viewcode-block" id="KeyPressRule.check"><a class="viewcode-back" href="../rule.html#Rule.KeyPressRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="InputRule"><a class="viewcode-back" href="../rule.html#Rule.InputRule">[docs]</a><span class="k">class</span> <span class="nc">InputRule</span><span class="p">(</span><span class="n">Rule</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Rule that triggers when the given digital output rises, falls or</span>
+<span class="sd">    changes.</span>
+
+<span class="sd">    :param input_id: The number of the input (1 or 2)</span>
+<span class="sd">    :type input_id: int</span>
+
+<span class="sd">    :param trigger_type: &#39;rise&#39;, &#39;fall&#39; or &#39;change&#39;</span>
+<span class="sd">    :type trigger_type: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">input_id</span><span class="p">,</span> <span class="n">trigger_type</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_id</span> <span class="o">=</span> <span class="n">input_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trigger_type</span> <span class="o">=</span> <span class="n">trigger_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_state</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Input &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger_type</span>
+
+<div class="viewcode-block" id="InputRule.check"><a class="viewcode-back" href="../rule.html#Rule.InputRule.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_id</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">input_id</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_id</span> <span class="ow">and</span> <span class="n">state</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_state</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger_type</span> <span class="o">==</span> <span class="s1">&#39;change&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger_type</span> <span class="o">==</span> <span class="s1">&#39;rise&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_state</span> <span class="o">&lt;</span> <span class="n">state</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger_type</span> <span class="o">==</span> <span class="s1">&#39;fall&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_state</span> <span class="o">&gt;</span> <span class="n">state</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">last_state</span> <span class="o">=</span> <span class="n">state</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
