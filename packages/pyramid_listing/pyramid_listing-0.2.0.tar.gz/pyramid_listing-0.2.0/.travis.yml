@@ -1,0 +1,19 @@
+# Config file for automatic testing at travis-ci.org
+
+language: python
+python:
+  - "3.6"
+  - "3.7"
+
+# command to install dependencies
+install:
+  - pip install --upgrade pip
+  - pip install --upgrade pytest
+  - pip install flit
+  - flit install --pth-file
+
+# Command to run tests, e.g. python setup.py test
+script:
+  - tox
+
+
