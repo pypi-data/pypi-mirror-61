@@ -1,0 +1,315 @@
+<style>
+
+
+
+    .test {
+        background-color: orangered;
+        height: 200px;
+        width: 200px;
+    }
+
+    .resizable {
+  background: white;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+.resizable .resizers{
+  width: 100%;
+  height: 100%;
+  border: 3px solid #4286f4;
+  box-sizing: border-box;
+}
+
+.resizable .resizers .resizer{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; /*magic to turn square into circle*/
+  background: white;
+  border: 3px solid #4286f4;
+  position: absolute;
+}
+
+.resizable .resizers .resizer.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize; /*resizer cursor*/
+}
+.resizable .resizers .resizer.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+.resizable .resizers .resizer.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+.resizable .resizers .resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
+}
+</style>
+<div class="resizable-element test" id="demo">
+    <div class='resizable'>
+        <div class='resizers'>
+            <div class='resizer top-left'></div>
+            <div class='resizer top-right'></div>
+            <div class='resizer bottom-left'></div>
+            <div class='resizer bottom-right'></div>
+        </div>
+    </div>
+</div>
+<script>
+    function makeResizableDiv(div) {
+        const element = document.querySelector(div);
+        const resizers = document.querySelectorAll(div + ' .resizer')
+        const minimum_size = 20;
+        let original_width = 0;
+        let original_height = 0;
+        let original_x = 0;
+        let original_y = 0;
+        let original_mouse_x = 0;
+        let original_mouse_y = 0;
+        for (let i = 0; i < resizers.length; i++) {
+            const currentResizer = resizers[i];
+            currentResizer.addEventListener('mousedown', function (e) {
+                e.preventDefault()
+                original_width = parseFloat(getComputedStyle(element, null).getPropertyValue('width').replace('px', ''));
+                original_height = parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', ''));
+                original_x = element.getBoundingClientRect().left;
+                original_y = element.getBoundingClientRect().top;
+                original_mouse_x = e.pageX;
+                original_mouse_y = e.pageY;
+                window.addEventListener('mousemove', resize)
+                window.addEventListener('mouseup', stopResize)
+            })
+
+            function resize(e) {
+                if (currentResizer.classList.contains('bottom-right')) {
+                    const width = original_width + (e.pageX - original_mouse_x);
+                    const height = original_height + (e.pageY - original_mouse_y)
+                    if (width > minimum_size) {
+                        element.style.width = width + 'px'
+                    }
+                    if (height > minimum_size) {
+                        element.style.height = height + 'px'
+                    }
+                } else if (currentResizer.classList.contains('bottom-left')) {
+                    const height = original_height + (e.pageY - original_mouse_y)
+                    const width = original_width - (e.pageX - original_mouse_x)
+                    if (height > minimum_size) {
+                        element.style.height = height + 'px'
+                    }
+                    if (width > minimum_size) {
+                        element.style.width = width + 'px'
+                        element.style.left = original_x + (e.pageX - original_mouse_x) + 'px'
+                    }
+                } else if (currentResizer.classList.contains('top-right')) {
+                    const width = original_width + (e.pageX - original_mouse_x)
+                    const height = original_height - (e.pageY - original_mouse_y)
+                    if (width > minimum_size) {
+                        element.style.width = width + 'px'
+                    }
+                    if (height > minimum_size) {
+                        element.style.height = height + 'px'
+                        element.style.top = original_y + (e.pageY - original_mouse_y) + 'px'
+                    }
+                } else {
+                    const width = original_width - (e.pageX - original_mouse_x)
+                    const height = original_height - (e.pageY - original_mouse_y)
+                    if (width > minimum_size) {
+                        element.style.width = width + 'px'
+                        element.style.left = original_x + (e.pageX - original_mouse_x) + 'px'
+                    }
+                    if (height > minimum_size) {
+                        element.style.height = height + 'px'
+                        element.style.top = original_y + (e.pageY - original_mouse_y) + 'px'
+                    }
+                }
+            }
+
+            function stopResize() {
+                window.removeEventListener('mousemove', resize)
+            }
+        }
+    }
+
+    makeResizableDiv('.resizable')
+</script>
+<hr>
+<hr>
+<div id="app" class="row">
+    <!--    <vue-draggable-resizable :parent="false" :min-height="300 " :min-width="300" style="border: 5px solid yellow;width:300px;height:300px;background-color: orangered;">-->
+
+    <table id="mydiv" class="table-striped table-dark draggable">
+        <thead id="mydivheader" class="draggable-head">
+        <tr>
+            <th scope="col">编号</th>
+            <th scope="col">First</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="fileitem in items" v-bind:itemname="fileitem.name" v-bind:itemtype="fileitem.type">
+            <th scope="row" @click="updateView">wenjian</th>
+            <td><%fileitem.name%></td>
+            <td><%fileitem.type%></td>
+        </tr>
+        </tbody>
+    </table>
+    <!--        </vue-draggable-resizable>-->
+
+    <!--    <editor ref="editor" v-bind:content="'Nothing...'" v-bind:show="true"></editor>-->
+    <editor ref="editor"></editor>
+    <!--    <div style="height: 800px;width: 800px; border: 1px solid blue;float: right;">-->
+    <!-- add any elements you would like to drag & resize-->
+    <!---->
+</div>
+
+<script>
+
+    function init_editor() {
+        function drag_start(event) {
+            var style = window.getComputedStyle(event.target, null);
+            event.dataTransfer.setData("text/plain",
+                (parseInt(style.getPropertyValue("left"), 10) - event.clientX) + ',' + (parseInt(style.getPropertyValue("top"), 10) - event.clientY));
+        }
+
+        function drop(event) {
+            var offset = event.dataTransfer.getData("text/plain").split(',');
+            var dm = document.getElementById('dragme');
+            dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
+            dm.style.top = (event.clientY + parseInt(offset[1], 10)) + 'px';
+            event.preventDefault();
+            return false;
+        }
+
+        var dm = document.getElementById('dragme');
+        console.log('draggable:');
+        console.log(dm);
+        dm.addEventListener('dragstart', drag_start, false);
+        document.body.addEventListener('dragover', drag_over, false);
+        document.body.addEventListener('drop', drop, false);
+
+        function drag_over(event) {
+            event.preventDefault();
+            return false;
+        }
+    }
+</script>
+
+<div>
+    <form enctype="multipart/form-data">
+        <input name="file" type="file"/>
+        <input type="button" value="Upload"/>
+    </form>
+    <progress></progress>
+    <script>
+
+        $(':file').on('change', function () {
+            var file = this.files[0];
+
+            if (file.size > 1024) {
+                alert('max upload size is 1k');
+            }
+
+            // Also see .name, .type
+        });
+        $(':button').on('click', function () {
+            console.log('clicked');
+            var data = new FormData($('form')[0]);
+            console.log(data)
+            $.ajax({
+                // Your server script to process the upload
+                url: '/pan/upload',
+                type: 'POST',
+
+                // Form data
+                data: data,
+
+                // Tell jQuery not to process data or worry about content-type
+                // You *must* include these options!
+                cache: false,
+                contentType: false,
+                processData: false,
+
+                // Custom XMLHttpRequest
+                xhr: function () {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        // For handling the progress of the upload
+                        myXhr.upload.addEventListener('progress', function (e) {
+                            if (e.lengthComputable) {
+                                $('progress').attr({
+                                    value: e.loaded,
+                                    max: e.total,
+                                });
+                            }
+                        }, false);
+                    }
+                    return myXhr;
+                }
+            });
+        });
+    </script>
+    </form>
+</div>
+
+<script>
+    disable_ctrl_s();
+    Vue.component('vue-draggable-resizable', vue_draggable_resizable);
+    console.log(vue_draggable_resizable);
+    Vue.component('editor', {
+        props: [],
+        delimiters: ['<%', '%>'],
+        data: function () {
+            return {
+                content: 'Nothing',
+                show: false
+            }
+        },
+        watch: {},
+        template: `
+        <div class="col-6" id="dragme" style="padding:5px;max-height: 100vh;min-height: 300px;min-width: 300px;max-width: 100vw;border: solid 20px darkgreen" contenteditable="false" v-if="show">
+        <button onclick="init_editor()">draggable</button>
+        <%content%>
+</div>
+        `
+    })
+    var vm = new Vue({
+        el: "#app",
+        delimiters: ['<%', '%>'],
+        data: {
+            items: getDir('./data/pan/pan', './'),
+            //items: [],
+            location: "./data/pan/pan"
+        },
+        methods: {
+            updateView: function (e) {
+                console.log(e.target);
+                var obj = $(e.target).parent('tr');
+                var name = obj.attr('itemname');
+                var type = obj.attr('itemtype');
+                switch (type) {
+                    case T.DIR:
+                        this.items = getDir(this.location, name);
+                        this.location = this.location + '/' + name;
+                    case T.FILE:
+                        var content = getFile(this.location, name);
+                        console.log(this);
+                        var ed = this.$refs.editor;
+                        console.log(ed);
+                        ed.content = content;
+                        ed.show = true;
+                    default:
+                        null;
+                }
+
+            }
+        }
+    })
+</script>

@@ -1,0 +1,24 @@
+{% extends 'sys/base.html' %}
+{% block head %}
+    {{ head }}
+{% endblock %}
+{% block body %}
+    <div class="data-store" style="display: none">
+        <textarea class="text-data">{{ text_data }}</textarea>
+        <textarea class="markdown-data">{{ markdown_data }}</textarea>
+        <div class="html-data">{{ html_data }}</div>
+    </div>
+    <script>
+        var {
+            simpleMaximaze
+        } = apputiljs;
+        $(document).ready(() => {
+            var dataStore = $('.data-store');
+            var md_data = dataStore.find('.markdown-data');
+            var text = marked(md_data.val());
+            var showBoard = $("<div></div>");
+            showBoard.html(text);
+            simpleMaximaze(showBoard);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+{%block head%}
+
+{%endblock%}
+{%block body%}
+<script>
+    var QWindow = winjs.QWindow;
+    var getDir = panjs.getDir;
+    var getFile = panjs.getFile;
+    var newFile = panjs.newFile;
+    var newDir = panjs.newDir;
+    var Editor = edjs.Editor;
+    var T = wpjs.T;
+    var genUid = wpjs.genUid;
+    wpjs.disable_ctrl_s();
+    var {QDisplayEnvironment,openApp}=sysjs;
+    var QEvent=sysjs.QEvent;
+    var{fullScreen}=swjs;
+
+</script>
+
+<div id="editor"></div>
+<div id="explorer"></div>
+<script style="background-color: cornflowerblue">
+    var QDE=new QDisplayEnvironment();
+    QDE.setBackground("https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/960a304e251f95cac00106dacf177f3e660952e1.jpg");
+    var Explorer=explorerjs.Explorer;
+    var explorer=openApp(Explorer);
+</script>
+
+
+{%endblock%}

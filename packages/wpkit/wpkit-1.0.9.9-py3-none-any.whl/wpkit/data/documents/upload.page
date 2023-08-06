@@ -1,0 +1,14 @@
+{% extends "sys/base.html" %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+<script>
+var {RColumnList}=guijs;
+var{getDefaultOS}=panjs;
+function doUpload() {
+    inp=new guijs.RBoardApp().show().appendToBody().fitViewport();
+}
+doUpload();
+</script>
+{% endblock %}
