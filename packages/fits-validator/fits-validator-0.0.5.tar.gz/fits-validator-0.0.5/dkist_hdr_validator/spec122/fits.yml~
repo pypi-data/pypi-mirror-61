@@ -1,0 +1,82 @@
+--
+# HDU 0 - Uncompressed
+global:
+  required: false
+  depends: NAXIS
+---
+SIMPLE:
+  type: bool
+  default_value: T
+BITPIX:
+  required: true
+  type: int
+  values: [8, 16, 32, 64, -32, -64]
+NAXIS:
+  required: true
+  type: int
+  #min_value: 0
+  #max_value: 999
+  default_value: 3
+NAXIS1:
+  required: 'if NAXIS > 0'
+  type: int
+NAXIS2:
+  required: 'if NAXIS > 0'
+  type: int
+NAXIS3:
+  required: 'if NAXIS > 0'
+  type: int
+  default_value: 1
+BUNIT:
+  type: unit
+  # default_value: "CT"
+BZERO:
+  type: float
+  # default: 0
+BSCALE:
+  type: float
+  # default: 1
+BLANK:
+  type: int
+  # default: 0
+DATE:
+  type: time
+  format: isot
+DATE-OBS:
+  required: true
+  type: time
+  format: isot
+DATE-BGN:
+  type: time
+  format: isot
+DATE-END:
+  type: time
+  format: isot
+ORIGIN:
+  type: str
+TELESCOP:
+  type: str
+OBSERVAT:
+  type: str
+NETWORK:
+  type: str
+INSTRUME:
+  required: true
+  type: str
+WAVELNTH:
+  required: true
+  type: float
+OBSERVER:
+  type: str
+OBJECT:
+  type: str
+CHECKSUM:
+  type: str
+DATASUM:
+  type: str
+COMMENT:
+  type: str
+  required: false
+END:
+  required: false
+  type: str

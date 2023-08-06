@@ -1,0 +1,98 @@
+---
+SIMPLE:
+  required: false
+  type: bool
+  default_value: T
+BITPIX:
+  required: true
+  type: int
+  values: 
+    - 8
+    - 16
+    - 32
+    - 64
+    - -32
+    - -64
+NAXIS:
+  required: true
+  type: int
+  values: 
+    - 3
+NAXIS1:
+  required: true
+  type: int
+NAXIS2:
+  required: true
+  type: int
+NAXIS3:
+  required: true
+  type: int
+  default_value: 1
+BUNIT:
+  required: false
+  type: str
+  # default_value: "CT"
+BZERO:
+  required: false
+  type: float
+  # default: 0
+BSCALE:
+  required: false
+  type: float
+  # default: 1
+BLANK:
+  required: false
+  type: int
+  # default: 0
+DATE:
+  required: false
+  type: str
+  format: isot
+DATE-OBS:
+  required: true
+  type: str
+  format: isot
+DATE-BGN:
+  required: false
+  type: str
+  format: isot
+DATE-END:
+  required: false
+  type: str
+  format: isot
+ORIGIN:
+  required: false
+  type: str
+TELESCOP:
+  required: false
+  type: str
+OBSERVAT:
+  required: false
+  type: str
+NETWORK:
+  required: false
+  type: str
+INSTRUME:
+  required: true
+  type: str
+WAVELNTH:
+  required: true
+  type: float
+OBSERVER:
+  required: false
+  type: str
+OBJECT:
+  required: false
+  type: str
+CHECKSUM:
+  required: false
+  type: str
+DATASUM:
+  required: false
+  type: str
+COMMENT:
+  required: false
+  type: str
+END:
+  required: false
+  type: str
