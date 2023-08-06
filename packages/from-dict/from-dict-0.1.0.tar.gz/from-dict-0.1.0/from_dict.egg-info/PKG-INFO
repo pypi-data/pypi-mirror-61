@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: from-dict
+Version: 0.1.0
+Summary: Create data structures from dictionaries.
+Home-page: https://github.com/wchresta/from-dict
+Author: Wanja Chresta
+Author-email: wanja.hs@chrummibei.ch
+License: UNKNOWN
+Description: # from-dict
+        Create data structures from dictionaries.
+        
+        ## Features
+        * Transform dicts to `attr.s`, `dataclass` and `NamedTuple`
+        * Insert additional fields existing in dict into structure with `f__read_unknown=True`
+        * *Experimental* type-checking at runtime with `fd__type_check=True`
+        
+        ## Example
+        ```python
+        import dataclasses
+        from from_dict import from_dict
+        
+        @dataclasses.dataclass(frozen=True)
+        class MyDataclass:
+            foo: int
+            baz: str
+        
+        
+        input = {
+            "foo": 22, 
+            "baz": "Hello",
+            "additional": "ignored key",
+        }
+        
+        input_as_my_dataclass = from_dict(MyDataclass, input)
+        assert input_as_my_dataclass.foo == 22
+        assert input_as_my_dataclass.baz == "Hello"
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
