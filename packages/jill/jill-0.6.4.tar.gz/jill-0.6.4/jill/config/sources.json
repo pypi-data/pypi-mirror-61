@@ -1,0 +1,37 @@
+{
+    "upstream": {
+        "Official": {
+            "name": "Julialang.org",
+            "urls": [
+                "https://julialang-s3.julialang.org/bin/$sys/$arch/$minor_version/$filename",
+                "https://mirror.kr.pkg.julialang.org/julialang2/bin/$sys/$arch/$minor_version/$filename",
+                "https://mirror.eu.pkg.julialang.org/julialang2/bin/$sys/$arch/$minor_version/$filename",
+                "https://mirror.us-east.pkg.julialang.org/julialang2/bin/$sys/$arch/$minor_version/$filename"
+            ],
+            "latest_urls": [
+                "https://julialangnightlies-s3.julialang.org/bin/$sys/$arch/$latest_filename",
+                "https://mirror.kr.pkg.julialang.org/julialangnightlies/bin/$sys/$arch/$latest_filename",
+                "https://mirror.eu.pkg.julialang.org/julialangnightlies/bin/$sys/$arch/$latest_filename",
+                "https://mirror.us-east.pkg.julialang.org/julialangnightlies/bin/$sys/$arch/$latest_filename"
+            ]
+        },
+        "USTC": {
+            "name": "University of Science and Technology of China",
+            "urls": [
+                "https://mirrors.ustc.edu.cn/julia/releases/$vminor_version/$filename"
+            ],
+            "latest_urls": [
+                "https://mirrors.ustc.edu.cn/julia/releases/latest/$latest_filename"
+            ]
+        },
+        "ZJU": {
+            "name": "Zhejiang University",
+            "urls": [
+                "https://mirrors.zju.edu.cn/julia/releases/$vminor_version/$filename"
+            ],
+            "latest_urls": [
+                "https://mirrors.zju.edu.cn/julia/releases/latest/$latest_filename"
+            ]
+        }
+    }
+}
