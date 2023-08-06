@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "ccaaws"
+version = "0.3.2"
+description = "AWS boto3 objects for python"
+authors = ["ccdale <chris.charles.allison+ccaaws@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+boto3 = "^1.11.5"
+ccalogging = "^0.3.3"
+ccautils = "^0.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3.3"
+coverage = {extras = ["toml"], version = "^5.0.3"}
+pytest-cov = "^2.8.1"
+mypy = "^0.761"
+safety = "^1.8.5"
+flake8-bandit = "^2.1.2"
+moto = "^1.3.14"
+
+[tool.coverage.paths]
+source = ["ccaaws"]
+
+[tool.coverage.run]
+branch = true
+source = ["ccaaws"]
+
+[tool.coverage.report]
+show_missing = true
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
