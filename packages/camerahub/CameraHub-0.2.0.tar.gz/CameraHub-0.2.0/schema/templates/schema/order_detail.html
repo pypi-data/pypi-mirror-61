@@ -1,0 +1,34 @@
+{% extends "schema/detail.html" %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Negative</th>
+    <td>{% if object.negative %}<a href="{% url 'negative-detail' object.negative.id %}">{{ object.negative }}</a>{% endif %}</td>
+  </tr>
+  <tr>
+    <th>Width</th>
+    <td>{{ object.width }}</td>
+  </tr>
+  <tr>
+    <th>Height</th>
+    <td>{{ object.height }}</td>
+  </tr>
+  <tr>
+    <th>Date added</th>
+    <td>{{ object.added }}</td>
+  </tr>
+  <tr>
+    <th>Date printed</th>
+    <td>{{ object.printed }}</td>
+  </tr>
+  <tr>
+    <th>Print</th>
+    <td>{{ object.print }}</td>
+  </tr>
+  <tr>
+    <th>Recipient</th>
+    <td>{{ object.recipient }}</td>
+  </tr>
+</table>
+{% endblock %}
