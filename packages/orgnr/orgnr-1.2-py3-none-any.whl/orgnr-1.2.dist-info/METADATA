@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: orgnr
+Version: 1.2
+Summary: Verify Swedish orgnumbers and return json results.
+Home-page: https://github.com/dunderrrrrr/orgnr
+Author: dunderrrrrr
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+Requires-Dist: requests
+
+# orgnr
+
+Verify Swedish personal identity and corporation id numbers.  
+
+## Installation
+```python
+pip install orgnr
+```
+
+## Usage
+
+```python
+>>> import orgnr
+>>> orgnr.get_orgnr('5020177753')
+{'result': {'title': 'Swedbank AB', 'orgnr': '5020177753'}}
+```
+
