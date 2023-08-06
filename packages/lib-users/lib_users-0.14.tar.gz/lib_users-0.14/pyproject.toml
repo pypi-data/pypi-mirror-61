@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "lib_users"
+version = "0.14"
+description = "Checks /proc for libraries and files being mapped/open but marked as deleted"
+license = "GPL-2.0"
+authors = [ "Tobias Klausmann <klausman@schwarzvogel.de>" ]
+readme = "README.md"
+repository = "https://github.com/klausman/lib_users"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+"lib_users.py" = "lib_users:main"
+"fd_users.py" = "fd_users:main"
