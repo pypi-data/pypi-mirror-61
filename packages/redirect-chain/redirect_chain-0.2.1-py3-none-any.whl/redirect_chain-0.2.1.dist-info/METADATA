@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: redirect-chain
+Version: 0.2.1
+Summary: Shows the redirect chain of a URL from start to end
+Home-page: https://github.com/peterbe/redirect-chain
+Author: Peter Bengtsson
+Author-email: mail@peterbe.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# redirect-chain
+
+A simple cli tool to see the history of redirects of a URL.
+Sample output:
+
+```bash
+▶ redirect-chain https://developer.mozilla.org/learn/html
+0  https://developer.mozilla.org/learn/html 301
+1 > https://developer.mozilla.org/Learn/HTML 302
+2 >> https://developer.mozilla.org/docs/Learn/HTML 302
+3 >>> https://developer.mozilla.org/en-US/docs/Learn/HTML 200
+```
+
+## Installation
+
+```bash
+pipx install redirect-chain
+redirect-chain http://www.peterbe.com/oc-
+```
+
+## License
+
+MIT
+
+
