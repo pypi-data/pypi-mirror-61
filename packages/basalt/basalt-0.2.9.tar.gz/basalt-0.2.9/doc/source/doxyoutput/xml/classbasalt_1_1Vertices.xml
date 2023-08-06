@@ -1,0 +1,683 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classbasalt_1_1Vertices" kind="class" language="C++" prot="public">
+    <compoundname>basalt::Vertices</compoundname>
+    <includes refid="vertices_8hpp" local="no">vertices.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>EdgeOrientation</type>
+        <declname>Orientation</declname>
+        <defname>Orientation</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbasalt_1_1Vertices_1a8dd626ddf59b3ee84a4f0e79451dda9e" prot="private" static="no" mutable="no">
+        <type><ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl</ref>&lt; Orientation &gt; &amp;</type>
+        <definition>GraphImpl&lt;Orientation&gt;&amp; basalt::Vertices&lt; Orientation &gt;::pimpl_</definition>
+        <argsstring></argsstring>
+        <name>pimpl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="150" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1ac1c4d61185b2056b3b92d60fb415cf6c" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Vertices&lt; Orientation &gt;::Vertices</definition>
+        <argsstring>(GraphImpl&lt; Orientation &gt; &amp;pimpl)</argsstring>
+        <name>Vertices</name>
+        <param>
+          <type><ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl</ref>&lt; Orientation &gt; &amp;</type>
+          <declname>pimpl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Build a <emphasis><ref refid="classbasalt_1_1Vertices" kindref="compound">Vertices</ref></emphasis> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pimpl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to implementation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="25" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1af911ba790339be4a6fa69dd4ac785301" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbasalt_1_1VertexIterator" kindref="compound">VertexIterator</ref></type>
+        <definition>VertexIterator basalt::Vertices&lt; Orientation &gt;::begin</definition>
+        <argsstring>(std::size_t position=0) const</argsstring>
+        <name>begin</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>position</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Iterate over vertices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting position, default at the beginning </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>vertex iterator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="31" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a61ddfe667af527a2aac0d952dbd38dd9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbasalt_1_1VertexIterator" kindref="compound">VertexIterator</ref></type>
+        <definition>VertexIterator basalt::Vertices&lt; Orientation &gt;::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>an iterator referring to the past-the-end </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a251a65ab3103ce6521e994ac6a8da073" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::count</definition>
+        <argsstring>(std::size_t &amp;count) const __attribute__((warn_unused_result))</argsstring>
+        <name>count</name>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>get number of vertices in the graph </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>non-const reference updated by this member function with the number of vertices in the graph </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a59e6f2184dfd8be2d0759f00f291f5a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::count</definition>
+        <argsstring>(vertex_t type, std::size_t &amp;count) const __attribute__((warn_unused_result))</argsstring>
+        <name>count</name>
+        <param>
+          <type>vertex_t</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>get number of vertices of a certain type in the graph </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of vertex </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>non-const reference updated by this member function </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="52" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a2ac625d0e14b4ab9a20a7ad3c71b411f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::clear</definition>
+        <argsstring>(bool commit) __attribute__((warn_unused_result))</argsstring>
+        <name>clear</name>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+        </param>
+        <briefdescription>
+<para>Remove all vertices of the graph along with their edges. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1ab5200c83faccbfb9ae12277e3a7a50eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Insert a vertex in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex unique identifier to insert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="67" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a605455df393ebdbcc51508c9d9ced65f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Payload</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, const Payload &amp;data, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>const Payload &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Insert a vertex in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Payload</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vertex payload type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex unique identifier to insert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vertex payload </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="79" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.ipp" bodystart="12" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a6014f1f443f5a8cb29720fa36fab547d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, const char *data, std::size_t size, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Insert a vertex in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vertex unique identifier to insert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vertex payload </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1aa83a33f58ad50869ad0749fe839753d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_t *types, const vertex_id_t *ids, const char *const *payloads, const std::size_t *payloads_sizes, size_t num_vertices, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_t *</type>
+          <declname>types</declname>
+        </param>
+        <param>
+          <type>const vertex_id_t *</type>
+          <declname>ids</declname>
+        </param>
+        <param>
+          <type>const char *const *</type>
+          <declname>payloads</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>payloads_sizes</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_vertices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Insert a list of vertices all at once. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>types</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of vertex types </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ids</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of vertex identifiers </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>payloads</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of serialized data, <emphasis>nullptr</emphasis> if none of the vertices have a payload </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>payloads_sizes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of every payloads, <emphasis>nullptr</emphasis> if none of the vertex have a payload </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of vertexs to insert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="106" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1ab21ae091857ee1e5c1614cfd617f615d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::get</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, T &amp;payload) const __attribute__((warn_unused_result))</argsstring>
+        <name>get</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>T &amp;</type>
+          <declname>payload</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve a vertex from the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vertex payload type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>payload</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>object updated if vertex is present </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="121" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.ipp" bodystart="23" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a562db545898a19e2db8fbaec65cdcb21" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::get</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, std::string *value) const __attribute__((warn_unused_result))</argsstring>
+        <name>get</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve a vertex payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload object updated if vertex exists and has an associated payload </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="129" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1a013adc32b081c1ce14f8506a29f39ad4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::has</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, bool &amp;result) const __attribute__((warn_unused_result))</argsstring>
+        <name>has</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>Check presence of a vertex in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to look for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference set to true if vertex exists, false otherwise </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation managed to update <emphasis>result</emphasis> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Vertices_1ad8eb6bcf1892bbb8db779dc48ddaed29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Vertices&lt; Orientation &gt;::erase</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Remove a vertex from the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to remove </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp" line="146" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Manipulate graph vertices. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="30" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="30" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="classbasalt_1_1Vertices_1af911ba790339be4a6fa69dd4ac785301" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>begin</name></member>
+      <member refid="classbasalt_1_1Vertices_1a2ac625d0e14b4ab9a20a7ad3c71b411f" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>clear</name></member>
+      <member refid="classbasalt_1_1Vertices_1a251a65ab3103ce6521e994ac6a8da073" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>count</name></member>
+      <member refid="classbasalt_1_1Vertices_1a59e6f2184dfd8be2d0759f00f291f5a5" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>count</name></member>
+      <member refid="classbasalt_1_1Vertices_1a61ddfe667af527a2aac0d952dbd38dd9" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>end</name></member>
+      <member refid="classbasalt_1_1Vertices_1ad8eb6bcf1892bbb8db779dc48ddaed29" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>erase</name></member>
+      <member refid="classbasalt_1_1Vertices_1ab21ae091857ee1e5c1614cfd617f615d" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>get</name></member>
+      <member refid="classbasalt_1_1Vertices_1a562db545898a19e2db8fbaec65cdcb21" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>get</name></member>
+      <member refid="classbasalt_1_1Vertices_1a013adc32b081c1ce14f8506a29f39ad4" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>has</name></member>
+      <member refid="classbasalt_1_1Vertices_1ab5200c83faccbfb9ae12277e3a7a50eb" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Vertices_1a605455df393ebdbcc51508c9d9ced65f" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Vertices_1a6014f1f443f5a8cb29720fa36fab547d" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Vertices_1aa83a33f58ad50869ad0749fe839753d9" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Vertices_1a8dd626ddf59b3ee84a4f0e79451dda9e" prot="private" virt="non-virtual"><scope>basalt::Vertices</scope><name>pimpl_</name></member>
+      <member refid="classbasalt_1_1Vertices_1ac1c4d61185b2056b3b92d60fb415cf6c" prot="public" virt="non-virtual"><scope>basalt::Vertices</scope><name>Vertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

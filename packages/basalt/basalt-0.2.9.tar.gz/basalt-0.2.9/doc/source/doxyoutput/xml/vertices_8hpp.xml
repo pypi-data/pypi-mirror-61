@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="vertices_8hpp" kind="file" language="C++">
+    <compoundname>vertices.hpp</compoundname>
+    <includes refid="fwd_8hpp" local="no">basalt/fwd.hpp</includes>
+    <includes refid="graph_8hpp" local="no">basalt/graph.hpp</includes>
+    <includes refid="status_8hpp" local="no">basalt/status.hpp</includes>
+    <includes refid="vertices_8ipp" local="no">basalt/vertices.ipp</includes>
+    <includedby refid="basalt_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</includedby>
+    <incdepgraph>
+      <node id="95">
+        <label>basalt/status.hpp</label>
+        <link refid="status_8hpp_source"/>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp</label>
+        <link refid="vertices_8hpp"/>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>limits</label>
+      </node>
+      <node id="94">
+        <label>string</label>
+      </node>
+      <node id="89">
+        <label>basalt/graph.hpp</label>
+        <link refid="graph_8hpp_source"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>fstream</label>
+      </node>
+      <node id="88">
+        <label>vector</label>
+      </node>
+      <node id="87">
+        <label>utility</label>
+      </node>
+      <node id="85">
+        <label>basalt/fwd.hpp</label>
+        <link refid="fwd_8hpp_source"/>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>iosfwd</label>
+      </node>
+      <node id="86">
+        <label>cstddef</label>
+      </node>
+      <node id="93">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="96">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp</label>
+        <link refid="vertices_8hpp"/>
+        <childnode refid="97" relation="include">
+        </childnode>
+      </node>
+      <node id="97">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</label>
+        <link refid="basalt_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classbasalt_1_1Vertices" prot="public">basalt::Vertices</innerclass>
+    <innernamespace refid="namespacebasalt">basalt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2019<sp/>Blue<sp/>Brain<sp/>Project</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Basalt<sp/>distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Lesser<sp/>General<sp/>Public<sp/>License.<sp/>See<sp/>top-level<sp/>LICENSE<sp/>file<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/graph.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/status.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">basalt<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;EdgeOrientation<sp/>Orientation&gt;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Vertices<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1Vertices_1ac1c4d61185b2056b3b92d60fb415cf6c" kindref="member">Vertices</ref>(GraphImpl&lt;Orientation&gt;&amp;<sp/>pimpl);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>VertexIterator<sp/><ref refid="classbasalt_1_1Vertices_1af911ba790339be4a6fa69dd4ac785301" kindref="member">begin</ref>(std::size_t<sp/>position<sp/>=<sp/>0)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>VertexIterator<sp/><ref refid="classbasalt_1_1Vertices_1a61ddfe667af527a2aac0d952dbd38dd9" kindref="member">end</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1a251a65ab3103ce6521e994ac6a8da073" kindref="member">count</ref>(std::size_t&amp;<sp/><ref refid="classbasalt_1_1Vertices_1a251a65ab3103ce6521e994ac6a8da073" kindref="member">count</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1a251a65ab3103ce6521e994ac6a8da073" kindref="member">count</ref>(vertex_t<sp/>type,<sp/>std::size_t&amp;<sp/><ref refid="classbasalt_1_1Vertices_1a251a65ab3103ce6521e994ac6a8da073" kindref="member">count</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1a2ac625d0e14b4ab9a20a7ad3c71b411f" kindref="member">clear</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ab5200c83faccbfb9ae12277e3a7a50eb" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;typename<sp/>Payload&gt;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ab5200c83faccbfb9ae12277e3a7a50eb" kindref="member">insert</ref>(const<sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>const<sp/>Payload&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/>false)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ab5200c83faccbfb9ae12277e3a7a50eb" kindref="member">insert</ref>(const<sp/>vertex_uid_t&amp;<sp/>vertex,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>data,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/>false)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ab5200c83faccbfb9ae12277e3a7a50eb" kindref="member">insert</ref>(const<sp/>vertex_t*<sp/>types,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>vertex_id_t*<sp/>ids,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>const*<sp/>payloads,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>payloads_sizes,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>num_vertices,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/>false)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ab21ae091857ee1e5c1614cfd617f615d" kindref="member">get</ref>(const<sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>T&amp;<sp/>payload)<sp/>const<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ab21ae091857ee1e5c1614cfd617f615d" kindref="member">get</ref>(const<sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>std::</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">*<sp/>value)<sp/>const</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1a013adc32b081c1ce14f8506a29f39ad4" kindref="member">has</ref>(const<sp/>vertex_uid_t&amp;<sp/>vertex,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>result)<sp/>const<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>Status<sp/><ref refid="classbasalt_1_1Vertices_1ad8eb6bcf1892bbb8db779dc48ddaed29" kindref="member">erase</ref>(const<sp/>vertex_uid_t&amp;<sp/>vertex,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/>false)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/>private:</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>GraphImpl&lt;Orientation&gt;&amp;<sp/>pimpl_;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal">extern<sp/>template<sp/>class<sp/><ref refid="classbasalt_1_1Vertices_1ac1c4d61185b2056b3b92d60fb415cf6c" kindref="member">Vertices</ref>&lt;EdgeOrientation::directed&gt;;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal">extern<sp/>template<sp/>class<sp/><ref refid="classbasalt_1_1Vertices_1ac1c4d61185b2056b3b92d60fb415cf6c" kindref="member">Vertices</ref>&lt;EdgeOrientation::undirected&gt;;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>basalt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/vertices.ipp&gt;</highlight></codeline>
+    </programlisting>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp"/>
+  </compounddef>
+</doxygen>

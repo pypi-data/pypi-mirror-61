@@ -1,0 +1,370 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structbasalt_1_1Status" kind="struct" language="C++" prot="public">
+    <compoundname>basalt::Status</compoundname>
+    <includes refid="status_8hpp" local="no">status.hpp</includes>
+      <sectiondef kind="user-defined">
+      <header>Ctors and dtors.</header>
+      <memberdef kind="function" id="structbasalt_1_1Status_1a82c73016fc16254f7c99ec73feae3bb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Status::Status</definition>
+        <argsstring>(Code code, std::string message)</argsstring>
+        <name>Status</name>
+        <param>
+          <type><ref refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" kindref="member">Code</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>status code </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>message for humans </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1a82f15f8433250259ae340f9aa68aaf72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Status::Status</definition>
+        <argsstring>()=delete</argsstring>
+        <name>Status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="43" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Code</name>
+        <enumvalue id="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39a3c816d5e036ab6a142b8aebc0b355390" prot="public">
+          <name>ok_code</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39a6dc347f56359336ea91738e740913e3a" prot="public">
+          <name>not_implemented_code</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39ab4ad95e7fb6b8a30d2d187d5ad69ddc5" prot="public">
+          <name>missing_vertex_code</name>
+          <initializer>= -2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39aff8a928e9749fb468668a0decb8c6abd" prot="public">
+          <name>invalid_edge_code</name>
+          <initializer>= -3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39af5ee3c54fbc9fe9b082d37683cf55425" prot="public">
+          <name>missing_edge_code</name>
+          <initializer>= -4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Operation status code </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="23" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" bodystart="23" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" kindref="member">Code</ref></type>
+        <definition>const Code basalt::Status::code</definition>
+        <argsstring></argsstring>
+        <name>code</name>
+        <briefdescription>
+<para>status code </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="102" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbasalt_1_1Status_1a2ff44a68b1fe1010124b1ce736dd0f19" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string basalt::Status::message</definition>
+        <argsstring></argsstring>
+        <name>message</name>
+        <briefdescription>
+<para>status message for humans </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="104" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structbasalt_1_1Status_1ab26f8525fd3aa6c17754193bbf8443ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool basalt::Status::operator!</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator!</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Negation operator <simplesect kind="return"><para>true if status is not <emphasis>Code::ok_code</emphasis>, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="50" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1a0394b5a99393c228371831e9f102bdc1" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Status::operator bool</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Implicit conversion operator <simplesect kind="return"><para>true if status is <emphasis>Code::ok_code</emphasis>, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="57" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1ab7197db5390399ebbdac43882611d7e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structbasalt_1_1Status" kindref="compound">Status</ref> &amp;</type>
+        <definition>const Status&amp; basalt::Status::raise_on_error</definition>
+        <argsstring>() const</argsstring>
+        <name>raise_on_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whenever status is not <emphasis>Code::ok_code</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>this instance if member does not throw </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="65" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structbasalt_1_1Status_1a21e2806da1c17ae09b9e203d7e0481fc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structbasalt_1_1Status" kindref="compound">Status</ref> &amp;</type>
+        <definition>static const Status&amp; basalt::Status::error_not_implemented</definition>
+        <argsstring>()</argsstring>
+        <name>error_not_implemented</name>
+        <briefdescription>
+<para>Construct a <emphasis><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A status representing a not implemented state </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1a7c86e5e8268084e712e26387163086f7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>static Status basalt::Status::error_missing_vertex</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex)</argsstring>
+        <name>error_missing_vertex</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <emphasis><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The missing vertex </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A status representing a missing vertex </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1ae5c024e1da215345c722d1ffc31e718d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>static Status basalt::Status::error_missing_edge</definition>
+        <argsstring>(const edge_uid_t &amp;edge)</argsstring>
+        <name>error_missing_edge</name>
+        <param>
+          <type>const edge_uid_t &amp;</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <emphasis><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>edge</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The missing edge </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <emphasis><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></emphasis> representing the missing edge </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1ab118428fe7c6a7e90cd3743bcf7086b0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>static Status basalt::Status::error_invalid_edge</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex1, const vertex_uid_t &amp;vertex2)</argsstring>
+        <name>error_invalid_edge</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex1</declname>
+        </param>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex2</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <emphasis><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one end of an edge </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>other end of the edge </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A status representing a invalid edge between 2 vertices </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structbasalt_1_1Status_1a65ac5514cc4987bba4cd352601cf595a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structbasalt_1_1Status" kindref="compound">Status</ref> &amp;</type>
+        <definition>static const Status&amp; basalt::Status::ok</definition>
+        <argsstring>()</argsstring>
+        <name>ok</name>
+        <briefdescription>
+<para>Create <ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A status representing a situation where everything is alright. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="99" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Result of one or several graph operations </para>
+    </detaileddescription>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="19" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" bodystart="19" bodyend="105"/>
+    <listofallmembers>
+      <member refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>Code</name></member>
+      <member refid="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>code</name></member>
+      <member refid="structbasalt_1_1Status_1ab118428fe7c6a7e90cd3743bcf7086b0" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>error_invalid_edge</name></member>
+      <member refid="structbasalt_1_1Status_1ae5c024e1da215345c722d1ffc31e718d" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>error_missing_edge</name></member>
+      <member refid="structbasalt_1_1Status_1a7c86e5e8268084e712e26387163086f7" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>error_missing_vertex</name></member>
+      <member refid="structbasalt_1_1Status_1a21e2806da1c17ae09b9e203d7e0481fc" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>error_not_implemented</name></member>
+      <member refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39aff8a928e9749fb468668a0decb8c6abd" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>invalid_edge_code</name></member>
+      <member refid="structbasalt_1_1Status_1a2ff44a68b1fe1010124b1ce736dd0f19" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>message</name></member>
+      <member refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39af5ee3c54fbc9fe9b082d37683cf55425" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>missing_edge_code</name></member>
+      <member refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39ab4ad95e7fb6b8a30d2d187d5ad69ddc5" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>missing_vertex_code</name></member>
+      <member refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39a6dc347f56359336ea91738e740913e3a" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>not_implemented_code</name></member>
+      <member refid="structbasalt_1_1Status_1a65ac5514cc4987bba4cd352601cf595a" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>ok</name></member>
+      <member refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39a3c816d5e036ab6a142b8aebc0b355390" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>ok_code</name></member>
+      <member refid="structbasalt_1_1Status_1a0394b5a99393c228371831e9f102bdc1" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>operator bool</name></member>
+      <member refid="structbasalt_1_1Status_1ab26f8525fd3aa6c17754193bbf8443ab" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>operator!</name></member>
+      <member refid="structbasalt_1_1Status_1ab7197db5390399ebbdac43882611d7e5" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>raise_on_error</name></member>
+      <member refid="structbasalt_1_1Status_1a82c73016fc16254f7c99ec73feae3bb3" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>Status</name></member>
+      <member refid="structbasalt_1_1Status_1a82f15f8433250259ae340f9aa68aaf72" prot="public" virt="non-virtual"><scope>basalt::Status</scope><name>Status</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="namespacebasalt" kind="namespace" language="C++">
+    <compoundname>basalt</compoundname>
+    <innerclass refid="classbasalt_1_1EdgeIterator" prot="public">basalt::EdgeIterator</innerclass>
+    <innerclass refid="classbasalt_1_1Edges" prot="public">basalt::Edges</innerclass>
+    <innerclass refid="classbasalt_1_1Graph" prot="public">basalt::Graph</innerclass>
+    <innerclass refid="classbasalt_1_1GraphImpl" prot="public">basalt::GraphImpl</innerclass>
+    <innerclass refid="structbasalt_1_1Status" prot="public">basalt::Status</innerclass>
+    <innerclass refid="classbasalt_1_1VertexIterator" prot="public">basalt::VertexIterator</innerclass>
+    <innerclass refid="classbasalt_1_1Vertices" prot="public">basalt::Vertices</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="fwd_8hpp_1a0db75f518986b127ba62beba1a517bf3" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>EdgeOrientation</name>
+        <enumvalue id="fwd_8hpp_1a0db75f518986b127ba62beba1a517bf3abc26cd8237a1f32814d687d6745880db" prot="public">
+          <name>undirected</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="fwd_8hpp_1a0db75f518986b127ba62beba1a517bf3a42e55a2462c0d3774dba7cba6835ff52" prot="public">
+          <name>directed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="15" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="15" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="fwd_8hpp_1a473d7e62a9171f4d949cc15f70c3e89e" prot="public" static="no">
+        <type>int</type>
+        <definition>using basalt::vertex_t = typedef int</definition>
+        <argsstring></argsstring>
+        <name>vertex_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="32" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="fwd_8hpp_1ab2c428ebed712d45856d370722d0cd17" prot="public" static="no">
+        <type>std::size_t</type>
+        <definition>using basalt::vertex_id_t = typedef std::size_t</definition>
+        <argsstring></argsstring>
+        <name>vertex_id_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="33" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="fwd_8hpp_1a1184bfd9f51a8686000de3b523862935" prot="public" static="no">
+        <type>std::pair&lt; vertex_t, std::size_t &gt;</type>
+        <definition>using basalt::vertex_uid_t = typedef std::pair&lt;vertex_t, std::size_t&gt;</definition>
+        <argsstring></argsstring>
+        <name>vertex_uid_t</name>
+        <briefdescription>
+<para>a vertex is made of a type and an identifier </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="35" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="fwd_8hpp_1a59a98d91f23e0047afa9a057b3cfb7cc" prot="public" static="no">
+        <type>std::pair&lt; vertex_uid_t, vertex_uid_t &gt;</type>
+        <definition>using basalt::edge_uid_t = typedef std::pair&lt;vertex_uid_t, vertex_uid_t&gt;</definition>
+        <argsstring></argsstring>
+        <name>edge_uid_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="36" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="fwd_8hpp_1a1b8cdd0a34702f61cce7674ac6b33b85" prot="public" static="no">
+        <type>std::vector&lt; vertex_uid_t &gt;</type>
+        <definition>using basalt::vertex_uids_t = typedef std::vector&lt;vertex_uid_t&gt;</definition>
+        <argsstring></argsstring>
+        <name>vertex_uids_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" line="37" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/fwd.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="graph_8hpp_1a5419ef6e4f9754aa6afd363350a8e572" prot="public" static="no">
+        <type><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>&lt; EdgeOrientation::undirected &gt;</type>
+        <definition>using basalt::UndirectedGraph = typedef Graph&lt;EdgeOrientation::undirected&gt;</definition>
+        <argsstring></argsstring>
+        <name>UndirectedGraph</name>
+        <briefdescription>
+<para>Undirected Connectivity <ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="83" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="graph_8hpp_1abfdd634bcaf4b3d33b4c3c0cbfa865a7" prot="public" static="no">
+        <type><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>&lt; EdgeOrientation::directed &gt;</type>
+        <definition>using basalt::DirectedGraph = typedef Graph&lt;EdgeOrientation::directed&gt;</definition>
+        <argsstring></argsstring>
+        <name>DirectedGraph</name>
+        <briefdescription>
+<para><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref> in which edges have orientations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="88" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="graph_8hpp_1a2c62ae82b920bd5e72c228541cac0ce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vertex_uid_t</type>
+        <definition>vertex_uid_t basalt::make_id</definition>
+        <argsstring>(vertex_t type, vertex_id_t id)</argsstring>
+        <name>make_id</name>
+        <param>
+          <type>vertex_t</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>vertex_id_t</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para><emphasis>vertex_uid_t</emphasis> constructor helper function </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="96" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edge_iterator.hpp" line="14" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="status_8hpp" kind="file" language="C++">
+    <compoundname>status.hpp</compoundname>
+    <includes local="no">iosfwd</includes>
+    <includes local="no">string</includes>
+    <includes refid="fwd_8hpp" local="no">basalt/fwd.hpp</includes>
+    <includedby refid="edges_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp</includedby>
+    <includedby refid="graph_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp</includedby>
+    <includedby refid="vertices_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp</includedby>
+    <includedby refid="vertices_8ipp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.ipp</includedby>
+    <incdepgraph>
+      <node id="63">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp</label>
+        <link refid="status_8hpp"/>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>string</label>
+      </node>
+      <node id="69">
+        <label>vector</label>
+      </node>
+      <node id="68">
+        <label>utility</label>
+      </node>
+      <node id="66">
+        <label>basalt/fwd.hpp</label>
+        <link refid="fwd_8hpp_source"/>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>iosfwd</label>
+      </node>
+      <node id="67">
+        <label>cstddef</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="70">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp</label>
+        <link refid="status_8hpp"/>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp</label>
+        <link refid="vertices_8hpp_source"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp</label>
+        <link refid="graph_8hpp_source"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp</label>
+        <link refid="edges_8hpp_source"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</label>
+        <link refid="basalt_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structbasalt_1_1Status" prot="public">basalt::Status</innerclass>
+    <innernamespace refid="namespacebasalt">basalt</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="status_8hpp_1ac68f335887b2d98d11fc97b6cc543014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;ostr, const basalt::Status &amp;status)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>ostr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structbasalt_1_1Status" kindref="compound">basalt::Status</ref> &amp;</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+<para>specialization to gently push a <emphasis>Status</emphasis> to an output stream </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp" line="110" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2019<sp/>Blue<sp/>Brain<sp/>Project</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Basalt<sp/>distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Lesser<sp/>General<sp/>Public<sp/>License.<sp/>See<sp/>top-level<sp/>LICENSE<sp/>file<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iosfwd&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">basalt<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="structbasalt_1_1Status" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/>{</highlight></codeline>
+<codeline lineno="23" refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" kindref="member">Code</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ok_code<sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>not_implemented_code<sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>missing_vertex_code<sp/>=<sp/>-2,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>invalid_edge_code<sp/>=<sp/>-3,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>missing_edge_code<sp/>=<sp/>-4,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>(<ref refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" kindref="member">Code</ref><sp/><ref refid="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" kindref="member">code</ref>,<sp/>std::string<sp/><ref refid="structbasalt_1_1Status_1a2ff44a68b1fe1010124b1ce736dd0f19" kindref="member">message</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50" refid="structbasalt_1_1Status_1ab26f8525fd3aa6c17754193bbf8443ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status_1ab26f8525fd3aa6c17754193bbf8443ab" kindref="member">operator!</ref>()<sp/>const<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" kindref="member">code</ref><sp/>!=<sp/>0;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57" refid="structbasalt_1_1Status_1a0394b5a99393c228371831e9f102bdc1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/>bool()<sp/>const<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" kindref="member">code</ref><sp/>==<sp/>0;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>&amp;<sp/><ref refid="structbasalt_1_1Status_1ab7197db5390399ebbdac43882611d7e5" kindref="member">raise_on_error</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>&amp;<sp/><ref refid="structbasalt_1_1Status_1a21e2806da1c17ae09b9e203d7e0481fc" kindref="member">error_not_implemented</ref>();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="structbasalt_1_1Status_1a7c86e5e8268084e712e26387163086f7" kindref="member">error_missing_vertex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="structbasalt_1_1Status_1ae5c024e1da215345c722d1ffc31e718d" kindref="member">error_missing_edge</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>edge_uid_t&amp;<sp/>edge);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="structbasalt_1_1Status_1ab118428fe7c6a7e90cd3743bcf7086b0" kindref="member">error_invalid_edge</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex2);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref>&amp;<sp/><ref refid="structbasalt_1_1Status_1a65ac5514cc4987bba4cd352601cf595a" kindref="member">ok</ref>();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status_1a58fc1f11e7123d9bc3dcf931a8489e39" kindref="member">Code</ref><sp/><ref refid="structbasalt_1_1Status_1a0cc9814031a0e51b65fd9457d0b9cf5b" kindref="member">code</ref>;</highlight></codeline>
+<codeline lineno="104" refid="structbasalt_1_1Status_1a2ff44a68b1fe1010124b1ce736dd0f19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="structbasalt_1_1Status_1a2ff44a68b1fe1010124b1ce736dd0f19" kindref="member">message</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>basalt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>ostr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structbasalt_1_1Status" kindref="compound">basalt::Status</ref>&amp;<sp/>status);</highlight></codeline>
+    </programlisting>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/status.hpp"/>
+  </compounddef>
+</doxygen>

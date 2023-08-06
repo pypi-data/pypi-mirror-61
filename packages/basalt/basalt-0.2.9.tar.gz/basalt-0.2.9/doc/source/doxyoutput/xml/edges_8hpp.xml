@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="edges_8hpp" kind="file" language="C++">
+    <compoundname>edges.hpp</compoundname>
+    <includes refid="fwd_8hpp" local="no">basalt/fwd.hpp</includes>
+    <includes refid="status_8hpp" local="no">basalt/status.hpp</includes>
+    <includedby refid="basalt_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</includedby>
+    <incdepgraph>
+      <node id="32">
+        <label>basalt/status.hpp</label>
+        <link refid="status_8hpp_source"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>string</label>
+      </node>
+      <node id="27">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp</label>
+        <link refid="edges_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>vector</label>
+      </node>
+      <node id="30">
+        <label>utility</label>
+      </node>
+      <node id="28">
+        <label>basalt/fwd.hpp</label>
+        <link refid="fwd_8hpp_source"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>iosfwd</label>
+      </node>
+      <node id="29">
+        <label>cstddef</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="35">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp</label>
+        <link refid="edges_8hpp"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</label>
+        <link refid="basalt_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classbasalt_1_1Edges" prot="public">basalt::Edges</innerclass>
+    <innernamespace refid="namespacebasalt">basalt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2019<sp/>Blue<sp/>Brain<sp/>Project</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Basalt<sp/>distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Lesser<sp/>General<sp/>Public<sp/>License.<sp/>See<sp/>top-level<sp/>LICENSE<sp/>file<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/status.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">basalt<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;EdgeOrientation<sp/>Orientation&gt;</highlight></codeline>
+<codeline lineno="18" refid="classbasalt_1_1Edges" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classbasalt_1_1Edges" kindref="compound">Edges</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1Edges_1aafbf50340bf021c4e3962bd60e74c45c" kindref="member">Edges</ref>(<ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl&lt;Orientation&gt;</ref>&amp;<sp/>pimpl);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref><sp/><ref refid="classbasalt_1_1Edges_1a1a625f33c2228831c3f14d128e289c28" kindref="member">begin</ref>(std::size_t<sp/>position<sp/>=<sp/>0)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref><sp/><ref refid="classbasalt_1_1Edges_1a4cd646642d28fc1c08ff55f9e1dcfa10" kindref="member">end</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex2,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex1,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex2,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>data,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>size,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uids_t&amp;<sp/>vertices,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;const<sp/>char*&gt;&amp;<sp/>data<sp/>=<sp/>{},</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::size_t&gt;&amp;<sp/>sizes<sp/>=<sp/>{},</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex_t<sp/>type,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_id_t*<sp/>vertices,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>num_vertices,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>create_vertices<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex_t<sp/>type,</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t*<sp/>vertices,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">*<sp/>vertex_payloads,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t*<sp/>vertex_payloads_sizes,</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>num_vertices,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>create_vertices<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a165a7af5aa7fa153ac207806d82ec666" kindref="member">get</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>edge_uid_t&amp;<sp/>edge,<sp/>std::string*<sp/>value)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1ab68099c3c18ce9f34a59b3e9d4188b4b" kindref="member">has</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex2,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>result)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a165a7af5aa7fa153ac207806d82ec666" kindref="member">get</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>vertex_uids_t&amp;<sp/>edges)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a165a7af5aa7fa153ac207806d82ec666" kindref="member">get</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>vertex_t<sp/>filter,<sp/>vertex_uids_t&amp;<sp/>edges)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a50c5b543e05fd914ee428bb7b8c37d2c" kindref="member">erase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex2,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a50c5b543e05fd914ee428bb7b8c37d2c" kindref="member">erase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>vertex_t<sp/>filter,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">&amp;<sp/>removed,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a50c5b543e05fd914ee428bb7b8c37d2c" kindref="member">erase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vertex_uid_t&amp;<sp/>vertex,<sp/>std::size_t&amp;<sp/>removed,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a6bcecd6b1f01d3b49a4ca9b4adeeadfd" kindref="member">count</ref>(std::size_t&amp;<sp/><ref refid="classbasalt_1_1Edges_1a6bcecd6b1f01d3b49a4ca9b4adeeadfd" kindref="member">count</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Edges_1a4277488fc86f66380ac96c86f18ff4ba" kindref="member">clear</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>commit)<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl&lt;Orientation&gt;</ref>&amp;<sp/>pimpl_;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classbasalt_1_1Edges" kindref="compound">Edges&lt;EdgeOrientation::directed&gt;</ref>;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classbasalt_1_1Edges" kindref="compound">Edges&lt;EdgeOrientation::undirected&gt;</ref>;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>basalt</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp"/>
+  </compounddef>
+</doxygen>

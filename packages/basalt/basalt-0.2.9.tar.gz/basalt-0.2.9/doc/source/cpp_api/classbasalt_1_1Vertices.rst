@@ -1,0 +1,16 @@
+.. _exhale_class_classbasalt_1_1Vertices:
+
+Template Class Vertices
+=======================
+
+- Defined in :ref:`file__goinfre_src_github.com_BlueBrain_basalt_include_basalt_fwd.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: basalt::Vertices
+   :members:
+   :protected-members:
+   :undoc-members:

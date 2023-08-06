@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classbasalt_1_1Graph" kind="class" language="C++" prot="public">
+    <compoundname>basalt::Graph</compoundname>
+    <templateparamlist>
+      <param>
+        <type>EdgeOrientation</type>
+        <declname>Orientation</declname>
+        <defname>Orientation</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="user-defined">
+      <header>Ctors &amp; Dtor</header>
+      <memberdef kind="function" id="classbasalt_1_1Graph_1a1fd4711e27649eedc1a8ffc1b3247664" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Graph&lt; Orientation &gt;::Graph</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>Graph</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>load graph if present on disk, initialize it otherwise </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>graph directory on disk </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Graph_1a16d8c69a77e21b1bba2fc7fd9fb583b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Graph&lt; Orientation &gt;::Graph</definition>
+        <argsstring>(const std::string &amp;path, const std::string &amp;config)</argsstring>
+        <name>Graph</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+<para>create graph on disk at the given path with the given configuration </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the graph directory on disk (must not exist) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the path to a JSON file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Graph_1aa413974dae22ec2da37cd592aa98895f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Graph&lt; Orientation &gt;::~Graph</definition>
+        <argsstring>()</argsstring>
+        <name>~Graph</name>
+        <briefdescription>
+<para>graph instance destructor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classbasalt_1_1Graph_1a5c35c4075b5a847eeff903dd6d20357d" prot="public" static="no">
+        <type>std::iterator&lt; std::input_iterator_tag, const vertex_t &gt;</type>
+        <definition>using basalt::Graph&lt; Orientation &gt;::vertex_const_iterator_t =  std::iterator&lt;std::input_iterator_tag, const vertex_t&gt;</definition>
+        <argsstring></argsstring>
+        <name>vertex_const_iterator_t</name>
+        <briefdescription>
+<para>iterator over vertices </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="26" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbasalt_1_1Graph_1a01812bfa38d1f7bea82223e3aa6d2909" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl</ref>&lt; Orientation &gt; &gt;</type>
+        <definition>std::unique_ptr&lt;GraphImpl&lt;Orientation&gt; &gt; basalt::Graph&lt; Orientation &gt;::pimpl_</definition>
+        <argsstring></argsstring>
+        <name>pimpl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="77" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbasalt_1_1Graph_1ac198f15cc79a9ce1aea84638b93d49c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbasalt_1_1Edges" kindref="compound">Edges</ref>&lt; Orientation &gt; &amp;</type>
+        <definition>Edges&lt;Orientation&gt;&amp; basalt::Graph&lt; Orientation &gt;::edges</definition>
+        <argsstring>()</argsstring>
+        <name>edges</name>
+        <briefdescription>
+<para>edges accessor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Graph_1a8fc14c5ecc87c80fc147261ea0b6679a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbasalt_1_1Vertices" kindref="compound">Vertices</ref>&lt; Orientation &gt; &amp;</type>
+        <definition>Vertices&lt;Orientation&gt;&amp; basalt::Graph&lt; Orientation &gt;::vertices</definition>
+        <argsstring>()</argsstring>
+        <name>vertices</name>
+        <briefdescription>
+<para>vertices accessor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Graph_1a020d116f2165d7463949a5b79d62efbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Graph&lt; Orientation &gt;::commit</definition>
+        <argsstring>() __attribute__((warn_unused_result))</argsstring>
+        <name>commit</name>
+        <briefdescription>
+<para>Process uncommitted operations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Graph_1a98605bf226ba177de78e1dcded66f550" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string basalt::Graph&lt; Orientation &gt;::statistics</definition>
+        <argsstring>() const</argsstring>
+        <name>statistics</name>
+        <briefdescription>
+<para>Provides human readable string of all database counters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="74" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="23" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" bodystart="23" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classbasalt_1_1Graph_1a020d116f2165d7463949a5b79d62efbc" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>commit</name></member>
+      <member refid="classbasalt_1_1Graph_1ac198f15cc79a9ce1aea84638b93d49c3" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>edges</name></member>
+      <member refid="classbasalt_1_1Graph_1a1fd4711e27649eedc1a8ffc1b3247664" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>Graph</name></member>
+      <member refid="classbasalt_1_1Graph_1a16d8c69a77e21b1bba2fc7fd9fb583b8" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>Graph</name></member>
+      <member refid="classbasalt_1_1Graph_1a01812bfa38d1f7bea82223e3aa6d2909" prot="private" virt="non-virtual"><scope>basalt::Graph</scope><name>pimpl_</name></member>
+      <member refid="classbasalt_1_1Graph_1a98605bf226ba177de78e1dcded66f550" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>statistics</name></member>
+      <member refid="classbasalt_1_1Graph_1a5c35c4075b5a847eeff903dd6d20357d" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>vertex_const_iterator_t</name></member>
+      <member refid="classbasalt_1_1Graph_1a8fc14c5ecc87c80fc147261ea0b6679a" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>vertices</name></member>
+      <member refid="classbasalt_1_1Graph_1aa413974dae22ec2da37cd592aa98895f" prot="public" virt="non-virtual"><scope>basalt::Graph</scope><name>~Graph</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

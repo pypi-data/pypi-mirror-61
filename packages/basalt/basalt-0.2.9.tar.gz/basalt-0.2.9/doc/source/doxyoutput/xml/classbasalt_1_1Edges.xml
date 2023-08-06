@@ -1,0 +1,984 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classbasalt_1_1Edges" kind="class" language="C++" prot="public">
+    <compoundname>basalt::Edges</compoundname>
+    <includes refid="edges_8hpp" local="no">edges.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>EdgeOrientation</type>
+        <declname>Orientation</declname>
+        <defname>Orientation</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbasalt_1_1Edges_1a17c5af7433e3445fbec19dd7cf45c1a6" prot="private" static="no" mutable="no">
+        <type><ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl</ref>&lt; Orientation &gt; &amp;</type>
+        <definition>GraphImpl&lt;Orientation&gt;&amp; basalt::Edges&lt; Orientation &gt;::pimpl_</definition>
+        <argsstring></argsstring>
+        <name>pimpl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="205" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbasalt_1_1Edges_1aafbf50340bf021c4e3962bd60e74c45c" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>basalt::Edges&lt; Orientation &gt;::Edges</definition>
+        <argsstring>(GraphImpl&lt; Orientation &gt; &amp;pimpl)</argsstring>
+        <name>Edges</name>
+        <param>
+          <type><ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl</ref>&lt; Orientation &gt; &amp;</type>
+          <declname>pimpl</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <emphasis><ref refid="classbasalt_1_1Edges" kindref="compound">Edges</ref></emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pimpl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to implementation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="24" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a1a625f33c2228831c3f14d128e289c28" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref></type>
+        <definition>EdgeIterator basalt::Edges&lt; Orientation &gt;::begin</definition>
+        <argsstring>(std::size_t position=0) const</argsstring>
+        <name>begin</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>position</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Iterator over the edges of the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>starting position, default at the beginning </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>edge iterator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="31" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a4cd646642d28fc1c08ff55f9e1dcfa10" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref></type>
+        <definition>EdgeIterator basalt::Edges&lt; Orientation &gt;::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>an iterator referring to the past-the-end </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex1, const vertex_uid_t &amp;vertex2, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex1</declname>
+        </param>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex2</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Create an edge between 2 vertices. Both vertices must already be in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one end of the edge </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second end of the edge </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="46" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1ac9bd02b70eeffe5afefe4b1fde5513b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex1, const vertex_uid_t &amp;vertex2, const char *data, std::size_t size, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex1</declname>
+        </param>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex2</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Create an edge between 2 vertices. Both vertices must already be in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one end of the edge </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second end of the edge </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload of the edge </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload length </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1af284cbf1d3b08e0ee60e233f726c9412" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, const vertex_uids_t &amp;vertices, const std::vector&lt; const char * &gt; &amp;data={}, const std::vector&lt; std::size_t &gt; &amp;sizes={}, bool commit=false)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>const vertex_uids_t &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; const char * &gt; &amp;</type>
+          <declname>data</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::size_t &gt; &amp;</type>
+          <declname>sizes</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Create edges between a vertex and several vertices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to connect to others </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertices to connect to <emphasis>vertex</emphasis> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payloads of every edges to create </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sizes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the sizes of the payloads </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a84eb8671173a97264908c48c66e7045a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, vertex_t type, const vertex_id_t *vertices, size_t num_vertices, bool create_vertices=false, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>vertex_t</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const vertex_id_t *</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_vertices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>create_vertices</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Create edges between a vertex and several vertices of the same type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to connect to others </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>target vertices type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertices to connect to <emphasis>vertex</emphasis> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of target vertices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>create_vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether vertices should be created as well </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a9df57c46dec891468e9dc628b83a5fcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::insert</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, vertex_t type, const std::size_t *vertices, const char *const *vertex_payloads, const std::size_t *vertex_payloads_sizes, size_t num_vertices, bool create_vertices=false, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>vertex_t</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>const char *const *</type>
+          <declname>vertex_payloads</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>vertex_payloads_sizes</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>num_vertices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>create_vertices</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Creates edges between a vertex and several vertices of the same type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertex to connect to others </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>target vertices type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vertices to connect to <emphasis>vertex</emphasis> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex_payloads</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload of every target vertex Use <emphasis>nullptr</emphasis> is there is no payload. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex_payloads_sizes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload size of every target vertex </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of target vertices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>create_vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether vertices should be created as well </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a165a7af5aa7fa153ac207806d82ec666" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::get</definition>
+        <argsstring>(const edge_uid_t &amp;edge, std::string *value) const __attribute__((warn_unused_result))</argsstring>
+        <name>get</name>
+        <param>
+          <type>const edge_uid_t &amp;</type>
+          <declname>edge</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve an edge payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>edge</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>unique identifier to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>payload object updated if the edge exists and has an associated payload </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1ab68099c3c18ce9f34a59b3e9d4188b4b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::has</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex1, const vertex_uid_t &amp;vertex2, bool &amp;result) const __attribute__((warn_unused_result))</argsstring>
+        <name>has</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex1</declname>
+        </param>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex2</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>check connectivity between 2 vertices </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first end of the edge to look for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second end of the edge to look for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a boolean indicating whether vertex1 and vertex2 are connected </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>provides information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="135" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a4a8345e819a3637895d4f906b5a2bd82" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::get</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, vertex_uids_t &amp;edges) const __attribute__((warn_unused_result))</argsstring>
+        <name>get</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>vertex_uids_t &amp;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+<para>get vertices connected to a vertex </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>for directed graph, the head of the edges to look for, any end of the edges otherwise </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>edges</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accumulator where connected vertices are added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a233b809e763d294f24323356891d4e91" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::get</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, vertex_t filter, vertex_uids_t &amp;edges) const __attribute__((warn_unused_result))</argsstring>
+        <name>get</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>vertex_t</type>
+          <declname>filter</declname>
+        </param>
+        <param>
+          <type>vertex_uids_t &amp;</type>
+          <declname>edges</declname>
+        </param>
+        <briefdescription>
+<para>get vertices of a specific type connected to one vertex </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one end of the edges to look </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of target vertices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>edges</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accumulator where connected vertices are added </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a50c5b543e05fd914ee428bb7b8c37d2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::erase</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex1, const vertex_uid_t &amp;vertex2, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex1</declname>
+        </param>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex2</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>remove edge between 2 vertices </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one end of the edge to remove </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vertex2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>other end of the edge to remove </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a9f9d55571ad321349ea132d6286e6353" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::erase</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, vertex_t filter, size_t &amp;removed, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>vertex_t</type>
+          <declname>filter</declname>
+        </param>
+        <param>
+          <type>size_t &amp;</type>
+          <declname>removed</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>remove edges of a given type </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vertex from which to remove edges </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of target vertices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>removed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of vertices removed during the operation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1adaf182ca2ee1c23ef525fbc9d9ff9e6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::erase</definition>
+        <argsstring>(const vertex_uid_t &amp;vertex, std::size_t &amp;removed, bool commit=false) __attribute__((warn_unused_result))</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const vertex_uid_t &amp;</type>
+          <declname>vertex</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>removed</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>remove all edges of a vertex </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one end of the edges to remove </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>removed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of vertices removed during the operation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="187" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a6bcecd6b1f01d3b49a4ca9b4adeeadfd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::count</definition>
+        <argsstring>(std::size_t &amp;count) const __attribute__((warn_unused_result))</argsstring>
+        <name>count</name>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>non-const reference updated by this member function with the number of edges in the graph </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="195" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classbasalt_1_1Edges_1a4277488fc86f66380ac96c86f18ff4ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref></type>
+        <definition>Status basalt::Edges&lt; Orientation &gt;::clear</definition>
+        <argsstring>(bool commit) __attribute__((warn_unused_result))</argsstring>
+        <name>clear</name>
+        <param>
+          <type>bool</type>
+          <declname>commit</declname>
+        </param>
+        <briefdescription>
+<para>Remove all edges of the graph along. <ref refid="classbasalt_1_1Vertices" kindref="compound">Vertices</ref> are kept intact. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>commit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether uncommitted operations should be flushed or not </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>information whether operation succeeded or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="202" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Forward declarations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Manipulate the edges of a graph </para>
+    </detaileddescription>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" line="18" column="1" bodyfile="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edges.hpp" bodystart="18" bodyend="206"/>
+    <listofallmembers>
+      <member refid="classbasalt_1_1Edges_1a1a625f33c2228831c3f14d128e289c28" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>begin</name></member>
+      <member refid="classbasalt_1_1Edges_1a4277488fc86f66380ac96c86f18ff4ba" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>clear</name></member>
+      <member refid="classbasalt_1_1Edges_1a6bcecd6b1f01d3b49a4ca9b4adeeadfd" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>count</name></member>
+      <member refid="classbasalt_1_1Edges_1aafbf50340bf021c4e3962bd60e74c45c" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>Edges</name></member>
+      <member refid="classbasalt_1_1Edges_1a4cd646642d28fc1c08ff55f9e1dcfa10" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>end</name></member>
+      <member refid="classbasalt_1_1Edges_1a50c5b543e05fd914ee428bb7b8c37d2c" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>erase</name></member>
+      <member refid="classbasalt_1_1Edges_1a9f9d55571ad321349ea132d6286e6353" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>erase</name></member>
+      <member refid="classbasalt_1_1Edges_1adaf182ca2ee1c23ef525fbc9d9ff9e6d" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>erase</name></member>
+      <member refid="classbasalt_1_1Edges_1a165a7af5aa7fa153ac207806d82ec666" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>get</name></member>
+      <member refid="classbasalt_1_1Edges_1a4a8345e819a3637895d4f906b5a2bd82" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>get</name></member>
+      <member refid="classbasalt_1_1Edges_1a233b809e763d294f24323356891d4e91" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>get</name></member>
+      <member refid="classbasalt_1_1Edges_1ab68099c3c18ce9f34a59b3e9d4188b4b" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>has</name></member>
+      <member refid="classbasalt_1_1Edges_1a9385a9c292304f1f829cec2d3077269f" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Edges_1ac9bd02b70eeffe5afefe4b1fde5513b0" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Edges_1af284cbf1d3b08e0ee60e233f726c9412" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Edges_1a84eb8671173a97264908c48c66e7045a" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Edges_1a9df57c46dec891468e9dc628b83a5fcd" prot="public" virt="non-virtual"><scope>basalt::Edges</scope><name>insert</name></member>
+      <member refid="classbasalt_1_1Edges_1a17c5af7433e3445fbec19dd7cf45c1a6" prot="private" virt="non-virtual"><scope>basalt::Edges</scope><name>pimpl_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

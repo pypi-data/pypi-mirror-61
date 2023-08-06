@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="graph_8hpp" kind="file" language="C++">
+    <compoundname>graph.hpp</compoundname>
+    <includes local="no">fstream</includes>
+    <includes local="no">iosfwd</includes>
+    <includes local="no">limits</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">string</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">vector</includes>
+    <includes refid="fwd_8hpp" local="no">basalt/fwd.hpp</includes>
+    <includes refid="status_8hpp" local="no">basalt/status.hpp</includes>
+    <includedby refid="basalt_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</includedby>
+    <includedby refid="vertices_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp</includedby>
+    <includedby refid="vertices_8ipp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.ipp</includedby>
+    <incdepgraph>
+      <node id="59">
+        <label>basalt/status.hpp</label>
+        <link refid="status_8hpp_source"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>limits</label>
+      </node>
+      <node id="54">
+        <label>string</label>
+      </node>
+      <node id="49">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp</label>
+        <link refid="graph_8hpp"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>fstream</label>
+      </node>
+      <node id="56">
+        <label>vector</label>
+      </node>
+      <node id="55">
+        <label>utility</label>
+      </node>
+      <node id="57">
+        <label>basalt/fwd.hpp</label>
+        <link refid="fwd_8hpp_source"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>iosfwd</label>
+      </node>
+      <node id="58">
+        <label>cstddef</label>
+      </node>
+      <node id="53">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="62">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/vertices.hpp</label>
+        <link refid="vertices_8hpp_source"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp</label>
+        <link refid="graph_8hpp"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</label>
+        <link refid="basalt_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classbasalt_1_1Graph" prot="public">basalt::Graph</innerclass>
+    <innernamespace refid="namespacebasalt">basalt</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="graph_8hpp_1a3a48b23d0486e9330b139aec791f15aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;ostr, const basalt::vertex_uid_t &amp;id)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>ostr</declname>
+        </param>
+        <param>
+          <type>const basalt::vertex_uid_t &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>specialization to gently push a <emphasis>vertex_uid_t</emphasis> to an output stream </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="graph_8hpp_1ac63a64cdc2948f45d0de8149fa14e58f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;ostr, const basalt::vertex_uids_t &amp;ids)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>ostr</declname>
+        </param>
+        <param>
+          <type>const basalt::vertex_uids_t &amp;</type>
+          <declname>ids</declname>
+        </param>
+        <briefdescription>
+<para>specialization to gently push a <emphasis>vertex_uids_t</emphasis> to an output stream </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="108" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="graph_8hpp_1a6c5a52c86ad459518d169da4c16ce108" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;ostr, const basalt::edge_uid_t &amp;id)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>ostr</declname>
+        </param>
+        <param>
+          <type>const basalt::edge_uid_t &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>specialization to gently push a <emphasis>edge_uid_t</emphasis> to an output stream </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp" line="113" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2019<sp/>Blue<sp/>Brain<sp/>Project</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Basalt<sp/>distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Lesser<sp/>General<sp/>Public<sp/>License.<sp/>See<sp/>top-level<sp/>LICENSE<sp/>file<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iosfwd&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/status.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">basalt<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;EdgeOrientation<sp/>Orientation&gt;</highlight></codeline>
+<codeline lineno="23" refid="classbasalt_1_1Graph" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26" refid="classbasalt_1_1Graph_1a5c35c4075b5a847eeff903dd6d20357d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1Graph_1a5c35c4075b5a847eeff903dd6d20357d" kindref="member">vertex_const_iterator_t</ref><sp/>=<sp/>std::iterator&lt;std::input_iterator_tag,<sp/>const<sp/>vertex_t&gt;;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1Graph_1a1fd4711e27649eedc1a8ffc1b3247664" kindref="member">Graph</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1Graph_1a1fd4711e27649eedc1a8ffc1b3247664" kindref="member">Graph</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>config);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1Graph_1aa413974dae22ec2da37cd592aa98895f" kindref="member">~Graph</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1Edges" kindref="compound">Edges&lt;Orientation&gt;</ref>&amp;<sp/><ref refid="classbasalt_1_1Graph_1ac198f15cc79a9ce1aea84638b93d49c3" kindref="member">edges</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1Vertices" kindref="compound">Vertices&lt;Orientation&gt;</ref>&amp;<sp/><ref refid="classbasalt_1_1Graph_1a8fc14c5ecc87c80fc147261ea0b6679a" kindref="member">vertices</ref>();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structbasalt_1_1Status" kindref="compound">Status</ref><sp/><ref refid="classbasalt_1_1Graph_1a020d116f2165d7463949a5b79d62efbc" kindref="member">commit</ref>()<sp/>__attribute__((warn_unused_result));</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>std::</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1Graph_1a98605bf226ba177de78e1dcded66f550" kindref="member">statistics</ref>()<sp/>const;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>private:</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;<ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl</ref>&lt;Orientation&gt;&gt;<sp/>pimpl_;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">using<sp/><ref refid="classbasalt_1_1Graph" kindref="compound">UndirectedGraph</ref><sp/>=<sp/><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>&lt;EdgeOrientation::undirected&gt;;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">using<sp/><ref refid="classbasalt_1_1Graph" kindref="compound">DirectedGraph</ref><sp/>=<sp/><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>&lt;EdgeOrientation::directed&gt;;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal">extern<sp/>template<sp/>class<sp/><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>&lt;EdgeOrientation::directed&gt;;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">extern<sp/>template<sp/>class<sp/><ref refid="classbasalt_1_1Graph" kindref="compound">Graph</ref>&lt;EdgeOrientation::undirected&gt;;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">vertex_uid_t<sp/>make_id(vertex_t<sp/>type,<sp/>vertex_id_t<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>basalt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>ostr,<sp/>const<sp/>basalt::vertex_uid_t&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>ostr,<sp/>const<sp/>basalt::vertex_uids_t&amp;<sp/>ids);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>ostr,<sp/>const<sp/>basalt::edge_uid_t&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+    </programlisting>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/graph.hpp"/>
+  </compounddef>
+</doxygen>

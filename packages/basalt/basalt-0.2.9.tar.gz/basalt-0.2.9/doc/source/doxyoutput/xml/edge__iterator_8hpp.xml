@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="edge__iterator_8hpp" kind="file" language="C++">
+    <compoundname>edge_iterator.hpp</compoundname>
+    <includes local="no">iterator</includes>
+    <includes local="no">memory</includes>
+    <includes refid="fwd_8hpp" local="no">basalt/fwd.hpp</includes>
+    <includedby refid="basalt_8hpp" local="no">/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</includedby>
+    <incdepgraph>
+      <node id="19">
+        <label>iterator</label>
+      </node>
+      <node id="24">
+        <label>vector</label>
+      </node>
+      <node id="23">
+        <label>utility</label>
+      </node>
+      <node id="21">
+        <label>basalt/fwd.hpp</label>
+        <link refid="fwd_8hpp_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edge_iterator.hpp</label>
+        <link refid="edge__iterator_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>cstddef</label>
+      </node>
+      <node id="20">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="26">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/basalt.hpp</label>
+        <link refid="basalt_8hpp_source"/>
+      </node>
+      <node id="25">
+        <label>/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edge_iterator.hpp</label>
+        <link refid="edge__iterator_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classbasalt_1_1EdgeIterator" prot="public">basalt::EdgeIterator</innerclass>
+    <innernamespace refid="namespacebasalt">basalt</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2019<sp/>Blue<sp/>Brain<sp/>Project</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>part<sp/>of<sp/>Basalt<sp/>distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Lesser<sp/>General<sp/>Public<sp/>License.<sp/>See<sp/>top-level<sp/>LICENSE<sp/>file<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iterator&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;basalt/fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">basalt<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classbasalt_1_1EdgeIterator" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::iterator&lt;std::input_iterator_tag,<sp/>const<sp/>edge_uid_t&gt;<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;EdgeOrientation<sp/>Orientation&gt;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1EdgeIterator_1a744bcee0509aef12e1a624d1b7e7f712" kindref="member">EdgeIterator</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1GraphImpl" kindref="compound">GraphImpl&lt;Orientation&gt;</ref>&amp;<sp/>pimpl,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>from);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1EdgeIterator_1a744bcee0509aef12e1a624d1b7e7f712" kindref="member">EdgeIterator</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref>&amp;<sp/><ref refid="classbasalt_1_1EdgeIterator_1a5253b9365c8b0a187a66baa2de0d3008" kindref="member">operator++</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref><sp/><ref refid="classbasalt_1_1EdgeIterator_1a5253b9365c8b0a187a66baa2de0d3008" kindref="member">operator++</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator_1ac5dd9ff6305bfd2c45a8d730ee448e26" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator_1a555ee8ec318271abeab97c8aa5bb3c18" kindref="member">operator!=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator" kindref="compound">EdgeIterator</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>value_type&amp;<sp/><ref refid="classbasalt_1_1EdgeIterator_1a14bb02eed04cc18f447d5c6e6d8fc373" kindref="member">operator*</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>EdgeIteratorImpl_ptr<sp/>=<sp/>std::shared_ptr&lt;EdgeIteratorImpl&gt;;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>EdgeIteratorImpl_ptr<sp/>pimpl_;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator_1a744bcee0509aef12e1a624d1b7e7f712" kindref="member">EdgeIterator::EdgeIterator</ref>(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1GraphImpl" kindref="compound">basalt::GraphImpl&lt;EdgeOrientation::directed&gt;</ref>&amp;<sp/>pimpl,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>from);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1EdgeIterator_1a744bcee0509aef12e1a624d1b7e7f712" kindref="member">EdgeIterator::EdgeIterator</ref>(</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classbasalt_1_1GraphImpl" kindref="compound">basalt::GraphImpl&lt;EdgeOrientation::undirected&gt;</ref>&amp;<sp/>pimpl,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>from);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>basalt</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/goinfre/src/github.com/BlueBrain/basalt/include/basalt/edge_iterator.hpp"/>
+  </compounddef>
+</doxygen>

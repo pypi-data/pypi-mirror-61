@@ -1,0 +1,19 @@
+/*************************************************************************
+ * Copyright (C) 2019 Blue Brain Project
+ *
+ * This file is part of Basalt distributed under the terms of the GNU
+ * Lesser General Public License. See top-level LICENSE file for details.
+ *************************************************************************/
+#pragma once
+
+#include <array>
+
+#define BASALT_MAJOR @Basalt_VERSION_MAJOR@
+#define BASALT_MINOR @Basalt_VERSION_MINOR@
+#define BASALT_PATCH @Basalt_VERSION_PATCH@
+
+namespace basalt {
+
+std::array<int, 3> rocksdb_version();
+
+}  // namespace basalt
