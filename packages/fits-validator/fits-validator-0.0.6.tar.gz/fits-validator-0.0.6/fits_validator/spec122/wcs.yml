@@ -1,0 +1,185 @@
+---
+WCSAXESA:
+  required: false
+  type: int
+WCSAXESB:
+  required: false
+  type: int
+WCSNAMEA:
+  required: false
+  type: str
+WCSNAMEB:
+  required: false
+  type: str
+CRPIX1A:
+  required: false
+  type: float
+CRPIX2A:
+  required: false
+  type: float
+CRPIX3A:
+  required: false
+  type: float
+CRPIX1B:
+  required: false
+  type: float
+CRPIX2B:
+  required: false
+  type: float
+CRPIX3B:
+  required: false
+  type: float
+CRDATE1A:
+  required: false
+  type: str
+  format: isot
+CRDATE2A:
+  required: false
+  type: str
+  format: isot
+CRDATE3A:
+  required: false
+  type: str
+  format: isot
+CRDATE1B:
+  required: false
+  type: str
+  format: isot
+CRDATE2B:
+  required: false
+  type: str
+  format: isot
+CRDATE3B:
+  required: false
+  type: str
+  format: isot
+CRVAL1A:
+  required: false
+  type: float
+CRVAL2A:
+  required: false
+  type: float
+CRVAL3A:
+  required: false
+  type: float
+CRVAL1B:
+  required: false
+  type: float
+CRVAL2B:
+  required: false
+  type: float
+CRVAL3B:
+  required: false
+  type: float
+CDELT1A:
+  required: false
+  type: float
+CDELT2A:
+  required: false
+  type: float
+CDELT3A:
+  required: false
+  type: float
+CDELT1B:
+  required: false
+  type: float
+CDELT2B:
+  required: false
+  type: float
+CDELT3B:
+  required: false
+  type: float
+CUNIT1A:
+  required: false
+  type: str
+CUNIT2A:
+  required: false
+  type: str
+CUNIT3A:
+  required: false
+  type: str
+CUNIT1B:
+  required: false
+  type: str
+CUNIT2B:
+  required: false
+  type: str
+CUNIT3B:
+  required: false
+  type: str
+CTYPE1A:
+  required: false
+  type: str
+CTYPE2A:
+  required: false
+  type: str
+CTYPE3A:
+  required: false
+  type: str
+CTYPE1B:
+  required: false
+  type: str
+CTYPE2B:
+  required: false
+  type: str
+CTYPE3B:
+  required: false
+  type: str
+PCi_ja:
+  required: false
+  type: float
+  indices: {'i': 'range(1, NAXIS +1)', 'j': 'range(1, NAXIS +1)'}
+#PVi_ma:
+#  required: false
+#  type: float
+#  indices: {'i': 'range(1, NAXIS +1)', 'm': 'range(0, 9)'}
+#PSi_ma:
+#  required: false
+#  type: float
+#  indices: {'i': 'range(1, NAXIS +1)', 'm': 'range(0, 9)'}
+LONPOLEA:
+  required: false
+  type: float
+LONPOLEB:
+  required: false
+  type: float
+LATPOLEA:
+  required: false
+  type: float
+LATPOLEB:
+  required: false
+  type: float
+TAZIMUTH:
+  required: false
+  type: float
+TELEVATN:
+  required: false
+  type: float
+TELTRACK:
+  required: false
+  type: str
+  values:
+    - "None"
+    - "Fixed Solar Rotation Tracking"
+    - "Standard Differential Rotation Tracking"
+    - "Custom Differential Rotation Tracking"
+TELSCAN:
+  required: false
+  type: str
+  values:
+    - "None"
+    - "Random"
+    - "Raster"
+    - "Spiral"
+TTBLANGL:
+  required: false
+  type: float
+TTBLTRCK:
+  required: false
+  type: str
+  values:
+    - "stepped parallactic"
+    - "parallactic"
+    - "fixed angle on Sun"
+    - "fixed difference angle"
+    - "fixed coude table angle"
