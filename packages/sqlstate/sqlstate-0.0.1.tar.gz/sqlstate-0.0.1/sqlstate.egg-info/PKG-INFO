@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: sqlstate
+Version: 0.0.1
+Summary: A lightweight state framework for Python applications
+Home-page: https://github.com/marzukia/sqlstate
+Author: Andryo Marzuki
+Author-email: stabbish@gmail.com
+License: UNKNOWN
+Description: # sqlstate
+        Super simple state manager for Python3
+        
+        ## Usage
+        ### Define state
+        ```python
+        import sqlstate
+        state = sqlstate.State('dog.tmp') # This creates a file called dog.tmp where your state will be saved.
+        ```
+        ### Store
+        ```python
+        dogs = [{'name': 'Michael Clayton', 'breed': 'Labrador'}]
+        state.store(key='dogs', payload=dogs)
+        ```
+        ### Get
+        ```python
+        dogs = state.get(key='dogs')
+        ```
+        # sqlstate
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
