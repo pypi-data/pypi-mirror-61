@@ -1,0 +1,179 @@
+---
+extra_includes:
+- networktables/NetworkTableInstance.h
+- src/py2value.h
+
+inline_code: |
+  #include <src/NetworkTableEntry.cpp.inl>
+
+classes:
+  NetworkTableEntry:
+    shared_ptr: false
+    enums:
+      Flags:
+    methods:
+      NetworkTableEntry:
+        overloads:
+          "":
+          NT_Entry:
+      GetHandle:
+      GetInstance:
+      Exists:
+      GetName:
+      GetType:
+      GetFlags:
+      GetLastChange:
+      GetInfo:
+      GetValue:
+      GetBoolean:
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+                auto value = GetEntryValue(entry->GetHandle());
+                if (!value || value->type() != NT_BOOLEAN) return defaultValue;
+                return py::cast(value->GetBoolean());
+            }
+      GetDouble:
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+                auto value = GetEntryValue(entry->GetHandle());
+                if (!value || value->type() != NT_DOUBLE) return defaultValue;
+                return py::cast(value->GetDouble());
+            }
+      GetString:
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+                auto value = GetEntryValue(entry->GetHandle());
+                if (!value || value->type() != NT_STRING) return defaultValue;
+                return py::cast(value->GetString());
+            }
+      GetRaw:
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+                auto value = GetEntryValue(entry->GetHandle());
+                if (!value || value->type() != NT_RAW) return defaultValue;
+                return py::cast(value->GetString());
+            }
+      GetBooleanArray:
+        overloads:
+          ArrayRef<int> [const]:
+          std::initializer_list<int> [const]:
+            ignore: true
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+              auto value = GetEntryValue(entry->GetHandle());
+              if (!value || value->type() != NT_BOOLEAN_ARRAY) return defaultValue;
+              // ntcore will return bit vector by default. Convert to List[bool]
+              auto v = value->value();
+              py::list l(v.data.arr_boolean.size);
+              for (size_t i = 0; i < v.data.arr_boolean.size; i++) {
+                auto b = py::bool_(v.data.arr_boolean.arr[i]);
+                  PyList_SET_ITEM(l.ptr(), i, b.release().ptr());
+              }
+              return std::move(l);
+            }
+      GetDoubleArray:
+        overloads:
+          ArrayRef<double> [const]:
+          std::initializer_list<double> [const]:
+            ignore: true
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+                auto value = GetEntryValue(entry->GetHandle());
+                if (!value || value->type() != NT_DOUBLE_ARRAY) return defaultValue;
+                return py::cast(value->GetDoubleArray());
+            }
+      GetStringArray:
+        overloads:
+          ArrayRef<std::string> [const]:
+          std::initializer_list<std::string> [const]:
+            ignore: true
+        cpp_code: |
+            [](NetworkTableEntry * entry, py::object defaultValue) -> py::object {
+                auto value = GetEntryValue(entry->GetHandle());
+                if (!value || value->type() != NT_STRING_ARRAY) return defaultValue;
+                return py::cast(value->GetStringArray());
+            }
+      SetDefaultValue:
+      SetDefaultBoolean:
+      SetDefaultDouble:
+      SetDefaultString:
+      SetDefaultRaw:
+      SetDefaultBooleanArray:
+        overloads:
+          ArrayRef<int>:
+          std::initializer_list<int>:
+            ignore: true
+      SetDefaultDoubleArray:
+        overloads:
+          ArrayRef<double>:
+          std::initializer_list<double>:
+            ignore: true
+      SetDefaultStringArray:
+        overloads:
+          ArrayRef<std::string>:
+          std::initializer_list<std::string>:
+            ignore: true
+      SetValue:
+      SetBoolean:
+      SetDouble:
+      SetString:
+      SetRaw:
+      SetBooleanArray:
+        overloads:
+          ArrayRef<bool>:
+          std::initializer_list<bool>:
+            ignore: true
+          ArrayRef<int>:
+            ignore: true
+          std::initializer_list<int>:
+            ignore: true
+      SetDoubleArray:
+        overloads:
+          ArrayRef<double>:
+          std::initializer_list<double>:
+            ignore: true
+      SetStringArray:
+        overloads:
+          ArrayRef<std::string>:
+          std::initializer_list<std::string>:
+            ignore: true
+      ForceSetValue:
+      ForceSetBoolean:
+      ForceSetDouble:
+      ForceSetString:
+      ForceSetRaw:
+      ForceSetBooleanArray:
+        overloads:
+          ArrayRef<bool>:
+          std::initializer_list<bool>:
+            ignore: true
+          ArrayRef<int>:
+            ignore: true
+          std::initializer_list<int>:
+            ignore: true
+      ForceSetDoubleArray:
+        overloads:
+          ArrayRef<double>:
+          std::initializer_list<double>:
+            ignore: true
+      ForceSetStringArray:
+        overloads:
+          ArrayRef<std::string>:
+          std::initializer_list<std::string>:
+            ignore: true
+      SetFlags:
+      ClearFlags:
+      SetPersistent:
+      ClearPersistent:
+      IsPersistent:
+      Delete:
+      CreateRpc:
+        ignore: true
+      CreatePolledRpc:
+        ignore: true
+      CallRpc:
+        ignore: true
+      AddListener:
+      RemoveListener:
+      operator==:
+      operator!=:
