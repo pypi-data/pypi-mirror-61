@@ -1,0 +1,144 @@
+Metadata-Version: 2.1
+Name: moco-wrapper
+Version: 0.3.0.post3
+Summary: Wrapper package for using the moco api interface
+Home-page: https://github.com/sommalia/moco-wrapper
+Author: Sommalia
+Author-email: sommalia@protonmail.com
+License: GNU General Public License v3
+Keywords: moco_wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: Click (>=6.0)
+Requires-Dist: requests
+
+============
+moco-wrapper
+============
+
+
+.. image:: https://img.shields.io/pypi/v/moco_wrapper.svg
+        :target: https://pypi.python.org/pypi/moco_wrapper
+
+.. image:: https://img.shields.io/travis/sommalia/moco-wrapper.svg
+        :target: https://travis-ci.org/sommalia/moco-wrapper
+
+
+The "moco-wrapper" is a python package that allows for simple access to Mocos API. 
+
+Disclaimer (semi-serious)
+-------------------------
+
+This project is in no way finished, or polished. I am not responsible for any commercial, financial or emotional damage that may or may not be caused by using this project.
+
+I am also not affiliated with the people behind moco. The package implements the api as described in its readme https://github.com/hundertzehn/mocoapp-api-docs
+
+
+
+Running the tests
+-----------------
+
+Tests can be run by executing the *tox* commend inside the root direcotry of this project
+
+```
+> tox
+```
+
+This command will run all the tests.
+
+If you want to only run a specific set of tests, they are structured in the follwing 3 Folders.
+
+* production (need configuration to run)
+* integration (not implemented)
+* unit
+
+
+Setting up integration tests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For the integration tests 2 environment variables are needed *mocotest_apikey* and *mocotest_domain*. Set them like this
+
+```
+> export mocotest_apikey="this is the api key"
+> export mocotest_domain="testdomain"
+```
+
+
+
+License
+-------
+
+This project is licensed under the GNU Public License - see the [LICENSE](LICENSE) file for details
+
+
+Credits
+-------
+
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+This package tries to imitate the way that the praw-package, for wrapping arount the reddit api, was structured
+
+.. praw: https://github.com/praw-dev/praw
+
+....
+
+=======
+History
+=======
+
+0.3.0 (2020-02-17) 
+------------------
+
+* Create github workflow to automaticly deploy to PyPI
+* Implement an objector to control how the json responses get converted back into python objects (some endpoints return data that contain reserved python keywords, this was implemented to circumvent that)
+* More Tests and more type hinting
+* Write the history of the last versions
+* Change the order of things in this history file
+* Implement offer creation
+
+0.2.3 (2020-02-09)
+------------------
+
+* Implement FileResponses for downloading pdf files from api
+* Implement invoice class api changes
+* More tests
+
+0.2.2 (2020-01-12)
+------------------
+
+* Start implementing type hinting
+* Switch to support python3 only
+* Remove company delete method, as it is not support by the api
+* More Tests
+
+0.2.1 (2020-01-10)
+------------------
+
+* More tests
+
+0.1.0 (2019-09-04)
+------------------
+
+* First release on PyPI.
+
+
+
+
+
+
+
+
+
