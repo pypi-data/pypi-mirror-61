@@ -1,0 +1,61 @@
+{% if interfaces %}
+	<table border="1">
+	<tr class="tblHead">
+		<th>Port</th>
+		<th>VLAN</th>
+		<th>Status</th>
+		{% if switch.has_poe %}<th>PoE</th>{% endif %}
+		<th>Speed</th>
+		<th>Description</th>
+		<th>CDP/LLDP</th>
+		<th>MAC</th>
+		<th>NIC Manufacturer</th>
+		<th>IP address</th>
+		<th>DNS name</th>
+	</tr>
+	{% for interface in interfaces %}
+		<tr class="{{interface.css}}">
+			<td>{{interface.interface}}</td>
+			{% if not interface.is_trunk %}
+			    <td><a href="{% url 'switchinfo:vlan' vlan=interface.vlan.vlan %}">{{interface.vlan}}</a></td>
+            {% elif interface.is_trunk and interface.vlan %}
+                <td>trunk (<a href="{% url 'switchinfo:vlan' vlan=interface.vlan.vlan %}">{{interface.vlan}}</a>)</td>
+			{% else %}
+			<td>{{interface.vlan|default:"trunk"}}</td>
+			{% endif %}
+			<td>{{interface.status_format}} {% if interface.link_status_changed %}since {{ interface.link_status_changed }}{% endif %}</td>
+			{% if switch.has_poe %}<td>{{interface.poe_status|default:""}}</td>{% endif %}
+			<td>{{interface.speed_format}}</td>
+			<td>{{interface.description|default:""}}</td>
+			{% if interface.neighbor %}
+			<td><a href="{% url 'switchinfo:switch' name=interface.neighbor.name %}">{{interface.neighbor.name}}</a><br />{{ interface.neighbor.ip }}</td>
+			{% else %}
+			<td class="port_neighbor">{{interface.neighbor_string|default:""|linebreaksbr}}</td>
+			{% endif %}
+
+            {% if interface.admin_status == 2 %}
+                <td colspan="4" class="cellWarning">Admin disabled</td>
+            {% elif interface.vlan or interface.force_mac %}
+			<td style="font-family: monospace;">
+                {% for mac in interface.mac %}
+                {{mac}}<br />
+                {% endfor %}
+			</td>
+			<td style="font-family: monospace;">
+                {% for mac in interface.mac %}
+                {{mac.oui}}<br />
+                {% endfor %}
+			</td>
+			<td style="font-family: monospace;">
+                {% for ip in interface.ip %}
+			    {{ip|default:""}}<br />
+			    {% endfor %}
+            </td>
+            <td></td>
+            {% else %}
+                <td colspan="4"><em>trunk port</em></td>
+            {% endif %}
+		</tr>
+    {% endfor %}
+	</table>
+{% endif %}
