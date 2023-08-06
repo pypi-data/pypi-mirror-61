@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+from argparse import ArgumentParser
+import pyranges as pr
+from methplotlib.helpers import methylation_pyranges_from_csv
+from methplotlib.differential.differential import main
+import sys
+
+
+def get_args():
+    parser = ArgumentParser(
+        description="Check for modification differences using fisher exact test.")
+    parser.add_argument(
+        "-b", "--bed", help="Bed file to aggregate modifications on.", required=True)
+    parser.add_argument("methylation", nargs=2, help="Haplotype specific frequency files.")
+    parser.add_argument("-c", "--cutoff", help="FDR cutoff. Default: 0.05",
+                        default=0.05, type=float)
+    parser.add_argument(
+        "-o", "--out", help="File to write results to. Default: stdout.", default="-")
+    return parser.parse_args()
+
+
+if __name__ == '__main__':
+    args = get_args()
+    try:
+        gr = methylation_pyranges_from_csv(args.methylation[0])
+    except ValueError as e:
+        sys.exit("Problem with format of {}:\n{}".format(args.methylation[0], e))
+    try:
+        gr2 = methylation_pyranges_from_csv(args.methylation[1])
+    except ValueError as e:
+        sys.exit("Problem with format of {}:\n{}".format(args.methylation[1], e))
+
+    bed = pr.read_bed(args.bed).merge()
+    result = main(gr, gr2, bed)
+
+    result = result[result.ORFDR <= args.cutoff]
+
+    if args.out == "-":
+        import sys
+        result.to_csv(sys.stdout, sep="\t")  # index=False)
+    else:
+        from pathlib import Path
+
+        p = Path(args.out)
+        Path.mkdir(p.parent, exist_ok=True, parents=True)
+
+        result.to_csv(str(p), sep="\t")
