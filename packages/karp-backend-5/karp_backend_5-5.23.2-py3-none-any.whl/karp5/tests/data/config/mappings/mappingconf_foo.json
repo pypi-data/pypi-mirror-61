@@ -1,0 +1,25 @@
+{
+    "mappings": {
+        "lexicalentry": {
+            "properties": {
+                "lexiconName": {
+                    "type": "keyword"
+                },
+                "lexiconOrder": {
+                    "type": "byte"
+                },
+                "foo": {
+                    "type": "text",
+                    "fields": {
+                        "raw": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "status": {
+                    "type": "text"
+                }
+            }
+        }
+    }
+}
