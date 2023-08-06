@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: heybrochecklog
+Version: 1.3.2
+Summary: A python tool for evaluating and working with EAC/XLD rip logs.
+Home-page: https://github.com/ligh7s/hey-bro-check-log
+License: Apache-2.0
+Keywords: logchecker,eac,xld
+Author: lights
+Author-email: lights@tutanota.de
+Requires-Python: >=3.5,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: chardet (>=3.0.4,<4.0.0)
+Project-URL: Repository, https://github.com/ligh7s/hey-bro-check-log
+Description-Content-Type: text/markdown
+
+# hey-bro-check-log
+
+[![Build Status](https://travis-ci.org/ligh7s/hey-bro-check-log.svg?branch=master)](https://travis-ci.org/ligh7s/hey-bro-check-log)
+
+A python tool which analyzes and verifies good ripping practices and potential inaccuracies
+in CD ripping logs.
+
+## Support
+
+- Supports checking EAC and XLD logs.
+- Matches deductions on Redacted (minus stupid aggregate ones)
+- Supports combined EAC logs
+- Detects other irregularities and special occurrences in the rip
+  - Data tracks
+  - Irregular AR results
+  - Hidden tracks and extraction
+- Foreign language support (temperamental, as it's based on the most recent translation files).
+
+## Running CLI
+
+```
+usage: heybrochecklog [-h] [-t] [-m] [-s] log
+
+Tool to analyze, translate, and score a CD Rip Log.
+
+positional arguments:
+  log               log file to check.
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -t, --translate   translate a foreign log to English
+  -m, --markup      print the marked up version of the log after analyzing
+  -s, --score-only  Only print the score of the log.
+```
+
