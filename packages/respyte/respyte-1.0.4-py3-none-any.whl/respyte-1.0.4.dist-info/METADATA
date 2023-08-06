@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: respyte
+Version: 1.0.4
+Summary: respyte tui
+Home-page: https://github.com/ginsburgnm/respyte
+Author: Noah Ginsburg
+Author-email: ginsburgnm@gmail.com
+License: GPLV3
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: asciimatics (>=1.11.0)
+Requires-Dist: PyYAML (>=5.3)
+Requires-Dist: requests (>=2.22.0)
+Requires-Dist: ConfigArgParse (>-1.0)
+Provides-Extra: testing
+Requires-Dist: mock ; extra == 'testing'
+Requires-Dist: tox ; extra == 'testing'
+
+# resPYte
+Ha, rest -> respite but in python resPYte .. ha..
+
+# WHY
+haven't you ever thought "Hey I'd like a Postman like client, but I really really really don't wanna install node because like... why should I? also I don't need a GUI I have a terminal!"?
+
+.. no? Oh well, I have.
+
+
+# What is it?
+super basic TUI for testing REST endpoint. Literally built it in like .. an hour.. I might have spent more time on the name.. (probably bugs)
+
+anywho..
+`pip install respyte`
+
+# Authorization
+if your endpoint needs some generated on the fly string; create a python file with the logic, in your request headers for 'Authorization' pass the value of the filename and function seperated like a dot (import string)
+
+# Color schemes
+I'm just using asciimatics built in colorschemes
+
+
