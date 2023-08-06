@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "vmail-manager"
+version = "0.2.1"
+description = "Handy cli interface to manage an vmail-sql-db."
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.6", "Programming Language :: Python :: 3.7", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent"]
+authors = ["Dominik Rimpf <dev@d-rimpf.de>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.0"
+confuse = "^1.0.0"
+tabulate = "^0.8.6"
+argon2_cffi = "^19.2.0"
+sqlalchemy = {extras = ["pymysql"], version = "^1.3.13"}
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+vmail-manager = "vmail_manager:cli"
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
