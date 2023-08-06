@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+from __future__ import print_function
+
+from gevent import monkey
+monkey.patch_all()
+
+import argparse
+import traceback
+
+from nmosnode.nodefacadeservice import NodeFacadeService
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Node Facade")
+    parser.add_argument('--interactive', dest='interactive', default=None, type=int, metavar="PORT",
+                        help="Load up in interactive mode on given port (useful for debugging)")
+
+    args = parser.parse_args()
+
+    service = NodeFacadeService(interactive=(args.interactive is not None))
+
+    die = False
+
+    if args.interactive is not None:
+        from gevent.backdoor import BackdoorServer
+        import threading
+
+        backdoor = BackdoorServer(('127.0.0.1', args.interactive), locals=locals(), banner="""\
+Node Facade in interactive mode
+===============================
+Use ^D to exit this console to quit.""")
+
+        def _runner():
+            print("Opening Debug console on port {}".format(args.interactive))
+            try:
+                backdoor.serve_forever()
+
+            except Exception:
+                global die
+                die = True
+                traceback.print_exc()
+                service.stop()
+
+        t = threading.Thread(target=_runner)
+        t.daemon = True
+
+        t.start()
+
+    if not die:
+        service.run()
