@@ -1,0 +1,154 @@
+import numpy as np
+import os
+np.random.seed(0)
+
+#Kmeans algorithm - returns new class labels
+def kMeans(k, points_min, points_max, N_samples, D_features, np_points, max_iter):
+    # initialize centroids
+    centroids = np.random.uniform(low=0, high=1, size=(k, D_features))
+    centroids = centroids * (points_max - points_min) + points_min
+
+    # initialize class labels
+    initial_labels = np.random.randint(low=0, high=k, size=N_samples)
+
+    # perform Kmeans algo
+    for i in range(max_iter):
+        #distances b/n datapoints and centroids
+        distances = np.array([np.linalg.norm(np_points - c, axis=1) for c in centroids])
+        #centroid with min distance
+        new_labels = np.argmin(distances, axis=0)
+
+        if (initial_labels == new_labels).all():
+            # labels unchanged
+            break
+        else:
+            initial_labels = new_labels
+            for c in range(k):
+                centroids[c] = np.mean(np_points[initial_labels == c], axis=0)
+
+    return initial_labels, centroids
+
+
+def calculateK(file):
+    #read in file
+    dataset = open(file, "r")
+    points = []
+    for line in dataset.readlines():
+        point = []
+        for num in line.split():
+            point.append(num)
+        points.append(point)
+
+    #convert data points to numpy array type
+    np_points = np.array(points).astype(np.float)
+
+    #find max and min
+    points_max = np.max(np_points)
+    points_min = np.min(np_points)
+
+    #get dimensions of data set
+    N_samples, D_features = np_points.shape
+
+    #initialize Ks
+    initial_Ks = [int(N_samples/48), int(N_samples / 36), int(N_samples / 24), int(N_samples / 12), int(N_samples / 8), int(N_samples / 4),
+                  int(N_samples / 3)]
+    #increment for larger datasets
+    if(200 < N_samples and N_samples < 500):
+        for i, k in enumerate(initial_Ks):
+            initial_Ks[i] = int(k*(1.5))
+    if(N_samples > 500 and N_samples < 1000):
+        for i, k in enumerate(initial_Ks):
+            initial_Ks[i] = int(k*2)
+    if(N_samples > 1000):
+        for i, k in enumerate(initial_Ks):
+            initial_Ks[i] = int(k*3)
+
+    #initialize max_iterations
+    max_iter = 100
+
+    #for each k, obtain labels by calling kMeans() function
+    kLabelsDict = dict()
+    for k in initial_Ks:
+        new_labels, new_centroids = kMeans(k, points_min, points_max, N_samples, D_features, np_points, max_iter)
+        kLabelsDict[k] = new_labels
+
+    #find mixed assignments of labels for k
+    possible_Ks = set()
+    for k, v in kLabelsDict.items():
+        uniqueLabelCount = len(set(v))
+        if(uniqueLabelCount > 1):
+            possible_Ks.add(k)
+
+    #narrowing down for optimal K, get nearby k values
+    for k in possible_Ks.copy():
+        for i in range(1,6):
+            if((k - i) > 1):
+                possible_Ks.add(k - i)
+            possible_Ks.add(k + i)
+
+    #sort if any discrepancies
+    possible_Ks = sorted(possible_Ks)
+
+    #obtain class labels from kMeans() func for finding optimal K
+    optimalKLabelsDict = dict()
+    optimalKCentroidsDict = dict()
+    for k in possible_Ks:
+        new_labels, new_centroids = kMeans(k, points_min, points_max, N_samples, D_features, np_points, max_iter)
+        optimalKLabelsDict[k] = new_labels
+        optimalKCentroidsDict[k] = new_centroids
+
+
+    #calculate inertia to measure cluster similarity (primary choice is silhouette coefficent)
+    optimalKInertiaDict = dict()
+    for k, label in optimalKLabelsDict.items():
+        clusterPoints = np_points[label]
+        centroids = optimalKCentroidsDict.get(k)
+        inertia = 0
+        for index, c in enumerate(centroids):
+            #sum of squared distance for each point to its closest centroid
+            s = np.sum((clusterPoints[0:D_features] - c[0:D_features]) ** 2)
+            inertia += s
+        #with gap statistic
+        optimalKInertiaDict[k] = (inertia/(2*N_samples))
+
+    #usually use Elbow Method to visualize which is optimal K with trade off between inertia and k
+    #however, since we cannot use plotly or other packages let us just choose value before middle choice
+    #an inefficient choice, but can be near to optimal K
+    for k in list(optimalKInertiaDict.keys()):
+        inertia = optimalKInertiaDict.get(k)
+        if(np.isnan(inertia)):
+            del optimalKInertiaDict[k]
+
+    #find convergence
+    differences = []
+    for i, k in enumerate(optimalKInertiaDict.keys()):
+        curr_inertia = optimalKInertiaDict.get(k)
+        if(i < len(optimalKInertiaDict.keys()) - 1):
+            next_inertia = optimalKInertiaDict.get(list(optimalKInertiaDict.keys())[i + 1])
+            differences.append(next_inertia - curr_inertia)
+
+    minimum_difference = np.min(differences)
+    optimalKindex = 0
+    for i, difference in enumerate(differences):
+        if(difference == minimum_difference):
+            optimalKindex = i
+
+    optimalK = 0
+    for i, k in enumerate(optimalKInertiaDict.keys()):
+        if(optimalKindex == i):
+            optimalK = k
+
+    return optimalK
+
+
+#handle each file in folder and write to output file
+def select_files_in_folder(dir, ext):
+    for file in os.listdir(dir):
+        if file.endswith('.%s' % ext):
+            yield os.path.join(dir, file)
+
+output = open("output.txt", "w")
+for file in select_files_in_folder('datasets', 'txt'):
+    k = calculateK(file)
+    output.write(str(file) + '\t' + str(k) + '\n')
+output.close()
