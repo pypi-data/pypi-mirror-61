@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{%block head%}
+
+{%endblock%}
+{%block body%}
+<!--    主体-->
+<div name="menu-bar" style="width: 100%;background-color: inherit;padding-left: 5px;padding-right: 5px;">
+<button id="btn_save" style="padding: 5px;background-color: inherit;color: inherit;border-color: cornsilk;">Save</button>
+</div>
+<div id="edit_box" spellcheck="false" style="padding: 20px;border-color: chocolate;border-width:5px;background-color: aliceblue; width: 100%;min-height: 200px;" contenteditable="true">
+{{content}}
+</div>
+{%endblock%}
