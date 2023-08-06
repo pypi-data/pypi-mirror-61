@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: deepcrawl
+Version: 0.0.1
+Summary: A package to simplify usage of the DeepCrawl REST API.
+Home-page: https://github.com/DeepCrawlSEO/dc_api_wrapper
+Author: Christopher Evans
+Author-email: ce@deepcrawl.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# DeepCrawl API Wrapper
+
+This is a package to simplify use of the DeepCrawl API.
+
+pip install deepcrawl
+
+# Usage
+
+import deepcrawl
+
+#Specify your API credentials
+API_ID = '1234'
+API_KEY = 'myapikey'
+
+# Create a new connection using API credentials
+dc = deepcrawl.ApiConnection(API_ID, API_KEY)
+
+# Get a specific project and output the name
+account_id = 19
+project_id = 314267
+project = dc.get_project(account_id, project_id)
+print(project.project_settings.name)
+
+
+
