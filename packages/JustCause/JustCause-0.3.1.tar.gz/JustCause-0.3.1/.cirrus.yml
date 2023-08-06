@@ -1,0 +1,57 @@
+---
+# Default values to be merged into tasks:
+auto_cancellation: false
+env:
+  PATH: /opt/conda/bin:$PATH
+  COVERALLS_REPO_TOKEN: zVMEAj6vQZiEmwZOIKtZIcHU3JJOsBsi3
+  PIP_CACHE: ${HOME}/.cache/pip
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+  ENV_NAME: justcause
+  ENV_PATH: /opt/conda/envs/{ENV_NAME}/
+  # CIRRUS_SHELL: /bin/bash
+
+
+linux_task:
+  name: test (Linux - Anaconda)
+  # use custom cloning since otherwise git tags are missing
+  install_script:
+    - apt-get install -y git
+  clone_script: |
+    if [ -z "$CIRRUS_PR" ]; then
+      git clone --recursive --branch=$CIRRUS_BRANCH https://x-access-token:${CIRRUS_REPO_CLONE_TOKEN}@github.com/${CIRRUS_REPO_FULL_NAME}.git $CIRRUS_WORKING_DIR
+      git reset --hard $CIRRUS_CHANGE_IN_REPO
+    else
+      git clone --recursive https://x-access-token:${CIRRUS_REPO_CLONE_TOKEN}@github.com/${CIRRUS_REPO_FULL_NAME}.git $CIRRUS_WORKING_DIR
+      git fetch origin pull/$CIRRUS_PR/head:pull/$CIRRUS_PR
+      git reset --hard $CIRRUS_CHANGE_IN_REPO
+    fi
+  container: {image: "continuumio/anaconda3:latest"}
+  pip_cache:
+    folder: $PIP_CACHE
+  justcause_data_cache:
+    folder: ${HOME}/justcause_data
+  prepare_script:
+    - source /opt/conda/etc/profile.d/conda.sh &> /dev/null
+    - rm -rf .coverage junit-*.xml
+    # ^  avoid information carried from one run to the other
+    - conda env create -f environment.yaml -q  # install in root env
+    - conda activate $ENV_NAME &> /dev/null
+    - python setup.py develop
+    - pre-commit install
+  info_script:
+    - conda list -n $ENV_NAME
+    - conda config --show
+  test_script:
+    - source /opt/conda/etc/profile.d/conda.sh &> /dev/null
+    - conda activate $ENV_NAME &> /dev/null
+    - py.test tests --color yes
+    - pre-commit run --all-files
+  coverage_script:
+    - source /opt/conda/etc/profile.d/conda.sh &> /dev/null
+    - conda activate $ENV_NAME &> /dev/null
+    - coverage combine .coverage
+    - coveralls
+
+# For the MacOS task, C-header might have to be installed via
+# `installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /`
