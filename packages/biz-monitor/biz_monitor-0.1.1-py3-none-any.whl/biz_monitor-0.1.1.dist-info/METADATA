@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: biz-monitor
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: carton.swing
+Author-email: cartonswing@xwfintech.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: Flask
+Requires-Dist: jaeger-client
+Requires-Dist: opentracing
+Requires-Dist: contextvars
+Requires-Dist: gunicorn
+Requires-Dist: requests
+Requires-Dist: tornado
+Requires-Dist: wrapt
+Requires-Dist: gevent
+Requires-Dist: flask-restful
+Requires-Dist: kafka-python
+
+## Business Monitor
+
+### Installation
+> pip install biz-monitor
+
+### Usage
+##### Flask
+Insert following code after you initialized Flask `app` instance:
+```python
+from biz_monitor.biz_tracing.flask_opentracing import init_tracing
+from biz_monitor.biz_logging.log import init_logging
+init_tracing("service name", "jaeger_agent uri, e.g. localhost:6831", "kafka uri, e.g. localhost:9092", 'IDC', 'set0', 'instance-0', app)
+log = init_logging("service name", 'IDC', 'set0', 'instance-0')
+```
+##### Tornado
+Insert following code before you initialize tornado.web.Application instance:
+```python
+from biz_monitor.biz_logging import init_async_logging
+from biz_monitor.biz_tracing.tornado_opentracing import init_tracing
+init_tracing("service name", "jaeger_agent uri, e.g. localhost:6831", "kafka uri, e.g. localhost:9092", "IDC", "set0", 'instance-0')
+log = init_async_logging(service_name, "IDC", "set0", "instance-0")
+```
+
+----
+### Description
+This project is used for "[Metrics, tracing, and logging](http://peter.bourgon.org/blog/2017/02/21/metrics-tracing-and-logging.html)". It's an integration of python libraries for opentracing, including:
+* [requests_opentracing](https://github.com/opentracing-contrib/python-requests)
+* [flask_opentracing](https://github.com/opentracing-contrib/python-flask)
+* [tornado_opentracing](https://github.com/opentracing-contrib/python-tornado)
+
+
+
