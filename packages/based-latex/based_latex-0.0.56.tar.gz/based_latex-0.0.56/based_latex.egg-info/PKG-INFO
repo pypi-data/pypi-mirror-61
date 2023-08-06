@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: based-latex
+Version: 0.0.56
+Summary: Generates properly baselined images and HTML code from LaTeX formulas.
+Home-page: https://github.com/wircho/based_latex
+Author: Adolfo Rodriguez
+Author-email: adolfo@interoper.io
+License: UNKNOWN
+Description: # based_latex
+        
+        Generates SVG image code from LaTeX formulas.
+        
+        ## Installation
+        
+        ```
+        pip install based_latex
+        ```
+        
+        ## Requirements
+        
+        This package requires a [LaTeX distribution](https://www.latex-project.org/), as well as [Ghostscript](https://www.ghostscript.com/) and [Inkscape](https://inkscape.org/).
+        
+        ## Usage
+        
+        Use the function `based_latex.get_latex_svg_data(expression)` to get a dictionary of the form
+        
+        ```
+        {
+        	dimensions: # Some dimension parameters (useful for HTML embedding)
+        	svg: # The SVG code.
+        }
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
