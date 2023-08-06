@@ -1,0 +1,19 @@
+---
+
+extra_includes:
+- frc/geometry/Pose2d.h
+
+classes:
+  Transform2d:
+    shared_ptr: false
+    methods:
+      Transform2d:
+        overloads:
+          frc::Pose2d, frc::Pose2d:
+          Translation2d, Rotation2d:
+          "":
+      Translation:
+      Rotation:
+      operator*:
+      operator==:
+      operator!=:
