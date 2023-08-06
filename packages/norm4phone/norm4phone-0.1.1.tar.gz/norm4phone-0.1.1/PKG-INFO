@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: norm4phone
+Version: 0.1.1
+Summary: a tool to normalize different writing of phone numbers into standard format
+Home-page: https://github.com/xuxingya/norm4phone
+Author: xingya.xu
+Author-email: xingya.xu@gmail.com
+License: MIT License
+Description: # Phone-Normalizer
+        ## What is Phone Normalizer?
+        
+        Phone Normalizer is a python implement of [AfterShip](https://github.com/AfterShip)/**[phone](https://github.com/AfterShip/phone)**
+        
+        A common problem is that users normally input phone numbers in this way:
+        
+        ```
+        `(817) 569-8900` or
+        `817569-8900` or
+        `1(817) 569-8900` or
+        `+1(817) 569-8900` or ...
+        ```
+        
+        We always want:
+        
+        ```
+        +18175698900
+        ```
+        ## Install
+        ```python
+        $ pip install norm4phone
+        ```
+        ## Usage
+        
+        ```python
+        from norm4phone import PhoneNormalizer
+        pn = PhoneNormalizer(default_country='China')
+        pn.parse('+8613314672720') //return ['+8613314672720', 'CHN']
+        pn.parse('+86 13314672720') //return ['+8613314672720', 'CHN']
+        pn.parse('13314672720') //return['+8613314672720', 'CHN']
+        pn.parse('86 13314672720') //return ['+8613314672720', 'CHN']
+        pn.parse('(86) 13314672720') //return ['+8613314672720', 'CHN']
+        pn.parse('(+86) 13314672720') //return ['+8613314672720', 'CHN']
+        pn.parse('+(86) 13314672720') //return ['+8613314672720', 'CHN']
+        pn.parse('+86 133-146-72720') //return ['+8613314672720', 'CHN']
+        pn.parse('1 6479392750') //return ['+16479392750', 'CAN']
+        ```
+        
+        If you want to validate landline phone numbers, set `allowLandline` to true:
+        
+        ```
+        pn.parse('+(852) 2356-4902', '', true)
+        ```
+        
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
