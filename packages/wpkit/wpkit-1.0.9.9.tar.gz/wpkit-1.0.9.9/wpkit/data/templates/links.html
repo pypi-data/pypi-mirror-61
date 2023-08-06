@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+    <table class="table table-bordered table-striped">
+        <thead>Links</thead>
+        <tbody>
+        {% for k,v in links.items() %}
+            <tr>
+                <td><a href="{{ v }}">{{ k }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
