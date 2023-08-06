@@ -1,0 +1,205 @@
+Metadata-Version: 2.1
+Name: cimren-cvrptw-optimization
+Version: 1.1.3
+Summary: CVRPTW Optimization Models
+Home-page: https://github.com/emrahcimren/cvrptw-optimization
+Author: cimren
+Author-email: cimren.1@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools
+Requires-Dist: Pathlib
+Requires-Dist: idna (==2.8)
+Requires-Dist: pkginfo (==1.5.0.1)
+Requires-Dist: importlib-metadata (==1.4.0)
+Requires-Dist: numpy
+Requires-Dist: ortools (==7.4.7247)
+Requires-Dist: tqdm
+Requires-Dist: bleach
+Requires-Dist: pandas
+Requires-Dist: readme-renderer
+Requires-Dist: keyring
+Requires-Dist: requests
+Requires-Dist: twine
+Requires-Dist: mkl
+Requires-Dist: bleach (==3.1.0)
+Requires-Dist: certifi (==2019.11.28)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: docutils (==0.16)
+Requires-Dist: keyring (==21.1.0)
+Requires-Dist: numpy (>=1.17.3)
+Requires-Dist: pandas (==0.25.3)
+Requires-Dist: protobuf (==3.11.2)
+Requires-Dist: Pygments (==2.5.2)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2019.3)
+Requires-Dist: pywin32-ctypes (==0.2.0)
+Requires-Dist: readme-renderer (==24.0)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: six (>=1.13.0)
+Requires-Dist: tqdm (>=4.41.1)
+Requires-Dist: twine (==3.1.1)
+Requires-Dist: urllib3 (>=1.25.7)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: wincertstore (==0.2)
+Requires-Dist: zipp (>=1.0.0)
+
+Capacitated Vehicle Routing Problem with Time Windows (CVRPTW) Optimization Models
+====================================================
+
+Repo for CVRPTW optimization models.
+
+Prerequisites
+-------------
+
+Install requirements.txt for prerequisites.
+
+```
+conda create --name cvrptw_optimization --file requirements.txt
+```
+
+Install environment.yml for prerequisites.
+
+```
+conda env create -f environment.yml
+```
+
+To recreate environment.yml
+
+```
+conda env export > environment.yml
+```
+
+To create requirements.txt from environment.yml
+
+```
+pip freeze > requirements.txt
+```
+
+Installation
+------------
+
+```
+pip install cimren-cvrptw-optimization
+```
+
+Tips
+------------
+Convert pandas data frame to dictionary. 
+
+```
+df.set_index("ID", drop=True, inplace=True)
+dictionary = df.to_dict(orient="index")
+```
+
+Models
+------
+
+**Descrochers et al.1988**
+
+    Desrochers, M., Lenstra, J.K., Savelsbergh, M.W.P., Soumis, F. (1988).
+    Vehicle routing with time windows: Optimization and approximation.
+    In: Golden, B.L., Assad, A.A. (Eds.), Vehicle Routing: Methods and Studies. North-Holland, Amsterdam, pp. 65â€“84.
+
+Inputs
+------
+
+#### Depot
+
+Data frame for inputs.
+
+| LOCATION_NAME   |   LATITUDE |   LONGITUDE |
+|:----------------|-----------:|------------:|
+| Depot           |    36.1627 |    -86.7816 |
+
+#### Locations
+
+Data frame of locations for routing.
+
+| LOCATION_NAME   |   LATITUDE |   LONGITUDE |   TW_START_MINUTES |   TW_END_MINUTES |   STOP_TIME_WH_HELPER |   STOP_TIME_W_HELPER |   DEMAND |
+|:----------------|-----------:|------------:|-------------------:|-----------------:|----------------------:|---------------------:|---------:|
+| Loc 1           |    35.9021 |    -84.1508 |                960 |             1950 |                    27 |                   21 |        1 |
+| Loc 2           |    35.7498 |    -83.9922 |                960 |             1950 |                    27 |                   21 |        1 |
+| Loc 3           |    35.9077 |    -83.8392 |                960 |             1950 |                    27 |                   21 |        1 |
+| Loc 4           |    35.9077 |    -83.8392 |                960 |             1950 |                    27 |                   21 |        1 |
+| Loc 5           |    35.8625 |    -84.0666 |                960 |             1950 |                    27 |                   21 |        1 |
+
+#### Transportation Matrix
+
+Data frame of drive minutes.
+
+| FROM_LOCATION_NAME   | TO_LOCATION_NAME   |   FROM_LATITUDE |   FROM_LONGITUDE |   TO_LATITUDE |   TO_LONGITUDE |   DRIVE_MINUTES |
+|:---------------------|:-------------------|----------------:|-----------------:|--------------:|---------------:|----------------:|
+| Depot                | Depot              |         36.1627 |         -86.7816 |       36.1627 |       -86.7816 |            0    |
+| Depot                | Loc 1              |         36.1627 |         -86.7816 |       35.9021 |       -84.1508 |          163.85 |
+| Depot                | Loc 2              |         36.1627 |         -86.7816 |       35.7498 |       -83.9922 |          206.06 |
+| Depot                | Loc 3              |         36.1627 |         -86.7816 |       35.9077 |       -83.8392 |          210.03 |
+| Depot                | Loc 4              |         36.1627 |         -86.7816 |       35.9077 |       -83.8392 |          210.03 |
+
+#### Vehicles
+
+Data frame for vehicles.
+
+TEAM='assign' if route uses a team truck.
+TEAM='not assign' if route does not use a team truck.
+TEAM='select' if model decides using a team truck or not.
+
+HELPER='assign' if route uses a team truck.
+HELPER='not assign' if route does not use a team truck.
+HELPER='select' if model decides using a team truck or not.
+
+Note that if TEAM='assign', then HELPER='assign' automatically.
+
+| VEHICLE_NAME   |   CAPACITY |   HELPER_COST_PER_HELPER_PER_ROUTE |   MAXIMUM_SOLO_TRAVEL_HOURS |   MAXIMUM_TEAM_TRAVEL_HOURS | TEAM   |  HELPER | TEAM_COST_PER_TEAM_PER_ROUTE |   TRANS_COST_PER_MINUTE | TYPE            |
+|:---------------|-----------:|-----------------------------------:|----------------------------:|----------------------------:|:-------|:--------|-------------------------------:|------------------------:|:----------------|
+| Vehicle 1      |         20 |                               1200 |                          12 |                          20 | assign   | assign |                          2000 |                       5 | 48 FOOTER TRUCK |
+
+Sample Data
+----
+Package has a sample data set
+
+```
+from cvrptw_optimization.src import data
+data.depot
+data.locations
+data.transportation_matrix
+data.vehicles
+```
+
+How to use
+----------
+
+To be able run an Or Tools model:
+
+```
+from cvrptw_optimization.src import data
+from cvrptw_optimization import desrochers_et_all_1988 as d
+d.run_desrochers_et_all_1988(data.depot,
+                             data.locations,
+                             data.transportation_matrix,
+                             data.vehicles,
+                             solver_time_limit_mins=1,
+                             mip_gap = 0,
+                             solver='or tools')
+```
+
+To be able run a Gurobi model:
+
+```
+from cvrptw_optimization.src import data
+from cvrptw_optimization import desrochers_et_all_1988 as d
+d.run_desrochers_et_all_1988(data.depot,
+                             data.locations,
+                             data.transportation_matrix,
+                             data.vehicles,
+                             solver_time_limit_mins=1,
+                             mip_gap = 0,
+                             solver='gurobi')
+```
+
+
