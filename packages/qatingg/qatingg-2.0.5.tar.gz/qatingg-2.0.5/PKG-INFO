@@ -1,0 +1,145 @@
+Metadata-Version: 2.1
+Name: qatingg
+Version: 2.0.5
+Summary: Cellulant QA adapter
+Home-page: https://tingg.africa
+Author: SKingori
+Author-email: samson.mwangi@cllulant.com
+License: GPLv3+
+Description: # CELLULANT EXPRESS
+        ## qatingg ###
+        
+        Python adapter for Cellulant Tingg express checkout version 2.1
+        
+        To install: `pip install qatingg`
+        
+        For all calls you first have to initiate the adapter with your credentials
+        You can find your credentials over here: 
+        [Developer portal](https://beep2.cellulant.com:9212/checkout/v2/portal/#/home)
+        
+        #### Params ####
+        
+        | Param        | Required| Description   |
+        | ------------- | -----:|---------------:|
+        | client id     | True  | Used to Encrypt|
+        | client secret | True  | Used to Encrypt|
+        | service code  | True  | Used to Encrypt|
+        | access_key    | True  | Used to Encrypt|
+        | domain        | True  | specify environment: ```staging``` or ```sandbox```|
+        | url           | True  | Used to pass custom url |
+        | path          | True  | Used to pass custom path |
+        ```
+        adapter = MulaAdapter(<client id>, <client secret>, <service code>, <access_key>, <domain>, <url> , <path>)
+        ```
+        
+        ```domain:```  User have two options.These are cellulant's testing environments:
+        
+        ```
+        STAGING 
+        or 
+        SANDBOX
+        or
+        LOCAL
+        ```
+        
+        ``` json
+        adapter.get_encryption(
+                msisdn='0730xxxxxxx',
+                customer_first_name='John',
+                customer_last_name='Doeh',
+                customer_email='john.doeh@jd.com',
+                transaction_id='<unique>',
+                account_number='066564ACC',
+                amount=1000,
+                currency_code='KES',
+                country_code='KE',
+                description='Air ticket',
+                due_date='2019-10-01 12:12:00', or int(30) #Minutes
+                payer_client_code='i8UytECD',
+                language_code='en',
+                success_url='http://callbackurl.com/success',
+                fail_url='http://callbackurl.com/fail',
+                callback_url='http://callbackurl.com/callback'
+        )
+        ```
+        
+        ```due_date:``` User can pass the number of minutes(``` int```) for the session or use cellulant data format(```''Y-m-d H:M:S''```)
+        To get the express page:
+        
+        ```checkout_type:``` Cellulant have several ways of checkout
+        ```
+        Example:
+        -------------
+        modal
+        express
+        themed-checkout
+        ---------------
+        ```
+        
+        ```
+        Note: Add payer client code, ONLY if you're testing single payment option' 
+        ```
+        This will return checkout response as a url.
+        ```
+        Example below:
+        ```
+        [Example url](https://beep2.cellulant.com:9212/checkout/v2/express/?params=<params>&accessKey=<accesskey>&countryCode=KE)
+        
+        #### Code Sample ####
+        ````python
+        import sys
+        from tingg.adapters import TinggAdapter
+        import random
+        
+        
+        
+        def get_response():
+            init = TinggAdapter(iv_key="h3tckgMNxxxxx",
+                                secret_key="Nmxx6546xxxxxx",
+                                access_key="$2a$08$wQ2ghgfhgfhfghfh64564",
+                                service_code="EWWW5763434",
+                                domain="SANDBOX",
+                                url="http://localhost:3020",
+                                path="/"
+                                )
+        
+            response = init.get_encryption(msisdn='0724565xxxx',
+                                        customer_first_name='John',
+                                        customer_last_name='Doeh',
+                                        customer_email='john.doeh@jd.com',
+                                        transaction_id=random.randint(0, sys.maxunicode),
+                                        account_number='3434364ACC',
+                                        amount=1000,
+                                        currency_code='UGX',
+                                        country_code='UG',
+                                        description='Air ticket',
+                                        checkout_type="express",
+                                        due_date=30, # or "2019-12-12 12:12:12"
+                                        payer_client_code='',
+                                        language_code='en',
+                                        success_url='http://callbackurl.com/success',
+                                        fail_url='http://callbackurl.com/fail',
+                                        callback_url='http://callbackurl.com/callback'
+                                        )
+            #To see code returned
+            print(response)
+            return response
+        ````
+        ###### Tests
+        
+        Running tests
+        
+        ```
+        python setup.py test
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
