@@ -1,0 +1,19 @@
+{% include 'pca/_dot_product.jinja' %}
+
+/**
+ * Apply PCA to x vector.
+ * Overrides the original vector.
+ */
+void pca(double x[{{ X_DIM }}]) {
+    double u[{{ PCA_DIM }}] = { 0 };
+
+    {% for i, vector in F.enumerate(pca_components) %}
+        {% for chunk in F.chunk(vector, 100) %}
+            u[{{ i }}] += dot_product(x, {{ chunk|length }}, {% for vi in chunk %} {% if loop.index > 1 %}, {% endif %} {{ F.round(vi, 9) }} {% endfor %});
+        {% endfor %}
+    {% endfor %}
+
+    {% for vector in pca_components %}
+    x[{{ loop.index - 1 }}] = u[{{ loop.index - 1 }}];
+    {% endfor %}
+}
