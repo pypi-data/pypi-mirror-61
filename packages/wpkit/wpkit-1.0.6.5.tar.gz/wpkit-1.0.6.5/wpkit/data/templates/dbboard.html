@@ -1,0 +1,129 @@
+{%extends "base.html"%}
+{%block head%}
+
+{%endblock%}
+{%block body%}
+<div class="root" style="min-height: 100%;width: 100%;">
+    <script>
+        wpjs.disable_ctrl_s();
+        var db = new panjs.RemoteDB('/db');
+        var dbKey = window.location.href + 'editable-area';
+
+        class Switch {
+            constructor(turnOn, turnOff) {
+                this.status = 'off';
+                this.turnOn = () => {
+                    turnOn();
+                    this.status = 'on';
+                };
+                this.turnOff = () => {
+                    turnOff();
+                    this.status = 'off';
+                };
+            }
+
+            reverse() {
+                if (this.status === 'on') this.turnOff();
+                else this.turnOn();
+            }
+
+            bindKey(dic) {
+
+                if (dic.on) {
+                    jwerty.key(dic.on, () => {
+                        this.turnOn()
+                    });
+                }
+                if (dic.off) {
+                    jwerty.key(dic.off, () => {
+                        this.turnOff()
+                    })
+                }
+                if (dic.reverse) {
+                    console.log("dic:", dic.reverse);
+                    jwerty.key(dic.reverse, () => {
+                        console.log('reverse');
+                        this.reverse()
+                    })
+                }
+            }
+        }
+
+        $(document).ready(() => {
+            var status = 'off';
+            var editCodeMode = 'off';
+            $('body').height('100%');
+            save_btn = $('.save-btn');
+            area = $(".editable-area");
+            code_area = $('.code-area');
+            save_btn.hide();
+            area.attr('contenteditable', 'false');
+            code_area.hide();
+            code_area.height("100%");
+            jwerty.key('ctrl+s', () => {
+                if (status === 'on') {
+                    $('.save-btn').click();
+                }
+            });
+
+            function turnOnEditMode() {
+                save_btn.show();
+                area.attr('contenteditable', 'true');
+                status = 'on';
+            }
+
+            function turnOffEditMode() {
+                save_btn.hide();
+                area.attr('contenteditable', 'false');
+                status = 'off';
+            }
+
+            jwerty.key('ctrl+e', (e) => {
+                e.preventDefault();
+                if (status === 'on') {
+                    turnOffEditMode();
+                } else {
+                    turnOnEditMode();
+                }
+            });
+
+            // jwerty.key('ctrl+shift+e',(e)=>{
+            //     e.preventDefault();
+            // });
+            codeSwitch = new Switch(() => {
+                var code = area.html();
+                code_area.val(code);
+                area.hide();
+                code_area.show();
+            }, () => {
+                var code = code_area.val();
+                area.html(code);
+                area.show();
+                code_area.hide();
+            });
+            codeSwitch.bindKey({
+                reverse: 'ctrl+m'
+            });
+            var res = db.get(dbKey);
+            // console.log("res:", res);
+            if (res) {
+                area.html(res.content);
+            } else {
+                db.add(dbKey, {content: ''});
+            }
+            $('.save-btn').click(() => {
+                var dic = {
+                    content: area.html()
+                };
+                db.add(dbKey, dic);
+            });
+        })
+    </script>
+    <button class="save-btn" style="float: right">SAVE</button>
+    <div class="editable-area" contenteditable="true" style="height: 100%;width: 100%;border:2px solid #00c6ff"></div>
+
+    <textarea class="code-area" contenteditable="true"
+              style="height: 100%;width: 100%;border:2px solid #00c6ff ;display: none"></textarea>
+
+</div>
+{%endblock%}
