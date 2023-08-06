@@ -1,0 +1,206 @@
+<%!
+"""Dataset catalog documentation template.
+
+Displayed in https://www.tensorflow.org/datasets/catalog/.
+
+"""
+
+import collections
+import tensorflow_datasets as tfds
+from tensorflow_datasets.core.utils.py_utils import get_class_path
+from tensorflow_datasets.core.utils.py_utils import get_class_url
+
+%>
+
+<%def name="echo(obj)">\
+${obj}
+</%def>
+
+## --------------------------- Builder sections ---------------------------
+
+<%def name="display_description(builder)">\
+*   **Description**:
+
+${builder.info.description}
+
+</%def>
+
+<%def name="display_config_description(builder)">\
+% if builder.builder_config:
+*   **Config description**: ${builder.builder_config.description}
+% endif
+</%def>
+
+<%def name="display_homepage(builder)">\
+*   **Homepage**: [${builder.info.homepage}](${builder.info.homepage})
+</%def>
+
+<%def name="display_source(builder)">\
+*   **Source code**: [`${get_class_path(builder)}`](${get_class_url(builder)})
+</%def>
+
+<%def name="display_versions(builder)">\
+<%
+def list_versions(builder):
+  # List all available versions
+  # Sort them in order
+  # Get the default version
+  for v in builder.versions:
+    if v == builder.version:  # Highlight the default version
+      version_name = '**`{}`** (default)'.format(str(v))
+    else:
+      version_name = '`{}`'.format(str(v))
+    yield '{}: {}'.format(version_name, v.description or 'No release notes.')
+%>\
+*   **Versions**:
+% for version_str in list_versions(builder):
+    * ${version_str}
+% endfor
+</%def>
+
+<%def name="display_size(builder)">\
+*   **Download size**: `${tfds.units.size_str(builder.info.download_size)}`
+*   **Dataset size**: `${tfds.units.size_str(builder.info.dataset_size)}`
+</%def>
+
+<%def name="display_manual(builder)">\
+% if builder.MANUAL_DOWNLOAD_INSTRUCTIONS:
+*   **Manual download instructions**: This dataset requires you to download the
+    source data manually into `download_config.manual_dir`
+    (defaults to `~/tensorflow_datasets/manual/${builder.info.name}/`):<br/>
+    ${builder.MANUAL_DOWNLOAD_INSTRUCTIONS}
+% endif
+</%def>
+
+<%def name="display_splits(builder)">\
+*   **Splits**:
+<%
+def get_num_examples(split_info):
+  if split_info.num_examples:
+    return '{:,}'.format(split_info.num_examples)
+  else:
+    return 'Not computed'
+%>\
+
+Split  | Examples
+:----- | -------:
+%for split_name, split_info in sorted(builder.info.splits.items()):
+'${split_name}' | ${get_num_examples(split_info)}
+%endfor
+
+</%def>
+
+<%def name="display_features(builder)">\
+*   **Features**:
+
+```python
+${builder.info.features}
+```
+</%def>
+
+<%def name="display_supervised(builder)">\
+*   **Supervised keys** (See
+    [`as_supervised` doc](https://www.tensorflow.org/datasets/api_docs/python/tfds/load)):
+    `${str(builder.info.supervised_keys)}`
+</%def>
+
+<%def name="display_citation(builder)">\
+% if builder.info.citation:
+*   **Citation**:
+
+```
+${builder.info.citation}
+```
+% endif
+</%def>
+
+<%
+
+Section = collections.namedtuple('Section', 'get_signature, make')
+
+# Getter function returns a hashable signature of the section value
+# which allow to detect sections shared accross all builders.
+def get_description(builder): builder.info.description
+def get_config_description(builder):
+  return builder.builder_config.description
+def get_homepage(builder): builder.info.homepage
+def get_source(builder): True  # Always common to all configs
+def get_versions(builder):
+  return tuple((str(v), v.description) for v in builder.versions)
+def get_size(builder): (builder.info.download_size, builder.info.dataset_size)
+def get_manual(builder): builder.MANUAL_DOWNLOAD_INSTRUCTIONS
+def get_splits(builder):
+  return tuple(
+      (str(s.name), int(s.num_examples)) for s in builder.info.splits.values()
+  )
+def get_features(builder): repr(builder.info.features)
+def get_supervised(builder): builder.info.supervised_keys
+def get_citation(builder): builder.info.citation
+
+all_sections = [
+    Section(get_description, display_description),
+    Section(get_config_description, display_config_description),
+    Section(get_homepage, display_homepage),
+    Section(get_source, display_source),
+    Section(get_versions, display_versions),
+    Section(get_size, display_size),
+    Section(get_manual, display_manual),
+    Section(get_splits, display_splits),
+    Section(get_features, display_features),
+    Section(get_supervised, display_supervised),
+    Section(get_citation, display_citation),
+]
+
+%>
+
+## --------------------------- Single builder ---------------------------
+
+<%def name="display_builder(builder, sections)">\
+% for section in sections:
+${section.make(builder)}\
+% endfor
+</%def>
+
+## --------------------------- Builder builder ---------------------------
+
+<%def name="display_all_builders(builders)">\
+<%
+
+# For each fields, extract if the field is shared or unique accross builder.
+common_sections = []
+unique_sections = []
+for section in all_sections:
+  if len(set(section.get_signature(b) for b in builders)) == 1:
+    common_sections.append(section)
+  else:
+    unique_sections.append(section)
+
+%>
+
+${display_builder(next(iter(builders)), common_sections)}
+
+% for i, builder in enumerate(builders):
+<%
+header_suffix = ' (default config)' if i == 0 else ''
+%>\
+${'##'} ${builder.name}/${builder.builder_config.name}${header_suffix}
+
+${display_builder(builder, unique_sections)}
+% endfor
+</%def>
+
+## --------------------------- Main page ---------------------------
+
+${'#'} `${builder.name}`
+
+%if builder.MANUAL_DOWNLOAD_INSTRUCTIONS:
+Warning: Manual download required. See instructions bellow.
+%endif
+
+<%doc>First case: Single builder.</%doc>\
+% if not builder.builder_config:
+${display_builder(builder, all_sections)}
+<%doc>Second case: Builder configs.</%doc>\
+% else:
+${display_all_builders(config_builders)}
+% endif
