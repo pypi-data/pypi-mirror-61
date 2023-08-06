@@ -1,0 +1,52 @@
+[build-system]
+requires = ["robotpy-build>=2020.1.8,<2021.0.0"]
+
+[tool.robotpy-build]
+base_package = "wpiutil"
+
+[tool.robotpy-build.wrappers."wpiutil"]
+name = "wpiutil"
+sources = ["wpiutil/src/main.cpp"]
+extra_includes = ["wpiutil/src/type_casters"]
+
+generate = [
+    { PortForwarder = "wpi/PortForwarder.h" }
+]
+generation_data = "gen"
+
+[tool.robotpy-build.wrappers."wpiutil".maven_lib_download]
+artifact_id = "wpiutil-cpp"
+group_id = "edu.wpi.first.wpiutil"
+repo_url = "https://frcmaven.wpi.edu/artifactory/release"
+version = "2020.2.2"
+
+libs = ["wpiutil"]
+
+[tool.robotpy-build.wrappers."wpiutil".type_casters]
+"wpi_arrayref_type_caster.h" =    ["wpi::ArrayRef"]
+"wpi_smallset_type_caster.h" =    ["wpi::SmallSet"]
+"wpi_smallvector_type_caster.h" = ["wpi::SmallVector"]
+"wpi_stringref_type_caster.h" =   ["wpi::StringRef"]
+"wpi_twine_type_caster.h" =       ["wpi::Twine"]
+
+# TODO: add types as wpilib uses them
+"units_unit_t_type_caster.h" =    [
+    "units::unit_t", "units::compound_unit",
+    "units::second_t", "units::millisecond_t",
+    "units::microsecond_t", "units::nanosecond_t",
+    "units::meter_t", "units::meters_per_second_t", "units::meters_per_second_squared_t",
+    "units::degree_t",
+    "units::radian_t", "units::radians_per_second_t",
+    "units::volt_t",
+    "units::turn_t",
+    "units::scalar_t",
+]
+
+[tool.robotpy-build.metadata]
+name = "robotpy-wpiutil"
+description = "Binary wrapper for FRC WPIUtil library"
+author = "RobotPy Development Team"
+author_email = "robotpy@googlegroups.com"
+url = "https://github.com/robotpy/robotpy-wpiutil"
+license = "BSD-3-Clause"
+install_requires = []
