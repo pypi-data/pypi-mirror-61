@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+{% load i18n admin_urls static admin_list %}
+{% load common_utils %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block nav-global %}
+    <div class="d-flex w-100 h-100">
+        {% block left_menu %}
+            <!--Left Menu-->
+            {% get_app_list as all_app_list %}
+            {% if all_app_list %}
+                <div id="leftmenu" class="left-menu pt-5 shadow d-none d-md-block" :style="left_menu_style" v-show="l_menu_seen">
+                    <ul class="pt-lg-3">
+                        {% for app in all_app_list %}
+                            <li class="title-menu d-flex flex-column justify-content-center" style="min-height: 4em">
+                                <h5 class="text-left m-0 mb-2" @click="submenu_toogle">
+                                    <a href="#" class="section d-flex align-items-center justify-content-between" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">
+                                        {% if app.models %}
+                                            <i class="material-icons arrow-right col-1 p-0" v-show="arrow_right_seen">
+                                            arrow_right
+                                            </i>
+                                            <i class="material-icons arrow-down col-1 p-0" v-show="arrow_down_seen">
+                                                arrow_drop_down
+                                            </i>
+                                        {% endif %}
+                                        <span class="col-1 p-0 m-2 mr-3"><i class="material-icons">cast_for_education</i></span>
+                                        <span class="col-10 p-0 ml-3 font-weight-bold">{{ app.name }}</span>
+                                    </a>
+                                </h5>
+                                <ul class="" v-show="sub_menu_seen">
+                                    {% for model in app.models %}
+                                        <div class="menuLeftModel col-11">
+                                            {% if model.admin_url %}
+                                                <a href="{{ model.admin_url }}" class="text-left">
+                                                    <li style="margin-left: 20%"><h5 class="mt-2 mb-2">{{ model.name }}</h5></li>
+                                                </a>
+                                            {% else %}
+                                                <li>
+                                                    <h5 class="text-left ml-4">{{ model.name }}</h5>
+                                                </li>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+            {% endif %}
+            <!--End Left Menu-->
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}

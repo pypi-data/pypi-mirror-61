@@ -1,0 +1,184 @@
+{% load i18n static %}
+
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vuetify.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vue-material.min.css' %}">
+
+    {% block extrastyle %}{% endblock %}
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "css/rtl.css" %}{% endblock %}">{% endif %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static "css/responsive.css" %}">
+        {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "css/responsive_rtl.css" %}">{% endif %}
+    {% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+    <script src="{% static 'js/sweetalert.min.js' %}"></script>
+    <script src="{% static 'js/vue.js' %}"></script>
+    <script src="{% static 'js/vue-resource.js' %}"></script>
+    <script src="{% static 'js/vue-material.js' %}"></script>
+    <script>Vue.use(VueMaterial.default)</script>
+    <script src="{% static 'js/vuetify.js' %}"></script>
+    <script src="{% static 'js/axios.js' %}"></script>
+    <script href="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+      data-admin-utc-offset="{% now "Z" %}">
+
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+        {% block branding %}
+            <div id="branding" class="h-100">
+                {% block top_bar %}
+                    <!--Top bar-->
+                    <div id="topbar" class="page-container">
+                        <div class="md-app" name="reveal">
+                          <div id="vuejs_menu" class="md-app-toolbar md-primary menu w-100 text-white" :style="top_menu_style">
+                              <div style="width: 15%">
+                                  <button id="btn-menu" class="md-button md-icon-button f-left d-md-none" @click="l_menu_toogle">
+                                      <span class="md-icon text-white">menu</span>
+                                  </button>
+                                  <div class="d-none d-md-flex flex-row justify-content-left logo">
+                                      <img class="w-50 ml-4" src="{% static 'img/sead_branco.svg' %}" alt="Ecossistema de Gestão em Educação">
+                                  </div>
+                              </div>
+
+                              <div class="d-flex flex-row justify-content-between align-items-center w-100 h-100">
+                                  <div class="d-flex flex-row w-100">
+                                      <h2 class="text-white text-center col-10 m-0">{% block page-title %}<a href="{% url 'admin:index' %}">Ecossistema de Gestão em Educação</a>{% endblock %}</h2>
+                                      <div id="icons-top" class="pr-md-5 h-100 col">
+                                          <div class="d-flex flex-row justify-end align-items-center h-100">
+                                              <div class="md-avatar md-avatar-icon d-flex flex-row justify-content-end mr-lg-3" v-if="countNotificationSeen" style="border-radius: 0">
+                                                  <span class="md-icon"><a href="#" class="text-white">notifications</a></span>
+                                                  <span class="position-absolute" style="top: 5px"><a href="#" class="text-white d-flex justify-content-center align-items-center" style="font-size: 12px; background: red; border-radius: 50%; width: 12px; height: 12px;">${countNotification}</a></span>
+                                              </div>
+                                              <div class="md-avatar md-avatar-icon d-flex flex-row justify-content-end ml-lg-3" v-if="countChatSeen" style="border-radius: 0">
+                                                  <span class="md-icon" style="left: 12px;"><a href="#" class="text-white">chat</a></span>
+                                                  <span class="position-absolute" style="top: 5px"><a href="#" class="text-white d-flex justify-content-center align-items-center" style="font-size: 12px; background: red; border-radius: 50%; width: 12px; height: 12px;">${countChat}</a></span>
+                                              </div>
+                                              <div id="top-user" class="top-perfil ml-3 ml-md-0" @click="r_menu_toogle" :style="top_perfil_style">
+                                                  <span><a href="#" class="text-white">{% firstof suap_ead.user.photo_url suap_ead.user.presentation_name|make_list|first %}</a></span>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--End Top bar-->
+                {% endblock %}
+                {% block user_menu %}
+                    <transition :duration="{ enter: 500, leave: 100 }">
+                        <div id="rightmenu" class="right-menu text-white triangle" v-show="r_menu_seen" :style="rightmenu_style">
+                            <div id="user-tools" class="d-flex flex-column align-items-center mb-3">
+                                {% block user_menu_options %}
+                                    <div class="text-center mt-4">
+                                        <span class="md-icon"><a href="#" class="text-white">account_circle</a></span>
+                                    </div>
+                                    <h5 class="p-4 text-center">
+                                        {% trans 'Welcome, ' %}<span class="text-bold">{% firstof suap_ead.user.social_name user.get_username %}!</span>
+                                    </h5>
+
+                                    <select id="select" v-model="selected" class="custom-select select-theme mb-4 w-75" @change="change_color">
+                                        <option value="0">${ select_option_default }</option>
+                                        <option value="1">Green</option>
+                                        <option value="2">Purple</option>
+                                    </select>
+                                {% endblock user_menu_options %}
+
+                                {% if user.is_active and user.is_staff %}
+                                    {% url 'django-admindocs-docroot' as docsroot %}
+                                    {% if docsroot %}
+                                        <a href="{{ docsroot }}" class="text-white">{% trans 'Documentation' %}</a>
+                                    {% endif %}
+                                {% endif %}
+                                {% if site_url %}
+                                    <a href="{{ site_url }}" class="text-center p-2 text-white">{% trans 'View site' %}</a></h5>
+                                {% endif %}
+                                {% if user.has_usable_password %}
+                                    <a href="{% url 'admin:password_change' %}" class="text-center p-2 text-white">{% trans 'Change password' %}</a>
+                                {% endif %}
+                                <a href='./logout/' class="text-right p-4 text-white"><span class="md-icon">highlight_off</span>{% trans 'Log out' %}</a>
+                            </div>
+                        </div>
+                    </transition>
+                {% endblock user_menu %}
+
+                {% block chat %}
+                {% endblock chat %}
+            </div>
+        {% endblock branding%}
+    {% endif %}
+
+    {% block content_main %}
+        <div id="content-main" class="d-flex w-100">
+            <div id="content-adm" class="w-100 text-center" :style="content_style">
+                {% block breadcrumbs %}{% endblock %}
+                <div class="d-flex flex-column align-items-center">
+                    <div id="content" class="col-12 col-md-11 mt-3">
+                        {% block pretitle %}
+                        {% endblock pretitle%}
+                        {% block content_title %}
+                            {% if title %}<h1>{{ title }}</h1>{% endif %}
+                        {% endblock content_title%}
+                        {% block content %}
+                            {% block object-tools %}
+                            {% endblock object-tools%}
+                            {{ content }}
+                        {% endblock content %}
+                        {% block sidebar %}
+                        {% endblock sidebar %}
+                        <br class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock content_main %}
+
+    {% if not is_popup %}
+        {% block nav-global %}
+        {% endblock %}
+    {% endif %}
+
+    {% block model_back %}
+        <div id="modal" class="modal-back" v-if="modal_seen">
+        </div>
+    {% endblock model_back %}
+
+    {% block messages %}
+        {% if messages %}
+            <ul class="messagelist">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endblock messages %}
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+    <script src="{% static 'js/general.js' %}"></script>
+{% block javascript %}
+{% endblock %}
+
+</body>
+</html>
