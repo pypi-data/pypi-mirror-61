@@ -1,0 +1,119 @@
+Metadata-Version: 2.1
+Name: IHEWAcollect
+Version: 0.0.7
+Summary: Water Accounting Collect Tools
+Home-page: https://github.com/wateraccounting/IHEWAcollect
+Author: Quan Pan
+Author-email: quanpan302@hotmail.com
+License: GPLv3
+Project-URL: Documentation, https://ihewacollect.readthedocs.io/en/latest/
+Keywords: GDAL,Water
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+Description-Content-Type: text/x-rst; charset=UTF-8
+Requires-Dist: cython (>=0.29)
+Requires-Dist: psutil (>=5.6)
+Requires-Dist: joblib (>=0.13)
+Requires-Dist: cryptography (>=2.6)
+Requires-Dist: PyYAML (>=5.1)
+Requires-Dist: beautifulsoup4 (>=4.8)
+Requires-Dist: requests (>=2.22)
+Requires-Dist: paramiko (>=2.6)
+Requires-Dist: ecmwf-api-client (>=1.5)
+Requires-Dist: scipy (>=1.0)
+Requires-Dist: scikit-image (>=0.15)
+Requires-Dist: numpy (>=1.11)
+Requires-Dist: pandas (>=0.20)
+Requires-Dist: netCDF4 (>=1.5)
+Provides-Extra: testing
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+
+.. -*- mode: rst -*-
+
+|CoverAlls|_ |Travis|_ |ReadTheDocs|_ |DockerHub|_ |PyPI|_
+
+.. |CoverAlls| image:: https://coveralls.io/repos/github/wateraccounting/IHEWAcollect/badge.svg?branch=master
+.. _CoverAlls: https://coveralls.io/github/wateraccounting/IHEWAcollect?branch=master
+
+.. |Travis| image:: https://travis-ci.org/wateraccounting/IHEWAcollect.svg?branch=master
+.. _Travis: https://travis-ci.org/wateraccounting/IHEWAcollect
+
+.. |ReadTheDocs| image:: https://readthedocs.org/projects/ihewacollect/badge/?version=latest
+.. _ReadTheDocs: https://ihewacollect.readthedocs.io/en/latest/
+
+.. |DockerHub| image:: https://img.shields.io/docker/cloud/build/wateraccounting/ihewacollect
+.. _DockerHub: https://hub.docker.com/r/wateraccounting/ihewacollect
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/IHEWAcollect
+.. _PyPI: https://pypi.org/project/IHEWAcollect/
+
+
+IHEWAcollect
+============
+
+IHE WaterAccounting Collect Tool.
+
+Collect
+-------
+
+Products requires `username, password` or `apitoken`.
+
+Free products
+^^^^^^^^^^^^^
+
++------------+-----------------------------------------------------------------------+
+| Accounts   | Link                                                                  |
++============+=======================================================================+
+| Copernicus | https://www.copernicus.eu/en                                          |
++------------+-----------------------------------------------------------------------+
+| ECMWF      | https://www.ecmwf.int                                                 |
++------------+-----------------------------------------------------------------------+
+| GLEAM      | http://www.gleam.eu                                                   |
++------------+-----------------------------------------------------------------------+
+| IHEWA      | https://www.wateraccounting.org                                       |
++------------+-----------------------------------------------------------------------+
+| NASA       | https://www.nasa.gov                                                  |
++------------+-----------------------------------------------------------------------+
+| VITO       | https://www.vito-eodata.be/PDF/datapool                               |
++------------+-----------------------------------------------------------------------+
+| WaPOR      | http://www.fao.org/in-action/remote-sensing-for-water-productivity/en |
++------------+-----------------------------------------------------------------------+
+
+Commercial products
+^^^^^^^^^^^^^^^^^^^
+
++------------+-----------------------------------------------------------------------+
+| Accounts   | Link                                                                  |
++============+=======================================================================+
+| MSWEP      | https://princetonclimate.com                                          |
++------------+-----------------------------------------------------------------------+
+
+Products
+--------
+
+ALEXI
+^^^^^
+
+IHEWAcollect.ALEXI() functioin
+
+...
+^^^
+
+WAPOR
+^^^^^
+
+IHEWAcollect.WAPOR() functioin
+
+
+Note
+====
+
+For details, see https://www.wateraccounting.org/.
+
+
