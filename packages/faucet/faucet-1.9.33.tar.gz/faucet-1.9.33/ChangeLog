@@ -1,0 +1,197 @@
+CHANGES
+=======
+
+1.9.33
+------
+
+* Update prom/prometheus-pi Docker tag to v2.16.0
+* Revert to actor state NONE if no phys is up
+* port attr
+* config
+* count\_untag\_vlan\_miss
+* pylint
+* Test explicit untagged traffic dropped
+* Add explicit untagged drop rule when no tagged in use
+* Update prom/prometheus Docker tag to v2.16.0
+* Install lacp flowrules on cold-start
+* Flood to stack ports for inter-VLAN routing
+* Update dependency pytype to v2020.2.6
+* Add unit tests
+* Iterate through modules when expanding tests
+* Update grafana/grafana Docker tag to v6.6.1
+* Update grafana/grafana-arm32v7-linux Docker tag to v6.6.1
+* Update dependency exabgp to v4.2.6
+* added slowpath\_meter and fixed meterdel
+* Delete changelog
+* Add config check for invalid meter\_ids
+* Only have some LACP links sync, collecting & distributing for a LAG, this is based on the DPID
+* Add multidp LAG tests
+
+1.9.32
+------
+
+* add metering warm reloads
+* metering tests
+* Should check version in old logfile, if it exists
+* Prevent some multiDP tests from running on hardware
+* Stickler
+* Log version on startup. Verify Gauge has no exceptions also
+* LRU caching for flood rule priority
+* Cache ND/ARP creation
+* Cache matches
+* Add more LRU caching
+* typo
+* Allow transit stack switches to know VLANs
+* Need to explicitly install pip3 build dependencies first
+
+1.9.31
+------
+
+* Update grafana/grafana-arm32v7-linux Docker tag to v6.6.0
+* Update grafana/grafana Docker tag to v6.6.0
+* Edge-learn to root algorithm
+* Update dependency pytype to v2020.1.24
+* jobs/include makes Travis run serial now
+* stickler
+* Avoid getting stuck in flowtable filename loop
+* Print host info when debugging multidp tests
+* Update dependency exabgp to v4.2.4
+* Add chained stack test case
+
+1.9.30
+------
+
+* Don't do a delete all on disconnect
+* Should be using captured not received by filter
+* Correct test for edge learning - remote port must be up
+* Send delete all on controller initiated OF disconnect
+* Implement forwarding/non forwarding status for non-stack ports
+* re packet match
+* Document multimirror restriction and change tests to accomodate only one copy of traffic mirrored between ports
+* Add comments for linty
+* edge\_learn\_port test
+* Need test verifying set\_field action for ICMPV4\_TYPE, IPV4\_DST, IPV4\_SRC, IP\_DSCP
+* fix test suite stack links overwriting redundant host links
+* Update grafana/grafana-arm32v7-linux Docker tag to v6.5.3
+* Update grafana/grafana Docker tag to v6.5.3
+* Need test to verify switches can match IP\_DSCP field
+
+1.9.29
+------
+
+* Convert to stderr
+* Move table dump to fkeoftable
+* Update dependency pytype to v2020.1.8
+* Cleanup
+* Adding unit test for learning
+* test all topologies
+* Reset vlan cache on cold-start
+* Update dependency pytype to v2020
+* stickler
+* Simplify update\_stack\_topo by removing unused no-port code
+* Missing now for tests
+* stickler
+* Use now from Ryu
+* Need to relearn a host even if it didn't move from a port, if the port recently changed status
+* Smarter handling of clearing port LIVE flag (ignore it when already up because we're expecting a down message)
+* Update pyyaml version in debian/control
+* Update dependency pyyaml to v5.3
+* Add test for port move event
+* Keep VLAN host cache on port status change
+* marginal unit test performance under travis
+* pylint,
+* Update prom/prometheus-pi Docker tag to v2.15.2
+* pylint
+* Update prom/prometheus Docker tag to v2.15.2
+* pylint
+* Flood actions is tuple for stacking also
+* flowmod()
+* move output actions splitter staticmethod to valve\_of
+* Increase performance of packet in parsing and flood rule generation with LRU cache
+* Make dedupe and building match\_dict less expensive
+* pylint
+* Add test
+* Update dependency sphinx to v2.3.1
+
+1.9.28
+------
+
+* Re-add fault-tolerance tests + optimizations
+* Remove debug
+* Change to learned\_l2\_port
+* Adding l2 learning varz
+* Update dependency pytype to v2019.12.17
+* Towards root port should be the port along the chosen shortest path
+* Smoke test faucet to make sure installation was successful at build time. Speed up installation with parallel unit tests
+* Clear swap file
+* label fix for dp\_root\_hop\_port
+* Update grafana/grafana-arm32v7-linux Docker tag to v6.5.2
+* Update grafana/grafana Docker tag to v6.5.2
+* Add dummy ports to tutorial to workaround issue #3383
+* Modify the tutorial to go incremental with two routers instead of one super router as suggested by Brad Cowie
+
+1.9.27
+------
+
+* pylint
+* Document test debug mode
+* Implement debug mode for single test runner
+* Upgrade to test-base v7.0.0 which includes 'm' util
+* Authenticate to pypi with API token instead of user/pass
+* Upgrade to beka v0.3.4
+* Upgrade to chewie v0.0.21
+* Add myself to authors
+* Mention to reload faucet after configuration file change
+* Fix bgp routing tutorial. This patch fixes the following issues:
+* Update dependency pytype to v2019.12.6
+* Upgrade pyyaml to 5.2
+* Add errors\_out to influx
+* Stickler fix
+* Upgrade to eventlet 0.25.1
+* Remove extra paren
+* Updating unit tests with tx\_erors
+* Add tx\_errors to gauge
+* Update dependency sphinx to v2.2.2
+
+1.9.26
+------
+
+* Reorder loop protection test so that hosts learned internally first
+* Add test for VLAN learning flow
+* reset VLAN caches on changed VLANs only
+* Cannot relearn hosts on stacking port after warm start
+* Need to override external flooding flag for all ports not just stacking ports
+* Could create a loop between external ports
+* Don't override edge\_learn\_dp if peer DP is up, prioritize locally learned over external
+* Ignore only KeyError
+* Try just ignoring Exception
+* Report config hash change
+* Add support for --help
+* Update grafana/grafana-arm32v7-linux Docker tag to v6.5.1
+* Update grafana/grafana Docker tag to v6.5.1
+* Update dependency pytype to v2019.11.27
+* Make runtests.sh argument parsing more robust
+* Need to install cython before python-afl
+* Use Ubuntu 18.04 on travis for running tests
+
+1.9.25
+------
+
+* Revert "Add Fault-Tolerance tests & generalise the Multi-DP integration tests"
+* Update grafana/grafana-arm32v7-linux Docker tag to v6.5.0
+* Update grafana/grafana Docker tag to v6.5.0
+* Update influxdb Docker tag to v1.7
+* Update arm32v7/influxdb Docker tag to v1.7
+* pyup -> renovate
+* Configure .renovaterc.json
+* Add renovate.json
+* conf-zodiac.sh: set Zodiac and OF controller network details
+* FAUCET can send truncated ICMP6 echo replies
+* update grafana to 6.2.4
+* err -> out
+* Pin exabgp to 4.0.10
+* Update apt dependency for python3-prometheus-client
+* Update prometheus\_client from 0.6.0 to 0.7.0
+* Update sphinx from 2.1.0 to 2.1.1
+* test\_topo.py tests clib rather than faucet
+* Simplify get\_config() in mininet\_tests.py
