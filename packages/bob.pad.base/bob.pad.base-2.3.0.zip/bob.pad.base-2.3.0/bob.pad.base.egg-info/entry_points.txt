@@ -1,0 +1,48 @@
+[bob.cli]
+pad = bob.pad.base.script.pad:pad
+vulnerability = bob.pad.base.script.vulnerability:vulnerability
+
+[bob.db]
+dummy = bob.pad.base.test.dummy.database:Interface
+pad_filelist = bob.pad.base.database.filelist.driver:Interface
+
+[bob.pad.algorithm]
+test = bob.pad.base.test.dummy.algorithm:algorithm
+
+[bob.pad.cli]
+cross = bob.pad.base.script.cross:cross
+det = bob.pad.base.script.pad_commands:det
+epc = bob.pad.base.script.pad_commands:epc
+evaluate = bob.pad.base.script.pad_commands:evaluate
+finalize-scores = bob.pad.base.script.finalize_scores:finalize_scores
+gen = bob.pad.base.script.pad_commands:gen
+hist = bob.pad.base.script.pad_commands:hist
+metrics = bob.pad.base.script.pad_commands:metrics
+multi-metrics = bob.pad.base.script.pad_commands:multi_metrics
+roc = bob.pad.base.script.pad_commands:roc
+
+[bob.pad.database]
+dummy = bob.pad.base.test.dummy.database:database
+dummysql = bob.pad.base.test.dummy.database_sql:database
+
+[bob.pad.extractor]
+test = bob.pad.base.test.dummy.extractor:extractor
+
+[bob.pad.grid]
+demanding = bob.pad.base.config.grid.demanding:grid
+
+[bob.pad.preprocessor]
+test = bob.pad.base.test.dummy.preprocessor:preprocessor
+
+[bob.vuln.cli]
+det = bob.pad.base.script.vuln_commands:det
+epc = bob.pad.base.script.vuln_commands:epc
+epsc = bob.pad.base.script.vuln_commands:epsc
+fmr_iapmr = bob.pad.base.script.vuln_commands:fmr_iapmr
+gen = bob.pad.base.script.vuln_commands:gen
+hist = bob.pad.base.script.vuln_commands:hist
+roc = bob.pad.base.script.vuln_commands:roc
+
+[console_scripts]
+spoof.py = bob.pad.base.script.spoof:main
+
