@@ -1,0 +1,1026 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>group_lasso._group_lasso &mdash; Group Lasso 1.3.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Group Lasso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../maths.html">Mathematical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Group Lasso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>group_lasso._group_lasso</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for group_lasso._group_lasso</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="k">import</span> <span class="n">Number</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">sparse</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="k">import</span> <span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span>
+                          <span class="n">TransformerMixin</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">LabelBinarizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="k">import</span> <span class="p">(</span><span class="n">check_array</span><span class="p">,</span> <span class="n">check_consistent_length</span><span class="p">,</span>
+                           <span class="n">check_random_state</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">group_lasso._fista</span> <span class="k">import</span> <span class="n">fista</span>
+<span class="kn">from</span> <span class="nn">group_lasso._singular_values</span> <span class="k">import</span> <span class="n">find_largest_singular_value</span>
+<span class="kn">from</span> <span class="nn">group_lasso._subsampling</span> <span class="k">import</span> <span class="n">subsample</span>
+
+<span class="n">_DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">_OLD_REG_WARNING</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The behaviour has changed since v1.1.1, before then, a bug in the optimisation</span>
+<span class="s2">algorithm made it so the regularisation parameter was scaled by the largest </span>
+<span class="s2">eigenvalue of the covariance matrix.</span>
+
+<span class="s2">To use the old behaviour, initialise the class with the keyword argument </span>
+<span class="s2">`old_regularisation=True`.</span>
+
+<span class="s2">To supress this warning, initialise the class with the keyword argument</span>
+<span class="s2">`supress_warning=True`</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_l1_l2_prox</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">l1_reg</span><span class="p">,</span> <span class="n">group_reg</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_group_l2_prox</span><span class="p">(</span><span class="n">_l1_prox</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">l1_reg</span><span class="p">),</span> <span class="n">group_reg</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_l1_prox</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="n">reg</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_l2_prox</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The proximal operator for reg*||w||_2 (not squared).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">norm_w</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">norm_w</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">w</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">reg</span> <span class="o">/</span> <span class="n">norm_w</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span>
+
+
+<span class="k">def</span> <span class="nf">_group_l2_prox</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">reg_coeffs</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The proximal map for the specified groups of coefficients.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">reg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">reg_coeffs</span><span class="p">):</span>
+        <span class="n">w</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">_l2_prox</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">group</span><span class="p">],</span> <span class="n">reg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">w</span>
+
+
+<span class="k">def</span> <span class="nf">_split_intercept</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+
+<span class="k">def</span> <span class="nf">_join_intercept</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">w</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_intercept_col</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">ones</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span>        
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">ones</span><span class="p">,</span> <span class="n">X</span><span class="p">])</span>
+
+
+<span class="k">class</span> <span class="nc">BaseGroupLasso</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for sparse group lasso regularised optimisation.</span>
+
+<span class="sd">    This class implements the Sparse Group Lasso [1] regularisation for</span>
+<span class="sd">    optimisation problems with Lipschitz continuous gradients, which is</span>
+<span class="sd">    approximately equivalent to having a bounded second derivative.</span>
+
+<span class="sd">    The loss is optimised using the FISTA algorithm proposed in [2] with the</span>
+<span class="sd">    generalised gradient-based restarting scheme proposed in [3].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    groups : Iterable</span>
+<span class="sd">        Iterable that specifies which group each column corresponds to.</span>
+<span class="sd">        For columns that should not be regularised, the corresponding</span>
+<span class="sd">        group index should either be None or negative. For example, the</span>
+<span class="sd">        list ``[1, 1, 1, 2, 2, -1]`` specifies that the first three</span>
+<span class="sd">        columns of the data matrix belong to the first group, the next</span>
+<span class="sd">        two columns belong to the second group and the last column should</span>
+<span class="sd">        not be regularised.</span>
+<span class="sd">    group_reg : float or iterable [default=0.05]</span>
+<span class="sd">        The regularisation coefficient(s) for the group sparsity penalty.</span>
+<span class="sd">        If ``group_reg`` is an iterable, then its length should be equal to</span>
+<span class="sd">        the number of groups.</span>
+<span class="sd">    l1_reg : float or iterable [default=0.05]</span>
+<span class="sd">        The regularisation coefficient for the coefficient sparsity</span>
+<span class="sd">        penalty.</span>
+<span class="sd">    n_iter : int [default=100]</span>
+<span class="sd">        The maximum number of iterations to perform</span>
+<span class="sd">    tol : float [default=1e-5]</span>
+<span class="sd">        The convergence tolerance. The optimisation algorithm</span>
+<span class="sd">        will stop once ||x_{n+1} - x_n|| &lt; ``tol``.</span>
+<span class="sd">    scale_reg : str [in {&quot;group_size&quot;, &quot;none&quot;, &quot;inverse_group_size&quot;] or None </span>
+<span class="sd">        How to scale the group-wise regularisation coefficients. In the</span>
+<span class="sd">        original group lasso paper scaled the regularisation by the square</span>
+<span class="sd">        root of the elements in each group so that each variable has the</span>
+<span class="sd">        same effect on the regularisation. This is not sensible for dummy</span>
+<span class="sd">        encoded variables, as these always have either unit or zero norm.</span>
+<span class="sd">        ``scale_reg`` should therefore be None if all variables are dummy</span>
+<span class="sd">        variables. Finally, if the group size shouldn&#39;t be considered when</span>
+<span class="sd">        choosing variables, then inverse_group_size should be used instead</span>
+<span class="sd">        as that divide by the square root of the group size, removing the</span>
+<span class="sd">        dependence of group size on the regularisation strength.</span>
+<span class="sd">    subsampling_scheme : None, float, int or str [default=None]</span>
+<span class="sd">        The subsampling rate used for the gradient and singular value</span>
+<span class="sd">        computations. If it is a float, then it specifies the fraction</span>
+<span class="sd">        of rows to use in the computations. If it is an int, it</span>
+<span class="sd">        specifies the number of rows to use in the computation and if</span>
+<span class="sd">        it is a string, then it must be &#39;sqrt&#39; and the number of rows used</span>
+<span class="sd">        in the computations is the square root of the number of rows</span>
+<span class="sd">        in X.</span>
+<span class="sd">    frobenius_lipschitz : bool [default=False]</span>
+<span class="sd">        Use the Frobenius norm to estimate the lipschitz coefficient of the</span>
+<span class="sd">        MSE loss. This works well for systems whose power iterations</span>
+<span class="sd">        converge slowly. If False, then subsampled power iterations are</span>
+<span class="sd">        used. Using the Frobenius approximation for the Lipschitz</span>
+<span class="sd">        coefficient might fail, and end up with all-zero weights.</span>
+<span class="sd">    fit_intercept : bool [default=True]</span>
+<span class="sd">        Whether to fit an intercept or not.</span>
+<span class="sd">    random_state : np.random.RandomState [default=None]</span>
+<span class="sd">        The random state used for initialisation of parameters.</span>
+<span class="sd">    warm_start : bool [default=False]</span>
+<span class="sd">        If true, then subsequent calls to fit will not re-initialise the</span>
+<span class="sd">        model parameters. This can speed up the hyperparameter search</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Simon, N., Friedman, J., Hastie, T., &amp; Tibshirani, R. (2013).</span>
+<span class="sd">    A sparse-group lasso. Journal of Computational and Graphical</span>
+<span class="sd">    Statistics, 22(2), 231-245.</span>
+
+<span class="sd">    [2] Beck A, Teboulle M. (2009). A fast iterative shrinkage-thresholding</span>
+<span class="sd">    algorithm for linear inverse problems. SIAM journal on imaging</span>
+<span class="sd">    sciences. 2009 Mar 4;2(1):183-202.</span>
+
+<span class="sd">    [3] O’Donoghue B, Candes E. (2015) Adaptive restart for accelerated</span>
+<span class="sd">    gradient schemes. Foundations of computational mathematics.</span>
+<span class="sd">    Jun 1;15(3):715-32.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">LOG_LOSSES</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">groups</span><span class="p">,</span>
+        <span class="n">group_reg</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">l1_reg</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span>
+        <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+        <span class="n">scale_reg</span><span class="o">=</span><span class="s2">&quot;group_size&quot;</span><span class="p">,</span>
+        <span class="n">subsampling_scheme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">old_regularisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">supress_warning</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_reg</span> <span class="o">=</span> <span class="n">group_reg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_reg</span> <span class="o">=</span> <span class="n">scale_reg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l1_reg</span> <span class="o">=</span> <span class="n">l1_reg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">=</span> <span class="n">tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subsampling_scheme</span> <span class="o">=</span> <span class="n">subsampling_scheme</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_regularisation</span> <span class="o">=</span> <span class="n">old_regularisation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warm_start</span> <span class="o">=</span> <span class="n">warm_start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supress_warning</span> <span class="o">=</span> <span class="n">supress_warning</span>
+
+    <span class="k">def</span> <span class="nf">_regulariser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The regularisation penalty for a given coefficient vector, ``w``.</span>
+
+<span class="sd">        The first element of the coefficient vector is the intercept which</span>
+<span class="sd">        is sliced away.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">regulariser</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">_split_intercept</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">reg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_reg_vector_</span><span class="p">):</span>
+            <span class="n">regulariser</span> <span class="o">+=</span> <span class="n">reg</span> <span class="o">*</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">group</span><span class="p">])</span>
+        <span class="n">regulariser</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1_reg</span> <span class="o">*</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">regulariser</span>
+
+    <span class="k">def</span> <span class="nf">_get_reg_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the regularisation coefficient for one group.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">scale_reg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_reg</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">scale_reg</span> <span class="o">==</span> <span class="s2">&quot;group_size&quot;</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">scale_reg</span> <span class="o">==</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">scale_reg</span> <span class="o">==</span> <span class="s2">&quot;inverse_group_size&quot;</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;``scale_reg`` must be equal to </span><span class="se">\&quot;</span><span class="s2">group_size</span><span class="se">\&quot;</span><span class="s2">,&quot;</span>
+                <span class="s2">&quot; </span><span class="se">\&quot;</span><span class="s2">inverse_group_size</span><span class="se">\&quot;</span><span class="s2"> or </span><span class="se">\&quot;</span><span class="s2">none</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">reg</span><span class="o">*</span><span class="n">scale</span>
+
+    <span class="k">def</span> <span class="nf">_get_reg_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span> 
+        <span class="sd">&quot;&quot;&quot;Get the group-wise regularisation coefficients from ``reg``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
+            <span class="n">reg</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_reg_strength</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">reg</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups_</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">reg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">reg</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_unregularised_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>  <span class="c1">#  pragma: nocover</span>
+        <span class="sd">&quot;&quot;&quot;The unregularised reconstruction loss.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The group-lasso regularised loss.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.ndarray</span>
+<span class="sd">            Data matrix, ``X.shape == (num_datapoints, num_features)``</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Target vector/matrix, ``y.shape == (num_datapoints, num_targets)``,</span>
+<span class="sd">            or ``y.shape == (num_datapoints,)``</span>
+<span class="sd">        w : np.ndarray</span>
+<span class="sd">            Coefficient vector, ``w.shape == (num_features, num_targets)``,</span>
+<span class="sd">            or ``w.shape == (num_features,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unregularised_loss</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regulariser</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The group-lasso regularised loss with the current coefficients</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.ndarray</span>
+<span class="sd">            Data matrix, ``X.shape == (num_datapoints, num_features)``</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Target vector/matrix, ``y.shape == (num_datapoints, num_targets)``,</span>
+<span class="sd">            or ``y.shape == (num_datapoints,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_compute_lipschitz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="c1"># pragma: nocover</span>
+        <span class="sd">&quot;&quot;&quot;Compute Lipschitz bound for the gradient of the unregularised loss.</span>
+
+<span class="sd">        The Lipschitz bound is with respect to the coefficient vector or</span>
+<span class="sd">        matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>  <span class="c1"># pragma: nocover</span>
+        <span class="sd">&quot;&quot;&quot;Compute the gradient of the unregularised loss wrt the coefficients.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">_unregularised_gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">g</span>
+
+    <span class="k">def</span> <span class="nf">_scaled_prox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply the proximal map of the scaled regulariser to ``w``.</span>
+
+<span class="sd">        The scaling is the inverse lipschitz coefficient.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b</span><span class="p">,</span> <span class="n">w_</span> <span class="o">=</span> <span class="n">_split_intercept</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">l1_reg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1_reg</span>
+        <span class="n">group_reg_vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_reg_vector_</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_regularisation</span><span class="p">:</span>
+            <span class="n">l1_reg</span> <span class="o">=</span> <span class="n">l1_reg</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">lipschitz_</span>
+            <span class="n">group_reg_vector</span> <span class="o">=</span> <span class="n">group_reg_vector</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">lipschitz_</span>
+
+        <span class="n">w_</span> <span class="o">=</span> <span class="n">_l1_l2_prox</span><span class="p">(</span><span class="n">w_</span><span class="p">,</span> <span class="n">l1_reg</span><span class="p">,</span> <span class="n">group_reg_vector</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups_</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_join_intercept</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">w_</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_subsampled_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_minimise_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Use the FISTA algorithm to solve the group lasso regularised loss.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Need transition period before the correct regulariser is used without warning</span>
+        <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">it_num</span><span class="p">,</span> <span class="n">previous_x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">)</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="n">previous_w</span> <span class="o">=</span> <span class="n">previous_x</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">LOG_LOSSES</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">losses_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">previous_w</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">_DEBUG</span><span class="p">:</span>  <span class="c1"># pragma: nocover</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting FISTA: &quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Initial loss: </span><span class="si">{loss}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+                <span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">_DEBUG</span><span class="p">:</span>  <span class="c1"># pragma: nocover</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Completed iteration </span><span class="si">{it_num}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">it_num</span><span class="o">=</span><span class="n">it_num</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Loss: </span><span class="si">{loss}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Weight difference: </span><span class="si">{wdiff}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">wdiff</span><span class="o">=</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">previous_w</span><span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Weight norm: </span><span class="si">{wnorm}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wnorm</span><span class="o">=</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Grad: </span><span class="si">{gnorm}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">gnorm</span><span class="o">=</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_unregularised_gradient</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">_join_intercept</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">fista</span><span class="p">(</span>
+            <span class="n">weights</span><span class="p">,</span>
+            <span class="n">grad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_unregularised_gradient</span><span class="p">,</span>
+            <span class="n">prox</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_scaled_prox</span><span class="p">,</span>
+            <span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_subsampled_loss</span><span class="p">,</span>
+            <span class="n">lipschitz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lipschitz_</span><span class="p">,</span>
+            <span class="n">n_iter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+            <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="n">_split_intercept</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_valid_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that the input parameters are valid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">reg</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">reg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_reg_vector_</span><span class="p">)</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_reg_vector_</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="n">groups</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">_prepare_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ensure that the inputs are valid and prepare them for fit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Add the intercept column and compute Lipschitz bound the correct way</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">_add_intercept_col</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">lipschitz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lipschitz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_lipschitz</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">_add_intercept_col</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span>
+
+    <span class="k">def</span> <span class="nf">_init_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialise model and check inputs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="p">)</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups_</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">==</span> <span class="n">u</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="k">if</span> <span class="n">u</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_reg_vector_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_reg_vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_reg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses_</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">warm_start</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;coef_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">/=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_parameters</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lipschitz_</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_regularisation</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">supress_warning</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">_OLD_REG_WARNING</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit a group-lasso regularised linear model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="o">=</span><span class="n">lipschitz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_minimise_loss</span><span class="p">()</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>  <span class="c1"># pragma: nocover</span>
+        <span class="sd">&quot;&quot;&quot;Predict using the linear model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sparsity_mask_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A boolean mask indicating whether features are used in prediction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">coef_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mean_abs_coef</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">coef_</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coef_</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-10</span> <span class="o">*</span> <span class="n">mean_abs_coef</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">chosen_groups_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A set of the coosen group ids.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sparsity_mask_</span><span class="p">]))</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove columns corresponding to zero-valued coefficients.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csc&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparsity_mask_</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit a group lasso model to X and y and remove unused columns from X</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">subsample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Subsample the input using this class&#39;s subsampling scheme.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">subsample</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subsampling_scheme</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_l2_grad</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The gradient of the problem ||Ax - b||^2 wrt x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GroupLasso"><a class="viewcode-back" href="../../api_reference.html#group_lasso.GroupLasso">[docs]</a><span class="k">class</span> <span class="nc">GroupLasso</span><span class="p">(</span><span class="n">BaseGroupLasso</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sparse group lasso regularised least squares linear regression.</span>
+
+<span class="sd">    This class implements the Sparse Group Lasso [1] regularisation for</span>
+<span class="sd">    linear regression with the mean squared penalty.</span>
+
+<span class="sd">    This class is implemented as both a regressor and a transformation.</span>
+<span class="sd">    If the ``transform`` method is called, then the columns of the input</span>
+<span class="sd">    that correspond to zero-valued regression coefficients are dropped.</span>
+
+<span class="sd">    The loss is optimised using the FISTA algorithm proposed in [2] with the</span>
+<span class="sd">    generalised gradient-based restarting scheme proposed in [3]. This</span>
+<span class="sd">    algorithm is not as accurate as a few other optimisation algorithms,</span>
+<span class="sd">    but it is extremely efficient and does recover the sparsity patterns.</span>
+<span class="sd">    We therefore reccomend that this class is used as a transformer to select</span>
+<span class="sd">    the viable features and that the output is fed into another regression</span>
+<span class="sd">    algorithm, such as RidgeRegression in scikit-learn.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    groups : Iterable</span>
+<span class="sd">        Iterable that specifies which group each column corresponds to.</span>
+<span class="sd">        For columns that should not be regularised, the corresponding</span>
+<span class="sd">        group index should either be None or negative. For example, the</span>
+<span class="sd">        list ``[1, 1, 1, 2, 2, -1]`` specifies that the first three</span>
+<span class="sd">        columns of the data matrix belong to the first group, the next</span>
+<span class="sd">        two columns belong to the second group and the last column should</span>
+<span class="sd">        not be regularised.</span>
+<span class="sd">    group_reg : float or iterable [default=0.05]</span>
+<span class="sd">        The regularisation coefficient(s) for the group sparsity penalty.</span>
+<span class="sd">        If ``group_reg`` is an iterable, then its length should be equal to</span>
+<span class="sd">        the number of groups.</span>
+<span class="sd">    l1_reg : float or iterable [default=0.05]</span>
+<span class="sd">        The regularisation coefficient for the coefficient sparsity</span>
+<span class="sd">        penalty.</span>
+<span class="sd">    n_iter : int [default=100]</span>
+<span class="sd">        The maximum number of iterations to perform</span>
+<span class="sd">    tol : float [default=1e-5]</span>
+<span class="sd">        The convergence tolerance. The optimisation algorithm</span>
+<span class="sd">        will stop once ||x_{n+1} - x_n|| &lt; ``tol``.</span>
+<span class="sd">    scale_reg : str [in {&quot;group_size&quot;, &quot;none&quot;, &quot;inverse_group_size&quot;] or None </span>
+<span class="sd">        How to scale the group-wise regularisation coefficients. In the</span>
+<span class="sd">        original group lasso paper scaled the regularisation by the square</span>
+<span class="sd">        root of the elements in each group so that each variable has the</span>
+<span class="sd">        same effect on the regularisation. This is not sensible for dummy</span>
+<span class="sd">        encoded variables, as these always have either unit or zero norm.</span>
+<span class="sd">        ``scale_reg`` should therefore be None if all variables are dummy</span>
+<span class="sd">        variables. Finally, if the group size shouldn&#39;t be considered when</span>
+<span class="sd">        choosing variables, then inverse_group_size should be used instead</span>
+<span class="sd">        as that divide by the square root of the group size, removing the</span>
+<span class="sd">        dependence of group size on the regularisation strength.</span>
+<span class="sd">    subsampling_scheme : None, float, int or str [default=None]</span>
+<span class="sd">        The subsampling rate used for the gradient and singular value</span>
+<span class="sd">        computations. If it is a float, then it specifies the fraction</span>
+<span class="sd">        of rows to use in the computations. If it is an int, it</span>
+<span class="sd">        specifies the number of rows to use in the computation and if</span>
+<span class="sd">        it is a string, then it must be &#39;sqrt&#39; and the number of rows used</span>
+<span class="sd">        in the computations is the square root of the number of rows</span>
+<span class="sd">        in X.</span>
+<span class="sd">    frobenius_lipschitz : bool [default=False]</span>
+<span class="sd">        Use the Frobenius norm to estimate the lipschitz coefficient of the</span>
+<span class="sd">        MSE loss. This works well for systems whose power iterations</span>
+<span class="sd">        converge slowly. If False, then subsampled power iterations are</span>
+<span class="sd">        used. Using the Frobenius approximation for the Lipschitz</span>
+<span class="sd">        coefficient might fail, and end up with all-zero weights.</span>
+<span class="sd">    fit_intercept : bool [default=True]</span>
+<span class="sd">        Whether to fit an intercept or not.</span>
+<span class="sd">    random_state : np.random.RandomState [default=None]</span>
+<span class="sd">        The random state used for initialisation of parameters.</span>
+<span class="sd">    warm_start : bool [default=False]</span>
+<span class="sd">        If true, then subsequent calls to fit will not re-initialise the</span>
+<span class="sd">        model parameters. This can speed up the hyperparameter search</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Simon, N., Friedman, J., Hastie, T., &amp; Tibshirani, R. (2013).</span>
+<span class="sd">    A sparse-group lasso. Journal of Computational and Graphical</span>
+<span class="sd">    Statistics, 22(2), 231-245.</span>
+
+<span class="sd">    [2] Beck A, Teboulle M. (2009). A fast iterative shrinkage-thresholding</span>
+<span class="sd">    algorithm for linear inverse problems. SIAM journal on imaging</span>
+<span class="sd">    sciences. 2009 Mar 4;2(1):183-202.</span>
+
+<span class="sd">    [3] O’Donoghue B, Candes E. (2015) Adaptive restart for accelerated</span>
+<span class="sd">    gradient schemes. Foundations of computational mathematics.</span>
+<span class="sd">    Jun 1;15(3):715-32</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">group_reg</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">l1_reg</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+        <span class="n">scale_reg</span><span class="o">=</span><span class="s2">&quot;group_size&quot;</span><span class="p">,</span>
+        <span class="n">subsampling_scheme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">frobenius_lipschitz</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">old_regularisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">supress_warning</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+            <span class="n">l1_reg</span><span class="o">=</span><span class="n">l1_reg</span><span class="p">,</span>
+            <span class="n">group_reg</span><span class="o">=</span><span class="n">group_reg</span><span class="p">,</span>
+            <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
+            <span class="n">scale_reg</span><span class="o">=</span><span class="n">scale_reg</span><span class="p">,</span>
+            <span class="n">subsampling_scheme</span><span class="o">=</span><span class="n">subsampling_scheme</span><span class="p">,</span>
+            <span class="n">fit_intercept</span><span class="o">=</span><span class="n">fit_intercept</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="n">warm_start</span><span class="o">=</span><span class="n">warm_start</span><span class="p">,</span>
+            <span class="n">old_regularisation</span><span class="o">=</span><span class="n">old_regularisation</span><span class="p">,</span>
+            <span class="n">supress_warning</span><span class="o">=</span><span class="n">supress_warning</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frobenius_lipchitz</span> <span class="o">=</span> <span class="n">frobenius_lipschitz</span>
+
+<div class="viewcode-block" id="GroupLasso.fit"><a class="viewcode-back" href="../../api_reference.html#group_lasso.GroupLasso.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit a group lasso regularised linear regression model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.ndarray</span>
+<span class="sd">            Data matrix</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Target vector or matrix</span>
+<span class="sd">        lipschitz : float or None [default=None]</span>
+<span class="sd">            A Lipshitz bound for the mean squared loss with the given</span>
+<span class="sd">            data and target matrices. If None, this is estimated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="o">=</span><span class="n">lipschitz</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GroupLasso.predict"><a class="viewcode-back" href="../../api_reference.html#group_lasso.GroupLasso.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Predict using the linear model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">+</span> <span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span></div>
+
+    <span class="k">def</span> <span class="nf">_unregularised_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">MSE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">X_</span> <span class="o">@</span> <span class="n">w</span> <span class="o">-</span> <span class="n">y_</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">X_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">MSE</span>
+
+    <span class="k">def</span> <span class="nf">_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">SSE_grad</span> <span class="o">=</span> <span class="n">_l2_grad</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SSE_grad</span> <span class="o">/</span> <span class="n">X_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_compute_lipschitz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frobenius_lipchitz</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;fro&quot;</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">num_rows</span>
+            <span class="k">return</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;fro&quot;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">num_rows</span>
+
+        <span class="n">s_max</span> <span class="o">=</span> <span class="n">find_largest_singular_value</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">subsampling_scheme</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">subsampling_scheme</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state_</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">SSE_lipschitz</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">s_max</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">SSE_lipschitz</span> <span class="o">/</span> <span class="n">num_rows</span></div>
+
+
+<span class="k">def</span> <span class="nf">_softmax</span><span class="p">(</span><span class="n">logit</span><span class="p">):</span>
+    <span class="n">logit</span> <span class="o">=</span> <span class="n">logit</span> <span class="o">-</span> <span class="n">logit</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">expl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">expl</span> <span class="o">/</span> <span class="n">expl</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="n">logit</span><span class="o">.</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_softmax_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_softmax</span><span class="p">(</span><span class="n">X</span><span class="nd">@W</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_softmax_cross_entropy</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">_softmax_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="LogisticGroupLasso"><a class="viewcode-back" href="../../api_reference.html#group_lasso.LogisticGroupLasso">[docs]</a><span class="k">class</span> <span class="nc">LogisticGroupLasso</span><span class="p">(</span><span class="n">BaseGroupLasso</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sparse group lasso regularised multi-class logistic regression.</span>
+
+<span class="sd">    This class implements the Sparse Group Lasso [1] regularisation for</span>
+<span class="sd">    multi-class logistic regression with a cross entropy penalty.</span>
+
+<span class="sd">    This class is implemented as both a regressor and a transformation.</span>
+<span class="sd">    If the ``transform`` method is called, then the columns of the input</span>
+<span class="sd">    that correspond to zero-valued regression coefficients are dropped.</span>
+
+<span class="sd">    The loss is optimised using the FISTA algorithm proposed in [2] with the</span>
+<span class="sd">    generalised gradient-based restarting scheme proposed in [3]. This</span>
+<span class="sd">    algorithm is not as accurate as a few other optimisation algorithms,</span>
+<span class="sd">    but it is extremely efficient and does recover the sparsity patterns.</span>
+<span class="sd">    We therefore reccomend that this class is used as a transformer to select</span>
+<span class="sd">    the viable features and that the output is fed into another classification</span>
+<span class="sd">    algorithm, such as LogisticRegression in scikit-learn.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    groups : Iterable</span>
+<span class="sd">        Iterable that specifies which group each column corresponds to.</span>
+<span class="sd">        For columns that should not be regularised, the corresponding</span>
+<span class="sd">        group index should either be None or negative. For example, the</span>
+<span class="sd">        list ``[1, 1, 1, 2, 2, -1]`` specifies that the first three</span>
+<span class="sd">        columns of the data matrix belong to the first group, the next</span>
+<span class="sd">        two columns belong to the second group and the last column should</span>
+<span class="sd">        not be regularised.</span>
+<span class="sd">    group_reg : float or iterable [default=0.05]</span>
+<span class="sd">        The regularisation coefficient(s) for the group sparsity penalty.</span>
+<span class="sd">        If ``group_reg`` is an iterable, then its length should be equal to</span>
+<span class="sd">        the number of groups.</span>
+<span class="sd">    l1_reg : float or iterable [default=0.05]</span>
+<span class="sd">        The regularisation coefficient for the coefficient sparsity</span>
+<span class="sd">        penalty.</span>
+<span class="sd">    n_iter : int [default=100]</span>
+<span class="sd">        The maximum number of iterations to perform</span>
+<span class="sd">    tol : float [default=1e-5]</span>
+<span class="sd">        The convergence tolerance. The optimisation algorithm</span>
+<span class="sd">        will stop once ||x_{n+1} - x_n|| &lt; ``tol``.</span>
+<span class="sd">    scale_reg : str [in {&quot;group_size&quot;, &quot;none&quot;, &quot;inverse_group_size&quot;] or None </span>
+<span class="sd">        How to scale the group-wise regularisation coefficients. In the</span>
+<span class="sd">        original group lasso paper scaled the regularisation by the square</span>
+<span class="sd">        root of the elements in each group so that each variable has the</span>
+<span class="sd">        same effect on the regularisation. This is not sensible for dummy</span>
+<span class="sd">        encoded variables, as these always have either unit or zero norm.</span>
+<span class="sd">        ``scale_reg`` should therefore be None if all variables are dummy</span>
+<span class="sd">        variables. Finally, if the group size shouldn&#39;t be considered when</span>
+<span class="sd">        choosing variables, then inverse_group_size should be used instead</span>
+<span class="sd">        as that divide by the square root of the group size, removing the</span>
+<span class="sd">        dependence of group size on the regularisation strength.</span>
+<span class="sd">    subsampling_scheme : None, float, int or str [default=None]</span>
+<span class="sd">        The subsampling rate used for the gradient and singular value</span>
+<span class="sd">        computations. If it is a float, then it specifies the fraction</span>
+<span class="sd">        of rows to use in the computations. If it is an int, it</span>
+<span class="sd">        specifies the number of rows to use in the computation and if</span>
+<span class="sd">        it is a string, then it must be &#39;sqrt&#39; and the number of rows used</span>
+<span class="sd">        in the computations is the square root of the number of rows</span>
+<span class="sd">        in X.</span>
+<span class="sd">    frobenius_lipschitz : bool [default=False]</span>
+<span class="sd">        Use the Frobenius norm to estimate the lipschitz coefficient of the</span>
+<span class="sd">        MSE loss. This works well for systems whose power iterations</span>
+<span class="sd">        converge slowly. If False, then subsampled power iterations are</span>
+<span class="sd">        used. Using the Frobenius approximation for the Lipschitz</span>
+<span class="sd">        coefficient might fail, and end up with all-zero weights.</span>
+<span class="sd">    fit_intercept : bool [default=True]</span>
+<span class="sd">        Whether to fit an intercept or not.</span>
+<span class="sd">    random_state : np.random.RandomState [default=None]</span>
+<span class="sd">        The random state used for initialisation of parameters.</span>
+<span class="sd">    warm_start : bool [default=False]</span>
+<span class="sd">        If true, then subsequent calls to fit will not re-initialise the</span>
+<span class="sd">        model parameters. This can speed up the hyperparameter search</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Simon, N., Friedman, J., Hastie, T., &amp; Tibshirani, R. (2013).</span>
+<span class="sd">    A sparse-group lasso. Journal of Computational and Graphical</span>
+<span class="sd">    Statistics, 22(2), 231-245.</span>
+
+<span class="sd">    [2] Beck A, Teboulle M. (2009). A fast iterative shrinkage-thresholding</span>
+<span class="sd">    algorithm for linear inverse problems. SIAM journal on imaging</span>
+<span class="sd">    sciences. 2009 Mar 4;2(1):183-202.</span>
+
+<span class="sd">    [3] O’Donoghue B, Candes E. (2015) Adaptive restart for accelerated</span>
+<span class="sd">    gradient schemes. Foundations of computational mathematics.</span>
+<span class="sd">    Jun 1;15(3):715-32</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">groups</span><span class="p">,</span>
+        <span class="n">group_reg</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">l1_reg</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+        <span class="n">scale_reg</span><span class="o">=</span><span class="s2">&quot;group_size&quot;</span><span class="p">,</span>
+        <span class="n">subsampling_scheme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">old_regularisation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">supress_warning</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">subsampling_scheme</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Subsampling is not stable for logistic regression group lasso.&quot;</span>
+            <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+            <span class="n">group_reg</span><span class="o">=</span><span class="n">group_reg</span><span class="p">,</span>
+            <span class="n">l1_reg</span><span class="o">=</span><span class="n">l1_reg</span><span class="p">,</span>
+            <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
+            <span class="n">scale_reg</span><span class="o">=</span><span class="n">scale_reg</span><span class="p">,</span>
+            <span class="n">subsampling_scheme</span><span class="o">=</span><span class="n">subsampling_scheme</span><span class="p">,</span>
+            <span class="n">fit_intercept</span><span class="o">=</span><span class="n">fit_intercept</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="n">warm_start</span><span class="o">=</span><span class="n">warm_start</span><span class="p">,</span>
+            <span class="n">old_regularisation</span><span class="o">=</span><span class="n">old_regularisation</span><span class="p">,</span>
+            <span class="n">supress_warning</span><span class="o">=</span><span class="n">supress_warning</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_compute_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_softmax_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_unregularised_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_softmax_cross_entropy</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">X_</span><span class="p">,</span> <span class="n">y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">_softmax_proba</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">y_</span><span class="p">)</span> <span class="o">/</span> <span class="n">X_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_compute_lipschitz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;fro&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;fro&quot;</span><span class="p">)</span>
+
+        <span class="n">C</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">C</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span> <span class="o">/</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_softmax_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<div class="viewcode-block" id="LogisticGroupLasso.predict"><a class="viewcode-back" href="../../api_reference.html#group_lasso.LogisticGroupLasso.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Predict using the linear model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;One-hot encoding for the labels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_binarizer_</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(((</span><span class="n">ones</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span> <span class="n">y</span><span class="p">,))</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="nf">_prepare_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ensure that the inputs are valid and prepare them for fit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_binarizer_</span> <span class="o">=</span> <span class="n">LabelBinarizer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_binarizer_</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+        <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">!=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The target array must either be a 2D dummy encoded (binary)&quot;</span>
+                <span class="s2">&quot;array or a 1D array with class labels as array elements.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Add the intercept column and compute Lipschitz bound the correct way</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">_add_intercept_col</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">lipschitz</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lipschitz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_lipschitz</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">_add_intercept_col</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lipschitz</span></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yngve Mardal Moe
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

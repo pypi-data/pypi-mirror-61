@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Efficient Group Lasso in Python &mdash; Group Lasso 1.3.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation guide" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Group Lasso
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maths.html">Mathematical background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Group Lasso</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Efficient Group Lasso in Python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="efficient-group-lasso-in-python">
+<h1>Efficient Group Lasso in Python<a class="headerlink" href="#efficient-group-lasso-in-python" title="Permalink to this headline">¶</a></h1>
+<p>This library provides efficient computation of sparse group lasso regularise
+linear and logistic regression.</p>
+<div class="section" id="what-is-group-lasso">
+<h2>What is group lasso?<a class="headerlink" href="#what-is-group-lasso" title="Permalink to this headline">¶</a></h2>
+<p>It is often the case that we have a dataset where the covariates form natural
+groups. These groups can represent biological function in gene expression
+data or maybe sensor location in climate data. We then wish to find a sparse
+subset of these covariate groups that describe the relationship in the data.
+Let us look at an example to crystalise the usefulness of this further.</p>
+<p>Say that we work as data scientists for a large Norwegian food supplier and
+wish to make a prediction model for the amount of that will be sold based on
+weather data. We have weather data from cities in Norway and need to know how
+the fruit should be distributed across different warehouses. From each city,
+we have information about temperature, precipitation, wind strength, wind
+direction and how cloudy it is. Multiplying the number of cities with the
+number of covariates per city, we get 1500 different covariates in total.
+It is unlikely that we need all these covariates in our model, so we seek a
+sparse set of these to do our predictions with.</p>
+<p>Let us now assume that the weather data API that we use charge money by
+the number of cities we query, but the amount of information we get per
+city. We therefore wish to create a regression model that predicts fruit
+demand based on a sparse set of city observations. One way to achieve such
+sparsity is through the framework of group lasso regularisation <a class="footnote-reference brackets" href="#id4" id="id1">1</a>.</p>
+</div>
+<div class="section" id="what-is-sparse-group-lasso">
+<h2>What is sparse group lasso<a class="headerlink" href="#what-is-sparse-group-lasso" title="Permalink to this headline">¶</a></h2>
+<p>The sparse group lasso regulariser <a class="footnote-reference brackets" href="#id5" id="id2">2</a> is an extension of the group lasso
+regulariser that also promotes parameter-wise sparsity. It is the combination
+of the group lasso penalty and the normal lasso penalty. If we consider the
+example above, then the sparse group lasso penalty will yield a sparse set
+of groups and also a sparse set of covariates in each selected group. An
+example of where this is useful is if each city query has a set price that
+increases based on the number of measurements we want from each city.</p>
+</div>
+<div class="section" id="a-quick-mathematical-interlude">
+<h2>A quick mathematical interlude<a class="headerlink" href="#a-quick-mathematical-interlude" title="Permalink to this headline">¶</a></h2>
+<p>Let us now briefly describe the mathematical problem solved in group lasso
+regularised machine learning problems. Originally, group lasso algorithm <a class="footnote-reference brackets" href="#id4" id="id3">1</a>
+was defined as regularised linear regression with the following loss function</p>
+<div class="math notranslate nohighlight">
+\[\text{arg} \min_{\mathbf{\beta}_g \in \mathbb{R^{d_g}}}
+|| \sum_{g \in \mathcal{G}} \left[\mathbf{X}_g\mathbf{\beta}_g\right] - \mathbf{y} ||_2^2
++ \lambda_1 ||\mathbf{\beta}||_1
++ \lambda_2 \sum_{g \in \mathcal{G}} \sqrt{d_g}||\mathbf{\beta}_g||_2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{X}_g \in \mathbb{R}^{n \times d_g}\)</span> is the data matrix
+corresponding to the covariates in group <span class="math notranslate nohighlight">\(g\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\beta}_g\)</span>
+is the regression coefficients corresponding to group <span class="math notranslate nohighlight">\(g\)</span>,
+<span class="math notranslate nohighlight">\(\mathbf{y} \in \mathbf{R}^n\)</span> is the regression target, <span class="math notranslate nohighlight">\(n\)</span> is the
+number of measurements, <span class="math notranslate nohighlight">\(d_g\)</span> is the dimensionality of group <span class="math notranslate nohighlight">\(g\)</span>,
+<span class="math notranslate nohighlight">\(\lambda_1\)</span> is the parameter-wise regularisation penalty,
+<span class="math notranslate nohighlight">\(\lambda_2\)</span> is the group-wise regularisation penalty and
+<span class="math notranslate nohighlight">\(\mathcal{G}\)</span> is the set of all groups.</p>
+<p>Notice, in the equation above, that the 2-norm is <em>not</em> squared. A consequence
+of this is that the regulariser has a “kink” at zero, uninformative covariate
+groups to have zero-valued regression coefficients. Later, it has been popular
+to use this methodology to regularise other machine learning algorithms, such
+as logistic regression. The “only” thing neccesary to do this is to exchange
+the squared norm term, <span class="math notranslate nohighlight">\(|| \sum_{g \in \mathcal{G}} \left[\mathbf{X}_g\mathbf{\beta}_g\right] - \mathbf{y} ||_2^2\)</span>,
+with a general loss term, <span class="math notranslate nohighlight">\(L(\mathbf{\beta}; \mathbf{X}, \mathbf{y})\)</span>,
+where <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is the concatenation
+of all group coefficients and group data matrices, respectively.</p>
+</div>
+<div class="section" id="api-design">
+<h2>API design<a class="headerlink" href="#api-design" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">group-lasso</span></code> python library is modelled after the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> API
+and should be fully compliant with the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> ecosystem.
+Consequently, the <code class="docutils literal notranslate"><span class="pre">group-lasso</span></code> library depends on <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>
+and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<p>Currently, the only supported algorithm is group-lasso regularised linear
+and multiple regression, which is available in the <code class="docutils literal notranslate"><span class="pre">group_lasso.GroupLasso</span></code>
+class. However, I am working on an experimental class with group lasso
+regularised logistic regression, which is available in the
+<code class="docutils literal notranslate"><span class="pre">group_lasso.LogisticGroupLasso</span></code> class. Currently, this class only supports
+binary classification problems through a sigmoidal transformation, but
+I am working on a multiple classification algorithm with the softmax
+transformation.</p>
+<p>All classes in this library is implemented as both <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>
+transformers and their regressors or classifiers (dependent on their
+use case). The reason for this is that to use lasso based models for
+variable selection, the regularisation coefficient should be quite high,
+resulting in sub-par performance on the actual task of interest. Therefore,
+it is common to first use a lasso-like algorithm to select the relevant
+features before using another another algorithm (say ridge regression)
+for the task at hand. Therefore, the <code class="docutils literal notranslate"><span class="pre">transform</span></code> method of
+<code class="docutils literal notranslate"><span class="pre">group_lasso.GroupLasso</span></code> to remove the columns of the input dataset
+corresponding to zero-valued coefficients.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installing-group-lasso">Installing group-lasso</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Examples</a><ul>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maths.html">Mathematical background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#quick-overview">Quick overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#details-on-fista">Details on FISTA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#computing-the-lipschitz-coefficients">Computing the Lipschitz coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#group-lasso-regularised-estimators">Group Lasso regularised estimators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#module-group_lasso.utils">Utilities for group lasso</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dd><p>Yuan M, Lin Y. Model selection and estimation in regression with
+grouped variables. Journal of the Royal Statistical Society: Series B
+(Statistical Methodology). 2006 Feb;68(1):49-67.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Simon, N., Friedman, J., Hastie, T., &amp; Tibshirani, R. (2013).
+A sparse-group lasso. Journal of Computational and Graphical
+Statistics, 22(2), 231-245.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Yngve Mardal Moe
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
