@@ -1,0 +1,50 @@
+{
+  "name": "@regulus/sidepanel",
+  "version": "0.4.3",
+  "description": "A sidepanel output widget for JupyterLab",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab extension",
+    "widgets"
+  ],
+  "homepage": "https://github.com/yarden-livnat/sidepanel",
+  "bugs": {
+    "url": "https://github.com/yarden-livnat/sidepanel/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": "Project Jupyter",
+  "main": "lib/index.js",
+  "types": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yarden-livnat/sidepanel"
+  },
+  "scripts": {
+    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
+    "build": "tsc",
+    "prepare": "npm run clean && npm run build",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@jupyter-widgets/base": "^2.0.1",
+    "@jupyter-widgets/jupyterlab-manager": "^1.0.1",
+    "@jupyterlab/application": "^1.0.1",
+    "@phosphor/application": "^1.6.3",
+    "@phosphor/widgets": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.6.2",
+    "fs-extra": "^8.1.0",
+    "json-loader": "^0.5.7",
+    "mkdirp": "^0.5.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^2.6.3",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.3"
+  },
+  "jupyterlab": {
+    "extension": "lib/plugin"
+  }
+}
