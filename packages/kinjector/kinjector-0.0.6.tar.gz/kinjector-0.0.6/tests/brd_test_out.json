@@ -1,0 +1,211 @@
+{
+    "board": {
+        "board setup": {
+            "layers": {
+                "board thickness": 3200000,
+                "# copper layers": 4,
+                "enabled": [
+                    0,
+                    1,
+                    2,
+                    31,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    39,
+                    40,
+                    41,
+                    42,
+                    45,
+                    46,
+                    47,
+                    48,
+                    49
+                ],
+                "visible": [
+                    0,
+                    31,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    39,
+                    49
+                ]
+            },
+            "design rules": {
+                "blind/buried via allowed": true,
+                "uvia allowed": true,
+                "require courtyards": true,
+                "prohibit courtyard overlap": false,
+                "min track width": 320000,
+                "min via diameter": 120000,
+                "min via drill size": 110000,
+                "min uvia diameter": 470000,
+                "min uvia drill size": 120000,
+                "hole to hole spacing": 0
+            },
+            "net classes": {
+                "definitions": {
+                    "Default": {
+                        "clearance": 200000,
+                        "description": "",
+                        "diff pair gap": 250000,
+                        "diff pair width": 200000,
+                        "track width": 250000,
+                        "via diameter": 800000,
+                        "via drill": 400000,
+                        "uvia diameter": 300000,
+                        "uvia drill": 100000
+                    },
+                    "new_new_class": {
+                        "clearance": 200000,
+                        "description": "",
+                        "diff pair gap": 250000,
+                        "diff pair width": 200000,
+                        "track width": 250000,
+                        "via diameter": 800000,
+                        "via drill": 400000,
+                        "uvia diameter": 300000,
+                        "uvia drill": 100000
+                    }
+                },
+                "assignments": {
+                    "": "Default",
+                    "Net-(D1-Pad1)": "Default",
+                    "Net-(D1-Pad2)": "new_new_class",
+                    "Net-(R1-Pad2)": "new_new_class",
+                    "Net-(R2-Pad1)": "Default"
+                }
+            },
+            "tracks, vias, diff pairs": {
+                "track width list": [
+                    1990000,
+                    456000
+                ],
+                "via dimensions list": [
+                    {
+                        "diameter": 480000,
+                        "drill": 841000
+                    }
+                ],
+                "diff pair dimensions list": []
+            },
+            "solder mask/paste": {
+                "solder mask clearance": 34000,
+                "solder mask min width": 570000,
+                "solder paste clearance": 1,
+                "solder paste clearance ratio": -0.2
+            }
+        },
+        "plot": {
+            "force a4 output": true,
+            "autoscale": false,
+            "color": null,
+            "plot in outline mode": true,
+            "drill marks": 2,
+            "x scale factor": 1.0,
+            "y scale factor": 1.0,
+            "hpgl pen size": 16.0,
+            "hpgl pen num": 2,
+            "hpgl pen speed": 30,
+            "mirrored plot": true,
+            "negative plot": true,
+            "output directory": "",
+            "plot mode": 1,
+            "scale": 1.0,
+            "skip npth pads": false,
+            "text mode": 3,
+            "generate gerber job file": true,
+            "exclude pcb edge": false,
+            "format": 2,
+            "coordinate format": 6,
+            "include netlist attributes": true,
+            "default line width": 150000,
+            "plot border": true,
+            "plot invisible text": true,
+            "plot pads on silk": true,
+            "plot footprint refs": false,
+            "plot footprint values": false,
+            "do not tent vias": true,
+            "scaling": 3,
+            "subtract soldermask from silk": true,
+            "use aux axis as origin": true,
+            "use protel filename extensions": true,
+            "use x2 format": true,
+            "track width correction": 0,
+            "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                44
+            ]
+        },
+        "modules": {
+            "R3": {
+                "position": {
+                    "x": 277187000,
+                    "y": 203137000,
+                    "angle": 330.0,
+                    "side": "bottom"
+                }
+            },
+            "R2": {
+                "position": {
+                    "x": 166187222,
+                    "y": 99187111,
+                    "angle": 120.0,
+                    "side": "top"
+                }
+            },
+            "R1": {
+                "position": {
+                    "x": 161528000,
+                    "y": 102248000,
+                    "angle": 330.0,
+                    "side": "top"
+                }
+            },
+            "D1": {
+                "position": {
+                    "x": 172517000,
+                    "y": 90297000,
+                    "angle": 120.0,
+                    "side": "bottom"
+                }
+            }
+        }
+    }
+}

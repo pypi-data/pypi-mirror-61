@@ -1,0 +1,94 @@
+Metadata-Version: 1.1
+Name: kinjector
+Version: 0.0.6
+Summary: Inject/eject JSON/YAML data to/from KiCad files.
+Home-page: https://github.com/xesscorp/kinjector
+Author: XESS Corp.
+Author-email: info@xess.com
+License: MIT license
+Description: =========
+        KinJector
+        =========
+        
+        
+        .. image:: https://img.shields.io/pypi/v/kinjector.svg
+                :target: https://pypi.python.org/pypi/kinjector
+        
+        
+        Inject/eject JSON/YAML data to/from KiCad Board files.
+        
+        
+        * Free software: MIT license
+        * Documentation: https://xesscorp.github.io/kinjector
+        
+        
+        Features
+        --------
+        
+        * Parameters in one or more JSON or YAML files can be injected into a 
+          KiCad PCB file.
+        * Parameters from a KiCad PCB file can be extracted and stored in a
+          JSON or YAML file.
+        * The currently-supported set of parameters can control the design rules, net classes,
+          assignment of netclasses to particular nets, plotting options,
+          and (X,Y)/orientation/top-bottom-side position of part footprints.
+        * Subsets of parameters can be used to restrict the scope of effects upon the PCB.
+        * A script is provided to allow injection/ejection of JSON/YAML data to/from
+          a KiCad PCB file. In addition, the ``kinjector`` module can be used within
+          other Python scripts to manipulate KiCad PCB files.
+        
+        
+        =======
+        History
+        =======
+        
+        
+        0.0.6 (2020-02-14)
+        ------------------
+        
+        * yaml.load() will accept a KiCad board file as legal YAML, so place additional checks
+          to detect yaml files and prevent over-writing .kicad_pcb files with YAML. 
+        
+        
+        0.0.5 (2019-06-19)
+        ------------------
+        
+        * Rearranged hierarchy of board data to more closely reflect KiCad board setup dialog.
+        
+        
+        0.0.4 (2019-06-10)
+        ------------------
+        
+        * Added ability to inject/eject plot settings (but not drill settings).
+        
+        
+        0.0.3 (2019-06-07)
+        ------------------
+        
+        * Added ability to inject/eject layer enables and visibility.
+        
+        
+        0.0.2 (2019-05-29)
+        ------------------
+        
+        * Added ability to inject/eject part (X,Y), orientation, and PCB top/bottom-side.
+        * Added ability to inject/eject board design rules.
+        * Now works with both JSON and YAML file formats.
+        * Unit tests added.
+        * Command-line tool added.
+        * Documentation added.
+        
+        
+        0.0.1 (2019-05-15)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: kinjector
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
