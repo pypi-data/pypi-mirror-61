@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.utils.ecdsakey module &mdash; tlslite-ng 0.8.0-alpha37 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.utils.keyfactory module" href="tlslite.utils.keyfactory.html" />
+    <link rel="prev" title="tlslite.utils.ecc module" href="tlslite.utils.ecc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.integration.html">tlslite.integration package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tlslite.utils.html">tlslite.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+          <li><a href="tlslite.utils.html">tlslite.utils package</a> &raquo;</li>
+        
+      <li>tlslite.utils.ecdsakey module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.utils.ecdsakey.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.utils.ecdsakey">
+<span id="tlslite-utils-ecdsakey-module"></span><h1>tlslite.utils.ecdsakey module<a class="headerlink" href="#module-tlslite.utils.ecdsakey" title="Permalink to this headline">¶</a></h1>
+<p>Abstract class for ECDSA.</p>
+<dl class="class">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey">
+<em class="property">class </em><code class="descclassname">tlslite.utils.ecdsakey.</code><code class="descname">ECDSAKey</code><span class="sig-paren">(</span><em>public_key</em>, <em>private_key</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This is an abstract base class for ECDSA keys.</p>
+<p>Particular implementations of ECDSA keys, such as
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Python_ECDSAKey</span></code>
+… more coming
+inherit from this.</p>
+<p>To create or parse an ECDSA key, don’t use one of these classes
+directly.  Instead, use the factory functions in
+<a class="reference internal" href="tlslite.utils.keyfactory.html#module-tlslite.utils.keyfactory" title="tlslite.utils.keyfactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">keyfactory</span></code></a>.</p>
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>public_key</em>, <em>private_key</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new ECDSA key.</p>
+<p>If public_key or private_key are passed in, the new key
+will be initialized.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>public_key</strong> – ECDSA public key.</li>
+<li><strong>private_key</strong> – ECDSA private key.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.acceptsPassword">
+<code class="descname">acceptsPassword</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.acceptsPassword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the write() method accepts a password for use
+in encrypting the private key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.generate">
+<em class="property">static </em><code class="descname">generate</code><span class="sig-paren">(</span><em>bits</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a new key with the specified curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ECDSAKey</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.hasPrivateKey">
+<code class="descname">hasPrivateKey</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.hasPrivateKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether or not this key has a private component.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.hashAndSign">
+<code class="descname">hashAndSign</code><span class="sig-paren">(</span><em>bytes</em>, <em>rsaScheme=None</em>, <em>hAlg='sha1'</em>, <em>sLen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.hashAndSign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hash and sign the passed-in bytes.</p>
+<p>This requires the key to have a private component. It performs
+a signature on the passed-in data with selected hash algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bytes</strong> (<em>bytes-like object</em>) – The value which will be hashed and signed.</li>
+<li><strong>rsaScheme</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Ignored, present for API compatibility with RSA</li>
+<li><strong>hAlg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The hash algorithm that will be used to hash data</li>
+<li><strong>sLen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Ignored, present for API compatibility with RSA</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An ECDSA signature on the passed-in data.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.hashAndVerify">
+<code class="descname">hashAndVerify</code><span class="sig-paren">(</span><em>sigBytes</em>, <em>bytes</em>, <em>rsaScheme=None</em>, <em>hAlg='sha1'</em>, <em>sLen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.hashAndVerify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hash and verify the passed-in bytes with the signature.</p>
+<p>This verifies an ECDSA signature on the passed-in data
+with selected hash algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sigBytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – An ECDSA signature, DER encoded.</li>
+<li><strong>bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – The value which will be hashed and verified.</li>
+<li><strong>rsaScheme</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Ignored, present for API compatibility with RSA</li>
+<li><strong>hAlg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The hash algorithm that will be used</li>
+<li><strong>sLen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Ignored, present for API compatibility with RSA</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Whether the signature matches the passed-in data.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.sign">
+<code class="descname">sign</code><span class="sig-paren">(</span><em>bytes</em>, <em>padding=None</em>, <em>hashAlg='sha1'</em>, <em>saltLen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sign the passed-in bytes.</p>
+<p>This requires the key to have a private component.  It performs
+an ECDSA signature on the passed-in data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – The value which will be signed (generally a binary
+encoding of hash output.</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Ignored, present for API compatibility with RSA</li>
+<li><strong>hashAlg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of hash that was used for calculating the bytes</li>
+<li><strong>saltLen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Ignored, present for API compatibility with RSA</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An ECDSA signature on the passed-in data.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.verify">
+<code class="descname">verify</code><span class="sig-paren">(</span><em>sigBytes</em>, <em>bytes</em>, <em>padding=None</em>, <em>hashAlg=None</em>, <em>saltLen=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify the passed-in bytes with the signature.</p>
+<p>This verifies a PKCS1 signature on the passed-in data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sigBytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – A PKCS1 signature.</li>
+<li><strong>bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – The value which will be verified.</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Ignored, present for API compatibility with RSA</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Whether the signature matches the passed-in data.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.ecdsakey.ECDSAKey.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>password=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.ecdsakey.ECDSAKey.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string containing the key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A string describing the key, in whichever format (PEM)
+is native to the implementation.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.utils.keyfactory.html" class="btn btn-neutral float-right" title="tlslite.utils.keyfactory module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.utils.ecc.html" class="btn btn-neutral float-left" title="tlslite.utils.ecc module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

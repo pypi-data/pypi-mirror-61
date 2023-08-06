@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.utils.constanttime module &mdash; tlslite-ng 0.8.0-alpha37 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.utils.cryptomath module" href="tlslite.utils.cryptomath.html" />
+    <link rel="prev" title="tlslite.utils.compat module" href="tlslite.utils.compat.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.integration.html">tlslite.integration package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tlslite.utils.html">tlslite.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+          <li><a href="tlslite.utils.html">tlslite.utils package</a> &raquo;</li>
+        
+      <li>tlslite.utils.constanttime module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.utils.constanttime.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.utils.constanttime">
+<span id="tlslite-utils-constanttime-module"></span><h1>tlslite.utils.constanttime module<a class="headerlink" href="#module-tlslite.utils.constanttime" title="Permalink to this headline">¶</a></h1>
+<p>Various constant time functions for processing sensitive data</p>
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_check_cbc_mac_and_pad">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_check_cbc_mac_and_pad</code><span class="sig-paren">(</span><em>data</em>, <em>mac</em>, <em>seqnumBytes</em>, <em>contentType</em>, <em>version</em>, <em>block_size=16</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_check_cbc_mac_and_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check CBC cipher HMAC and padding. Close to constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – data with HMAC value to test and padding</li>
+<li><strong>mac</strong> (<em>hashlib mac</em>) – empty HMAC, initialised with a key</li>
+<li><strong>seqnumBytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – TLS sequence number, used as input to HMAC</li>
+<li><strong>contentType</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – a single byte, used as input to HMAC</li>
+<li><strong>version</strong> (<em>tuple of int</em>) – a tuple of two ints, used as input to HMAC and to guide
+checking of padding</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">boolean</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if MAC and pad is ok, False otherwise</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_eq_u32">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_eq_u32</code><span class="sig-paren">(</span><em>val_a</em>, <em>val_b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_eq_u32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if val_a == val_b, 0 otherwise. Constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>val_a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+<li><strong>val_b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_gt_u32">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_gt_u32</code><span class="sig-paren">(</span><em>val_a</em>, <em>val_b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_gt_u32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if val_a &gt; val_b, 0 otherwise. Constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>val_a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+<li><strong>val_b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_isnonzero_u32">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_isnonzero_u32</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_isnonzero_u32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns 1 if val is != 0, 0 otherwise. Constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_le_u32">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_le_u32</code><span class="sig-paren">(</span><em>val_a</em>, <em>val_b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_le_u32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if val_a &lt;= val_b, 0 otherwise. Constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>val_a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+<li><strong>val_b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_lsb_prop_u8">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_lsb_prop_u8</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_lsb_prop_u8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagate LSB to all 8 bits of the returned byte. Constant time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_lt_u32">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_lt_u32</code><span class="sig-paren">(</span><em>val_a</em>, <em>val_b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_lt_u32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns 1 if val_a &lt; val_b, 0 otherwise. Constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>val_a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+<li><strong>val_b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.constanttime.ct_neq_u32">
+<code class="descclassname">tlslite.utils.constanttime.</code><code class="descname">ct_neq_u32</code><span class="sig-paren">(</span><em>val_a</em>, <em>val_b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.constanttime.ct_neq_u32" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if val_a != val_b, 0 otherwise. Constant time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>val_a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+<li><strong>val_b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – an unsigned integer representable as a 32 bit value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.utils.cryptomath.html" class="btn btn-neutral float-right" title="tlslite.utils.cryptomath module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.utils.compat.html" class="btn btn-neutral float-left" title="tlslite.utils.compat module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

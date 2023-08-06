@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.utils.cryptomath module &mdash; tlslite-ng 0.8.0-alpha37 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.utils.datefuncs module" href="tlslite.utils.datefuncs.html" />
+    <link rel="prev" title="tlslite.utils.constanttime module" href="tlslite.utils.constanttime.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.integration.html">tlslite.integration package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tlslite.utils.html">tlslite.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+          <li><a href="tlslite.utils.html">tlslite.utils package</a> &raquo;</li>
+        
+      <li>tlslite.utils.cryptomath module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.utils.cryptomath.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.utils.cryptomath">
+<span id="tlslite-utils-cryptomath-module"></span><h1>tlslite.utils.cryptomath module<a class="headerlink" href="#module-tlslite.utils.cryptomath" title="Permalink to this headline">¶</a></h1>
+<p>cryptomath module</p>
+<p>This module has basic math/crypto code.</p>
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.HKDF_expand">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">HKDF_expand</code><span class="sig-paren">(</span><em>PRK</em>, <em>info</em>, <em>L</em>, <em>algorithm</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.HKDF_expand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.HKDF_expand_label">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">HKDF_expand_label</code><span class="sig-paren">(</span><em>secret</em>, <em>label</em>, <em>hashValue</em>, <em>length</em>, <em>algorithm</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.HKDF_expand_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>TLS1.3 key derivation function (HKDF-Expand-Label).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – the key from which to derive the keying material</li>
+<li><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – label used to differentiate the keying materials</li>
+<li><strong>hashValue</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – bytes used to “salt” the produced keying
+material</li>
+<li><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of bytes to produce</li>
+<li><strong>algorithm</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the secure hash algorithm used as the
+basis of the HKDF</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.HMAC_MD5">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">HMAC_MD5</code><span class="sig-paren">(</span><em>k</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.HMAC_MD5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.HMAC_SHA1">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">HMAC_SHA1</code><span class="sig-paren">(</span><em>k</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.HMAC_SHA1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.HMAC_SHA256">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">HMAC_SHA256</code><span class="sig-paren">(</span><em>k</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.HMAC_SHA256" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.HMAC_SHA384">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">HMAC_SHA384</code><span class="sig-paren">(</span><em>k</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.HMAC_SHA384" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.MD5">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">MD5</code><span class="sig-paren">(</span><em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.MD5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a MD5 digest of data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.SHA1">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">SHA1</code><span class="sig-paren">(</span><em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.SHA1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a SHA1 digest of data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.bytesToNumber">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">bytesToNumber</code><span class="sig-paren">(</span><em>b</em>, <em>endian='big'</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.bytesToNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a number stored in bytearray to an integer.</p>
+<p>By default assumes big-endian encoding of the number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.derive_secret">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">derive_secret</code><span class="sig-paren">(</span><em>secret</em>, <em>label</em>, <em>handshake_hashes</em>, <em>algorithm</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.derive_secret" title="Permalink to this definition">¶</a></dt>
+<dd><p>TLS1.3 key derivation function (Derive-Secret).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – secret key used to derive the keying material</li>
+<li><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – label used to differentiate they keying materials</li>
+<li><strong>handshake_hashes</strong> (<a class="reference internal" href="tlslite.handshakehashes.html#tlslite.handshakehashes.HandshakeHashes" title="tlslite.handshakehashes.HandshakeHashes"><em>HandshakeHashes</em></a>) – hashes of the handshake messages
+or <cite>None</cite> if no handshake transcript is to be used for derivation of
+keying material</li>
+<li><strong>algorithm</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – name of the secure hash algorithm used as the
+basis of the HKDF algorithm - governs how much keying material will
+be generated</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.divceil">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">divceil</code><span class="sig-paren">(</span><em>divident</em>, <em>divisor</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.divceil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integer division with rounding up</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.gcd">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">gcd</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.gcd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.getRandomBytes">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">getRandomBytes</code><span class="sig-paren">(</span><em>howMany</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.getRandomBytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.getRandomNumber">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">getRandomNumber</code><span class="sig-paren">(</span><em>low</em>, <em>high</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.getRandomNumber" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.getRandomPrime">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">getRandomPrime</code><span class="sig-paren">(</span><em>bits</em>, <em>display=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.getRandomPrime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random prime number of a given size.</p>
+<p>the number will be ‘bits’ bits long (i.e. generated number will be
+larger than <cite>(2^(bits-1) * 3 ) / 2</cite> but smaller than 2^bits.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.getRandomSafePrime">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">getRandomSafePrime</code><span class="sig-paren">(</span><em>bits</em>, <em>display=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.getRandomSafePrime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random safe prime.</p>
+<p>Will generate a prime <cite>bits</cite> bits long (see getRandomPrime) such that
+the (p-1)/2 will also be prime.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.invMod">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">invMod</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.invMod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.isPrime">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">isPrime</code><span class="sig-paren">(</span><em>n, iterations=5, display=False, sieve=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997]</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.isPrime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.lcm">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">lcm</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.lcm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.makeSieve">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">makeSieve</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.makeSieve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.mpiToNumber">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">mpiToNumber</code><span class="sig-paren">(</span><em>mpi</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.mpiToNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a MPI (OpenSSL bignum string) to an integer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.numBits">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">numBits</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.numBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of bits necessary to represent the integer in binary</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.numBytes">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">numBytes</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.numBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of bytes necessary to represent the integer in bytes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.numberToByteArray">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">numberToByteArray</code><span class="sig-paren">(</span><em>n</em>, <em>howManyBytes=None</em>, <em>endian='big'</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.numberToByteArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an integer into a bytearray, zero-pad to howManyBytes.</p>
+<p>The returned bytearray may be smaller than howManyBytes, but will
+not be larger.  The returned bytearray will contain a big- or little-endian
+encoding of the input integer (n). Big endian encoding is used by default.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.numberToMPI">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">numberToMPI</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.numberToMPI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.secureHMAC">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">secureHMAC</code><span class="sig-paren">(</span><em>k</em>, <em>b</em>, <em>algorithm</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.secureHMAC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a HMAC using <cite>b</cite> and <cite>k</cite> using <cite>algorithm</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tlslite.utils.cryptomath.secureHash">
+<code class="descclassname">tlslite.utils.cryptomath.</code><code class="descname">secureHash</code><span class="sig-paren">(</span><em>data</em>, <em>algorithm</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.cryptomath.secureHash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a digest of <cite>data</cite> using <cite>algorithm</cite></p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.utils.datefuncs.html" class="btn btn-neutral float-right" title="tlslite.utils.datefuncs module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.utils.constanttime.html" class="btn btn-neutral float-left" title="tlslite.utils.constanttime module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

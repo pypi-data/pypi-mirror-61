@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.recordlayer module &mdash; tlslite-ng 0.8.0-alpha37 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.session module" href="tlslite.session.html" />
+    <link rel="prev" title="tlslite.messagesocket module" href="tlslite.messagesocket.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.api.html">tlslite.api module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.basedb.html">tlslite.basedb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.bufferedsocket.html">tlslite.bufferedsocket module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.checker.html">tlslite.checker module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.constants.html">tlslite.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.defragmenter.html">tlslite.defragmenter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.dh.html">tlslite.dh module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.errors.html">tlslite.errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.extensions.html">tlslite.extensions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.handshakehashes.html">tlslite.handshakehashes module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.handshakehelpers.html">tlslite.handshakehelpers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.handshakesettings.html">tlslite.handshakesettings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.keyexchange.html">tlslite.keyexchange module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.mathtls.html">tlslite.mathtls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.messages.html">tlslite.messages module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.messagesocket.html">tlslite.messagesocket module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">tlslite.recordlayer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.session.html">tlslite.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.sessioncache.html">tlslite.sessioncache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.tlsconnection.html">tlslite.tlsconnection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.tlsrecordlayer.html">tlslite.tlsrecordlayer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.verifierdb.html">tlslite.verifierdb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.x509.html">tlslite.x509 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tlslite.x509certchain.html">tlslite.x509certchain module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+      <li>tlslite.recordlayer module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.recordlayer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.recordlayer">
+<span id="tlslite-recordlayer-module"></span><h1>tlslite.recordlayer module<a class="headerlink" href="#module-tlslite.recordlayer" title="Permalink to this headline">¶</a></h1>
+<p>Implementation of the TLS Record Layer protocol</p>
+<dl class="class">
+<dt id="tlslite.recordlayer.ConnectionState">
+<em class="property">class </em><code class="descclassname">tlslite.recordlayer.</code><code class="descname">ConnectionState</code><a class="headerlink" href="#tlslite.recordlayer.ConnectionState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Preserve the connection state for reading and writing data to records</p>
+<dl class="method">
+<dt id="tlslite.recordlayer.ConnectionState.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.ConnectionState.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance with empty encryption and MACing contexts</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.ConnectionState.getSeqNumBytes">
+<code class="descname">getSeqNumBytes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.ConnectionState.getSeqNumBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return encoded sequence number and increment it.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.recordlayer.RecordLayer">
+<em class="property">class </em><code class="descclassname">tlslite.recordlayer.</code><code class="descname">RecordLayer</code><span class="sig-paren">(</span><em>sock</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Implementation of TLS record layer protocol</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>version</strong> – the TLS version to use (tuple encoded as on the wire)</li>
+<li><strong>sock</strong> – underlying socket</li>
+<li><strong>client</strong> – whether the connection should use encryption</li>
+<li><strong>handshake_finished</strong> – used in SSL2, True if handshake protocol is over</li>
+<li><a class="reference internal" href="#tlslite.recordlayer.RecordLayer.tls13record" title="tlslite.recordlayer.RecordLayer.tls13record"><strong>tls13record</strong></a> – if True, the record layer will use the TLS 1.3 version
+and content type hiding</li>
+<li><a class="reference internal" href="#tlslite.recordlayer.RecordLayer.early_data_ok" title="tlslite.recordlayer.RecordLayer.early_data_ok"><strong>early_data_ok</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – if True, it’s ok to ignore undecryptable records
+up to the size of max_early_data (sum of payloads)</li>
+<li><strong>max_early_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – maximum number of bytes that will be processed
+before aborting the connection on data that can not be validated,
+works only if early_data_ok is set to True</li>
+<li><strong>padding_cb</strong> (<em>callable</em>) – callback used for calculating the size of
+padding to add in TLSv1.3 records</li>
+<li><strong>send_record_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – hint provided to padding callback to not
+generate records larger than the receiving size expects</li>
+<li><a class="reference internal" href="#tlslite.recordlayer.RecordLayer.recv_record_limit" title="tlslite.recordlayer.RecordLayer.recv_record_limit"><strong>recv_record_limit</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – negotiated size of records we are willing to
+accept, TLSRecordOverflow will be raised when records with larger
+plaintext size are received (in TLS 1.3 padding is included in this
+size but encrypted content type is not)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>sock</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.addPadding">
+<code class="descname">addPadding</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.addPadding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add padding to data so that it is multiple of block size</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tlslite.recordlayer.RecordLayer.blockSize">
+<code class="descname">blockSize</code><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.blockSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the size of block used by current symmetric cipher (R/O)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.calcPendingStates">
+<code class="descname">calcPendingStates</code><span class="sig-paren">(</span><em>cipherSuite</em>, <em>masterSecret</em>, <em>clientRandom</em>, <em>serverRandom</em>, <em>implementations</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.calcPendingStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create pending states for encryption and decryption.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.calcSSL2PendingStates">
+<code class="descname">calcSSL2PendingStates</code><span class="sig-paren">(</span><em>cipherSuite</em>, <em>masterSecret</em>, <em>clientRandom</em>, <em>serverRandom</em>, <em>implementations</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.calcSSL2PendingStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the keys for encryption and decryption in SSLv2</p>
+<p>While we could reuse calcPendingStates(), we need to provide the
+key-arg data for the server that needs to be passed up to handshake
+protocol.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.calcTLS1_3KeyUpdate_reciever">
+<code class="descname">calcTLS1_3KeyUpdate_reciever</code><span class="sig-paren">(</span><em>cipherSuite</em>, <em>cl_app_secret</em>, <em>sr_app_secret</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.calcTLS1_3KeyUpdate_reciever" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.calcTLS1_3KeyUpdate_sender">
+<code class="descname">calcTLS1_3KeyUpdate_sender</code><span class="sig-paren">(</span><em>cipherSuite</em>, <em>cl_app_secret</em>, <em>sr_app_secret</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.calcTLS1_3KeyUpdate_sender" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.calcTLS1_3PendingState">
+<code class="descname">calcTLS1_3PendingState</code><span class="sig-paren">(</span><em>cipherSuite</em>, <em>cl_traffic_secret</em>, <em>sr_traffic_secret</em>, <em>implementations</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.calcTLS1_3PendingState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create pending state for encryption in TLS 1.3.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cipherSuite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – cipher suite that will be used for encrypting
+and decrypting data</li>
+<li><strong>cl_traffic_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – Client Traffic Secret, either
+handshake secret or application data secret</li>
+<li><strong>sr_traffic_secret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – Server Traffic Secret, either
+handshake secret or application data secret</li>
+<li><strong>implementations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of names of implementations that
+are permitted for the connection</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.calculateMAC">
+<code class="descname">calculateMAC</code><span class="sig-paren">(</span><em>mac</em>, <em>seqnumBytes</em>, <em>contentType</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.calculateMAC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the SSL/TLS version of a MAC</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.changeReadState">
+<code class="descname">changeReadState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.changeReadState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the cipher state to the pending one for read operations.</p>
+<p>This should be done only once after a call to
+<a class="reference internal" href="#tlslite.recordlayer.RecordLayer.calcPendingStates" title="tlslite.recordlayer.RecordLayer.calcPendingStates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calcPendingStates()</span></code></a> was
+performed and directly after receiving a <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeCipherSpec</span></code>
+message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.changeWriteState">
+<code class="descname">changeWriteState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.changeWriteState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the cipher state to the pending one for write operations.</p>
+<p>This should be done only once after a call to
+<a class="reference internal" href="#tlslite.recordlayer.RecordLayer.calcPendingStates" title="tlslite.recordlayer.RecordLayer.calcPendingStates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calcPendingStates()</span></code></a> was
+performed and directly after sending a <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeCipherSpec</span></code>
+message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tlslite.recordlayer.RecordLayer.early_data_ok">
+<code class="descname">early_data_ok</code><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.early_data_ok" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get the state of early data acceptability.</p>
+<p>If processing of the early_data records is to suceed, even if the
+encryption is not correct, set this property to True. It will be
+automatically reset to False as soon as a decryptable record is
+processed.</p>
+<p>Use max_early_data to set the limit of the total size of records
+that will be processed like this.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tlslite.recordlayer.RecordLayer.encryptThenMAC">
+<code class="descname">encryptThenMAC</code><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.encryptThenMAC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or get the setting of Encrypt Then MAC mechanism.</p>
+<p>set the encrypt-then-MAC mechanism for record
+integrity for next parameter change (after CCS),
+gets current state</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.getCipherImplementation">
+<code class="descname">getCipherImplementation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.getCipherImplementation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the implementation used for the connection</p>
+<p>‘python’ for tlslite internal implementation, ‘openssl’ for M2crypto
+and ‘pycrypto’ for pycrypto
+:rtype: str
+:returns: Name of cipher implementation used, None if not initialised</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.getCipherName">
+<code class="descname">getCipherName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.getCipherName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the bulk cipher used by this connection</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The name of the cipher, like ‘aes128’, ‘rc4’, etc.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.isCBCMode">
+<code class="descname">isCBCMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.isCBCMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if cipher uses CBC mode</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.recvRecord">
+<code class="descname">recvRecord</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.recvRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read, decrypt and check integrity of a single record</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">message header and decrypted message payload</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSDecryptionFailed" title="tlslite.errors.TLSDecryptionFailed"><strong>TLSDecryptionFailed</strong></a> – when decryption of data failed</li>
+<li><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSBadRecordMAC" title="tlslite.errors.TLSBadRecordMAC"><strong>TLSBadRecordMAC</strong></a> – when record has bad MAC or padding</li>
+<li><a class="reference external" href="https://docs.python.org/3/library/socket.html#socket.error" title="(in Python v3.8)"><strong>socket.error</strong></a> – when reading from socket was unsuccessful</li>
+<li><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSRecordOverflow" title="tlslite.errors.TLSRecordOverflow"><strong>TLSRecordOverflow</strong></a> – when the received record was longer than
+allowed by negotiated version of TLS</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tlslite.recordlayer.RecordLayer.recv_record_limit">
+<code class="descname">recv_record_limit</code><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.recv_record_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum record size that is permitted for receiving.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.sendRecord">
+<code class="descname">sendRecord</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.sendRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encrypt, MAC and send arbitrary message as-is through socket.</p>
+<p>Note that if the message was not fragmented to below 2**14 bytes
+it will be rejected by the other connection side.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<a class="reference internal" href="tlslite.messages.html#tlslite.messages.ApplicationData" title="tlslite.messages.ApplicationData"><em>ApplicationData</em></a><em>, </em><em>HandshakeMessage</em><em>, </em><em>etc.</em>) – TLS message to send</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordLayer.shutdown">
+<code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear read and write states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tlslite.recordlayer.RecordLayer.tls13record">
+<code class="descname">tls13record</code><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.tls13record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value of the tls13record state.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tlslite.recordlayer.RecordLayer.version">
+<code class="descname">version</code><a class="headerlink" href="#tlslite.recordlayer.RecordLayer.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the TLS version used by record layer</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.recordlayer.RecordSocket">
+<em class="property">class </em><code class="descclassname">tlslite.recordlayer.</code><code class="descname">RecordSocket</code><span class="sig-paren">(</span><em>sock</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordSocket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Socket wrapper for reading and writing TLS Records.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sock</strong> – wrapped socket</li>
+<li><strong>version</strong> – version for the records to be encoded on the wire</li>
+<li><a class="reference internal" href="#tlslite.recordlayer.RecordLayer.tls13record" title="tlslite.recordlayer.RecordLayer.tls13record"><strong>tls13record</strong></a> – flag to indicate that TLS 1.3 specific record limits
+should be used for received records</li>
+<li><a class="reference internal" href="#tlslite.recordlayer.RecordLayer.recv_record_limit" title="tlslite.recordlayer.RecordLayer.recv_record_limit"><strong>recv_record_limit</strong></a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – negotiated maximum size of record plaintext
+size</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordSocket.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>sock</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordSocket.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign socket to wrapper</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordSocket.recv">
+<code class="descname">recv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordSocket.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a single record from socket, handle SSLv2 and SSLv3 record layer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">generator</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">generator that returns 0 or 1 in case the read would be
+blocking or a tuple containing record header (object) and record
+data (bytearray) read from socket</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="https://docs.python.org/3/library/socket.html#socket.error" title="(in Python v3.8)"><strong>socket.error</strong></a> – In case of network error</li>
+<li><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSAbruptCloseError" title="tlslite.errors.TLSAbruptCloseError"><strong>TLSAbruptCloseError</strong></a> – When the socket was closed on the other
+side in middle of record receiving</li>
+<li><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSRecordOverflow" title="tlslite.errors.TLSRecordOverflow"><strong>TLSRecordOverflow</strong></a> – When the received record was longer than
+allowed by TLS</li>
+<li><a class="reference internal" href="tlslite.errors.html#tlslite.errors.TLSIllegalParameterException" title="tlslite.errors.TLSIllegalParameterException"><strong>TLSIllegalParameterException</strong></a> – When the record header was
+malformed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.recordlayer.RecordSocket.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>msg</em>, <em>padding=0</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.recordlayer.RecordSocket.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the message through socket.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>msg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – TLS message to send</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – amount of padding to specify for SSLv2</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/socket.html#socket.error" title="(in Python v3.8)"><strong>socket.error</strong></a> – when write to socket failed</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.session.html" class="btn btn-neutral float-right" title="tlslite.session module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.messagesocket.html" class="btn btn-neutral float-left" title="tlslite.messagesocket module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tlslite.utils.asn1parser module &mdash; tlslite-ng 0.8.0-alpha37 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tlslite.utils.chacha module" href="tlslite.utils.chacha.html" />
+    <link rel="prev" title="tlslite.utils.aesgcm module" href="tlslite.utils.aesgcm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> tlslite-ng
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tlslite</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tlslite.html">tlslite package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tlslite.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tlslite.integration.html">tlslite.integration package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="tlslite.utils.html">tlslite.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tlslite.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tlslite-ng</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">tlslite</a> &raquo;</li>
+        
+          <li><a href="tlslite.html">tlslite package</a> &raquo;</li>
+        
+          <li><a href="tlslite.utils.html">tlslite.utils package</a> &raquo;</li>
+        
+      <li>tlslite.utils.asn1parser module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tlslite.utils.asn1parser.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tlslite.utils.asn1parser">
+<span id="tlslite-utils-asn1parser-module"></span><h1>tlslite.utils.asn1parser module<a class="headerlink" href="#module-tlslite.utils.asn1parser" title="Permalink to this headline">¶</a></h1>
+<p>Abstract Syntax Notation One (ASN.1) parsing</p>
+<dl class="class">
+<dt id="tlslite.utils.asn1parser.ASN1Parser">
+<em class="property">class </em><code class="descclassname">tlslite.utils.asn1parser.</code><code class="descname">ASN1Parser</code><span class="sig-paren">(</span><em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Parser and storage of ASN.1 DER encoded objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – length of the value of the tag</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – literal value of the tag</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tlslite.utils.asn1parser.ASN1Parser.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Parser.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an object from bytes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)"><em>bytearray</em></a>) – DER encoded ASN.1 object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.asn1parser.ASN1Parser.getChild">
+<code class="descname">getChild</code><span class="sig-paren">(</span><em>which</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Parser.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return n-th child assuming that the object is a SEQUENCE.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>which</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – ordinal of the child to return</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#tlslite.utils.asn1parser.ASN1Parser" title="tlslite.utils.asn1parser.ASN1Parser">ASN1Parser</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">decoded child object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.asn1parser.ASN1Parser.getChildBytes">
+<code class="descname">getChildBytes</code><span class="sig-paren">(</span><em>which</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Parser.getChildBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return raw encoding of n-th child, assume self is a SEQUENCE</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>which</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – ordinal of the child to return</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.8)">bytearray</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">raw child object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tlslite.utils.asn1parser.ASN1Parser.getChildCount">
+<code class="descname">getChildCount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Parser.getChildCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of children, assuming that the object is a SEQUENCE.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">number of children in the object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tlslite.utils.asn1parser.ASN1Type">
+<em class="property">class </em><code class="descclassname">tlslite.utils.asn1parser.</code><code class="descname">ASN1Type</code><span class="sig-paren">(</span><em>tag_class</em>, <em>is_primitive</em>, <em>tag_id</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class that represents the ASN.1 type bit octet.
+Consists of a class (universal(0), application(1), context-specific(2)
+or private(3)), boolean value that indicates if a type is constructed or
+primitive and the ASN1 type itself.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>field</strong> – bit octet</li>
+<li><strong>tagClass</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – type’s class</li>
+<li><strong>isPrimitive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – equals to 0 if the type is primitive, 1 if not</li>
+<li><strong>tagId</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – ANS1 tag number</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="tlslite.utils.asn1parser.ASN1Type.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>tag_class</em>, <em>is_primitive</em>, <em>tag_id</em><span class="sig-paren">)</span><a class="headerlink" href="#tlslite.utils.asn1parser.ASN1Type.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tlslite.utils.chacha.html" class="btn btn-neutral float-right" title="tlslite.utils.chacha module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tlslite.utils.aesgcm.html" class="btn btn-neutral float-left" title="tlslite.utils.aesgcm module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hubert Kario
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
