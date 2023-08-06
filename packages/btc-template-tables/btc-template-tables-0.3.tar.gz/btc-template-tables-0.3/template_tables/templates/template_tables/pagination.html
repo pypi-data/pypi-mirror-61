@@ -1,0 +1,44 @@
+<div {{ html_params|safe }}>
+    <div class="p-block">
+        <div class="p-block table-main-info-block">
+            {{ pagination.items_range }}
+        </div>
+        <div class="p-block fit-content">
+            <div class="p-block page-range-block">
+                <span class="page-range-description">Записей на странице</span>
+                {% for page_range, url in pagination.page_range_urls.items %}
+                    <div class="p-block page-range-item-block">
+                        <a href="{{ url }}"
+                           class="pagination-range-btn {% if pagination.paginate_by == page_range %}active{% endif %}">
+                            {{ page_range }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="p-block page-number-block">
+                <div class="p-block page-number-item-block">
+                    {% if pagination.previous_page %}
+                        <a href="{{ pagination.previous_page }}" class="pagination-page-btn">
+                            <i class="tt-arrow left"></i>
+                        </a>
+                    {% else %}
+                        <a href="#" class="pagination-page-btn tt-btn-disabled">
+                            <i class="tt-arrow left"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="p-block page-number-item-block">
+                    {% if pagination.next_page %}
+                        <a href="{{ pagination.next_page }}" class="pagination-page-btn">
+                            <i class="tt-arrow right"></i>
+                        </a>
+                    {% else %}
+                        <a href="#" class="pagination-page-btn tt-btn-disabled">
+                            <i class="tt-arrow right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
