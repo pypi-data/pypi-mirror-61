@@ -1,0 +1,105 @@
+// out: main.min.css, compress: true, sourceMap: true
+// requires vscode ext: mrcrowl.easy-less
+
+.portaltype-contract.template-view {
+   position: releative;
+  .table{
+    display: table;
+    border-spacing: 0.8em;
+    border-collapse: separate;
+    margin-left: -0.8em;
+    header {
+      display: table-row;
+      div {
+        display: table-cell;
+        padding: 0.8em;
+        background-color: #eee;
+      }
+    }
+    article {
+      display: table-row;
+      div {
+        display: table-cell;
+        padding: 0.8em;
+      }
+    }
+  }
+
+  .event-calendar{
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    max-width: 100%;
+    width: 150px;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    background-color: #eee;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .contract_details{
+    max-width: 500px;
+    clear:both;
+
+    dl {
+      margin: 0;
+      padding: 0;
+      padding-bottom: 1em;
+      clear:both;
+      dt{
+        margin: 0;
+        padding: 0;
+        width:33%;
+        float:left;
+        clear: left;
+        line-height: 2em;
+      }
+      dd{
+        line-height: 2em;
+        margin: 0;
+        padding: 0;
+        width:67%;
+        float:left;
+      }
+    }
+  }
+
+  .attachments {
+    clear: both;
+    display: block;
+    width: 100%;
+    margin-top: 1em;
+    header{
+      font-size: 130%;
+      font-weight: 600;
+    }
+    ul {
+      padding: 0 1.5em ;
+      .icon { margin-right: 0.2em;}
+    }
+  }
+}
+
+.template-contracts-view{
+  .content_action_buttons {
+    form {
+      display: inline;
+    }
+    button {
+      float: right;
+      margin: 1em 0.5em 1em 0;
+    }
+  }
+  .contracts_listing{
+    td,th {
+      padding: 0.5em;
+      word-break: break-all;
+    }
+  }
+  tr.odd {
+    background-color: #eee;
+  }
+}

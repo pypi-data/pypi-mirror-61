@@ -1,0 +1,48 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.contract_management">
+
+  -*- extra stuff goes here -*-
+
+  <browser:page
+    name="contracts-as-pdf"
+    for="plone.app.contenttypes.interfaces.ICollection"
+    class=".contracts_as_pdf.ContractsAsPdfView"
+    template="contracts_as_pdf.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="contracts-view"
+    for="plone.app.contenttypes.interfaces.ICollection"
+    class=".contracts_view.ContractsView"
+    template="contracts_view.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="ics_view"
+    for="collective.contract_management.content.contract.IContract"
+    class=".ics_view.IcsView"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="contracts_ics_view"
+    for="plone.app.contenttypes.interfaces.ICollection"
+    class=".ics_view.IcsView"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="view"
+    for="collective.contract_management.content.contract.IContract"
+    class=".contract_view.ContractView"
+    template="contract_view.pt"
+    permission="zope2.View"
+    />
+
+
+</configure>

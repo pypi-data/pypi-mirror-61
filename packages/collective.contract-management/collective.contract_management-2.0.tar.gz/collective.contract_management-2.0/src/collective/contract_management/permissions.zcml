@@ -1,0 +1,24 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="plone">
+
+  <configure zcml:condition="installed AccessControl.security">
+  <!-- -*- extra stuff goes here -*- -->
+
+    <permission
+        id="collective.contract_management.AddContract"
+        title="collective.contract_management: Add Contract"
+    />
+
+
+    <permission
+        id="collective.contract_management.AddContracts"
+        title="collective.contract_management: Add Contracts"
+    />
+
+
+
+  </configure>
+
+</configure>
