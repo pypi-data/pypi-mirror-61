@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: lvmcache2mqtt
+Version: 0.5.0
+Summary: Python module to pulish LVM cache statistics to MQTT.
+Home-page: https://github.com/JonasPed/lvmcache2mqtt
+Author: Jonas Pedersen
+Author-email: jonas@pedersen.ninja
+License: Apache 2.0
+Description: # lvmcache2mqtt
+        
+        Python module to publish LVM cache (dmcache) statistics to MQTT. Data can then, for instance, be used for visualization in grafana or like.
+        
+        ## Configuration
+        
+        Configuration example:
+        
+        ```yaml
+        mqtt:
+            host: mqtt_broker_hostname
+        
+        devices:
+            - device: /dev/mapper/cached-device
+              device_alias: some_alias
+              target_topic: mqtt/topic/to/publish/to
+        ```
+        
+        ## Usage
+        
+        Install python module with ``pip install lvmcache2mqtt``.
+        
+        Run with ``python -m lvmcache2mqtt``
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
