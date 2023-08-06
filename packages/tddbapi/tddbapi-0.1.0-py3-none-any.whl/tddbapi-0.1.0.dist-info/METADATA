@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: tddbapi
+Version: 0.1.0
+Summary: Teradata DB API
+Home-page: https://bitbucket.org/padhia/tddbapi
+Author: Paresh Adhia
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: teradatasql
+
+# tddbapi
+
+[![PyPi](https://img.shields.io/pypi/v/tddbapi.svg)](https://pypi.python.org/pypi/tddbapi)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Python3.7+](https://img.shields.io/pypi/pyversions/tddbapi.svg)
+
+[tddbapi](https://bitbucket.org/padhia/tddbapi) is a DB API module that is a shim over [teradatasql](https://pypi.org/project/teradatasql), the Teradata provided DB API module. `teradatasql` closely follows Teradata JDBC driver in terms of functionality and behavior, some of which, arguably isn't quite *pythonic*. `tddbapi` attempts to correct this by altering selected `teradatasql` behavior (APIs) as documented here. Remaining, unaltered, functionality is directly passed through to the `teradatasql` module.
+
+## `teradatasql` behavior
+
+1. Fixed length character column values have incorrect length when accessed in Python. According to Teradata, this is [working as designed](https://github.com/Teradata/python-driver#CharacterExportWidth).
+
+1. `teradatasql` uses `OperationalError` for all exceptions. According to Python's DB API specification, `OperationalError` is reserved for certain class of errors. Additionally, the exception object
+    * doesn't provide easy access to the *error code* or the *error message* values.
+    * has text that includes unformatted stack trace of underlying *gosql* driver. While this maybe useful in certain situation, for example, reporting errors back to Teradata, but may not be the best message to display to the users.
+
+1. All SQL `INTERVAL` values are returned as Python type `str` instead of more appropriate native Python types, thus working with them is harder in Python. Apparently, this was done because not all SQL INTERVAL data types can be represented by Python's `datetime.timedelta` type.
+
+1. `teradatasql` exposes all internally used names, and thus can pollute the *namespace* if you use `from teradatasql import *`.
+
+## `tddbapi` behavior
+
+1. Fixed length character columns will have any extra spaces beyond their actual definition truncated.
+
+1. Appropriate Exception raised for the *most common* errors. Exception objects:
+    * have `sqlcode` and `sqltext` attributes that can be queried directly instead of having to parse the error message
+    * provide `__str__` method that produces human-readable error message and removes `gosql` stack-trace information
+    * *note*: If you want to ensure that the exception handling logic works with `teradatasql` *and* `tddbapi`, use an Exception class that is higher in the hierarchy, for example, `DatabaseError` or `Error`
+
+1. `INTERVAL` values are objects of either `datetime.timedelta` subclasses, or for the *month based* interval types, instances of `int` subclasses. The *month based* intervals use total number of months as canonical value, thus allowing comparison between two month based intervals even if their exact types are different.
+
+1. It's safe to code `from tddbapi import *` without introducing non DB-API names into the current namespace
+
+**Note**
+`tddbapi` always obtains resultset metadata information for all queries. If your application also needs access to resultset metadata, it can be accessed as `_meta` attribute of the cursor as already-parsed JSON data.
+
+## Installation and Usage
+
+Install `tddbapi` using the standard `pip` utility:
+
+```
+pip install --upgrade tddbapi
+```
+
+Using in a Python application is as simple as replacing `teradatasql` with `tddbapi`. For example:
+
+```python
+import tddbapi as teradatasql
+
+with teradatasql.connect(host="whomooz", user="guest", password="please") as con:
+    with con.cursor() as cur:
+        cur.execute("SELECT * FROM DBC.DBCINFOV")
+        print(cur.fetchall())
+```
+
+## Disclaimers
+
+`tddbapi` module:
+
+1. **does not** come with any warranty and the user assumes all risks associated with its usage.
+1. is **not** endorsed by Teradata.
+1. overrides some internal `teradatasql` implementation details. It is possible that the future versions of `teradatasql` can change these details and thus break `tddbapi`, at least for a short period of time.
+1. will be kept compatible with `teradatasql` on a best-effort basis. If you must have the latest `teradatasql` all the time *and* cannot live with the risk of breakage, even for a short period of time, you shouldn't use this module.
+1. is available via MIT license, which maybe different from the licenses of any of its dependencies (currently only `teradatasql`).
+
+
