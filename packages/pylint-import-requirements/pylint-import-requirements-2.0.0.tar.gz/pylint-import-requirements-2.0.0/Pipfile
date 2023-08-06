@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+pylint-import-requirements = {editable = true,path = "."}
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+uppercase = {path = "./tests/test-packages/uppercase"}
+namespace = {path = "./tests/test-packages/namespace"}
+
+[requires]
+python_version = "3"
