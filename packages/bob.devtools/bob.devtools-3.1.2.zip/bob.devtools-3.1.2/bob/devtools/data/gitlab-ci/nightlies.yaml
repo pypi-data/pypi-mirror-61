@@ -1,0 +1,100 @@
+# This YAML file contains descriptions for the CI of nightly builds of Bob and
+# BEAT.
+
+# Definition of global variables (all stages)
+variables:
+  PYTHONUNBUFFERED: "1"
+  CONDA_ROOT: "${CI_PROJECT_DIR}/miniconda"
+  BOOTSTRAP: "https://gitlab.idiap.ch/bob/bob.devtools/raw/master/bob/devtools/bootstrap.py"
+
+
+# Definition of our build pipeline order
+stages:
+  - build
+  - cleanup
+
+
+# All stages are prepared the same, with a base set of commands
+.bootstrap:
+  before_script:
+    - "[ -r /root/.condarc ] && rm -f /root/.condarc"
+    - "[ -d /root/.conda ] && rm -rf /root/.conda"
+    - curl --silent "${BOOTSTRAP}" --output "bootstrap.py"
+    - python3 bootstrap.py -vv channel base
+    - source ${CONDA_ROOT}/etc/profile.d/conda.sh
+    - conda activate base
+  cache:
+    paths:
+      - miniconda.sh
+
+
+# Build targets
+.build_template:
+  extends: .bootstrap
+  stage: build
+  variables:
+    CONDA_ROOT: "${CI_PROJECT_DIR}/miniconda"
+    PYTHONUNBUFFERED: 1
+  script:
+    - bdt ci nightlies -vv order.txt
+    - bdt ci clean -vv
+
+build_linux_36:
+  extends: .build_template
+  variables:
+    PYTHON_VERSION: "3.6"
+  tags:
+    - docker
+  cache:
+    key: 'build-py36'
+
+build_linux_37:
+  extends: .build_template
+  variables:
+    PYTHON_VERSION: "3.7"
+  tags:
+    - docker
+  cache:
+    key: 'build-py37'
+
+
+build_macosx_36:
+  extends: .build_template
+  variables:
+    PYTHON_VERSION: "3.6"
+  tags:
+    - macosx
+  cache:
+    key: 'build-py36'
+
+build_macosx_37:
+  extends: .build_template
+  variables:
+    PYTHON_VERSION: "3.7"
+  tags:
+    - macosx
+  cache:
+    key: 'build-py37'
+
+
+# Periodic cleanup of beta packages
+.cleanup_template:
+  extends: .bootstrap
+  stage: cleanup
+  tags:
+    - docker
+  image: continuumio/conda-concourse-ci
+  script:
+    - bdt ci clean-betas -vv
+  cache:
+    key: 'cleanup'
+
+
+# The automatic clean-up takes place when the nightly successfuly runs
+cleanup:
+  extends: .cleanup_template
+
+manual_cleanup:
+  extends: .cleanup_template
+  when: manual
+  allow_failure: true
