@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: pyunit-address
+Version: 2020.2.18
+Summary: 全国五级地址查询
+Home-page: https://github.com/PyUnit/pyunit-address
+Author: Jtyoui
+Author-email: jtyoui@qq.com
+License: MIT Licence
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# **PyUnit-Address** [![](https://gitee.com/tyoui/logo/raw/master/logo/photolog.png)][1]
+
+## 字符串地址查询,支持自定义地址词库
+[![](https://img.shields.io/badge/Python-3.6-green.svg)](https://pypi.org/project/pyunit-address/)
+
+
+## 安装
+    pip install pyunit-address
+
+## 使用
+```python
+from pyunit_address import Address
+
+def test():
+    address = Address(is_max_address=True, max_address=5)
+    af = address.find_address('我家在贵阳遵义红花岗区，你家在贵州贵阳花溪区')
+    print(af)
+
+if __name__ == '__main__':
+    test()
+```
+
+***
+[1]: https://blog.jtyoui.com
+
