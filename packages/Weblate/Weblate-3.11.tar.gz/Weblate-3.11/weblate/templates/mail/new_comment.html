@@ -1,0 +1,23 @@
+{% extends "mail/base.html" %}
+
+{% load i18n %}{% load translations %}
+
+{% block content %}
+
+{% include "mail/snippets/source-string.html" %}
+
+<h2>{% trans "Comment" %}</h2>
+
+<p>
+{{ comment.comment|markdown }}
+</p>
+
+<div class="line buttons">
+{% if comment.language %}
+    <a class="button" href="{{ unit.get_absolute_url }}">{% trans "Edit this string" %}</a>
+{% else %}
+    <a class="button" href="{{ unit.source_info.get_absolute_url }}">{% trans "Edit this string" %}</a>
+{% endif %}
+</div>
+
+{% endblock %}

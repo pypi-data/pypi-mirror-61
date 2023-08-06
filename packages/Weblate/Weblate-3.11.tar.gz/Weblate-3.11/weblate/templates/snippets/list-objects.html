@@ -1,0 +1,85 @@
+{% load i18n %}
+{% load translations %}
+{% load permissions %}
+{% load humanize %}
+
+{% init_unique_row_id %}
+
+{% if objects %}
+<table class="sort table progress-table autocolspan {% if not in_panel %}table-border{% endif %}">
+<thead>
+<tr>
+<th>{{ label|default:_("Project") }}</th>
+<th class="number">{% trans "Translated" %}</th>
+{% if global_base %}
+<th class="number zero-width-1000">{% trans "Strings of total" %}</th><!-- TODO: Rename? -->
+{% endif %}
+<th class="number zero-width-640">{% trans "Untranslated" %}</th>
+<th class="number zero-width-720">{% trans "Untranslated words" %}</th>
+<th class="number zero-width-768">{% trans "Checks" %}</th>
+<th class="number zero-width-900">{% trans "Suggestions" %}</th>
+<th class="number zero-width-1000">{% trans "Comments" %}</th>
+<th class="sort-skip"></th>
+</tr>
+</thead>
+
+
+<tbody>
+{% for object in objects %}
+{% get_stats object stats_attr as stats %}
+{% global_stats object stats global_base as global_stats %}
+{% get_translate_url object as translate_url %}
+{% get_browse_url object as browse_url %}
+{% get_unique_row_id object as row_id %}
+<tr id="{{ row_id }}">
+<th class="object-link">
+{% if name_source == "translation" %}
+    <a href="{{ object.component.project.get_absolute_url }}">{{ object.component.project.name }}</a>/<a href="{{ object.component.get_absolute_url }}">{{ object.component.name }}</a>
+    — <a class="tail" href="{{ browse_url }}">{{ object.language }}</a>
+{% else %}
+    <a href="{{ browse_url }}">
+    {% if name_source == "language" %}
+        {{ object.language }}
+    {% elif name_source == "component_name" %}
+        {{ object.component.name }}
+    {% elif name_source == "name" %}
+        {{ object.name }}
+    {% elif name_source == "language" %}
+        {{ object.language }}
+    {% else %}
+        {{ object }}
+    {% endif %}
+    </a>
+{% endif %}
+{% indicate_alerts object %}
+</th>
+{% include "snippets/list-objects-percent.html" with percent=stats.translated_percent value=stats.translated all=stats.all %}
+{% if global_base %}
+{% include "snippets/list-objects-percent.html" with percent=global_stats.translated_percent value=global_stats.translated all=global_stats.all class="zero-width-1000" %}
+{% endif %}
+{% include "snippets/list-objects-number.html" with value=stats.todo query="q=state:<translated" class="zero-width-640" %}
+{% include "snippets/list-objects-number.html" with value=stats.todo_words query="q=state:<translated" class="zero-width-720" %}
+{% include "snippets/list-objects-number.html" with value=stats.allchecks query="q=has:check" class="zero-width-768" %}
+{% include "snippets/list-objects-number.html" with value=stats.suggestions query="q=has:suggestion#suggestions" class="zero-width-900" %}
+{% include "snippets/list-objects-number.html" with value=stats.comments query="q=has:comment#comments" class="zero-width-1000" %}
+<td class="actions buttons-cell" rowspan="2">
+{% if translate_url %}
+<a href="{{ translate_url }}{% if stats.todo %}?q=state:&lt;translated{% endif %}" class="btn {% if stats.todo %}btn-primary{% else %}btn-info{% endif %}">
+{% trans "Translate" %}
+</a>
+{% else %}
+<a href="{{ browse_url }}" class="btn btn-info">
+{% trans "Browse" %}
+</a>
+{% endif %}
+</td>
+</tr>
+<tr data-parent="{{ row_id }}">
+<td colspan="{% if global_base %}8{% else %}7{% endif %}" class="progress-row autocolspan">{% translation_progress stats %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p class="text-muted">{% trans "Nothing to list here." %}</p>
+{% endif %}
