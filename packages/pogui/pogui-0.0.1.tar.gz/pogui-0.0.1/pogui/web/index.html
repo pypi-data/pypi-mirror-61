@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-framework="javascript">
+<head>
+<meta charset="utf-8">
+<title>PogUI</title>
+<link rel="stylesheet" href="pure/pure.css">
+<link rel="stylesheet" href="pure-layout-side-menu/side-menu.css">
+<link rel="stylesheet" href="hover-zoom/hover-zoom.css">
+<link rel="stylesheet" href="loading/progress-bar.css">
+<link rel="stylesheet" href="loading/ripple.css">
+
+<link rel="stylesheet" href="filebrowser/fb.css">
+<link rel="stylesheet" href="main.css">
+<script src="jquery-3.4.1.js"></script>
+</head>
+<body>
+
+<div id="messagebox" class="toast">
+  <a class="close" href="javascript:;" onclick="Page.hideMessage(this)">✖</a>
+  <div class="toast-content">
+    <h2>Hello!</h2>
+    <p>Welcome to PogUI!</p>
+  </div>
+</div>
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="pure-menu-heading">PogUI</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="#settings" class="pure-menu-link">⚙ Settings</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="#open-archive" class="pure-menu-link">Open Archive</a></li>
+                <li class="pure-menu-item"><a href="#create-archive" class="pure-menu-link">Create Archive</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+            <h1>Open Archive</h1>
+        </div>
+
+        <div class="progress-bars"></div>
+
+        <div class="content">
+
+<div id="open-archive" class="page filemanager"></div>
+
+
+<div id="settings" class="page settings">
+  <h2 class="content-subhead">Remote Storage</h2>
+  <form id="settings-remote-storage" class="pog-checklist"></form>
+
+  <h2 class="content-subhead">Add Remote Storage</h2>
+  <form class="pure-form">
+    <div class="pure-button-group settings-storage-choice" role="group" aria-label="...">
+      <button class="pure-button">B2</button>
+      <button class="pure-button pure-button-active">S3</button>
+    </div>
+    <div class="pure-button-group">
+      <input type="text" class="pure-u-1-2 settings-storage-add" placeholder="Bucket Name">
+      <button class="pure-button settings-storage-add" href="javascript:;">Add</button>
+    </div>
+  </form>
+
+  <h2 class="content-subhead">Keyfiles</h2>
+  <form id="settings-keyfiles" class="pog-checklist"></form>
+  <button class="pure-button settings-keyfiles-add" href="javascript:;" onclick="Settings.updateKeyfilesDir()">Find</button>
+</div>
+
+<div id="create-archive" class="page create-archive">
+  <div class="actions">
+    <div class="hover-zoom-box" onclick="CreateArchive.askForFiles()"
+      title="Add Files" data-description="Add files to be archived">🔍</div>
+
+    <div class="hover-zoom-box" onclick="CreateArchive.askForFolders()"
+      title="Add Folders" data-description="Add a folder or folders to be archived">🗁</div>
+
+    <div class="hover-zoom-box" onclick="CreateArchive.clearCandidatePaths()"
+      title="Clear" data-description="Start over, clearing all files and folders added">⌧</div>
+
+    <div class="hover-zoom-box" onclick="CreateArchive.create()"
+      title="Upload" data-description="Confirm archive create, and upload the archive">📤</div>
+  </div>
+  <h2 class="content-subhead">Destination(s)</h2>
+  <div class="pure-button-group choose-destination" role="group" aria-label="..."></div>
+  <h2 class="content-subhead">Archive Paths</h2>
+  <form id="create-archive-list" class="pog-checklist"></form>
+</div>
+        </div>
+    </div>
+</div>
+
+<script src="pure-layout-side-menu/ui.js"></script>
+<script src="checklist/cl.js"></script>
+<script src="hover-zoom/hz.js"></script>
+<script src="loading/progress-bar.js"></script>
+
+<script src="filebrowser/fb-state.js"></script>
+<script src="filebrowser/fb.js"></script>
+
+<script src="api.js"></script>
+<script src="navigation.js"></script>
+<script src="settings.js"></script>
+
+<script src="create-archive.js"></script>
+<script src="base.js"></script>
+<script>
+Page.init('open-archive');
+</script>
+</body>
+</html>

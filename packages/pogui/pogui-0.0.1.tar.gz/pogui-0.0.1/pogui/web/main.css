@@ -1,0 +1,167 @@
+
+body {
+  background-color:  #1C2F2F;
+}
+
+h1, h2 {
+  color: LightGray;
+}
+
+a {
+  color: LightBlue;
+}
+
+.page {
+  display: none;
+}
+
+.page:target {
+  display: block;
+}
+
+/*-----
+load animations. fb.css also has one of these (may refactor)
+----*/
+#settings:target, #create-archive:target {
+  animation: showSlowlyElement 500ms;
+}
+
+input[type="text"], input[type="search"] {
+  border: 1px solid DarkSlateGrey !important;
+  color: LightGray;
+  background-color: black;
+  box-shadow: -5px -5px 20px 0px DarkSlateGrey inset, 5px 5px 20px 0px black inset !important;
+}
+
+button {
+  font-weight: bold;
+  color: black;
+  background-color: #404040;
+  background-image: linear-gradient(to top, #343464 0%, #404040 100%);
+  box-shadow: 0 20px 4px -21px white inset, 0 5px 10px 0 black;
+  text-shadow: 0px 1px 1.5px #606060;
+}
+
+button:hover {
+  color: LightBlue;
+  text-shadow: 0 0 4px rgba(255, 200, 200, .4);
+}
+
+.settings-storage-choice button, .choose-destination button {
+  font-size: 125%;
+  background-image: linear-gradient(to top, #343434 0%, #404040 100%);
+}
+
+.settings-storage-choice button:hover, .choose-destination button:hover {
+  text-shadow: none;
+}
+
+.settings-storage-choice .pure-button-active, .choose-destination .pure-button-active {
+  background-image: linear-gradient(to top, green 0%, white 100%);
+  color: LightBlue;
+  box-shadow: 0px 4px 25px 15px black inset, 0 5px 10px 0 black;
+  text-shadow: 0 0 4px rgba(200, 200, 250, .4);
+}
+
+.pog-checklist input {
+  color: black;
+  background-color: #404040;
+  background-image: linear-gradient(to top, #343434 0%, #404040 100%);
+  margin-bottom: 1em;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.pog-checklist .pure-button-group:hover input {
+  background-image: linear-gradient(to top, maroon 0%, #404040 100%) !important;
+}
+
+button.remove-pog-checklist {
+  background-image: linear-gradient(to top, #643434 0%, #404040 100%);
+}
+
+button.remove-pog-checklist:hover {
+  color: crimson;
+}
+
+
+/*-------------------------
+Download, reload Links
+-----*/
+.lds-ripple .filemanager-actions {
+  display: none;
+}
+
+.filemanager-actions {
+  float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: -5px;
+}
+
+.filemanager-actions a {
+  color: LightBlue;
+  margin-left: 20px;
+  margin-top: 5px;
+  font-size: 28px;
+  line-height: 35px;
+  text-decoration: none;
+}
+
+.filemanager-actions .download-icon {
+  text-decoration: underline;
+}
+
+.filemanager-actions a:hover {
+  color: LightGray;
+  text-shadow: 0px 0px 1.5px white;
+}
+
+/*-------------------------
+create archive page
+----*/
+
+#create-archive .actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/*-------------------------
+error message toast
+----*/
+
+#messagebox {
+  background-color: #FFF;
+  display: none;
+  position: fixed;
+  right: 0;
+  width: 500px;
+  z-index: 3;
+}
+
+#messagebox:active {
+  display: block;
+}
+
+#messagebox h2 {
+  margin-top: 5px;
+}
+
+#messagebox .toast-content {
+  padding: 30px;
+}
+
+#messagebox .close {
+  text-decoration: none;
+  color: #FFF;
+  color: #999;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 40px;
+  text-align: center;
+  position: absolute;
+  right: 0;
+}
