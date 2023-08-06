@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: leech-tentacle
+Version: 0.0.1
+Summary: the basic modules used to design a new tentacle for the Algernon Leech platform
+Home-page: https://github.com/AlgernonSolutions/leech_tentacle
+Author: algernon_solutions/jcubeta
+Author-email: jcubeta@algernon.solutions
+License: GNU Affero General Public License v3.0
+Description: 
+        # The Tentacle
+        **mound-like tentacles groping from underground nuclei of polypous perversion...**
+        ## overview
+        The Leech Platform works by sending out tentacles to extract (leech) data from a single identified source. 
+        These tentacles perform the extracting and processing to produce JSON objects representing the data, which 
+        they broadcast back to the Nucleus.
+        ## extraction flow
+        1. Retrieve configuration regarding the IdSource and the DataSource from the tentacle's storage level
+        2. Build the ExtractionConfiguration and the SourceConfiguration, which jointly contain the details of how to extract 
+        and process a specific type of extraction.
+        3. Perform the extraction, the details of which are specific to each individual tentacle.
+        4. Process the extracted data, transforming it to a list of standardized JSON objects.
+        5. Broadcast the JSON objects to the Nucleus.
+        ## leeching data
+        To understand why the tentacle operates as it does, one must first understand how the Leech conceptualizes data. 
+        All data belongs to someone or something. In addition, all data must be stored somehow. In order for the leech to 
+        extract data, it must first have these two parameters defined. We refer to them as an IdSource and a DataSource.
+        ### IdSource
+        An IdSource is the who of the data. Who owns the data, and therefore dictates what goes into it? They are the source 
+        of the individually identifiable data assets, which will ultimately carry the identifier as id_source. An id_source 
+        could be a business, a health care organization, or a user on a mobile app.
+        ### DataSource
+        A DataSource is the how of the data. How is the data stored, and how will the tentacle extract it? A DataSource could 
+        be an API, a website that we scrape, a brand of IOT device, or a platform such as Google G Suite.
+        ### DataAsset
+        A DataAsset is a single identifiable entry from a DataSource, represented as a JSON object. It has a globally unique 
+        identifier, the asset_id, as well as a capture_timestamp, an asset_type, an id_value, id_source, and source_name (DataSource). 
+        In addition, it has asset_data, which contains all the extracted data for the asset.
+        ### Extraction
+        A single extraction may retrieve one DataAsset or it may retrieve thousands. Multiple extractions can capture the 
+        same asset_type. An Extraction is executed according to an ExtractionConfig and a SourceConfig.
+        ### ExtractionConfig
+        The blueprint for how to execute a single type of extraction against a single DataSource. It includes all the 
+        parameters needed to run the extraction and process the resulting data.
+        ### SourceConfig
+        Contains parameters for a given DataSource which are specific to an IdSource. For example, if multiple businesses all 
+        use one commercial database, the SourceConfig might contain a username and password for a single business.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
