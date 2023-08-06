@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+black = "==19.10b0"
+isort = "*"
+invoke = "*"
+prospector = {extras = ["with_pyroma"],version = "*"}
+
+[dev-packages]
+flit = "*"
+pytest = "*"
+pytest-cov = "*"
+coveralls = "*"
+bumpversion = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+dev_install = "flit install --symlink"
+dev_install_win = "flit install --pth-file"
