@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: gtagora-app
+Version: 2.8.3
+Summary: Python version of the Agora app
+Home-page: https://github.com/gyrotools/gtagora-app-py
+Author: Martin Bührer
+Author-email: info@gyrotools.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: websockets
+Requires-Dist: gtagora-connector
+
+# gtagora-app-py [![Build Status](https://travis-ci.org/gyrofx/gtagora-connector-py.svg?branch=master)](https://travis-ci.org/gyrofx/gtagora-connector-py)
+
+Helper app for Agora (http://www.gyrotools.com/gt/index.php/products/agora)
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install gtagora-app.
+
+```bash
+pip install gtagora-app
+```
+
+Currently gtagora-app supports python 3.6 and 3.7.
+
+## Basic usage
+
+### Run
+Run the app with
+```bash
+gtagoraapp
+```
+
+### Setup
+when the app is run for the first time, a setup process is started. You will be prompted for the Agora URL, your 
+credentials and path settings. 
+The setup can also be started manually by calling:
+```bash
+gtagoraapp --setup
+```
+
+
+
