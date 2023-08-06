@@ -1,0 +1,36 @@
+[project]
+name = "hello_python_cli"
+description = "Hello python cli"
+authors = [
+    "Mike Kinney <mike.kinney@gmail.com>"
+]
+license = "MIT"
+readme = "readme.txt"
+python = "^3.6"
+homepage = "https://github.com/mkinney/hello_python_cli"
+repository = "https://github.com/mkinney/hello_python_cli"
+documentation = "https://github.com/mkinney/hello_python_cli"
+
+keywords = ["hello", "python", "cli"]
+
+classifiers = [
+    "Topic :: Software Development"
+]
+
+# Requirements
+[dependencies]
+docopt = "^0.6.2"
+
+[dev-dependencies]
+pytest = "^5.3.5"
+flake8 = "^3.7.9"
+
+[scripts]
+hello = "hello:main"
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
+build-backend = "setuptools.build_meta"
