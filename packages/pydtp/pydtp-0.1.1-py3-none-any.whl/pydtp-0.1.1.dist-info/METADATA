@@ -1,0 +1,78 @@
+Metadata-Version: 2.1
+Name: pydtp
+Version: 0.1.1
+Summary: A simple protocol based on json representation of python dictionaries
+Home-page: https://github.com/landerlini/pydtp
+Author: Lucio Anderlini
+Author-email: Lucio.Anderlini@fi.infn.it
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Python Dictionary Transfer Protocol 
+`pydtp` is a package defining a protocol for transparently 
+accessing a remote server with function calls passing 
+lightweight arguments. 
+
+`pydtp` defines three classes:
+ - a `Server` class based on `socketserver.TCPServer` 
+ - an abstract  `Handler` class to implement to define the Server-responses
+ - an abstract `Client` class to implement to define the Client interface 
+
+The functions implemented on the Client class are redirected to 
+the server class encoding the arguments and the return value in 
+the most transparent way. 
+
+### Dependencies 
+The package is developed for `Python3`. 
+
+The package requires `numpy` plus the standard python libraries 
+for both the client and server sides. 
+
+## Example
+Define the client implementing two functions, 
+that just redirect the functions to the `query`:
+```
+import pydtp 
+
+class SimpleClient (pydtp.Client) :
+  def add_one ( self, num ):
+    return self.query ( 'add_one', [num] ) 
+
+  def capitalize ( self, *strings):
+    return self.query ( 'capitalize', [strings] ) 
+```
+
+The `query` function hides the complexity and allow to 
+call functions implemented in a `Handler`: 
+```
+import pydtp 
+
+class SimpleHandler (pydtp.Handler):
+  def add_one ( self, num ):
+    return num + 1 
+
+  def capitalize ( self, strings ):
+    return {k: k.capitalize() for k in strings} 
+```
+
+The server is then instantiated and started on `localhost` and on a port.
+```
+server = pydtp.Server ( ('localhost', 12345), SimpleHandler )
+server.start() 
+```
+
+The client class is instantiated indicating the address and the port
+```
+client = SimpleClient ( ('localhost', 12345) ) 
+client.add_one ( 3 ) ## == 4
+client.capitalize ( 'test' ) ## == "Test"
+```
+
+
+
+
+
