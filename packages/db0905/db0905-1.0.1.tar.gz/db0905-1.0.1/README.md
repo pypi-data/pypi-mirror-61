@@ -1,0 +1,64 @@
+Brief
+=====
+
+[![alt Latest Version](https://img.shields.io/pypi/v/db0905.svg)](https://pypi.org/project/db0905/)
+[![alt License](https://img.shields.io/github/license/heronotears/db0905.svg)](https://github.com/heronotears/db0905/blob/master/LICENSE)
+[![alt Downloads](https://img.shields.io/pypi/dm/db0905.svg)](https://pypi.org/project/db0905/)
+[![Build Status](https://travis-ci.org/heronotears/db0905.svg?branch=master)](https://travis-ci.org/heronotears/db0905)
+
+A simple xml parse and build library.
+
+
+Installation
+============
+
+```sh
+pip install db0905
+```
+
+
+Examples
+========
+
+* xml to python object
+
+```sh
+>>> import db0905
+>>> xml = '<demo><foo>foo</foo><bar>bar</bar></demo>'
+>>> db0905.loads(xml)
+{'bar': 'bar', 'foo': 'foo'}
+>>> db0905.loads(xml, strip_root=False)
+{'demo': {'bar': 'bar', 'foo': 'foo'}}
+>>> xml = '<demo><foo>foo</foo><bar>1</bar><bar>2</bar></demo>'
+>>> db0905.loads(xml)
+{'bar': ['1', '2'], 'foo': 'foo'}
+```
+
+* python object to xml
+
+```sh
+>>> data = {'demo':{'bar': ['1', '2'], 'foo': '<foo>'}}
+>>> db0905.dumps(data)
+'<?xml version="1.0" encoding="utf-8"?><demo><foo><![CDATA[<foo>]]></foo><bar><![CDATA[1]]></bar><bar><![CDATA[2]]></bar></demo>'
+>>> db0905.dumps(data, cdata=False)
+'<?xml version="1.0" encoding="utf-8"?><demo><foo>&lt;foo&gt;</foo><bar>1</bar><bar>2</bar></demo>'
+>>> print db0905.dumps(data, indent=' ' * 4)
+<?xml version="1.0" encoding="utf-8"?>
+<demo>
+   <foo><![CDATA[<foo>]]></foo>
+   <bar><![CDATA[1]]></bar>
+   <bar><![CDATA[2]]></bar>
+</demo>
+```
+
+
+Documentation
+=============
+
+See [docs in readthedocs](http://db0905.readthedocs.org/en/latest/)
+
+
+Changelog
+=========
+
+See [changelog](https://github.com/heronotears/db0905/blob/master/docs/changelog.rst)
