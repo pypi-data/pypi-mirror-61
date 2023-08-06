@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: line-info
+Version: 0.0.1
+Summary: CLI tool to fetch helpful info about line of code, such as issue number, related PRs, etc.
+Home-page: https://github.com/MrMrRobat/line_info
+Author: MrMrRobat
+Author-email: appkiller16@gmail.com
+License: License :: OSI Approved :: MIT License
+Description: # line_info
+        
+        CLI tool to fetch helpful info about line of code, such as issue number, related PRs, etc.
+        
+        Usage: 
+        ```bash
+        line_info path/to/file line_number [selected_text]
+        ```
+        
+        It's designed to be used as an extension for IDE and called with a shortcut.
+        
+        For example, in your Intellij IDE you can add this tool to `Extention Tools` (**Preferences -> Tools -> Extention Tools**)
+        Use `line_info` as Program and `"$FilePath$" $LineNumber$ "$SelectedText$"` as Arguments
+        Then you can bind any shortcut or run it from context menu
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
