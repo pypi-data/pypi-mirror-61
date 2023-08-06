@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: calligator
+Version: 0.3.2
+Summary: An easy-to-use library for calibrating cameras in python
+Home-page: https://github.com/lambdaloop/calligator
+Author: Pierre Karashchuk
+Author-email: krchtchk@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Image Recognition
+Description-Content-Type: text/markdown
+Requires-Dist: numba
+Requires-Dist: numpy
+Requires-Dist: opencv-contrib-python (~=3.4)
+Requires-Dist: opencv-python (~=3.4)
+Requires-Dist: scipy
+Requires-Dist: toml
+Provides-Extra: full
+Requires-Dist: checkerboard ; extra == 'full'
+
+# Calligator
+
+An easy-to-use library for calibrating cameras in python
+
+The calibration library should follow these requirements:
+- [x] be able to detect points from checkerboard or charuco board easily
+- [x] save intermediate points somewhere, so that optimization can restart quickly
+- [x] optimize extrinsics and intrinsics jointly using LM method
+- [x] start with opencv intrinsics calibration if possible
+- [x] support calibration with arbitrary correspondence points using bundle adjustment
+- [ ] output common diagnostics for calibration
+  - reprojection error
+  - length of checkerboard grids
+  - picture of calibrated camera positions
+  - undistorted images to check intrinsics
+- [x] triangulation functions
+- [x] end to end function to calibrate full set of cameras from list of videos
+
+Nice to haves
+- [x] reject outlier points
+- [x] add objective in optimization to match the object points of calibration board
+
+Functions to implement
+
+Camera
+- [x] distort\_points
+- [X] undistort\_points
+- [X] project
+- [X] undistort\_image
+- [x] calibrate\_images
+- [x] calibrate\_points
+- [x] calibrate\_videos
+
+CameraGroup
+- [X] distort\_points
+- [X] undistort\_points
+- [X] project
+- [X] triangulate
+- [X] reprojection\_error
+- [x] calibrate\_images
+- [x] calibrate\_points
+- [x] calibrate\_videos
+
+CalibrationObject
+- [X] draw
+- [X] detect\_image
+- [X] detect\_images
+- [X] detect\_video
+- [X] get\_object\_points
+- [X] estimate\_pose
+
+
