@@ -1,0 +1,66 @@
+{% load i18n static %}
+{% load i18n admin_urls static admin_list %}
+{% if result_hidden_fields %}
+    <div class="hiddenfields">{# DIV for HTML validation #}
+        {% for item in result_hidden_fields %}{{ item }}{% endfor %}
+    </div>
+{% endif %}
+{% if results %}
+    <div id="result_cards">
+        <template>
+            <md-list id="card-content" class="md-triple-line">
+                {% for result in results %}
+                    {% if result.form.non_field_errors %}
+                        <md-list-item>
+                            <div class="md-list-item-text d-flex flex-row align-items-center justify-content-center"><td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td></div>
+                        </md-list-item>
+                    {% endif %}
+                    <md-list-item>
+                        <div class="d-flex flex-row align-items-center justify-content-around w-100">
+                            {% for item in result %}<div class="{% if "checkbox" in item %}col-1{% else %}d-none{% endif %}">{{ item|urlize }}</div>{% endfor %}
+                            <div class="card col-10 p-0">
+                                {% for item in result %}<div class="{% if "username" in item %}card-header text-center h3 p-0{% else %}d-none{% endif %}">{{ item|urlize }}</div>{% endfor %}
+                                <div class="card-body p-2">
+                                    {% for item in result %}<div class="{% if "email" in item %}text-center text-muted{% else %}d-none{% endif %}">{{ item|urlize }}</div>{% endfor %}
+                                    <div class="d-flex flex-row align-items-center justify-content-center">
+                                        {% for item in result %}<div class="{% if "first_name" in item or "group" in item %}{% else %}d-none{% endif %}">{{ item|urlize }}</div>{% endfor %}
+                                        {% for item in result %}<div class="{% if "last_name" in item %}ml-1{% else %}d-none{% endif %}">{{ item|urlize }}</div>{% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex align-items-center justify-content-center p-0" style="height: 6em">
+                                <div class="d-flex flex-row align-items-center justify-content-around w-100">
+                                    <v-btn outline fab color="grey" class="border-0 m-0" style="width: 2em; height: 2em" @click="show_actions">
+                                      <v-icon dark>list</v-icon>
+                                    </v-btn>
+                                    <div class="btn-group btn-group-sm btn-group-vertical" role="group" v-show="btn_action">
+                                        <button type="button" class="btn btn-light">Ação 1</button>
+                                        <button type="button" class="btn btn-light">Ação 2</button>
+                                        <button type="button" class="btn btn-light">Ação 3</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-list-item>
+                {% endfor %}
+            </md-list>
+        </template>
+        <md-list id="card-header" class="d-flex flex-row align-center justify-center p-0 m-0" style="background-color: transparent; height: 4em">
+            <md-list-item>
+                <div class="md-list-item-text d-flex flex-row align-items-center justify-content-center">
+                    {% for header in result_headers %}
+                        <div id="check_all" class="{% if "checkbox" in header.class_attrib %}md-list md-theme-default{% else %}d-none{% endif %}" style="background-color: transparent; width: 3em"
+                        {% if "checkbox" in header.class_attrib %}@click="check_all($event)"{% endif %}>
+                            <md-list-item>
+                                <div class="text-center">
+                                    {% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}
+                                </div>
+                            </md-list-item>
+                        </div>
+                    {% endfor %}
+                    <label style="width: 10em">{% trans 'Selecionar todos' %}</label>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+{% endif %}

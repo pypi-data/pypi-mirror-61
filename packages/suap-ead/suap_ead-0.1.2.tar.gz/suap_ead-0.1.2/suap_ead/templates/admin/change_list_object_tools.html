@@ -1,0 +1,25 @@
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+    {% if cl.has_filters %}
+      {% if has_add_permission %}
+          <li>
+            {% url cl.opts|admin_urlname:'add' as add_url %}
+            <a href="{% add_preserved_filters add_url is_popup to_field %}" class="addlink d-flex flex-row justify-center align-items-center">
+                {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+                <i class="material-icons ml-3">person_add</i>
+            </a>
+          </li>
+      {% endif %}
+    {% else %}
+      {% if has_add_permission %}
+          <li class="w-75">
+            {% url cl.opts|admin_urlname:'add' as add_url %}
+            <a href="{% add_preserved_filters add_url is_popup to_field %}" class="addlink d-flex w-50 flex-row justify-center align-items-center">
+                {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+                <i class="material-icons ml-3">group_add</i>
+            </a>
+          </li>
+      {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,135 @@
+body {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+#content-main {
+    background: #F7F7F7;
+}
+
+.left-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 5em;
+}
+
+.left-menu {
+    width: 255.58px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vH;
+    z-index: 10;
+}
+
+.logo {
+    width: 275.58px;
+}
+
+.top-perfil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.left-menu .sub-menu:hover, .left-menu .title-menu:hover{
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.left-menu .sub-menu{
+    height: 4em;
+}
+
+hr {
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+#branding a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#leftmenu a{
+    color: inherit;
+}
+
+form .submit-row > input {
+    background: #33588E;
+    color: #fff;
+}
+
+.right-menu {
+    position: absolute;
+    width: 15em;
+    right: 0;
+    z-index: 10;
+}
+
+.right-menu:before {
+    content: "\A";
+    border-style: solid;
+    border-width: 10px 10px 0 0;
+    border-color: transparent rgb(11, 11, 59) transparent transparent;
+    position: absolute;
+    right: 65px;
+    top: -10px;
+}
+
+@media (max-width: 767px) {
+    .right-menu:before {
+        right: 40px;
+    }
+}
+
+.select-theme {
+    width: 80%;
+}
+
+.modal-back {
+    width: 100vW;
+    height: 100%;
+    z-index: 5;
+    background: black;
+    opacity: 0.2;
+    position: absolute;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #D8E4F1;
+ }
+
+.mdc-list {
+    font-family: Roboto,sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+    letter-spacing: .00937em;
+    text-decoration: inherit;
+    text-transform: inherit;
+    color: rgba(0,0,0,.87);
+    color: var(--mdc-theme-text-primary-on-background,rgba(0,0,0,.87));
+    margin: 0;
+    padding: 8px 0;
+    line-height: 1.5rem;
+    list-style-type: none;
+}
+
+.demo-list {
+    max-width: 600px;
+    border: 1px solid rgba(0,0,0,.1);
+}
