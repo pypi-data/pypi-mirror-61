@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: dynamo-size
+Version: 1.0.0
+Summary: Roughly calculates DynamoDB item size.
+Home-page: https://github.com/tallesl/py-dynamo-size
+Author: Talles Lasmar
+Author-email: talleslasmar@gmail.com
+License: UNKNOWN
+Description: # dynamo-size
+        
+        [![](https://badge.fury.io/py/dynamo-size.svg)](https://pypi.org/project/dynamo-size)
+        
+        Roughly calculates [DynamoDB item size](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CapacityUnitCalculations.html).
+        
+        ```py
+        item = {
+            'Id': 123,
+            'Names': [
+                'foo',
+                'bar',
+                'qux',
+                # 500 more names
+            ]
+        }
+        
+        from dynamo_size import calculate_bytes, calculate_kbytes
+        
+        calculate_bytes(item)  # returns 2025
+        calculate_kbytes(item)  # return 1.9775390625 (2025 / 1024)
+        ```
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
