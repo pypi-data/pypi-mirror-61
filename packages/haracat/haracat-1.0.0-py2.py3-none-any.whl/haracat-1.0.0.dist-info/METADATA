@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: haracat
+Version: 1.0.0
+Summary: hAraCat 🐈 adds diacritics to Arabic text
+Home-page: https://github.com/mikahama/haracat
+Author: Mika Hämäläinen, Dept. of  Digital Humanities, University of Helsinki
+Author-email: mika.hamalainen@helsinki.fi
+License: Apache License, Version 2.0
+Project-URL: Bug Reports, https://github.com/mikahama/haracat/issues
+Project-URL: Developer, https://mikakalevi.com/
+Keywords: Arabic,diacritic prediction,harakat
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: natas
+
+# hAraCat 🐈
+
+hAraCat is a Python library for adding diacritics automatically to Medieval Arabic text.
+
+# Install 😻
+
+pip install haracat
+
+# Use 🐱
+
+Diacritics can be added as follows
+
+    from haracat import diacritics_sentence
+    diacritics_sentence("الإجاج، مثلثة الأول: الستر.".split(" "))
+    >> الْإِجاجُ، مُثَلَّثَةَ الْأَوَّلِ: السِّتْرُ.
+
+First the sentence is tokenized before the diacritics are predicted.
+
+# Credits
+
+Khalid Alnajjar, Mika Hämäläinen, Niko Partanen and Jack Rueter
+
