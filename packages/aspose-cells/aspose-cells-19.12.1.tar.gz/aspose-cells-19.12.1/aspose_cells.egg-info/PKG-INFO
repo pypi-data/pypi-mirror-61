@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: aspose-cells
+Version: 19.12.1
+Summary: Python API to read, write, manipulate & convert Microsoft Excel® files without any dependency. Create & manipulate Workbooks, Worksheets, Pivot Tables, Charts, Sparklines, Conditional Formatting & more. Convert Excel to PDF, XPS, HTML, images & metafiles.
+Home-page: https://products.aspose.com/cells/python-java
+Author: Aspose
+Author-email: cells@aspose.com
+License: UNKNOWN
+Description: # Python Excel File Format API
+        Aspose.Cells for Python via Java is a scalable and feature-rich API to process Excel spreadsheets using Python. API offers Excel file format conversion, worksheets styling to the most granular level, chart creation & rendering, reliable formula calculation engine and much more.
+        
+        ## Python Spreadsheet API Features 
+        - Create Pivot Tables, charts, sparklines & conditional formatting.
+        - Refresh existing charts & convert charts to images or PDF.
+        - Create & manipulate comments & hyperlinks.
+        - Set complex formulas & calculate results via API.
+        - Set protection on workbook, worksheet, cell, column or row.
+        - Create & manipulate named ranges.
+        - Populate worksheets through Smart Markers.
+        - Manipulate & refresh Pivot Tables via API.
+        - Convert worksheets to PDF, XPS & SVG formats.
+        - Inter-convert files to popular Excel formats.
+        
+        ## Read & Write Excel Files
+        **Microsoft Excel:** XLS, XLSX, XLSB, XLTX, XLTM, XLSM, XML
+        **OpenOffice:** ODS
+        **Text:** CSV, Tab-Delimited, TXT
+        **Web:** HTML, MHTML
+        
+        ## Save Excel Files As 
+        **Fixed Layout:** PDF, XPS
+        **Images:** JPEG, PNG, BMP, SVG, TIFF, GIF, EMF
+        
+        ## Create Excel File from Scratch using Python
+        ``` python
+        import jpype
+        import asposecells
+        jpype.startJVM()
+        from asposecells.api import Workbook, FileFormatType
+        
+        wb = Workbook(FileFormatType.XLSX)
+        wb.getWorksheets().get(0).getCells().get("A1").putValue("testing...")
+        wb.save("wb.xlsx")
+        
+        jpype.shutdownJVM()
+        ```
+        
+        [Product Page](https://products.aspose.com/cells/python-java) | [Documentation](https://docs.aspose.com/display/cellspythonjava/Home) | [Blog](https://blog.aspose.com/category/cells/) | [API Reference](https://apireference.aspose.com/python/cells) | [Code Samples](https://github.com/aspose-cells/Aspose.Cells-for-Java) | [Free Support](https://forum.aspose.com/c/cells) | [Temporary License](https://purchase.aspose.com/temporary-license) | [EULA](https://company.aspose.com/legal/eula)
+        
+Keywords: Excel API,Spreadsheet API,aspose,cells,java
+Platform: Operating System :: MacOS :: MacOS X
+Platform: Operating System :: Microsoft :: Windows :: Windows 7
+Platform: Operating System :: Microsoft :: Windows :: Windows Vista
+Platform: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: Other/Proprietary License
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
