@@ -1,0 +1,57 @@
+#!python
+import argparse
+import subprocess
+import os
+import sys
+
+errorMessage = ''
+parser = argparse.ArgumentParser()
+parser.add_argument("port_number", help="Enter port you want to free",  type=int, default=None)
+args  = parser.parse_args()
+port = args.port_number
+
+try:
+    processFindingCmd = 'lsof -t -i:{0}'.format(port)
+    result = subprocess.run(processFindingCmd, shell=True, text=True ,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    processId =  result.stdout
+
+    if processId.rstrip("\n\r") != '':
+        processId = int(processId)
+        processNameCmd = 'ps -p {0} -o comm='.format(str(processId))
+        result = subprocess.run(processNameCmd, shell=True, text=True ,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        processName =  result.stdout.rstrip("\n\r")
+
+        if processName!=None and processId > 0 :
+
+            while True:
+                user_confirmation_message = 'Do you want to kill {0} which runs on port {1} . Type y for yes / n for no'.format(processName,port)
+                userConfirmation = input(user_confirmation_message)
+                userConfirmation = userConfirmation.upper()
+                
+                if userConfirmation == 'Y' or userConfirmation == 'N' :
+                    break;
+                    
+            if userConfirmation == 'Y':    
+                processKillCmd = 'kill -9 {0}'.format(processId)
+                is_killed = os.system(processKillCmd)
+            
+            if is_killed == 0 :
+                print("Port : {0} is free . {1} is killed successfully.".format(port,processName))
+        else:
+            print("Port is free")
+    else:
+        print("Port is free")
+
+except ValueError:
+    print("Error occurred while converting portNumber. Please ensure port number is in number format.")
+    exit()
+except Exception as e :
+    print(e.args)
+    print("No process running ..")
+
+
+
+
+
+
+
