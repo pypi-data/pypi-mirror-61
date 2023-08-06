@@ -1,0 +1,293 @@
+CHANGES
+=======
+
+0.2.1
+-----
+
+* Prepare release 0.2.1
+* Document new env vars
+* Set email sender
+* Include full URL in clickable email link
+* Allow configurable domain
+* Fix version string
+
+0.2.0
+-----
+
+* Prepare release 0.2.0
+* Handle secrets with a secretgenerator
+* Scale down postgres replicas in dev
+* DB username must be postgres
+* Attempt to set up postgres statefulset based on arianitu
+* Add about page
+* Reformat table
+* Include example secrets
+* Horrible workaround for https://github.com/dominno/django-moderation/issues/183
+* Fix typo
+* List all form fields explicitly
+* Configure moderation
+* Fix typo in settings
+* Add django-moderation back into requirements
+* Fix branding
+* Render and display combined logo
+* Omit icons from docker context
+* Add source images for logos
+* WIP
+* Fully qualify imports
+* Install django-moderation
+* Get rid of git-secret now we don't have any secrets
+* Remove secrets now they are stored elsewhere
+* Revert "Install django-moderation"
+* Fix branding
+* Minor dockerfile fixes
+* Add stock env vars for python
+* Install django-moderation
+* Improve wording of templates
+* Add extras for changing password
+* Remove old accounts module
+* Activation workflow with bare minimum forms
+* Rename base\_generic to base
+* Basic password reset functionality
+* Use filesystem email backend if Sendgrid not configured
+
+0.1.5
+-----
+
+* Prepare release 0.1.5
+* Fix link paths
+* Add release docs and changelog
+* Print code version in footer for #170
+* Switch to binary distro for convenience
+* Lint documentation
+* Drop notice
+* Update secrets
+* Improve notes about secrets
+* Shorten env var name
+* Better command to get connected
+* Add encrypted secrets
+* Hardcode a few env vars for k8s, set defaults for everything else so the container can always start
+* Reformat README
+* Change secret merge behaviour
+* Fix typo
+* Add note about secrets
+* Encrypt env files with git secret
+* Model CAMERAHUB\_DB\_NAME as a secret, so it goes in the same env
+* Standardise on upper case env vars
+* Move all secrets into camerahub-secret so they can be set with one .env file
+* Allow per-env secrets via env file
+* Standardise format of kustomize.yaml
+* Make sendgrid integration optional
+* Fix table formatting
+* Reformat notes on env vars
+* Capture user email at signup
+* Allow override admin email
+* Prefix all env vars with CAMERAHUB\_
+* Use manage.py from newer django
+* Add note about cert-manager
+* Always re-pull movable tags
+* No longer need a batch job in light of #175
+* Allow setting of admin password by env var
+* Don't send dev sqlite db to docker, in case it leaks information
+* Run migrations in startup, not image build
+* Create superuser in a migration
+* Make SendGrid key optional
+* Share secrets with Jonathan
+* Initialise git secret
+* Enable SendGrid integration
+* Improve kubernetes docs
+* Default to single replica
+* Add dev overlay
+* Dedup secret
+* Re-centralise secrets and set up prod overlay
+* Don't display owner field on forms
+* Limit choices of FKs to ones you own
+* Abstract out forms, while keeping them the same
+* Reference user-specific IDs where necessary
+* Update code references
+* Change human-readable references
+* Add per-user incrementing ID fields
+* Create new fields for user-specific IDs
+* Update code references
+* Change human-readable references
+* Render and display combined logo
+* Omit icons from docker context
+* Add source images for logos
+* Test manufacturer before printing
+* Use crispy for auth forms
+* Render all forms with crispy
+* Use bootstrap4 for tables
+* Best practice responsive tags
+* Update bootstrap version
+* Add link to icons8
+* Add icons8 icon
+* Add footer with social links
+* Add social icons
+* Provide model description for Processes
+* Display correct repair description
+* Fix display of repair ID
+* Fix display of order ID
+* Add placeholder for "see all"
+* Display home icon
+* Regenerate PNGs
+* Improve icon script to make multiple PNG from one SVG and use Inkscape due to bugs in ImageMagick
+* Add/remove various SVGs
+* Reformat heading
+* Replace PNGs generated on Ubuntu with IM6.9.10.23 with ones generated on Fedora with IM 6.9.10-75
+* Generate 50px icons and use these in headings
+* Remove django-admin-tools
+* Remove fluent dashboard
+* Add SVG icons, a script to generate PNG icons, and instructions
+* Re-jig headings
+* Display icons for each type
+* Update issue templates
+* Add clickable links to detail views
+* Display series members inline
+* Display multi-valied FKs
+* Reformat using a table
+* Display bulk films inline
+* Fix stray char
+* Don't display owner field
+* Sort shutter speeds
+* Use join filter for simple lists
+* Basic display of related values
+* Add very basic index page for #4
+* Remove dupe link
+* Hide things unauthenticated users aren't allowed to see
+* Improve login/logout widget
+* Drop sub headings
+* Add signup link to login
+* Fix namespace clash in includes
+* Require auth for all RW views and most RO views
+* Restrict list views to their owners
+* Handle meteringtype as a choice, not its own model
+* Add basic user signup
+* Add basic login/logout form
+* Capitalise URL
+* Further simplify some list views
+* Add description for accessories
+* Serve app from top level
+* Use plural names in sidebar
+* Make the most important fields clickable
+* Make toner optional
+* Flesh out more tables
+* Start overriding table columns
+* Offer to add rows in list view
+* Create custom class to simplify views
+* Use tables2 to render all list views
+* Revert "Run migrations via env var"
+* Run migrations via env var
+* Fix selector
+* Fix ingress
+* Update docs
+* Create sample overlay
+* Move configmap into photodb
+* Use photodb-container as a more specific pod label
+* Run latest tag
+* Move kustomize stuff into subdir
+* Don't set the namespace here
+* Split manifests down into chunks and add basic kustomization
+* Follow latest Docker tag, now it exists
+* Update Docker with tags info
+* First-pass attempt at a sortable table
+* Add descriptions at top of web pages for #126
+* Skeleton inlines for #123
+* Run migrations when pods are changed
+
+0.1.4
+-----
+
+* Use correct var name
+
+0.1.3
+-----
+
+* Keep libpq for runtime
+* Keep libpq for runtime
+* Create configmap and use it for db name
+
+0.1.2
+-----
+
+* Feed SECRET\_KEY into kubernetes
+* Allow override of secret
+* Run PhotoDB in uwsgi and serve static content
+* Add dockerignore to reduce image size
+* Don't hard-code hostname
+* Define HTTP ingress
+* Update docs for kustomize
+* Fix typo
+* Toggleable debug mode
+* Ignore .vscode
+* Add create & update views for every model
+* Add headings to create/update forms
+* Add basic flat detail page for every model
+* Split out actions
+* Abstract out template headings
+* Scale up to 2 replicas
+* Use LB instead of NP. Not harmful even if the LB is never provisioned
+* Update kubernetes readme
+* Quote port as string
+* Fix api ver
+* Drop sqlite pv
+* Set env vars in right place
+* Run kubernetes with postgres backend
+* Switch back to separate env vars
+* Allow database config to be set via env var
+
+0.1.1
+-----
+
+* Split out install docs and add k8s
+* Allow any host to connect, required for Kubernetes
+* Make these fit for deployment
+* Fix paths for volume
+* Export storage config
+* Add persistent storage for sqlite
+* Very basic deployment+service
+* Remove unneeded icon definitions
+* Drop filter adapter
+* Roll lightmeter and projector into accessories
+* Drop support for digital cameras
+* Drop support for movies
+* Move inlines up to the top
+* Move all imports to the top
+* Hide owner from admin pages
+* Add owner field to various user-specific models
+
+0.1.0
+-----
+
+* Simplify installation instructions
+* Screenshots (#105)
+* Update layout of README
+* Specify requirements as ranges
+
+0.0.13
+------
+
+* Update readme
+* Rename project
+* Install deps for MySQL and Postgres
+* Update docker instructions for db config
+* Put local db config its own dir
+* Don't add data for models that don't exist
+* Rename migrations into order
+* Rebase migrations
+
+0.0.12
+------
+
+* Set default password in docker
+* Switch to alpine python image
+* SQLite Docker volume persistence (#94)
+
+0.0.11
+------
+
+* Update instructions for docker
+* Update readme
+
+0.0.8
+-----
+
+* Remove some unnecessary widgets
