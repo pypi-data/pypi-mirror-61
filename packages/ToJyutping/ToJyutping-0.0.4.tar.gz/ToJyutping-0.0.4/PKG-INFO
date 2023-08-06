@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: ToJyutping
+Version: 0.0.4
+Summary: 粵語拼音自動標註工具 | Cantonese Pronunciation Automatic Labeling Tool
+Home-page: https://github.com/sgalal/to-jyutping
+Author: sgalal
+Author-email: ayaka@mail.shn.hk
+License: MIT
+Project-URL: Bug Reports, https://github.com/sgalal/to-jyutping/issues
+Project-URL: Source, https://github.com/sgalal/to-jyutping
+Description: # ToJyutping
+        
+        Install:
+        
+        ```sh
+        $ pip install ToJyutping
+        ```
+        
+        Usage:
+        
+        ```python
+        >>> from ToJyutping import ToJyutping
+        >>> tj = ToJyutping()
+        >>> tj.run('常委会会议')
+        '常(soeng4)委(wai2)会(wui2)会(wui6)议(ji5)'
+        >>> tj.run('常委會會議')
+        '常(soeng4)委(wai2)會(wui2)會(wui6)議(ji5)'
+        ```
+        
+Keywords: chinese cantonese nlp natural-language-processing
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Natural Language :: Cantonese
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: Chinese (Traditional)
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5, <4
+Description-Content-Type: text/markdown
