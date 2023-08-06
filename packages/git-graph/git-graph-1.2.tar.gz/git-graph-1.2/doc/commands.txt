@@ -1,0 +1,570 @@
+-------------------------------------
+doc Python Packaging User Guide
+-------------------------------------
+https://packaging.python.org/
+https://media.readthedocs.org/pdf/python-packaging-user-guide/latest/python-packaging-user-guide.pdf
+132 pages - 22 jan 2019
+
+https://python-packaging.readthedocs.io/en/latest/
+https://media.readthedocs.org/pdf/python-packaging/latest/python-packaging.pdf
+29 pages - v0.1 - 20 sep 2017
+
+-------------------------------------
+doc setuptools
+-------------------------------------
+https://setuptools.readthedocs.io/en/latest/
+https://media.readthedocs.org/pdf/setuptools/latest/setuptools.pdf
+203 pages - v40.6.3 - 24 dec 2018
+
+-------------------------------------
+doc conda
+-------------------------------------
+https://docs.conda.io/projects/conda-build/en/latest/index.html
+https://readthedocs.com/projects/continuumio-conda-build/downloads/pdf/latest/
+99 pages - 22 jan 2019
+
+
+
+-------------------------------------
+[‎1/‎9/‎2019 5:26 PM]  Marc Wouts:
+https://mybinder.org/v2/gh/hoduche/git-graph/master
+
+[‎1/‎18/‎2019 3:56 PM]  Henri-Olivier Duche:
+Salut Marc.
+Je travaille sur le packaging de mon application git-graph (en python).
+Aurais-tu des conseils à me donner
+1. sur la structure du projet (setup.py, requirements, tests ...)
+2. sur les repos sur lesquels je dois livrer des choses (GitHUb, PyPI, conda, medium ...)
+
+[‎1/‎18/‎2019 3:57 PM]  Marc Wouts:
+Oui bien sûr !
+
+[‎1/‎18/‎2019 3:57 PM]  Henri-Olivier Duche:
+Cool.
+
+[‎1/‎18/‎2019 3:57 PM]  Marc Wouts:
+1. Il y a beaucoup de doc sur ce sujet
+je pense que la première étape
+c'est de faire marcher les tests en local
+puis de les déployer sur travis-ci
+Ainsi, tu auras validé ton setup.py, tes tests, et tes requirements
+
+[‎1/‎18/‎2019 3:59 PM]  Marc Wouts:
+2. Dans l'ordre: github / pypi / medium / conda
+
+[‎1/‎18/‎2019 3:59 PM]  Henri-Olivier Duche:
+Parfait :)
+
+[‎1/‎18/‎2019 3:59 PM]  Marc Wouts:
+laisse un peu de temps entre chaque etape pour être sur que ça marche !
+Ah, et pense à binder
+ce n'est pas mal pour tester le fichier 'requirements'
+
+[‎1/‎18/‎2019 4:01 PM]  Henri-Olivier Duche:
+Finalement j'ai penché plutôt vers un plugin git : on tape git graph en ligen de commande et ça crée une image
+Je ne sais plus trop si j'ai besoin d'un binder
+Je ne crois pas que je vais mettre un notebook dans le projet in fine
+
+[‎1/‎18/‎2019 4:02 PM]  Marc Wouts:
+ah pourquoi pas
+
+[‎1/‎18/‎2019 4:02 PM]  Henri-Olivier Duche:
+Pour travis-ci, tu as fait des tutoriaux sur leur site ?
+
+[‎1/‎18/‎2019 4:02 PM]  Marc Wouts:
+oui c'était assez facile
+
+[‎1/‎18/‎2019 4:02 PM]  Henri-Olivier Duche:
+parfait, je vais donc commencer par là ce weekend
+
+[‎1/‎18/‎2019 4:02 PM]  Marc Wouts:
+il faut juste écrire un fichier .travis.yml
+et bien sûr créer un compte chez travis
+
+[‎1/‎18/‎2019 4:03 PM]  Henri-Olivier Duche:
+Et je vais écrire un peu plus de tests car pour l'instant, c'est léger :)
+Merci beaucoup en tout cas.
+
+[‎1/‎18/‎2019 4:04 PM]  Marc Wouts:
+Jette un coup d'oeil à pytest-cov
+moi j'adore
+
+[‎1/‎18/‎2019 4:05 PM]  Henri-Olivier Duche:
+Je vais le faire
+
+[‎1/‎18/‎2019 4:05 PM]  Marc Wouts:
+https://codecov.io/gh/mwouts/jupytext/tree/1.0.0/jupytext
+
+[‎1/‎18/‎2019 4:05 PM]  Henri-Olivier Duche:
+Tu travailles en windows ou en linux chez toi ?
+
+[‎1/‎18/‎2019 4:05 PM]  Marc Wouts:
+Clique sur un fichier
+et tu vois les lignes non couvertes
+en windows
+avec la CI en linux
+ça fait une bonne couverture
+
+[‎1/‎18/‎2019 4:06 PM]  Henri-Olivier Duche:
+la CI en linux sur le site de travis ?
+Ils te fournissent une machine virtuelle ?
+
+[‎1/‎18/‎2019 4:06 PM]  Marc Wouts:
+Oui, par défaut c'est un environnement linux
+il y a des options pour tester d'autres OS
+que je n'ai pas étudiées
+
+[‎1/‎18/‎2019 4:07 PM]  Henri-Olivier Duche:
+C'est très bien comme ça
+Ton code est drolement bien couvert !
+
+[‎1/‎18/‎2019 4:07 PM]  Marc Wouts:
+Il fallait bien ça
+
+[‎1/‎18/‎2019 4:07 PM]  Henri-Olivier Duche:
+La page que tu m'as envoyée est générée par travis ?
+
+[‎1/‎18/‎2019 4:07 PM]  Marc Wouts:
+N'oublie pas que je suis débutant en python
+
+[‎1/‎18/‎2019 4:08 PM]  Henri-Olivier Duche:
+Je suis plus débutant python que toi
+
+[‎1/‎18/‎2019 4:08 PM]  Marc Wouts:
+https://github.com/mwouts/jupytext/blob/8d90a28d24ad0045ea6ba0320c96cf4dc7427535/.travis.yml#L26-L29
+C'est la commande codecov
+qui envoie les infos de coverage à codecov.io
+
+[‎1/‎18/‎2019 4:09 PM]  Henri-Olivier Duche:
+OK
+
+[‎1/‎9/‎2019 5:26 PM]  Marc Wouts:
+https://mybinder.org/v2/gh/hoduche/git-graph/master
+
+
+
+
+-------------------------------------
+
+[‎1/‎11/‎2019 5:25 PM]  Henri-Olivier Duche:
+Si je trouve le temps de faire un peu de dev ce weekend, tu me conseillerais qqch pour packager mes dépendances sur GitHub (graphviz et pathlib) ?
+
+[‎1/‎11/‎2019 5:25 PM]  Lamine Souiki:
+c'est son setup.py qui doit tirer ça de pip
+
+[‎1/‎11/‎2019 5:26 PM]  Henri-Olivier Duche:
+Même graphviz (le programme, pas la lib python) ?
+Et ça veut dire que les gens qui font git clone de mon projet doivent faire un pip install qqch après avoir fait git clone ?
+
+[‎1/‎11/‎2019 5:28 PM]  Lamine Souiki:
+Ca veut dire que les gens qui clonent ton truc doivent:
+faire un sudo apt-get/yum install de graphviz
+et faire un pip install .  # par exemple.
+
+[‎1/‎11/‎2019 5:29 PM]  Henri-Olivier Duche:
+Super merci.
+Et faire un binder d'un jupyter notebook, c'est utile aussi ?
+
+[‎1/‎11/‎2019 5:30 PM]  Lamine Souiki:
+Ouais, ça peut le faire aussi. Mais c'est plus rare de voir ça.
+
+[‎1/‎11/‎2019 5:30 PM]  Henri-Olivier Duche:
+OK l'un n'empêche pas l'autre, je vais commencer par ce que tu dis.
+Merci encore et bon weekend
+
+[‎1/‎24/‎2019 6:38 PM]  Lamine Souiki:
+pathlib; python_version < '3.0'
+meta.yaml:
+ requirements
+   build:
+   - pathlib #[py2k]
+
+[‎1/‎24/‎2019 6:56 PM]  Lamine Souiki:
+git-graph  renommé en git_graph
+dans le requirements.txt:  graphviz
+dans le entrypoint:
+
+dans dot-graph.py
+import git_graph.git_graph as gg
+dans git-graph.py:
+from . import git_functions as gf
+
+[‎1/‎24/‎2019 6:57 PM]  Lamine Souiki:
+dans le entry-point:
+from git_graph.dot_graph import main
+
+-------------------------------------
+
+pathlib is in standard library in python3 but must be imported in python2 and only with pip as there is no conda
+graphviz can be imported in pip but python-graphviz must be imported in conda instead
+pip environments do not find the dot executable
+
+-------------------------------------
+       graphviz 2.38.0 c'est le vrai dot en C, téléchargeable par conda uniquement (ou apt-get)
+       graphviz 0.10.1 c'est l'api python, téléchargée par pip
+python-graphviz 0.8.4  c'est l'api python, téléchargée par conda
+
+donc pip install graphviz installe
+graphviz                  0.10.1                    <pip>
+
+et conda install graphviz installe
+graphviz                  2.38.0              hc0b501a_12    cfm_current
+
+et conda install python-graphviz installe
+python-graphviz           0.8.4            py36h07884b1_3    cfm_current
+
+-------------------------------------
+office + python2 + pip
+-------------------------------------
+conda create -n o2p
+source activate o2p
+conda install pip
+pip install graphviz
+pip install pathlib
+python git-graph/dot_graph.py
+    the dot file is generated but the pdf is not because
+    raise ExecutableNotFound(cmd)
+    graphviz.backend.ExecutableNotFound: failed to execute ['dot', '-Tpdf', '-O', '/home/hduche/workspace/git-graph/.gitGraph/auto.Kk0Jew.dot'], make sure the Graphviz executables are on your systems' PATH
+
+conda list
+# packages in environment at /home/hduche/conda/envs/o2p:
+#
+graphviz                  0.10.1                    <pip>
+pathlib                   1.0.1                     <pip>
+pip                       9.0.1            py27hedf312d_1    cfm_current
+python                    2.7.13               hd4cba35_1    cfm_current
+setuptools                36.3.0           py27h2c15a6f_0    cfm_current
+wheel                     0.29.0           py27h0029886_0    cfm_current
+
+-------------------------------------
+office + python3 + pip
+-------------------------------------
+conda create -n o3p
+source activate o3p
+conda install python=3
+pip install graphviz
+python git-graph/dot_graph.py
+    the dot file is generated but the pdf is not because
+    raise ExecutableNotFound(cmd)
+    graphviz.backend.ExecutableNotFound: failed to execute ['dot', '-Tpdf', '-O', '/home/hduche/workspace/git-graph/.gitGraph/auto.jsy9euui.dot'], make sure the Graphviz executables are on your systems' PATH
+
+conda list
+# packages in environment at /home/hduche/conda/envs/o3p:
+#
+graphviz                  0.10.1                    <pip>
+libffi                    3.0.9                h4823ff6_2    cfm_current
+pip                       9.0.1            py36h82e8305_1    cfm_current
+python                    3.6.2                h46af431_3    cfm_current
+setuptools                36.3.0           py36hdd866b5_0    cfm_current
+wheel                     0.29.0           py36heecbd39_0    cfm_current
+
+-------------------------------------
+office + python2 + conda
+-------------------------------------
+conda create -n o2c
+source activate o2c
+conda install python-graphviz
+pip install pathlib
+python git-graph/dot_graph.py
+    ok but not the first time - I had to deactivate then reactivate again to see graphviz module
+    the order in the dot file is different than in python3
+    the graph is symetrical with respect to python3
+
+conda list
+# packages in environment at /home/hduche/conda/envs/o2c:
+#
+expat                     2.0.1                ha890ba6_1    cfm_current
+graphviz                  2.38.0              hc0b501a_12    cfm_current
+jpeg                      9c                   h99d5b2f_2    cfm_current
+pathlib                   1.0.1                     <pip>
+pip                       9.0.1            py27hedf312d_1    cfm_current
+python                    2.7.13               hd4cba35_1    cfm_current
+python-graphviz           0.8.4            py27hc1e39db_3    cfm_current
+setuptools                36.3.0           py27h2c15a6f_0    cfm_current
+wheel                     0.29.0           py27h0029886_0    cfm_current
+
+-------------------------------------
+office + python3 + conda
+-------------------------------------
+conda create -n o3c
+source activate o3c
+conda install python=3
+conda install python-graphviz
+python git-graph/dot_graph.py
+    ok but not the first time - I had to deactivate then reactivate again to see graphviz module
+
+conda list
+# packages in environment at /home/hduche/conda/envs/o3c:
+#
+expat                     2.0.1                ha890ba6_1    cfm_current
+graphviz                  2.38.0              hc0b501a_12    cfm_current
+jpeg                      9c                   h99d5b2f_2    cfm_current
+libffi                    3.0.9                h4823ff6_2    cfm_current
+pip                       9.0.1            py36h82e8305_1    cfm_current
+python                    3.6.2                h46af431_3    cfm_current
+python-graphviz           0.8.4            py36h07884b1_3    cfm_current
+setuptools                36.3.0           py36hdd866b5_0    cfm_current
+wheel                     0.29.0           py36heecbd39_0    cfm_current
+
+
+
+
+-------------------------------------
+git branch -vv --abbrev=0
+-------------------------------------
+list all local branches with their pointed commit SHA1 hash and their upstream branch if any + the local HEAD as '*'
+ex:
+git branch -vv --abbrev=0
+  docu           63e89ea8d3cc887dd52fddbd606acd86c1423f9e [origin/docu] add command in README
+  graph_display  50d0be5c6d16819e1fb296361164b1d130cba258 add unit tests
+  graph_display2 50d0be5c6d16819e1fb296361164b1d130cba258 add unit tests
+* master         50d0be5c6d16819e1fb296361164b1d130cba258 [origin/master] add unit tests
+  tata           f166e7327ee8b6c1a9487a623fe12782938b1f5f [origin/graph_display] improve colors
+
+-------------------------------------
+git branch -rv --abbrev=0
+-------------------------------------
+list all remote-tracking branches with their pointed commit SHA1 hash + the remote HEADs with their pointed branch
+ex:
+git branch -rv --abbrev=0
+  origin/HEAD          -> origin/master
+  origin/docu          63e89ea8d3cc887dd52fddbd606acd86c1423f9e add command in README
+  origin/graph_display f166e7327ee8b6c1a9487a623fe12782938b1f5f improve colors
+  origin/master        50d0be5c6d16819e1fb296361164b1d130cba258 add unit tests
+
+-------------------------------------
+git ls-remote origin
+-------------------------------------
+list all refs on origin remote server with their pointed commit SHA1 hash
+ex:
+git ls-remote origin
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f        HEAD
+63e89ea8d3cc887dd52fddbd606acd86c1423f9e        refs/heads/docu
+f166e7327ee8b6c1a9487a623fe12782938b1f5f        refs/heads/graph_display
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f        refs/heads/master
+9cd0a2357f89f4d149e3a7f3d33b5ea1b816a1e8        refs/heads/simpler_graph
+d280d4d5122bdca050ed97bb50a15ba3bb572c3d        refs/heads/useful_commands
+601614bc23c653e5d766ed882e62ff67658bd752        refs/tags/v1.1
+b31b39a732fe5bf62609f37f0e5ad3d46f1961e7        refs/tags/v1.1^{}
+db75702131a2760f5caaedcaa2817482cd7c4d7d        refs/tags/v2.1
+1cb5bb694a1f34a33d89a2a5197262cf35fb1814        refs/tags/v2.1^{}
+f26629c4f6ae74c7629c580f14dcf559f9c66e93        refs/tags/v2.2
+a3a9ad768bcd4c7e136f2c258bea178896bc89da        refs/tags/v2.2.2
+
+-------------------------------------
+git for-each-ref
+-------------------------------------
+list all refs with their pointed file SHA1 hash and type
+careful the origin/HEAD content is origin/master but it displays the underlying commit
+ex:
+git for-each-ref
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f commit refs/heads/master
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f commit refs/remotes/origin/HEAD
+63e89ea8d3cc887dd52fddbd606acd86c1423f9e commit refs/remotes/origin/docu
+f166e7327ee8b6c1a9487a623fe12782938b1f5f commit refs/remotes/origin/graph_display
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f commit refs/remotes/origin/master
+9cd0a2357f89f4d149e3a7f3d33b5ea1b816a1e8 commit refs/remotes/origin/simpler_graph
+d280d4d5122bdca050ed97bb50a15ba3bb572c3d commit refs/remotes/origin/useful_commands
+601614bc23c653e5d766ed882e62ff67658bd752 tag    refs/tags/v1.1
+db75702131a2760f5caaedcaa2817482cd7c4d7d tag    refs/tags/v2.1
+f26629c4f6ae74c7629c580f14dcf559f9c66e93 commit refs/tags/v2.2
+a3a9ad768bcd4c7e136f2c258bea178896bc89da commit refs/tags/v2.2.2
+
+-------------------------------------
+git rev-list --parents --all
+-------------------------------------
+list all commits relationship: parent childrens (adjacency list - sadly with only commits)
+ex:
+git rev-list --parents --all
+9cd0a2357f89f4d149e3a7f3d33b5ea1b816a1e8 c1e7aab7ebef15cc628dd317dd3d5134cea7c03f
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f d8f41e82e5acfd8646bc1194d32392690b838b49
+d8f41e82e5acfd8646bc1194d32392690b838b49 9301b80aa6365c5fe3b9fc08984d0e9644245bdd d280d4d5122bdca050ed97bb50a15ba3bb572c3d
+9301b80aa6365c5fe3b9fc08984d0e9644245bdd f166e7327ee8b6c1a9487a623fe12782938b1f5f 63e89ea8d3cc887dd52fddbd606acd86c1423f9e
+d280d4d5122bdca050ed97bb50a15ba3bb572c3d 143936a65400a372523d5a63327a7f1c2dc87532
+f166e7327ee8b6c1a9487a623fe12782938b1f5f 4cb8e2b32b82c88fab0f3ae0a6da906d0fbc727a
+4cb8e2b32b82c88fab0f3ae0a6da906d0fbc727a 8da782a32080c15e7c33170a68b4975c9b7c5176
+8da782a32080c15e7c33170a68b4975c9b7c5176 6b60b20596c99dd37cd2a49aeffa9464d280bea7
+6b60b20596c99dd37cd2a49aeffa9464d280bea7 7fc5b73cc9b16754b41cb0d73d8b14f7471052ce
+7fc5b73cc9b16754b41cb0d73d8b14f7471052ce 50d0be5c6d16819e1fb296361164b1d130cba258
+50d0be5c6d16819e1fb296361164b1d130cba258 143936a65400a372523d5a63327a7f1c2dc87532
+143936a65400a372523d5a63327a7f1c2dc87532 a63a23d7c8223a5da608445d72c4758f7300a469
+63e89ea8d3cc887dd52fddbd606acd86c1423f9e a3a9ad768bcd4c7e136f2c258bea178896bc89da
+a3a9ad768bcd4c7e136f2c258bea178896bc89da 3b4592020095d87eae562d2001b7b4434db7aae6
+3b4592020095d87eae562d2001b7b4434db7aae6 f26629c4f6ae74c7629c580f14dcf559f9c66e93
+a63a23d7c8223a5da608445d72c4758f7300a469 f26629c4f6ae74c7629c580f14dcf559f9c66e93
+f26629c4f6ae74c7629c580f14dcf559f9c66e93 1cb5bb694a1f34a33d89a2a5197262cf35fb1814
+1cb5bb694a1f34a33d89a2a5197262cf35fb1814 07531ec74b54d3814439c45cc5e89cec44c19de1
+07531ec74b54d3814439c45cc5e89cec44c19de1 b31b39a732fe5bf62609f37f0e5ad3d46f1961e7
+b31b39a732fe5bf62609f37f0e5ad3d46f1961e7 d344e7f9f097efab654841bf40ca8f996961aa85
+d344e7f9f097efab654841bf40ca8f996961aa85 4e15f3baa8e2aeabeedae9a7e5cc9e0a8dabeb88
+4e15f3baa8e2aeabeedae9a7e5cc9e0a8dabeb88
+
+-------------------------------------
+git rev-list --children --all
+-------------------------------------
+list all commits relationship: children parents (inverse adjacency list - sadly with only commits)
+ex:
+git rev-list --children --all
+9cd0a2357f89f4d149e3a7f3d33b5ea1b816a1e8
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f 9cd0a2357f89f4d149e3a7f3d33b5ea1b816a1e8
+d8f41e82e5acfd8646bc1194d32392690b838b49 c1e7aab7ebef15cc628dd317dd3d5134cea7c03f
+9301b80aa6365c5fe3b9fc08984d0e9644245bdd d8f41e82e5acfd8646bc1194d32392690b838b49
+d280d4d5122bdca050ed97bb50a15ba3bb572c3d d8f41e82e5acfd8646bc1194d32392690b838b49
+f166e7327ee8b6c1a9487a623fe12782938b1f5f 9301b80aa6365c5fe3b9fc08984d0e9644245bdd
+4cb8e2b32b82c88fab0f3ae0a6da906d0fbc727a f166e7327ee8b6c1a9487a623fe12782938b1f5f
+8da782a32080c15e7c33170a68b4975c9b7c5176 4cb8e2b32b82c88fab0f3ae0a6da906d0fbc727a
+6b60b20596c99dd37cd2a49aeffa9464d280bea7 8da782a32080c15e7c33170a68b4975c9b7c5176
+7fc5b73cc9b16754b41cb0d73d8b14f7471052ce 6b60b20596c99dd37cd2a49aeffa9464d280bea7
+50d0be5c6d16819e1fb296361164b1d130cba258 7fc5b73cc9b16754b41cb0d73d8b14f7471052ce
+143936a65400a372523d5a63327a7f1c2dc87532 50d0be5c6d16819e1fb296361164b1d130cba258 d280d4d5122bdca050ed97bb50a15ba3bb572c3d
+63e89ea8d3cc887dd52fddbd606acd86c1423f9e 9301b80aa6365c5fe3b9fc08984d0e9644245bdd
+a3a9ad768bcd4c7e136f2c258bea178896bc89da 63e89ea8d3cc887dd52fddbd606acd86c1423f9e
+3b4592020095d87eae562d2001b7b4434db7aae6 a3a9ad768bcd4c7e136f2c258bea178896bc89da
+a63a23d7c8223a5da608445d72c4758f7300a469 143936a65400a372523d5a63327a7f1c2dc87532
+f26629c4f6ae74c7629c580f14dcf559f9c66e93 a63a23d7c8223a5da608445d72c4758f7300a469 3b4592020095d87eae562d2001b7b4434db7aae6
+1cb5bb694a1f34a33d89a2a5197262cf35fb1814 f26629c4f6ae74c7629c580f14dcf559f9c66e93
+07531ec74b54d3814439c45cc5e89cec44c19de1 1cb5bb694a1f34a33d89a2a5197262cf35fb1814
+b31b39a732fe5bf62609f37f0e5ad3d46f1961e7 07531ec74b54d3814439c45cc5e89cec44c19de1
+d344e7f9f097efab654841bf40ca8f996961aa85 b31b39a732fe5bf62609f37f0e5ad3d46f1961e7
+4e15f3baa8e2aeabeedae9a7e5cc9e0a8dabeb88 d344e7f9f097efab654841bf40ca8f996961aa85
+
+-------------------------------------
+git cat-file --batch-check --batch-all-objects
+-------------------------------------
+list all objects name, type and size in the repository and any alternate object stores (not just reachable objects)
+objects are visited in order sorted by their hashes
+from git v2.19, adding --unordered to the command is more efficient:
+git cat-file --batch-check --batch-all-objects --unordered
+ex:
+git cat-file --batch-check --batch-all-objects
+03272ca28be0f469aa5cf5efa33467158a7bd752 tree 215
+06355b6658efeddc28205bd52caa679f41c4e400 tree 93
+064c0919c52a43de880e09d387737ae6a78e0496 tree 379
+072160e569495b8d92cae9a7cfd88ff4c939cf84 blob 9078
+07531ec74b54d3814439c45cc5e89cec44c19de1 commit 260
+082afceb1ed8a58d6eb3af61044b7d950c76d89b tree 181
+082f5febabe49135c653059c3aa12c379774c8f1 blob 1297
+098ec39baccdd661e55d6f193d945f16c82fa434 blob 11946
+0a0db835516f7550a42ff97cb929359b716577f4 blob 390
+0ae8d5b15021ffe48c9c00699a29055dd5b49880 tree 367
+0c5acbe08e8ee5cd0bd00e631fb4a721dc12ef4f blob 6257
+143936a65400a372523d5a63327a7f1c2dc87532 commit 274
+1cb5bb694a1f34a33d89a2a5197262cf35fb1814 commit 260
+1e17eb68697ea0909df63841f213a7a68bc65d6d tree 441
+271404b0eaf8a0d01928d98d8168811d94778fe1 blob 62
+273ab7228976e294b78f969adb26367d33b11516 blob 4468
+2dee652d69d132910c410b76694b94ef9b34f49f blob 1860
+378d9da4a558c1f2f37cfad286435b9000c77fcb tree 215
+38d498e57b11b4a12239cb59ef529130a095f56b blob 1578
+3b4592020095d87eae562d2001b7b4434db7aae6 commit 256
+3e6ddd604fbd4c2f536bf288dd6f91b5d0f919eb blob 11257
+47aa5c1840c9dfe8cdf0b9af3f52fde592f4c401 tree 401
+49d514c9f4b5db7ee13ba925d45d2564d8b9189d blob 1604
+4bb00ff7a9bf59e6205e9c72dbd828f0a71b41e1 blob 3634
+4c6347f61f9ea69d36fe4b7efd8c5749efb022e7 tree 131
+4cb8e2b32b82c88fab0f3ae0a6da906d0fbc727a commit 262
+4d8ab2681e40339ad662b28464d899a327c7e0c9 tree 94
+4ddf57132a0be0b609b96d0333341864a83a0495 blob 1521
+4e15f3baa8e2aeabeedae9a7e5cc9e0a8dabeb88 commit 207
+50d0be5c6d16819e1fb296361164b1d130cba258 commit 245
+601614bc23c653e5d766ed882e62ff67658bd752 tag 163
+616ac4a5f1e21ecda1b1d713dcefd338d247354f tree 367
+63e89ea8d3cc887dd52fddbd606acd86c1423f9e commit 262
+659013e5e3bbd28d019175dee996c48730beaf8a blob 1165
+662242692e43526d9a74d726a7d8be8344e7ecf4 blob 54
+67101d3ca9bdf232e08a7096efb362fffef03661 blob 5967
+699deb908c9339acc22e51ad782e7c0803e16f09 blob 468350
+6af208e080d131c631d6b18a1926d59be762057e blob 71
+6b60b20596c99dd37cd2a49aeffa9464d280bea7 commit 264
+6eb99f80de3389a3c63451ed04ada586f2f9bbe6 blob 340005
+6f4eddb5bc495af77431d7ad572ebfd848de5b1e blob 4978
+73d3772e0c4876ed90136d1345275fcb2b372fc6 tree 181
+7796b932da8fbc85d96cd04633a63eb488ea9d9f blob 1079
+7f07f128f373600b5a719352961da6cf81425432 tree 181
+7fbdc9fc19e8c4afbd1dec969a81d20e34eae4b7 blob 5681
+7fc5b73cc9b16754b41cb0d73d8b14f7471052ce commit 241
+7fc8dfa08410916402af985f8b988f822689f6c6 blob 152385
+8096038d92828e0a8d3ede6230f2dc8904c6fc53 blob 1861
+8306e15c66ec8c8c6e749ad8f797baa2ce7ceee3 blob 3272
+8d17a6d3323b83919bf66a8ab4fb1811b87fa8d6 blob 3312
+8da782a32080c15e7c33170a68b4975c9b7c5176 commit 251
+9301b80aa6365c5fe3b9fc08984d0e9644245bdd commit 308
+947465ff7e5baf876b47461ddb65529e98a67054 tree 319
+98f8cab7aebc0584d291d7be5b19be25a6bb988b tree 215
+9a804fdb86f84a472149cfd3b41477d52a194df8 blob 1308214
+9cd0a2357f89f4d149e3a7f3d33b5ea1b816a1e8 commit 270
+9f7941766b1bab0be1d9e3de5268c1594e2b6bab blob 5376
+a3a9ad768bcd4c7e136f2c258bea178896bc89da commit 255
+a63a23d7c8223a5da608445d72c4758f7300a469 commit 258
+ac188658a60679f49dff5b9127abc3b6a1845212 blob 1401
+b31b39a732fe5bf62609f37f0e5ad3d46f1961e7 commit 271
+b326c06d5be0279cd956de66626f63e6d0c5bb2b blob 5832
+b3f5bfabb5267ea3fabe55acffadfe7041232c98 blob 1856
+b4a925c5557e8a667c175c8ef71a312870d87177 blob 66
+b7b87d3067d3d188414a5b35c4ef0f5f765194d3 tree 379
+c06f761743067ab3e7878a87b59406008700ceb6 blob 4939
+c1e7aab7ebef15cc628dd317dd3d5134cea7c03f commit 273
+c2e159f81e79043a7eea7b58f79e70936840937d blob 23
+c316aaf6ce18318b3f5c97fa6d28907e033a880c blob 836290
+c56301d089fbb4d19dcffc31fcaefc762e79328d tree 367
+c9b2936ac096730df1629655d04761345f891fda blob 1065
+cc20e3905a4a54b7eca67447bf2a37915caef524 blob 1035
+cf3661304a83aee233299530910efee8934626dd blob 1308585
+d1974a153c1b7ce922808a5ecfedde553225caae blob 3566
+d280d4d5122bdca050ed97bb50a15ba3bb572c3d commit 255
+d344e7f9f097efab654841bf40ca8f996961aa85 commit 255
+d4b4bc9f94e17ebd126d549dc08cd5dfb73456f5 blob 74
+d50feab79bd939c5b459910562c79e1e8c3397e8 blob 1627
+d7a1f1b19da711490ee929fec7f9066af03cf55d blob 3641
+d84c889b48d8872c92de987e8fcfc2461d9d2712 tree 319
+d858162fb2ae0591aa55bd7b267234aa4acef1df blob 6366
+d8f41e82e5acfd8646bc1194d32392690b838b49 commit 319
+da40dca2917b94880d4f00b990c6111a04180c5d blob 224
+db75702131a2760f5caaedcaa2817482cd7c4d7d tag 164
+dbf2ab1befa87a1f02920f0327f796b1ce9990dc blob 3216
+def22f7888caca4a113b137f1a59c31543021490 blob 5615
+dfd0ca4bdfe44306babd19b434242acc3f2ef2df blob 30
+e09676d2c2c9f395a151704794e412dc18dfb789 blob 303
+e21552e6d398011de1642992758c7c83b62fcfcc blob 56
+e2f2743f711e28d9ee5f5e408fe16da3ae8e52d1 blob 2614
+e336771e7844b22782aa31facdad2f78b56fb7ea tree 181
+e621df40dde90ff58d9a527df9ed1c91dda79f3c blob 1121
+e75f6ef554e4a4c8d2d591dd3a083e85282530ca tree 367
+ea56c17adef257441b0e0259aad6a083d90598fd tree 131
+ee5cef3980f9a9377b07b7baeec1c73827d247bb tree 181
+eef90f8c88e85d7e4ee27840fd3a171ebec7cceb blob 5211
+ef025ec26b833b4e4a81ab0c90d7af88ee0f4c55 blob 11944
+f12b13cd935f7388491856b20667fb98f0c7e759 blob 5615
+f166e7327ee8b6c1a9487a623fe12782938b1f5f commit 245
+f26629c4f6ae74c7629c580f14dcf559f9c66e93 commit 254
+fc51948ea18ef517b2a790c61ddd47b550a20281 tree 221
+
+
+
+
+-------------------------------------
+git merge-base --is-ancestor
+
+git rev-list --objects --all
+git rev-list --branches --all
+git rev-list --remotes --all
+git rev-list --tags --all
+
+git rev-list --objects --all | git cat-file --batch-check='%(objectname) %(objecttype) %(rest)' | grep '^[^ ]* blob' | cut -d" " -f1,3-
+
+
+git rev-parse
+cat .git/HEAD
+git symbolic-ref HEAD -q
+
+
+-------------------------------------
+git rev-parse
+-------------------------------------
+on each branch gives the SHA1 hash of the pointed commit
+ex:
+git rev-parse docu
+63e89ea8d3cc887dd52fddbd606acd86c1423f9e
+git rev-parse origin/master
+50d0be5c6d16819e1fb296361164b1d130cba258
+
