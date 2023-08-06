@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: pymem
+Version: 0.0.1
+Summary: Pure-Python Matrix Element Methods for High Energy Physics
+Home-page: https://github.com/scailfin/PyMEM
+Author: Matthew Feickert
+Author-email: matthew.feickert@cern.ch
+License: Apache
+Description: # PyMEM
+        
+        Pure-Python Matrix Element Methods for High Energy Physics
+        
+        [![GitHub Actions Status](https://github.com/scailfin/PyMEM/workflows/CI/CD/badge.svg)](https://github.com/scailfin/PyMEM/actions)
+        [![Code Coverage](https://codecov.io/gh/scailfin/PyMEM/graph/badge.svg?branch=master)](https://codecov.io/gh/scailfin/PyMEM?branch=master)
+        [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/scailfin/PyMEM.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/scailfin/PyMEM/latest/files/)
+        [![CodeFactor](https://www.codefactor.io/repository/github/scailfin/PyMEM/badge)](https://www.codefactor.io/repository/github/scailfin/PyMEM)
+        [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+        
+        [![Docs](https://img.shields.io/badge/docs-master-blue.svg)](https://scailfin.github.io/PyMEM)
+        [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/scailfin/PyMEM/master)
+        
+        <!-- Here pymem should be replaced with your library's name on PyPI  -->
+        [![PyPI version](https://badge.fury.io/py/pymem.svg)](https://badge.fury.io/py/pymem)
+        [![Supported Python versions](https://img.shields.io/pypi/pyversions/pymem.svg)](https://pypi.org/project/pymem/)
+        
+        The template library is [`pymem`](https://github.com/scailfin/PyMEM/search?q=pymem&unscoped_q=pymem) to make it clear what is needed for replacement
+        
+        ## Setting up the template for your library
+        
+        1. Edit `setup.py` to reflect all of your library's needs and requirements
+        2. Edit the paths to badges in the `README` to match your library's locations
+           - Change `libame` to your library's name
+           - Change `scailfin` to your username or org name on GitHub
+           - Change `PyMEM` to your project name on GitHub (probably the same as the library name)
+        3. Replace the rest of the `README` contents with your information
+        4. Run `git grep "pymem"` to make sure that you have changed all instances of `libame` (it is easy to miss the dotfiles)
+        5. Setup accounts with [Codecov](https://codecov.io/), [LGTM](https://lgtm.com/), and [CodeFactor](https://www.codefactor.io/)
+           - Also add the [Codecov](https://github.com/marketplace/codecov) and [LGTM](https://github.com/marketplace/lgtm) GitHub marketplace apps
+        6. Generate a Codecov token and add it to your [GitHub repo's secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#contexts) with name `CODECOV_TOKEN`
+        
+        ## Controlling the version number with bumpversion
+        
+        When you want to increment the version number for a new release use [`bumpversion`](https://github.com/peritus/bumpversion) to do it correctly across the whole library.
+        For example, to increment to a new patch release you would simply run
+        
+        ```
+        bumpversion patch
+        ```
+        
+        which given the [`.bumpversion.cfg`](https://github.com/scailfin/PyMEM/blob/master/.bumpversion.cfg) makes a new commit that increments the release version by one patch release.
+        
+Keywords: python template
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: develop
+Provides-Extra: complete
