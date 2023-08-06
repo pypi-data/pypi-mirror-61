@@ -1,0 +1,45 @@
+
+0.3.0 (2020-02-14)
+------------------
+
+- Deprecate Python 2 and migrate to Python 3.
+
+
+0.2.2 (2019-03-13)
+------------------
+
+**Features**
+
+- Optional JSON serialization.
+
+**Bug Fixes**
+
+- Broken tests with py3.
+
+
+0.2.1 (2017-09-14)
+------------------
+
+**Bug Fixes**
+
+- Update setup url.
+
+
+0.2.0 (2017-09-14)
+------------------
+
+**Features**
+
+- HashRedisMixin to store all objects on a single hash.
+- ``delete_all()`` and ``delete_filter()`` methods.
+
+**Bug Fixes**
+
+- Allow non-string id's to be used as primary keys.
+- Crash on ``all()`` with empty lists.
+
+
+0.1.0 (2017-09-12)
+------------------
+
+- Initial release.
