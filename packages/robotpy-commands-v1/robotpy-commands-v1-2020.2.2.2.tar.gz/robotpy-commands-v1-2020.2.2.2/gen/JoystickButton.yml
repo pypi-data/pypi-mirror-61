@@ -1,0 +1,16 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/buttons/Trigger.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  JoystickButton:
+    shared_ptr: true
+    methods:
+      JoystickButton:
+        keepalive:
+        - [1, 2]
+      Get:

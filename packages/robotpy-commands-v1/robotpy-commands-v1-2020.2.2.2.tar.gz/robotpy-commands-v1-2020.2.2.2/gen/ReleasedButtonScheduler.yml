@@ -1,0 +1,17 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/buttons/Trigger.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  ReleasedButtonScheduler:
+    shared_ptr: true
+    methods:
+      ReleasedButtonScheduler:
+        keepalive:
+        - [1, 3]
+        - [1, 4]
+      Execute:

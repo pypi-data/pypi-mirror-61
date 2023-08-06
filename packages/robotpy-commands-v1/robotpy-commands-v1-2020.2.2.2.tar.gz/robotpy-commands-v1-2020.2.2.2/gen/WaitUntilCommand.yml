@@ -1,0 +1,17 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+
+classes:
+  WaitUntilCommand:
+    shared_ptr: true
+    methods:
+      WaitUntilCommand:
+        overloads:
+          double:
+          wpi::Twine&, double:
+      IsFinished:
+        rename: isFinished

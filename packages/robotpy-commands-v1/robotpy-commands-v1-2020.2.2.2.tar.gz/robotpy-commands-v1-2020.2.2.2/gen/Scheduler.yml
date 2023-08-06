@@ -1,0 +1,37 @@
+---
+
+extra_includes:
+- frc/smartdashboard/SendableBuilder.h
+- frc/buttons/ButtonScheduler.h
+- frc/buttons/Trigger.h
+- frc/commands/Command.h
+- frc/commands/CommandGroup.h
+- frc/commands/Subsystem.h
+
+
+classes:
+  Scheduler:
+    nodelete: true
+    force_no_trampoline: true
+    ignored_bases:
+    - ErrorBase
+    - Sendable
+    - SendableHelper<Scheduler>
+    methods:
+      GetInstance:
+        return_value_policy: reference
+      AddCommand:
+        keepalive:
+        - [1, 2]
+      AddButton:
+        keepalive:
+          - [1, 2]
+      RegisterSubsystem:
+        keepalive:
+          - [1, 2]
+      Run:
+      Remove:
+      RemoveAll:
+      ResetAll:
+      SetEnabled:
+      InitSendable:
