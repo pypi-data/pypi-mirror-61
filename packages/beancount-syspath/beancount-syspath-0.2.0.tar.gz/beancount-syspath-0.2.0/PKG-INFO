@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: beancount-syspath
+Version: 0.2.0
+Summary: Manipulate sys.path within the beancount file
+Home-page: https://github.com/Aetf/beancount-syspath
+License: MIT
+Keywords: beancount,plugin,syspath
+Author: Aetf
+Author-email: aetf@unlimited-code.works
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Utilities
+Project-URL: Repository, https://github.com/Aetf/beancount-syspath
+Description-Content-Type: text/markdown
+
+# beancount-syspath
+
+Manipulate `sys.path` from within the beancount file. This is a plugin for
+[Beancount](http://furius.ca/beancount/
+), a double-entry bookkeeping computer language.
+
+## Installation
+
+Install via pip
+
+```shell
+pip install beancount-syspath
+```
+
+## Usage
+
+Prepend list of paths
+
+```beancount
+plugin "beancount_syspath.plugin" "{
+    'append': ['some/dir', 'other/dir'],
+    'prepend': ['some/dir', 'other/dir'],
+}"
+```
+
+Note: Place the directive before other plugin loading ones, so they can make use of the updated `sys.path`.
+
+### Configuration
+The config value is a python dict literal, contains the following keys
+
+| Key | Type | Optional | Default | Meaning |
+|:-:|:-:|:-:|:-:|:-:|
+| `append` | `List[str]` | yes | `[]` | Append the list of path to `sys.path` |
+| `prepend` | `List[str]` | yes | `[]` | Prepend the list of path to `sys.path` |
+| `normalize_to_root` | `bool` | yes | `True` | If the path is relative, it is considered to be relative to the root beancount file, and normalized to absolute path before adding to `sys.path`. |
+
