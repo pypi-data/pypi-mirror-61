@@ -1,0 +1,25 @@
+site_name: confdaora
+site_description: Application configuration using dataclasses and TypedDict
+
+theme:
+    name: 'material'
+    palette:
+      primary: 'green'
+      accent: 'grey'
+    logo: 'confdaora-white.svg'
+    favicon: 'favicon.png'
+
+repo_name: dutradda/confdaora
+repo_url: https://github.com/dutradda/confdaora
+edit_uri: ''
+
+nav:
+    - confdaora: 'index.md'
+    - Development - Contributing: 'contributing.md'
+    - Changelog: changelog.md
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
+  - codehilite:
+      guess_lang: false
