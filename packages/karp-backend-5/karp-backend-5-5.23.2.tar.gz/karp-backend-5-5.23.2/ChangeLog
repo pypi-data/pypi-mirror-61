@@ -1,0 +1,807 @@
+CHANGES
+=======
+
+v5.23.2
+-------
+
+* Bump version: 5.23.1 → 5.23.2
+* update workflow
+
+v5.23.1
+-------
+
+* Bump version: 5.23.0 → 5.23.1
+* fix tests for py 3.6 & 3.7
+* add test logging
+
+v5.23.0
+-------
+
+* Bump version: 5.22.1 → 5.23.0
+* use filters in get\_context
+* rename test file
+* enable filtering on entry level
+* clearify
+* on publish from master
+* update test-cov target
+* update lint target make
+* use make
+* only compare \_source
+* add post data
+* update install step
+* remove erroneus decode
+* improve dummy\_auth
+* use invenv instead of activate
+* enable entry filterin for unauth user
+* minor fixes
+* add tests
+* add tmp to gitignore
+* add tests
+
+v5.22.1
+-------
+
+* Bump version: 5.22.0 → 5.22.1
+* remove elasticsearch cache
+
+v5.22.0
+-------
+
+* Bump version: 5.21.6 → 5.22.0
+* remove empty test
+
+v5.21.6
+-------
+
+* remove target: prepare-release
+* Bump version: 5.21.5 → 5.21.6
+* update dbhandler
+* adjust log call
+* bump version to 5.21.5
+
+v5.21.5
+-------
+
+* encode str before hashing
+* add charset to MIMEText call
+
+v5.21.4
+-------
+
+* fix typo
+
+v5.21.3
+-------
+
+* update github.ref
+
+v5.21.2
+-------
+
+* do not publish to TestPyPI on tags
+
+v5.21.1
+-------
+
+* change id of elasticsearch-cache
+* change name of packge to karp-backend-5
+* enable caches for github actions
+* remove charset fr description
+* Update format of README.md
+* ignore build
+* Update README.md
+* remove MANIFEST.in
+* publish package from github actions
+
+v5.21.0
+-------
+
+* refactor validate\_user
+* add context.auth and use dummy auth when testing
+* context.auth
+* minor change
+* remove from from es scroll
+* search correct field
+* add tests for large\_lex
+* stuff
+* add test for endpoint explain
+* use f-string
+* fix wrong logger message
+* some cleanups
+* add test for upload\_offline.recover
+* remove unused keyword argument
+* skip all entries if id is removed
+* some stuff
+* change default dekete message to string
+* updates
+* some stuff
+* use generator in export, fix
+* use generator in export
+* use generators in dbselect\_gen
+* use attrs>=19.2
+* use generator
+* rewrite test
+* use pip install -e .[dev]
+* fix typoon get\_entries\_to\_keep
+* add get\_entries\_to\_keep to dbhandler
+* add .hypothesis to gitignore
+* add tests for the export endpoint
+* use refactored get\_json
+* add hypothesis
+* omit tests from coverage
+
+v5.20.1
+-------
+
+* Bump version: 5.10.11 → 5.20.1
+* change path to karp5/\_\_init\_\_.py
+* remove version from setup.py
+* change default name of virtual environment
+
+v5.20.0
+-------
+
+* fix typo
+* for GA also install karp5
+* for github actions also install elasticsearch\_test-py
+* for github actions install from requirements instead
+* set KARP5\_INSTANCE\_PATH for tests
+* factor out reusable fixtures
+* update README.md
+* some test fixes
+* update gitignore
+* add new link for panacea data
+* remove old link to panacea data
+* restructure
+* Update README.md
+* Update README.md
+* add command 'lexicon init' to cli
+* remove future
+* add test for export
+* remove install mysql-server
+* adjust dbname
+* fix dburl
+* fix dburl
+* move KARP5\_DBPASS
+* update KARP5\_DBPASS
+* install mysql-server
+* add mysql-client
+* log exception
+* fix test
+* add log statement
+* update mysql dburl
+* print mysql logs
+* remove extra "
+* correct typo
+* correct env
+* read DBPASS from environment
+* correct port
+* add mariadb service
+* correct typo
+* tidy up a bit
+* update python versions
+* replace util.json\_iter with sb-json-tools
+* remove settings
+* also test python 3.8
+* updates
+* add message to test
+* update KarpConfigException usage
+* update foo config
+* correct filename
+* add log statement
+* add missing import
+* add platform check
+* add trailing /
+* fix typo
+* add history tests
+* add stub test for history
+* changes
+* add sb-json-tools
+* add autocomplete tests
+* add black changes
+* add q as ok variable
+* update phony targets
+* uncomment coveralls
+* change venv\_name to venv3
+* add comments to gitignore
+* fix some errors
+* change venv name to 'venv'
+* use super()
+* add docstring stubs
+* some linting changes
+* stuff
+* remove python 3.5
+* add verbose flag to pytest
+* remove py2.7 from test
+* add github actions
+* allow failure on python 3.5
+* add 'size' as key
+* fix tests
+* fix decorators
+* update tests
+* remove python2
+* update travis for python3
+* update makefile
+* update tests
+* remove python2
+* update travis for python3
+* py3 stubs
+* update
+* update makefile
+* adept to py3
+* py3 stubs
+* update
+* update travis and sleep
+* use ES as source
+* Fix tests
+* update travis
+* change to systemctl
+* add es to travis 8
+* add es to travis 7
+* add es to travis 5
+* add es to travis 5
+* add es to travis 4
+* add es to travis 3
+* add es to travis 2
+* add es to travis
+* Delete .htaccess
+* add python 3 status
+* add default for ES
+* Bump version: 5.10.10 → 5.10.11
+* format updates
+* fix extra\_src
+* Remove some debug prints
+* add travis support
+* minor changes
+* Bump version: 5.10.9 → 5.10.10
+* debug strings
+* Bump version: 5.10.8 → 5.10.9
+* Remove overriding elastic\_url
+* update requirements
+* Bump version: 5.10.7 → 5.10.8
+* Set app\_config from cli
+* update requirements
+* Bump version to 5.10.7
+* small fixes
+* Update readme
+* Bump version to 5.10.6
+* Updates
+* Bump version to 5.10.5
+* update
+* set target\_type
+* remove unused lines
+* Some lint fixes
+* Bump version to 5.10.4
+* remove old code
+* Bump version to 5.10.3
+* Some minor fixes
+* Bump version to 5.10.2
+* also supply id to filter\_func
+* Remove reuirements-dev.txt
+* Bump version to 5.10.1
+* Add apply\_filter
+* Add function to copy\_alias
+* copy-alias
+* Add Elasticsearch info to README
+* bump version to 5.10.0
+* add extra\_src decorator
+* mv extra\_src
+* bump version to 5.9.2
+* add extra\_src decorator stub
+* bump version 5.8.1
+* bump version 5.8.0
+* error handling
+* fix test
+* stuff
+* update
+* updates
+* gr
+* update makefile
+* more work
+* work on copy alias
+* remove sketch files
+* update makefile and setup
+* update makefile
+* some changes
+* add print\_err
+* update makefile
+* add tests
+* add tests for querycount
+* make tests pass
+* update md5 to hashlib
+* adept to py3
+* rewrite
+* some updates
+* refactor
+* add test data
+* refactor
+* py3 stubs
+* update
+* publish\_mode
+* add tests
+* add tests
+* update requirements.txt
+* implement cli with click
+* cli stub
+* Rewrite code to use create app through factory
+* stubs
+* rewrite
+* update requirements.txt
+* bump version to 5.8.0
+* implement cli with click
+* cli stub
+* Rewrite code to use create app through factory
+* stubs
+* rewrite
+* updates
+* add pylint
+* Update README.md
+* clean up urllib stuff
+* use urllib3 instead
+* update build.yml
+* rename github actions name
+* add coveralls to build.yml
+* add coveralls
+* add es to build.yml
+* add link to github action
+* change workflow name to build
+* some changes
+* remove py3.\*
+* remove py2.7 from test
+* add github actions
+* Bump werkzeug from 0.15.2 to 0.15.3
+* Update pythonpackage.yml
+* allow failure on python 3.5
+* add 'size' as key
+* extract 'size' from dict
+* fix decorators
+* fix tests
+* fix decorators
+* update tests
+* remove python2
+* update travis for python3
+* py3 stubs
+* update
+* update makefile
+* adept to py3
+* py3 stubs
+* update
+* update travis and sleep
+* update tests
+* use ES as source
+* Fix tests
+* update travis
+* change to systemctl
+* add es to travis 8
+* add es to travis 7
+* add es to travis 5
+* add es to travis 5
+* add es to travis 4
+* add es to travis 3
+* add es to travis 2
+* add es to travis
+* Delete .htaccess
+* remove python2
+* add python 3 status
+* update travis for python3
+* update makefile
+* adept to py3
+* py3 stubs
+* update
+* add default for ES
+
+v5.10.11
+--------
+
+* Bump version: 5.10.10 → 5.10.11
+* format updates
+* fix extra\_src
+* Remove some debug prints
+* add travis support
+* minor changes
+
+v5.10.10
+--------
+
+* Bump version: 5.10.9 → 5.10.10
+* debug strings
+
+v5.10.9
+-------
+
+* Bump version: 5.10.8 → 5.10.9
+* Remove overriding elastic\_url
+
+v5.10.8
+-------
+
+* update requirements
+* Bump version: 5.10.7 → 5.10.8
+* Set app\_config from cli
+* update requirements
+
+v5.10.7
+-------
+
+* Bump version to 5.10.7
+* small fixes
+* Update readme
+
+v5.10.6
+-------
+
+* Bump version to 5.10.6
+* Updates
+
+v5.10.5
+-------
+
+* Bump version to 5.10.5
+* update
+* set target\_type
+* remove unused lines
+* Some lint fixes
+
+v5.10.4
+-------
+
+* Bump version to 5.10.4
+* remove old code
+
+v5.10.3
+-------
+
+* Bump version to 5.10.3
+* Some minor fixes
+
+v5.10.2
+-------
+
+* Bump version to 5.10.2
+* also supply id to filter\_func
+* Remove reuirements-dev.txt
+
+v5.10.1
+-------
+
+* Bump version to 5.10.1
+* Add apply\_filter
+* copy-alias
+* Add function to copy\_alias
+* Add Elasticsearch info to README
+
+v5.10.0
+-------
+
+* bump version to 5.10.0
+* add extra\_src decorator
+* mv extra\_src
+
+v5.9.2
+------
+
+* bump version to 5.9.2
+* add extra\_src decorator stub
+
+v5.8.1
+------
+
+* bump version 5.8.1
+* bump version 5.8.0
+* error handling
+* fix test
+* gr
+* stuff
+* update
+* updates
+* update makefile
+* add print\_err
+* more work
+* work on copy alias
+* remove sketch files
+* update makefile and setup
+* update makefile
+* update makefile
+* adept to py3
+* add tests
+* add tests for querycount
+* make tests pass
+* py3 stubs
+* update md5 to hashlib
+* rewrite
+* update
+* some updates
+* refactor
+* add test data
+* refactor
+* publish\_mode
+* add tests
+* add tests
+* update requirements.txt
+* bump version to 5.8.0
+* implement cli with click
+* cli stub
+* Rewrite code to use create app through factory
+* stubs
+* rewrite
+* update requirements.txt
+* bump version to 5.8.0
+* implement cli with click
+* cli stub
+* Rewrite code to use create app through factory
+* stubs
+* rewrite
+* update name of log file
+* add timedrotatingfilehandler to the 'karp5' logger
+
+v5.7.1
+------
+
+* Bump to version 5.7.1
+* update
+* extract code to get the latest entries from sql to a separate function
+
+v5.7.0
+------
+
+* Bump version to 5.7.0
+* update makefile
+* update api documentation
+* add dotenv call
+
+v5.6.1
+------
+
+* bump version to 5.6.1
+* update name to karp5
+
+v5.6.0
+------
+
+* bump version to 5.6.0
+
+v5.5.5
+------
+
+* bump version to 5.5.5
+* rename package to karp5
+* remove pipenv
+
+v5.5.4
+------
+
+* bump version to 5.5.4
+
+v5.5.3
+------
+
+* bump version to 5.5.3
+* update bumpversion config
+* change json import
+* update requirements
+* update makefile
+* remove pyproject.toml
+* Delete pyproject.toml
+* update README.md
+* update requirements
+* update urllib3 version
+* update
+* extract code to get the latest entries from sql to a separate function
+
+v5.5.2
+------
+
+* bump version to 5.5.2
+* fix typo
+
+v5.5.1
+------
+
+* bump version to 5.5.1
+* make streaming\_bulk do some work..
+* update cli usage text
+
+v5.5.0
+------
+
+* update requirements
+* bump version to 5.5.0
+* add option to export/print to file
+* rewrite reindex\_help to use generators and use DocConverters to when reindexing
+* rewrite printlatestversion to use generators and write to file object. Add util.json\_iter module
+* remove npegl\_\*-operators
+* rename helpers to es\_helpers
+* fix indent
+* add sphinx, numpydoc to dev-packages
+* remove unused code
+* add version printing
+* add print\_usage function and usage stub
+* add check of provided arguments
+* refactor imports
+* import module instead of function for clearer code
+
+v5.4.2
+------
+
+* bump version to 5.4.2
+* fix imports
+
+v5.4.1
+------
+
+* fix typo
+* Update makefile
+* bump version to 5.4.1
+* rename module offline to cli. offline calls cli.cli\_main()
+
+v5.4.0
+------
+
+* bump version to 5.4.0
+* move autoupdates and index to document module
+* rewrite of the converters
+* update Makefile
+
+v5.3.1
+------
+
+* fix typo
+
+v5.3.0
+------
+
+* bump version to 5.3.0
+* new feat: add extra fields to es
+* add es\_doc stub
+
+v5.2.0
+------
+
+* bump version to 5.2.0
+* update requirements.txt
+
+v5.1.1
+------
+
+* add dist ot gitignore
+* make stuff work
+* add .env to gitignore
+* correct import
+* add bumpversion support
+* update imports
+* move files to src/karp\_backend
+* mv files to src/karp
+* update instance\_path
+* add pipfile
+* add app factory method
+* add six library
+* move import
+* adjust import path
+* update print statements
+* add instance\_path
+* raise size to 25
+* implemented all npegl\_lemma operators
+* and some more
+* adjusted some more
+* adjusted regexp
+* added logging
+* allow no operands for npegl\_lemma\_missing and npegl\_lemma\_exists
+* added repr calls
+* added debug
+* added repr
+* change operator name
+* reformated docstring
+* reformated docstring
+* implemented operator npegl\_lemma\_missing
+* added operator npegl\_lemma\_exists
+* added operator npegl\_lemma\_contains
+* added operator npegl\_lemma\_missing
+* fixed typo
+* refactored list of operators
+* updated gitignore
+* added functools import
+* add search operators \_npegl\_lemma\_contains, \_npegl\_lemma\_exists, \_npegl\_lemmma\_missing
+* Updated docstring and parameters
+* Updated .gitignore
+* removed init.py
+* moved requirements files
+* Added parenthesis for print calls
+* fulhack to enable Corpus\_unit\_id get\_context calls
+* bug fixes and documentation
+* merge test versions of export2 (yielding)
+* updates from v5
+* sb settings
+* renamed src to karp\_backend
+* added instruction for importing mode
+* Added Pipfile
+* fixed typo
+* addded TODO-comment
+* update debuglevel documentation
+* added TODO
+* refactored conversion from debuglevel string to constant
+* update gitignore and some other scripts
+* updated urllib3 version
+* added config files
+* added config/lexiconconf.json to gitignore
+* moved lexiconconf.json to lexiconconf.json.sb
+* Updated requirements.txt
+* commented out a unused? row
+* remove \*.pyc files
+* fixed .gitignore
+* small corrections in manual
+* documentation
+* merge old updates
+* bug fixes and documentation
+* updates from v5
+* documentation about export problem
+* comments
+* bug fix and better error messages
+* first version of nested queries
+* code cleaning
+* es queries, use objects not strings. first version
+* documentation
+* sql: make longer id fields
+* more stuff in gitignore
+* checklexiconhistory: do not require mode parameter
+* nicer looking api documentation
+* new function: ask for suggested id (for eg saol)
+* allow showing multiple autocomplete fields, stat\_size parameter added
+* allow creation of empty indices, dont force sql when deleting stuff
+* increase shard size
+* upload offline stuff
+* bug fixes
+* added missing log file
+* panacea mapppings for es6
+* removed compiled files
+* add version number to sql
+* delete compiled files
+* bug fixes
+* use flask's requst.args instead of urlparse
+* clean up getcontext
+* constant\_score: bug fix
+* set version in sql
+* use ES constant\_score
+* updates for es6
+* bug fix: statistics&statlist used modename as index
+* updated documentation
+* update to ES6
+* more documentation
+* prettier route decorator, first try
+* documentation
+* more documentation
+
+v2.0
+----
+
+* fix config.json.example
+* panacea data
+* readme and documentation
+* do unicode normalization before every update
+* documentation
+* panacea bugfixes
+* documentation as markdown
+* configs for panacea
+* documentation
+* add standardmode to configs
+* readme and auth code clean up
+* rename max-fields
+* remove extra "anything" field
+* config files, add examples, rm original
+* First version (merged code from branch 'sb-configs')
+* default field mappings
+* code cleaning
+* bugs fixed
+* config handeling
+* create metadata files updated
+* configpaths file
+* cleaning, comments
+* cleaning, comments
+* json configs (modes and lexiconconf)
+* bugfix: statlist order
+* sb stuff, to be put in another repo
+* start using json configs
+* remove sb stuff
+* move sb specific export and format
+* backend.wsgi: do not call sb's main.py
+* start on release version of karp-b
+* Initial commit
