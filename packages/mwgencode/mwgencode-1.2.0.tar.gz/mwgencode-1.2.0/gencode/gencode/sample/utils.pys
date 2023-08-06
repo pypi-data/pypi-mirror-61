@@ -1,0 +1,60 @@
+########################################
+# create by :cxh-PC
+# create time :2019-12-06 16:48:34.283479
+########################################
+from flask import current_app,g
+from mwsdk import Rightmanage
+from datetime import datetime
+from mwutils.mw_time import str2datetime,str2date,date2str,datetime2isostr
+from mwutils.mw_time import get_locale_timezone
+
+def set_timezone(json_data:dict):
+    '''
+    为json日期时间添加本地时区
+    :param body:
+    :return:
+    '''
+    for k, v in json_data.items():
+        if isinstance(v,datetime):
+            if v.tzinfo is None:
+                json_data[k]=v.astimezone(get_locale_timezone())
+    return json_data
+
+def datetime_add_timezone(dt:datetime):
+    '''
+    为日期时间添加本地时区
+    :param body:
+    :return:
+    '''
+    if isinstance(dt,datetime):
+        if dt.tzinfo is None:
+            dt.astimezone(get_locale_timezone())
+    return dt
+
+def todate(body:dict,fields:list):
+    '''
+    把body中的日期栏位的str 转换为日期
+    :param body: http post 或 put 的body
+    :param fields: body中的日期栏位
+    :return:
+    '''
+    if fields is None:
+        return body
+    for k,v in body.items():
+        if k in fields:
+            body[k] = str2date(v)
+    return body
+
+def todatetime(body:dict,fields:list):
+    '''
+    把body中的日期时间栏位的str 转换为日期时间
+    :param body: http post 或 put 的body
+    :param fields: body中的日期时间栏位
+    :return:
+    '''
+    if fields is None:
+        return body
+    for k,v in body.items():
+        if k in fields:
+            body[k] = str2datetime(v)
+    return body
