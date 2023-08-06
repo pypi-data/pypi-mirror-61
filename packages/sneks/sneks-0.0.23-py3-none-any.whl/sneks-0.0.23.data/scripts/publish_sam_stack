@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+FNAME="$(basename "${BASH_SOURCE[0]}")"
+NEW_FNAME="${FNAME//_/-}"
+
+echo "Warning: Script ${FNAME} has been deprecated in favor of 'sneks ${NEW_FNAME}' and will stop working at some point, likely without further warning." 1>&2
+
+${MYDIR}/sneks ${NEW_FNAME} $@
