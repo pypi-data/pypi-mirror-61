@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: timework
+Version: 0.0.1
+Summary: A package used to set time limits.
+Home-page: https://github.com/bugstop/timework-pylib
+Author: bugstop
+Author-email: pypi@isaacx.com
+License: UNKNOWN
+Description: # timework
+        
+        A package used to set time limits.
+        
+        ## Install
+        
+        ```
+        pip install timework
+        ```
+        
+        ## Usage
+        
+        ```python
+        import timework as tw
+        
+        
+        @tw.timer(out=print)
+        def timer_demo():
+            i = 0
+            while True:
+                i += 1
+        
+        
+        @tw.limit(timeout=1.5)
+        def limit_demo():
+            i = 0
+            while True:
+                i += 1
+        
+        
+        @tw.progressive(timeout=2)
+        def progressive_demo(i, max_depth):
+            while i < max_depth:
+                i += 1
+            return max_depth + i
+           
+           
+        timer_demo()
+        
+        try:
+        	limit_demo()
+        except Exception as e:
+        	print(e)
+        
+        try:
+        	progressive_demo(max_depth=10)
+        except Exception as e:
+        	rc = str(e)
+        	print(rc)
+        ```
+        
+        ## License
+        
+        MIT 漏 bugstop 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
