@@ -1,0 +1,24 @@
+{
+	"type": "object",
+	"properties": {
+		"version": {
+			"description": "a version of the document",
+			"oneOf": [
+				{
+					"type": "string",
+					"pattern": "^[0-9]+(.[0-9]+)?$"
+				},
+				{
+					"type": "integer",
+					"minimum": 0
+				}
+			],
+			"title": "a version"
+		}
+	},
+	"required": [
+		"version"
+	],
+	"$schema": "http://json-schema.org/draft-04/schema",
+	"title": "a versioned document"
+}

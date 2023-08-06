@@ -1,0 +1,88 @@
+{
+	"allOf": [
+		{
+			"$ref": "version-v1.0"
+		}
+	],
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"title": "Course config",
+	"definitions": {
+		"step": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "name of the step",
+					"pattern": "[^0-9]+"
+				},
+				"mnt": {
+					"type": "string"
+				},
+				"cmd": {
+					"type": [
+						"string",
+						"array"
+					],
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					},
+					"description": "commands to execute"
+				},
+				"img": {
+					"$ref": "#/definitions/image"
+				},
+				"env": {
+					"$ref": "roman_environment-v1.0#/properties/environment"
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"img"
+			]
+		},
+		"stepitem": {
+			"if": {
+				"type": "string"
+			},
+			"else": {
+				"if": {
+					"type": "object"
+				},
+				"else": {
+					"type": [
+						"string",
+						"object"
+					]
+				},
+				"then": {
+					"$ref": "#/definitions/step"
+				}
+			},
+			"then": {
+				"$ref": "#/definitions/image"
+			}
+		},
+		"image": {
+			"type": "string",
+			"description": "the docker image"
+		}
+	},
+	"type": "object",
+	"required": [
+		"version"
+	],
+	"properties": {
+		"steps": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/stepitem"
+			}
+		},
+		"environment": {
+			"$ref": "roman_environment-v1.0#/properties/environment"
+		},
+		"version": {}
+	},
+	"additionalProperties": false
+}

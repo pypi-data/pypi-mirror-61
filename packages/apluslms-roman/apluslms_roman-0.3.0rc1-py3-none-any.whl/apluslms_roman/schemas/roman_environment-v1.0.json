@@ -1,0 +1,94 @@
+{
+	"definitions": {
+		"envdict": {
+			"minProperties": 1,
+			"type": "object",
+			"maxProperties": 1,
+			"propertyNames": {
+				"allOf": [
+					{
+						"pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+					},
+					{
+						"pattern": "^(?!(name|value|unset)$)"
+					}
+				]
+			}
+		},
+		"envstring": {
+			"type": "string",
+			"allOf": [
+				{
+					"pattern": "^[A-Za-z_][A-Za-z0-9_]*=.+$"
+				},
+				{
+					"pattern": "^(?!(name|value|unset)=.+$)"
+				}
+			]
+		},
+		"namedict": {
+			"type": "object",
+			"required": [
+				"name"
+			],
+			"maxProperties": 2,
+			"minProperties": 2,
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "name of the variable",
+					"pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+				},
+				"value": {
+					"description": "value of the variable"
+				},
+				"unset": {
+					"type": "boolean",
+					"description": "if true, value won't be used",
+					"const": true
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"properties": {
+		"environment": {
+			"type": "array",
+			"description": "variables for build environment",
+			"items": {
+				"if": {
+					"type": "string"
+				},
+				"else": {
+					"if": {
+						"type": "object"
+					},
+					"else": {
+						"type": [
+							"string",
+							"object"
+						]
+					},
+					"then": {
+						"if": {
+							"propertyNames": {
+								"pattern": "^(?!(name|value|unset)$)"
+							}
+						},
+						"else": {
+							"$ref": "#/definitions/namedict"
+						},
+						"then": {
+							"$ref": "#/definitions/envdict"
+						}
+					}
+				},
+				"then": {
+					"$ref": "#/definitions/envstring"
+				}
+			},
+			"title": "build environment"
+		}
+	},
+	"$schema": "http://json-schema.org/draft-07/schema"
+}

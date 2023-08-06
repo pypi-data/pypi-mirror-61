@@ -1,0 +1,102 @@
+{
+	"definitions": {
+		"backend": {
+			"if": {
+				"properties": {
+					"type": {
+						"const": "docker"
+					}
+				}
+			},
+			"properties": {
+				"type": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"type"
+			],
+			"else": {
+				"type": "object"
+			},
+			"then": {
+				"$ref": "#/definitions/docker"
+			}
+		},
+		"docker": {
+			"type": "object",
+			"description": "options for Docker container executor backend",
+			"additionalProperties": false,
+			"properties": {
+				"cert_path": {
+					"type": "string",
+					"description": "a path to a directory containing TLS certificates to use when connecting to the Docker host",
+					"title": "docker cert path"
+				},
+				"host": {
+					"type": "string",
+					"description": "the URL to the Docker host",
+					"title": "docker host"
+				},
+				"timeout": {
+					"exclusiveMinimum": 0,
+					"type": "integer",
+					"description": "default timeout for API calls",
+					"title": "docker API timeout"
+				},
+				"type": {
+					"type": "string"
+				},
+				"tls_verify": {
+					"type": "boolean",
+					"description": "verify the Docker daemon host against a CA certificate",
+					"title": "docker TLS verify"
+				},
+				"version": {
+					"type": "string",
+					"description": "the version of the API to use",
+					"title": "docker API version"
+				}
+			},
+			"title": "docker backend options"
+		}
+	},
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"title": "Roman Settings",
+	"allOf": [
+		{
+			"$ref": "version-v1.0"
+		}
+	],
+	"type": "object",
+	"optional": [
+		"backend",
+		"backends"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"environment": {
+			"$ref": "roman_environment-v1.0#/properties/environment"
+		},
+		"backends": {
+			"type": "object",
+			"properties": {
+				"docker": {
+					"$ref": "#/definitions/docker"
+				}
+			},
+			"patternProperties": {
+				"^(?!docker$)": {
+					"$ref": "#/definitions/backend"
+				}
+			}
+		},
+		"version": {},
+		"backend": {
+			"type": "string",
+			"description": "name of the container backend driver class",
+			"title": "backend driver",
+			"default": "docker"
+		}
+	}
+}
