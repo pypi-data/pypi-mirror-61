@@ -1,0 +1,16 @@
+{
+  "orgName": "{{ package_name }} - {{ org_name }}",
+  "edition": "{{ edition }}",
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    }{% if not managed %},
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    }
+    {% endif %}
+  }
+}
