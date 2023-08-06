@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: lsreader
+Version: 0.0.13
+Summary: A reader to extract LS-DYNA results
+Home-page: UNKNOWN
+Author: LS-PrePost
+Author-email: hexi_lstc@outlook.com
+License: UNKNOWN
+Keywords: ls-dyna,d3plot,binout
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: C++
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+
+# LS-Reader Project
+
+The LS-Reader is designed to read LS-DYNA results and can extract the data of more than 100 such as stress, strain, id, history variable, effective plastic strain, number of elements and so on now. The LS-Reader provides an uniform interface for getting these data. For convenience, input parameters, like number of state, number of integration point, are designed as keyword arguments. More details please see [LS-Reader Tutorial][tutorial].
+
+
+
+## How to use
+
+```python
+from lsreader import D3plotReader
+from lsreader import DataType as dt
+from lsreader import BinoutReader
+
+# D3plotReader
+data_path = your/d3plot/file/path
+dr = D3plotReader(data_path)
+
+shell_stress = dr.get_data(dt.D3P_SHELL_STRESS, ist=0, ipt=1)
+print(shell_stress[0].x())
+
+shell_eps = dr.get_data(dt.D3P_SHELL_EFFECTIVE_PLASTIC_STRAIN, ist=0, ipt=1)
+print(shell_eps[0])
+
+thickness = dr.get_data(dt.D3P_SHELL_THICKNESS, ist=11)
+print(thickness[0])
+
+num_solid_element = dr.get_data(dt.D3P_NUM_SOLID)
+print(num_solid_element)
+
+# BinoutReader
+data_path = your/binout/file/path
+br = BinoutReader(data_path)
+
+res = BinoutReader.is_valid(data_path)
+print(res)
+
+branches = br.get_branch()
+for branch in branches:
+    print(branch, end=',')
+print("")
+
+br.set_branch('nodout')
+ids = br.get_id()
+for id in ids:
+    print(id, end=',')
+
+br.set_id(1787)
+br.set_component('x_acceleration')
+x_array = br.get_x_array()
+y_array = br.get_y_array()
+out_path = your/output/path
+BinoutReader.write(output_path, x_array, y_array)
+```
+
+
+
+[Latest Tutorial][tutorial]
+
+[The examples and documents for this project is available here][example].
+
+[tutorial]: <https://github.com/LS-Reader/LS-Reader-Tutorial>
+[example]: <http://ftp.lstc.com/anonymous/outgoing/lsprepost/LS-Reader/>
+
