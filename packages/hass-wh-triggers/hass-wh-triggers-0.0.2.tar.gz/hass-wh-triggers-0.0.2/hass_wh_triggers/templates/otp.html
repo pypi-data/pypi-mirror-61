@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}OTP tokens{% endblock %}
+{% block content %}
+{% if current_user.is_authenticated %}
+<h4 class="title is-4">OTP tokens</h4>
+<div class="table-container">
+<table class="table is-bordered is-fullwidth is-hoverable">
+    <tbody>
+        <thead>
+            <tr>
+                <th>User</th><th>Token</th><th>Created</th><th>Valid for (minutes)</th><th></th>
+            </tr>
+        </thead>
+    {% for token in tokens %}
+        <tr>
+            <td>{{ usermap[token.user] }}</td>
+            <td><button class="button is-small" onclick="document.getElementById('url_token').innerHTML = '{{ token.token }}&user={{ usermap[token.user] }}'">{{ token.token }}</button></td>
+            <td>{{ token.created | ctime }}</td>
+            <td>{{ (token.max_age / 60) | int }}</td>
+            <td><a href="{{ url_for('otp', del_token=token.id) }}" class="button is-danger is-small">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr>
+<p>Login at: <span class="force-select">{{ baseurl }}<span id="url_token"></span></span></p>
+<hr>
+<h6 class="title is-6">Add OTP token</h6>
+<label for="otp_user">User: </label>
+<div class="select is-small">
+<select id="otp_user">
+    {% for user in users %}
+    <option value="{{ user.id }}">{{ user.username }}</option>
+    {% endfor %}
+</select>
+</div><br />
+<label for="max_age">Valid for (minutes): </label><input type="number" class="input" id="max_age" value="5" placeholder="5" required />
+<button type="button" class="button" onclick="add_token()">Add token</button>
+</div>
+<script>
+function add_token() {
+    fetch("{{ url_for('otp_add') }}", {
+        method: 'post',
+        headers: {
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: 'user=' + document.getElementById('otp_user').value + '&max_age=' + document.getElementById('max_age').value
+    })
+    .then(
+        function(response) {
+            if (response.status !== 200) {
+                console.log("Could not add token");
+                return;
+            }
+            response.json().then(function(data) {
+                window.location.reload();
+            });
+        }
+    )
+    .catch(function(err) {
+        console.log("Fetch Error :-S", err);
+    });
+}
+</script>
+{% endif %}
+{% endblock %}
