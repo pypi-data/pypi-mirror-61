@@ -1,0 +1,20 @@
+setuptools>=38.3.0
+mbstrdecoder<2,>=0.8.3
+six<2,>=1.10.0
+typepy[datetime]<2,>=0.6.4
+
+[:python_version < "3.2"]
+futures
+
+[:python_version < "3.3"]
+ipaddress
+
+[:python_version < "3.4"]
+enum34
+
+[logging]
+loguru<1,>=0.4.1
+
+[test]
+pytest
+termcolor
