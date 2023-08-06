@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: cod
+Version: 0.0.2
+Summary: A userful package to use 'the click package to add command' for a interactive terminal
+Home-page: https://github.com/Yyonging/cod
+Author: duanyongqiang
+Author-email: sysuduanyongqiang@163.com
+License: UNKNOWN
+Description: cod
+        -----
+        easy to use the click package to add command for a interactive terminal!
+        1. support autocompetation
+        2. support arrow up or down for history command
+        
+        Installing
+        -----
+        
+        Install and update using `pip`:
+        
+        
+        
+            pip install -U cod
+        
+        
+        A Simple Example
+        -----
+        
+        .. code-block:: python
+        
+        
+            import click
+        
+            from cod import main, echo
+        
+            @click.option('--name', prompt='Your name',
+                        help='The person to greet.')
+            @click.command()
+            def hello(name):
+                echo(name)
+        
+            main()
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
