@@ -1,0 +1,92 @@
+#!python
+
+import os
+import argparse
+from mcmtest.submitter import Submitter
+from mcmtest.lib.helpers import mcmtest_path 
+from functools import partial
+
+pjoin = os.path.join
+
+def parse_commandlineargs():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('request', help='Name of the requests to be tested.')
+    parser.add_argument('--nodeos', help='The desired OS in working nodes. Specify "slc6" or "centos7" (defualt).')
+    parser.add_argument('-y', '--year', help='Year specification for sample request: 2016, 2017 or 2018.', type=int, nargs='*')
+    parser.add_argument('--allyears', help='Submit requests for all years.', action='store_true')
+    parser.add_argument('--dry', help='Dry run. No actual job submissions will be made.', action='store_true')
+    args = parser.parse_args()
+    return args
+
+def get_prepid_list(args):
+    '''According to the request argument given to mcmsubmit,
+       extract the prepid_list for the request.'''
+    request_name = args.request
+
+    # A year must be specified, otherwise --allyears option must be used
+    # to submit tests for requests from all available years
+    if not (args.year or args.allyears):
+        raise ValueError('Specify production year with --year or use --allyears to submit all tests.')
+
+    def extract_fromfiles(filelist):
+        '''Get prepid list from the given set of files.'''
+        _prepid_list = []
+        for _file in filelist:
+            with open(_file, 'r') as f:
+                lines = f.read().splitlines()
+                for line in lines:
+                    if line.startswith('#') or line == '':
+                        continue
+                    _prepid_list.append(line)
+        
+        return _prepid_list
+
+    # Extract the file in which the prepIDs are stored
+    if args.year:
+        # Handle the case if a single year is specified
+        if len(args.year) == 1:
+            if args.year not in [2016, 2017, 2018]:
+                raise ValueError('Invalid argument for --year. Use 2016, 2017 or 2018.')
+            reqfile = mcmtest_path(f'requests/{request_name}/requestlist{args.year}.txt')
+            prepid_list = extract_fromfiles([reqfile])
+        
+        # Handle the case if more than one year is specified
+        else:
+            for year in args.year:
+                if year not in [2016, 2017, 2018]:
+                    raise ValueError('Invalid argument for --year. Use 2016, 2017 or 2018.')
+                        
+            reqfiles = []
+            for year in args.year:
+                reqfile = mcmtest_path(f'requests/{request_name}/requestlist{year}.txt')
+                reqfiles.append(reqfile)
+            prepid_list = extract_fromfiles(reqfiles)
+    else:
+        reqdir = mcmtest_path(f'requests/{request_name}')
+        files = [pjoin(reqdir, f) for f in os.listdir(reqdir)]
+        prepid_list = extract_fromfiles(files)
+
+    return request_name, prepid_list
+
+def main():
+    args = parse_commandlineargs()
+    request_name, prepid_list = get_prepid_list(args)
+
+    node_os = args.nodeos
+
+    if (args.year and len(args.year) > 1) or args.allyears:
+        multiple_campaigns = True
+    
+    else:
+        multiple_campaigns = False
+
+    sub = Submitter(prepid_list=prepid_list,
+                    request_name=request_name, 
+                    node_os=node_os, 
+                    dryrun=args.dry,
+                    multiple_campaigns=multiple_campaigns)
+    
+    sub.submit()
+
+if __name__ == '__main__':
+    main()
