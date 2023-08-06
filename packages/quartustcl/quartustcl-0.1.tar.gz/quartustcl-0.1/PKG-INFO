@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: quartustcl
+Version: 0.1
+Summary: a Python package for interfacing with Intel Quartus TCL
+Home-page: https://github.com/agrif/quartustcl/
+Author: Aaron Griffith
+Author-email: aargri@gmail.com
+License: MIT
+Project-URL: Source, https://github.com/agrif/quartustcl/
+Project-URL: Documentation, https://quartustcl.readthedocs.io/en/latest/
+Description: quartustcl
+        ----------
+        
+        [![PyPI](https://img.shields.io/pypi/v/quartustcl)](https://pypi.org/project/quartustcl/)
+        [![Travis CI](https://img.shields.io/travis/com/agrif/quartustcl/master)](https://travis-ci.com/agrif/quartustcl)
+        [![Read the Docs](https://img.shields.io/readthedocs/quartustcl/latest)][docs]
+        
+         [docs]: https://quartustcl.readthedocs.io/en/latest/
+        
+        `quartustcl` is a Python module to interact with Intel Quartus TCL
+        shells. It opens a single shell in a subprocess, then helps you with
+        reading and writing data to it, and parsing TCL lists.
+        
+        ## Installation
+        
+        Install via `pip`:
+        
+        ```bash
+        pip install quartustcl
+        ```
+        
+        ## Demo
+        
+        You can start a demo Python REPL by running the package as a script:
+        ```bash
+        python3 -m quartustcl
+        ```
+        
+        The *quartustcl* subshell is exposed in a variable named `quartus`.
+        
+        ## Basic Use
+        
+        Instantiate a `QuartusTcl` object to start a shell. Then, call methods
+        on it to get automatically-parsed TCL lists:
+        
+        ```python
+        quartus = quartustcl.QuartusTcl()
+        devnames = quartus.get_device_names(hardware_name="Foo Bar")
+        ```
+        
+        In the TCL subshell, this runs
+        ```tcl
+        get_device_names -hardware_name {Foo Bar}
+        ```
+        and parses the result into a Python list.
+        
+        For more detailed information, please [read the documentation][docs].
+        
+Keywords: quartus tcl
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Provides-Extra: docs
