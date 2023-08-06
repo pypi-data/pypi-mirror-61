@@ -1,0 +1,26 @@
+use CommAggregation;
+use BlockDist;
+use AryUtil;
+
+config const N = 100;
+
+proc main() {
+  var D: domain(1) dmapped Block(boundingBox={0..#N}) = {0..#N};
+  var A: [D] int;
+  [i in D] A[i] = i;
+  printAry("A = ", A);
+  var B = (+ scan A) - A;
+  printAry("B = ", B);
+  var C: [D] int;
+  forall (c, i) in zip(C, D) with (var agg = new SrcAggregator(int)) {
+    var l: int;
+    if (i == D.high) {
+      l = N - 1;
+    } else {
+      l = B[i + 1] - B[i];
+    }
+    agg.copy(c, l);
+  }
+  printAry("C = ", C);
+  writeln("C == A? ", && reduce (C == A));
+}

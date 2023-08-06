@@ -1,0 +1,19 @@
+use SipHash;
+use Time;
+
+config const NINPUTS = 10_000;
+config const INPUTSIZE = 8;
+
+proc main() {
+  var buf: [0..#(NINPUTS*INPUTSIZE)] uint(8);
+  forall (b, i) in zip(buf, 0..) {
+    b = i: uint(8);
+  }
+  var hashes: [0..#NINPUTS] 2*uint(64);
+  var t = getCurrentTime();
+  forall (h, i) in zip(hashes, 0..) (with const key = defaultSipHashKey) {
+    h = sipHash128(buf[{i*INPUTSIZE..#INPUTSIZE}], key);
+  }
+  var elapsed = getCurrentTime() - t;
+  writeln("Hashed %i blocks (%i bytes) in %t seconds\nRate = %t MB/s".format(NINPUTS, NINPUTS*INPUTSIZE, elapsed, (NINPUTS*INPUTSIZE)/(1024*1024*elapsed)));
+}

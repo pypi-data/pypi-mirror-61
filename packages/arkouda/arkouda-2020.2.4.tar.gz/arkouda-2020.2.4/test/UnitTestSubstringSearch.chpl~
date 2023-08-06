@@ -1,0 +1,27 @@
+use RandArray;
+use MultiTypeSymbolTable;
+use SegmentedArray;
+
+config const N: int = 10_000;
+config const MINLEN: int = 1;
+config const MAXLEN: int = 20;
+config const SUBSTRING: string = "HI";
+
+proc test_contains(substr:string, n:int, minLen:int, maxLen:int, characters:charSet = charSet.Uppercase) throws {
+  var st = new owned SymTab();
+  var (segs, vals) = newRandStrings(n, minLen, maxLen, characters);
+  var strings = new owned SegString(segs, vals, st);
+  var truth = strings.contains(substr);
+  var nFound = + reduce truth;
+  writeln("Found %t strings containing %s".format(nFound, substr)); stdout.flush();
+  if nFound > 0 {
+    var (mSegs, mVals) = strings[truth];
+    var matches = new owned SegString(mSegs, mVals, st);
+    matches.show(5);
+  }
+}
+
+proc main() {
+  try! test_contains(SUBSTRING, N, MINLEN, MAXLEN);
+}
+  

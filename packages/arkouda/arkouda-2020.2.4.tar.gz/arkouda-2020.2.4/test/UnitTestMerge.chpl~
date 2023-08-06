@@ -1,0 +1,26 @@
+use Merge;
+use RadixSortLSD;
+use Random;
+
+proc testBinarySearch(size, trials) {
+  var a = makeDistArray(size, int);
+  fillRandom(a);
+  var b = radixSortLSD_keys(a);
+  var R = new RandomStream(int);
+  for t in 0..#trials {
+    var x = R.getNext();
+    var hit = binarySearch(b, x);
+    var (cond, loc) = maxloc reduce zip((b >= x), b.domain);
+    if cond && (hit != loc) {
+      writeln("Binary search failed on trial ", t); stdout.flush();
+      writeln("x = %t, res = %t, b[res] = %t, ans = %t, b[ans] = %t".format(x, hit, b[hit], loc, b[loc])); stdout.flush();
+      return False;
+    }
+  }
+  writeln("Passed binary search test");
+  return True;
+}
+
+proc main() {
+  testBinarySearch(N, TRIALS);
+}

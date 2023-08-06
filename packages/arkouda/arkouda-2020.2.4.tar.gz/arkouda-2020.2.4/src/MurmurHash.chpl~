@@ -1,0 +1,23 @@
+module MurmurHash {
+
+  inline proc getblock32(key: [?D] uint(8), i: int): uint(32) {
+    var res: uint(32);
+    for param j in 0..3 {
+      res |= (key[4*i + j]: uint(32)) << (3 - j);
+    }
+    return res;
+  }
+
+  proc MurmurHash3_128(key: [?D] uint(8), seed: uint(32)) {
+    const nblocks: int = D.size / 16;
+    var h1 = seed, h2 = seed, h3 = seed, h4 = seed;
+    const c1: uint(32) = 0x239b961b;
+    const c2: uint(32) = 0xab0e9789;
+    const c3: uint(32) = 0x38b34ae5; 
+    const c4: uint(32) = 0xa1e38b93;
+
+    for i in 0..#nblocks {
+      
+    }
+  }
+}

@@ -1,0 +1,19 @@
+import random
+import sys
+import string
+import time
+
+NINPUTS = 1_000_000
+INPUTSIZE = 8
+
+S = []
+for i in range(NINPUTS):
+    s = ''.join(random.choices(string.ascii_letters, k=INPUTSIZE))
+    S.append(s)
+
+start = time.time()
+x = set(S)
+t = time.time() - start
+
+print(f"Hashed {NINPUTS} blocks ({NINPUTS*INPUTSIZE} bytes) in {t:.3f} seconds")
+print(f"Rate = {(NINPUTS*INPUTSIZE)/(1024*1024*t):.2f} MB/s")
