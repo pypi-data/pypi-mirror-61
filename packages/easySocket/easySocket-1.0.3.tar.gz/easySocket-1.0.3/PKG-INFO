@@ -1,0 +1,97 @@
+Metadata-Version: 1.1
+Name: easySocket
+Version: 1.0.3
+Summary: A python module for making netwroking (especially sending files) easier
+Home-page: https://github.com/N-Ziermann/easySocket
+Author: Niklas Ziermann
+Author-email: n-ziermann@protonmail.com
+License: MIT
+Download-URL: https://github.com/N-Ziermann/easySocket/archive/v_1.0.3.tar.gz
+Description: # easySocket
+        
+        **Version 1.0.3**
+        
+        "easySocket" is a module for Python that's based on the "socket" module and aims to make tasks like sending long texts or files easier/simpler.
+        
+        I wrote this module, because I wanted to send an image with the socket module and found it annoying to always spend multiple lines of code to be able to send an image that was bigger than the maximum amount of bytes sendable with one socket.send command.
+        
+        
+        
+        ## Example
+        
+        ```python
+        import easySocket
+        c = host_tcp("0.0.0.0", 8000)
+        easySocket.send_file("./flower.png", c)
+        ```
+        
+        This is all you need to do to send an image file using easySocket
+        
+        
+        
+        ## Install
+        
+        ```shell
+        pip install easySocket
+        ```
+        
+        
+        
+        ## Documentation
+        
+        Host a tcp connection with one function:
+        
+        ```
+        host_tcp(my_ip, port)
+        ```
+        
+        Connect to a tcp conenction with one function:	
+        
+        ```
+        connect_tcp(ip, port)
+        ```
+        
+        Send a file over a tcp connection independent of size:
+        
+        ```python
+        send_file(location, recipient)
+        ```
+        
+        Send a text over a tcp connection independent of size:		
+        
+        ```
+        send_text(text, recipient)
+        ```
+        
+        Receive data from one of the two functions above:
+        
+        ```
+        rcv_data(sender)
+        ```
+        
+        
+        
+        ## Contributors
+        
+        Niklas Ziermann
+        
+        
+        
+        ## Copyright & License
+        
+        **© Niklas Ziermann** 
+        
+        **MIT License**
+        
+        
+        
+Keywords: socket,networking,easy,filetransfer
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
