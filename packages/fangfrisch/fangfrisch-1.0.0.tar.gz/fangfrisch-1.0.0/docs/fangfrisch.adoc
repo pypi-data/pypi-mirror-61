@@ -1,0 +1,227 @@
+# Fangfrisch
+Ralph Seichter <fangfrisch@seichter.de>
+v1.0.0, {docdate}
+:copyright: © 2020 Ralph Seichter
+:encoding: UTF-8
+:hyphens: en
+:lang: en
+:keywords: antivirus, clamav, fangfrisch, freshclam, refresh, update
+:media: screen
+:!pagenums:
+:pdf-version: 1.7
+:sectanchors:
+:sectnums:
+:subject: Update and verify unofficial Clam Anti-Virus signatures
+:xrefstyle: short
+
+Fangfrisch (German for "freshly caught") is a sibling of the https://www.clamav.net[Clam Anti-Virus] freshclam utility.
+It allows downloading virus definition files that are not official ClamAV canon, e.g. from https://sanesecurity.com[Sanesecurity] and https://urlhaus.abuse.ch[URLhaus].
+Fangfrisch was designed with security in mind, to be run by an unprivileged user only.
+
+== License
+
+Copyright {copyright}
+
+This file is part of "Fangfrisch".
+
+Fangfrisch is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+Fangfrisch is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Fangfrisch.
+If not, see <https://www.gnu.org/licenses/>.
+
+== Update strategy
+
+Fangfrisch is expected to run periodically, e.g. using https://en.wikipedia.org/wiki/Cron[cron].
+Download attempts are recorded in a database and new attempts are only made after the defined age threshold is reached.
+Fangfrisch will attempt to download digests first (if available upstream), and only retrieve corresponding virus definition files when their recorded digest changes, minimising transfer volumes.
+
+== Installation
+
+Fangfrisch requires Python 3.7 or newer.
+The recommended installation method is using the https://packaging.python.org/tutorials/installing-packages/[pip command] in a virtual Python environment.
+Here is an example listing of commands for BASH:
+
+=== Create home directory
+
+----
+mkdir -p /var/lib/fangfrisch
+cd /var/lib/fangfrisch
+----
+
+=== Prepare and activate venv
+
+----
+python3 -m venv venv
+source venv/bin/activate
+----
+
+=== Install via https://pypi.org/project/fangfrisch/[PyPI]
+
+----
+pip install fangfrisch
+----
+
+This step will also create an executable launcher script `venv/bin/fangfrisch`.
+
+== Configuration
+
+A configuration file is mandatory, uses an INI-File-like structure and must contain a `db_url` entry.
+All other settings are optional.
+However, unless you enable one signature file provider section, Fangfrisch naturally won't do much.
+
+----
+# Minimal example configuration, meant for testing.
+
+[DEFAULT]
+db_url = sqlite:////var/lib/fangfrisch/db.sqlite
+local_directory = /var/lib/clamav
+
+[urlhaus]
+enabled = yes
+----
+
+* *db_url*: Database URL in https://docs.sqlalchemy.org/en/13/core/engines.html#supported-databases[SQLAlchemy syntax].
+Mandatory, no default.
+Typically, a local https://www.sqlite.org[SQLite] database will suffice.
+* *enabled*: Scan this section for URLs?
+Default: `false`.
+* *integrity_check*: Mechanism for integrity checks.
+Default: `sha256`.
+You can use `disabled` if the signature file provider offers no checksums.
+* *interval*: Interval between downloads.
+Defaults are provider-dependent.
+Values can be expressed in human-readable form (e.g. `12h` or `45m`).
+Please respect the limits set by each provider.
+* *local_directory*: Downloaded files are stored here.
+No default, so the current working directory of the Python process is used.
+As this can vary depending on how you launch Fangfrisch, it is highly recommended to define an absolute path like `/var/lib/clamav` instead.
+You can override this option in provider sections to separate downloads based on origin.
+* *max_size*: Maximum expected file size.
+The default is `10MB`, but all predefined providers have individual size limits (see <<internalconf>>).
+Values are can be expressed in human-readable form (e.g. `250KB` or `3MB`).
+Fangfrisch attempts to inspect the content length before downloading virus signature files so as not to download files larger than the defined limit.
+If providers don't respond with content length information, Fangfrisch will log a warning but download the data anyway.
+* *on_update_exec*: If any files were downloaded during a pass, a command can be executed in after the pass finishes.
+No default.
+A typical value is `clamdscan --reload`.
+* *on_update_timeout*: Timeout for the `on_update_exec` command, in seconds.
+Default: 30.
+
+Details about the configuration parser and extended interpolation are available https://docs.python.org/3.7/library/configparser.html[here].
+Fangfrisch contains internal defaults for the following providers (in alphabetical order):
+
+* https://www.malwarepatrol.net[Malwarepatrol]
+* https://sanesecurity.com[Sanesecurity]
+* https://www.securiteinfo.com[SecuriteInfo]
+* https://urlhaus.abuse.ch[URLhaus]
+
+The internal default values for providers can be used by specifiying `enabled = yes` in the desired sections.
+Some providers require additional configuration as shown in the following example configuration.
+
+----
+include::example.conf[]
+----
+
+Fangfrisch is of course not limited to the internal defaults.
+You can define as many additional virus definition providers as you like.
+The following defines a fictional provider:
+
+----
+[fictionalprovider]
+enabled = yes
+integrity_check = md5
+interval = 90m
+prefix = http://fictional-provider.tld/clamav-unofficial/
+
+# Reference the defined prefix in URL definitions. Values in
+# other sections can be referenced using ${section:option}.
+url_eggs = ${prefix}eggs.ndb
+url_spam = ${prefix}spam.hdb
+
+# Override local file name for url_spam
+filename_spam = spam_spam_spam_lovely_spam.db
+
+# Execute command after each fresh download from url_eggs
+on_update_eggs = echo Fresh eggs in {path}
+----
+
+Fangfrisch will scan enabled sections for lines prefixed with `url_` to determine download sources for virus definition files.
+
+* The value of `integrity_check` determines both the expected filename suffix for digests and the hashing mechanism used for verification.
+* Local file names will be determined by parsing URLs, but can be manually overridden.
+To change the file name for `url_xyz`, set `filename_xyz` to the desired value.
+* To launch a command after data was downloaded for `url_xyz`, define `on_update_xyz`.
+The command string may contain a `{path}` placeholder, which will be substituted with the full path of the downloaded file.
+
+== Preparing the database
+
+After completing the configuration, make sure to create the database structure by running the `initdb` command.
+
+----
+venv/bin/fangfrisch --conf /etc/fangfrisch.conf initdb
+----
+
+WARNING: Fangfrisch should never be run as `root`, but as an unprivileged user like `clamav`.
+
+== Usage
+
+You can display command line arguments as follows:
+
+----
+$ venv/bin/fangfrisch --help
+
+include::usage.txt[]
+----
+
+You can choose among following actions:
+
+* *dumpconf*: Dump the effective configuration to stdout, combining both internal defaults and your own settings.
+The effective configuration for the example shown in <<Configuration>> is available in <<sampleeff>>.
+
+* *initdb*: Create the database structure.
+This needs to be run only once, before the first refresh.
+
+* *refresh*: Refresh the configured URLs.
+The `force` switch can be set to force downloads regardless of local file age.
+
+As stated before, Fanfrisch is typically run using cron.
+An example crontab looks like this:
+
+----
+HOME=/var/lib/fangfrisch
+LOG_LEVEL=INFO
+# minute hour day-of-month month day-of-week user command
+*/15 * * * * clamav venv/bin/fangfrisch --conf /etc/fangfrisch.conf refresh
+----
+
+== Contact
+
+The project is hosted on https://github.com/rseichter/fangfrisch[GitHub].
+If you experience problems or have suggestions, you should https://github.com/rseichter/fangfrisch/issues[file an issue].
+When doing so, please always check existing issues first, including closed ones.
+This saves time and effort for all involved.
+To contact the author {author} directly you can send email to {email}.
+
+[[internalconf]]
+[appendix]
+== Default configuration
+
+Fangfrisch contains the following internal configuration settings as defaults.
+All sections are disabled, and entries with the `!url_` prefix are included for reference only.
+These usually represent data sources that have a high risk of false positives, and enabling the section will not enable these entries.
+
+----
+include::internal.conf[]
+----
+
+[[sampleeff]]
+[appendix]
+== Effective configuration
+
+The following effective configuration is the result of combining internal defaults (see <<internalconf>>) with the example settings shown in <<Configuration>>.
+
+----
+include::combined.conf[]
+----
