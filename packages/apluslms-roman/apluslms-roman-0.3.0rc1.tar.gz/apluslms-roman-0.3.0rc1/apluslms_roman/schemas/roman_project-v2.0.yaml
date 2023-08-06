@@ -1,0 +1,58 @@
+---
+$schema: "http://json-schema.org/draft-07/schema"
+title: Course config
+type: object
+definitions:
+  image:
+    type: string
+    description: the docker image
+  step:
+    type: object
+    additionalProperties: false
+    required:
+      - img
+    properties:
+      name:
+        type: string
+        description: name of the step
+        #doesn't allow names that are only numerals
+        pattern: "[^0-9]+"
+      img:
+        $ref: "#/definitions/image"
+      cmd:
+        type: [string, array]
+        minItems: 1
+        items:
+          type: string
+        description: commands to execute
+      mnt:
+        type: string
+      env:
+        $ref: "roman_environment-v1.0#/properties/environment"
+  stepitem:
+    if:
+      type: string
+    then:
+      $ref: "#/definitions/image"
+    else:
+      if:
+        type: object
+      then:
+        $ref: "#/definitions/step"
+      else:
+        type: [string, object]
+
+allOf:
+  - $ref: version-v1.0
+additionalProperties: false
+properties:
+  version: {}
+  environment:
+    $ref: "roman_environment-v1.0#/properties/environment"
+  steps:
+    type: array
+    items:
+      $ref: "#/definitions/stepitem"
+      
+required:
+  - version

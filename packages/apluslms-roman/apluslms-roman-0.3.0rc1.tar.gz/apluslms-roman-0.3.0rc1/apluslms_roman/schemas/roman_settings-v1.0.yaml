@@ -1,0 +1,75 @@
+---
+$schema: "http://json-schema.org/draft-07/schema"
+title: Roman Settings
+type: object
+
+allOf:
+  - $ref: version-v1.0
+
+optional:
+  - backend
+  - backends
+
+definitions:
+  docker:
+    title: docker backend options
+    description: options for Docker container executor backend
+    type: object
+    additionalProperties: false
+    properties:
+      host:
+        title: docker host
+        description: the URL to the Docker host
+        type: string
+      tls_verify:
+        title: docker TLS verify
+        description: verify the Docker daemon host against a CA certificate
+        type: boolean
+      cert_path:
+        title: docker cert path
+        description: a path to a directory containing TLS certificates to use when connecting to the Docker host
+        type: string
+      version:
+        title: docker API version
+        description: the version of the API to use
+        type: string
+      timeout:
+        title: docker API timeout
+        description: default timeout for API calls
+        type: integer
+        exclusiveMinimum: 0
+      type:
+        type: string
+  backend:
+    required:
+      - type
+    properties:
+      type:
+        type: string
+    if:
+      properties:
+        type:
+          const: docker
+    then:
+      $ref: "#/definitions/docker"
+    else:
+      type: object
+
+additionalProperties: false
+properties:
+  version: {}
+  environment:
+    $ref: "roman_environment-v1.0#/properties/environment"
+  backend:
+    title: backend driver
+    description: name of the container backend driver class
+    type: string
+    default: docker
+  backends:
+    type: object
+    properties:
+      docker:
+        $ref: "#/definitions/docker"
+    patternProperties:
+      "^(?!docker$)":
+        $ref: "#/definitions/backend"
