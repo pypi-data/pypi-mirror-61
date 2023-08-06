@@ -1,0 +1,341 @@
+Metadata-Version: 2.1
+Name: metadata-client
+Version: 3.0.5
+Summary: Python Client for European XFEL Metadata Catalogue Web App available at https://in.xfel.eu/metadata
+Home-page: https://git.xfel.eu/gitlab/ITDM/metadata_client
+Author: Luís Maia
+Author-email: luis.maia@xfel.eu
+Maintainer: Luís Maia
+Maintainer-email: luis.maia@xfel.eu
+License: MIT
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/x-rst
+Requires-Dist: oauthlib (==3.0.2)
+Requires-Dist: requests (==2.22.0)
+Requires-Dist: requests-oauthlib (==1.2.0)
+Requires-Dist: oauth2-xfel-client (==5.1.1)
+Provides-Extra: rsa
+Requires-Dist: oauthlib (==3.0.2) ; extra == 'rsa'
+Requires-Dist: requests (==2.22.0) ; extra == 'rsa'
+Requires-Dist: requests-oauthlib (==1.2.0) ; extra == 'rsa'
+Requires-Dist: oauth2-xfel-client (==5.1.1) ; extra == 'rsa'
+
+Metadata Catalogue Client
+=========================
+
+MyMdC is the Web App design for Data Management at European XFEL.
+
+This library (metadata_client) is a client for the RESTful APIs exposed
+by the European XFEL Metadata Catalogue Web Application - myMdC
+(https://in.xfel.eu/metadata).
+
+*Repository:*
+
+- https://git.xfel.eu/gitlab/ITDM/metadata_client
+
+*Dependencies:*
+
+- oauthlib (https://pypi.python.org/pypi/oauthlib)
+- requests (https://github.com/kennethreitz/requests)
+- requests-oauthlib (https://github.com/requests/requests-oauthlib)
+- oauth2_xfel_client (https://git.xfel.eu/gitlab/ITDM/oauth2_xfel_client)
+
+
+Installation
+------------
+
+Python project
+""""""""""""""
+
+1. Install requirements, if never done before
+
+ 1.1. For OS X distributions::
+
+  1.1.1. Homebrew
+
+        brew install python3
+        --
+        pip3 install pycodestyle --user
+        pip3 install node --user
+        pip3 install nose-py3 --user
+        pip3 install python-dateutil --user
+
+
+  1.1.2 Port
+
+        sudo port install python36
+
+        sudo port select --set python3 python36
+
+        sudo port install py36-pip
+        sudo port select --set pip pip36
+
+        sudo port install py36-nose
+        sudo port select --set nosetests nosetests-3.6
+
+        pip install pycodestyle --user
+        pip install node --user
+        pip install nose-py3 --user
+        pip3 install python-dateutil --user
+
+ 1.2. For Linux distributions::
+
+    sudo apt-get update
+    sudo apt-get install python3.6
+
+
+2. Make metadata_client library available in your python environment
+
+ 2.1. Install it via pip::
+
+    # Install dependencies from local wheels files
+    pip3 install --no-index --upgrade --find-links ./external_dependencies/*
+    pip3 install --user --no-index --upgrade --find-links ./external_dependencies/*
+
+    # Install dependencies from the pypi
+    pip3 install -r requirements.txt
+
+ Or as a normal python project (via .egg file)::
+
+    python setup.py install
+    python3 setup.py install --user
+
+ Running this command the "compiled" `metadata_client-3.0.5-py3.6.egg` file
+ is generated under the current Python installation site-packages folder.
+
+ or. Install it as a normal python project (via Wheel)::
+
+    python setup.py bdist_wheel
+
+ Running this command 2 folders are generated under the current Python
+ installation site-packages folder:
+
+ - `metadata_client` with the sources;
+ - `metadata_client-3.0.5.dist-info/` with Wheels configuration files.
+
+3. To identify your Python site-packages folder run::
+
+    python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
+
+
+Usage
+-----
+
+To use this project you need to import it.
+
+If you want interact directly with API methods you should import `MetadataClientApi` class::
+
+ from metadata_client.metadata_client_api import MetadataClientApi
+
+If you want interact with Model classes you should import `MetadataClient` class::
+
+ from metadata_client.metadata_client import MetadataClient
+
+Or import everything::
+
+ import metadata_client
+
+1. Connection to the MdC (Metadata Catalog)::
+
+    from metadata_client.metadata_client import MetadataClient
+
+    # Necessary configuration variables to establish a connection
+    user_id = '201ed15ff071a63e76cb0b91a1ab17b36d5f92d24b6df4497aa646e39c46a324'
+    user_secret = 'a8ae80f5e96531f19bf2d2b6102f5a537196aca44a673ad36533310e07529757'
+    user_email = 'luis.maia@xfel.eu'
+    #
+    metadata_web_app_url = 'https://in.xfel.eu/dev_metadata'
+    token_url = 'https://in.xfel.eu/dev_metadata/oauth/token'
+    refresh_url = 'https://in.xfel.eu/dev_metadata/oauth/token'
+    auth_url = 'https://in.xfel.eu/dev_metadata/oauth/authorize'
+    scope = ''
+    base_api_url = 'https://in.xfel.eu/dev_metadata/api/'
+
+    # Generate the connection
+    client_conn = MetadataClient(client_id=user_id,
+                                 client_secret=user_secret,
+                                 user_email=user_email,
+                                 token_url=token_url,
+                                 refresh_url=refresh_url,
+                                 auth_url=auth_url,
+                                 scope=scope,
+                                 base_api_url=base_api_url)
+
+2. Interaction with the MdC (Metadata Catalog):
+
+ 2.1 Example data_group_types::
+
+    all_group_types = MetadataClient.get_all_data_group_types(client_conn)
+
+    all_group_types
+    # >>> {'success': True,
+    #      'data': [{'description': '', 'identifier': 'RAW', 'name': 'Raw', 'flg_available': True, 'id': 1},
+    #               {'description': '', 'identifier': 'CAL', 'name': 'Calibration', 'flg_available': True, 'id': 2},
+    #               {'description': '', 'identifier': 'PROC', 'name': 'Processed', 'flg_available': True, 'id': 3},
+    #               {'description': '', 'identifier': 'REDU', 'name': 'Reduced', 'flg_available': True, 'id': 4},
+    #               {'description': '', 'identifier': 'SIM', 'name': 'Simulation', 'flg_available': True, 'id': 5},
+    #               {'description': '', 'identifier': 'UNK', 'name': 'Unknown', 'flg_available': True, 'id': 6}],
+    #      'app_info': {},
+    #      'info': 'Got data_group_type successfully'}
+
+    all_group_types['success']
+    # >>> True
+
+    all_group_types['data'][0]
+    # >>> {'description': '', 'identifier': 'RAW', 'name': 'Raw', 'flg_available': True, 'id': 1}
+
+    all_group_types['data'][0]['name']
+    # >>> 'Raw'
+
+ 2.2 Example instruments::
+
+    all_xfel_instruments = MetadataClient.get_all_xfel_instruments(client_conn)
+
+    >>> for instrument in all_xfel_instruments['data']:
+    ...   print('id = {0} | name = {1}'.format(instrument['id'], instrument['name']))
+    ...
+    # id = -1 | name = test-instrument
+    # id = 1 | name = SPB/SFX SASE1
+    # id = 2 | name = FXE SASE1
+    # id = 3 | name = SQS SASE3
+    # id = 4 | name = SCS SASE3
+    # id = 5 | name = MID SASE2
+    # id = 6 | name = HED SASE2
+    # id = 7 | name = Hera South Detector Test Stand
+    # id = 8 | name = SASE1 Test Stand
+    # id = 9 | name = SASE2 Test Stand
+    # id = 10 | name = SASE3 Test Stand
+
+ 2.3 Get instrument active proposal::
+
+    active_proposal = MetadataClient.get_active_proposal_by_instrument(client_conn, 1)
+
+ 2.4 Register Run replica::
+
+    # (e.g. proposal_number == 1234)
+    # (e.g. proposal_number == 12)
+    # (e.g. repository_identifier == 'XFEL_GPFS_OFFLINE_RAW_CC')
+
+    resp = MetadataClient.register_run_replica(client_conn,
+                                               proposal_number,
+                                               run_number,
+                                               repository_identifier)
+    # resp = {'success': True,
+    #         'info': 'Run replica registered successfully',
+    #         'data': {'experiment_id': '-1',
+    #                  'sample_id': '-1',
+    #                  'run_id': '1588',
+    #                  'data_group_id': '777'},
+    #         'app_info': {}}
+
+ 2.5 Unregister Run replica::
+
+    # (e.g. proposal_number == 1234)
+    # (e.g. proposal_number == 12)
+    # (e.g. repository_identifier == 'XFEL_GPFS_OFFLINE_RAW_CC')
+
+    resp = MetadataClient.unregister_run_replica(client_conn,
+                                                 proposal_number,
+                                                 run_number,
+                                                 repository_identifier)
+    # resp = {'success': True,
+    #         'info': 'Run replica unregistered successfully',
+    #         'data': {'data_group_id': '-1',
+    #                  'repository_id': '1',
+    #                  'flg_available': 'false'},
+    #         'app_info': {}}
+
+For additional examples, please take a look in the tests/ folder.
+
+
+Development & Testing
+---------------------
+
+When developing, and before commit changes, please validate that:
+
+1. All tests continue passing successfully (to validate that run *nosetests*)
+
+  1.1 Using nosetests::
+
+    # Go to the source code directory
+    cd metadata_client
+
+    # Run all tests using nosetests
+    nosetests .
+
+    # Run all tests and get information about coverage for all files inside metadata_client package
+    pip install nose-cov
+    nosetests --with-cov --cover-erase --cover-inclusive --cov-report term-missing --cov metadata_client
+
+    # Run all tests with xunit
+    nosetests --where=./metadata_client/ --with-xunit --xunit-file=pythonTest.xml
+
+  1.2 Using nose2::
+
+    # Go to the source code directory
+    cd metadata_client
+
+    # Run all tests nose2
+    nose2 -v --config .nose2.cfg --with-coverage
+
+  1.3 Using python::
+
+    # Go to the source code directory
+    cd metadata_client
+
+    # If you don't want use nosetests you can simply run the test class
+    python metadata_client/tests/metadata_client_test.py
+
+2. Code keeps respecting pycodestyle code conventions (to validate that run **pycodestyle**)::
+
+    pycodestyle .
+
+3. To generate all the wheels files for the dependencies, execute::
+
+    # Generate Wheels to its dependencies
+    pip wheel --wheel-dir=./external_dependencies -r requirements.txt
+    pip wheel --wheel-dir=./external_dependencies --find-links=./external_dependencies -r requirements.txt
+
+    # Generate Wheels to itself and dependencies
+    pip wheel --wheel-dir=./external_dependencies .
+    pip wheel --wheel-dir=./external_dependencies --find-links=./external_dependencies .
+
+Guarantee that you have the desired versions in requirements.txt and setup.py files.
+
+
+Registering library on https://pypi.org
+---------------------------------------
+
+To register this python library, the following steps are necessary::
+
+    # Install twine
+    python -m pip install --upgrade twine --user
+
+    # Generates egg file in the dist/ folder
+    python setup.py install
+
+    # Upload new version .egg and .whl files
+    twine upload dist/*
+    twine upload metadata_client-3.0.5-py3-none-any.whl
+
+    # In case a test is necessary, it is possible to test it against test.pypi.org
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose
+
+
