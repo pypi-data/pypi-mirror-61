@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+
+import os
+os.environ['DINEMIC_CONFIG'] = '/etc/starsheep/config.dinemic'
+
+import dinemic
+import sys
+import urllib.request
+import yaml
+
+from starsheep.context import Context
+from starsheep.models.model import Model
+from starsheep.command_line import get_url, load_application, import_application, import_data, apply_data, check_version
+
+
+def print_help():
+    print('Usage:')
+    print('starsheep-cli get|list [filter or object_id] [--url=...] [--caller-id=...]')
+    print('')
+    print('\t--url - path to the yaml file. Default is /etc/starsheep/starsheep.yaml')
+    print('\t--caller-id - ID of object, which keys will be used to decrypt encrypted values. Object should be owned by node')
+
+
+if __name__ == "__main__":
+    options = sys.argv[1:]
+    dinemic.prepare()
+
+    ctx = Context()
+    ctx.cmdline = options
+
+    path = '/etc/starsheep/starsheep.yaml'
+    caller_id = ''
+    for i in range(len(options)):
+        if i >= len(options):
+            break
+        opt = options[i]
+        if opt.startswith('--url='):
+            path = opt.split('=')[1]
+            del options[i]
+            i = i-1
+        elif opt.startswith('--caller-id='):
+            caller_id = opt.split('=')[1]
+            del options[i]
+            i = i-1
+
+    if len(options) < 1 or options[0] not in ['get', 'list', 'delete']:
+        print_help()
+        sys.exit(1)
+
+    f = urllib.request.urlopen(get_url(path))
+    document = yaml.load(f, Loader=yaml.SafeLoader)
+    f.close()
+
+    check_version(document, ctx)
+    import_application(document, ctx)
+    load_application(document, ctx)
+
+    if options[0] == 'get':
+        models = {}
+        for obj_id in options[1:]:
+            model_data = {
+            }
+
+            model = Model.get_object(obj_id, caller_id, ctx)
+            if ctx.models[model.get_model()].fields is not None:
+                model_data['fields'] = {}
+                for f in ctx.models[model.get_model()].fields:
+                    model_data['fields'][f] = getattr(model, f).get()
+
+            if ctx.models[model.get_model()].lists is not None:
+                model_data['lists'] = {}
+                for l in ctx.models[model.get_model()].lists:
+                    l_items = []
+                    for i in range(getattr(model, l).length()):
+                        l_items.append(getattr(model, l).at(i))
+                    model_data['lists'][l] = l_items
+
+            if ctx.models[model.get_model()].dicts is not None:
+                model_data['dicts'] = {}
+                for d in ctx.models[model.get_model()].dicts:
+                    d_items = {}
+                    for k in getattr(model, d).keys():
+                        d_items[k] = getattr(model, d).get(k)
+                    model_data['dicts'][d] = d_items
+            models[obj_id] = model_data
+
+        print(yaml.dump(model_data))
+    elif options[0] == 'list':
+        if len(options) <= 1:
+            print(yaml.dump(dinemic.object_list('')))
+        else:
+            if options[1] == '@':
+                print(yaml.dump(dinemic.object_list_owned('*')))
+            else:
+                print(yaml.dump(dinemic.object_list(options[1])))
+    else:
+        print_help()
+        sys.exit(1)
