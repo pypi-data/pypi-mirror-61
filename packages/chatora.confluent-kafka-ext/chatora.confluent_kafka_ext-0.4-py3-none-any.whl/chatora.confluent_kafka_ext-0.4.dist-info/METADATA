@@ -1,0 +1,99 @@
+Metadata-Version: 2.1
+Name: chatora.confluent-kafka-ext
+Version: 0.4
+Summary: Apache Kafka and Schema Registry client libraries for Python on top of confluent-kafka-python.
+Home-page: https://github.com/takaomag/chatora.confluent_kafka_ext
+Author: Takao Magoori
+Author-email: takaomag@users.noreply.github.com
+Maintainer: Takao Magoori
+Maintainer-email: takaomag@users.noreply.github.com
+License: MIT
+Download-URL: https://github.com/takaomag/chatora.confluent_kafka_ext/releases
+Project-URL: source code, https://github.com/takaomag/chatora.confluent_kafka_ext
+Project-URL: issues, https://github.com/takaomag/chatora.confluent_kafka_ext/issues
+Project-URL: documentation, https://github.com/takaomag/chatora.confluent_kafka_ext/blob/master/README.md
+Keywords: Kafka,Confluent Platform,Schema Registry,Avro
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools (>=41.0.1)
+Requires-Dist: pip (>=19.1.1)
+Requires-Dist: wheel (>=0.33.4)
+Requires-Dist: packaging (>=19.0)
+Requires-Dist: avro-python3 (>=1.9.0)
+Requires-Dist: confluent-kafka (>=1.0.1)
+Requires-Dist: expbackoff (>=0.1.1)
+Requires-Dist: fastavro (>=0.22.2)
+Requires-Dist: fasteners (>=0.15)
+Requires-Dist: requests (>=2.22.0)
+Requires-Dist: simplejson (>=3.16.0)
+Requires-Dist: structlog (>=19.1.0)
+Requires-Dist: urllib3 (>=1.24.1)
+Requires-Dist: chatora.util (>=0.2.5)
+Provides-Extra: dev
+Requires-Dist: bumpversion (>=0.5.3) ; extra == 'dev'
+Requires-Dist: check-manifest (>=0.39) ; extra == 'dev'
+Requires-Dist: colorama (>=0.4.1) ; extra == 'dev'
+
+chatora.confluent_kafka_ext
+===========================
+
+Apache Kafka and Schema Registry client libraries for Python on top of confluent-kafka-python.
+
+
+Changelog
+=========
+
+0.4 (2020-02-21)
+------------------
+- change avro codec error handling.
+
+0.3.1 (2019-12-03)
+------------------
+- support chunked decoding.
+- fix fastavro mappingproxy problem.
+
+0.3 (2019-07-07)
+------------------
+- support chunked decoding.
+- fix fastavro mappingproxy problem.
+
+0.2.4 (2019-07-04)
+------------------
+- change dependencies.
+
+0.2.2 (2019-01-15)
+------------------
+- change exc_handler signature to support arbitrary_info.
+
+0.2.1 (2018-12-28)
+------------------
+- fix decoder bug.
+- allow key_value_pair_iter to have arbitrary infos which are yielded as it is.
+
+0.2 (2018-12-28)
+----------------
+- make AvroCodec decode_with_schema_registry funcs to return schema and schema id.
+
+0.1.2 (2018-11-1)
+------------------
+- fix required urllib3 version.
+
+0.1.1 (2018-11-1)
+------------------
+- fix loading file-like obj and add iter-loading multiple schema.
+
+0.1 (2018-11-07)
+------------------
+- Birth!
+
