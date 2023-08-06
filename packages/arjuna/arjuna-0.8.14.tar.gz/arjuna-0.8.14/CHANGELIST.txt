@@ -1,0 +1,163 @@
+Following is the list of critical additions and updates for a given released version:
+
+0.8.14
+------
+Minor - Doc links in main README.md made abolsute because for PyPi.
+
+0.8.13
+------
+- Added arjex_internals examples project to create example code that reflects/tests internal workings of Arjuna.
+- CLI changes based on community discussion
+    - c/consider prefix changed to i/include
+    - i/ignore prefix changed to e/exclude
+    - --enumerate-only change to --dry-run
+- My.repr method is used for including test data in test name. No more of the staple 'my0' in the names.
+- Fix in PyTestHooks. Still need to look for a better solution. request object is not retrievable when error happens in fixture.
+- To support nested element finding across all With locators that use XPath, "." is automatically pre-fixed if not present.
+- New named exceptions introduced for better information: GuiNotLoadedError, GuiLabelNotPresentError, GuiNamespaceLoadingError
+- Concept of root element introduced for Widget. 
+    - Widget takes a keyword argument 'root_element_locators' in its __init__method.
+    - You can specify a single locator (With object) or a list of locators.
+    - You can also specifiy it in corresponding GNS file with a special label: __root__
+    - If both are specified, then one passed in init overrides the GNS entry.
+    - If root element is specified in any of the above manner, it is used to find elements when factory methods of Widget are used (e.g. .element())
+    - If root element is NOT specified, automator is used as the finder.
+- Test Object Space (earlier called Shared Spaces)
+    - my.modules_shared_space is changed to my.module.store for better code structure.
+    - my.store in test refers to the current test's scope.
+    - In fixtures, request.store refers to the scope as per the fixture scope.
+    - With my.store, and request.store, storing is done for scope, retrieval is from current test object up the parent chain.
+
+0.8.12
+------
+- arjuna_launcher.py moved to scripts directory and updated to support new structure.
+- archives directory is not created now.
+- Cleanup of arjuna central conf and description files.
+- Examples:
+    - Web UI Automation Basics
+        - DropDown and RadioGroup
+    - GUI abstraction
+        - Gui Namespace
+        - Creating an App Class
+        - Gui Loading Logic
+        - App Model
+        - App-Page Object Model
+        - App-Page-Widget Object Model
+- Added 'fail', 'assert_not_equal', 'assert_true', 'assert_false methods to Asserter.
+- Dropdown bug fix as per With.tag instead of With.tag_name
+- Name changes for consistency:
+    ns_dir -> gns_dir
+    def_file_name -> gns_file_name
+- Formalized Gui Loading Model and implemented GuiConditions, GuiReady condition and GuiNotLoadedError exception.
+
+
+0.8.11
+------
+
+- With.meta -> changed to With.label
+- Fix for GNS for attr based identification.
+- Support for static RunID when --static-rid switch is passed. Useful during script development. Default is dynamic timestamped runid.
+
+
+0.8.10
+------
+Primary Goal: Document Usage of Key Features. Make code changes to support doc flow and intuitive names/usage.
+
+- Added asserter object to 'my'
+- Split Example Project to represent documentation sections.
+- Examples are now tracked based on transformation to @test and doc written.
+- Examples:
+    - Core Features
+        - Writing First Test
+        - Value abstraction
+        - Configuration - Arjuna Options and User Defined Options
+    - Web UI Automation Basics
+        - Getting Started with WebApp
+        - GuiElement - Selenium By's Equivalent, Arjuna Extensions, Basic Interactions
+        - Creating a Self-Contained App Class
+        - GuiMultiElement
+- Added non-coding documentation:
+    - Project Structure
+- CLI Changes
+    - cm/im switches removed based on new test structure.
+    - cf/if changed to ct/it (--consider-tests, --ignore-tests).
+    - run-pickers changed to run-selected.
+- Simplification of With
+    - class_name, class_names, compound_class -> With.classes
+    - css_selector -> selector
+    - tag_name -> tag
+    - link_text -> flink (Full text of link)
+    - link_ptext -> link (Default match in Arjuna is Partial)
+    - javascript -> js
+    - attr_value -> fattr (Full attribute)
+    - attr_pvalue -> attr (Default match in Arjuna is Partial)
+- WebApp Interface Improvements
+    - delegates all calls which it does not contain to its 'ui' obj. It simplifies the App abstraction code in tests.
+    - title is a direct inquirable attribute
+    - go_to_url is a direct call.
+- Name and importing changes
+    - AnyRefValue changed to Value. It is now a direct arjuna import.
+    - DefaultTestContext -> RunContext
+    - guiauto_max_wait property method -> guiauto_max_wait
+- With.attr* now take two arguments and simple strings rather than [attr][value] string.
+- test.my and Gui have Arjuna's asserter object. More assertions to be added. AsserterMixin moved to asserter module.
+- Current working directory is changed to project directory before pytest is launched.
+- pytest.ini now present inside arjuna deployment.
+- conftest.py now resides inside tests directory.
+- Basic proof of concept done w.r.t. creating session level fixtures outside of conftest. Will build on this in upcoming versions.
+
+0.8.9
+-----
+- (Critical Fix) Support for @test decorator withour any args for simple tests.
+- Support for module level shared space.
+
+0.8.8
+-----
+- wait_until_element_absent method support in Gui.
+- Element filtering support for multi-element. (Example 34).
+- Support for loadable page and widget via overridable prepare, reach_until and validate_readiness methods.
+- Support for browser level screenshot.
+- Support for automatic screenshot on failure in test and inclusion in HTML report.
+- Support for -cm -im -cc -ic -cf -if test filtering switches added.
+- Support for -e --enumerate-only switch added to check display picked tests without running.
+- Added @test decorator for Arjuna test function.
+- Added support for defining dependencies by provide id and exclude_if args to @test
+- Data Driven Testing support using drive_with argument to @test
+- Support for a single data record source using record argument.
+- Added support for data store, shared objects and basic data pipeline.
+- Support for 'my' as a single argument containing info and data about test func.
+- Support for module level and test level fixtures using @for_module and @for_test decorators.
+- Support for lookup of a resource in the the reverse order of function, class, module and session.
+- Fixtures take request as arg. Tests take my and request as args.
+- Dictionary as well . supported for setting and retrieval of resources.
+
+0.8.7
+-----
+- Arjuna now uses pytest as its engine instead of unittest. It supports unittest style tests as well.
+- Added pytest and pytest-html as dependencies in setup.py.
+- Reporting: Added support for XML and HTML reporting simultaneously. Both are switched on by default.
+- CLI: Added -rf switch to which one or more of the ReportFormat allowed names can be supplied.
+- Concept of Run ID representing a given run introduced.
+- CLI: Support for specifying Run ID added. Default is 'mrun'.
+- Logging functionality is fixed. Extraneous logs removed.
+- CLI: Support for -dl (console display level) and -ll (log level) CLI switches.
+- Log and screenshots directory is within Run report directory for a run id.
+- RunID is clubbed with timestamp to form the final run id to avoid any overwriting of reports.
+
+0.8.6
+-----
+- Automator is created in the context of an App.
+- Elements are created in the context of a GUI (App/Page/Widget)
+- Nested Element Finding.
+- Partial Element can be used to find elements as well.
+- Drodown and radiogroup components fixed.
+- OR relationship bug fixed for multiple With identifiers.
+- Introduced FrameIsPresent and WindowIsPresent Conditions.
+- Max wait time has been made configurable for some contexts at call level.
+- Window logic works. Improved window waits. All wait is constrained by Gui max wait.
+- Frame logic works. Improved window waits. All wait is constrained by Gui max wait.
+- Conditions raise TimeoutError which is a WaitableError.
+- Exception message contains more string representation of Locator information. 
+- Basic unittest integration to run all tests in the tests directory of a project.
+- Element names in GNS files are validated as Arjuna names (Valid Python names, 3-50 length)
+- Importing from arjuna has been heavily simplified. from arjuna import * provides all public names.
