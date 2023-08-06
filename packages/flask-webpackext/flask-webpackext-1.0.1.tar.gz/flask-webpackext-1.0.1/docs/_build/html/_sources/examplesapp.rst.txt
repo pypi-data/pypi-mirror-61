@@ -1,0 +1,4 @@
+Example application
+===================
+
+.. automodule:: app
