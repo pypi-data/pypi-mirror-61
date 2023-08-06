@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: joker-xopen
+Version: 0.2
+Summary: Open files and URLs in desktop environments conveniently
+Home-page: https://github.com/frozflame/joker-xopen
+Author: frozflame
+Author-email: frozflame@outlook.com
+License: GNU General Public License (GPL)
+Description: joker-xopen
+        ===========
+        
+        ### `xopen` command (client)
+        
+        Without any config, you can use `xopen` as a cross-platform version `xdg-open` (Linux), `open` (macOS) or 
+        `start` (Windows).
+        
+            $ xopen https://www.pypi.org 
+            $ xopen ~/sample-video.mp4
+        
+        
+        Show help:
+        
+            $ xopen -h
+            
+        
+        -----------------------------------------------------------
+         
+        ### Server
+        
+        Show help
+        
+            $ python3 -m joker.xopen.server -h
+            
+            
+        Put a text file at `~/.joker/xopen/xopen.txt`, with content like
+        
+            c   ~/Code
+            w   /var/www/html
+            ns  /etc/nginx/servers
+            ff  https://github.com/frozflame
+            
+            
+        Run server:
+        
+            $ python3 -m joker.xopen.server 
+            
+            
+        Then try
+        
+            $ xopen c
+            $ xopen ff
+            
+        
+        To save some typing, you can give `xopen` an alias. Add in `~/.bashrc` or `~/.zshrc`:
+        
+            alias xo=xopen
+             
+        
+Keywords: desktop open xdg-open start
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
