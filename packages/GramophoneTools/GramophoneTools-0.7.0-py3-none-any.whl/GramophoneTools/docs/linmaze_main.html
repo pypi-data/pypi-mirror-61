@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Window class &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Level class" href="level.html" />
+    <link rel="prev" title="LinMaze module" href="linmaze.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="linmaze.html">LinMaze module</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="linmaze.html#main-module">Main module</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="linmaze.html">LinMaze module</a> &raquo;</li>
+        
+      <li>The Window class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/linmaze_main.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-window-class">
+<h1>The Window class<a class="headerlink" href="#the-window-class" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="LinMaze.LinMaze.VRWindow">
+<em class="property">class </em><code class="sig-prename descclassname">LinMaze.LinMaze.</code><code class="sig-name descname">VRWindow</code><span class="sig-paren">(</span><em class="sig-param">session</em>, <em class="sig-param">screen_number</em>, <em class="sig-param">mirrored=False</em>, <em class="sig-param">fullscreen=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pyglet window that can display VR on a given screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session</strong> (<a class="reference internal" href="#LinMaze.LinMaze.Session" title="LinMaze.LinMaze.Session"><em>Session</em></a>) – The session that is played in this window.</p></li>
+<li><p><strong>screen_number</strong> (<em>int</em>) – Which monitor the window should display on.</p></li>
+<li><p><strong>mirrored</strong> (<em>bool</em>) – True if the contents of this window should be 
+mirrored horizontally. False by default.</p></li>
+<li><p><strong>fullscreen</strong> (<em>bool</em>) – True if the window should be fullscreen. True by default.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRWindow.on_close">
+<code class="sig-name descname">on_close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRWindow.on_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRWindow.on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user attempted to close the window.</p>
+<p>This event can be triggered by clicking on the “X” control box in
+the window title bar, or by some other platform-dependent manner.</p>
+<p>The default handler sets <cite>has_exit</cite> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.  In pyglet 1.1, if
+<cite>pyglet.app.event_loop</cite> is being used, <cite>close</cite> is also called,
+closing the window immediately.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Event</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRWindow.on_draw">
+<code class="sig-name descname">on_draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRWindow.on_draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRWindow.on_draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>The window contents must be redrawn.</p>
+<p>The <cite>EventLoop</cite> will dispatch this event when the window
+should be redrawn.  This will happen during idle time after
+any window events and after any scheduled functions were called.</p>
+<p>The window will already have the GL context, so there is no
+need to call <cite>switch_to</cite>.  The window’s <cite>flip</cite> method will
+be called after this event, so your event handler should not.</p>
+<p>You should make no assumptions about the window contents when
+this event is triggered; a resize or expose event may have
+invalidated the framebuffer since the last time it was drawn.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Event</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRWindow.on_key_press">
+<code class="sig-name descname">on_key_press</code><span class="sig-paren">(</span><em class="sig-param">symbol</em>, <em class="sig-param">modifiers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRWindow.on_key_press"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRWindow.on_key_press" title="Permalink to this definition">¶</a></dt>
+<dd><p>A key on the keyboard was pressed (and held down).</p>
+<p>In pyglet 1.0 the default handler sets <cite>has_exit</cite> to <code class="docutils literal notranslate"><span class="pre">True</span></code> if
+the <code class="docutils literal notranslate"><span class="pre">ESC</span></code> key is pressed.</p>
+<p>In pyglet 1.1 the default handler dispatches the <code class="xref py py-meth docutils literal notranslate"><span class="pre">on_close()</span></code>
+event if the <code class="docutils literal notranslate"><span class="pre">ESC</span></code> key is pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><cite>symbol</cite><span class="classifier">int</span></dt><dd><p>The key symbol pressed.</p>
+</dd>
+<dt><cite>modifiers</cite><span class="classifier">int</span></dt><dd><p>Bitwise combination of the key modifiers active.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Event</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-logger-class">
+<h1>The Logger class<a class="headerlink" href="#the-logger-class" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="LinMaze.LinMaze.VRLog">
+<em class="property">class </em><code class="sig-prename descclassname">LinMaze.LinMaze.</code><code class="sig-name descname">VRLog</code><span class="sig-paren">(</span><em class="sig-param">session</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRLog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>A logger for LinMaze Sessions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>session</strong> (<a class="reference internal" href="#LinMaze.LinMaze.Session" title="LinMaze.LinMaze.Session"><em>Session</em></a>) – The session that should be logged.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRLog.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRLog.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRLog.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record the time and close the log.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRLog.flush">
+<code class="sig-name descname">flush</code><span class="sig-paren">(</span><em class="sig-param">record</em>, <em class="sig-param">field_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRLog.flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRLog.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the record list into the given field and clears it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>record</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – The record that should be written to file.</p></li>
+<li><p><strong>field_name</strong> (<em>str</em>) – The name of the field in the HDF5 file this record should 
+be written into.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRLog.flush_all">
+<code class="sig-name descname">flush_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRLog.flush_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRLog.flush_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes all temporary data to file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.VRLog.make_entry">
+<code class="sig-name descname">make_entry</code><span class="sig-paren">(</span><em class="sig-param">vel</em>, <em class="sig-param">g_time</em>, <em class="sig-param">in_1</em>, <em class="sig-param">in_2</em>, <em class="sig-param">out_1</em>, <em class="sig-param">out_2</em>, <em class="sig-param">out_3</em>, <em class="sig-param">out_4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#VRLog.make_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.VRLog.make_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes an entry in all the session logs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> (<em>int</em>) – The velocity that sould be logged for this entry.</p></li>
+<li><p><strong>g_time</strong> (<em>int</em>) – The internal clock value of the Gramophone.</p></li>
+<li><p><strong>in_1</strong> (<em>int</em>) – The state of digital input 1.</p></li>
+<li><p><strong>in_2</strong> (<em>int</em>) – The state of digital input 2.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-session-class">
+<h1>The Session class<a class="headerlink" href="#the-session-class" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="LinMaze.LinMaze.Session">
+<em class="property">class </em><code class="sig-prename descclassname">LinMaze.LinMaze.</code><code class="sig-name descname">Session</code><span class="sig-paren">(</span><em class="sig-param">collection</em>, <em class="sig-param">vel_ratio=1</em>, <em class="sig-param">runtime_limit=None</em>, <em class="sig-param">left_monitor=1</em>, <em class="sig-param">right_monitor=None</em>, <em class="sig-param">gramophone_serial=None</em>, <em class="sig-param">fullscreen=True</em>, <em class="sig-param">offset_arrow=False</em>, <em class="sig-param">skip_save=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>A play/simulation session for a LinMaze Level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collection</strong> (<em>LevelCollection</em>) – The LinMaze Level that will be played in this Session.</p></li>
+<li><p><strong>vel_ratio</strong> (<em>float</em>) – The velocity read from the Gramophone is multiplied 
+with this. 1 by default.</p></li>
+<li><p><strong>runtime_limit</strong> (<em>float</em><em> or </em><em>None</em>) – How long should the simulation run in minutes. 
+Set to None to run infinitely. None by default</p></li>
+<li><p><strong>left_monitor</strong> (<em>int</em><em> or </em><em>None</em>) – The number of the monitor to the right of the animal. Set to 
+None to disable this monitor. 1 by default.</p></li>
+<li><p><strong>right_monitor</strong> (<em>int</em><em> or </em><em>None</em>) – The number of the monitor to the right of the animal. Set to 
+None to disable this monitor. None by default.</p></li>
+<li><p><strong>gramophone_serial</strong> (<em>int</em><em> or </em><em>None</em>) – The serial of the Gramophone used for the simulation.
+Set to None to find a Gramophone automatically. None by default.</p></li>
+<li><p><strong>fullscreen</strong> (<em>bool</em>) – Should the simulation run in fullscreen mode? True by default.</p></li>
+<li><p><strong>offset_arrow</strong> (<em>bool</em>) – Should the zone_offset of the Level be shown as a red arrow on screen? 
+False by default.</p></li>
+<li><p><strong>skip_save</strong> (<em>bool</em>) – Should the saving of a log be skipped for this Session? False by default.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.check_rules">
+<code class="sig-name descname">check_rules</code><span class="sig-paren">(</span><em class="sig-param">vel</em>, <em class="sig-param">in_1</em>, <em class="sig-param">in_2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.check_rules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.check_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks all the rules of the Level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> (<em>int</em>) – The current velocity (for velocity based rules).</p></li>
+<li><p><strong>in_1</strong> (<em>int</em>) – The state of input 1</p></li>
+<li><p><strong>in_2</strong> (<em>int</em>) – The state of input 2</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.check_zone">
+<code class="sig-name descname">check_zone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.check_zone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.check_zone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the current zone.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.movement">
+<code class="sig-name descname">movement</code><span class="sig-paren">(</span><em class="sig-param">vel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.movement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.movement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move on the map with given velocity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vel</strong> (<em>int</em>) – Distance to move in pixels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.pause">
+<code class="sig-name descname">pause</code><span class="sig-paren">(</span><em class="sig-param">position=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.pause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.pause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pauses the level at the given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>position</strong> (<em>int</em><em> or </em><em>None</em>) – Where should the simulation pause on the Level in pixels.
+Set to None to pause at current position. None by default.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.random_teleport">
+<code class="sig-name descname">random_teleport</code><span class="sig-paren">(</span><em class="sig-param">target_zone_types</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.random_teleport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.random_teleport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teleports to the middle of a random zone with one of the given zone types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target_zone_types</strong> (<em>[</em><em>str</em><em>]</em>) – list of possible landing zone types.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.teleport">
+<code class="sig-name descname">teleport</code><span class="sig-paren">(</span><em class="sig-param">target_pos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.teleport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.teleport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teleports to the given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target_pos</strong> (<em>int</em>) – Where should the teleportation land in pixels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="LinMaze.LinMaze.Session.unpause">
+<code class="sig-name descname">unpause</code><span class="sig-paren">(</span><em class="sig-param">position=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/LinMaze/LinMaze.html#Session.unpause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#LinMaze.LinMaze.Session.unpause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpauses the level at the given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>position</strong> (<em>int</em><em> or </em><em>None</em>) – Where should the simulation unpause on the Level in pixels.
+Set to None to unpause at current position. None by default.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

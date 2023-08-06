@@ -1,0 +1,1240 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Recorder.Recorder &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="../../_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../comms.html">Comms module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../comms_module.html">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_module.html#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../comms_module.html#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>Recorder.Recorder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Recorder.Recorder</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Software made for recording velocity form a Femto-Gramophone</span>
+<span class="sd">    in a triggered manner. Can be used in conjunction with two-photon</span>
+<span class="sd">    microscoppes by Femtonics Inc. &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shelve</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span>
+
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtCore</span> <span class="kn">import</span> <span class="n">QAbstractTableModel</span><span class="p">,</span> <span class="n">QModelIndex</span><span class="p">,</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">QThread</span><span class="p">,</span> <span class="n">pyqtSignal</span><span class="p">,</span> <span class="n">pyqtSlot</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtSerialPort</span> <span class="kn">import</span> <span class="n">QSerialPort</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QFileDialog</span><span class="p">,</span> <span class="n">QHeaderView</span><span class="p">,</span> <span class="n">QMessageBox</span>
+<span class="kn">from</span> <span class="nn">PyQt5.uic</span> <span class="kn">import</span> <span class="n">loadUiType</span>
+
+<span class="kn">from</span> <span class="nn">GramophoneTools</span> <span class="kn">import</span> <span class="n">Comms</span>
+<span class="kn">from</span> <span class="nn">GramophoneTools.Recorder</span> <span class="kn">import</span> <span class="n">logger</span>
+
+<span class="n">DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DIR</span><span class="o">+</span><span class="s1">&#39;/.&#39;</span><span class="p">)</span>
+
+<span class="c1"># GLOBALS</span>
+<span class="n">ABOUT_WIN_BASE</span><span class="p">,</span> <span class="n">ABOUT_WIN_UI</span> <span class="o">=</span> <span class="n">loadUiType</span><span class="p">(</span><span class="n">DIR</span><span class="o">+</span><span class="s1">&#39;/about.ui&#39;</span><span class="p">)</span>
+<span class="n">LICENSE_WIN_BASE</span><span class="p">,</span> <span class="n">LICENSE_WIN_UI</span> <span class="o">=</span> <span class="n">loadUiType</span><span class="p">(</span><span class="n">DIR</span><span class="o">+</span><span class="s1">&#39;/license.ui&#39;</span><span class="p">)</span>
+<span class="n">SETTINGS_WIN_BASE</span><span class="p">,</span> <span class="n">SETTINGS_WIN_UI</span> <span class="o">=</span> <span class="n">loadUiType</span><span class="p">(</span><span class="n">DIR</span><span class="o">+</span><span class="s1">&#39;/settings.ui&#39;</span><span class="p">)</span>
+<span class="n">DEVINFO_WIN_BASE</span><span class="p">,</span> <span class="n">DEVINFO_WIN_UI</span> <span class="o">=</span> <span class="n">loadUiType</span><span class="p">(</span><span class="n">DIR</span><span class="o">+</span><span class="s1">&#39;/device_info.ui&#39;</span><span class="p">)</span>
+<span class="n">MAIN_WIN_BASE</span><span class="p">,</span> <span class="n">MAIN_WIN_UI</span> <span class="o">=</span> <span class="n">loadUiType</span><span class="p">(</span><span class="n">DIR</span><span class="o">+</span><span class="s1">&#39;/main.ui&#39;</span><span class="p">)</span>
+<span class="n">PROGRAM_DATA</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ALLUSERSPROFILE&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="aboutWindow"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.aboutWindow">[docs]</a><span class="k">class</span> <span class="nc">aboutWindow</span><span class="p">(</span><span class="n">ABOUT_WIN_BASE</span><span class="p">,</span> <span class="n">ABOUT_WIN_UI</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The window shown if the user clicks the About</span>
+<span class="sd">        option in the Help menu. Displays basic info</span>
+<span class="sd">        about the software.  &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="licenseWindow"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.licenseWindow">[docs]</a><span class="k">class</span> <span class="nc">licenseWindow</span><span class="p">(</span><span class="n">LICENSE_WIN_BASE</span><span class="p">,</span> <span class="n">LICENSE_WIN_UI</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The window shown if the user clicks the License</span>
+<span class="sd">        option in the Help menu. Displays the open source</span>
+<span class="sd">        license the software is distributed under. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="settingsWindow"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.settingsWindow">[docs]</a><span class="k">class</span> <span class="nc">settingsWindow</span><span class="p">(</span><span class="n">SETTINGS_WIN_BASE</span><span class="p">,</span> <span class="n">SETTINGS_WIN_UI</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_win</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span> <span class="o">=</span> <span class="n">main_win</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cancel_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_settings</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">load_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">PROGRAM_DATA</span><span class="o">+</span><span class="s1">&#39;/GramophoneTools/settings&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;gramo_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;gramo_names&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;trigger_channel&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq_spinbox</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trigger_radio_1</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trigger_radio_2</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_spinbox</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger_radio_1</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trigger_radio_2</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+        <span class="k">with</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">PROGRAM_DATA</span><span class="o">+</span><span class="s1">&#39;/GramophoneTools/settings&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
+            <span class="n">db</span><span class="p">[</span><span class="s1">&#39;gramo_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;gramo_names&#39;</span><span class="p">]</span>
+            <span class="n">db</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">]</span>
+            <span class="n">db</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_win</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="deviceInfoWindow"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.deviceInfoWindow">[docs]</a><span class="k">class</span> <span class="nc">deviceInfoWindow</span><span class="p">(</span><span class="n">DEVINFO_WIN_BASE</span><span class="p">,</span> <span class="n">DEVINFO_WIN_UI</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gram</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span> <span class="o">=</span> <span class="n">gram</span>
+        <span class="n">product_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">product_info</span>
+        <span class="n">firmware_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">firmware_info</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+        <span class="n">prod_name</span> <span class="o">=</span> <span class="s1">&#39;Name: &#39;</span> <span class="o">+</span> <span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">revision</span> <span class="o">=</span> <span class="s1">&#39;Revision: &#39;</span> <span class="o">+</span> <span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;revision&#39;</span><span class="p">]</span>
+        <span class="n">serial</span> <span class="o">=</span> <span class="s1">&#39;Serial: &#39;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">])</span>
+        <span class="n">production</span> <span class="o">=</span> <span class="s1">&#39;Production (</span><span class="si">{}</span><span class="s1">): </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;production_format&#39;</span><span class="p">],</span> <span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;production&#39;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">product_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span>
+            <span class="n">prod_name</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">revision</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">serial</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">production</span><span class="p">)</span>
+
+        <span class="n">release</span> <span class="o">=</span> <span class="s1">&#39;Relase:&#39;</span> <span class="o">+</span> <span class="n">firmware_info</span><span class="p">[</span><span class="s1">&#39;release&#39;</span><span class="p">]</span>
+        <span class="n">build</span> <span class="o">=</span> <span class="s1">&#39;Build:&#39;</span> <span class="o">+</span> <span class="n">firmware_info</span><span class="p">[</span><span class="s1">&#39;build&#39;</span><span class="p">]</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;Date (</span><span class="si">{}</span><span class="s1">): </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">firmware_info</span><span class="p">[</span><span class="s1">&#39;date_format&#39;</span><span class="p">],</span> <span class="n">firmware_info</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+        <span class="n">ftime</span> <span class="o">=</span> <span class="s1">&#39;Time (</span><span class="si">{}</span><span class="s1">): </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">firmware_info</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">],</span> <span class="n">firmware_info</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">firmware_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">release</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">build</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">date</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">ftime</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_sensor_label</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">refresh_sensor_label</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">refresh_sensor_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sensors</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">read_sensors</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">sensors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+        <span class="n">voltage3v3</span> <span class="o">=</span> <span class="s1">&#39;Voltage on 3.3V rail: &#39;</span> <span class="o">+</span> \
+            <span class="s1">&#39;</span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="s1">&#39;VSEN3V3&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39; V&#39;</span>
+        <span class="n">voltage5v</span> <span class="o">=</span> <span class="s1">&#39;Voltage on 5V rail: &#39;</span> <span class="o">+</span> \
+            <span class="s1">&#39;</span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="s1">&#39;VSEN5V&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39; V&#39;</span>
+        <span class="n">mcu_temp</span> <span class="o">=</span> <span class="s1">&#39;MCU temperature: &#39;</span> <span class="o">+</span> \
+            <span class="s1">&#39;</span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="s1">&#39;TSENMCU&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39; C&#39;</span>
+        <span class="n">ext_temp</span> <span class="o">=</span> <span class="s1">&#39;External temperature: &#39;</span> <span class="o">+</span> \
+            <span class="s1">&#39;</span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sensors</span><span class="p">[</span><span class="s1">&#39;TSENEXT&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39; C&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sensor_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span>
+            <span class="n">voltage3v3</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">voltage5v</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">mcu_temp</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">ext_temp</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pyGramWindow"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow">[docs]</a><span class="k">class</span> <span class="nc">pyGramWindow</span><span class="p">(</span><span class="n">MAIN_WIN_BASE</span><span class="p">,</span> <span class="n">MAIN_WIN_UI</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; The main window of the Gramophone reader. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">devmode</span><span class="p">,</span> <span class="n">log_file</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">about_win</span> <span class="o">=</span> <span class="n">aboutWindow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">license_win</span> <span class="o">=</span> <span class="n">licenseWindow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_win</span> <span class="o">=</span> <span class="n">settingsWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_windows</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Load settings file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_win</span><span class="o">.</span><span class="n">load_settings</span><span class="p">()</span>
+
+        <span class="c1"># Properties</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recording</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer_zero</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autosave</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Live plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">setBackground</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">hideButtons</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">setMouseEnabled</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">showAxis</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># self.graph.setLabel(axis=&#39;bottom&#39;, text=&#39;Time&#39;)</span>
+        <span class="c1"># self.graph.showLabel(axis=&#39;bottom&#39;, show=False)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">showGrid</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">disableAutoRange</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">setYRange</span><span class="p">(</span><span class="o">-</span><span class="mi">54000</span><span class="p">,</span> <span class="mi">54000</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_graph</span><span class="p">()</span>
+
+        <span class="c1"># Make initial file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">log_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_file</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">log_file</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Buttons</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connect_btn_cb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">refresh_gram_list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plot_btn_cb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">select_all_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records_table</span><span class="o">.</span><span class="n">selectAll</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delete_btn_cb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_settings</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram_info_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_device_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_1_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toggle_out_1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_2_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toggle_out_2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_3_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toggle_out_3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_4_btn</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toggle_out_4</span><span class="p">)</span>
+
+        <span class="c1"># Menu actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionNew_File</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionNew_Window</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionOpen</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionSave</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionSave_As</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_as</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionAutosave</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_autosave</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionQuit</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionAbout</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_about</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionLicense</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_license</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionGramophone_manual</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_manual</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actionExport_to_xls</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xls_export</span><span class="p">)</span>
+
+        <span class="c1"># Initialize GUI</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_gram_list</span><span class="p">()</span>
+
+        <span class="c1"># Gramophone</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Developer options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">menuDEV</span><span class="o">.</span><span class="n">menuAction</span><span class="p">()</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="n">devmode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DEV_reset_gram_timer</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_gram_timer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DEV_make_dummy</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">make_dummy</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log</span>
+
+    <span class="nd">@log</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">close_log_file</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span> <span class="o">=</span> <span class="n">VelLogModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">dataChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_changed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">rowsInserted</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_table_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">records_table</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">records_table</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span><span class="o">.</span><span class="n">setSectionResizeMode</span><span class="p">(</span><span class="n">QHeaderView</span><span class="o">.</span><span class="n">Fixed</span><span class="p">)</span>
+        <span class="c1"># self.records_table.horizontalHeader().setResizeMode(QHeaderView.Fixed) #old</span>
+        <span class="c1"># self.records_table.resizeColumnsToContents()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_table_size</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_title</span><span class="p">()</span>
+
+<div class="viewcode-block" id="pyGramWindow.log_changed"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.log_changed">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">log_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calll this function when the velocity log is modified</span>
+<span class="sd">            and it should be saved. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowModified</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.update_title"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.update_title">[docs]</a>    <span class="k">def</span> <span class="nf">update_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Updates the tile of the window with the name of the</span>
+<span class="sd">            current file and a * character if there are unsaved</span>
+<span class="sd">            changes made to said file. Called after the current</span>
+<span class="sd">            file is changed or saved. &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Gramophone Recorder - &#39;</span> <span class="o">+</span>
+                                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;[*]&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Gramophone Recorder - New log [*]&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.new_file"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.new_file">[docs]</a>    <span class="k">def</span> <span class="nf">new_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a new blank velocity log file and sets it</span>
+<span class="sd">            as the current working file. &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_warning</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response</span> <span class="o">!=</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;save&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">counter_box</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">VelocityLog</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setWindowModified</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.new_window"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.new_window">[docs]</a>    <span class="k">def</span> <span class="nf">new_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Opens a new instance of the Gramophone recorder.</span>
+<span class="sd">            New windows can be used for simultanious recording</span>
+<span class="sd">            of an other Gramophone device. &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="s1">&#39;gramrec&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.open"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Opens a velocity log from file and sets it as the</span>
+<span class="sd">            current working file. &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_warning</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response</span> <span class="o">!=</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">&#39;save&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;open&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.save"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Saves the currently used log file. Returns</span>
+<span class="sd">            True if the file is saved or False if saving</span>
+<span class="sd">            was cancelled &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;save&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setWindowModified</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_title</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.save_as"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.save_as">[docs]</a>    <span class="k">def</span> <span class="nf">save_as</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Same as save, but shows a file selection dialog</span>
+<span class="sd">            to save to an other file. &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.set_autosave"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.set_autosave">[docs]</a>    <span class="k">def</span> <span class="nf">set_autosave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turns automatic saving on (True) or off (False)</span>
+
+<span class="sd">        :param val: The sate to set</span>
+<span class="sd">        :type val: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autosave</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">if</span> <span class="n">val</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">autosave</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">actionAutosave</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">autosave</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.select_file"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.select_file">[docs]</a>    <span class="k">def</span> <span class="nf">select_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;save&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Displays a file selection dialog for velocity</span>
+<span class="sd">            log files. Mode can be &#39;save&#39; or &#39;open&#39;. &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
+            <span class="n">fileformat</span> <span class="o">=</span> <span class="s2">&quot;pyGram logs (*.vlg)&quot;</span>
+
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;save&#39;</span><span class="p">:</span>  <span class="c1"># Show a save dialog</span>
+                <span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Save velocity log&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fileformat</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">open_log_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;open&#39;</span><span class="p">:</span>  <span class="c1"># Show an open dialog</span>
+                <span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getOpenFileName</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Open velocity log&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fileformat</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">VelocityLog</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">VelocityLog</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_title</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_table_size</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;File selected:&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.show_about"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.show_about">[docs]</a>    <span class="k">def</span> <span class="nf">show_about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Displays the About window. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">about_win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">about_win</span><span class="o">.</span><span class="n">activateWindow</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.show_license"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.show_license">[docs]</a>    <span class="k">def</span> <span class="nf">show_license</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Displays the License window. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">license_win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">license_win</span><span class="o">.</span><span class="n">activateWindow</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.show_manual"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.show_manual">[docs]</a>    <span class="k">def</span> <span class="nf">show_manual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Opens the Gramophone User Guide in the default</span>
+<span class="sd">            pdf reader. &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span>
+            <span class="n">DIR</span><span class="o">+</span><span class="s2">&quot;/../docs/_downloads/Gramophone User Guide.pdf&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.show_settings"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.show_settings">[docs]</a>    <span class="k">def</span> <span class="nf">show_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Opens a settings window. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_win</span><span class="o">.</span><span class="n">activateWindow</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">show_device_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_info_win</span> <span class="o">=</span> <span class="n">deviceInfoWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_gramophone</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_info_win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">xls_export</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
+        <span class="n">fileformat</span> <span class="o">=</span> <span class="s2">&quot;Excel workbook (*.xlsx)&quot;</span>
+        <span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Save velocity log&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fileformat</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">xls_export</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">toggle_out_1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">toggle_out_2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">toggle_out_3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">toggle_out_4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+<div class="viewcode-block" id="pyGramWindow.reset_graph"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.reset_graph">[docs]</a>    <span class="k">def</span> <span class="nf">reset_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Resets the live velocity plot to its starting</span>
+<span class="sd">            state ie. erases the plot if there is already</span>
+<span class="sd">            something on it. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_time</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([],</span> <span class="n">maxlen</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">])</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_vel</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([],</span> <span class="n">maxlen</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">])</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vel_window</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([],</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curve</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_vel</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">antialias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># , downsample=1, downsampleMethod=&#39;mean&#39;</span>
+        <span class="n">ax_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">getAxis</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="n">ax_y</span><span class="o">.</span><span class="n">setTickSpacing</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.connect_btn_cb"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.connect_btn_cb">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">connect_btn_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Callback for the connect button. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">selected_gramophone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gram_dropdown</span><span class="o">.</span><span class="n">currentData</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">16</span><span class="p">)]</span>
+
+<div class="viewcode-block" id="pyGramWindow.connect"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Connects to the currently selected Gramophone. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_gramophone</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">recorder_signal</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">device_error</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gramophone_error</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_conn_state</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.disconnect"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.disconnect">[docs]</a>    <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Disconnects the currently connected Gramophone. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">recorder_signal</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">device_error</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gramophone_error</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_conn_state</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.refresh_gram_list"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.refresh_gram_list">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">refresh_gram_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Refreshes the list of available Gramophones. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram_list</span> <span class="o">=</span> <span class="n">Comms</span><span class="o">.</span><span class="n">find_devices</span><span class="p">()</span>
+        <span class="n">product_serials</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gram_list</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_info_btn</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_dropdown</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_dropdown</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">hex</span><span class="p">,</span> <span class="n">product_serials</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_dropdown</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_info_btn</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.plot_btn_cb"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.plot_btn_cb">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">plot_btn_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Callback for the Plot button. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">plot_record</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_rows</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.delete_btn_cb"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.delete_btn_cb">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">delete_btn_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Callback for the Delete button. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">delete_warning</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_rows</span><span class="p">))</span> <span class="o">==</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_rows</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">removeRows</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_rows</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setWindowModified</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">selected_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A property that holds a list of the selected rows of</span>
+<span class="sd">            the current velocity log. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">index</span>
+                <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">records_table</span><span class="o">.</span><span class="n">selectionModel</span><span class="p">()</span><span class="o">.</span><span class="n">selectedRows</span><span class="p">()]</span>
+
+<div class="viewcode-block" id="pyGramWindow.update_conn_state"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.update_conn_state">[docs]</a>    <span class="k">def</span> <span class="nf">update_conn_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Updates the GUI depending on wheter the software is</span>
+<span class="sd">            currently connected to a Gramophone. &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_graph</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_timer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+            <span class="c1"># Change GUI for connected state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">settings_win</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_dropdown</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">refresh_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">settings_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_1_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_2_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_3_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_4_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;Disconnect&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">statusbar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Connected to Gramophone &#39;</span>
+                                       <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">]),</span> <span class="mi">3000</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Change GUI for disconnected state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gram_dropdown</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">refresh_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">settings_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_1_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_2_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_3_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_4_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;Connect&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">refresh_gram_list</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">statusbar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Disconnected from Gramophone &#39;</span>
+                                       <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">]),</span> <span class="mi">3000</span><span class="p">)</span></div>
+
+    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">receiver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">in_1</span><span class="p">,</span> <span class="n">in_2</span><span class="p">,</span> <span class="n">out_1</span><span class="p">,</span> <span class="n">out_2</span><span class="p">,</span> <span class="n">out_3</span><span class="p">,</span> <span class="n">out_4</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_timer</span><span class="p">(</span><span class="n">timer</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_graph</span><span class="p">(</span><span class="o">-</span><span class="n">velocity</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_rec_state</span><span class="p">(</span><span class="n">in_1</span><span class="p">,</span> <span class="n">in_2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_output_state</span><span class="p">(</span><span class="n">out_1</span><span class="p">,</span> <span class="n">out_2</span><span class="p">,</span> <span class="n">out_3</span><span class="p">,</span> <span class="n">out_4</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recording</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">current_state</span> <span class="o">=</span> <span class="n">in_1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">current_state</span> <span class="o">=</span> <span class="n">in_2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timer</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="n">velocity</span><span class="p">,</span> <span class="n">current_state</span><span class="p">)</span>
+
+<div class="viewcode-block" id="pyGramWindow.update_timer"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.update_timer">[docs]</a>    <span class="k">def</span> <span class="nf">update_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">millis</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Slot for the time_signal of the Gramophone. Updates the</span>
+<span class="sd">            timer on the GUI. &quot;&quot;&quot;</span>
+
+        <span class="n">millis</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer_zero</span>
+        <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">millis</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">millis</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">))</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="c1"># hours=(millis/(1000*60*60))%24</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span>
+            <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.update_graph"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.update_graph">[docs]</a>    <span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Slot for the vel_signal of the Gramophone. Shifts the</span>
+<span class="sd">            graph to the right and appends with the value received. &#39;&#39;&#39;</span>
+        <span class="c1"># self.vel_window.append(velocity)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="c1"># self.graph_vel.append(mean(self.vel_window))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_vel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">velocity</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recording</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="c1"># self.curve.setShadowPen(color=0.5, width=3)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph_time</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph_vel</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">setXRange</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># last 10 seconds</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.update_rec_state"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.update_rec_state">[docs]</a>    <span class="k">def</span> <span class="nf">update_rec_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_state_1</span><span class="p">,</span> <span class="n">in_state_2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Slot for the rec_signal of the Grmaophone. Updates</span>
+<span class="sd">            the state of recording and the GUI. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">target_state</span> <span class="o">=</span> <span class="n">in_state_1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;trigger_channel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">target_state</span> <span class="o">=</span> <span class="n">in_state_2</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recording</span> <span class="o">!=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">target_state</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recording</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">target_state</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timer_zero</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">read_time</span><span class="p">()</span><span class="o">/</span><span class="mi">10</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recording</span><span class="p">:</span>
+                <span class="c1"># self.gram.reset_time()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">MemoryRecord</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">counter_box</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;sampling_freq&#39;</span><span class="p">],</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">product_info</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+                <span class="c1"># Update GUI</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">statusbar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Recording started&#39;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">counter_box</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">add_record</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_record</span><span class="p">)</span>
+
+                <span class="c1"># Update GUI</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">statusbar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Recording finished&#39;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log_changed</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_table_size</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">connect_btn</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">counter_box</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">counter_box</span><span class="o">.</span><span class="n">stepUp</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autosave</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">update_output_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_1</span><span class="p">,</span> <span class="n">out_2</span><span class="p">,</span> <span class="n">out_3</span><span class="p">,</span> <span class="n">out_4</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_1_btn</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">out_1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_2_btn</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">out_2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_3_btn</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">out_3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_4_btn</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">out_4</span><span class="p">))</span>
+
+<div class="viewcode-block" id="pyGramWindow.gramophone_error"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.gramophone_error">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">gramophone_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_message</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Slot for the errorOccurred signal of the Gramophone. Displays</span>
+<span class="sd">            a message box with the warning, disconnects if necessary. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+        <span class="n">msg_box</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Connection error!&quot;</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;The connection to the Gramophone was lost.&quot;</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.update_table_size"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.update_table_size">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">update_table_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Update all except last the row&#39;s width to fit content in</span>
+<span class="sd">            the list of velocity recordings. &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">I</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">records_table</span><span class="o">.</span><span class="n">resizeColumnToContents</span><span class="p">(</span><span class="n">I</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.record_warning"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.record_warning">[docs]</a>    <span class="k">def</span> <span class="nf">record_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Displays a warning if the recording is in progress.</span>
+<span class="sd">            Call it if the user tries to exit. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recording</span><span class="p">:</span>
+            <span class="n">msg_box</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Recording in progress&quot;</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Recording is currently in progress.&quot;</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="s2">&quot;Are you sure you want to exit?&quot;</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="n">msg_box</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;ignore&#39;</span>
+            <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;cancel&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;safe&#39;</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.save_warning"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.save_warning">[docs]</a>    <span class="k">def</span> <span class="nf">save_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Displays a warning if there are unsaved changes to the log file.</span>
+<span class="sd">            Call it if the user tries to exit. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isWindowModified</span><span class="p">():</span>
+            <span class="n">msg_box</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Unsaved changes&quot;</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Do you want to save the changes&quot;</span>
+                            <span class="s2">&quot;to this log before closing it?&quot;</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setInformativeText</span><span class="p">(</span><span class="s2">&quot;If you don&#39;t save, &quot;</span>
+                                       <span class="s2">&quot;your changes will be lost.&quot;</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Save</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Discard</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
+            <span class="n">msg_box</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Save</span><span class="p">)</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="n">msg_box</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Save</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;save&#39;</span>
+            <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Discard</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;discard&#39;</span>
+            <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;cancel&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;safe&#39;</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.delete_warning"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.delete_warning">[docs]</a>    <span class="k">def</span> <span class="nf">delete_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Displays a message box to ask for confirmation. Call it</span>
+<span class="sd">            if the user is trying to delete velocity records. &quot;&quot;&quot;</span>
+        <span class="n">msg_box</span> <span class="o">=</span> <span class="n">QMessageBox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Delete records&quot;</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Are you sure you want to delete the &quot;</span> <span class="o">+</span>
+                        <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; selected record(s).&quot;</span><span class="p">)</span>
+        <span class="c1"># msg_box.setInformativeText(&quot;&quot;)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span> <span class="o">|</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+        <span class="n">msg_box</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="n">msg_box</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;delete&#39;</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">QMessageBox</span><span class="o">.</span><span class="n">Discard</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;keep&#39;</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.closeEvent"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.closeEvent">[docs]</a>    <span class="k">def</span> <span class="nf">closeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; The built in close event of QMainWindow. User is</span>
+<span class="sd">            trying to close the program. Ignore the passed</span>
+<span class="sd">            event if you want to stop the user from doing so. &#39;&#39;&#39;</span>
+        <span class="n">record_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">record_warning</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">record_response</span> <span class="o">==</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">record_response</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="s1">&#39;safe&#39;</span><span class="p">]:</span>
+            <span class="n">save_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_warning</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">save_response</span> <span class="o">==</span> <span class="s1">&#39;save&#39;</span><span class="p">:</span>
+                <span class="n">saved</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">saved</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not saved&#39;</span><span class="p">)</span>
+                    <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">closeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">save_response</span> <span class="o">==</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">ignore</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">save_response</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;discard&#39;</span><span class="p">,</span> <span class="s1">&#39;safe&#39;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.quit"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.quit">[docs]</a>    <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Close all windows and disconnrect form the Gramohone.</span>
+<span class="sd">            Call this right before exiting. &quot;&quot;&quot;</span>
+        <span class="c1"># sys.exit()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">about_win</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">license_win</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_win</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gram</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">close_log_file</span><span class="p">()</span></div>
+
+    <span class="c1"># Dev functions</span>
+<div class="viewcode-block" id="pyGramWindow.reset_gram_timer"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.reset_gram_timer">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">reset_gram_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Function only available for developers. Sends a Reset</span>
+<span class="sd">            internal clock command to the Gramophone. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">reset_time</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="pyGramWindow.make_dummy"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.pyGramWindow.make_dummy">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">make_dummy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Function only available for developers. Creates</span>
+<span class="sd">            a dummy record in the current velocity log with</span>
+<span class="sd">            randomized data. &quot;&quot;&quot;</span>
+        <span class="n">dummy</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">DummyRecord</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_model</span><span class="o">.</span><span class="n">add_record</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_table_size</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_changed</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">autosave</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="VelLogModel"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel">[docs]</a><span class="k">class</span> <span class="nc">VelLogModel</span><span class="p">(</span><span class="n">QAbstractTableModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; QT modell for velocity logs. Used to make an interface</span>
+<span class="sd">        between the GUI&#39;s table view and the Velocity log object &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">log</span>
+        <span class="c1"># self.records = self.log.records</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="s1">&#39;Finish&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;Comment&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="VelLogModel.rowCount"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.rowCount">[docs]</a>    <span class="k">def</span> <span class="nf">rowCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return the number of rows to be displayed.</span>
+<span class="sd">            one row for each recording. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VelLogModel.columnCount"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.columnCount">[docs]</a>    <span class="k">def</span> <span class="nf">columnCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Return the number of columns to be displayed.</span>
+<span class="sd">            One column for each header. &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VelLogModel.data"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.data">[docs]</a>    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">role</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Called to receive information about a cell of the table. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">rec_id</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">date_hr</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">start_time_hr</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">finish_time_hr</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">length_hr</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">mean_vel</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">comment</span>
+
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">EditRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">rec_id</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">comment</span>
+
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeHintRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VelLogModel.setData"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.setData">[docs]</a>    <span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">EditRole</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Called to set the data in a cell of the table. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">EditRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">rec_id</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">EditRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()]</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="VelLogModel.headerData"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.headerData">[docs]</a>    <span class="k">def</span> <span class="nf">headerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">role</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the haeder data the GUI is asking for. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">orientation</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Horizontal</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">section</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">orientation</span> <span class="o">==</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">Vertical</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">section</span><span class="o">+</span><span class="mi">1</span></div>
+
+<div class="viewcode-block" id="VelLogModel.flags"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.flags">[docs]</a>    <span class="k">def</span> <span class="nf">flags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns flag to decide which cells are editable. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>  <span class="c1"># List of editable columns</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ItemIsEditable</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ItemIsEnabled</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ItemIsSelectable</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ItemIsEnabled</span> <span class="o">|</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">ItemIsSelectable</span></div>
+
+<div class="viewcode-block" id="VelLogModel.add_record"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.add_record">[docs]</a>    <span class="k">def</span> <span class="nf">add_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds the given Record object the the current velocity log. &quot;&quot;&quot;</span>
+        <span class="n">record_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beginInsertRows</span><span class="p">(</span><span class="n">QModelIndex</span><span class="p">(),</span> <span class="n">record_count</span><span class="p">,</span> <span class="n">record_count</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endInsertRows</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="VelLogModel.removeRows"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.removeRows">[docs]</a>    <span class="k">def</span> <span class="nf">removeRows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">QModelIndex</span><span class="p">()):</span>
+        <span class="sd">&quot;&quot;&quot; Removes &#39;count&#39; number of rows starting at &#39;row&#39; &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beginRemoveRows</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">row</span><span class="o">+</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">deleted</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">row</span><span class="p">:</span><span class="n">row</span><span class="o">+</span><span class="n">count</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[:</span><span class="n">row</span><span class="p">]</span> <span class="o">+</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">row</span><span class="o">+</span><span class="n">count</span><span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endRemoveRows</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="VelLogModel.plot_record"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.VelLogModel.plot_record">[docs]</a>    <span class="k">def</span> <span class="nf">plot_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Plots the selected record(s) using Matplotlib. &quot;&quot;&quot;</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">selected_records</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">selected_records</span><span class="p">:</span>
+            <span class="c1"># print(rec.mean_vel)</span>
+            <span class="c1"># print(rec.rec_id)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">times</span><span class="p">,</span> <span class="n">rec</span><span class="o">.</span><span class="n">velocities</span><span class="p">,</span>
+                     <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">rec_id</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">rec</span><span class="o">.</span><span class="n">comment</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Velocity (a.u.)&#39;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="Reader"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.Reader">[docs]</a><span class="k">class</span> <span class="nc">Reader</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A worker that can continnously send commands to the Gramophone with a given frequency.</span>
+
+<span class="sd">    :param name: The name of this reader. Can be used for identification to stop a specific reader.</span>
+<span class="sd">    :type name: str</span>
+
+<span class="sd">    :param read_func: The read function that should be called.</span>
+<span class="sd">    :type read_func: function</span>
+
+<span class="sd">    :param frequency: The frequency at which the function should be called in Hz.</span>
+<span class="sd">    :type frequency: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">recorder_signal</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">device_error</span> <span class="o">=</span> <span class="n">pyqtSignal</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gram</span><span class="p">,</span> <span class="n">frequency</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_func</span> <span class="o">=</span> <span class="n">gram</span><span class="o">.</span><span class="n">read_recorder_params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">frequency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reading</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Reader.read"><a class="viewcode-back" href="../../gramrec.html#Recorder.Recorder.Reader.read">[docs]</a>    <span class="nd">@pyqtSlot</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Start calling the read function repeatedly. Slot for a QThread. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reading</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">reading</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_func</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">Comms</span><span class="o">.</span><span class="n">GramophoneError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gramophone comm. error:&#39;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">device_error</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gtime</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x05</span><span class="p">]</span>
+                <span class="n">vel</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x11</span><span class="p">]</span>
+                <span class="n">in_1</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x20</span><span class="p">]</span>
+                <span class="n">in_2</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x21</span><span class="p">]</span>
+                <span class="n">out_1</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x30</span><span class="p">]</span>
+                <span class="n">out_2</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x31</span><span class="p">]</span>
+                <span class="n">out_3</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x32</span><span class="p">]</span>
+                <span class="n">out_4</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mh">0x33</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recorder_signal</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span>
+                    <span class="n">gtime</span><span class="p">,</span> <span class="n">vel</span><span class="p">,</span> <span class="n">in_1</span><span class="p">,</span> <span class="n">in_2</span><span class="p">,</span> <span class="n">out_1</span><span class="p">,</span> <span class="n">out_2</span><span class="p">,</span> <span class="n">out_3</span><span class="p">,</span> <span class="n">out_4</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">=</span> <span class="n">QThread</span><span class="p">()</span>
+        <span class="c1"># self.readers.append((thread, reader))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moveToThread</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">started</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reading</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span></div>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">devmode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">PROGRAM_DATA</span> <span class="o">+</span> <span class="s1">&#39;/GramophoneTools&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">PROGRAM_DATA</span> <span class="o">+</span> <span class="s1">&#39;/GramophoneTools&#39;</span><span class="p">)</span>
+    <span class="n">APP</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">WIN</span> <span class="o">=</span> <span class="n">pyGramWindow</span><span class="p">(</span><span class="n">devmode</span><span class="p">,</span> <span class="n">log_file</span><span class="p">)</span>
+    <span class="c1"># WIN.show_elements()</span>
+    <span class="n">WIN</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">APP</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

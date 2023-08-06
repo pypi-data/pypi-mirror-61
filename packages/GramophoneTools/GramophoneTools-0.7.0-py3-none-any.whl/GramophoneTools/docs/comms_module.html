@@ -1,0 +1,776 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Main module &mdash; GramophoneTools 0.7.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Overview" href="comms_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GramophoneTools
+          
+
+          
+            
+            <img src="_static/femtonics_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gramrec.html">Recorder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-Recorder.Recorder">Main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#module-logger">Logging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gramrec.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html">Velocity data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gramrec_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linmaze.html">LinMaze module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#main-module">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html">The Window class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-logger-class">The Logger class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_main.html#the-session-class">The Session class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#level">Level</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="level.html">The Level class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#frame">Frame</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame.html">Static functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#abstract-frame-classes">Abstract Frame classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#frame">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#random-frame">Random Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wave-frame">Wave Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame.html#specific-frames">Specific Frames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#binary-noise">Binary noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#greyscale-noise">Greyscale noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#checkerboard-pattern">Checkerboard pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#cloud-pattern">Cloud pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#marble-pattern">Marble pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#wood-grain-pattern">Wood grain pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#sine-wave-modulated-grating">Sine wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#square-wave-modulated-grating">Square wave modulated grating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frame.html#image-file-as-frame">Image file as Frame</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#event">Event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="event.html">Abstract Event class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="event.html#specific-events">Specific Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="event.html#teleportation">Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#random-teleportation">Random Teleportation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#port-on-off">Port On/Off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#starting-stopping-bursting">Starting/Stopping bursting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#pausing-unpausing">Pausing/Unpausing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="event.html#printing-messages">Printing messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#rule">Rule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rule.html">Abstract Rule class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rule.html#specific-rules">Specific Rules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#zone-rule">Zone Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#velocity-rule">Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#smooth-velocity-rule">Smooth Velocity Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#speed-rule">Speed Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#keypress-rule">Keypress Rule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rule.html#input-rule">Input Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#zone">Zone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zone.html">The Zone class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linmaze.html#output">Output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html">Log file structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linmaze_out.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="comms.html">Comms module</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="comms_overview.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#packet-structure">Packet structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#error-codes">Error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#firmware-info-structure">Firmware info structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comms_overview.html#product-info-structure">Product info structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gramophone-class">Gramophone class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#helper-classes">Helper classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GramophoneTools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="comms.html">Comms module</a> &raquo;</li>
+        
+      <li>Main module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/comms_module.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="main-module">
+<h1>Main module<a class="headerlink" href="#main-module" title="Permalink to this headline">¶</a></h1>
+<p>This is the module that handles all the communication with the current Gramophone device.</p>
+<div class="section" id="gramophone-class">
+<h2>Gramophone class<a class="headerlink" href="#gramophone-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Gramophone.Gramophone">
+<em class="property">class </em><code class="sig-prename descclassname">Gramophone.</code><code class="sig-name descname">Gramophone</code><span class="sig-paren">(</span><em class="sig-param">device</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of a Gramophone device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<em>usb.core.Device</em>) – The USB device.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If set to True the details of the communication are printed.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="class">
+<dt id="Gramophone.Gramophone.Parameter">
+<em class="property">class </em><code class="sig-name descname">Parameter</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">info</em>, <em class="sig-param">type</em><span class="sig-paren">)</span><a class="headerlink" href="#Gramophone.Gramophone.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Gramophone.Gramophone.Parameter.info">
+<em class="property">property </em><code class="sig-name descname">info</code><a class="headerlink" href="#Gramophone.Gramophone.Parameter.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.Parameter.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#Gramophone.Gramophone.Parameter.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.Parameter.type">
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#Gramophone.Gramophone.Parameter.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.decode_payload">
+<code class="sig-name descname">decode_payload</code><span class="sig-paren">(</span><em class="sig-param">param_id</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.decode_payload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.decode_payload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes the given payload based on the type of the parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>param_id</strong> (<em>int</em>) – The key for the parameter dict. See: Gramophone.parameters</p></li>
+<li><p><strong>payload</strong> (<em>list</em>) – The payload that will be decoded</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.decode_response">
+<code class="sig-name descname">decode_response</code><span class="sig-paren">(</span><em class="sig-param">response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.decode_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.decode_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes a response. Returns the error message if the command 
+was not successful and None otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>response</strong> – The response to decode.</p>
+</dd>
+<dt class="field-even">Ptype response</dt>
+<dd class="field-even"><p>Packet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.ping">
+<code class="sig-name descname">ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.ping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a ping packet with 5 bytes and print the time the process took.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_analog_out">
+<code class="sig-name descname">read_analog_out</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_analog_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_analog_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the voltage of the analog output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The voltage the analog output is set to.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_dev_state">
+<code class="sig-name descname">read_dev_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_dev_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_dev_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the state of the device. The device should be in 0x01 state for usage.
+The 0x00 state is for setup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The device state. ‘Application’ or ‘IAP’</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_firmware_info">
+<code class="sig-name descname">read_firmware_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_firmware_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_firmware_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the firmware information from the Gramophone.
+Sets the fimware related variables of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary with the firmware info fields in a human readable format.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_homing_position">
+<code class="sig-name descname">read_homing_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_homing_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_homing_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The home postion that can be found by homing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The position</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_homing_state">
+<code class="sig-name descname">read_homing_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_homing_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_homing_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads wheter the device is homing. A home position can be set and this value changes when it is reached.
+0 if the encoder is not trying to find the home position, 
+1 if it is homing and 2 if the home position was found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>0, 1 or 2 dependin on the state</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_input">
+<code class="sig-name descname">read_input</code><span class="sig-paren">(</span><em class="sig-param">input_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the state of a digital input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_id</strong> (<em>int</em>) – The number of the digital input (1 or 2)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if the input is low, 1 if it is high</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_inputs">
+<code class="sig-name descname">read_inputs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_inputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the state of all digital inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with input numbers as keys, and their states as values. eg: {1:1, 2:1} when both inputs are high</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_linmaze_params">
+<code class="sig-name descname">read_linmaze_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_linmaze_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_linmaze_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the parameters for the LineMaze module. Time, position, and IO combined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Retruns</dt>
+<dd class="field-odd"><p>A dict with the read parameters, with ids as keys</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_output">
+<code class="sig-name descname">read_output</code><span class="sig-paren">(</span><em class="sig-param">output_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the state of a digital output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>output_id</strong> (<em>int</em>) – The number of the digital output (1 to 4)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if the output is low, 1 if it is high</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_outputs">
+<code class="sig-name descname">read_outputs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_outputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the state of all digital outputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with output numbers as keys, and their states as values. eg: {1:0, 2:0, 3:0, 4:0} when both outputs are low</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_param">
+<code class="sig-name descname">read_param</code><span class="sig-paren">(</span><em class="sig-param">param_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a single parameter and return its value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>param_id</strong> (<em>int</em>) – The id of the parameter that should be read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value of the parameter</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>depends on the parameter, see: Gramophone.parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_params">
+<code class="sig-name descname">read_params</code><span class="sig-paren">(</span><em class="sig-param">combo_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read multiple parameters and return them in a dict.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_position">
+<code class="sig-name descname">read_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the position register of the Gramophone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The position in counts travelled (1 full rotation = 14400 counts)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_product_info">
+<code class="sig-name descname">read_product_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_product_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_product_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the product information from the Gramophone.
+Sets the product related variables of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary with the product info fields in a human readable format.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_recorder_params">
+<code class="sig-name descname">read_recorder_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_recorder_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_recorder_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the parameters for the Recorder module. Time, velocity, and IO combined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Retruns</dt>
+<dd class="field-odd"><p>A dict with the read parameters, with ids as keys</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_sensors">
+<code class="sig-name descname">read_sensors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_sensors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_sensors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the values from the voltage and temperature sensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict with the parameter ids as keys. See: Gramophone.parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_temperatures">
+<code class="sig-name descname">read_temperatures</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_temperatures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_temperatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the values from the temperature sensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict with the parameter ids as keys. See: Gramophone.parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_time">
+<code class="sig-name descname">read_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the time from the Gramophone’s clock</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Time in ms/10</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_velocity">
+<code class="sig-name descname">read_velocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the velocity of the Gramophones disk. Velocity is averaged in a window with a set size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Velocity in counts/sec (1 full rotation = 14400 counts)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_voltages">
+<code class="sig-name descname">read_voltages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_voltages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_voltages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the values from the voltage sensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict with the parameter ids as keys. See: Gramophone.parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.read_window_size">
+<code class="sig-name descname">read_window_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.read_window_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.read_window_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the window size of the velocity calculation, ie. how many position differences are averaged to
+get the velocity. Larger windows result in smoother velocity but slower response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Retruns</dt>
+<dd class="field-odd"><p>The window size</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the device. Returns None if successful and the error string otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.reset_position">
+<code class="sig-name descname">reset_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.reset_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.reset_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the Gramophone’s internal position counter to 0.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.reset_time">
+<code class="sig-name descname">reset_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.reset_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.reset_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the Gramophone’s internal clock to 0.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.send">
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param">packet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a Packet to the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>packet</strong> – The Packet to send.</p>
+</dd>
+<dt class="field-even">Ptype packet</dt>
+<dd class="field-even"><p>Packet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.stop_burst">
+<code class="sig-name descname">stop_burst</code><span class="sig-paren">(</span><em class="sig-param">port</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.stop_burst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.stop_burst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop turning the given port on and off. see: start_burst</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>port</strong> (<em>int</em><em> (</em><em>1-4</em><em>)</em>) – The port that will stop being turned on and off</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.write_analog">
+<code class="sig-name descname">write_analog</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.write_analog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.write_analog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the analog output to the given voltage, eg. to 2.1 V</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – The voltage that will be set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.write_output">
+<code class="sig-name descname">write_output</code><span class="sig-paren">(</span><em class="sig-param">output</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.write_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.write_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the given output to a given state, eg. output 1 to 1 (high).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output</strong> (<em>int</em>) – The output to set (1 to 4)</p></li>
+<li><p><strong>value</strong> (<em>int</em>) – The state to set (1 is high, 0 is low)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gramophone.Gramophone.write_param">
+<code class="sig-name descname">write_param</code><span class="sig-paren">(</span><em class="sig-param">param</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Gramophone.write_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Gramophone.write_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the given payload into the given parameter.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="helper-classes">
+<h2>Helper classes<a class="headerlink" href="#helper-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Gramophone.Packet">
+<em class="property">class </em><code class="sig-prename descclassname">Gramophone.</code><code class="sig-name descname">Packet</code><span class="sig-paren">(</span><em class="sig-param">target</em>, <em class="sig-param">source</em>, <em class="sig-param">cmd</em>, <em class="sig-param">payload</em>, <em class="sig-param">msn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Gramophone.html#Packet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.Packet" title="Permalink to this definition">¶</a></dt>
+<dd><p>A 64 byte data packet that can be sent to the Gramophone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – 2 byte address of the target. source of the reply given to this packet</p></li>
+<li><p><strong>source</strong> (<em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – 2 byte address of the source. target of the reply given to this packet</p></li>
+<li><p><strong>cmd</strong> (<em>int</em>) – Identifier of the command</p></li>
+<li><p><strong>payload</strong> (<em>list of ints</em>) – The payload for the command eg.: the value to write</p></li>
+<li><p><strong>msn</strong> (<em>int</em>) – Any number. The reply packet’s msn will be the same.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="Gramophone.GramophoneError">
+<em class="property">class </em><code class="sig-prename descclassname">Gramophone.</code><code class="sig-name descname">GramophoneError</code><a class="reference internal" href="_modules/Gramophone.html#GramophoneError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Gramophone.GramophoneError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception for Gramophone related communication errors.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Femtonics Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
