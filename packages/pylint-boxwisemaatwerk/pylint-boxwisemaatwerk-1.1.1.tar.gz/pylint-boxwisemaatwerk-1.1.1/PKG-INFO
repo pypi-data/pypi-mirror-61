@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: pylint-boxwisemaatwerk
+Version: 1.1.1
+Summary: A Pylint plugin to help Pylint understand the boxwise maatwerk framework
+Home-page: https://bitbucket.org/tranconbv/pylint-boxwisemaatwerk
+Author: Kevin Pawiroredjo, Ana Caires
+Author-email: k.pawiroredjo@trancon.nl
+License: CLOSED
+Description: # **pylint-boxwisemaatwerk maintainer README**
+        
+        Build and dist are the files that are literally getting uploaded to PyPi. Its preferable that you make an account on PyPi to make updates. Most custom checkers are in in the checkers folders. Made a small monkeypatch to alter pylint default functionality. The files the checkers use are mostly made in the stub generator folder.  
+        
+        **how to create:**  
+        note: make version 0.0.1 higher in the setup.py and delete the build and dist folder before executing the following code.
+        
+        *   "python setup.py sdist bdist_wheel"
+        *   "python -m twine upload dist/* --verbose"  
+        
+        login:*
+        
+        password:*
+        
+        **To install:**
+        
+        execute "pip install pylint_boxwisemaatwerk" in command prompt
+        
+        sources:
+        
+        https://packaging.python.org/tutorials/packaging-projects/
+        Changelog
+        =========
+        
+        Version 0.0.1 (17 June 2019)
+        -----------------------------
+        
+        Version 0.0.5 (24 July 2019)
+        -----------------------------
+        changed addreferenchecker to use a json file as list
+        
+        Version 0.0.6 
+        Monkeypatched typechecker to use linterstorage. Now gives hints based on changelist file.
+        Turned assemblylist-paths to linterstorage_path; is now also a string instead of a csv
+Keywords: pylint,boxwise,plugin
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Unix
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Programming Language :: Python :: 2.7
+Provides-Extra: for_tests
