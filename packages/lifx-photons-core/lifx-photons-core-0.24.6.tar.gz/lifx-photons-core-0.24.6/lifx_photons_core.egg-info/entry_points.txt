@@ -1,0 +1,20 @@
+[console_scripts]
+lifx = photons_app.executor:lifx_main
+run_photons_core_tests = photons_pytest:run_pytest
+
+[lifx.photons]
+colour = photons_colour
+control = photons_control.addon
+core = photons_core
+device_finder = photons_device_finder
+messages = photons_messages.addon
+products = photons_products.addon
+protocol = photons_protocol.addon
+pytest = photons_pytest
+themes = photons_themes.addon
+tile_paint = photons_tile_paint.addon
+transport = photons_transport.addon
+
+[pytest11]
+lifx_photons_core = photons_pytest
+
