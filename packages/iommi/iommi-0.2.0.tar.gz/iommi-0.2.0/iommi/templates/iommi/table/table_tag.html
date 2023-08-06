@@ -1,0 +1,19 @@
+{% if not table.rows and invalid_form_message %}
+    {# TODO: invalid FORM message? hmm #}
+    {{ invalid_form_message }}
+{% elif not table.rows and empty_message %}
+    {{ empty_message }}
+{% else %}
+
+    <table{{ table.attrs }}>
+
+        {{ table.header }}
+
+        <tbody>
+            {{ table.tbody }}
+        </tbody>
+    </table>
+
+    {{ table.paginator }}
+
+{% endif %}

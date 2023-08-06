@@ -1,0 +1,142 @@
+<div id="iommi_{{ query.iommi_dunder_path }}">
+    <form{{ query.form.attrs }}>
+        <a href="#" class="iommi_query_toggle_simple_mode" data-advanced_mode="simple">Switch to advanced search</a>
+
+        <table style="width: 100%">
+            <tr class="iommi_query_form_advanced" style="display: none">
+                <td><label for="iommi_{{ query.iommi_dunder_path }}_query">Search query:</label></td>
+            </tr>
+            <tr>
+                <td>
+                    {# form-row align-items-center is bootstrap specific, ui form fields is semantic ui #}
+                    <div class="iommi_query_form_simple form-row align-items-center ui form fields">
+                        {{ query.form.render_fields }}
+                    </div>
+                    <div class="iommi_query_form_advanced" style="display: none">
+                        <input id="iommi_{{ query.iommi_dunder_path }}_query" name="{{ query.get_advanced_query_param }}" type="text" style="width:95%" data-query="{{ query.query_advanced_value }}"/>
+                    </div>
+                </td>
+                <td class="iommi_query_toggle_help" style="display: none">
+                    <span>Show help</span> <i class="fa fa-chevron-down"></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="iommi_query_help" style="display: none">
+                    <div class="iommi_query_available_fields">
+                        <h3>Available fields</h3>
+                        <ul>
+                            {% for name in query.variables %}
+                                <li>{{ name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="iommi_query_available_query_commands">
+                        <h3>Queries</h3>
+                        <ul>
+                            <li>Search for an exact value: field_name=value</li>
+                            <li>Search for an exact value containing space: field_name="value with space"</li>
+                            <li>Containing a text: field_name:val</li>
+                            <li>Exclude a value: field_name!=value</li>
+                            <li>You can also use <, >, <= and >= to find ranges of values: field_name<10</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        {{ query.form.errors }}
+
+        {% if query.extra.iommi_query_error %}
+          <div class="iommi_query_error">
+              {{ query.extra.iommi_query_error }}
+          </div>
+        {% endif %}
+
+        <style type="text/css" scoped>
+            .iommi_query_available_fields,
+            .iommi_query_available_query_commands {
+                display: inline-block;
+                vertical-align: top;
+                margin-right: 10px;
+            }
+            .iommi_query_toggle_help,
+            .iommi_query_help {
+                margin-left: 3px;
+            }
+            .iommi_query_toggle_help {
+                cursor: pointer;
+                width: 100px;
+            }
+            .iommi_query_toggle_simple_mode {
+                float: right;
+            }
+            .iommi_query_error {
+                color: red;
+            }
+        </style>
+
+        <div class="submit">
+            {{ query.form.render_actions }}
+        </div>
+   </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var base = document.getElementById('iommi_{{ query.iommi_dunder_path }}');
+        var q = document.getElementById('iommi_{{ query.iommi_dunder_path }}_query');
+        var help = base.getElementsByClassName('iommi_query_toggle_help')[0];
+
+        function toggle_simple_advanced() {
+            var toggle_simple_mode = base.getElementsByClassName("iommi_query_toggle_simple_mode")[0];
+            var simple = base.getElementsByClassName("iommi_query_form_simple")[0];
+            var adv = base.getElementsByClassName("iommi_query_form_advanced");
+            if (toggle_simple_mode.getAttribute('data-advanced_mode') === 'simple') {
+                q.value = q.getAttribute('data-query');
+                toggle_simple_mode.setAttribute('data-advanced_mode', 'advanced');
+                adv[0].style.display = '';
+                adv[1].style.display = '';
+                simple.style.display = 'none';
+                toggle_simple_mode.innerHTML = 'Switch to basic search';
+                help.style.display = '';
+            }
+            else {
+                q.setAttribute('data-query', q.value);
+                q.value = '';
+                toggle_simple_mode.setAttribute('data-advanced_mode', 'simple');
+                adv[0].style.display = 'none';
+                adv[1].style.display = 'none';
+                simple.style.display = '';
+                toggle_simple_mode.innerHTML = 'Switch to advanced search';
+                help.style.display = 'none';
+                if (help.style.display === '') {
+                    toggle_help();
+                }
+            }
+            return false;
+        }
+
+        function toggle_help() {
+            var icon = help.querySelector('i');
+            var help_text = base.getElementsByClassName('iommi_query_help')[0];
+            if (icon.classList.contains('fa-chevron-down')) {
+                help_text.style.display = '';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                help.querySelector('span').innerText = 'Hide help';
+            }
+            else {
+                help_text.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                help.querySelector('span').innerText = 'Show help';
+            }
+        }
+
+        if (q.getAttribute('data-query') !== '') {
+            toggle_simple_advanced();
+        }
+
+        base.getElementsByClassName("iommi_query_toggle_simple_mode")[0].addEventListener('click', toggle_simple_advanced);
+        help.addEventListener('click', toggle_help);
+    });
+</script>
