@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: py-async-bus
+Version: 0.0.1
+Summary: A simple async event bus in Python
+Home-page: https://github.com/nicolaszein/py-async-bus
+Author: Nícolas Zein
+Author-email: niczein@gmail.com
+License: UNKNOWN
+Description: # Py Async Bus
+        
+        A simple async event bus in Python
+        
+        Installing
+        ----------
+        
+        Install with **pip**:
+        
+        ```sh
+        $ pip install py-async-bus
+        ```
+        
+        
+        Usage
+        ----------
+        
+        ```py
+        from async_bus import EventBus
+        
+        bus = EventBus()
+        
+        @bus.subscribe('event_name')
+        async def subscriber(param):
+            print(param)
+        
+        
+        bus.emit('event_name', param='test_param')
+        ```
+        
+        Tests
+        ----------
+        ```sh
+        $ python -m unittest
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
