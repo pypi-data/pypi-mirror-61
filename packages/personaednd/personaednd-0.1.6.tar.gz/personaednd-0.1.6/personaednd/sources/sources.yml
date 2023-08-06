@@ -1,0 +1,1502 @@
+#######################
+#
+#   13    - Backgrounds (PHB pg.125)
+#   164   - Classes (PHB pg.45)
+#   547   - Feats (PHB pg.165)
+#   932   - Races (PHB pg.17)
+#           - Eladrin (MBoF pg.61)
+#           - Duergar (MBoF pg.81)
+#           - Sea Elf (MBoF pg.62)
+#   1256  - Skills (PHB pg.175
+#   1418  - Tools (PHB pg.154)
+#   1462  - Weapons (PHB pg.149)
+#
+#######################
+---
+# Character Backgrounds
+backgrounds:
+  Acolyte:
+      skills: ['Insight', 'Religion']
+      tool_proficiency: []
+      languages: 2
+      equipment:
+        - Holy Symbol
+        - Prayer Book or Wheel
+        - 5 Sticks of Insense
+        - Vestments
+        - Common Clothes
+        - 15 Gold Pieces
+  Charlatan:
+      skills: ['Deception', 'Sleight of Hand']
+      tool_proficiency:
+        - Disguise kit
+        - Forgery Kit
+      languages: 0
+      equipment:
+        - Fine Clothes
+        - Disguise Kit
+        - Con Tools [ten stoppered bottles /w colored liquid, weighted dice, deck of marked cards] or signet ring of imaginary duke]
+        - 15 Gold Pieces
+  Criminal:
+      skills: ['Deception', 'Stealth']
+      tool_proficiency:
+        - Gaming set
+        - Thieves' tools
+      languages: 0
+      equipment:
+        - A Crowbar
+        - Dark Common Clothes w/ Hood
+        - 15 Gold Pieces
+  Entertainer:
+      skills: ['Acrobatics', 'Performance']
+      tool_proficiency:
+        - Disguise kit
+        - Musical instrument
+      languages: 0
+      equipment:
+        - Musical Instrument
+        - Favor of Admirer
+        - Costume
+        - 15 Gold Pieces
+  Folk Hero:
+      skills: ['Animal Handling', 'Survival']
+      tool_proficiency:
+        - Artisan's tools
+        - Vehicle
+      languages: 0
+      equipment:
+        - Artisan's Tools
+        - Shovel
+        - Iron Pot
+        - Common Clothes
+        - 10 Gold Pieces
+  Guild Artisan:
+      skills: ['Insight', 'Persuasion']
+      tool_proficiency:
+        - Artisan's tools
+      languages: 1
+      equipment:
+        - Artisan's Tools
+        - Letter of Introduction From Guild
+        - Traveler's Clothes
+        - 15 Gold Pieces
+  Hermit:
+      skills: ['Medicine', 'Religion']
+      tool_proficiency:
+        - Herbalism kit
+      languages: 1
+      equipment:
+        - Scroll Case
+        - Winter Blanket
+        - Common Clothes
+        - Herbalism Kit
+        - 5 Gold Pieces
+  Noble:
+      skills: ['History', 'Persuasion']
+      tool_proficiency:
+        - Gaming set
+      languages: 1
+      equipment:
+        - Fine Clothes
+        - Signet Ring
+        - Scroll of Pedigree
+        - 25 Gold Pieces
+  Outlander:
+      skills: ['Athletics', 'Survival']
+      tool_proficiency:
+        - Musical instrument
+      languages: 1
+      equipment:
+        - Staff
+        - Hunting Trap
+        - Trophy From Killed Animal
+        - Travelers' Clothes
+        - 10 Gold Pieces
+  Sage:
+      skills: ['Arcana', 'History']
+      tool_proficiency: []
+      languages: 2
+      equipment:
+        - Black Ink
+        - Quill
+        - Small Knife
+        - Letter From Dead Colleague w/ Unanswered Question
+        - Common Clothes
+        - 10 Gold Pieces
+  Sailor:
+      skills: ['Athletics', 'Perception']
+      tool_proficiency:
+        - Navigator's tools
+        - Vehicle
+      languages: 0
+      equipment:
+        - Belaying Pin
+        - 50 Foot Silk Rope
+        - Lucky Charm
+        - Common Clothes
+        - 10 Gold Pieces
+  Soldier:
+      skills: ['Athletics', 'Intimidation']
+      tool_proficiency:
+        - Gaming set
+        - Vehicle
+      languages: 0
+      equipment:
+        - Rank Insignia
+        - Trophy from Fallen Enemy
+        - Set of Dice or Cards
+        - Common Clothes
+        - 10 Gold Pieces
+  Urchin:
+      skills: ['Sleight of Hand', 'Stealth']
+      tool_proficiency:
+        - Disguise kit
+        - Thieves' tools
+      languages: 0
+      equipment:
+        - Small Knife
+        - City Map [home]
+        - Pet Mouse
+        - Token of Remembrance [parents]
+        - Common Clothes
+        - 10 Gold Pieces
+
+# Character Classes
+classes:
+  Barbarian:
+      hit_die: 12
+      background: Outlander
+      primary_abilities:
+        1: Strength
+        2: Constitution
+      saving_throws: ['Constitution', 'Strength']
+      armor_proficiency: ['Light', 'Medium', 'Shield']
+      weapon_proficiency: ['Simple', 'Martial']
+      tool_proficiency: []
+      archetypes: []
+      spell_slots: {}
+  Bard:
+      hit_die: 8
+      background: Entertainer
+      primary_abilities:
+        1: Charisma
+        2: Dexterity
+      saving_throws: ['Charisma', 'Dexterity']
+      armor_proficiency: ['Light']
+      weapon_proficiency:
+        - Simple
+        - Hand Crossbow
+        - Longsword
+        - Rapier
+        - Shortsword
+      tool_proficiency: []
+      archetypes: []
+      spell_slots:
+        1: 2
+        2: 3
+        3: 4,2
+        4: 4,3
+        5: 4,3,2
+        6: 4,3,3
+        7: 4,3,3,1
+        8: 4,3,3,2
+        9: 4,3,3,3,1
+        10: 4,3,3,3,2
+        11: 4,3,3,3,2,1
+        12: 4,3,3,3,2,1
+        13: 4,3,3,3,2,1,1
+        14: 4,3,3,3,2,1,1
+        15: 4,3,3,3,2,1,1,1
+        16: 4,3,3,3,2,1,1,1
+        17: 4,3,3,3,2,1,1,1,1
+        18: 4,3,3,3,3,1,1,1,1
+        19: 4,3,3,3,3,2,1,1,1
+        20: 4,3,3,3,3,2,2,1,1
+  Cleric:
+      hit_die: 8
+      background: Acolyte
+      primary_abilities:
+        1: Wisdom
+        2: ['Constitution', 'Strength']
+      saving_throws: ['Charisma', 'Wisdom']
+      armor_proficiency: ['Light', 'Medium', 'Shield']
+      weapon_proficiency: ['Simple']
+      tool_proficiency: []
+      archetypes: []
+      spell_slots:
+        1: 2
+        2: 3
+        3: 4,2
+        4: 4,3
+        5: 4,3,2
+        6: 4,3,3
+        7: 4,3,3,1
+        8: 4,3,3,2
+        9: 4,3,3,3,1
+        10: 4,3,3,3,2
+        11: 4,3,3,3,2,1
+        12: 4,3,3,3,2,1
+        13: 4,3,3,3,2,1,1
+        14: 4,3,3,3,2,1,1
+        15: 4,3,3,3,2,1,1,1
+        16: 4,3,3,3,2,1,1,1
+        17: 4,3,3,3,2,1,1,1,1
+        18: 4,3,3,3,3,1,1,1,1
+        19: 4,3,3,3,3,2,1,1,1
+        20: 4,3,3,3,3,2,2,1,1
+  Druid:
+      hit_die: 8
+      background: Hermit
+      primary_abilities:
+        1: Wisdom
+        2: Constitution
+      saving_throws: ['Intelligence', 'Wisdom']
+      armor_proficiency: ['Light', 'Medium', 'Shield']
+      weapon_proficiency:
+        - Club
+        - Dagger
+        - Dart
+        - Javelin
+        - Mace
+        - Quarterstaff
+        - Scimitar
+        - Sickle
+        - Sling
+        - Spear
+      tool_proficiency:
+        - Herbalism Kit
+      archetypes: []
+      spell_slots:
+        1: 2
+        2: 3
+        3: 4,2
+        4: 4,3
+        5: 4,3,2
+        6: 4,3,3
+        7: 4,3,3,1
+        8: 4,3,3,2
+        9: 4,3,3,3,1
+        10: 4,3,3,3,2
+        11: 4,3,3,3,2,1
+        12: 4,3,3,3,2,1
+        13: 4,3,3,3,2,1,1
+        14: 4,3,3,3,2,1,1
+        15: 4,3,3,3,2,1,1,1
+        16: 4,3,3,3,2,1,1,1
+        17: 4,3,3,3,2,1,1,1,1
+        18: 4,3,3,3,3,1,1,1,1
+        19: 4,3,3,3,3,2,1,1,1
+        20: 4,3,3,3,3,2,2,1,1
+  Fighter:
+      hit_die: 10
+      background: Soldier
+      primary_abilities:
+        1: ['Dexterity', 'Strength']
+        2: ['Constitution', 'Intelligence']
+      saving_throws: ['Constitution', 'Strength']
+      armor_proficiency: ['Light', 'Medium', 'Heavy', 'Shield']
+      weapon_proficiency: ['Simple', 'Martial']
+      tool_proficiency: []
+      archetypes:
+        - Champion
+        - Battle Master
+        - Eldritch Knight
+      spell_slots:
+        3: 2
+        4: 3
+        5: 3
+        6: 3
+        7: 4,2
+        8: 4,2
+        9: 4,2
+        10: 4,3
+        11: 4,3
+        12: 4,3
+        13: 4,3,2
+        14: 4,3,2
+        15: 4,3,2
+        16: 4,3,3
+        17: 4,3,3
+        18: 4,3,3
+        19: 4,3,3,1
+        20: 4,3,3,1
+  Monk:
+      hit_die: 8
+      background: Hermit
+      primary_abilities:
+        1: Dexterity
+        2: Wisdom
+      saving_throws: ['Dexterity', 'Strength']
+      armor_proficiency: []
+      weapon_proficiency: ['Simple', 'Shortsword']
+      tool_proficiency:
+        - Artisan's tools
+        - Musical instrument
+      archetypes: []
+      spell_slots: {}
+  Paladin:
+      hit_die: 10
+      background: Noble
+      primary_abilities:
+        1: Strength
+        2: Charisma
+      saving_throws: ['Charisma', 'Wisdom']
+      armor_proficiency: ['Light', 'Medium', 'Heavy', 'Shield']
+      weapon_proficiency: ['Simple', 'Martial']
+      tool_proficiency: []
+      archetypes: []
+      spell_slots:
+        2: 2
+        3: 3
+        4: 3
+        5: 4,2
+        6: 4,2
+        7: 4,3
+        8: 4,3
+        9: 4,3,2
+        10: 4,3,2
+        11: 4,3,3
+        12: 4,3,3
+        13: 4,3,3,1
+        14: 4,3,3,1
+        15: 4,3,3,2
+        16: 4,3,3,2
+        17: 4,3,3,3,1
+        18: 4,3,3,3,1
+        19: 4,3,3,3,2
+        20: 4,3,3,3,2
+  Ranger:
+      hit_die: 10
+      background: Outlander
+      primary_abilities:
+        1: ['Dexterity', 'Strength']
+        2: Wisdom
+      saving_throws: ['Dexterity', 'Strength']
+      armor_proficiency: ['Light', 'Medium', 'Shield']
+      weapon_proficiency: ['Simple', 'Martial']
+      tool_proficiency: []
+      archetypes:
+        - Beast Master
+        - Hunter
+      spell_slots:
+        2: 2
+        3: 3
+        4: 3
+        5: 4,2
+        6: 4,2
+        7: 4,3
+        8: 4,3
+        9: 4,3,2
+        10: 4,3,2
+        11: 4,3,3
+        12: 4,3,3
+        13: 4,3,3,1
+        14: 4,3,3,1
+        15: 4,3,3,2
+        16: 4,3,3,2
+        17: 4,3,3,3,1
+        18: 4,3,3,3,1
+        19: 4,3,3,3,2
+        20: 4,3,3,3,2
+  Rogue:
+      hit_die: 8
+      background: Charlatan
+      primary_abilities:
+        1: Dexterity
+        2: ['Charisma', 'Intelligence']
+      saving_throws: ['Dexterity', 'Intelligence']
+      armor_proficiency: ['Light']
+      weapon_proficiency:
+        - Simple
+        - Hand Crossbow
+        - Longsword
+        - Rapier
+        - Shortsword
+      tool_proficiency:
+        - Thieves' tools
+      archetypes:
+        - Arcane Trickster
+        - Assassin
+        - Thief
+      spell_slots:
+        3: 2
+        4: 3
+        5: 3
+        6: 3
+        7: 4,2
+        8: 4,2
+        9: 4,2
+        10: 4,3
+        11: 4,3
+        12: 4,3
+        13: 4,3,2
+        14: 4,3,2
+        15: 4,3,2
+        16: 4,3,3
+        17: 4,3,3
+        18: 4,3,3
+        19: 4,3,3,1
+        20: 4,3,3,1
+  Sorcerer:
+      hit_die: 6
+      background: Hermit
+      primary_abilities:
+        1: Charisma
+        2: Constitution
+      saving_throws: ['Charisma', 'Constitution']
+      armor_proficiency: []
+      weapon_proficiency:
+        - Dagger
+        - Dart
+        - Sling
+        - Quarterstaff
+        - Light Crossbow
+      tool_proficiency: []
+      archetypes: []
+      spell_slots:
+        1: 2
+        2: 3
+        3: 4,2
+        4: 4,3
+        5: 4,3,2
+        6: 4,3,3
+        7: 4,3,3,1
+        8: 4,3,3,2
+        9: 4,3,3,3,1
+        10: 4,3,3,3,2
+        11: 4,3,3,3,2,1
+        12: 4,3,3,3,2,1
+        13: 4,3,3,3,2,1,1
+        14: 4,3,3,3,2,1,1
+        15: 4,3,3,3,2,1,1,1
+        16: 4,3,3,3,2,1,1,1
+        17: 4,3,3,3,2,1,1,1,1
+        18: 4,3,3,3,3,1,1,1,1
+        19: 4,3,3,3,3,2,1,1,1
+        20: 4,3,3,3,3,2,2,1,1
+  Warlock:
+      hit_die: 8
+      background: Charlatan
+      primary_abilities:
+        1: Charisma
+        2: Constitution
+      saving_throws: ['Charisma', 'Wisdom']
+      armor_proficiency: ['Light']
+      weapon_proficiency: ['Simple']
+      tool_proficiency: []
+      archetypes: []
+      spell_slots:
+        1: 1
+        2: 2
+        3: 2
+        4: 2
+        5: 2
+        6: 2
+        7: 2
+        8: 2
+        9: 2
+        10: 2
+        11: 3
+        12: 3
+        13: 3
+        14: 3
+        15: 3
+        16: 3
+        17: 4
+        18: 4
+        19: 4
+        20: 4
+  Wizard:
+      hit_die: 6
+      background: Sage
+      primary_abilities:
+        1: Intelligence
+        2: ['Constitution', 'Dexterity']
+      saving_throws: ['Intelligence', 'Wisdom']
+      armor_proficiency: []
+      weapon_proficiency:
+        - Dagger
+        - Dart
+        - Sling
+        - Quarterstaff
+        - Light Crossbow
+      tool_proficiency: []
+      archetypes: []
+      spell_slots:
+        1: 2
+        2: 3
+        3: 4,2
+        4: 4,3
+        5: 4,3,2
+        6: 4,3,3
+        7: 4,3,3,1
+        8: 4,3,3,2
+        9: 4,3,3,3,1
+        10: 4,3,3,3,2
+        11: 4,3,3,3,2,1
+        12: 4,3,3,3,2,1
+        13: 4,3,3,3,2,1,1
+        14: 4,3,3,3,2,1,1
+        15: 4,3,3,3,2,1,1,1
+        16: 4,3,3,3,2,1,1,1
+        17: 4,3,3,3,2,1,1,1,1
+        18: 4,3,3,3,3,1,1,1,1
+        19: 4,3,3,3,3,2,1,1,1
+        20: 4,3,3,3,3,2,2,1,1
+
+# Character Feats
+feats:
+  Actor:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Alert:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Athlete:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Charger:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Crossbow Expert:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Defensive Duelist:
+    proficiency: []
+    strength: 1
+    dexterity: 13
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Dual Wielder:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Dungeon Delver:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Durable:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Elemental Adept:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: true
+  Grappler:
+    proficiency: []
+    strength: 13
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Great Weapon Master:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Healer:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Heavily Armored:
+    proficiency:
+      - Medium
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Heavy Armor Master:
+    proficiency:
+      - Heavy
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Inspiring Leader:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 13
+    caster: false
+  Keen Mind:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Lightly Armored:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Linguist:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Lucky:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Mage Slayer:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Magic Initiative:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: true
+  Martial Adept:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Medium Armor Master:
+    proficiency:
+      - Medium
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Mobile:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Moderately Armored:
+    proficiency:
+      - Light
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Mounted Combatant:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Observant:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Polearm Master:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Resilient:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Ritual Caster:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 13
+    wisdom: 13
+    charisma: 1
+    caster: true
+  Savage Attacker:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Sentinel:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Sharpshooter:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Shield Master:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Skilled:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Skulker:
+    proficiency: []
+    strength: 1
+    dexterity: 13
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Spell Sniper:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: true
+  Tavern Brawler:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  Tough:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+  War Caster:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: true
+  Weapon Master:
+    proficiency: []
+    strength: 1
+    dexterity: 1
+    constitution: 1
+    intelligence: 1
+    wisdom: 1
+    charisma: 1
+    caster: false
+
+# Character Races
+races:
+  Aasimar:
+    strength: 0
+    dexterity: 0
+    constitution: 0
+    intelligence: 0
+    wisdom: 1
+    charisma: 2
+    languages:
+      - Common
+      - Celestial
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Dragonborn:
+    strength: 2
+    dexterity: 0
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 1
+    languages:
+      - Common
+      - Draconic
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Dwarf:
+    strength: 0
+    dexterity: 0
+    constitution: 2
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Dwarvish
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency:
+      - Brewer's supplies
+      - Mason's tools
+      - Smith's tools
+  Dwarf, Duergar:
+    strength: 1
+    dexterity: 0
+    constitution: 2
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Dwarvish
+      - Undercommon
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency:
+      - Brewer's supplies
+      - Mason's tools
+      - Smith's tools
+  Dwarf, Hill:
+    strength: 0
+    dexterity: 0
+    constitution: 2
+    intelligence: 0
+    wisdom: 1
+    charisma: 0
+    languages:
+      - Common
+      - Dwarvish
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency:
+      - Brewer's supplies
+      - Mason's tools
+      - Smith's tools
+  Dwarf, Mountain:
+    strength: 2
+    dexterity: 0
+    constitution: 2
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Dwarvish
+    armor_proficiency:
+      - Light
+      - Medium
+    weapon_proficiency: []
+    tool_proficiency:
+      - Brewer's supplies
+      - Mason's tools
+      - Smith's tools
+  Elf:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Elvish
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Elf, Drow:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 1
+    languages:
+      - Common
+      - Elvish
+    armor_proficiency: []
+    weapon_proficiency:
+      - Rapier
+      - Shortsword
+      - Hand Crossbow
+    tool_proficiency: []
+  Elf, Eladrin:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 1
+    languages:
+      - Common
+      - Elvish
+    armor_proficiency: []
+    weapon_proficiency:
+      - Longbow
+      - Longsword
+      - Shortbow
+      - Shortsword
+    tool_proficiency: []
+  Elf, High:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 1
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Elvish
+    armor_proficiency: []
+    weapon_proficiency:
+      - Longsword
+      - Shortsword
+      - Shortbow
+      - Longbow
+    tool_proficiency: []
+  Elf, Sea:
+    strength: 0
+    dexterity: 2
+    constitution: 1
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Elvish
+      - Aquan
+    armor_proficiency: []
+    weapon_proficiency:
+      - Light Crossbow
+      - Net
+      - Spear
+      - Trident
+    tool_proficiency: []
+  Elf, Wood:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 0
+    wisdom: 1
+    charisma: 0
+    languages:
+      - Common
+      - Elvish
+    armor_proficiency: []
+    weapon_proficiency:
+      - Longsword
+      - Shortsword
+      - Shortbow
+      - Longbow
+    tool_proficiency: []
+  Gnome:
+    strength: 0
+    dexterity: 0
+    constitution: 0
+    intelligence: 2
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Gnomish
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Gnome, Forest:
+    strength: 0
+    dexterity: 1
+    constitution: 0
+    intelligence: 2
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Gnomish
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Gnome, Rock:
+    strength: 0
+    dexterity: 0
+    constitution: 1
+    intelligence: 2
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Gnomish
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency:
+      - Artisan's tools
+  Half-elf:
+    strength: 0
+    dexterity: 0
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 2
+    languages:
+      - Common
+      - Elven
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Half-orc:
+    strength: 2
+    dexterity: 0
+    constitution: 1
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Orc
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Halfling:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Halfling
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Halfling, Lightfoot:
+    strength: 0
+    dexterity: 2
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 1
+    languages:
+      - Common
+      - Halfling
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Halfling, Stout:
+    strength: 0
+    dexterity: 2
+    constitution: 1
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+      - Halfling
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Human:
+    strength: 0
+    dexterity: 0
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+    languages:
+      - Common
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+  Tiefling:
+    strength: 0
+    dexterity: 0
+    constitution: 0
+    intelligence: 1
+    wisdom: 0
+    charisma: 2
+    languages:
+      - Common
+      - Infernal
+    armor_proficiency: []
+    weapon_proficiency: []
+    tool_proficiency: []
+
+# Character Skills
+skills:
+  Acrobatics:
+    classes:
+      - Bard
+      - Fighter
+      - Monk
+      - Rogue
+    ability: Dexterity
+  Animal Handling:
+    classes:
+      - Barbarian
+      - Bard
+      - Druid
+      - Fighter
+      - Ranger
+      - Rogue
+    ability: Wisdom
+  Arcana:
+    classes:
+      - Bard
+      - Druid
+      - Sorcerer
+      - Warlock
+      - Wizard
+    ability: Intelligence
+  Athletics:
+    classes:
+      - Barbarian
+      - Bard
+      - Fighter
+      - Monk
+      - Paladin
+      - Ranger
+      - Rogue
+      - Sorcerer
+    ability: Strength
+  Deception:
+    classes:
+      - Bard
+      - Rogue
+      - Sorcerer
+      - Warlock
+    ability: Charisma
+  History:
+    classes:
+      - Bard
+      - Cleric
+      - Fighter
+      - Monk
+      - Sorcerer
+      - Warlock
+      - Wizard
+    ability: Intelligence
+  Insight:
+    classes:
+      - Bard
+      - Cleric
+      - Druid
+      - Fighter
+      - Monk
+      - Paladin
+      - Ranger
+      - Rogue
+      - Sorcerer
+      - Wizard
+    ability: Wisdom
+  Intimidation:
+    classes:
+      - Barbarian
+      - Bard
+      - Fighter
+      - Paladin
+      - Rogue
+      - Sorcerer
+      - Warlock
+    ability: Charisma
+  Investigation:
+    classes:
+      - Bard
+      - Paladin
+      - Ranger
+      - Rogue
+      - Warlock
+      - Wizard
+    ability: Intelligence
+  Medicine:
+    classes:
+      - Bard
+      - Cleric
+      - Druid
+      - Paladin
+      - Ranger
+      - Warlock
+      - Wizard
+    ability: Wisdom
+  Nature:
+    classes:
+      - Barbarian
+      - Bard
+      - Druid
+      - Ranger
+      - Sorcerer
+      - Warlock
+    ability: Intelligence
+  Perception:
+    classes:
+      - Barbarian
+      - Bard
+      - Druid
+      - Fighter
+      - Ranger
+      - Rogue
+    ability: Wisdom
+  Performance:
+    classes:
+      - Bard
+      - Rogue
+    ability: Charisma
+  Persuasion:
+    classes:
+      - Bard
+      - Cleric
+      - Paladin
+      - Rogue
+      - Sorcerer
+      - Warlock
+    ability: Charisma
+  Religion:
+    classes:
+      - Bard
+      - Cleric
+      - Druid
+      - Monk
+      - Paladin
+      - Sorcerer
+      - Warlock
+      - Wizard
+    ability: Intelligence
+  Sleight of Hand:
+    classes:
+      - Bard
+      - Rogue
+    ability: Dexterity
+  Stealth:
+    classes:
+      - Bard
+      - Monk
+      - Ranger
+      - Rogue
+    ability: Dexterity
+  Survival:
+    classes:
+      - Barbarian
+      - Bard
+      - Druid
+      - Fighter
+      - Ranger
+      - Rogue
+      - Sorcerer
+    ability: Wisdom
+
+# Character Tools
+tools:
+  Artisan's tools:
+      - Alchemists supplies
+      - Brewer's supplies
+      - Calligrapher's supplies
+      - Carpenter's tools
+      - Cartographer's tools
+      - Cobbler's tools
+      - Cook's utensils
+      - Glassblower's tools
+      - Jeweler's tools
+      - Leatherworker's tools
+      - Mason's tools
+      - Painter's supplies
+      - Potter's tools
+      - Smith's tools
+      - Tinker's tools
+      - Weaver's tools
+      - Woodcarver's tools
+  Disguise kit: []
+  Forgery kit: []
+  Gaming set:
+    - Dice set
+    - Dragonchess set
+    - Playing card set
+    - Three-Dragon Ante set
+  Herbalism kit: []
+  Musical instrument:
+    - Bagpipes
+    - Drum
+    - Dulcimer
+    - Flute
+    - Lute
+    - Lyre
+    - Horn
+    - Pan flute
+    - Shawm
+    - Viol
+  Navigator's tools: []
+  Poisoner's kit: []
+  Thieves' tools: []
+  Vehicles: []
+
+# Character Weapons
+weapons:
+  Simple:
+    - Club
+    - Dagger
+    - Dart
+    - Greatclub
+    - Handaxe
+    - Javelin
+    - Light Crossbow
+    - Light hammer
+    - Mace
+    - Quarterstaff
+    - Shortbow
+    - Sickle
+    - Sling
+    - Spear
+    - Unarmed strike
+  Martial:
+    - Battleaxe
+    - Blowgun
+    - Flail
+    - Greataxe
+    - Greatsword
+    - Halberd
+    - Hand Crossbow
+    - Heavy Crossbow
+    - Lance
+    - Longbow
+    - Longsword
+    - Maul
+    - Morningstar
+    - Net
+    - Pike
+    - Rapier
+    - Scimitar
+    - Shortsword
+    - Trident
+    - War pick
+    - Warhammer
+    - Whip
