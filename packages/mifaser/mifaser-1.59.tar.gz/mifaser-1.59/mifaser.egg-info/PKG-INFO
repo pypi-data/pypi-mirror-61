@@ -1,0 +1,266 @@
+Metadata-Version: 2.1
+Name: mifaser
+Version: 1.59
+Summary: a python package for super-fast and accurate annotation of molecular functionality
+    using read data without prior assembly or gene finding
+Home-page: https://bitbucket.org/bromberglab/mifaser
+Author: Chengsheng Zhu, Maximilian Miller
+Author-email: mmiller@bromberglab.com
+License: NPOSL-3.0
+Project-URL: Bug Tracker, https://bitbucket.org/bromberglab/mifaser/issues
+Project-URL: Documentation, https://bitbucket.org/bromberglab/mifaser/wiki/docs
+Project-URL: Source Code, https://bitbucket.org/bromberglab/mifaser
+Description: # mi-faser #
+        ### microbiome - functional annotation of sequencing reads ###
+        
+        A super-fast ( < 20min/10GB of reads ) and accurate ( > 90% precision ) method for annotation of
+        molecular functionality encoded in sequencing read data without the need for assembly or gene finding.
+        
+        **Web Service:** https://bromberglab.org/services/mifaser/
+        
+        **Docker:** A pre-build docker image is available at https://hub.docker.com/r/bromberglab/mifaser
+        
+        ## Pre-Requirements ##
+        
+        *mi-faser* runs on **LINUX**, **MacOSX** and **WINDOWS** systems.
+        
+        **Dependencies**
+        
+        * Python >= 3.6
+        * DIAMOND >= 0.8.8 (included; sources: https://github.com/bbuchfink/diamond)
+        * WINDOWS: Visual C++ Redistributable *
+        
+        **Note:** *mi-faser* was developed and optimized using **DIAMOND v0.8.8**, which is included in all release up to v1.11.4. This is also the version used in the accompanying publication [1]. All newer releases of *mi-faser* use the latest stable release of *DIAMOND*. *mi-faser* results for the first release (v1.2) with an updated version of *DIAMOND* (v0.9.13) were not affected by this (<0.1% difference; based on results for the artificial metagenome supplied as example dataset). According to the authors, more recent versions of DIAMOND offer substantial improvements regarding speed and memory usage as well as bugfixes. Thus, we strongly recommend to always use the latest version of DIAMOND (see Section: *DIAMOND upgrade*). This might alter *mi-faser* results slightly. However, results are expected to be enriched by new correct annotations rather than introducing mis-annotations.
+        
+        Note that it is recommended to download and **compile DIAMOND locally** (https://github.com/bbuchfink/diamond) as this might have a
+        significant impact on performance (due to special CPU instructions).
+        However, this repository includes a pre-compiled version of DIAMOND to use.
+        
+        Note that different split sizes could, at very rare occasions, result in minor deviations in *mi-faser* annotations. This is due to certain heuristics applied by DIAMOND when generating sequence alignments. We suggest to retain the split size for comparable analyses.
+        
+        **Optional extensions**
+        
+        * SRA Toolkit >= 2.9.1 ([NCBI](https://www.ncbi.nlm.nih.gov/sra/docs/toolkitsoft/))
+        
+          If installed enables *mi-faser* to automatically retrieve and process read files deposited in the NCBI Sequence Read Archives [SRA](https://www.ncbi.nlm.nih.gov/sra). Currently SRR, ERR and DRR identifiers are suppotted.
+        
+        ## Reference Database ##
+        
+        *mi-faser* was developed using a manually curated reference database of protein functions (*GS* database; [DOI 10.5281/zenodo.1048269](https://doi.org/10.5281/zenodo.1048268)).
+        
+        Since version 1.5 *mi-faser* also contains a new *GS+* database, which extends the default *GS* database. The *GS+* database includes additional 55 manually curated protein sequences, introducing 28 new E.C.s that represent important microbial functions in the environment.
+        
+        To create an new reference database, refer to the paragraph *Creating a reference database*.
+        
+        ## Installation ##
+        
+        **Standalone *VS* Web Service**
+        
+        The Standalone version of *mi-faser* partitions the user input into subsets analogue to the Web Service (http://services.bromberglab.org/mifaser/). However, those partitions are processed sequentially and not in parallel as in the Web Service.
+        Thus the Standalone Version is only recommended for smaller jobs and is mainly thought to provide the *mi-faser* code base.
+        
+        **Python package**
+        *mi-faser* is available as python package. To install *mi-faser* using pip run:
+        ```
+        pip install mifaser
+        ```
+        *mi-faser* can the be used directly from the command line:
+        ```
+        mifaser
+        ```
+        The *mi-faser* module can be imported in a Python project by `import mifaser`.
+        
+        **Docker**
+        
+        The pre-build *mi-faser* docker image is probably the most convenient way to run *mi-faser* locally or in any cloud infrastructure. The docker image can be used in the same way as the standalone version, however mounting of a common working directory into the virtual environment is required.
+        
+        To create and execute a single instance of *mi-faser* using a locally mounted working directory run:
+        ```
+        docker run --rm \
+            -v <LOCAL_INPUT_DIRECTORY>:/input \
+            -v <LOCAL_OUTPUT_DIRECTORY>:/output \
+            bromberglab/mifaser -f <INPUT_FILE>
+        ```
+        <INPUT_FILE> is a valid *mi-faser* input file located in <LOCAL_INPUT_DIRECTORY> on your host environment. By default, *mi-faser* reads inputfiles relative to `/input` and writes any output to `/output`. Thus, by bind mounting your local <LOCAL_INPUT_DIRECTORY> to `/input` inside the docker container, input files can be passed simply as relative paths to your <LOCAL_INPUT_DIRECTORY>. Similarly, by mounting a <LOCAL_OUTPUT_DIRECTORY> to `/output` inside the docker container, all *mi-faser* outputs can be accessed at the <LOCAL_OUTPUT_DIRECTORY>.
+        
+        **Python source (git repository)**
+        
+        Open a terminal and checkout the *mi-faser* repository:
+        ```
+        git clone https://git@bitbucket.org/bromberglab/mifaser.git
+        ```
+        or download the zipped version:
+        ```
+        curl --remote-name https://bitbucket.org/bromberglab/mifaser/get/master.zip
+        unzip master.zip
+        ```
+        
+        ## Usage ##
+        
+        **In case *mi-faser* was downloaded using the git repository:**
+        
+         * navigate to the *mi-faser* repository base directory
+         * all examples in the following documentation have to be run using `python -m mifaser` instead of `mifaser`.
+         
+         **run *mi-faser* (Single or 2-Lane mode)**
+        
+        **Single:** input-file containing DNA reads, single http[s]/ftp[s] url or SRA accession ID (sra:<accession_id>):
+        ```
+        mifaser -f/--inputfile <INPUT_FILE>
+        ```
+        
+        **2-Lane:** two files (R1/R2), http[s]/ftp[s] urls or SRA accession IDs (sra:<accession_id1> sra:<accession_id2>):
+        ```
+        mifaser -l/--lanes <R1_FILE> <R2_FILE>
+        ```
+        
+        <div class="pagebreak"></div>
+        
+        ## CLI ##
+        *mi-faser* help:
+        ```
+        usage: mifaser [-h] [-f INPUTFILE] [-l R1 R2] [-o OUTPUTFOLDER]
+                       [-d DATABASEFOLDER] [-i DIAMONDFOLDER] [-m] [-s SPLIT]
+                       [-S [SPLITMB]] [-t THREADS] [-c CPU] [-p] [-n] [-u UPDATE]
+                       [-D [arg [arg ...]]] [-v] [-q] [--version]
+        
+        mi-faser, microbiome - functional annotation of sequencing reads
+         
+        a super-fast ( < 10min/10GB of reads ) and accurate ( > 90% precision ) method
+        for annotation of molecular functionality encoded in sequencing read data
+        without the need for assembly or gene finding.
+         
+        Public web service: https://services.bromberglab.org/mifaser
+         
+        Version: 1.59 [02/20/20]
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -f INPUTFILE, --inputfile INPUTFILE
+                                input DNA reads file, http[s]/ftp[s] url or SRA
+                                accession id (sra:<id>)
+          -l R1 R2, --lanes R1 R2
+                                2-Lane format (R1/R2) files, http[s]/ftp[s] url or SRA
+                                accession ids (sra:<id_1> sra:<id_2>)
+          -o OUTPUTFOLDER, --outputfolder OUTPUTFOLDER
+                                path to base output folder; default: INPUTFILE_out
+          -d DATABASEFOLDER, --databasefolder DATABASEFOLDER
+                                name of database located in database/ directory OR
+                                absolute path to folder containing database files
+          -i DIAMONDFOLDER, --diamondfolder DIAMONDFOLDER
+                                path to folder containing diamond binary
+          -m, --mapping         if flag is set all reads mappings will be generated
+                                (reads{n=*} -> EC{n=1}, fasta)
+          -s SPLIT, --split SPLIT
+                                split by X sequences; default: 100k; 0 forces no split
+          -S [SPLITMB], --splitmb [SPLITMB]
+                                split by X MB; default: 25; (requires split from GNU
+                                Coreutils)
+          -t THREADS, --threads THREADS
+                                number of threads; default: 1
+          -c CPU, --cpu CPU     max cpus per thread; default: all available
+          -p, --preserve        if flag is set intermediate results are kept
+          -n, --no-check        if flag is set check for compatibility between diamond
+                                database and binary is omitted
+          -u UPDATE, --update UPDATE
+                                valid update commands: { diamond[:version] }
+          -D [arg [arg ...]], --createdb [arg [arg ...]]
+                                create new reference database: <db_name>
+                                <db_sequences.fasta> [merge_db=<name of db to merge
+                                with>] [update_ec_annotations=<1|0>; default: 0]
+          -v, --verbose         set verbosity level; default: log level INFO
+          -q, --quiet           if flag is set console output is logged to file
+          --version             show program's version number and exit
+        
+        If you use *mi-faser* in published research, please cite:
+         
+        Zhu, C., Miller, M., ... Bromberg, Y. (2017).
+        Functional sequencing read annotation for high precision microbiome analysis.
+        Nucleic Acids Res. [doi:10.1093/nar/gkx1209]
+        (https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkx1209/4670955)
+         
+        mi-faser is developed by Chengsheng Zhu and Maximilian Miller.
+        Feel free to contact us for support at services@bromberglab.org.
+         
+        This project is licensed under [NPOSL-3.0](http://opensource.org/licenses/NPOSL-3.0)
+         
+        Test: mifaser -f mifaser/files/test/artificial_mg.fasta -o mifaser/files/test/out
+        ```
+        
+        **Example**
+        
+        A demo dataset containing 10k reads is provided to verify a local *mi-faser* installation. Navigate to the *mifaser* repository base directory and run *mi-faser* with the following arguments:
+        ```
+        mifaser -f mifaser/files/test/artificial_mg.fasta -o mifaser/files/test/out
+        ```
+        The resulting analysis will be located relative to the *mifaser* base directory at: *mifaser/files/test/out/*.
+        
+        **DIAMOND upgrade**
+        
+        As DIAMOND (https://github.com/bbuchfink/diamond) is actively developed, we provide an easy way to upgrade (or downgrade) to another version.
+        In case a specific version of DIAMOND is given as parameter, this version will be automatically downloaded and installed (default: latest release).
+        ```
+        mifaser --update diamond[:<DIAMOND_VERSION>]
+        ```
+        
+        **Creating a reference database**
+        
+        *mi-faser* uses a manually curated reference database of protein functions. To create an alternative reference database, first store the desired set of protein sequences in a multi-FASTA file using the following format for the sequence headers:
+        >\>id|annotation|e.c.-number|additional_details
+        
+        sequences.fasta:
+        ```
+        >id|annotation|e.c.-number|additional_details
+        MKPNTDFMLIADGAKVLTQGNLTEHCAIEVSDGIICGLKSTISAEWTADKPHYRLTSGTL
+        VAGFIDTQVNGGGGLMFNHVPTLETLRLMMQAHRQFGTTAMLPTVITDDIEVMQAAADAV
+        AEAIDCQVPGIIGIHFEG
+        >id|annotation|e.c.-number|additional_details
+        MYYGLDIGGTKIELAIFDTQLALQDKWRLSTPGQDYSAFMATLAEQIEKADQQCGERGTV
+        GIALPGVVKADGTVISSNVPCLNQRRVAHDLAQLLNRTVAIGNDCRCFALSEAVLGVGRG
+        YSRVLGMI
+        ```
+        
+        Then run *mi-faser* using the *-D/--createdb* argument to create a new reference database *my_database*:
+        
+        ```
+        mifaser -D my_database path/to/sequences.fasta
+        ```
+        
+        To use the new database run:
+        
+        ```
+        mifaser -d my_database -f mifaser/files/test/artificial_mg.fasta -o mifaser/files/test/out
+        ```
+        
+        See the *help* menu (--help) for more details.
+        
+        <div class="pagebreak"></div>
+        
+        ## License ##
+        
+        This project is licensed under [NPOSL-3.0](http://opensource.org/licenses/NPOSL-3.0).
+        
+        ## Citation ##
+        
+        If you use *mi-faser* in published research, please cite:
+        
+        Zhu, C., Miller, M., Marpaka, S., Vaysberg, P., Rühlemann, M. C., Wu, G. H. F.-A., . . . Bromberg, Y. *(2017)*. Functional sequencing read annotation for high precision microbiome analysis. Nucleic Acids Res. [doi:10.1093/nar/gkx1209](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkx1209/4670955)
+        
+        
+        ## About ##
+        
+        *mi-faser* is developed by Chengsheng Zhu and Maximilian Miller. Feel free to contact us for support: [services@bromberglab.org](mailto:services@bromberglab.org).
+        
+Keywords: microbiome,metagenome,function annotation
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
