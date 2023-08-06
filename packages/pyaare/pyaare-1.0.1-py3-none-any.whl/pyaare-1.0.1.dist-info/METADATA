@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: pyaare
+Version: 1.0.1
+Summary: A Python wrapper around the aare.guru API
+Home-page: https://github.com/eliabieri/pyaare
+Author: Elia Bieri
+Author-email: bieri.elia@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+🏞 pyaare - A python wrapper round the AareGuru API
+===============================
+
+pypublibike makes it easy to access the [AareGuru](https://aare.guru/) API in your own Python projects.
+
+Quick Start
+-----------
+    $ pip install pyaare
+
+Examples
+-----------
+
+```python
+from pyaare.pyaare import PyAare
+
+aare = PyAare(city="Bern")
+print(aare.tempC)
+print(aare.tempText)
+print(aare.flow)
+print(aare.flowText)
+aare.refresh()        # get the newest data
+```
+
+Getting Help
+------------
+
+* Open a issue on GitHub if you run into any problems
+
+* Contact me on [Twitter](https://twitter.com/eliabieri)
+
+Todo
+------------
+
+ * API documentation
+
+
