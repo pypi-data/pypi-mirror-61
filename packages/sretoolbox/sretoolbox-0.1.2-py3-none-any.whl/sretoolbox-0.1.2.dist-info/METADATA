@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: sretoolbox
+Version: 0.1.2
+Summary: Set of libraries commonly used by multiple SRE projects
+Home-page: https://github.com/app-sre/sretoolbox
+Author: Red Hat Application SRE Team
+Author-email: sd-app-sre@redhat.com
+License: GPLv2+
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.6
+Requires-Dist: requests (~=2.22)
+
+# SRE Toolbox
+
+Set of tools used by multiple projects.
+
+## Install
+
+From PyPI:
+
+```
+$ pip install sretoolbox
+```
+
+From source:
+
+```
+$ python setup.py intall
+```
+
+## Use
+
+Just import the library you want. Example:
+
+```
+>>> from sretoolbox import container
+>>> image = container.Image('fedora')
+>>> if image:
+...     print('Image exists!')
+...
+Image exists!
+>>>
+```
+
+## Develop
+
+Install the development requirements:
+
+```
+$  make develop
+```
+
+Run the code checks and tests:
+
+```
+$  make check
+```
+
+
