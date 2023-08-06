@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glados.configs module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GLaDOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#bot">Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#plugin">Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#routing">Routing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados_structure.html#route-types">Route Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glados_structure.html#route">Route</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">glados</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GLaDOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>glados.configs module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/glados.configs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="glados-configs-module">
+<h1>glados.configs module<a class="headerlink" href="#glados-configs-module" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-glados.configs"></span><dl class="class">
+<dt id="glados.configs.GladosConfig">
+<em class="property">class </em><code class="sig-prename descclassname">glados.configs.</code><code class="sig-name descname">GladosConfig</code><span class="sig-paren">(</span><em class="sig-param">config_file: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="glados.configs.GladosConfig.read_config">
+<code class="sig-name descname">read_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig.read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig.read_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the config file into a config object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.configs.GladosConfig.sections">
+<em class="property">property </em><code class="sig-name descname">sections</code><a class="headerlink" href="#glados.configs.GladosConfig.sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>what sections are there in the config file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>sorted list of sections in the yaml file</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zachary Priddy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
