@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: thumbor-multidir
+Version: 0.2.8
+Summary: Thumbor file loader for multiple paths
+Home-page: https://github.com/benneic/thumbor_multidir
+Author: Benn Eichhorn
+Author-email: beichhor@gmail.com
+License: MIT
+Keywords: imaging face detection feature thumbor file loader
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Requires-Dist: python-dateutil
+Requires-Dist: six
+Requires-Dist: thumbor (<7,>=6.0.0)
+Provides-Extra: tests
+Requires-Dist: mock (<3.0.0,>=1.0.1) ; extra == 'tests'
+Requires-Dist: nose ; extra == 'tests'
+Requires-Dist: nose-focus ; extra == 'tests'
+Requires-Dist: colorama ; extra == 'tests'
+Requires-Dist: numpy ; extra == 'tests'
+Requires-Dist: flake8 ; extra == 'tests'
+Requires-Dist: thumbor (<7.0.0) ; extra == 'tests'
+Requires-Dist: preggy (>=1.3.0) ; extra == 'tests'
+Requires-Dist: yanc (>=0.3.3) ; extra == 'tests'
+
+thumbor_multidir
+================
+
+Thumbor file loader that checks multiple paths
+
+Introduction
+------------
+
+[Thumbor](https://github.com/globocom/thumbor/wiki) is a smart imaging service. It enables on-demand crop, resizing and flipping of images.
+
+Usage
+-----
+
+Using it is simple, just change your configuration in thumbor.conf (or enviroment variable) before running Thumbor:
+
+    # List of paths to check for file to load
+    # defaults to empty list which is an error so all requests will return 404
+    TC_MULTIDIR_PATHS = ['/home/media', '/mnt/media']
+
+To use tc_multidir for loading original images, change your thumbor.conf or environment variables to read:
+
+    LOADER = 'tc_multidir.loader'
+
+Running Thumbor
+---------------
+
+Note: If using environment variables run Thumbor with the `--use-environment` flag or other method to load it into the thumbor.conf template.
+
+See [Thumbor repo](https://github.com/thumbor/thumbor)
+or use the Docker container maintaned by [MinimalCompact](https://github.com/MinimalCompact/thumbor/tree/master/thumbor) as a base image... see [/docker/Dockerfile](https://github.com/benneic/thumbor_multidir/tree/master/docker) for an example.
+
+
