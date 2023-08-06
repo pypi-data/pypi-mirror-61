@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: soaparse
+Version: 1.1.0
+Summary: Sane, modular DNS authority (SOA) record parsing
+Home-page: https://github.com/wesinator/soaparse
+Author: wesinator
+License: UNKNOWN
+Keywords: dns
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+# soaparse
+Sane, modular DNS [SOA record](https://en.wikipedia.org/wiki/SOA_record) parsing
+
+Fields are based on https://www.ripe.net/publications/docs/ripe-203
+
+The best-guess email address is parsed from the `rname` field
+
+Trailing periods are stripped
+
+#### Usage
+```python
+import json
+import soaparse
+
+soa_record_str = "ns.example.com. email.example.com. 20200101 60 3 2 1"
+soa = soaparse.soa_parse(soa_record_str)
+
+json.dumps(soa.__dict__)
+```
+
+
