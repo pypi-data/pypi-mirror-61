@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Egypt (eg) &#8212; django-localflavor 3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Spain (es)" href="es.html" />
+    <link rel="prev" title="Estonia (ee)" href="ee.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="es.html" title="Spain (es)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ee.html" title="Estonia (ee)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">django-localflavor 3.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="egypt-eg">
+<h1>Egypt (<code class="docutils literal notranslate"><span class="pre">eg</span></code>)<a class="headerlink" href="#egypt-eg" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-localflavor.eg.forms">
+<span id="forms"></span><h2>Forms<a class="headerlink" href="#module-localflavor.eg.forms" title="Permalink to this headline">¶</a></h2>
+<p>Egypt-specific Form helpers.</p>
+<dl class="class">
+<dt id="localflavor.eg.forms.EGGovernorateSelect">
+<em class="property">class </em><code class="sig-prename descclassname">localflavor.eg.forms.</code><code class="sig-name descname">EGGovernorateSelect</code><span class="sig-paren">(</span><em class="sig-param">attrs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/localflavor/eg/forms.html#EGGovernorateSelect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#localflavor.eg.forms.EGGovernorateSelect" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Select widget that uses a list of Egypt governorates as its choices.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="localflavor.eg.forms.EGNationalIDNumberField">
+<em class="property">class </em><code class="sig-prename descclassname">localflavor.eg.forms.</code><code class="sig-name descname">EGNationalIDNumberField</code><span class="sig-paren">(</span><em class="sig-param">max_length=14</em>, <em class="sig-param">min_length=14</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/localflavor/eg/forms.html#EGNationalIDNumberField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#localflavor.eg.forms.EGNationalIDNumberField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Egypt ID numbers are 14 digits, second to seventh digits represents the person’s birthdate.</p>
+<dl class="simple">
+<dt>Checks the following rules to determine the validity of the number:</dt><dd><ul class="simple">
+<li><p>The number consist of 14 digits.</p></li>
+<li><p>The century number is valid.</p></li>
+<li><p>The birthdate of the person is a valid date.</p></li>
+<li><p>The governorate code is valid.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.0.</span></p>
+</div>
+<dl class="method">
+<dt id="localflavor.eg.forms.EGNationalIDNumberField.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/localflavor/eg/forms.html#EGNationalIDNumberField.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#localflavor.eg.forms.EGNationalIDNumberField.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the given value and return its “cleaned” value as an
+appropriate Python object. Raise ValidationError for any errors.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Egypt (<code class="docutils literal notranslate"><span class="pre">eg</span></code>)</a><ul>
+<li><a class="reference internal" href="#module-localflavor.eg.forms">Forms</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ee.html"
+                        title="previous chapter">Estonia (<code class="docutils literal notranslate"><span class="pre">ee</span></code>)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="es.html"
+                        title="next chapter">Spain (<code class="docutils literal notranslate"><span class="pre">es</span></code>)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/localflavor/eg.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="es.html" title="Spain (es)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ee.html" title="Estonia (ee)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">django-localflavor 3.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Django Software Foundation and individual contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.2.
+    </div>
+  </body>
+</html>
