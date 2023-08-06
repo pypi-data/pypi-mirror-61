@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+
+import sys
+
+from iso.iso8601 import get_datetime, get_datetime_dict
+
+print(get_datetime_dict(get_datetime(sys.argv[1])))
