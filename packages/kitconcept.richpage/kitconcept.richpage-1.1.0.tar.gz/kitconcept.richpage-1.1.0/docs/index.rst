@@ -1,0 +1,5 @@
+====================
+kitconcept.richpage
+====================
+
+User documentation

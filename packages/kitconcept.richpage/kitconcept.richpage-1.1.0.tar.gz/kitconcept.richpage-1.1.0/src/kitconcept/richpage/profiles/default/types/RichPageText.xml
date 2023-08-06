@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object
+    i18n:domain="kitconcept.richpage"
+    meta_type="Dexterity FTI"
+    name="RichPageText"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <!-- Basic properties -->
+  <property
+      i18n:translate=""
+      name="title">Text</property>
+  <property
+      i18n:translate=""
+      name="description"></property>
+
+  <property name="allow_discussion">False</property>
+  <property name="factory">RichPageText</property>
+  <property name="icon_expr"></property>
+  <property name="link_target"></property>
+
+  <!-- Hierarchy control -->
+  <property name="allowed_content_types">
+    <!-- <element value="Module" /> -->
+  </property>
+  <property name="filter_content_types">True</property>
+  <property name="global_allow">False</property>
+
+  <!-- Schema, class and security -->
+  <property name="add_permission">cmf.AddPortalContent</property>
+  <property name="klass">kitconcept.richpage.content.text.Text</property>
+  <property name="model_file"></property>
+  <property name="model_source"></property>
+  <property name="schema">kitconcept.richpage.content.text.IText</property>
+
+  <!-- Enabled behaviors -->
+  <property name="behaviors">
+    <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
+    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
+  </property>
+
+  <!-- View information -->
+  <property name="add_view_expr">string:${folder_url}/++add++RichPageText</property>
+  <property name="immediate_view">text_view</property>
+  <property name="default_view">text_view</property>
+  <property name="default_view_fallback">False</property>
+  <property name="view_methods">
+    <element value="text_view" />
+  </property>
+
+  <!-- Method aliases -->
+  <alias
+      from="(Default)"
+      to="(dynamic view)"
+  />
+  <alias
+      from="edit"
+      to="@@edit"
+  />
+  <alias
+      from="sharing"
+      to="@@sharing"
+  />
+  <alias
+      from="view"
+      to="(selected layout)"
+  />
+
+  <!-- Actions -->
+  <action
+      action_id="view"
+      category="object"
+      condition_expr=""
+      description=""
+      i18n:attributes="title description"
+      title="View"
+      url_expr="string:${object_url}"
+      visible="True">
+    <permission value="View" />
+  </action>
+  <action
+      action_id="edit"
+      category="object"
+      condition_expr=""
+      description=""
+      i18n:attributes="title description"
+      title="Edit"
+      url_expr="string:${object_url}/edit"
+      visible="True">
+    <permission value="Modify portal content" />
+  </action>
+
+</object>
