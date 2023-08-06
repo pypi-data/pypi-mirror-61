@@ -1,0 +1,9 @@
+Adafruit-PlatformDetect
+Adafruit-PureIO
+pyftdi>=0.40.0
+
+[:platform_system != "Windows" and platform_machine != "mips"]
+sysv_ipc
+
+[:sys_platform == "linux" and platform_machine != "mips"]
+spidev>=3.4
