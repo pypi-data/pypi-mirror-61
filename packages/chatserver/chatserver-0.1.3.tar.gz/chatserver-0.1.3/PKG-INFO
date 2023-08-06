@@ -1,0 +1,130 @@
+Metadata-Version: 2.1
+Name: chatserver
+Version: 0.1.3
+Summary: A chatserver written in python
+Home-page: https://gitlab.com/mokytis/python-chatserver
+License: MIT
+Author: Luke Spademan
+Author-email: info@lukespademan.com
+Requires-Python: >=3.8.0,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: sqlalchemy (>=1.3.13,<2.0.0)
+Requires-Dist: werkzeug (>=1.0.0,<2.0.0)
+Project-URL: Repository, https://gitlab.com/mokytis/python-chatserver
+Description-Content-Type: text/markdown
+
+# Chat Server
+
+A simple chat server written in python.
+
+## Features
+
+The features of chatserver include:
+
+* Optional TLS
+* User accounts
+* Chat Rooms
+
+## TLS Certificates
+
+Setup is only currently required if you want to use tls.
+To do this you need to generate a crt and key file.
+
+```bash
+mkdir certs
+cd certs
+openssl req -newkey rsa:2048 -nodes -keyout chatserv.key -x509 -days 365 -out chatserv.crt
+```
+
+## Running The Server
+
+### Pip
+
+You can install chatserver using pip.
+
+```bash
+pip install --upgrade chatserver
+chatserver
+```
+
+### Build Locally
+
+Make sure poetry is installed and up to date.
+
+```bash
+pip install --upgrade poetry
+```
+
+Install all the dependencies
+
+```bash
+poetry install
+```
+
+You can now run the project from outside poetry's virtual env
+
+```bash
+poetry run chatserver
+```
+
+Or from within it
+
+```bash
+chatserver
+```
+
+If you want to use TLS you need to set environment variables>
+
+* `CERT_FILE`
+* `KEY_FILE`
+
+### With Docker
+
+You can either build locally or use the image from the registry
+
+```bash
+# Build locally
+docker build -t chatserver .
+docker run --name chatserver_name -p 7878:7878 chatserver
+```
+
+```bash
+# Using the image from the registry
+docker build -t chatserver .
+docker run --name chatserver_name -p 7878:7878 registry.gitlab.com/mokytis/python-chatserver:latest
+```
+
+To use tls you will need to mount a direcory containg the crt and key files and set enviornment variables.
+
+Example:
+
+```bash
+docker run -i -t -d \
+    -p 7878:7878 \
+    -v /path/to/certs/directory:/certs \
+    -e CERT_FILE='/certs/chatserv.crt' \
+    -e KEY_FILE='/certs/chatserv.key' \
+    --name chatserver
+    chatserver
+```
+
+## Connecting To The Server
+
+### No TLS
+
+If the server is not using tls you can connect to the server using any TCP client.
+
+```bash
+nc localhost 7878
+```
+
+### TLS
+
+If the server is using TLS you can connect using openssl
+
+```bash
+openssl s_client -connect localhost:7878
+```
+
