@@ -1,0 +1,8 @@
+<a tabindex="0" {{popover.custom_css|safe}} data-html="true" role="button" data-trigger="focus" class="btn {{popover.css_class}}" data-toggle="popover" title="{{popover.header}}" data-content="{{popover.body}}">
+{% if popover._get_icon() is not none %}   
+  <span class="fa {{popover._get_icon()}}" style="color:{{popover._get_icon_colour()}}"></span>
+{% endif %}
+{% if popover._get_button_text() is not none %}   
+ {{popover._get_button_text()|safe}}
+ {% endif %}
+</a>

@@ -1,0 +1,19 @@
+<div class="container-fluid {{dashboard.css_class}}" {{dashboard.custom_css|safe}}>
+{% for element in dashboard.child_elements %}
+  <div class="row {{element.css_class}}" style="padding-top:0.9375em;">
+  {% for i in element %}
+  {% if i.size is not none %}
+  	{%set colClass = "col-md-"+i.size|string %}
+  {% else %}
+  	{%set colClass = "col" %}
+  {% endif %}
+    <div class="{{colClass}}">
+    <div style="height:100%;">
+      {{i.toFinalElement()|safe}}
+    </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+</div>
+

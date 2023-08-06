@@ -1,0 +1,31 @@
+<div {{table.get_filtered_custom_css('overflow-y,max-height')|safe}}>
+<table class="table {{table.css_class}}" {{table.custom_css|safe}} {{table.data_attributes|safe}}>
+	<thead>
+		<tr>
+			{% for i in table.headers %}
+			<th class="{{i.css_class}}" {{i.custom_css|safe}}>{{i.get_cell_value()|safe}}</th> {% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for row in table.rows %}
+		<tr class="collapse-trigger" data-target=".{{row.row_header}}" id="{{row.row_header}}">
+			{% for i in row.row_cells %}<td class="{{i.css_class}}" {{i.custom_css|safe}} {{i.data_attributes|safe}}><span class="{{i.icon}}" style="color:{{i.icon_colour}}"></span> {{i.get_cell_value()|safe}}</td> {% endfor %} 
+ 		</tr>
+		{% for child in row.children recursive%}
+		<tr class="collapse-trigger {{child.parent_row_header}} collapse" data-target=".{{child.row_header}}"  id="{{child.row_header}}">
+			{% for j in child.row_cells %}<td class="{{j.css_class}}" {{j.custom_css|safe}} {{j.data_attributes|safe}}><span class="{{j.icon}}" style="color:{{j.icon_colour}}"></span> {{j.get_cell_value()|safe}}</td> {% endfor %}
+		</tr>
+		{{ loop(child.children) }}
+		{% endfor %}
+		{% endfor %}
+	</tbody>
+	{% if table.footers is not none%}
+	<tfoot>
+		<tr>
+			{% for i in table.footers.row_cells %}
+			<th class="{{i.css_class}}" {{i.custom_css|safe}}>{{i.get_cell_value()|safe}}</th> {% endfor %}
+		</tr>
+	</tfoot>
+	{% endif %}
+</table>
+</div>

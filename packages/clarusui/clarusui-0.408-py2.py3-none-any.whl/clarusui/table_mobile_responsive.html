@@ -1,0 +1,63 @@
+<div {{table.get_filtered_custom_css('overflow-y,max-height')|safe}} class="desktop-only">
+<table class="table {{table.css_class}}" {{table.custom_css|safe}} {{table.data_attributes|safe}}>
+	<thead>
+		<tr>
+			{% for i in table.headers %}
+			<th class="{{i.css_class}}" {{i.custom_css|safe}}>{{i.get_cell_value()|safe}}</th> {% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for row in table.rows %}
+		<tr>
+			{% for i in row.row_cells %}
+			<td class="{{i.css_class}}" {{i.custom_css|safe}}>{{i.get_cell_value()|safe}}</td> {% endfor %} 
+		</tr>
+		{% for child in row.children recursive%}
+		<tr>
+			{% for j in child.row_cells %}
+			<td class="{{j.css_class}}" {{i.custom_css|safe}}>{{j.get_cell_value()|safe}}</td> {% endfor %}
+		</tr>
+		{{ loop(child.children) }}
+		{% endfor %}
+		{% endfor %}
+	</tbody>
+	{% if table.footers is not none%}
+	<tfoot>
+		<tr>
+			{% for i in table.footers.row_cells %}
+			<th class="{{i.css_class}}" {{i.custom_css|safe}}>{{i.get_cell_value()|safe}}</th> {% endfor %}
+		</tr>
+	</tfoot>
+	{% endif %}
+</table>
+</div>
+
+<!--[if !mso]><!-->
+<div class="mobile-only" style="display:none">
+{% for i in table.headers %}
+{% set outer_loop = loop %}
+	{% if loop.index != 1 %}
+	<table class="table {{table.css_class}}" {{table.custom_css|safe}}>
+	<tr>
+				<th class="{{i.css_class}}" {{table.headers[0].custom_css|safe}}>{{table.headers[0].get_cell_value()|safe}}</th>
+				<th class="{{i.css_class}}" {{i.custom_css|safe}}>{{i.get_cell_value()|safe}}</th>
+			</tr>
+			{% for row in table.rows %}
+				<tr>
+					<td class="{{row.row_cells[0].css_class}}" {{row.row_cells[0].custom_css|safe}}>{{row.row_cells[0].get_cell_value()|safe}}</td>
+					<td class="{{row.row_cells[outer_loop.index0].css_class}}" {{row.row_cells[outer_loop.index0].custom_css|safe}}>{{row.row_cells[outer_loop.index0].get_cell_value()|safe}}</td>
+				</tr>
+				{% for child in row.children recursive%}
+				<tr>
+					<td class="{{child.row_cells[0].css_class}}" {{child.row_cells[0].custom_css|safe}}>{{child.row_cells[0].get_cell_value()|safe}}</td>
+					<td class="{{child.row_cells[outer_loop.index0].css_class}}" {{child.row_cells[outer_loop.index0].custom_css|safe}}>{{child.row_cells[outer_loop.index0].get_cell_value()|safe}}</td>
+				</tr>
+				{{ loop(child.children) }}
+				{% endfor %}
+			{% endfor %}
+	</table>
+	{% endif %}
+{% endfor %}
+</div>
+{% raw %} <!--<![endif]--> {% endraw %}
+
