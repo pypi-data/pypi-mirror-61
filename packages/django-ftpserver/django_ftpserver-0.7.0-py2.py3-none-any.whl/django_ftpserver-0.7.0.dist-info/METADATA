@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: django-ftpserver
+Version: 0.7.0
+Summary: FTP server application for Django.
+Home-page: https://github.com/tokibito/django-ftpserver
+Author: Shinya Okano
+Author-email: tokibito@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: Django (>=2.0)
+Requires-Dist: pyftpdlib
+Provides-Extra: develop
+Requires-Dist: pytest ; extra == 'develop'
+Requires-Dist: flake8 ; extra == 'develop'
+Requires-Dist: pytest-django ; extra == 'develop'
+Requires-Dist: pytest-pythonpath ; extra == 'develop'
+Requires-Dist: tox ; extra == 'develop'
+Requires-Dist: wheel ; extra == 'develop'
+
+=================
+Django FTP server
+=================
+
+|build-status| |pypi| |docs|
+
+FTP server application that used user authentication of Django.
+
+Getting Started
+===============
+
+1.  Install django-ftpserver by pip.
+
+::
+
+   $ pip install django-ftpserver
+
+2. Add line to settings.INSTALLED_APPS for your django project.
+
+::
+
+   INSTALLED_APPS = (
+       # ..
+       'django_ftpserver',
+   )
+
+3. Migrate app.
+
+::
+
+   $ python manage.py migrate
+
+4. Create FTP user group.
+
+::
+
+   $ python manage.py createftpusergroup my-ftp-group
+
+5. Create FTP user account.
+
+::
+
+   $ python manage.py createftpuseraccount <username> my-ftp-group
+
+``<username>`` is the django authentication username.
+
+6. Run ``manage.py ftpserver`` command.
+
+::
+
+   $ python manage.py ftpserver 127.0.0.1:10021
+
+7. Connect with your favorite FTP client.
+
+Requirements
+============
+
+* Target Python version is 3.4, 3.5, 3.6, 3.7, 3.8
+* Django>=2.0
+* pyftpdlib
+
+License
+=======
+
+This software is licensed under the MIT License.
+
+Documentation
+=============
+
+The latest documentation is hosted at Read The Docs.
+
+https://django-ftpserver.readthedocs.org/en/latest/
+
+Develop
+=======
+
+This project is hosted at Github: https://github.com/tokibito/django-ftpserver
+
+Author
+======
+
+* Shinya Okano
+
+.. |build-status| image:: https://travis-ci.org/tokibito/django-ftpserver.svg?branch=master
+   :target: https://travis-ci.org/tokibito/django-ftpserver
+.. |docs| image:: https://readthedocs.org/projects/django-ftpserver/badge/?version=latest
+   :target: https://readthedocs.org/projects/django-ftpserver/
+.. |pypi| image:: https://badge.fury.io/py/django-ftpserver.svg
+   :target: http://badge.fury.io/py/django-ftpserver
+
+
