@@ -1,0 +1,26 @@
+{% extends "schema/detail.html" %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Camera mount</th>
+    <td>{% if object.camera_mount %}<a href="{% url 'mount-detail' object.camera_mount.id %}">{{ object.camera_mount }}</a>{% endif %}</td>
+  </tr>
+  <tr>
+    <th>Lens mount</th>
+    <td>{% if object.lens_mount %}<a href="{% url 'mount-detail' object.lens_mount.id %}">{{ object.lens_mount }}</a>{% endif %}</td>
+  </tr>
+  <tr>
+    <th>Has optics</th>
+    <td>{{ object.has_optics }}</td>
+  </tr>
+  <tr>
+    <th>Infinity focus</th>
+    <td>{{ object.infinity_focus }}</td>
+  </tr>
+  <tr>
+    <th>Notes</th>
+    <td>{{ object.notes }}</td>
+  </tr>
+</table>
+{% endblock %}

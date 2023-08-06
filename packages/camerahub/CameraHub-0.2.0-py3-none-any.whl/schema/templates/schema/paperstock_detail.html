@@ -1,0 +1,30 @@
+{% extends "schema/detail.html" %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Name</th>
+    <td>{{ object.name }}</td>
+  </tr>
+  <tr>
+    <th>Manufacturer</th>
+    <td>{% if object.manufacturer %}<a href="{% url 'manufacturer-detail' object.manufacturer.id %}">{{ object.manufacturer }}</a>{% endif %}</td>
+  </tr>
+  <tr>
+    <th>Resin coated</th>
+    <td>{{ object.resin_coated }}</td>
+  </tr>
+  <tr>
+    <th>Tonable</th>
+    <td>{{ object.tonable }}</td>
+  </tr>
+  <tr>
+    <th>Colour</th>
+    <td>{{ object.colour }}</td>
+  </tr>
+  <tr>
+    <th>Finish</th>
+    <td>{{ object.finish }}</td>
+  </tr>
+</table>
+{% endblock %}

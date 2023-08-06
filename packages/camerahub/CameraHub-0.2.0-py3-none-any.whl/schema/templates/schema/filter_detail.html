@@ -1,0 +1,26 @@
+{% extends "schema/detail.html" %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Type</th>
+    <td>{{ object.type }}</td>
+  </tr>
+  <tr>
+    <th>Thread diameter</th>
+    <td>{{ object.thread }}</td>
+  </tr>
+  <tr>
+    <th>Attenuation</th>
+    <td>{{ object.attenuation }}</td>
+  </tr>
+  <tr>
+    <th>Quantity</th>
+    <td>{{ object.qty }}</td>
+  </tr>
+  <tr>
+    <th>Manufacturer</th>
+    <td>{% if object.manufacturer %}<a href="{% url 'manufacturer-detail' object.manufacturer.id %}">{{ object.manufacturer }}</a>{% endif %}</td>
+  </tr>
+</table>
+{% endblock %}
