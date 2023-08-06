@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: serotools
+Version: 0.2.0
+Summary: This package serves as a toolkit and repository for the White-Kauffmann-Le Minor scheme for Salmonella serotyping, which defines nomenclature and antigenic factors for each recognized serovar. The scheme is made available in multiple formats, along with methods for querying, comparing, and predicting serovar names and antigenic formulae.
+Home-page: https://github.com/CFSAN-Biostatistics/serotools
+Author: Joseph D. Baugher, Ph.D.
+Author-email: joseph.baugher@fda.hhs.gov
+License: BSD
+Keywords: bioinformatics,Salmonella,serovar,serotype,serotyping,White-Kauffmann-Le Minor
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: numpy
+Requires-Dist: pandas
+
+===============================
+SeroTools
+===============================
+
+
+.. Image showing the PyPI version badge - links to PyPI
+.. image:: https://img.shields.io/pypi/v/serotools.svg
+        :target: https://pypi.python.org/pypi/serotools
+
+.. Image showing the Travis Continuous Integration test status, commented out for now
+.. .. image:: https://img.shields.io/travis/CFSAN-Biostatistics/serotools.svg
+..        :target: https://travis-ci.org/CFSAN-Biostatistics/serotools
+
+
+
+This package serves as a toolkit and repository for the White-Kauffmann-Le Minor scheme 
+for Salmonella serotyping, which defines nomenclature and antigenic factors for each 
+recognized serovar. The scheme is made available in multiple formats, along with methods 
+for querying and comparing serovar names and antigenic formulae, as well as determining 
+the most abundant serovar for a cluster of isolates.
+
+SeroTools was developed by the United States Food and Drug Administration, Center for Food 
+Safety and Applied Nutrition.
+
+* Free software
+* Documentation: https://serotools.readthedocs.io
+* Source Code: https://github.com/CFSAN-Biostatistics/serotools
+* PyPI Distribution: https://pypi.python.org/pypi/serotools
+
+
+Features
+--------
+
+* Query the White-Kauffmann-Le Minor Salmonella serotyping repository
+
+* Compare serovar predictions for state of congruence
+
+* Determine the most abundant serovar for a cluster of isolates
+
+
+Citing SeroTools
+--------------------------------------
+
+To cite SeroTools, please reference the SeroTools GitHub repository:
+
+    https://github.com/CFSAN-Biostatistics/serotools
+
+
+License
+-------
+
+See the LICENSE file included in the SeroTools distribution.
+
+
+
+
+
+History
+=======
+
+0.2.0 (2020-02-17)
+---------------------
+
+Significant updates in this version - not backwards compatible.
+
+* The underlying data structures have been converted to pandas Series and DataFrames.
+* New 'cluster' subcommand functionality provides the most abundant serovar(s) for clusters of isolates. 
+* The 'predict' subcommand functionality has been merged into the 'query' subcommand, such that the default query will return any exact, congruent, and minimally congruent matches unless only exact matches are desired.
+* The WKLM repository is now available as a pandas DataFrame, in addition to dictionaries and lists.
+
+
+0.1.1 (2019-11-27)
+---------------------
+
+* Corrected a variable name in cli.py
+* Updated the algorithm for minimally congruent serovars
+
+
+0.1.0 (2019-11-19)
+---------------------
+
+* Initial version.
+
+
