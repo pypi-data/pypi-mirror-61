@@ -1,0 +1,23 @@
+/*
+    Questionnaire language.
+
+*/
+
+
+Questionnaire:
+    questions+=Question
+;
+
+Question:
+    ('Q:'|'Q[' qid=ID ']:') text+=TextLine
+    type=Type
+;
+
+Type: Free | Choice;
+
+Free: /___+/ (regex=/\/((?:(?:\\\/)|[^\/])*)\//)?;
+
+Choice: options+=ChoiceOption;
+ChoiceOption: num=INT ('[' id=ID ']')? '.' text+=TextLine;
+
+TextLine:  !/Q:|Q\[|\d+(\[[^\]]*\])?\.|___+/ /[^\n]+/;

@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: textx-lang-questionnaire
+Version: 0.1.1
+Summary: A DSL for describing questionnaires
+Home-page: https://github.com/textX/textx-lang-questionnaire
+Author: Igor R. Dejanovic
+Author-email: igor.dejanovic@gmail.com
+License: MIT
+Description: # Questionnaire DSL
+        
+        A DSL for describing questionnaires with a simple terminal interpreter.
+        
+        Example:
+        ```
+        Q: Project type
+        1[lang]. Language project
+        2[gen]. Generator project
+        
+        Q[package]: Package name
+        ___ /[a-z][a-z0-9_]*$/
+        
+        Q: Author name
+        ___
+        
+        Q: Author email
+        ___
+        
+        Q: This question is to
+           test multiline feature and indenting.
+           1. Working
+           2. Not working.
+              This is also to test multiline in choices.
+        ```
+        
+        Each question begins with `Q:` or `Q[<question ID>]`. The type of the question
+        is either free-form (specified by `___`) or choice if enumerated options are given.
+        
+        Both question and option can span multiple lines (like in the last question).
+        
+        For free-form question an optional regular expression can be given inside `//`
+        (see `Package name` above). This regex is an input validator.
+        
+        This package provides an interpreter of the questionnaire
+        `txquestionnaire.questionnaire_interpreter(model, data=None)` which accepts the
+        model created by parsing of questionnaire description using this language and
+        optionally a dictionary of default answers keyed by either question ID if given
+        or question number. The interpreter will run the questionnaire on the console
+        and return a dictionary of collected data. The values for options are ordinal
+        numbers or IDs if given (like in `Project type` above -- `lang`, `gen`).
+        
+        Please see
+        [tests](https://github.com/textX/textx-lang-questionnaire/tree/master/tests) for
+        the detailed usage.
+        
+Keywords: textX; language; DSL
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Interpreters
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: dev
