@@ -1,0 +1,107 @@
+### UCS633 Project Submission
+* **Name** - *Kartikey Tiwari* 
+* **Roll no.** - *101703282* 
+
+# missing_values
+
+missing_values is a Python package for handling missing values from a dataset.
+
+## Missing values
+
+Here’s some typical reasons why data is missing:
+User forgot to fill in a field.
+Data was lost while transferring manually from a legacy database.
+There was a programming error.
+Users chose not to fill out a field tied to their beliefs about how the results would be used or interpreted.
+As you can see, some of these sources are just simple random mistakes. Other times, there can be a deeper reason why data is missing.
+It’s important to understand these different types of missing data from a statistics point of view. The type of missing data will influence how you deal with filling in the missing values.
+
+
+## Getting Started
+
+These instructions will help you to install and use this package for general use. 
+
+## Prerequisites
+
+Your csv file should not have categorical data
+
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install missing_values.
+
+```bash
+pip install missing_values
+```
+
+## Usage
+You can import it either in Python IDLE or run directly through command prompt
+
+### For Command Prompt
+
+If you want to use this package on "data.csv" file. You need to change the directory where "data.csv" is stored then pass the name of csv file ("data.csv") as an input,your new csv file without missing values will be stored as "MissingValuesRemovedata.csv"
+
+```bash
+missing_values data.csv 
+```
+
+
+### For Python IDLE
+
+```python
+from missing_values.missing import missing_values
+missing_values(file1)
+
+#file1 is name of your csv file on which you will perform operation
+
+```
+### Sample dataset
+
+
+| TK104 | TK105 | TK107 |   |   |
+|-------|-------|-------|---|---|
+| 254   | 263   | 338   |   |   |
+| 440   | NA    | 470   |   |   |
+| 501   | NA    | 558   |   |   |
+| 368   | 451   | 426   |   |   |
+| 697   | 709   | 733   |   |   |
+| 476   | 542   | 539   |   |   |
+| 188   | 223   | 240   |   |   |
+| 525   | 659   | 628   |   |   |
+| 451   | 689   | 517   |   |   |
+| 517   | 509   | 564   |   |   |
+| 370   | 321   | 435   |   |   |
+| NA    | 403   | 306   |   |   |
+| NA    | 690   | 558   |   |   |
+| NA    | 460   | 358   |   |   |
+| 396   | 492   | 429   |   |   |
+
+
+
+### Result
+
+| TK104              | TK105              | TK107 |
+|--------------------|--------------------|-------|
+| 254.0              | 263.0              | 338   |
+| 440.0              | 11.434782608695652 | 470   |
+| 501.0              | 11.434782608695652 | 558   |
+| 368.0              | 451.0              | 426   |
+| 697.0              | 709.0              | 733   |
+| 476.0              | 542.0              | 539   |
+| 188.0              | 223.0              | 240   |
+| 525.0              | 659.0              | 628   |
+| 451.0              | 689.0              | 517   |
+| 517.0              | 509.0              | 564   |
+| 370.0              | 321.0              | 435   |
+| 11.043478260869565 | 403.0              | 306   |
+| 11.043478260869565 | 690.0              | 558   |
+| 11.043478260869565 | 460.0              | 358   |
+| 396.0              | 492.0              | 429   |
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
