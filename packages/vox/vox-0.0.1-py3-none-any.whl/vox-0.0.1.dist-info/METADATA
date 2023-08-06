@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: vox
+Version: 0.0.1
+Summary: Runs linters seperately and outputs them as one.
+Home-page: https://peilonrayz.github.io/vox
+Author: Peilonrayz
+Author-email: peilonrayz@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/Peilonrayz/vox/issues
+Project-URL: Documentation, https://peilonrayz.github.io/vox
+Project-URL: Source Code, https://github.com/Peilonrayz/vox
+Keywords: linter
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/x-rst
+Requires-Dist: nox
+Requires-Dist: parse
+Requires-Dist: typing-extensions
+Requires-Dist: mypy-extensions
+
+vox
+===
+
+.. image:: https://travis-ci.com/Peilonrayz/vox.svg?branch=master
+   :target: https://travis-ci.com/Peilonrayz/vox
+   :alt: Build Status
+
+About
+-----
+
+A wrapper around `nox`_ to easily run linters.
+
+.. _nox: https://nox.thea.codes/en/stable/
+
+Installation
+------------
+
+.. code:: shell
+
+   $ python -m pip install vox
+
+Documentation
+-------------
+
+Documentation is available `via GitHub <https://peilonrayz.github.io/vox/>`_.
+
+Testing
+-------
+
+To run all tests run ``nox``. No venv is needed; nox makes all of them for us.
+
+.. code:: shell
+
+   $ python -m pip install --user nox
+   $ git clone https://peilonrayz.github.io/vox/
+   $ cd vox
+   vox $ nox
+
+License
+-------
+
+vox is available under the MIT license.
+
