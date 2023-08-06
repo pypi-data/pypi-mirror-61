@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: emobpy
+Version: 0.0.3
+Summary: Creation of time series for battery electric vehicles modeling
+Home-page: https://gitlab.com/diw-evu/emobpy/emobpy
+Author: Carlos Gaete
+Author-email: cdgaete@gmail.com
+License: MIT License
+Requires-Dist: appdirs
+Requires-Dist: docopt
+Requires-Dist: pandas (==0.25.3)
+Requires-Dist: numpy (==1.18.1)
+Requires-Dist: numba (==0.48.0)
+Requires-Dist: plotly (==4.5.0)
+Requires-Dist: cufflinks (==0.17.0)
+
+Copyright (c) 2019 Carlos Gaete-Morales, Alexander Zerrahn, Wolf-Peter Schill
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Description: # emobpy
+        
+        emobpy is a Python tool that can create battery electric vehicle profiles. Three different time series can be created: Motor electricity consumption time series, grid availability time series and grid electricity demand time series. The electricity consumption time series are created based on mobility statistics.
+        
+        ## Motor electricity consumption time series
+        
+        The motor electricity consumption time series contain the location of a vehicle at each point in time. The locations vary according to the mobility of drivers. Possible locations are at home, workplace, shopping, errands, escort, leisure, or driving. When "Driving", the distance travelled is also provided in the time series. The time resolution can be established initially, but in fact, it depends on the available statistics (our examples contains 30 minutes time steps). Two groups of drivers can be distinguished commuters or non-commuters. Commuters perform the same trip to work every weekday and with the same distance home-work-home, in this group can be identified full-time and part-time employed people where the main destination is "workplace". While for the non-commuters group, every day a new trip is drawn with different trip purposes. The daily number of trips, the departure time, the trip purpose, and distance travelled are determined based on statistics of mobility surveys. Other considerations can also be set up. For instance, the number of working hours per day, the first and last destination of the day can be established as "at home". The "driving" condition must always be placed in between of two different locations, that is to say, that a determined destination cannot be followed by another destination in the time series unless a driving option is in between.
+        
+        ## Grid availability time series
+        
+        Grid availability time series can be created. It consists on taking a motor electricity consumption time series and based on the locations, the model assigns charging stations. Different charging stations can be available for a vehicle and they are chosen based on a probability distribution that adds up 100% for each location. The charging stations defined in this tool are "home", "public", "maker", "workplace", "fast" and "none", although more user-defined charging stations can be established. The charging stations have an associated capacity per time interval and "none" has zero capacity. Different scenarios of grid availability can be modelled.
+        
+        ## Grid electricity demand time series
+        
+        While a grid availability time series contains at each interval information of the charging stations available, such as the capacity allocated to them. A grid electricity demand time series is the one that indicates the actual consumption of electricity from the grid to charge the battery of a vehicle according to its driving behaviour and grid availability. There are different options available to create a grid electricity demand time series. For example, "Immediate-Full capacity" is an option that informs the energy drawn from the grid at a full power rating of a respective charging station until the battery is fully charged, or "Immediate-Balanced" option that creates a time series taking into account the duration of a vehicle is connected to a charging station and the energy required to get the battery fully charged, allowing to charge the battery at a lower capacity than the maximum capacity available.
+        
+        ## Instructions
+        
+        This tool has been tested in window 7, Ubuntu 18.04, Ubuntu 19.04 and Suse Linux. It is recomended to install the package in an dedicated Python environment with Python version 3.6 or 3.7.
+        
+        Instalation:
+        
+            pip install emobpy
+        
+        ## Usage
+        
+        Notebooks with examples can be found in https://gitlab.com/diw-evu/emobpy/emobpy_examples
+        
+        Remove library:
+        
+            pip uninstall emobpy
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Scientific/Engineering :: Energy
+Classifier: Topic :: Scientific/Engineering :: Mobility
