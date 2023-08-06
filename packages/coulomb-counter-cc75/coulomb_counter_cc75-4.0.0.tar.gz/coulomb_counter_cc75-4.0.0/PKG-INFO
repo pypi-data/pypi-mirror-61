@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: coulomb_counter_cc75
+Version: 4.0.0
+Summary: Python library for the coulomb counter cc75.
+Home-page: https://github.com/yncreahdf-robotics/coulomb_counter_cc75_py/tree/master/coulomb_counter_cc75
+Author: Gilles HUBERT
+Author-email: gilles.hubert97@gmail.com
+License: UNKNOWN
+Description: # coulomb_counter_cc75_py
+        Python library for the coulomb counter cc75
+        ========================================================
+        
+        The Coulomb_counter class allows to read and manage data from a USB
+        connection with a coulomb counter cc75.
+        
+        You can install it with pip:
+        
+            pip install coulomb_counter_cc75
+        
+        Exemple d'usage:
+        
+            >>> from coulomb_counter_cc75 import Coulomb_counter
+            >>> Coulomb_counter.onUpdate = lambda self: print(self)
+            >>> coulomb_counter = Coulomb_counter("/dev/ttyUSB0")
+            >>> coulomb_counter.launch()
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
