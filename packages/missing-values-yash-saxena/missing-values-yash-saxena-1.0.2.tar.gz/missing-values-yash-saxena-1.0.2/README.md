@@ -1,0 +1,103 @@
+# Replacing missing values in a dataset with the mean of that particular column
+
+**Project 3 : UCS633 DATA ANALYTICS AND VISUALIZATION**
+
+
+Submitted By: **Yash Saxena 101703627**
+
+***
+pypi: <https://pypi.org/project/missing-values-yash-saxena/>
+***
+
+## SimpleImputer Class
+```
+class sklearn.impute.SimpleImputer(missing_values=nan, strategy='mean', fill_value=None, verbose=0, copy=True, add_indicator=False)
+```
+SimpleImputer is a scikit-learn class which is helpful in handling the missing data in the predictive model dataset.It replaces the NaN values with a specified placeholder.It is implemented by the use of the SimpleImputer() method which takes the following arguments:
+<br>
+<br>
+missing_data : The missing_data placeholder which has to be imputed. By default is NaN.
+<br>
+<br>
+stategy : The data which will replace the NaN values from the dataset. The strategy argument can take the values – 'mean'(default),'median', 'most_frequent' and 'constant'.
+<br>
+<br>
+fill_value : The constant value to be given to the NaN data using the constant strategy.
+<br>
+<br>
+copy : boolean, default=True
+If True, a copy of X will be created. If False, imputation will be done in-place whenever possible. Note that, in the following cases, a new copy will always be made, even if copy=False
+<br>
+<br>
+add_indicator : boolean, default=False
+If True, a MissingIndicator transform will stack onto output of the imputer’s transform. This allows a predictive estimator to account for missingness despite imputation. 
+
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install removal system.
+
+```bash
+pip install missing-values-yash-saxena
+```
+
+<br>
+
+## How to use this package:
+
+missing-values-yash-saxena can be run as done below:
+
+
+
+### In Command Prompt
+```
+>> missing_values dataset.csv
+```
+<br>
+
+
+## Sample dataset
+
+a | b | c 
+:--------: | :--------: | :--------:
+NaN| 7 | 0
+0 |NaN| 4
+2 |NaN| 4
+1 | 7 | 0
+1 | 3 | 9
+7 | 4 | 9
+2 | 6 | 9
+9 | 6 | 4
+3 | 0 | 9
+9 | 0 | 1
+
+<br>
+
+
+## Output Dataset after Handling the Missing Values
+
+a | b | c 
+:--------: | :--------: | :--------:
+3.777778  | 7 | 0
+0 | 4.125  | 4
+2 |  4.125 | 4
+1 | 7 | 0
+1 | 3 | 9
+7 | 4 | 9
+2 | 6 | 9
+9 | 6 | 4
+3 | 0 | 9
+9 | 0 | 1
+
+<br>
+
+It is clearly visible that the rows,columns containing Null Values have been Handled Successfully.
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+
+
+
