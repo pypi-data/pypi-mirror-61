@@ -1,0 +1,191 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-02-17T19:54:21",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"type\": \"customer\", \"name\": \"dummy company, test update full\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=10cee7728f7aa84e73f982cdb1e46290"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "63"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.22.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://v6zcg2argh.mocoapp.com/api/v1/companies"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/3yQTc/UIBSF/0pz1ryGdj6asnZW7oxuNKZh4HbEUGjgojaT+e+GtnH57uDJybnPvU84C9VfZX/ur2cpwOtCUDAlc5wpQSDouRJb5nltTJwXHVbRMGVuymI1UzMV7yHwh+7Zcc1CgGbtPFQo3gssP2M4+KT/7g9tbaKc94+JJXBaRxNtzX28QYD1I0N9/yFQMiWoXXU4na7dMPQXgcmlzIdd1YGA1/+JNlspXpXeyR9dLkzxMImRa+82f1t3XFJcKLGjDPV8CZhEmsmOmqHQyU6+ye6t7b+0g7qcVdd+g8B+g/czzlJgN7lt3Ccp27bCwJQC1KR9JoG7896Fx8j1QO3wQVarlCiYFQq3r58hYGnSxfPowu/oDI220Gj1mqFOUmBJ8RcZ3hZ9/QsAAP//3OerOdkBAAA=",
+          "encoding": "utf-8"
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "320"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 17 Feb 2020 19:54:21 GMT"
+          ],
+          "Etag": [
+            "W/\"115292e3233698ed6c64e95100b1283b\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "70d91cc6-cb08-49e5-a89c-7ea59d160ec5"
+          ],
+          "X-Runtime": [
+            "0.076835"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://v6zcg2argh.mocoapp.com/api/v1/companies"
+      }
+    },
+    {
+      "recorded_at": "2020-02-17T19:54:22",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"country_code\": \"CH\", \"identifier\": \"COMP-U-7\", \"labels\": [\"these\", \"are\", \"labels\"], \"website\": \"https://mocoapp.com\", \"billing_tax\": 25.5, \"currency\": \"EUR\", \"info\": \"in this company every property is set\", \"phone\": \"12345\", \"invoice_due_days\": 15, \"address\": \"test street 1\", \"name\": \"updated company with  prop set\", \"fax\": \"12345\", \"user_id\": 933629975, \"custom_properties\": {\"test\": \"test\"}, \"type\": \"customer\", \"email\": \"test@test.de\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=10cee7728f7aa84e73f982cdb1e46290"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "443"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.22.0"
+          ]
+        },
+        "method": "PUT",
+        "uri": "https://v6zcg2argh.mocoapp.com/api/v1/companies/760747640"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/3yRQWvcMBCF/4p4Z21ie9drVqdCKPRSWkpzaQlGK41jFVsS0jipCfvfi9zt0lMuAj3mzZv55g3OQnXHqjt0x0MlwWskKJglc5gpQcLruShLtJrJChPmqP0qXh2PQsQUosjEkHilc3ZcSkfmmNX9/RxM0DHemTBDgmbtJigwZf5QnjtLkIhj8MVUN/tDC4lB//7vp61NlPPVJjInIhY1JExYPKe1N8EW+8MnSLB+zlA/oVPpPOkzTbnII2XCk8SSKUH93fm03x+b06lrJQaXMl/XLDGb96Zos0Xhcuv4ToLzQ4CC84JHl2+w6IXSusGixKtw+cpsCIHLSCgLbcj7a5GjDPV2kTCJCvdeMxSaqql2VbOru+/1SbUH1dQ/IP/d5t0aZ8mzG9wW9/Dl89fd464rumdKHmrQUyaJs5sm5597Lmdo2ru2DJYSebNC4ePjN0hYGvQyce/8S3CGertQb/WaoepWIqbwiwwXTE+XPwEAAP//AHCz6WACAAA=",
+          "encoding": "utf-8"
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "389"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 17 Feb 2020 19:54:22 GMT"
+          ],
+          "Etag": [
+            "W/\"05d7a82cb09a2eb353b8963cb1ebf3ca\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "d07505f0-0262-46d2-b5e7-cf839e50ceeb"
+          ],
+          "X-Runtime": [
+            "0.136807"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://v6zcg2argh.mocoapp.com/api/v1/companies/760747640"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}
