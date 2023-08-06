@@ -1,0 +1,40 @@
+#!python
+"""
+Usage:
+  hello [options] [NAME]
+
+Options:
+  -d, --debug         Print debug info
+  -h, --help          Print help info
+  -t, --title TITLE   Title to use (ex: Mr.)
+      --lower         Lower case everything
+  --version           Print version
+
+"""
+from docopt import docopt
+
+# Setup package level version
+from .version import __version__
+
+from hello_module.hello import Hello
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version=__version__)
+
+    debug = arguments['--debug']
+    if debug:
+        print('arguments:', arguments)
+
+    name = arguments['NAME']
+    if not name:
+        name = 'world'
+    title = arguments['--title']
+    lower = arguments['--lower']
+
+    h = Hello(name)
+    if title:
+        h.title = title
+    if lower:
+        print(h.transform())
+    else:
+        print(h.hello())
