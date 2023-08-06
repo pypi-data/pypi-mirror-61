@@ -1,0 +1,71 @@
+{
+  "src/lib/components/DashDatetimepicker.react.js": {
+    "description": "Dash Datetime Range Picker is a component for selecting two dates (including times).\nIt takes `startDate` and `endDate` as main properties and renders two inputs\nwhich open datepickers when they are clicked.",
+    "displayName": "DashDatetimepicker",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+      },
+      "endDate": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "instanceOf",
+              "value": "moment"
+            },
+            {
+              "name": "instanceOf",
+              "value": "Date"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "The endDate of the range picker. It will fire a dash callback if it is updated.",
+        "defaultValue": {
+          "value": "new Date()",
+          "computed": false
+        }
+      },
+      "startDate": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "instanceOf",
+              "value": "moment"
+            },
+            {
+              "name": "instanceOf",
+              "value": "Date"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "The startDate of the range picker. It will fire a dash callback if it is updated.",
+        "defaultValue": {
+          "value": "new Date(new Date() - 1000 * 60 * 60 * 24)",
+          "computed": false
+        }
+      }
+    }
+  }
+}
