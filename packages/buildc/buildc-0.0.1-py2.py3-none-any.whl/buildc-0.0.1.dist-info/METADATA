@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: buildc
+Version: 0.0.1
+Summary: Report files opened while executing a command
+Home-page: https://github.com/joaompinto/buildc
+Author: João Pinto
+Author-email: joao.pinto@vshn.ch
+License: BSD-3
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: filetrace
+Requires-Dist: file-magic
+
+# buildc
+
+Build an OCI container bundle from a command execution
+
+## Usage
+
+```bash
+pip3 install --user buildc
+buildc output_directory -- command
+```
+
+## Running from the source
+```bash
+git clone https://github.com/joaompinto/buildc
+cd buildc
+pip3 install --user -r requirements.txt
+```
+
+
