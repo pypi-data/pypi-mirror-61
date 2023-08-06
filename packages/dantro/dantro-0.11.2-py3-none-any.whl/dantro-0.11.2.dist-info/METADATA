@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: dantro
+Version: 0.11.2
+Summary: Loads, handles, and plots hierarchically structured data
+Home-page: https://ts-gitlab.iup.uni-heidelberg.de/utopia/dantro
+Author: Utopia Developers
+Author-email: Yunus Sevinchan <Yunus.Sevinchan@iup.uni.heidelberg.de>
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
+Requires-Dist: numpy (>=1.14)
+Requires-Dist: xarray (>=0.13.0)
+Requires-Dist: dask (>=2.5.2)
+Requires-Dist: toolz (>=0.10.0)
+Requires-Dist: distributed (>=2.5.2)
+Requires-Dist: h5py (>=2.7.0)
+Requires-Dist: netcdf4 (==1.5.2)
+Requires-Dist: networkx (>=2.2)
+Requires-Dist: ruamel.yaml (>=0.16.5)
+Requires-Dist: matplotlib (>=3.1.0)
+Requires-Dist: paramspace (>=2.2.3)
+Provides-Extra: doc_deps
+Requires-Dist: sphinx (>=2.0) ; extra == 'doc_deps'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc_deps'
+Provides-Extra: test_deps
+Requires-Dist: pytest (>=3.4.0) ; extra == 'test_deps'
+Requires-Dist: pytest-cov (>=2.5.1) ; extra == 'test_deps'
+Requires-Dist: tox (>=3.1.2) ; extra == 'test_deps'
+
+With dantro, hierarchically structured data can be loaded into a uniform data structure, a so-called data tree. Furthermore, dantro provides capabilities to generically create plots from that data. The whole package aims at implementing an abstract interface that allows specializing the provided classes to the needs to the data that is to be worked with. At the same time, it already provides useful functionality, which makes specialization easier.
+
+
