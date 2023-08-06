@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: dgi
+Version: 0.8.6
+Summary: Ferramenta para facilitar o acesso aos dados disponibilizados pelo DGI/INPE.
+Home-page: https://gitlab.com/labisa/catalogo-de-imagens/dgi-dumps
+Author: Laboratório de Instrumentação de Sistemas Aquáticos (LabISA)
+Author-email: felipe.carlos@fatec.sp.gov.br
+License: UNKNOWN
+Description: # dgi
+        
+        Ferramenta para facilitar o acesso aos dados disponibilizados pelo DGI/INPE.
+        
+        ## Instalação
+        
+        ```{shell}
+        pip install dgi
+        ```
+        
+        ## Exemplo de utilização
+        
+        ```{python}
+        from dgi.acesso import BuscaDeImagemNoCatalogo, FacilitaDGI
+        
+        facilita_dgi = FacilitaDGI("SEU_USUARIO_DO_CATALOGO", "SUA_SENHA_DO_CATALOGO")
+        catalogo_de_imagens_local = BuscaDeImagemNoCatalogo()
+        
+        # Fazendo a busca
+        imagens = catalogo_de_imagens_local.busca_imagens_por_data("01/01/2019", "01/02/2019")
+        
+        # Realizando o pedido com as imagens encontradas
+        informacoes_do_pedido = facilita_dgi.realiza_pedido(imagens)
+        ```
+        
+        ## Funcionalidades
+        
+        ## Documentação
+        
+        Para gerar a documentação, será necessário instalar o `sphinxs` e executar o comando abaixo
+        
+        ```shell
+        sphinx-build -b html docs docs-compilado
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
