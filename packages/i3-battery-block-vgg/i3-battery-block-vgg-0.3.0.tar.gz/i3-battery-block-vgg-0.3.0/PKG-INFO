@@ -1,0 +1,106 @@
+Metadata-Version: 1.2
+Name: i3-battery-block-vgg
+Version: 0.3.0
+Summary: An i3 wm block for showing the battery state. Based on battery2 from James Murphy. https://github.com/vivien/i3blocks-contrib]
+Home-page: https://github.com/vgoehler/python-i3-battery-block
+Author: Volker G Göhler
+Author-email: volker.goehler@informatik.tu-freiberg.de
+License: BSD-2-Clause
+Project-URL: Documentation, https://python-i3-battery-block.readthedocs.io/
+Project-URL: Changelog, https://python-i3-battery-block.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/vgoehler/python-i3-battery-block/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        An i3 wm status block for showing the battery status in i3 blocks. It's output uses pango to format the text. Loosely based on battery2 from James Murphy. https://github.com/vivien/i3blocks-contrib]
+        
+        * Free software: BSD 2-Clause License
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install i3-battery-block-vgg
+        
+        You can also install the in-development version with::
+        
+            pip install https://github.com/vgoehler/python-i3-battery-block/archive/master.zip
+        
+        
+        Command Line Options
+        ====================
+        
+        .. code:: bash
+        
+           usage: i3-battery-block-vgg [-h] [-c] [-b]
+                                       [-l {debug,info,warning,error,critical}]
+        
+           CLI for i3 wm block battery
+        
+           optional arguments:
+             -h, --help            show this help message and exit
+             -c, --compact         flag for compact mode, truncates all batteries into
+                                   one
+             -b, --show_bug        This will show a marker if the acpi bug has occurred.
+             -l {debug,info,warning,error,critical}, --loglevel {debug,info,warning,error,critical}
+                                   log level
+        
+        
+        Documentation
+        =============
+        
+        
+        https://python-i3-battery-block.readthedocs.io/
+        
+        
+        Development
+        ===========
+        
+        To run all tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        Changelog
+        =========
+        
+        0.0.0 (2020-01-21)
+        ------------------
+        
+        * First release on PyPI.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
