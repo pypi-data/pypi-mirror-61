@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: LMSQuery-fork
+Version: 0.5.2
+Summary: Query library for Logitech Media Server
+Home-page: https://github.com/txoof/lmsquery
+Author: Robert Einhausi, Aaron Ciuffo
+Author-email: aaron.ciuffo@gmail.com
+License: MIT
+Description: # LMSQuery
+            
+        **Fork of Query library for Logitech Media Server**
+        original created by roberteninhaus
+        https://github.com/roberteinhaus/lmsquery
+        
+        This library provides easy to use functions to send queries to a Logitech Media Server (https://github.com/Logitech/slimserver)
+        
+        ### Installation
+            pip install lmsquery-fork
+        
+        ### Usage Example
+            import lmsquery
+            lms = lmsquery.LMSQuery('127.0.0.1', '9000') # use ip and port of lms server
+            players = lms.get_players()
+            for player in players:
+              print player['name']
+        
+Keywords: logitech media server lms
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
