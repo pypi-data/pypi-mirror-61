@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<title>PhishDetect Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<style>
+a:link, a:visited {
+    color: #3490DC;
+    text-decoration: underline;
+}
+a:hover {
+    text-decoration: none;
+}
+</style>
+</head>
+<body class="bg-gray-lightest text-black">
+<div class="p-12 w-full">
+    <div class="flex">
+        <ul class="list-reset flex mb-8 w-full">
+            <li class="mr-6">{% if page == 'Events' %}<span class="text-gray-dark"><i class="fas fa-exclamation-circle"></i> Events</span>{% else %}<a class="text-blue hover:text-blue-darker no-underline" href="/events/"><i class="fas fa-exclamation-circle"></i> Events</a>{% endif %}</li>
+            <li class="mr-6">{% if page == 'Reports' %}<span class="text-gray-dark"><i class="fas fa-envelope"></i> Reports</span>{% else %}<a class="text-blue hover:text-blue-darker no-underline" href="/reports/"><i class="fas fa-envelope"></i> Reports</a>{% endif %}</li>
+            <li class="mr-6">{% if page == 'Users' %}<span class="text-gray-dark"><i class="fas fa-user-plus"></i> Users</span>{% else %}<a class="text-blue hover:text-blue-darker no-underline" href="/users/"><i class="fas fa-user-plus"></i> Users</a>{% endif %}</li>
+            <li class="mr-6">{% if page == 'Indicators' %}<span class="text-gray-dark"><i class="fas fa-list-ul"></i> Indicators</span>{% else %}<a class="text-blue hover:text-blue-darker no-underline" href="/indicators/"><i class="fas fa-list-ul"></i> Indicators</a>{% endif %}</li>
+            <li class="mr-6">{% if page == 'Configuration' %}<span class="text-gray-dark"><i class="fas fa-cogs"></i> Configuration</span>{% else %}<a class="text-blue hover:text-blue-darker no-underline" href="/conf/"><i class="fas fa-cogs"></i> Configuration</a>{% endif %}</li>
+        </ul>
+    </div>
+
+    <h1 class="text-2xl mb-6"><b>PhishDetect</b> Admin{% if page %} - {{ page }}{% endif %}</h1>
+
+    {% block content %}{% endblock %}
+</div>
+{% block scripts %}{% endblock %}
+</body>
+</html>
